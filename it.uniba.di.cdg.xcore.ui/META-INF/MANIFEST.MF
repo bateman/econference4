@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: it.uniba.di.cdg.xcore.ui; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: it.uniba.di.cdg.xcore.ui.UiPlugin
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ it.uniba.di.cdg.xcore.util,
+ it.uniba.di.cdg.xcore.network,
+ org.aspectj.runtime,
+ org.jivesoftware.smack
+Eclipse-LazyStart: true
+Export-Package: it.uniba.di.cdg.xcore.ui,
+ it.uniba.di.cdg.xcore.ui.actions,
+ it.uniba.di.cdg.xcore.ui.adapters,
+ it.uniba.di.cdg.xcore.ui.contribution,
+ it.uniba.di.cdg.xcore.ui.dialogs,
+ it.uniba.di.cdg.xcore.ui.internal,
+ it.uniba.di.cdg.xcore.ui.perspectives,
+ it.uniba.di.cdg.xcore.ui.preferences,
+ it.uniba.di.cdg.xcore.ui.util,
+ it.uniba.di.cdg.xcore.ui.views

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://conferencing.di.uniba.it/platform" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://conferencing.di.uniba.it/platform">
+	<!-- contains platform specific options -->
+	<xs:element name="platform">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="jxta">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="peerGroupName" type="xs:string"/>
+							<xs:element name="peerGroupID" type="xs:string"/>
+							<xs:element name="pipeName" type="xs:string"/>
+							<xs:element name="pipeID" type="xs:string"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="jabber">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="serverAddress" type="xs:string"/>
+							<xs:element name="serverPort" type="xs:string"/>
+							<xs:element name="ssl" type="xs:boolean"/>
+                            <xs:element name="room" type="xs:string"/>
+                        </xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

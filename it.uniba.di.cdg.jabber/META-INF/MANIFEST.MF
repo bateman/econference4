@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: it.uniba.di.cdg.jabber; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: it.uniba.di.cdg.jabber.JabberPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ it.uniba.di.cdg.xcore.network;visibility:=reexport,
+ org.jivesoftware.smack;bundle-version="3.1.0",
+ org.aspectj.runtime,
+ it.uniba.di.cdg.xcore.m2m,
+ org.eclipse.swt;bundle-version="3.5.1",
+ it.uniba.di.cdg.xcore.ui;bundle-version="1.0.0",
+ org.eclipse.jface;bundle-version="3.5.1",
+ it.uniba.di.cdg.xcore.one2one;bundle-version="1.0.0",
+ org.eclipse.ui;bundle-version="3.5.1"
+Bundle-Vendor: %Bundle-Vendor
+Export-Package: it.uniba.di.cdg.jabber,
+ it.uniba.di.cdg.jabber.internal;x-friends:="it.uniba.di.cdg.jabber.test",
+ it.uniba.di.cdg.smackproviders
+Bundle-ActivationPolicy: lazy
+Import-Package: it.uniba.di.cdg.xcore.m2m.events

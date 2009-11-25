@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: E-Conference tests
+Bundle-SymbolicName: it.uniba.di.cdg.xcore.econference.test
+Bundle-Version: 1.0.0
+Bundle-Localization: plugin
+Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
+Require-Bundle: it.uniba.di.cdg.xcore.econference,
+ org.jmock,
+ org.junit,
+ it.uniba.di.cdg.xcore.m2m,
+ it.uniba.di.cdg.xcore.util,
+ org.eclipse.core.runtime

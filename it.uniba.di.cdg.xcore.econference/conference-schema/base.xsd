@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://conferencing.di.uniba.it/base" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:target="http://conferencing.di.uniba.it/platform" xmlns:role="http://conferencing.di.uniba.it/role" xmlns="http://conferencing.di.uniba.it/base">
+	<!-- import of external schema (contains platform specific options) -->
+	<xs:import namespace="http://conferencing.di.uniba.it/platform" schemaLocation="platform.xsd"/>
+	<!-- inclusion of external schema (contains conference role definitions) -->
+	<!-- NOTE the chameleon effect: that is, role belongs by now to this namespace -->
+	<xs:import namespace="http://conferencing.di.uniba.it/role" schemaLocation="role.xsd"/>
+	<!-- definition of global named types -->
+	<!-- defintion of basic conference type to be derived by extension -->
+	<xs:complexType name="conferenceType">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<!-- the reference to the implementation platform -->
+			<xs:element ref="target:platform"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="topic" type="xs:string"/>
+			<xs:element name="schedule" type="xs:dateTime"/>
+			<xs:element name="items">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trainingSessions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trainingSession" type="xs:dateTime" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="role:supportTeam"/>
+			<xs:element ref="role:participants"/>
+		</xs:sequence>
+		<xs:attribute name="directorCanDiscuss" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="moderatorCanDiscuss" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="protected" type="xs:boolean" use="optional" default="false"/>
+	</xs:complexType>
+</xs:schema>

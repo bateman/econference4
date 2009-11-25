@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="packets" name="%extension-point.name" schema="schema/packets.exsd"/>
+   <extension-point id="services" name="%extension-point.name.0" schema="schema/services.exsd"/>
+   <extension
+         point="it.uniba.di.cdg.xcore.network.backends">
+      <backend
+            class="it.uniba.di.cdg.jabber.JabberBackend"
+            id="it.uniba.di.cdg.jabber.jabberBackend"
+            name="Jabber"
+            secure="false"/>
+   </extension>
+
+</plugin>

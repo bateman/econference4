@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: it.uniba.di.cdg.collaborativeworkbench.boot; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: plugin
+Require-Bundle: it.uniba.di.cdg.xcore.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
+ it.uniba.di.cdg.xcore.network,
+ it.uniba.di.cdg.skype;bundle-version="1.0.0"
+Bundle-Activator: it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin

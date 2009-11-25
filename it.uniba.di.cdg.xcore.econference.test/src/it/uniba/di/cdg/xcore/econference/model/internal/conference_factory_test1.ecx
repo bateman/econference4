@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:meeting
+    directorCanDiscuss="false"
+    moderatorCanDiscuss="true"
+    protected="false"
+    xmlns:m="http://conferencing.di.uniba.it/meeting"
+    xmlns:conference="http://conferencing.di.uniba.it/base"
+    xmlns:role="http://conferencing.di.uniba.it/role"
+    xmlns:target="http://conferencing.di.uniba.it/platform"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://conferencing.di.uniba.it/meeting meeting.xsd">
+
+<!--meeting configuration file - do not edit by hand-->
+    <target:platform type="jabber">
+        <target:jabber>
+            <target:room>testroom@conference.192.168.0.5</target:room>
+            <target:serverAddress>192.168.0.5</target:serverAddress>
+            <target:serverPort>5222</target:serverPort>
+            <target:ssl>false</target:ssl>
+        </target:jabber>
+    </target:platform>
+
+    <conference:name>Test conference</conference:name>
+
+    <conference:topic>Test topic</conference:topic>
+
+    <conference:schedule>2005-10-12T12:30:00+00:00</conference:schedule>
+
+    <conference:items>
+        <conference:item>Item 1</conference:item>
+        <conference:item>Item 2</conference:item>
+    </conference:items>
+
+    <conference:trainingSessions/>
+
+    <role:supportTeam>
+        <role:director>
+            <role:fullname>Director</role:fullname>
+            <role:email>director@organization.com</role:email>
+            <role:organization>Organization</role:organization>
+            <role:id>director@jabber.organization.com</role:id>
+            <role:passwd>secret</role:passwd>
+        </role:director>
+
+        <role:moderator><role:fullname>Moderator</role:fullname>
+            <role:email>moderator@wom.com</role:email>
+            <role:organization>World Organized Moderator</role:organization>
+            <role:id>moderator@jabber.wom.com</role:id>
+            <role:passwd>secret</role:passwd>
+        </role:moderator>
+
+        <role:scribe>
+        	<role:fullname>Scribe</role:fullname>
+            <role:email>scribe@scriber.com</role:email>
+            <role:organization>United Scribes Ltd.</role:organization>
+            <role:id>scribe@jabber.scriber.com</role:id>
+            <role:passwd>secret</role:passwd>
+        </role:scribe>
+    </role:supportTeam>
+
+    <role:participants>
+        <role:expert>
+            <role:fullname>Expert 1</role:fullname>
+            <role:email>expert1@reallyexperts.com</role:email>
+            <role:organization>Global Experts Enterprise</role:organization>
+            <role:id>expert1@jabber.reallyexperts.com</role:id>
+            <role:passwd>secure</role:passwd>
+        </role:expert>
+    </role:participants>
+</m:meeting>
+

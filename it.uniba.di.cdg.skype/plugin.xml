@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="it.uniba.di.cdg.xcore.network.backends">
+      <backend
+            class="it.uniba.di.cdg.skype.SkypeBackend"
+            id="it.uniba.di.cdg.skype.skypeBackend"
+            name="Skype"
+            secure="false">
+      </backend>
+   </extension>
+
+</plugin>

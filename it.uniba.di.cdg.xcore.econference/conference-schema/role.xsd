@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://conferencing.di.uniba.it/role" xmlns="http://conferencing.di.uniba.it/role" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- definition of person type - models a conference participant -->
+	<xs:complexType name="participantType">
+		<xs:all>
+			<xs:element name="fullname" type="xs:string"/>
+			<xs:element name="organization" type="xs:string"/>
+			<xs:element name="email" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="passwd" type="xs:string"/>
+		</xs:all>
+	</xs:complexType>
+	<!-- definition of speaker type - models a conference speaker -->
+	<xs:complexType name="speakerType">
+		<xs:all>
+			<xs:element name="fullname" type="xs:string"/>
+			<xs:element name="organization" type="xs:string"/>
+			<xs:element name="email" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="passwd" type="xs:string"/>
+		</xs:all>
+	</xs:complexType>
+	<!-- definition of organizer type - a restriction of person -->
+	<!-- since the organization element is not mandatory -->
+	<xs:complexType name="supportTeamMemeberType">
+		<xs:all>
+			<xs:element name="fullname" type="xs:string"/>
+			<xs:element name="organization" type="xs:string"/>
+			<xs:element name="email" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="passwd" type="xs:string"/>
+		</xs:all>
+	</xs:complexType>
+	<!-- the observer has a fixed empty passwd -->
+	<xs:complexType name="observerType">
+		<xs:all>
+			<xs:element name="fullname" type="xs:string"/>
+			<xs:element name="organization" type="xs:string"/>
+			<xs:element name="email" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="passwd" type="xs:string" fixed=""/>
+		</xs:all>
+	</xs:complexType>
+	<!-- role instantiations -->
+	<xs:element name="supportTeam">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="director" type="supportTeamMemeberType"/>
+				<xs:element name="moderator" type="supportTeamMemeberType"/>
+				<xs:element name="scribe" type="supportTeamMemeberType"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="participants">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="expert" type="participantType" maxOccurs="unbounded"/>
+				<xs:element name="observer" type="observerType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="speaker" type="speakerType"/>
+	<xs:element name="panelists">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="speaker" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

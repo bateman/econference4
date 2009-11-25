@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://conferencing.di.uniba.it/meeting" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://conferencing.di.uniba.it/meeting" xmlns:conference="http://conferencing.di.uniba.it/base" xmlns:target="http://conferencing.di.uniba.it/platform" xmlns:role="http://conferencing.di.uniba.it/role" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- import external schema containing base conferencing structure -->
+	<xs:import namespace="http://conferencing.di.uniba.it/base" schemaLocation="base.xsd"/>
+	<!-- import external schema containing role definitions -->
+	<xs:import namespace="http://conferencing.di.uniba.it/role" schemaLocation="role.xsd"/>
+	<!-- import external schema containing platform specific options -->
+	<xs:import namespace="http://conferencing.di.uniba.it/platform" schemaLocation="platform.xsd"/>
+	<!-- currently a meeting adds no extension to the base conference type -->
+	<xs:element name="meeting" type="conference:conferenceType"/>
+</xs:schema>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: it.uniba.di.cdg.xcore.m2m.test
+Bundle-Version: 1.0.0
+Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
+Bundle-Localization: plugin
+Require-Bundle: it.uniba.di.cdg.xcore.m2m,
+ org.eclipse.core.runtime,
+ org.jmock,
+ org.junit,
+ it.uniba.di.cdg.xcore.util
