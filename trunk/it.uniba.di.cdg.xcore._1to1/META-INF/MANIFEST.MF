@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: it.uniba.di.cdg.xcore.one2one;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: it.uniba.di.cdg.xcore._1to1.ChatPlugin
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ it.uniba.di.cdg.xcore.network,
+ it.uniba.di.cdg.xcore.ui,
+ org.aspectj.runtime,
+ org.jivesoftware.smack;bundle-version="3.1.0"
+Export-Package: it.uniba.di.cdg.xcore._1to1
+Bundle-ActivationPolicy: lazy
