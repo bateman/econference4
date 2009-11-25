@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="it.uniba.di.cdg.xcore.ui.perspectives.InstantMessengerPerspective"
+            icon="icons/persp_im.png"
+            id="it.uniba.di.cdg.xcore.ui.perspectives.instantMessengerPerspective"
+            name="%perspective.name">
+      </perspective>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            id="it.uniba.di.cdg.xcore.ui.views.buddyListView"
+            class="it.uniba.di.cdg.xcore.ui.views.BuddyListView"
+            name="%view.name"
+            allowMultiple="true"
+            icon="icons/view_buddylist.png"/>
+      <view
+            id="it.uniba.di.cdg.xcore.ui.views.talkView"
+            class="it.uniba.di.cdg.xcore.ui.views.TalkView"
+            name="%view.name.0"
+            allowMultiple="true"
+            icon="icons/view_talk.png"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="it.uniba.di.cdg.xcore.ui.preferences.GeneralPreferencePage"
+            id="it.uniba.di.cdg.xcore.ui.preferences.GeneralPreferencePage"
+            name="%page.name"/>
+      <page
+            class="it.uniba.di.cdg.xcore.ui.preferences.EConferencePreferencePage"
+            id="it.uniba.di.cdg.xcore.ui.preferences.EConferencePreferencePage"
+            name="%page.name.0"/>
+      <page
+            class="it.uniba.di.cdg.xcore.ui.preferences.XmppBackendPreferencePage"
+            id="it.uniba.di.cdg.xcore.ui.preferences.XmppBackendPreferencePage"
+            name="%page.name.1"/>            
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="it.uniba.di.cdg.xcore.ui.preferences.PreferenceInitializer"/>
+   </extension>
+</plugin>

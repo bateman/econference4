@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://conferencing.di.uniba.it/panel" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:conference="http://conferencing.di.uniba.it/base" xmlns:target="http://conferencing.di.uniba.it/platform" xmlns:role="http://conferencing.di.uniba.it/role" xmlns="http://conferencing.di.uniba.it/panel">
+	<!-- import external schema containing base conferencing structure -->
+	<xs:import namespace="http://conferencing.di.uniba.it/base" schemaLocation="base.xsd"/>
+	<!-- import external schema containing role definitions -->
+	<xs:import namespace="http://conferencing.di.uniba.it/role" schemaLocation="role.xsd"/>
+	<!-- import external schema containing platform specific options -->
+	<xs:import namespace="http://conferencing.di.uniba.it/platform" schemaLocation="platform.xsd"/>
+	<!-- panel adds panelists element as extension to the base conference type -->
+	<!-- panelists is made up of unbounded speaker occurrencies -->
+	<xs:element name="panel">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="conference:conferenceType">
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element ref="role:panelists"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

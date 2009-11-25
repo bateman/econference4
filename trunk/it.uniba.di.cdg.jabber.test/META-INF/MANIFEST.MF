@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: it.uniba.di.cdg.jabber.test
+Bundle-Version: 1.0.0
+Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.jmock;bundle-version="1.0.0",
+ org.junit,
+ it.uniba.di.cdg.jabber,
+ it.uniba.di.cdg.xcore.one2one,
+ it.uniba.di.cdg.xcore.econference;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.m2m;bundle-version="1.0.0",
+ org.jivesoftware.smack;bundle-version="3.1.0",
+ org.junit4
+Import-Package: it.uniba.di.cdg.xcore.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

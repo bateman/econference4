@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:meeting
+    directorCanDiscuss="false"
+    moderatorCanDiscuss="true"
+    protected="false"
+    xmlns:m="http://conferencing.di.uniba.it/meeting"
+    xmlns:conference="http://conferencing.di.uniba.it/base"
+    xmlns:role="http://conferencing.di.uniba.it/role"
+    xmlns:target="http://conferencing.di.uniba.it/platform"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://conferencing.di.uniba.it/meeting meeting.xsd">
+
+<!--meeting configuration file - do not edit by hand-->
+    <target:platform type="jabber">
+        <target:jabber>
+            <target:serverAddress>193.204.187.159</target:serverAddress>
+            <target:serverPort>5222</target:serverPort>
+            <target:ssl>false</target:ssl>
+        </target:jabber>
+    </target:platform>
+
+    <conference:name>WRONG XML HERE
+            <role:passwd>secret</role:passwd>
+        </role:moderator>
+
+        <role:scribe>
+        	<role:fullname>Scribe</role:fullname>
+            <role:organization>United Scribes Ltd.</role:organization>
+            <role:id>scribe@jabber.scriber.com</role:id>
+            <role:passwd>secret</role:passwd>
+        </role:scribe>
+
+    <role:participants>
+            <role:fullname>Expert 1</role:fullname>
+            <role:email>expert1@reallyexperts.com</role:email>
+            <role:organization>Global Experts Enterprise</role:organization>
+            <role:id>expert1@jabber.reallyexperts.com</role:id>
+            <role:passwd>secure</role:passwd>
+        </role:expert>
+    </role:participants>
+</m:meetingFDKFD FKDS>
+

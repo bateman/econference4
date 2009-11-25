@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.m2m.ui.actions.popup"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddy">
+
+         <action
+               class="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.NewMultiChatAction"
+               enablesFor="2+"
+               icon="icons/action_multichat.png"
+               id="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.multiChatAction"
+               label="%action.label"
+               menubarPath="chatGroup"
+               tooltip="%action.tooltip">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.freezeUnfreezeAction"
+            objectClass="it.uniba.di.cdg.xcore.m2m.model.IParticipant">
+         <action
+               class="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.FreezeUnfreezeAction"
+               enablesFor="+"
+               icon="icons/action_freeze.png"
+               id="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.freezeUnfreezeAction"
+               label="%action.label.0">
+            <enablement>
+               <objectState
+                     name="myRole"
+                     value="MODERATOR"/>
+            </enablement>
+         </action>
+         <action
+               class="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.SendPrivateMessageAction"
+               enablesFor="+"
+               icon="icons/action_send_message.png"
+               id="it.uniba.di.cdg.xcore.m2m.ui.actions.popup.sendPrivateMessageAction"
+               label="%action.label.1"/>
+      </objectContribution>
+   </extension>
+      
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="it.uniba.di.cdg.xcore.m2m.ui.MultiChatPerspective"
+            fixed="true"
+            icon="icons/persp_multichat.png"
+            id="it.uniba.di.cdg.xcore.m2m.ui.multiChatPerspective"
+            name="%perspective.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="multiChatViews"
+            class="it.uniba.di.cdg.xcore.m2m.ui.views.ChatRoomView"
+            icon="icons/view_chatroom.png"
+            id="it.uniba.di.cdg.xcore.m2m.ui.views.chatRoomView"
+            name="%view.name"/>
+      <view
+            allowMultiple="false"
+            category="multiChatViews"
+            class="it.uniba.di.cdg.xcore.m2m.ui.views.MultiChatTalkView"
+            icon="icons/view_multi_chat_talk.png"
+            id="it.uniba.di.cdg.xcore.m2m.ui.views.multiChatTalkView"
+            name="%view.name.0"/>
+      <category
+            id="multiChatViews"
+            name="%category.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="it.uniba.di.cdg.xcore.m2m.actionSet1"
+            label="%actionSet.label"
+            visible="true">
+         <menu
+               id="it.uniba.di.cdg.xcore.m2m.ui.menu.chat"
+               label="%menu.label"
+               path="additions">
+            <groupMarker name="marker"/>
+         </menu>
+         <action
+               class="it.uniba.di.cdg.xcore.m2m.ui.actions.JoinChatRoomAction"
+               id="it.uniba.di.cdg.xcore.m2m.ui.actions."
+               label="%action.label.2"
+               menubarPath="it.uniba.di.cdg.xcore.m2m.ui.menu.chat/marker"
+               style="push"/>
+      </actionSet>
+   </extension>
+   
+<!--  
+	THIS STUFF DOESN'T WORK: DECLARED ACTIONS IN THE VIEW CODE ITSELF ...
+ 
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="it.uniba.di.cdg.xcore.m2m.ui.talkViewContribution"
+            targetID="it.uniba.di.cdg.xcore.ui.views.talkView">
+         <action
+               class="it.uniba.di.cdg.xcore.m2m.ui.actions.ChangeChatSubjectAction"
+               icon="icons/persp_multichat.png"
+               id="it.uniba.di.cdg.xcore.m2m.ui.actions.changeChatSubjectAction"
+               label="Change subject"
+               state="true"
+               style="push"
+               tooltip="Change current discussion subject"/>
+         <menu
+               id="it.uniba.di.cdg.xcore.m2m.ui.chatViewMenu"
+               label="Actions ...">
+            <groupMarker name="additions"/>
+         </menu>
+      </viewContribution>
+   </extension>
+-->
+</plugin>

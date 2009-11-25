@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="it.uniba.di.cdg.xcore.network.backends">
+      <backend
+            class="it.uniba.di.cdg.xcore.network.TestBackend1"
+            id="testBackend1"
+            name="Test backend 1"/>
+   </extension>
+
+</plugin>
