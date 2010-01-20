@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.5"?>
+<plugin>
+
+  <extension point="org.eclipse.ui.popupMenus"> 
+    <viewerContribution id="org.eclipse.ui.articles.action.contribution.popup.editor" targetID="#TextEditorContext"> 
+     <action
+           id="org.apertium.api.translate.actions.TranslateAction" 
+           label="Translate"
+           icon="icons/apertium_res.png"
+        menubarPath="additions" 
+        class="org.apertium.api.translate.actions.TranslateAction"> 
+        </action> 
+     </viewerContribution> 
+  </extension>
+
+  <extension point="org.eclipse.ui.editorActions"> 
+    <editorContribution id="org.eclipse.ui.articles.action.contribution.editor" 
+     targetID="org.eclipse.ui.DefaultTextEditor">
+     <action
+           id="org.apertium.api.translate.actions.ConfigTranslateAction" 
+           label="Configure the Translator" 
+           icon="icons/apertium_res.png"
+           tooltip="Configure the Translate plug-in"
+	       toolbarPath="Normal/additions"
+           class="org.apertium.api.translate.actions.ConfigTranslateAction"> 
+        </action> 
+     </editorContribution> 
+  </extension>
+
+</plugin>
