@@ -11,21 +11,13 @@ import it.uniba.di.cdg.xcore.ui.actions.AbstractBuddyActionDelegate;
 import org.eclipse.jface.action.IAction;
 
 public class GetUserInfo extends AbstractBuddyActionDelegate{
-
-	public GetUserInfo() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void run(IAction action) {
-		final IBuddy buddy = getSelected();
-		IBackend b = NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
-		IChatServiceActions chat = b.getChatServiceAction();
-		chat.OpenChat(buddy.getId());
-		chat.SendExtensionProtocolMessage(buddy.getId(),
-				"GET_USER_INFO", new HashMap<String, String>());
-	}
-
-
-
+ @Override
+ public void run(IAction action) {
+  final IBuddy buddy = getSelected();
+  IBackend b = NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
+  IChatServiceActions chat = b.getChatServiceAction();
+  chat.OpenChat(buddy.getId());
+  chat.SendExtensionProtocolMessage(buddy.getId(),
+			"GET_USER_INFO", new HashMap<String, String>());
+ }
 }

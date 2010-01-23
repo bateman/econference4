@@ -21,10 +21,6 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 	public One2OneInfoPlugin() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		System.out.println("One2OneInfoPlugin start..");
@@ -32,10 +28,6 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 		new InfoDeamon().start();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
