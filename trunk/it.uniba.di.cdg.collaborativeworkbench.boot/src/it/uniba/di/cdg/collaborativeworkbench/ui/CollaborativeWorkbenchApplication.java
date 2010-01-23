@@ -24,7 +24,7 @@
  */
 package it.uniba.di.cdg.collaborativeworkbench.ui;
 
-import it.uniba.di.cdg.collaboarativeworkbench.boot.ui.ApplicationWorkbenchAdvisor;
+import it.uniba.di.cdg.collaborativeworkbench.boot.ui.ApplicationWorkbenchAdvisor;
 
 import org.eclipse.core.runtime.IPlatformRunnable;
 import org.eclipse.swt.widgets.Display;
@@ -39,14 +39,12 @@ public class CollaborativeWorkbenchApplication implements IPlatformRunnable {
 	 */
 	public Object run( Object args ) throws Exception {
         Display display = PlatformUI.createDisplay();
+        int ret = IPlatformRunnable.EXIT_OK;
         try {
-            int returnCode = PlatformUI.createAndRunWorkbench( display, new ApplicationWorkbenchAdvisor() );
-            if (returnCode == PlatformUI.RETURN_RESTART) {
-                return IPlatformRunnable.EXIT_RESTART;
-            }
-            return IPlatformRunnable.EXIT_OK;
+            ret = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
         } finally {
             display.dispose();
         }
+        return ret;
     }
 }

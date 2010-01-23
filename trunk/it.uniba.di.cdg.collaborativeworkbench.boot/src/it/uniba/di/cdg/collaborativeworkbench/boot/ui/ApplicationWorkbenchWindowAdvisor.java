@@ -22,7 +22,7 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package it.uniba.di.cdg.collaboarativeworkbench.boot.ui;
+package it.uniba.di.cdg.collaborativeworkbench.boot.ui;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.graphics.Image;
