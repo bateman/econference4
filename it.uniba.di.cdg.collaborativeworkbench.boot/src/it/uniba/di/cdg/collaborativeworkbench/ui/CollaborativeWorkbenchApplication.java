@@ -42,7 +42,9 @@ public class CollaborativeWorkbenchApplication implements IPlatformRunnable {
         int ret = IPlatformRunnable.EXIT_OK;
         try {
             ret = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
-        } finally {
+        } catch (Exception e) { 
+        	//
+        }finally {
             display.dispose();
         }
         return ret;
