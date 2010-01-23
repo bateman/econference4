@@ -32,7 +32,7 @@
          <action
                class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.CallAction"
                enablesFor="1"
-               icon="icons/Telephone-1-icon-16.png"
+               icon="icons/skype-icona16.png"
                id="it.uniba.di.cdg.xcore.one2one.action1"
                label="Call / End Call"
                menubarPath="callGroup"
