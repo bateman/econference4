@@ -39,14 +39,14 @@ public class CollaborativeWorkbenchApplication implements IPlatformRunnable {
 	 */
 	public Object run( Object args ) throws Exception {
         Display display = PlatformUI.createDisplay();
-        int ret = IPlatformRunnable.EXIT_OK;
         try {
-            ret = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
-        } catch (Exception e) { 
-        	//
+            int returnCode = PlatformUI.createAndRunWorkbench( display, new ApplicationWorkbenchAdvisor() );
+            if (returnCode == PlatformUI.RETURN_RESTART) {
+                return IPlatformRunnable.EXIT_RESTART;
+            }
+            return IPlatformRunnable.EXIT_OK;
         } finally {
             display.dispose();
         }
-        return ret;
     }
 }
