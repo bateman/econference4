@@ -83,11 +83,12 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         super.postWindowOpen();
         
         //load chatPlugIn
-        try {
-			Platform.getBundle("it.uniba.di.cdg.xcore.one2one").start();
-		} catch (BundleException e) {
-			e.printStackTrace();
-		}
+
+        //try {
+		//	Platform.getBundle("it.uniba.di.cdg.xcore.one2one").start();
+		//} catch (BundleException e) {
+		//	e.printStackTrace();
+		//}
 
 //        centerWorkbenchWindow();
 
