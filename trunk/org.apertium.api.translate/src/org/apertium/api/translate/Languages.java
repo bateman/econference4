@@ -42,7 +42,7 @@ public class Languages {
 		return codeToLanguage.keySet();
 	}
 	
-	public String getLanguage(String language) {
-		return codeToLanguage.get(language);
+	public String getLanguage(String code) {
+		return codeToLanguage.get(code);
 	}
 }
