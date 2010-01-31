@@ -19,7 +19,7 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 	private JButton applyButton = null;
 
 	private LanguagePair langPair = null;
-	private String apertiumServerURL = null;
+	private String url = null;
 
 	private boolean answer = false;
 
@@ -85,18 +85,16 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 	}
 
 	private void saveProperties() {
-		TranslateConfiguration data = new TranslateConfiguration();
-
-		form.getData(data);
+		TranslateConfiguration data = form.getData();
 		langPair = data.getLangPair();
-		apertiumServerURL = data.getApertiumServerURL();
+		url = data.getUrl();
 	}
 
 	public void loadProperties() {
 		TranslateConfiguration data = new TranslateConfiguration();
 		
 		data.setLangPair(langPair);
-		data.setApertiumServerURL(apertiumServerURL);
+		data.setUrl(url);
 
 		form.setData(data);
 	}
@@ -109,12 +107,12 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 		this.langPair = langPair;
 	}
 
-	public String getApertiumServerURL() {
-		return apertiumServerURL;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setApertiumServerURL(String apertiumServerURL) {
-		this.apertiumServerURL = apertiumServerURL;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public boolean isAnswer() {

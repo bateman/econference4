@@ -2,11 +2,11 @@ package org.apertium.api.translate;
 
 import java.util.*;
 
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
+//import javax.xml.parsers.*;
+//import org.w3c.dom.*;
 
 public class TranslateHelper {
-	private static Map<String, LanguagePair> pairs = null;
+	//private static Map<String, LanguagePair> pairs = null;
 	//private static Languages languages = null;
 	//private static ISO639 iso639 = null;
 	
@@ -29,7 +29,8 @@ public class TranslateHelper {
 			e.printStackTrace();
 		}
 		*/
-		
+
+		/*
 		pairs = new HashMap<String, LanguagePair>();
 		prepareLangPairs();
 		
@@ -39,6 +40,7 @@ public class TranslateHelper {
 		} else if (pairs.size() == 0) {
 			prepareLangPairs();
 		}
+		*/
 	}
 
 	private Language codeToLanguage(String code) {
@@ -52,14 +54,18 @@ public class TranslateHelper {
 		return new LanguagePair(srcLanguage, destLanguage);
 	}
 	
+	/*
 	public void prepareLangPairs() {
 		LanguagePair en_es = codesToLanguagePair("en", "es");
 		pairs.put(en_es.toString(), en_es);
 	}
+	*/
 
+	/*
 	public Map<String, LanguagePair> getLangPairs() {
 		return pairs;
 	}
+	*/
 
 	public String translate(String request, LanguagePair langPair) throws Exception {
 		return "test (" + request + ")";
