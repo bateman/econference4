@@ -8,10 +8,10 @@ import org.w3c.dom.*;
 public class TranslateHelper {
 	private static Map<String, LanguagePair> pairs = null;
 	//private static Languages languages = null;
-	private static ISO639 iso639 = null;
+	//private static ISO639 iso639 = null;
 	
 	public TranslateHelper() {
-		iso639 = new ISO639();
+		//iso639 = new ISO639();
 		
 		/*
 		try {
