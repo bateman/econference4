@@ -90,6 +90,7 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
       <feature id="it.uniba.di.cdg.skype_feature" version="1.0.0.qualifier"/>
       <feature id="it.uniba.di.cdg.xcore.one2one_feature" version="1.0.0"/>
       <feature id="it.uniba.di.cdg.xcore.m2m_feature" version="1.0.0"/>
+      <feature id="org.apertium.api.translate_feature" version="1.0.0"/>
    </features>
 
 
