@@ -47,11 +47,15 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 			}
 		}
 		
-		Language src = new Language((String)props.get("translate.srcLang.name"), 
-				(String)props.get("translate.srcLang.code"));
+		//Language src = new Language((String)props.get("translate.srcLang.name"), 
+		//		(String)props.get("translate.srcLang.code"));
 		
-		Language dest = new Language((String)props.get("translate.destLang.name"), 
-				(String)props.get("translate.destLang.code"));
+		Language src = new Language((String)props.get("translate.srcLang"));
+		
+		//Language dest = new Language((String)props.get("translate.destLang.name"), 
+		//		(String)props.get("translate.destLang.code"));
+		
+		Language dest = new Language((String)props.get("translate.destLang"));
 		
 		langPair = new LanguagePair(src, dest);
 		
@@ -64,11 +68,15 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		Properties props = new Properties();
 		
 		if (langPair != null) {
-			props.put("translate.srcLang.name", langPair.getSrcLang().getName());
-			props.put("translate.srcLang.code", langPair.getSrcLang().getCode());
+			//props.put("translate.srcLang.name", langPair.getSrcLang().getName());
+			//props.put("translate.srcLang.code", langPair.getSrcLang().getCode());
 			
-			props.put("translate.destLang.name", langPair.getDestLang().getName());
-			props.put("translate.destLang.code", langPair.getDestLang().getCode());
+			props.put("translate.srcLang", langPair.getSrcLang().getCode());
+			
+			//props.put("translate.destLang.name", langPair.getDestLang().getName());
+			//props.put("translate.destLang.code", langPair.getDestLang().getCode());
+			
+			props.put("translate.destLang", langPair.getDestLang().getCode());
 		}
 		
 		if (apertiumServerURL != null) {

@@ -4,9 +4,15 @@ public class Language {
 	private String name;
 	private String code;
 	
-	public Language(String name, String code) {
-		this.name = name;
+	//public Language(String name, String code) {
+	//	this.name = name;
+	//	this.code = code;
+	//}
+	
+	public Language(String code) {
 		this.code = code;
+		ISO639 iso639 = new ISO639();
+		this.name = iso639.getLanguage(code);
 	}
 	
 	public String getName() {
@@ -39,7 +45,6 @@ public class Language {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		//String NEW_LINE = System.getProperty("line.separator");
 		result.append(name + " (" + code + ")");
 		return result.toString();
 	}
