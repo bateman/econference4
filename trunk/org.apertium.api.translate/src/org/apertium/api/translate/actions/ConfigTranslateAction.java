@@ -18,7 +18,7 @@ import java.util.Properties;
 public class ConfigTranslateAction extends ActionDelegate implements IEditorActionDelegate {
 	
 	private LanguagePair langPair = null;
-	private String apertiumServerURL = null;
+	private String url = null;
 
 	private static ConfigTranslateAction instance = null;
 
@@ -59,7 +59,7 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		
 		langPair = new LanguagePair(src, dest);
 		
-		apertiumServerURL = (String) props.get("translate.apertium.serverUrl");
+		url = (String) props.get("translate.url");
 	}
 
 	private void writeProperties() {
@@ -79,8 +79,8 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 			props.put("translate.destLang", langPair.getDestLang().getCode());
 		}
 		
-		if (apertiumServerURL != null) {
-			props.put("translate.apertium.serverUrl", apertiumServerURL);
+		if (url != null) {
+			props.put("translate.url", url);
 		}
 		
 		File file = new File(userDir + "/" + ".translate");
@@ -95,13 +95,13 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 	public ConfigTranslateAction() throws Exception {
 		Properties systemProps = System.getProperties();
 
-		if (apertiumServerURL != null && apertiumServerURL.trim().length() > 0) {
-			systemProps.put("apertiumServerSet", "true");
-			systemProps.put("apertiumServerURL", apertiumServerURL);
+		if (url != null && url.trim().length() > 0) {
+			systemProps.put("urlSet", "true");
+			systemProps.put("url", url);
 		}
 
-		systemProps.put("apertiumServerSet", "true");
-		systemProps.put("apertiumServerURL", "http://www.neuralnoise.com:6173/RPC2");
+		systemProps.put("urlSet", "true");
+		systemProps.put("url", "http://www.neuralnoise.com:6173/RPC2");
 	}
 
 	public void run(IAction action) {
@@ -110,7 +110,7 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		final TranslateConfigDialog dialog = new TranslateConfigDialog(null);
 		
 		dialog.setLangPair(langPair);
-		dialog.setApertiumServerURL(apertiumServerURL);
+		dialog.setUrl(url);
 		dialog.loadProperties();
 
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -120,7 +120,7 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 			public void windowClosed(WindowEvent e) {
 				if (dialog.isAnswer()) {
 					langPair = dialog.getLangPair();
-					apertiumServerURL = dialog.getApertiumServerURL();
+					url = dialog.getUrl();
 
 					writeProperties();
 				}
@@ -141,12 +141,12 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		this.langPair = langPair;
 	}
 
-	public String getApertiumServerURL() {
-		return apertiumServerURL;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setApertiumServerURL(String apertiumServerURL) {
-		this.apertiumServerURL = apertiumServerURL;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
