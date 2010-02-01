@@ -16,20 +16,22 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigTranslateAction extends ActionDelegate implements IEditorActionDelegate {
-	
+		
+	private Services.ServiceType service = null;
 	private LanguagePair langPair = null;
 	private String url = null;
 
+	private static Services services = null;
 	private static ConfigTranslateAction instance = null;
 
 	public static ConfigTranslateAction getInstance() {
 		if (instance == null) {
 			try {
 				instance = new ConfigTranslateAction();
+				services = new Services();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 			instance.readProperties();
 		}
 		return instance;
@@ -38,6 +40,7 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 	private void readProperties() {
 		String userDir = System.getProperty("user.dir");
 		Properties props = new Properties();
+		
 		File file = new File(userDir + "/" + ".translate");
 		if (file.exists()) {
 			try {
@@ -47,8 +50,9 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 			}
 		}
 		
-		Language src = new Language((String)props.get("translate.srcLang"));
+		service = services.getServiceType((String)props.get("translate.service"));
 		
+		Language src = new Language((String)props.get("translate.srcLang"));
 		Language dest = new Language((String)props.get("translate.destLang"));
 		
 		langPair = new LanguagePair(src, dest);
@@ -60,6 +64,10 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		String userDir = System.getProperty("user.dir");
 
 		Properties props = new Properties();
+		
+		if (service != null) {
+			props.put("translate.service", services.getService(service));
+		}
 		
 		if (langPair != null) {
 			props.put("translate.srcLang", langPair.getSrcLang().getCode());
@@ -117,9 +125,16 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		dialog.setVisible(true);
 	}
 
-	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
+	public void setActiveEditor(IAction action, IEditorPart targetEditor) { }
+
+	public Services.ServiceType getService() {
+		return service;
 	}
 
+	public void setService(Services.ServiceType s) {
+		this.service = s;
+	}
+	
 	public LanguagePair getLangPair() {
 		return langPair;
 	}
