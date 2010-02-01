@@ -47,6 +47,7 @@ public class TranslateConfigurationForm {
 		panel2.add(srcComboBox);
 		panel2.add(destComboBox);
 		
+		rootComponent.add(panel0);
 		rootComponent.add(panel1);
 		rootComponent.add(panel2);
 
@@ -88,7 +89,9 @@ public class TranslateConfigurationForm {
 		} catch (Exception e) {
 			items = new TreeSet<String>();
 		}
-		return new DefaultComboBoxModel(items.toArray());
+		String[] ret = (String[]) items.toArray();
+		java.util.Arrays.sort(ret);
+		return new DefaultComboBoxModel(ret);
 	}
 	
 	private ComboBoxModel createLanguageModel(ISO639 iso) {
@@ -98,7 +101,9 @@ public class TranslateConfigurationForm {
 		} catch (Exception e) {
 			items = new TreeSet<String>();
 		}
-		return new DefaultComboBoxModel(items.toArray());
+		String[] ret = (String[]) items.toArray();
+		java.util.Arrays.sort(ret);
+		return new DefaultComboBoxModel(ret);
 	}
 
 	public JComponent getRootComponent() {
@@ -137,6 +142,9 @@ public class TranslateConfigurationForm {
 
 	public TranslateConfiguration getData() {
 		TranslateConfiguration ret = new TranslateConfiguration();
+		
+		String serviceSelectedItem = (String)serviceComboBox.getSelectedItem();
+		ret.setService(serviceMap.get(serviceSelectedItem));
 		
 		String srcSelectedItem = (String)srcComboBox.getSelectedItem();
 		String destSelectedItem = (String)destComboBox.getSelectedItem();
