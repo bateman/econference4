@@ -23,57 +23,56 @@ public class TranslateConfigurationForm {
 		
 		services = new Services();
 		
-		rootComponent = Box.createVerticalBox();
+		rootComponent = Box.createHorizontalBox();
 		
-		Box panel0 = Box.createHorizontalBox();
-		Box panel1 = Box.createHorizontalBox();
-		Box panel2 = Box.createHorizontalBox();
-		Box panel3 = Box.createHorizontalBox();
-
+		Box mainComponentSx = Box.createVerticalBox();
+		Box mainComponentDx = Box.createVerticalBox();
+		
 		System.out.println("TranslateConfigurationForm() 2");
 		
 		serviceComboBox = new JComboBox();
 		serviceComboBox.setMaximumSize(new Dimension(250, 20));
 		
-		panel0.add(new JLabel("Service type:"));
-		panel0.add(Box.createHorizontalStrut(5));
-		panel0.add(serviceComboBox);
+		mainComponentSx.add(new JLabel("Service type:"));
+		mainComponentDx.add(serviceComboBox);
 		
 		System.out.println("TranslateConfigurationForm() 3");
+		
+		mainComponentSx.add(Box.createHorizontalStrut(5));
+		mainComponentDx.add(Box.createHorizontalStrut(5));
 		
 		urlTextField = new JTextField();
 		urlTextField.setMaximumSize(new Dimension(250, 20));
 		
-		panel1.add(new JLabel("Service URL:"));
-		panel1.add(Box.createHorizontalStrut(5));
-		panel1.add(urlTextField);
+		mainComponentSx.add(new JLabel("Service URL:"));
+		mainComponentDx.add(urlTextField);
 		
 		System.out.println("TranslateConfigurationForm() 4");
+		
+		mainComponentSx.add(Box.createHorizontalStrut(5));
+		mainComponentDx.add(Box.createHorizontalStrut(5));
 		
 		srcComboBox = new JComboBox();
 		srcComboBox.setMaximumSize(new Dimension(250, 20));
 		
-		panel2.add(new JLabel("Source language:"));
-		panel2.add(Box.createHorizontalStrut(5));
-		panel2.add(srcComboBox);
+		mainComponentSx.add(new JLabel("Source language:"));
+		mainComponentDx.add(srcComboBox);
+		
+		mainComponentSx.add(Box.createHorizontalStrut(5));
+		mainComponentDx.add(Box.createHorizontalStrut(5));
 		
 		destComboBox = new JComboBox();
 		destComboBox.setMaximumSize(new Dimension(250, 20));
 		
-		panel3.add(new JLabel("Destination language:"));
-		panel3.add(Box.createHorizontalStrut(5));
-		panel3.add(destComboBox);
+		mainComponentSx.add(new JLabel("Destination language:"));
+		mainComponentDx.add(destComboBox);
 		
 		System.out.println("TranslateConfigurationForm() 5");
 		
-		rootComponent.add(panel0);
-		rootComponent.add(Box.createVerticalStrut(5));
-		rootComponent.add(panel1);
-		rootComponent.add(Box.createVerticalStrut(5));
-		rootComponent.add(panel2);
-		rootComponent.add(Box.createVerticalStrut(5));
-		rootComponent.add(panel3);
-
+		rootComponent.add(mainComponentSx);
+		rootComponent.add(Box.createHorizontalStrut(10));
+		rootComponent.add(mainComponentDx);
+		
 		System.out.println("TranslateConfigurationForm() 6");
 		
 		ISO639 iso = new ISO639();

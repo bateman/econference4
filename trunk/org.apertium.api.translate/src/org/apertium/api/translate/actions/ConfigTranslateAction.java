@@ -147,6 +147,7 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 
 		System.out.println("ConfigTranslateAction.run() 5");
 		
+		dialog.pack();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		dialog.addWindowListener(new WindowAdapter() {
