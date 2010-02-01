@@ -25,6 +25,8 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 	private static ConfigTranslateAction instance = null;
 
 	public static ConfigTranslateAction getInstance() {
+		System.out.println("ConfigTranslateAction.getInstance()");
+		
 		if (instance == null) {
 			try {
 				instance = new ConfigTranslateAction();
@@ -104,8 +106,10 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 
 		final TranslateConfigDialog dialog = new TranslateConfigDialog(null);
 		
+		dialog.setService(service);
 		dialog.setLangPair(langPair);
 		dialog.setUrl(url);
+		
 		dialog.loadProperties();
 
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -114,6 +118,8 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 
 			public void windowClosed(WindowEvent e) {
 				if (dialog.isAnswer()) {
+					
+					service = dialog.getService();
 					langPair = dialog.getLangPair();
 					url = dialog.getUrl();
 

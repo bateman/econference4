@@ -18,6 +18,7 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 	private JButton cancelButton = null;
 	private JButton applyButton = null;
 
+	private Services.ServiceType service = null;
 	private LanguagePair langPair = null;
 	private String url = null;
 
@@ -86,6 +87,7 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 
 	private void saveProperties() {
 		TranslateConfiguration data = form.getData();
+		service = data.getService();
 		langPair = data.getLangPair();
 		url = data.getUrl();
 	}
@@ -93,12 +95,21 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 	public void loadProperties() {
 		TranslateConfiguration data = new TranslateConfiguration();
 		
+		data.setService(service);
 		data.setLangPair(langPair);
 		data.setUrl(url);
 
 		form.setData(data);
 	}
 
+	public Services.ServiceType getService() {
+		return service;
+	}
+
+	public void setService(Services.ServiceType s) {
+		this.service = s;
+	}
+	
 	public LanguagePair getLangPair() {
 		return langPair;
 	}

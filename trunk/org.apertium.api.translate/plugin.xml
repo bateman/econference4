@@ -21,7 +21,7 @@
            id="org.apertium.api.translate.actions.ConfigTranslateAction" 
            label="Configure the Translator" 
            icon="icons/apertium_res.png"
-           tooltip="Configure the Translate plug-in"
+           tooltip="Configure the Translator"
 	       toolbarPath="Normal/additions"
            class="org.apertium.api.translate.actions.ConfigTranslateAction"> 
         </action> 
