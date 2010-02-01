@@ -87,6 +87,7 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 
 	private void saveProperties() {
 		TranslateConfiguration data = form.getData();
+		
 		service = data.getService();
 		langPair = data.getLangPair();
 		url = data.getUrl();

@@ -102,6 +102,8 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 	}
 
 	public void run(IAction action) {
+		System.out.println("ConfigTranslateAction.run()");
+		
 		readProperties();
 
 		final TranslateConfigDialog dialog = new TranslateConfigDialog(null);
