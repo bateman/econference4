@@ -8,26 +8,16 @@ import java.util.*;
 public class TranslateConfigurationForm {
 	private JPanel rootComponent = null;
 
+	private Services services = null;
 	private JComboBox serviceComboBox = null;
-	private Map<String, TranslateConfiguration.ServiceType> serviceMap = null;
-	private Map<TranslateConfiguration.ServiceType, String> revServiceMap = null;
-	
+
 	private JComboBox srcComboBox = null;
 	private JComboBox destComboBox = null;
 
 	private JTextField urlTextField = null;
 
 	public TranslateConfigurationForm() {
-		
-		serviceMap = new HashMap<String, TranslateConfiguration.ServiceType>();
-		
-		serviceMap.put("Apertium XML-RPC", TranslateConfiguration.ServiceType.APERTIUM);
-		serviceMap.put("Google", TranslateConfiguration.ServiceType.GOOGLE);
-		
-		revServiceMap = new HashMap<TranslateConfiguration.ServiceType, String>();
-		for (String l : serviceMap.keySet()) {
-			revServiceMap.put(serviceMap.get(l), l);
-		}
+		services = new Services();
 		
 		rootComponent = new JPanel();
 		rootComponent.setLayout(new BoxLayout(rootComponent, BoxLayout.PAGE_AXIS));
@@ -60,7 +50,7 @@ public class TranslateConfigurationForm {
 		ISO639 iso = new ISO639();
 		
 		serviceComboBox.removeAllItems();
-		serviceComboBox.setModel(createServiceModel());
+		serviceComboBox.setModel(createServiceModel(services));
 		serviceComboBox.setRenderer(new EntryRenderer());
 		
 		srcComboBox.removeAllItems();
@@ -88,10 +78,10 @@ public class TranslateConfigurationForm {
 		return destComboBox;
 	}
 
-	private ComboBoxModel createServiceModel() {
+	private ComboBoxModel createServiceModel(Services services) {
 		Set<String> items;
 		try {
-			items = serviceMap.keySet();
+			items = services.getServices();
 		} catch (Exception e) {
 			items = new TreeSet<String>();
 		}
@@ -141,7 +131,7 @@ public class TranslateConfigurationForm {
 		ok = false;
 		for (int i = 0; i < model.getSize() && !ok; i++) {
 			String item = (String) model.getElementAt(i);
-			if (item.equals(revServiceMap.get(data.getService()))) {
+			if (item.equals(services.getService(data.getService()))) {
 				serviceComboBox.setSelectedItem(item);
 				ok = true;
 			}
@@ -155,7 +145,7 @@ public class TranslateConfigurationForm {
 		TranslateConfiguration ret = new TranslateConfiguration();
 		
 		String serviceSelectedItem = (String)serviceComboBox.getSelectedItem();
-		ret.setService(serviceMap.get(serviceSelectedItem));
+		ret.setService(services.getServiceType(serviceSelectedItem));
 		
 		String srcSelectedItem = (String)srcComboBox.getSelectedItem();
 		String destSelectedItem = (String)destComboBox.getSelectedItem();
