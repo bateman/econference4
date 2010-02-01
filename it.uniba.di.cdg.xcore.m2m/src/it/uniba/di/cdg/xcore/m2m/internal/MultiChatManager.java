@@ -58,6 +58,8 @@ import it.uniba.di.cdg.xcore.ui.views.ITalkView.ISendMessagelListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveListener3;
 import org.eclipse.ui.IViewPart;
@@ -195,15 +197,13 @@ public class MultiChatManager implements IMultiChatManager {
      */
     public void open( MultiChatContext context ) throws Exception {
         this.context = context;
-        
         service = setupChatService();
         service.join();
-        
         setupUI();
 
         setupListeners();
         
-        // Notify chat listeners that the chat is open
+        // Notify chat listeners that the chat is 
         for (IMultiChatListener l : chatlisteners) 
             l.open();
     }

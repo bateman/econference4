@@ -51,7 +51,9 @@ public class EConferenceContext extends MultiChatContext {
 
     private String topic;
 
-    private Invitee director;     
+    private Invitee director;    
+    
+    private String schedule;
     
     private Invitee scribe;
 
@@ -109,6 +111,20 @@ public class EConferenceContext extends MultiChatContext {
      * 
      * @return
      */
+    
+    /**
+     * Returns the conference' schedule.
+     * 
+     * @return the conference's schedule
+     */
+    
+    public String getSchedule() {
+        return schedule;
+    }
+    
+    public void setSchedule( String schedule ) {
+        this.schedule = schedule;
+    }
     public String getTopic() {
         return topic;
     }

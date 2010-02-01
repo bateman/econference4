@@ -105,6 +105,10 @@ public class JabberBackend implements IBackend, PacketListener,
      */
     private XMPPConnection connection;
 
+    
+    public JabberBackend getBackendFromProxy(){
+    	return this;
+    }
     /**
      * The roster is the core 
      */

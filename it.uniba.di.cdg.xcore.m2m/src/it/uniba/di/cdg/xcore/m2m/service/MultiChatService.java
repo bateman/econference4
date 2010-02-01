@@ -68,6 +68,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
@@ -265,9 +267,9 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
      */
     public void join() throws NetworkServiceException {
     	
+    	// credo che il casino dipenda dal fatto che bisogna istanziare un altro backend con il server corretto.....
     	multiChatServiceActions = backend.getMultiChatServiceAction();
         getBackend().getHelper().registerBackendListener(this);
-
 		// If no nick name is provided we just use current connection jid
 	    if ((context.getNickName() == null) || (context.getNickName().equals("")))
 	        context.setNickName( backend.getUserId() );
@@ -278,9 +280,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 	
 	    if(context.getModerator()!=null && userId.equals(context.getModerator().getId()))
 			moderator = true;
-	
 	    multiChatServiceActions.join(getRoomJid(), context.getPassword(), context.getNickName(), getLocalUserJid(), moderator);
-    	
         updateInitialLocalUserStatus();
             
         // Notify listeners that we have joined ...
