@@ -6,7 +6,7 @@
    <aboutInfo>
       <image path="/it.uniba.di.cdg.collaborativeworkbench.boot/about_logo.gif"/>
       <text>
-         eConference 3.0.2
+         eConference 4.0.0alfa
 
 eConference has been developed by the Collaborative Development Group,
 Dipartimento di Informatica, University of Bari and it is distributed under the 
@@ -38,6 +38,7 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
