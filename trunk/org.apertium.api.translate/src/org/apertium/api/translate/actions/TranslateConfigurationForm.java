@@ -137,7 +137,6 @@ public class TranslateConfigurationForm {
 			}
 		}
 		
-		
 		urlTextField.setText(data.getUrl());
 	}
 
