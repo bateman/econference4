@@ -3,11 +3,13 @@ package org.apertium.api.translate.actions;
 import org.apertium.api.translate.*;
 
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.util.*;
 
 public class TranslateConfigurationForm {
-	private JPanel rootComponent = null;
-
+	private Box rootComponent = null;
+	
 	private Services services = null;
 	private JComboBox serviceComboBox = null;
 
@@ -21,41 +23,56 @@ public class TranslateConfigurationForm {
 		
 		services = new Services();
 		
-		rootComponent = new JPanel();
-		rootComponent.setLayout(new BoxLayout(rootComponent, BoxLayout.PAGE_AXIS));
+		rootComponent = Box.createVerticalBox();
 		
-		JPanel panel0 = new JPanel();
-		JPanel panel1 = new JPanel();
-		JPanel panel2 = new JPanel();
+		Box panel0 = Box.createHorizontalBox();
+		Box panel1 = Box.createHorizontalBox();
+		Box panel2 = Box.createHorizontalBox();
+		Box panel3 = Box.createHorizontalBox();
 
 		System.out.println("TranslateConfigurationForm() 2");
 		
 		serviceComboBox = new JComboBox();
+		serviceComboBox.setMaximumSize(new Dimension(250, 20));
 		
-		panel0.add(new JLabel("Service type: "));
+		panel0.add(new JLabel("Service type:"));
+		panel0.add(Box.createHorizontalStrut(5));
 		panel0.add(serviceComboBox);
 		
 		System.out.println("TranslateConfigurationForm() 3");
 		
-		urlTextField = new JTextField(25);
+		urlTextField = new JTextField();
+		urlTextField.setMaximumSize(new Dimension(250, 20));
 		
-		panel1.add(new JLabel("Service URL: "));
+		panel1.add(new JLabel("Service URL:"));
+		panel1.add(Box.createHorizontalStrut(5));
 		panel1.add(urlTextField);
 		
 		System.out.println("TranslateConfigurationForm() 4");
 		
 		srcComboBox = new JComboBox();
-		destComboBox = new JComboBox();
+		srcComboBox.setMaximumSize(new Dimension(250, 20));
 		
-		panel2.add(new JLabel("Language pair: "));
+		panel2.add(new JLabel("Source language:"));
+		panel2.add(Box.createHorizontalStrut(5));
 		panel2.add(srcComboBox);
-		panel2.add(destComboBox);
+		
+		destComboBox = new JComboBox();
+		destComboBox.setMaximumSize(new Dimension(250, 20));
+		
+		panel3.add(new JLabel("Destination language:"));
+		panel3.add(Box.createHorizontalStrut(5));
+		panel3.add(destComboBox);
 		
 		System.out.println("TranslateConfigurationForm() 5");
 		
 		rootComponent.add(panel0);
+		rootComponent.add(Box.createVerticalStrut(5));
 		rootComponent.add(panel1);
+		rootComponent.add(Box.createVerticalStrut(5));
 		rootComponent.add(panel2);
+		rootComponent.add(Box.createVerticalStrut(5));
+		rootComponent.add(panel3);
 
 		System.out.println("TranslateConfigurationForm() 6");
 		
