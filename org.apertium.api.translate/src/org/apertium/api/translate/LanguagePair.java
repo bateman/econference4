@@ -46,8 +46,11 @@ public class LanguagePair {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		//String NEW_LINE = System.getProperty("line.separator");
 		result.append(srcLang + " - " + destLang);
 		return result.toString();
+	}
+	
+	public LanguagePair invert() {
+		return new LanguagePair(destLang, srcLang);
 	}
 }
