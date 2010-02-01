@@ -4,10 +4,14 @@ import org.apertium.api.translate.*;
 
 public class TranslateConfiguration {
 	private LanguagePair langPair = null;
-	
 	private Services.ServiceType service = null;
-	
 	private String url = null;
+	
+	public TranslateConfiguration() {
+		langPair = new LanguagePair("it", "en");
+		service = Services.ServiceType.APERTIUM;
+		url = "http://www.neuralnoise.com:6173/RPC2";
+	}
 
 	public LanguagePair getLangPair() {
 		return langPair;

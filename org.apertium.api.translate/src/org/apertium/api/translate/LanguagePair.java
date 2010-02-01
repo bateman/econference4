@@ -10,6 +10,12 @@ public class LanguagePair {
 		this.destLang = destLang;
 	}
 
+	public LanguagePair(String src, String dest) {
+		this.srcLang = new Language(src);
+		this.destLang = new Language(dest);
+	}
+
+	
 	public Language getSrcLang() {
 		return srcLang;
 	}
