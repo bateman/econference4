@@ -1,16 +1,11 @@
 package org.apertium.api.translate.actions;
 
-//import javax.swing.*;
 import org.apertium.api.translate.*;
 
 public class TranslateConfiguration {
-	
-	//private TranslateConfigurationForm form;
-	
 	private LanguagePair langPair = null;
 	
-	public enum ServiceType { APERTIUM, GOOGLE };
-	private ServiceType service = null;
+	private Services.ServiceType service = null;
 	
 	private String url = null;
 
@@ -22,11 +17,11 @@ public class TranslateConfiguration {
 		this.langPair = langPair;
 	}
 
-	public ServiceType getService() {
+	public Services.ServiceType getService() {
 		return service;
 	}
 	
-	public void setService(ServiceType service) {
+	public void setService(Services.ServiceType service) {
 		this.service = service;
 	}
 	
@@ -54,30 +49,5 @@ public class TranslateConfiguration {
 		
 		return ret;
 	}
-	
-	/*
-	public boolean isModified() {
-		return form != null && form.isModified(this);
-	}
-
-	public JComponent createComponent() {
-		if (form == null) {
-			form = new TranslateConfigurationForm();
-		}
-		return form.getRootComponent();
-	}
-
-	public void apply() {
-		if (form != null) {
-			form.getData(this);
-		}
-	}
-
-	public void reset() {
-		if (form != null) {
-			form.setData(this);
-		}
-	}
-	*/
 
 }
