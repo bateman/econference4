@@ -10,6 +10,7 @@ public class TranslateConfigurationForm {
 
 	private JComboBox serviceComboBox = null;
 	private Map<String, TranslateConfiguration.ServiceType> serviceMap = null;
+	private Map<TranslateConfiguration.ServiceType, String> revServiceMap = null;
 	
 	private JComboBox srcComboBox = null;
 	private JComboBox destComboBox = null;
@@ -22,6 +23,11 @@ public class TranslateConfigurationForm {
 		
 		serviceMap.put("Apertium XML-RPC", TranslateConfiguration.ServiceType.APERTIUM);
 		serviceMap.put("Google", TranslateConfiguration.ServiceType.GOOGLE);
+		
+		revServiceMap = new HashMap<TranslateConfiguration.ServiceType, String>();
+		for (String l : serviceMap.keySet()) {
+			revServiceMap.put(serviceMap.get(l), l);
+		}
 		
 		rootComponent = new JPanel();
 		rootComponent.setLayout(new BoxLayout(rootComponent, BoxLayout.PAGE_AXIS));
@@ -112,12 +118,9 @@ public class TranslateConfigurationForm {
 
 	public void setData(TranslateConfiguration data) {
 		ComboBoxModel model = srcComboBox.getModel();
-		
 		boolean ok = false;
-		
 		for (int i = 0; i < model.getSize() && !ok; i++) {
 			String item = (String) model.getElementAt(i);
-
 			if (item.equals(data.getLangPair().getSrcLang().getName())) {
 				srcComboBox.setSelectedItem(item);
 				ok = true;
@@ -125,17 +128,25 @@ public class TranslateConfigurationForm {
 		}
 		
 		model = destComboBox.getModel();
-		
 		ok = false;
-		
 		for (int i = 0; i < model.getSize() && !ok; i++) {
 			String item = (String) model.getElementAt(i);
-
 			if (item.equals(data.getLangPair().getDestLang().getName())) {
-				srcComboBox.setSelectedItem(item);
+				destComboBox.setSelectedItem(item);
 				ok = true;
 			}
 		}
+		
+		model = serviceComboBox.getModel();
+		ok = false;
+		for (int i = 0; i < model.getSize() && !ok; i++) {
+			String item = (String) model.getElementAt(i);
+			if (item.equals(revServiceMap.get(data.getService()))) {
+				serviceComboBox.setSelectedItem(item);
+				ok = true;
+			}
+		}
+		
 		
 		urlTextField.setText(data.getUrl());
 	}
