@@ -17,6 +17,8 @@ public class TranslateConfigurationForm {
 	private JTextField urlTextField = null;
 
 	public TranslateConfigurationForm() {
+		System.out.println("TranslateConfigurationForm()");
+		
 		services = new Services();
 		
 		rootComponent = new JPanel();
@@ -26,15 +28,21 @@ public class TranslateConfigurationForm {
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 
+		System.out.println("TranslateConfigurationForm() 2");
+		
 		serviceComboBox = new JComboBox();
 		
 		panel0.add(new JLabel("Service type: "));
 		panel0.add(serviceComboBox);
 		
+		System.out.println("TranslateConfigurationForm() 3");
+		
 		urlTextField = new JTextField(25);
 		
 		panel1.add(new JLabel("Service URL: "));
 		panel1.add(urlTextField);
+		
+		System.out.println("TranslateConfigurationForm() 4");
 		
 		srcComboBox = new JComboBox();
 		destComboBox = new JComboBox();
@@ -43,23 +51,39 @@ public class TranslateConfigurationForm {
 		panel2.add(srcComboBox);
 		panel2.add(destComboBox);
 		
+		System.out.println("TranslateConfigurationForm() 5");
+		
 		rootComponent.add(panel0);
 		rootComponent.add(panel1);
 		rootComponent.add(panel2);
 
+		System.out.println("TranslateConfigurationForm() 6");
+		
 		ISO639 iso = new ISO639();
 		
+		System.out.println("TranslateConfigurationForm() 6.1");
+		
 		serviceComboBox.removeAllItems();
+		
+		System.out.println("TranslateConfigurationForm() 6.2");
+		
 		serviceComboBox.setModel(createServiceModel(services));
+		
+		System.out.println("TranslateConfigurationForm() 6.3");
+		
 		serviceComboBox.setRenderer(new EntryRenderer());
+		
+		System.out.println("TranslateConfigurationForm() 7");
 		
 		srcComboBox.removeAllItems();
 		srcComboBox.setModel(createLanguageModel(iso));
 		srcComboBox.setRenderer(new EntryRenderer());
 
-		if (destComboBox.getModel().getSize() > 0) {
-			destComboBox.setSelectedIndex(0);
+		if (srcComboBox.getModel().getSize() > 0) {
+			srcComboBox.setSelectedIndex(0);
 		}
+		
+		System.out.println("TranslateConfigurationForm() 8");
 		
 		destComboBox.removeAllItems();
 		destComboBox.setModel(createLanguageModel(iso));
@@ -68,6 +92,8 @@ public class TranslateConfigurationForm {
 		if (destComboBox.getModel().getSize() > 0) {
 			destComboBox.setSelectedIndex(0);
 		}
+		
+		System.out.println("TranslateConfigurationForm() 9");
 	}
 
 	public JComboBox getSrcComboBox() {
@@ -78,15 +104,36 @@ public class TranslateConfigurationForm {
 		return destComboBox;
 	}
 
+	private String[] setToArray(Set<String> set) {
+		String[] ret = new String[set.size()];
+		int count = 0;
+		for (String s : set) {
+			ret[count++] = s;
+		}
+		return ret;
+	}
+	
 	private ComboBoxModel createServiceModel(Services services) {
-		Set<String> items;
+		Set<String> items = null;
+		
+		System.out.println("TranslateConfigurationForm.createServiceModel()");
+		
 		try {
 			items = services.getServices();
 		} catch (Exception e) {
 			items = new TreeSet<String>();
 		}
-		String[] ret = (String[]) items.toArray();
+		
+		System.out.println("TranslateConfigurationForm.createServiceModel() 2");
+		
+		String[] ret = setToArray(items);
+		
+		System.out.println("TranslateConfigurationForm.createServiceModel() 3");
+		
 		java.util.Arrays.sort(ret);
+		
+		System.out.println("TranslateConfigurationForm.createServiceModel() 4");
+		
 		return new DefaultComboBoxModel(ret);
 	}
 	
@@ -97,7 +144,7 @@ public class TranslateConfigurationForm {
 		} catch (Exception e) {
 			items = new TreeSet<String>();
 		}
-		String[] ret = (String[]) items.toArray();
+		String[] ret = setToArray(items);
 		java.util.Arrays.sort(ret);
 		return new DefaultComboBoxModel(ret);
 	}
@@ -107,37 +154,64 @@ public class TranslateConfigurationForm {
 	}
 
 	public void setData(TranslateConfiguration data) {
-		ComboBoxModel model = srcComboBox.getModel();
-		boolean ok = false;
-		for (int i = 0; i < model.getSize() && !ok; i++) {
-			String item = (String) model.getElementAt(i);
-			if (item.equals(data.getLangPair().getSrcLang().getName())) {
-				srcComboBox.setSelectedItem(item);
-				ok = true;
+
+		System.out.println("TranslateConfigurationForm.setData()");
+
+		if (data.getLangPair() != null) {
+			ComboBoxModel model = srcComboBox.getModel();
+			boolean ok = false;
+
+			System.out.println("TranslateConfigurationForm.setData() 1");
+
+			for (int i = 0; i < model.getSize() && !ok; i++) {
+				String item = (String) model.getElementAt(i);
+
+				System.out.println("TranslateConfigurationForm.setData() 1.1 "
+						+ item);
+				System.out.println("TranslateConfigurationForm.setData() 1.2 "
+						+ data);
+
+				if (item.equals(data.getLangPair().getSrcLang().getName())) {
+					srcComboBox.setSelectedItem(item);
+					ok = true;
+				}
+			}
+
+			System.out.println("TranslateConfigurationForm.setData() 2");
+
+			model = destComboBox.getModel();
+			ok = false;
+			for (int i = 0; i < model.getSize() && !ok; i++) {
+				String item = (String) model.getElementAt(i);
+				if (item.equals(data.getLangPair().getDestLang().getName())) {
+					destComboBox.setSelectedItem(item);
+					ok = true;
+				}
 			}
 		}
-		
-		model = destComboBox.getModel();
-		ok = false;
-		for (int i = 0; i < model.getSize() && !ok; i++) {
-			String item = (String) model.getElementAt(i);
-			if (item.equals(data.getLangPair().getDestLang().getName())) {
-				destComboBox.setSelectedItem(item);
-				ok = true;
+
+		if (data.getService() != null) {
+
+			System.out.println("TranslateConfigurationForm.setData() 3");
+
+			ComboBoxModel model = serviceComboBox.getModel();
+			boolean ok = false;
+
+			for (int i = 0; i < model.getSize() && !ok; i++) {
+				String item = (String) model.getElementAt(i);
+				if (item.equals(services.getService(data.getService()))) {
+					serviceComboBox.setSelectedItem(item);
+					ok = true;
+				}
 			}
+
 		}
-		
-		model = serviceComboBox.getModel();
-		ok = false;
-		for (int i = 0; i < model.getSize() && !ok; i++) {
-			String item = (String) model.getElementAt(i);
-			if (item.equals(services.getService(data.getService()))) {
-				serviceComboBox.setSelectedItem(item);
-				ok = true;
-			}
+
+		System.out.println("TranslateConfigurationForm.setData() 4");
+
+		if (data.getUrl() != null) {
+			urlTextField.setText(data.getUrl());
 		}
-		
-		urlTextField.setText(data.getUrl());
 	}
 
 	public TranslateConfiguration getData() {

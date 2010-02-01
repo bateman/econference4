@@ -29,10 +29,18 @@ public class Services {
 	}
 	
 	public String getService(ServiceType t) {
-		return revServiceMap.get(t);
+		String ret = null;
+		if (t != null) {
+			ret = revServiceMap.get(t);
+		}
+		return ret;
 	}
 	
 	public ServiceType getServiceType(String s) {
-		return serviceMap.get(s);
+		ServiceType ret = null;
+		if (s != null) {
+			ret =  serviceMap.get(s);
+		}
+		return ret;
 	}
 }

@@ -40,6 +40,8 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 	}
 
 	private void readProperties() {
+		System.out.println("ConfigTranslateAction.readProperties()");
+		
 		String userDir = System.getProperty("user.dir");
 		Properties props = new Properties();
 		
@@ -52,14 +54,37 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 			}
 		}
 		
-		service = services.getServiceType((String)props.get("translate.service"));
+		System.out.println("ConfigTranslateAction.readProperties() 2");
 		
-		Language src = new Language((String)props.get("translate.srcLang"));
-		Language dest = new Language((String)props.get("translate.destLang"));
+		String tservice = (String)props.get("translate.service");
 		
-		langPair = new LanguagePair(src, dest);
+		System.out.println("ConfigTranslateAction.readProperties() 2.5 " + tservice);
 		
-		url = (String) props.get("translate.url");
+		if (tservice != null) {
+			service = services.getServiceType(tservice);
+		}
+		
+		System.out.println("ConfigTranslateAction.readProperties() 3");
+		
+		String tsrc = (String)props.get("translate.srcLang");
+		String tdest = (String)props.get("translate.destLang");
+		
+		if (tsrc != null && tdest != null) {
+			Language src = new Language(tsrc);
+			Language dest = new Language(tdest);
+
+			System.out.println("ConfigTranslateAction.readProperties() 4");
+
+			langPair = new LanguagePair(src, dest);
+		}
+		
+		System.out.println("ConfigTranslateAction.readProperties() 5");
+		
+		String turl = (String) props.get("translate.url");
+		
+		if (turl != null) {
+			url = (String) props.get("translate.url");
+		}
 	}
 
 	private void writeProperties() {
@@ -106,14 +131,22 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		
 		readProperties();
 
+		System.out.println("ConfigTranslateAction.run() 2");
+		
 		final TranslateConfigDialog dialog = new TranslateConfigDialog(null);
+		
+		System.out.println("ConfigTranslateAction.run() 3");
 		
 		dialog.setService(service);
 		dialog.setLangPair(langPair);
 		dialog.setUrl(url);
 		
+		System.out.println("ConfigTranslateAction.run() 4");
+		
 		dialog.loadProperties();
 
+		System.out.println("ConfigTranslateAction.run() 5");
+		
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		dialog.addWindowListener(new WindowAdapter() {
@@ -130,7 +163,11 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 			}
 		});
 
+		System.out.println("ConfigTranslateAction.run() 6");
+		
 		dialog.setVisible(true);
+		
+		System.out.println("ConfigTranslateAction.run() 7");
 	}
 
 	public void setActiveEditor(IAction action, IEditorPart targetEditor) { }

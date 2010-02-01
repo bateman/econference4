@@ -34,6 +34,14 @@ public class TranslateConfiguration {
 	}
 	
 	@Override
+	public String toString() {
+		String ret = "";
+		Services s = new Services();
+		ret += "service: " + s.getService(service) + " url: " + url + " pair: " + langPair;
+		return ret;
+	}
+	
+	@Override
 	public boolean equals(Object aThat) {
 		if (this == aThat)
 			return true;

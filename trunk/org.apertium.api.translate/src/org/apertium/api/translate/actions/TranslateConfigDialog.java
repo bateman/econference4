@@ -27,8 +27,12 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 	public TranslateConfigDialog(Frame owner) {
 		super(owner, true);
 
+		System.out.println("TranslateConfigDialog()");
+		
 		form = new TranslateConfigurationForm();
 
+		System.out.println("TranslateConfigDialog() 2");
+		
 		okButton = new JButton("Ok");
 		cancelButton = new JButton("Cancel");
 		applyButton = new JButton("Apply");
@@ -50,6 +54,8 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 		panel.add(applyButton);
 
 		contentPane.add(panel, "South");
+		
+		System.out.println("TranslateConfigDialog() 3");
 	}
 
 	protected JRootPane createRootPane() {
@@ -62,8 +68,7 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 				dispose();
 			}
 		};
-		InputMap inputMap = rootPane
-				.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		inputMap.put(stroke, "ESCAPE");
 		rootPane.getActionMap().put("ESCAPE", actionListener);
 
@@ -94,13 +99,27 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 	}
 
 	public void loadProperties() {
+		System.out.println("TranslateConfigDialog.loadProperties()");
+		
 		TranslateConfiguration data = new TranslateConfiguration();
 		
+		System.out.println("TranslateConfigDialog.loadProperties() 2");
+		
 		data.setService(service);
+		
+		System.out.println("TranslateConfigDialog.loadProperties() 3");
+		
 		data.setLangPair(langPair);
+		
+		System.out.println("TranslateConfigDialog.loadProperties() 4");
+		
 		data.setUrl(url);
 
+		System.out.println("TranslateConfigDialog.loadProperties() 5");
+		
 		form.setData(data);
+		
+		System.out.println("TranslateConfigDialog.loadProperties() 6");
 	}
 
 	public Services.ServiceType getService() {
