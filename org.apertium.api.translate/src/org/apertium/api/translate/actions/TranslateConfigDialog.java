@@ -37,8 +37,8 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 		cancelButton = new JButton("Cancel");
 		applyButton = new JButton("Apply");
 		
-		//setPreferredSize(new Dimension(500, 200));
-		setSize(700, 400);
+		//setPreferredSize(new Dimension(400, 200));
+		//setSize(300, 200);
 
 		okButton.addActionListener(this);
 		cancelButton.addActionListener(this);
