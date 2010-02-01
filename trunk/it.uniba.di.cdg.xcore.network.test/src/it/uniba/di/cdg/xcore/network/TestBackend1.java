@@ -172,4 +172,10 @@ public class TestBackend1 implements IBackend {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public IBackend getBackendFromProxy() {
+		// TODO Auto-generated method stub
+		return this;
+	}
 }

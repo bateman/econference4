@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
+
 import it.uniba.di.cdg.jabber.JabberBackend;
 import it.uniba.di.cdg.jabber.internal.XMPPUtils;
 import it.uniba.di.cdg.jabber.ui.JoinChatRoomDialog;
@@ -367,7 +369,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 	}
 
 	@Override
-	public void invite(String room, String to, String reason) {		
+	public void invite(String room, String to, String reason) {	
 		smackMultiChat.invite(to, reason);
 	}
 

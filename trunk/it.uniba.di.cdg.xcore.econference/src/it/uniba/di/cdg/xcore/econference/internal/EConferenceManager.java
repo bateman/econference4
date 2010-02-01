@@ -24,6 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.econference.internal;
 
+import javax.swing.JOptionPane;
+
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 
 import it.uniba.di.cdg.xcore.econference.IEConferenceHelper;

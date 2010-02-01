@@ -24,9 +24,12 @@
  */
 package it.uniba.di.cdg.xcore.econference.internal;
 
+import javax.swing.JOptionPane;
+
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 import it.uniba.di.cdg.xcore.econference.IEConferenceHelper;
 import it.uniba.di.cdg.xcore.econference.IEConferenceManager;
+import it.uniba.di.cdg.xcore.econference.ui.dialogs.InviteWizard;
 import it.uniba.di.cdg.xcore.econference.ui.dialogs.JoinConferenceDialog;
 import it.uniba.di.cdg.xcore.m2m.IMultiChatManager.IMultiChatListener;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
@@ -39,7 +42,9 @@ import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -101,12 +106,10 @@ public class EConferenceHelper implements IEConferenceHelper {
 
         try {
             final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-
             manager = new EConferenceManager();
             manager.setBackendHelper( NetworkPlugin.getDefault().getHelper() );
             manager.setUihelper( UiPlugin.getUIHelper() );
             manager.setWorkbenchWindow( window );
-
             manager.addListener( new IMultiChatListener() {
                 private Point previousSize;
 
@@ -155,6 +158,21 @@ public class EConferenceHelper implements IEConferenceHelper {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#askUserAcceptInvitation(it.uniba.di.cdg.xcore.m2m.InvitationEvent)
      */
+    
+    public void openInviteWizard(){
+    	Display display = Display.getDefault();
+		Shell shell = new Shell(display);
+		InviteWizard wizard = new InviteWizard();
+			// Instantiates the wizard container with the wizard and opens it
+		WizardDialog dialog = new WizardDialog( shell, wizard);		
+		dialog.create();
+		dialog.open();
+		IEConferenceManager manager = open( wizard.getContext());
+		if (wizard.canSendInvitation())
+			for (Invitee i : wizard.getContext().getInvitees())
+				manager.inviteNewParticipant( i.getId() );
+    }
+    
     public EConferenceContext askUserAcceptInvitation( InvitationEvent invitation ) {
         // Skip invitations which do not interest us ...
         if (!ECONFERENCE_REASON.equals( invitation.getReason() ))

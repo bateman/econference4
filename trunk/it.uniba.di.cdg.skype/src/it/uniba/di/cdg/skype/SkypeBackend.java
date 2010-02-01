@@ -202,6 +202,10 @@ public class SkypeBackend implements IBackend {
 		}
 	};
 	
+	 public SkypeBackend getBackendFromProxy(){
+	    	return this;
+	    }
+	 
     /**
      * This backend's unique id.
      */

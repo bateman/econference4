@@ -8,47 +8,53 @@
             class="it.uniba.di.cdg.xcore.econference.ui.views.AgendaView"
             icon="icons/view_agenda.png"
             id="it.uniba.di.cdg.xcore.econference.ui.views.agendaView"
-            name="%view.name"/>
+            name="Agenda"/>
       <view
             category="econferenceViews"
             class="it.uniba.di.cdg.xcore.econference.ui.views.WhiteBoardView"
             icon="icons/view_decisions_place.png"
             id="it.uniba.di.cdg.xcore.econference.ui.views.whiteBoardView"
-            name="%view.name.0"/>
+            name="Decisions place"/>
       <category
             id="econferenceViews"
-            name="%category.name"/>
+            name="eConference views"/>
       <view
             allowMultiple="false"
             category="econferenceViews"
             class="it.uniba.di.cdg.xcore.econference.ui.views.HandRaisingView"
             icon="icons/view_hr.png"
             id="it.uniba.di.cdg.xcore.econference.ui.views.handRaisingView"
-            name="%view.name.1"/>
+            name="Hand raising"/>
       <view
             allowMultiple="false"
             category="econferenceViews"
             class="it.uniba.di.cdg.xcore.econference.ui.views.StoredEventsView"
             icon="icons/view_stored_events.png"
             id="it.uniba.di.cdg.xcore.econference.ui.views.storedEventsView"
-            name="%view.name.2"/>              
+            name="Events"/>              
    </extension>
    <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
-            description="%actionSet.description"
+            description="Conference actions"
             id="it.uniba.di.cdg.xcore.econference.ui.actionSet"
-            label="%actionSet.label"
+            label="Conference actions"
             visible="true">
          <action
                class="it.uniba.di.cdg.xcore.econference.ui.actions.LoadConferenceFromFileAction"
                id="it.uniba.di.cdg.xcore.econference.ui.actions.loadConferenceFromFileAction"
-               label="%action.label"
+               label="Load configuration ..."
+               menubarPath="file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
+               style="push"/>
+         <action
+  			   class="it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+               id="it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+               label="New conference"
                menubarPath="file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
                style="push"/>
          <menu
                id="it.uniba.di.cdg.xcore.econference.ui.menu"
-               label="%menu.label"
+               label="eConference"
                path="file/additions">
             <groupMarker name="additions"/>
          </menu>
@@ -56,14 +62,14 @@
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension targetID="it.uniba.di.cdg.xcore.m2m.ui.multiChatPerspective">
+      <perspectiveExtension targetID="it.uniba.di.cdg.xcore.multichat.ui.multiChatPerspective">
          <view
                closeable="false"
                id="it.uniba.di.cdg.xcore.econference.ui.views.agendaView"
                moveable="true"
                ratio="0.35"
                relationship="top"
-               relative="it.uniba.di.cdg.xcore.m2m.ui.views.chatRoomView"
+               relative="it.uniba.di.cdg.xcore.multichat.ui.views.chatRoomView"
                showTitle="true"
                standalone="false"
                visible="false"/>
@@ -73,7 +79,7 @@
                moveable="true"
                ratio="0.70"
                relationship="bottom"
-               relative="it.uniba.di.cdg.xcore.m2m.ui.views.multiChatTalkView"
+               relative="it.uniba.di.cdg.xcore.multichat.ui.views.multiChatTalkView"
                showTitle="true"
                standalone="false"
                visible="false"/>
@@ -83,7 +89,7 @@
                moveable="true"
                ratio="0.70"
                relationship="right"
-               relative="it.uniba.di.cdg.xcore.m2m.ui.views.multiChatTalkView"
+               relative="it.uniba.di.cdg.xcore.multichat.ui.views.multiChatTalkView"
                showTitle="true"
                standalone="false"
                visible="false"/>
@@ -106,14 +112,14 @@
       <objectContribution
             adaptable="true"
             id="xcore.econference.participantContribution"
-            objectClass="it.uniba.di.cdg.xcore.m2m.model.IParticipant">
+            objectClass="it.uniba.di.cdg.xcore.multichat.model.IParticipant">
          <action
                class="it.uniba.di.cdg.xcore.econference.ui.actions.MakeScribeAction"
                enablesFor="1"
                icon="icons/view_decisions_place.png"
                id="it.uniba.di.cdg.xcore.econference.ui.actions.popup.makeScribeAction"
-               label="%action.label.0"
-               tooltip="%action.tooltip">
+               label="Grant the user scribe privilege"
+               tooltip="Permit to this user to edit the whiteboard">
             <enablement>
                <and>
                   <objectState
@@ -132,8 +138,8 @@
                enablesFor="1"
                icon="icons/view_decisions_place_disabled.png"
                id="it.uniba.di.cdg.xcore.econference.ui.actions.popup.unMakeScribeAction"
-               label="%action.label.1"
-               tooltip="%action.tooltip.0">
+               label="Revoke the user scribe privilege"
+               tooltip="Make this user uncapable of editing the whiteboard">
             <enablement>
                <and>
                   <objectState
@@ -150,8 +156,8 @@
                enablesFor="1"
                icon="icons/action_raise_hand.png"
                id="it.uniba.di.cdg.xcore.econference.ui.actions.popup.raiseHandAction"
-               label="%action.label.2"
-               tooltip="%action.tooltip.1">
+               label="Raise hand"
+               tooltip="Queue a question to the moderator">
             <enablement>
                <and>
                   <objectState
@@ -183,8 +189,8 @@
                enablesFor="1"
                icon="icons/action_approve_question.png"
                id="xcore.econference.ui.hr.actions.popup.approveQuestionAction"
-               label="%action.label.3"
-               tooltip="%action.tooltip.2">
+               label="Approve"
+               tooltip="Approve this question">
             <enablement>
                <and>
                   <objectState
@@ -201,8 +207,8 @@
                enablesFor="1"
                icon="icons/action_reject_question.png"
                id="xcore.econference.ui.hr.actions.popup.rejectQuestionAction"
-               label="%action.label.4"
-               tooltip="%action.tooltip.3">
+               label="Reject"
+               tooltip="Reject this question ">
             <enablement>
                <and>
                   <objectState
@@ -215,6 +221,13 @@
             </enablement>
          </action>
       </objectContribution>
+   </extension>
+   <extension
+         point="it.uniba.di.cdg.jabber.services">
+      <service
+            class="it.uniba.di.cdg.xcore.econference.jabber.JabberEConferenceService"
+            name="e-conference">
+      </service>
    </extension>
 
 	

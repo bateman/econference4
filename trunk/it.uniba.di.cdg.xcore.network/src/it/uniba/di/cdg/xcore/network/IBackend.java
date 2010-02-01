@@ -125,6 +125,9 @@ public interface IBackend {
      */
     Job getConnectJob();
 
+    
+    IBackend getBackendFromProxy();
+    
     /**
      * Set the helper to use when accessing to common functions.
      * 
