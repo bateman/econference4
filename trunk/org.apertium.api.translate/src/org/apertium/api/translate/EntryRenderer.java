@@ -3,11 +3,11 @@ package org.apertium.api.translate;
 import javax.swing.*;
 import java.awt.*;
 
-public class LanguageEntryRenderer extends JLabel implements ListCellRenderer {
+public class EntryRenderer extends JLabel implements ListCellRenderer {
 
 	private static final long serialVersionUID = -8230366668996692971L;
 
-	public LanguageEntryRenderer() {
+	public EntryRenderer() {
 		this.setOpaque(true);
 	}
 

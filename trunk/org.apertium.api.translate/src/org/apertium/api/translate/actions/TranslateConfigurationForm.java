@@ -8,49 +8,65 @@ import java.util.*;
 public class TranslateConfigurationForm {
 	private JPanel rootComponent = null;
 
+	private JComboBox serviceComboBox = null;
+	private Map<String, TranslateConfiguration.ServiceType> serviceMap = null;
+	
 	private JComboBox srcComboBox = null;
 	private JComboBox destComboBox = null;
-	
-	private JLabel label = null;
 
 	private JTextField urlTextField = null;
 
 	public TranslateConfigurationForm() {
 		
+		serviceMap = new HashMap<String, TranslateConfiguration.ServiceType>();
+		
+		serviceMap.put("Apertium XML-RPC", TranslateConfiguration.ServiceType.APERTIUM);
+		serviceMap.put("Google", TranslateConfiguration.ServiceType.GOOGLE);
+		
 		rootComponent = new JPanel();
 		rootComponent.setLayout(new BoxLayout(rootComponent, BoxLayout.PAGE_AXIS));
 		
+		JPanel panel0 = new JPanel();
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 
+		serviceComboBox = new JComboBox();
+		
+		panel0.add(new JLabel("Service type: "));
+		panel0.add(serviceComboBox);
+		
+		urlTextField = new JTextField(25);
+		
+		panel1.add(new JLabel("Service URL: "));
+		panel1.add(urlTextField);
+		
 		srcComboBox = new JComboBox();
 		destComboBox = new JComboBox();
 		
-		label = new JLabel("Select translation:");
-
-		urlTextField = new JTextField(25);
-		
-		panel1.add(new JLabel("Apertium XML-RPC server URL: "));
-		panel1.add(urlTextField);
-		
-		panel2.add(label);
+		panel2.add(new JLabel("Language pair: "));
 		panel2.add(srcComboBox);
 		panel2.add(destComboBox);
 		
 		rootComponent.add(panel1);
 		rootComponent.add(panel2);
 
+		ISO639 iso = new ISO639();
+		
+		serviceComboBox.removeAllItems();
+		serviceComboBox.setModel(createServiceModel());
+		serviceComboBox.setRenderer(new EntryRenderer());
+		
 		srcComboBox.removeAllItems();
-		srcComboBox.setModel(createModel());
-		srcComboBox.setRenderer(new LanguageEntryRenderer());
+		srcComboBox.setModel(createLanguageModel(iso));
+		srcComboBox.setRenderer(new EntryRenderer());
 
 		if (destComboBox.getModel().getSize() > 0) {
 			destComboBox.setSelectedIndex(0);
 		}
 		
 		destComboBox.removeAllItems();
-		destComboBox.setModel(createModel());
-		destComboBox.setRenderer(new LanguageEntryRenderer());
+		destComboBox.setModel(createLanguageModel(iso));
+		destComboBox.setRenderer(new EntryRenderer());
 
 		if (destComboBox.getModel().getSize() > 0) {
 			destComboBox.setSelectedIndex(0);
@@ -65,16 +81,23 @@ public class TranslateConfigurationForm {
 		return destComboBox;
 	}
 
-
-	private ComboBoxModel createModel() {
+	private ComboBoxModel createServiceModel() {
 		Set<String> items;
 		try {
-			ISO639 iso = new ISO639();
+			items = serviceMap.keySet();
+		} catch (Exception e) {
+			items = new TreeSet<String>();
+		}
+		return new DefaultComboBoxModel(items.toArray());
+	}
+	
+	private ComboBoxModel createLanguageModel(ISO639 iso) {
+		Set<String> items;
+		try {
 			items = iso.getLanguages();
 		} catch (Exception e) {
 			items = new TreeSet<String>();
 		}
-
 		return new DefaultComboBoxModel(items.toArray());
 	}
 
