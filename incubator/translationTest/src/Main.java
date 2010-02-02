@@ -83,8 +83,6 @@ public class Main {
 			
 			Integer turn = Integer.decode(attributes.getNamedItem("turn").getNodeValue());
 			
-			//System.out.println("turn: " + turn);
-			
 			String who = attributes.getNamedItem("who").getNodeValue();
 
 			Utterance.Role role = Utterance.Role.OTHER;
@@ -95,7 +93,6 @@ public class Main {
 				role = Utterance.Role.DEVELOPER;
 			
 			String utterance = utteranceNode.getTextContent();
-			//System.out.println("utterance: " + utterance);
 			
 			String category = attributes.getNamedItem("category").getNodeValue();
 			
@@ -169,11 +166,14 @@ public class Main {
 			
 			String tradApertium = a.translate(u.getUtterance(), "en", "it").get("translation");
 			String tradGoogle = "";
-			q.query(u.getUtterance());
+			int hits = q.query(u.getUtterance());
 			
-			if (q.hasNext()) {
+			System.out.println("Hits: " + hits);
+			
+			while (q.hasNext()) {
 				QueryResult r = q.next();
 				tradGoogle = r.target.toString();
+				System.out.println("Hit: " + tradGoogle);
 			}
 			
 			Utterance ua = u.clona();
