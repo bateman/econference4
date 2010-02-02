@@ -36,7 +36,6 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -45,7 +44,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 
@@ -78,11 +76,11 @@ public class ConnectionDialogUI extends Composite {
 
     private Label jidLabel = null;
 
-    private Text jabberIdField = null;
+    private CCombo jabberIdCombo = null;
 
-    private Label profileIdLabel = null;
+    // Label profileIdLabel = null;
 
-    private CCombo profileIdCombo = null;
+    //private CCombo profileIdCombo = null;
 
     private Label portNumberLabel = null;
 
@@ -100,6 +98,8 @@ public class ConnectionDialogUI extends Composite {
     private Button useDefaultPortCheck;
 
     private Map<String, ProfileContext> savedProfileContexts;
+
+	private Button checkSaveProfile;
 
     public ConnectionDialogUI( Composite parent, int style,
             Map<String, ProfileContext> savedProfileContexts, String lastLoadedProfile ) {
@@ -119,16 +119,16 @@ public class ConnectionDialogUI extends Composite {
     }
 
     protected void initializeUsers( final String lastProfile ) {
-        profileIdCombo.removeAll();
-        jabberIdField.setText( "" );
+    	jabberIdCombo.removeAll();
+        jabberIdCombo.setText( "" );
         passwordField.setText( "" );
         serverHostField.setText( "" );
         for (String prof : savedProfileContexts.keySet()) {
-            profileIdCombo.add( prof );
+        	jabberIdCombo.add( prof );
         }
         if (lastProfile != null) {
-            int index = Math.max( profileIdCombo.indexOf( lastProfile ), 0 );
-            profileIdCombo.select( index );
+            int index = Math.max( jabberIdCombo.indexOf( lastProfile ), 0 );
+            jabberIdCombo.select( index );
         }
     }
 
@@ -230,12 +230,17 @@ public class ConnectionDialogUI extends Composite {
         final boolean secure = secureCheck.getSelection();
         ServerContext sc = new ServerContext( serverHost, defaultPort, secure, port );
 
-        final String jid = jabberIdField.getText();
+        final String jid = jabberIdCombo.getText();
         final String password = passwordField.getText();
         
         UserContext ua = new UserContext( jid, password);
         final boolean newacc = checkNewAccount.getSelection();
-        return new ProfileContext( profileIdCombo.getText(), ua, sc,newacc );
+        return new ProfileContext( jabberIdCombo.getText(), ua, sc,newacc );
+    }
+    
+    
+    public boolean isSaveProfileChecked(){
+    	return checkSaveProfile.getSelection();
     }
 
     /**
@@ -245,67 +250,123 @@ public class ConnectionDialogUI extends Composite {
     private void createLoginGroup() {
         groupBuddy = new Group( this, SWT.FILL );
         groupBuddy.setText( "Login as:" );
-        groupBuddy.setLayout(null);
+        groupBuddy.setLayout(new GridLayout(2,false));
         GridData groupBuddyLData = new GridData();
         groupBuddyLData.widthHint = 285;
         groupBuddyLData.heightHint = 104;
         groupBuddy.setLayoutData(groupBuddyLData);
-        {
-        	profileIdLabel = new Label(groupBuddy, SWT.NONE);
-        	profileIdLabel.setText( "&Profile:" );
-        	profileIdLabel.setBounds(8, 22, 34, 13);
-        }
-        profileIdCombo = new CCombo( groupBuddy, SWT.BORDER );
-        profileIdCombo.setBounds(85, 22, 158, 19);
-        profileIdCombo.addListener( SWT.Modify, new Listener() {
-            public void handleEvent( Event event ) {
-                ProfileContext profile = savedProfileContexts.get( profileIdCombo.getText() );
-                if (null != profile) {
-                    UserContext ua = profile.getUserContext();
-                    jabberIdField.setText( ua.getId() );
-                    passwordField.setText( ua.getPassword() );
-                    
-                    ServerContext sc = profile.getServerContext();
-                    serverHostField.setText( sc.getServerHost() );
-                    secureCheck.setSelection( sc.isSecure() );
-                    portNumberField.setText( String.valueOf( (sc.getPort()) ) );
-                    useDefaultPortCheck.setSelection(sc.isUsingDefaultPort());
-                    if(useDefaultPortCheck.getSelection() == true) {
-                        portNumberField.setEnabled(false);
-                    } else {
-                        portNumberField.setEnabled(true);
-                    }
-                }
-            }
-        } );
-
+//        {
+//        	profileIdLabel = new Label(groupBuddy, SWT.NONE);
+//        	profileIdLabel.setText( "&Profile:" );
+//        	profileIdLabel.setBounds(8, 22, 34, 13);
+//        }
+//        profileIdCombo = new CCombo( groupBuddy, SWT.BORDER );
+//        profileIdCombo.setBounds(85, 22, 158, 19);
+//        profileIdCombo.addListener( SWT.Modify, new Listener() {
+//            public void handleEvent( Event event ) {
+//                ProfileContext profile = savedProfileContexts.get( profileIdCombo.getText() );
+//                if (null != profile) {
+//                    UserContext ua = profile.getUserContext();
+//                    jabberIdField.setText( ua.getId() );
+//                    passwordField.setText( ua.getPassword() );
+//                    
+//                    ServerContext sc = profile.getServerContext();
+//                    serverHostField.setText( sc.getServerHost() );
+//                    secureCheck.setSelection( sc.isSecure() );
+//                    portNumberField.setText( String.valueOf( (sc.getPort()) ) );
+//                    useDefaultPortCheck.setSelection(sc.isUsingDefaultPort());
+//                    if(useDefaultPortCheck.getSelection() == true) {
+//                        portNumberField.setEnabled(false);
+//                    } else {
+//                        portNumberField.setEnabled(true);
+//                    }
+//                }
+//            }
+//        } );
+        
+        GridData gd = new GridData();        
         jidLabel = new Label( groupBuddy, SWT.NONE );
-        jidLabel.setText( "&Jabbed id:" );
-        jidLabel.setBounds(8, 47, 50, 13);
-        jabberIdField = new Text( groupBuddy, SWT.BORDER );
-        jabberIdField.setBounds(85, 46, 158, 19);
-        jabberIdField.addFocusListener(new FocusAdapter(){
+        jidLabel.setText( "&Id:" );
+        jidLabel.setLayoutData(gd);
+        //jidLabel.setBounds(8, 47, 50, 13);
+        
+        gd = new GridData(); 
+        gd.widthHint= 200;
+        jabberIdCombo = new CCombo(groupBuddy, SWT.BORDER );
+        jabberIdCombo.setToolTipText("Enter the user id.\n john.doe for Jabber servers\njohn.doe@gmail.com for GTalk");
+        //jabberIdCombo.setBounds(85, 46, 158, 19);
+        jabberIdCombo.setLayoutData(gd);
+        jabberIdCombo.addFocusListener(new FocusAdapter(){
             @Override
             public void focusGained( FocusEvent e ) {
-                jabberIdField.setSelection(0, jabberIdField.getText().length());
+                //jabberIdField.setSelection(0, jabberIdField.getText().length());
             }
             
         });
+        jabberIdCombo.addListener( SWT.Modify, new Listener() {
+        	public void handleEvent( Event event ) {
+        		ProfileContext profile = savedProfileContexts.get( jabberIdCombo.getText() );    
+        		ServerContext sc = null;
+        		if (null != profile) {
+        			UserContext ua = profile.getUserContext();
+        			//jabberIdCombo.setText( ua.getId() );
+        			checkSaveProfile.setSelection(true);
+        			passwordField.setText( ua.getPassword() );
+
+        			sc = profile.getServerContext();                                    
+        		}else{
+        			checkSaveProfile.setSelection(false);
+        			passwordField.setText("");
+        			//check if is a gmail.com/googlemail.com account, if yes we must set server settings
+        			if(jabberIdCombo.getText().contains("gmail.com") ||
+        					jabberIdCombo.getText().contains("googlemail.com")){
+        				sc = ServerContext.GOOGLE_TALK;
+        			}
+        		}
+        		if(sc!=null){
+        			serverHostField.setText( sc.getServerHost() );
+        			secureCheck.setSelection( sc.isSecure() );
+        			portNumberField.setText( String.valueOf( (sc.getPort()) ) );
+        			useDefaultPortCheck.setSelection(sc.isUsingDefaultPort());
+        			if(useDefaultPortCheck.getSelection() == true) {
+        				portNumberField.setEnabled(false);
+        			} else {
+        				portNumberField.setEnabled(true);
+        			}  
+        		}
+
+        	}
+        } );
+        gd = new GridData();
         passwordFieldLabel = new Label( groupBuddy, SWT.NONE );
         passwordFieldLabel.setText( "Pass&word:" );
-        passwordFieldLabel.setBounds(8, 71, 50, 13);
+        passwordFieldLabel.setLayoutData(gd);
+        
+        gd = new GridData();
+        gd.widthHint= 200;
+        //passwordFieldLabel.setBounds(8, 71, 50, 13);
         passwordField = new Text( groupBuddy, SWT.BORDER | SWT.PASSWORD );
-        passwordField.setBounds(85, 70, 158, 19);
-        {
-        	checkNewAccount = new Button(groupBuddy, SWT.CHECK | SWT.LEFT);
-        	checkNewAccount.setText("Register New Account");
-        	checkNewAccount.setBounds(8, 92, 140, 16);
-        }
+        //passwordField.setBounds(85, 70, 158, 19);
+        passwordField.setLayoutData(gd);
         passwordField.addFocusListener(new FocusAdapter() {
         	@Override
         	public void focusGained( FocusEvent e ) {
         		passwordField.setSelection(0, passwordField.getText().length());
         	}            
         });
+        
+        gd = new GridData();
+        gd.horizontalSpan = 2;
+        checkSaveProfile = new Button(groupBuddy, SWT.CHECK | SWT.LEFT);
+        checkSaveProfile.setText("Save profile");
+        checkSaveProfile.setLayoutData(gd);
+        //checkSaveProfile.setBounds(8, 22, 34, 13);
+        
+        gd = new GridData();
+        gd.horizontalSpan = 2;
+    	checkNewAccount = new Button(groupBuddy, SWT.CHECK | SWT.LEFT);
+    	checkNewAccount.setText("Register New Account (only for XMPP servers)");
+    	//checkNewAccount.setBounds(8, 92, 140, 16);
+    	checkNewAccount.setLayoutData(gd);
     }
 } // @jve:decl-index=0:visual-constraint="10,10"
