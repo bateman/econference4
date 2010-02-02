@@ -42,9 +42,8 @@ public class TranslateConfiguration {
 	
 	@Override
 	public String toString() {
-		String ret = "";
 		Services s = new Services();
-		ret += "service: " + s.getService(service) + " url: " + url + " pair: " + langPair;
+		String ret = "service: " + s.getService(service) + " url: " + url + " pair: " + langPair;
 		return ret;
 	}
 	
