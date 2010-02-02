@@ -2,26 +2,30 @@ package org.apertium.api.translate.actions;
 
 import org.apertium.api.translate.TranslateHelper;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.ui.actions.ActionDelegate;
+
+/*
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.actions.ActionDelegate;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
+*/
 
-public class TranslateAction extends ActionDelegate implements IEditorActionDelegate {
+public class TranslateAction extends ActionDelegate /* implements IEditorActionDelegate */ {
 	
 	private static TranslateHelper translateHelper;
-	private TextEditor textEditor;
+	//private TextEditor textEditor;
 
 	public TranslateAction() throws Exception {
 		translateHelper = new TranslateHelper();
 	}
 
 	public void run(IAction action) {
+		/*
 		ISelectionProvider selectionProvider = textEditor.getSelectionProvider();
 
 		TextSelection selection = null;
@@ -51,10 +55,11 @@ public class TranslateAction extends ActionDelegate implements IEditorActionDele
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 
-	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
-		this.textEditor = (TextEditor) targetEditor;
-	}
+	//public void setActiveEditor(IAction action, IEditorPart targetEditor) {
+	//	this.textEditor = (TextEditor) targetEditor;
+	//}
 
 }
