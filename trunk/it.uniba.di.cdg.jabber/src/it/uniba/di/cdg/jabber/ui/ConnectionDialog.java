@@ -35,15 +35,10 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
@@ -98,40 +93,44 @@ public class ConnectionDialog extends Dialog {
      */
     @Override
     protected void createButtonsForButtonBar( Composite parent ) {
-        Button deleteUser = createButton( parent, IDialogConstants.CLIENT_ID, "&Delete", false );
-        deleteUser.addSelectionListener( new SelectionAdapter() {
-            public void widgetSelected( SelectionEvent e ) {
-                String profileID = ui.getProfileContext().getProfileName();
-                savedProfileContexts.remove( profileID );
-
-                Preferences preferences = new ConfigurationScope()
-                        .getNode( CONFIGURATION_NODE_QUALIFIER );
-                Preferences connections = preferences.node( SAVED_PROFILES );
-                try {
-                    if (connections.nodeExists( profileID )) {
-                        connections.node( profileID ).removeNode();
-
-                        connections = preferences.node( LAST_USER );
-
-                        if (connections.nodeExists( profileID )) {
-                            connections.node( profileID ).removeNode();
-                        }
-                        // FIXME
-                        // I think it is right to simply call flush here
-                        // instead of storing back again all the profiles
-                        //savePreferences();
-                        connections.flush();
-                    }
-                } catch (BackingStoreException bse) {
-                    bse.printStackTrace();
-                }
-
-                ui.initializeUsers( "" );
-            }
-        } );
+//        Button deleteUser = createButton( parent, IDialogConstants.CLIENT_ID, "&Delete", false );
+//        deleteUser.addSelectionListener( new SelectionAdapter() {
+//            public void widgetSelected( SelectionEvent e ) {
+//                String profileID = ui.getProfileContext().getProfileName();
+//                deleteProfile(profileID);
+//
+//                ui.initializeUsers( "" );
+//            }
+//        } );
 
         super.createButtonsForButtonBar( parent );
     }
+    
+	private void deleteProfile(String profileID) {
+		savedProfileContexts.remove( profileID );
+
+        Preferences preferences = new ConfigurationScope()
+                .getNode( CONFIGURATION_NODE_QUALIFIER );
+        Preferences connections = preferences.node( SAVED_PROFILES );
+        try {
+            if (connections.nodeExists( profileID )) {
+                connections.node( profileID ).removeNode();
+
+                connections = preferences.node( LAST_USER );
+
+                if (connections.nodeExists( profileID )) {
+                    connections.node( profileID ).removeNode();
+                }
+                // FIXME
+                // I think it is right to simply call flush here
+                // instead of storing back again all the profiles
+                //savePreferences();
+                connections.flush();
+            }
+        } catch (BackingStoreException bse) {
+            bse.printStackTrace();
+        }
+	}
 
     /*
      * (non-Javadoc)
@@ -190,25 +189,30 @@ public class ConnectionDialog extends Dialog {
      */
     @Override
     protected void okPressed() {
-        // Save the user input before this dialog is disposed!
-    	
-        profileContext = ui.getProfileContext();
-        if (profileContext.isValid()) {
-        	if (profileContext.isNewAccount()){
-        		//Display display = Display.getDefault();
+    	// Save the user input before this dialog is disposed!
+
+    	profileContext = ui.getProfileContext();
+    	if (profileContext.isValid()) {
+    		if (profileContext.isNewAccount()){
+    			//Display display = Display.getDefault();
     			//Shell shell = new Shell(display);
     			DialogAccount inst = new DialogAccount(shell, SWT.NULL,profileContext);
     			inst.open();
-            } else {
-            savedProfileContexts.put( profileContext.getProfileName(), profileContext );
-            savePreferences();
-            super.okPressed();
-            }
-        }  else {
-            // FIXME doesn't ever show up
-            UiPlugin.getUIHelper().showErrorMessage(
-                    "The information you provided are either invalid or incomplete!" );
-        }
+    		} else {
+    			if(ui.isSaveProfileChecked()){
+	    			savedProfileContexts.put( profileContext.getProfileName(), profileContext );	    			
+    			}else{
+    				String profileID = ui.getProfileContext().getProfileName();
+                    deleteProfile(profileID);
+    			}
+    			savePreferences();
+    			super.okPressed();
+    		}
+    	}  else {
+    		// FIXME doesn't ever show up
+    		UiPlugin.getUIHelper().showErrorMessage(
+    		"The information you provided are either invalid or incomplete!" );
+    	}
     }
 
     /**
