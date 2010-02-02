@@ -4,7 +4,6 @@ import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.ProfileContext;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
-import it.uniba.di.cdg.xcore.ui.actions.ConnectAction;
 
 import java.util.Date;
 import java.util.HashMap;
