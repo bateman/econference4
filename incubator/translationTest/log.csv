@@ -25,7 +25,7 @@ Turn;Who;Role;Utterance;Category
 23;nordmanr;client;We're all present on the client team here;Other
 24;Jeff Spears;dev;k lets go;Other
 25;Jeff Spears;dev;After reading the RFP this is the idea we have for your project: Essentially a secure messenger clone for the client end, with file sharing and transfers capabilties. These clients are facilitated by a centralized server that stores all user info and logs the conversations and stores them in a DB. ;Complex Question
-26;;;is that pretty much it?;
+26;Jeff Spears;dev;is that pretty much it?;Complex Question
 27;mcmahonp;client;Yes;Y/N Answer
 28;whitew;dev;good;Acknowledgment
 29;mcmahonp;client;Though we don't necessarilly need the conversations to be stored in a DB...;Complex Answer
@@ -34,10 +34,10 @@ Turn;Who;Role;Utterance;Category
 ;;dev;we have questions about that so just wanted an overview;Task
 32;Jeff Spears;dev;how do we move to the next topic;Other
 33;nordmanr;client;You were on it;Other
-34;;;there;
+34;nordmanr;client;there;Other
 35;Jeff Spears;dev;ah perfect;Other
-36;;;ok I preparde all the questions eariler;
-37;;;so I'll just cut and paste em;
+36;Jeff Spears;dev;ok I preparde all the questions eariler;Other
+37;Jeff Spears;dev;so I'll just cut and paste em;Other
 38;beckd;client;great;Other
 39;Jeff Spears;dev;"2.0 share source code quickly and easily with another remote employee
  
@@ -53,8 +53,8 @@ Turn;Who;Role;Utterance;Category
 47;stuartc;client;exactly;Agreement
 48;whitew;dev;ok;Acknowledgment
 49;Jeff Spears;dev;and they can get access to it and make changes;Task
-50;;;while both people watch;
-51;;;not both trying to do it at the same time;
+50;Jeff Spears;dev;while both people watch;Task
+51;Jeff Spears;dev;not both trying to do it at the same time;Task
 52;whitew;dev;one will have to allow the other to view/modify;Task
 53;nordmanr;client;I think it would be sufficient just if they could send big blocks of source code to each other via a copy and paste kind of system, and then if editing is required they could use the application sharing feature...;Task
 54;nordmanr;client;what do you guys think?;Check
@@ -143,7 +143,7 @@ Turn;Who;Role;Utterance;Category
 137;Jeff Spears;dev;but how can anyone access their conversations are they going to be stored on the individual machines;Complex Question
 138;hanlonc;client;We also need the software to handle network outages cleanly.  Forinstance, let's pretend beckd lost his network connection.  He should regain his scribe priveledges as soon as he regains his network connection.;Task
 139;Jeff Spears;dev;i see how you could get your own but invites to others;Disagreement
-140;;;It makes a lot of duplicated space without a DB for the conversations;
+140;Jeff Spears;dev;It makes a lot of duplicated space without a DB for the conversations;Disagreement
 141;mcmahonp;client;No, about the db, I was just saying we weren't specifying how you would handle the logs;Task
 142;nordmanr;client;Well, I don't think we mean to rule out the possiblity of the DB;Task
 143;mcmahonp;client;you're free to use a db server if you want;Task
@@ -175,7 +175,7 @@ Turn;Who;Role;Utterance;Category
 170;;;doesnt it say at the top of your screen;
 171;whitew;dev;"it's off screen abit ;)";Other
 169;nordmanr;client;We'd want the same constraint as we had regarding access to the messaging system;Task
-172;;;only hosts on the private TCP/IP network should be able to use remote assistance features;
+172;nordmanr;client;only hosts on the private TCP/IP network should be able to use remote assistance features;Task
 173;Jeff Spears;dev;then where do the securty risks come from;Complex Question
 174;whitew;dev;inter office, and office to office ;Complex Answer
 175;nordmanr;client;yeah, we have multiple sites;Agreement
@@ -191,7 +191,7 @@ Turn;Who;Role;Utterance;Category
 185;hanlonc;client;Certain inhouse products are primarely supported from our New York office.;Task
 186;nordmanr;client;Yeah, that's true;Agreement
 187;Jeff Spears;dev;so then essentially it will have to work across the exact same network as the messaging;Check
-188;;;not a subset;
+188;Jeff Spears;dev;not a subset;Check
 189;nordmanr;client;Right;Agreement
 190;beckd;client;Time....;Other
 191;whitew;dev;time?;Other

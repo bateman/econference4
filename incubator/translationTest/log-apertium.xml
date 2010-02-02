@@ -26,7 +26,7 @@
 <utterance category="Other" role="Other" turn="23" who="nordmanr">Siamo #tutto @present in la squadra di cliente #lì</utterance>
 <utterance category="Other" role="Other" turn="24" who="Jeff Spears">*k Lascia va</utterance>
 <utterance category="Complex Question" role="Other" turn="25" who="Jeff Spears">Dopo leggere il *RFP #questo è la idea abbiamo per il tuo progetto: Essenzialmente un clone di messaggero @secure per il fine di cliente, con la lima #que condivide e storni *capabilties. Questi clienti sono facilitati per un @server centralizzato che @store #tutto utente *info e *logs le conversazioni e #prpers @store in un *DB.</utterance>
-<utterance category="" role="Other" turn="26" who="">È che @pretty molto lo?</utterance>
+<utterance category="Complex Question" role="Other" turn="26" who="Jeff Spears">È che @pretty molto lo?</utterance>
 <utterance category="Y/N Answer" role="Other" turn="27" who="mcmahonp">Sì</utterance>
 <utterance category="Acknowledgment" role="Other" turn="28" who="whitew">Buono</utterance>
 <utterance category="Complex Answer" role="Other" turn="29" who="mcmahonp">Nonostante #prpers  non *necessarilly necessitare le conversazioni #para essere @store in un *DB...</utterance>
@@ -34,10 +34,10 @@
 <utterance category="Acknowledgment" role="Other" turn="31" who="Jeff Spears">*k</utterance>
 <utterance category="Other" role="Other" turn="32" who="Jeff Spears">Come  spostiamo al tema prossimo</utterance>
 <utterance category="Other" role="Other" turn="33" who="nordmanr">Eri in #prpers</utterance>
-<utterance category="" role="Other" turn="34" who="">Lì</utterance>
+<utterance category="Other" role="Other" turn="34" who="nordmanr">Lì</utterance>
 <utterance category="Other" role="Other" turn="35" who="Jeff Spears">*ah @Perfect</utterance>
-<utterance category="" role="Other" turn="36" who="">*ok Io *preparde #tutto le questioni *eariler</utterance>
-<utterance category="" role="Other" turn="37" who="">@So io  giusto tagliato e pasta *em</utterance>
+<utterance category="Other" role="Other" turn="36" who="Jeff Spears">*ok Io *preparde #tutto le questioni *eariler</utterance>
+<utterance category="Other" role="Other" turn="37" who="Jeff Spears">@So io  giusto tagliato e pasta *em</utterance>
 <utterance category="Other" role="Other" turn="38" who="beckd">Grande</utterance>
 <utterance category="Complex Question" role="Other" turn="39" who="Jeff Spears">2.0 fonte di partecipazione codice rapidamente e #facilmente con un altro impiegato @remote
  
@@ -53,8 +53,8 @@
 <utterance category="Agreement" role="Other" turn="47" who="stuartc">Esattamente</utterance>
 <utterance category="Acknowledgment" role="Other" turn="48" who="whitew">*ok</utterance>
 <utterance category="Task" role="Other" turn="49" who="Jeff Spears">E possono ricevere accesso a #prpers e cambi di marchio</utterance>
-<utterance category="" role="Other" turn="50" who="">@While @both orologio di gente</utterance>
-<utterance category="" role="Other" turn="51" who="">Non #entrambi i #provare fare#prpers allo stesso tempo</utterance>
+<utterance category="Task" role="Other" turn="50" who="Jeff Spears">@While @both orologio di gente</utterance>
+<utterance category="Task" role="Other" turn="51" who="Jeff Spears">Non #entrambi i #provare fare#prpers allo stesso tempo</utterance>
 <utterance category="Task" role="Other" turn="52" who="whitew">Uno dovrà permettere il @other #para vedere/modificare</utterance>
 <utterance category="Task" role="Other" turn="53" who="nordmanr">Lo opino sarebbe sufficiente giusto se potrebbero inviare blocchi grandi di codice di fonte a ognuno @other @via una copia e classe di pasta di sistema, e #allora se #redigere è richiesto potrebbero usare la applicazione #que condivide caratteristica...</utterance>
 <utterance category="Check" role="Other" turn="54" who="nordmanr">Cosa  ti i tipi opinano?</utterance>
@@ -65,8 +65,8 @@
 <utterance category="Acknowledgment" role="Other" turn="59" who="Jeff Spears">*okay</utterance>
 <utterance category="Acknowledgment" role="Other" turn="60" who="whitew">Fatto</utterance>
 <utterance category="Check" role="Other" turn="61" who="nordmanr">Senso di marchio, Jeff?</utterance>
-<utterance category="Complex Question" role="Other" turn="62" who="stuartc"> #Volere una finestra dedicata per #questo?</utterance>
 <utterance category="Agreement" role="Other" turn="63" who="Jeff Spears">*yeah Fa senso a #mí</utterance>
+<utterance category="Complex Question" role="Other" turn="62" who="stuartc"> #Volere una finestra dedicata per #questo?</utterance>
 <utterance category="Complex Answer" role="Other" turn="64" who="mcmahonp">Tutto #volere era un *IM caratteristica che non fu durata indentazione #restringere e preservata.</utterance>
 <utterance category="Task" role="Other" turn="65" who="nordmanr">Una finestra dedicata potrebbe essere buona, #but #quello è @more d'un dettaglio di attuazione</utterance>
 <utterance category="Acknowledgment" role="Other" turn="66" who="Jeff Spears">*ok @Perfect</utterance>
@@ -143,7 +143,7 @@
 <utterance category="Complex Question" role="Other" turn="137" who="Jeff Spears">#But come può qualunque accede le sue conversazioni sono #prpers andando #para essere @store nelle macchine individuali</utterance>
 <utterance category="Task" role="Other" turn="138" who="hanlonc">Anche necessitiamo il software #para manipolare rete *outages nettamente.  *Forinstance, lasciato è finge *beckd perse la sua connessione di rete.  #Prpers @should *regain il suo *scribe *priveledges appena #prpers *regains la sua connessione di rete.</utterance>
 <utterance category="Disagreement" role="Other" turn="139" who="Jeff Spears">*i Vedere come potresti ricevere il tuo proprio #but invita a altri</utterance>
-<utterance category="" role="Other" turn="140" who="">Fa molto spazio duplicato senza un *DB per le conversazioni</utterance>
+<utterance category="Disagreement" role="Other" turn="140" who="Jeff Spears">Fa molto spazio duplicato senza un *DB per le conversazioni</utterance>
 <utterance category="Task" role="Other" turn="141" who="mcmahonp">#No, sopra il *db, giusto dicevo non specificavamo come manipoleresti il *logs</utterance>
 <utterance category="Task" role="Other" turn="142" who="nordmanr">Bene, non opino significhiamo #para imperare fuori il *possiblity del *DB</utterance>
 <utterance category="Task" role="Other" turn="143" who="mcmahonp">Sei gratuito di usare un *db @server se #volere</utterance>
@@ -156,8 +156,8 @@
 <utterance category="Other" role="Other" turn="150" who="Jeff Spears">*k @Sorry *i *skipped 3.0</utterance>
 <utterance category="Y/N Question" role="Other" turn="151" who="Jeff Spears">È il #personale di appoggio #que sopporta tutto *thesoftware usi o sopportando questa applicazione, o lo è sopportando il software che la tua impresa vende??</utterance>
 <utterance category="Y/N Answer" role="Other" turn="152" who="nordmanr">#No, stanno sopportando il nostro *workstations</utterance>
-<utterance category="Y/N Question" role="Other" turn="153" who="whitew">Secondo *tech *helpers?</utterance>
 <utterance category="Task" role="Other" turn="154" who="nordmanr">Facendo sicuro che i nostri impiegati *workstations sta correndo e il software corretto è installato e tutto #quello</utterance>
+<utterance category="Y/N Question" role="Other" turn="153" who="whitew">Secondo *tech *helpers?</utterance>
 <utterance category="Y/N Answer" role="Other" turn="155" who="nordmanr">*yeah, esattamente</utterance>
 <utterance category="Acknowledgment" role="Other" turn="156" who="Jeff Spears">Bene</utterance>
 <utterance category="Acknowledgment" role="Other" turn="157" who="whitew">*ok</utterance>
@@ -172,10 +172,10 @@
 <utterance category="Disagreement" role="Other" turn="166" who="nordmanr">Bene, tanto @long secondo è tanto @secure come il nostro istante *messaging</utterance>
 <utterance category="Other" role="Other" turn="167" who="whitew">#Quale sezione #prpers addirittura *goeff?</utterance>
 <utterance category="Other" role="Other" turn="168" who="Jeff Spears">4.0</utterance>
-<utterance category="Task" role="Other" turn="169" who="nordmanr">#Volere @the same @constraint secondo avemmo @regarding accesso al *messaging sistema</utterance>
 <utterance category="" role="Other" turn="170" who="">*doesnt Dice nella tazza del tuo schermo</utterance>
 <utterance category="Other" role="Other" turn="171" who="whitew">È di schermo *abit ;)</utterance>
-<utterance category="" role="Other" turn="172" who="">Anfitrioni unici in il @private *TCP/rete di @IP @should essere capace di usare caratteristiche di assistenza @remote</utterance>
+<utterance category="Task" role="Other" turn="169" who="nordmanr">#Volere @the same @constraint secondo avemmo @regarding accesso al *messaging sistema</utterance>
+<utterance category="Task" role="Other" turn="172" who="nordmanr">Anfitrioni unici in il @private *TCP/rete di @IP @should essere capace di usare caratteristiche di assistenza @remote</utterance>
 <utterance category="Complex Question" role="Other" turn="173" who="Jeff Spears">#Allora dove fare il *securty i rischi venuti di</utterance>
 <utterance category="Complex Answer" role="Other" turn="174" who="whitew">*inter Ufficio, e ufficio a ufficio</utterance>
 <utterance category="Agreement" role="Other" turn="175" who="nordmanr">*yeah, abbiamo posti multipli</utterance>
@@ -191,7 +191,7 @@
 <utterance category="Task" role="Other" turn="185" who="hanlonc">@Certain *inhouse i prodotti sono *primarely sopportato di il nostro ufficio di New York.</utterance>
 <utterance category="Agreement" role="Other" turn="186" who="nordmanr">*Yeah, #quello è vero</utterance>
 <utterance category="Check" role="Other" turn="187" who="Jeff Spears">Tanto #allora essenzialmente dovrà lavorare #attraverso a la rete stessa esatta come il *messaging</utterance>
-<utterance category="" role="Other" turn="188" who="">Non un @subset</utterance>
+<utterance category="Check" role="Other" turn="188" who="Jeff Spears">Non un @subset</utterance>
 <utterance category="Agreement" role="Other" turn="189" who="nordmanr">Destro</utterance>
 <utterance category="Other" role="Other" turn="190" who="beckd">Tempo....</utterance>
 <utterance category="Other" role="Other" turn="191" who="whitew">Tempo?</utterance>

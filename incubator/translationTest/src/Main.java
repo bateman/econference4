@@ -107,52 +107,11 @@ public class Main {
 		return ret;
 	}
 	
-	public static void main(String[] args) throws Exception {
-		List<Utterance> utterances = readUtterances("log.xml");
-		
-		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://www.neuralnoise.com:6173/RPC2"));
-		IQuery q = new GoogleMTConnector();
-		
-		q.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
-		q.open();
-		
-		List<Utterance> utterancesApertium = new LinkedList<Utterance>();
-		List<Utterance> utterancesGoogle = new LinkedList<Utterance>();
-		
-		for (Utterance u : utterances) {
-			String tradApertium = a.translate(u.getUtterance(), "en", "it").get("translation");
-			String tradGoogle = "";
-			q.query(u.getUtterance());
-			
-			if (q.hasNext()) {
-				QueryResult r = q.next();
-				tradGoogle = r.target.toString();
-			}
-			
-			Utterance ua = u.clona();
-			ua.setUtterance(tradApertium);
-			
-			Utterance ug = u.clona();
-			ug.setUtterance(tradGoogle);
-			
-			utterancesApertium.add(ua);
-			utterancesGoogle.add(ug);
-		}
-		
-		BufferedWriter out = new BufferedWriter(new FileWriter("log-apertium.xml"));
-		out.write(makeXML(utterancesApertium));
-		out.close();
-		
-		out = new BufferedWriter(new FileWriter("log-google.xml"));
-		out.write(makeXML(utterancesGoogle));
-		out.close();
-		
-		
-		/*
-		InputStreamReader isr = new InputStreamReader(new FileInputStream("log.csv"));
+	public static List<Utterance> readCSV(String path) throws IOException {
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(path));
         CsvReader csvReader = new CsvReader(isr, ';');
         
-        Set<Utterance> uts = new TreeSet<Utterance>();
+        List<Utterance> uts = new LinkedList<Utterance>();
         
         while (csvReader.readRecord()) {
         	
@@ -180,11 +139,60 @@ public class Main {
             }
         }
         
-        System.out.println(makeXML(uts));
-        
         csvReader.close();
-        */
+        
+        return uts;
+	}
+	
+	public static void main(String[] args) throws Exception {
 		
+		List<Utterance> orig = readCSV("log.csv");
+		
+		BufferedWriter out = new BufferedWriter(new FileWriter("log.xml"));
+		out.write(makeXML(orig));
+		out.close();
+		
+		List<Utterance> utterances = readUtterances("log.xml");
+		
+		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://www.neuralnoise.com:6173/RPC2"));
+		IQuery q = new GoogleMTConnector();
+		
+		q.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
+		q.open();
+		
+		List<Utterance> utterancesApertium = new LinkedList<Utterance>();
+		List<Utterance> utterancesGoogle = new LinkedList<Utterance>();
+		
+		for (Utterance u : utterances) {
+			
+			System.out.println("Translating: " + u.getUtterance());
+			
+			String tradApertium = a.translate(u.getUtterance(), "en", "it").get("translation");
+			String tradGoogle = "";
+			q.query(u.getUtterance());
+			
+			if (q.hasNext()) {
+				QueryResult r = q.next();
+				tradGoogle = r.target.toString();
+			}
+			
+			Utterance ua = u.clona();
+			ua.setUtterance(tradApertium);
+			
+			Utterance ug = u.clona();
+			ug.setUtterance(tradGoogle);
+			
+			utterancesApertium.add(ua);
+			utterancesGoogle.add(ug);
+		}
+		
+		out = new BufferedWriter(new FileWriter("log-apertium.xml"));
+		out.write(makeXML(utterancesApertium));
+		out.close();
+		
+		out = new BufferedWriter(new FileWriter("log-google.xml"));
+		out.write(makeXML(utterancesGoogle));
+		out.close();
 	}
 
 }
