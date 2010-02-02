@@ -74,8 +74,6 @@ public class ConnectionDialog extends Dialog {
     
     private Shell shell;
     
-    private Composite parentcomposite;
-
     public ProfileContext profileContext;
 
     public Map<String, ProfileContext> savedProfileContexts;
@@ -153,7 +151,6 @@ public class ConnectionDialog extends Dialog {
 
         this.ui = new ConnectionDialogUI( composite, SWT.NONE, savedProfileContexts, profileContext
                 .getProfileName() );
-        parentcomposite = composite;
         return composite;
     }
 
