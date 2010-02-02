@@ -2,9 +2,12 @@ package org.apertium.api.translate.actions;
 
 import org.apertium.api.translate.*;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.ui.IEditorActionDelegate;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.actions.ActionDelegate;
+import org.eclipse.jface.viewers.ISelection;
+//import org.eclipse.ui.IEditorActionDelegate;
+//import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+//import org.eclipse.ui.actions.ActionDelegate;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -15,7 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigTranslateAction extends ActionDelegate implements IEditorActionDelegate {
+public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 		
 	private Services.ServiceType service = null;
 	private LanguagePair langPair = null;
@@ -171,7 +174,7 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 		System.out.println("ConfigTranslateAction.run() 7");
 	}
 
-	public void setActiveEditor(IAction action, IEditorPart targetEditor) { }
+	//public void setActiveEditor(IAction action, IEditorPart targetEditor) { }
 
 	public Services.ServiceType getService() {
 		return service;
@@ -195,6 +198,27 @@ public class ConfigTranslateAction extends ActionDelegate implements IEditorActi
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Override
+	public void dispose() {
+		System.out.println("ConfigTranslateAction.dispose()");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void init(IWorkbenchWindow window) {
+		System.out.println("ConfigTranslateAction.init()");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void selectionChanged(IAction action, ISelection selection) {
+		System.out.println("ConfigTranslateAction.selectionChanged()");
+		// TODO Auto-generated method stub
+		
 	}
 
 }

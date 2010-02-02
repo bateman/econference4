@@ -18,6 +18,7 @@ public class TranslateConfiguration {
 	}
 
 	public void setLangPair(LanguagePair langPair) {
+		//if (langPair != null)	
 		this.langPair = langPair;
 	}
 
@@ -26,6 +27,7 @@ public class TranslateConfiguration {
 	}
 	
 	public void setService(Services.ServiceType service) {
+		//if (service != null)	
 		this.service = service;
 	}
 	
@@ -34,6 +36,7 @@ public class TranslateConfiguration {
 	}
 
 	public void setUrl(String url) {
+		//if (url != null)	
 		this.url = url;
 	}
 	

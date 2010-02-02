@@ -104,23 +104,18 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 		
 		TranslateConfiguration data = new TranslateConfiguration();
 		
-		System.out.println("TranslateConfigDialog.loadProperties() 2");
+		if (service != null)
+			data.setService(service);
 		
-		data.setService(service);
+		if (langPair != null)
+			data.setLangPair(langPair);
 		
-		System.out.println("TranslateConfigDialog.loadProperties() 3");
-		
-		data.setLangPair(langPair);
-		
-		System.out.println("TranslateConfigDialog.loadProperties() 4");
-		
-		data.setUrl(url);
-
-		System.out.println("TranslateConfigDialog.loadProperties() 5");
+		if (url != null)
+			data.setUrl(url);
 		
 		form.setData(data);
 		
-		System.out.println("TranslateConfigDialog.loadProperties() 6");
+		System.out.println("TranslateConfigDialog.loadProperties() 1");
 	}
 
 	public Services.ServiceType getService() {
