@@ -30,6 +30,11 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		translateListeners.add(listener);
 		NetworkPlugin.getDefault().getHelper().registerBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), listener);
 	}
+	
+	public void removeListener(IBackendEventListener listener) {
+		translateListeners.remove(listener);
+		NetworkPlugin.getDefault().getHelper().unregisterBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), listener);
+	}
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);

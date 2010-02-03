@@ -44,6 +44,13 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
         TranslatePlugin.getDefault().addListener(this);
 	}
 
+    @Override
+    public void dispose() {
+    	System.out.println("TranslateView.dispose()");
+    	TranslatePlugin.getDefault().removeListener(this);
+    }
+
+	
 	@Override
 	public void setFocus() {
 		System.out.println("TranslateView.setFocus()");
