@@ -108,10 +108,15 @@ public class GenInfoPage extends WizardPage implements Listener {
 	    		if (!backendIdCombo.getText().equals(""))
 	    			serviceCombo.setEnabled(true);
 	    		// TODO Auto-generated method stub
-	    		if (backendIdCombo.getText().equals("Text only (XMPP/GTalk)") || backendIdCombo.getText().equals(""))
+	    		if (backendIdCombo.getText().equals("Text only (XMPP/GTalk)") || backendIdCombo.getText().equals("")){
 	    			media = "it.uniba.di.cdg.jabber.jabberBackend";
-		    	else
+	    			if (serviceCombo !=null)
+		    		serviceCombo.setEnabled(true);
+	    		}
+		    	else{
 		    		media = "it.uniba.di.cdg.skype.skypeBackend";
+		    		serviceCombo.setEnabled(false);
+		    	}
 	    	}
 		});
 		new CLabel(composite,SWT.NONE);
@@ -285,11 +290,12 @@ public class GenInfoPage extends WizardPage implements Listener {
 	private boolean checkData(){
 		if (nickNameText.getText().equals(""))
 			return false;
-		if (serviceCombo.getText().equals(""))
+		if (media == "it.uniba.di.cdg.jabber.jabberBackend"){
+			if (serviceCombo.getText().equals(""))
 				return false;
-		if (serviceCombo.getText().equals("Other...") && serviceText.getText().equals("") )
-			return false;
-		
+			if (serviceCombo.getText().equals("Other...") && serviceText.getText().equals("") )
+				return false;
+		}
 		return true;
 	}
 	/*
