@@ -141,6 +141,39 @@ public class Main {
         return uts;
 	}
 	
+	public static String invokeGoogle(String u, IQuery q) throws InterruptedException {
+		String ret = "";
+		
+		int hits = 0;
+		int tries = 5;
+		
+		do {
+			hits = q.query(u);
+			
+			System.out.println("Hits: " + hits);
+			
+			--tries;
+			
+			if (hits == 0) {
+				System.out.println("Sleeping.. tries left: " + tries);
+				Thread.sleep(5000);
+			}
+			
+		} while (hits == 0 && tries > 0);
+		
+		if (hits != 0) {
+			if (q.hasNext()) {
+				QueryResult r = q.next();
+				ret = r.target.toString();
+				System.out.println("Hit: " + ret);
+			}
+		}// else {
+		//	ret = u;
+		//}
+		
+		return ret;
+	}
+	
 	public static void main(String[] args) throws Exception {
 		
 		List<Utterance> orig = readCSV("log.csv");
@@ -165,16 +198,7 @@ public class Main {
 			System.out.println("Translating: " + u.getUtterance());
 			
 			String tradApertium = a.translate(u.getUtterance(), "en", "it").get("translation");
-			String tradGoogle = "";
-			int hits = q.query(u.getUtterance());
-			
-			System.out.println("Hits: " + hits);
-			
-			while (q.hasNext()) {
-				QueryResult r = q.next();
-				tradGoogle = r.target.toString();
-				System.out.println("Hit: " + tradGoogle);
-			}
+			String tradGoogle = invokeGoogle(u.getUtterance(), q);
 			
 			Utterance ua = u.clona();
 			ua.setUtterance(tradApertium);
