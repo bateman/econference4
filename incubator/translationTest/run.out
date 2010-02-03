@@ -834,3 +834,23 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Translating: Thank you, gentlemen, we look forward to working with you
+Hits: 1
+Hit: Grazie, signori, siamo ansiosi di lavorare con voi
+Translating: Anybody who wants to can save it 
+ Decision 1 - I'm scribe
+ Decision 2 - Main idea behind software is:
+ a secure messenger clone for the client end, with file sharing and transfers capabilties. These clients are facilitated by a centralized 
+ server that stores all user info and logs the conversations and stores them in a DB. 
+ With application sharing capabilities
+ Decision 3 - Sharing code implies the ability to paste code into without formatting looking ugly.  Should not have maximum message length and preserve indentation.
+ Decision 4 - Directory of users is contact list of everyone in company sorted by department, location
+ Decision 5 - For archives, they are private unless invited to view by owner, option to make public available.
+ Decision 6 - For the moment, anyone connected to our private TCP/IP network can access the system.  In future releases may include off site ip's
+ Decision 7 - Logfiles should be accessible by an authorized employees
+ Decision 8 - Support staff is supporting our workstations exclusively
+ Decision 9 - WinXP's remote assitance would be fine, as long as it is integrated into our messaging system and only hosts on private network should be able to use features.
+ Decision 10 - We are willing to increase our max memory usage to 15+ Mb, but would like as little as possible.
+
+Hits: 1
+Hit: Chiunque vuole può salvare la decisione n. 1 - I'm scriba decisione n. 2 - L'idea principale dietro il software è: un clone sicuro Messenger per il lato client, con la condivisione di file e capabilties trasferimenti. Questi clienti sono agevolate da un server centralizzato che memorizza tutte le informazioni degli utenti e registra le conversazioni e li memorizza in un DB. Con la funzionalità di Application Sharing decisione 3 - condivisione del codice implica la capacità di incollare il codice in formattazione, senza guardare brutto. Non dovrebbe avere la lunghezza massima dei messaggi e di preservare il rientro. Decisione n. 4 - Elenco degli utenti viene in lista di contatti di tutti nella società in ordine di reparto, sede decisione n. 5 - per gli archivi, che sono private, a meno invitati a vedere dal proprietario, possibilità di mettere a disposizione del pubblico. Decisione 6 - Per il momento, chiunque sia connesso al nostro privato rete TCP / IP è possibile accedere al sistema. Nelle versioni future possono includere off ip sito la decisione n. 7 - Logfiles devono essere accessibili da parte di un personale autorizzato decisione 8 - Il personale di supporto è supportare i nostri posti di lavoro esclusivamente decisione 9 - ASSISTENZA remoto WinXP sarebbe bene, fintanto che è integrato nel nostro sistema di messaggistica e ospita solo sulla rete privata dovrebbe essere in grado di utilizzare le funzionalità. Decisione 10 - Noi siamo disposti ad aumentare il nostro utilizzo della memoria max a 15 + Mb, ma vorrei il meno possibile.
