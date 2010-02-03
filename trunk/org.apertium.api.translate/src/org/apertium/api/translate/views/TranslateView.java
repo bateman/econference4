@@ -1,5 +1,6 @@
 package org.apertium.api.translate.views;
 
+import org.apertium.api.translate.TranslatePlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyledText;
@@ -19,6 +20,13 @@ public class TranslateView extends ViewPart implements ITranslateView {
 	
 	protected StyledText translations = null;
 	
+	private static TranslateView instance = null;
+	
+	public static TranslateView getInstance() {
+		return instance;
+	}
+	
+	public static final String ID = TranslatePlugin.ID + ".views.translateView";
     private static final String SEPARATOR = System.getProperty("line.separator");
 	
 	@Override
@@ -32,6 +40,7 @@ public class TranslateView extends ViewPart implements ITranslateView {
         
         appendMessage("Qui appariranno le traduzioni");
         
+        instance = this;
 		//TestThread tt = new TestThread(this);
 		//tt.start();
 	}
