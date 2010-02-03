@@ -10,8 +10,6 @@ public class TranslateListener implements IBackendEventListener {
 	@Override
 	public void onBackendEvent(IBackendEvent event) {
 		System.out.println("TranslateListener.onBackendEvent() - event is " + event.getClass().toString());
-	
-		//TranslateView.getInstance().appendMessage(event.getClass().toString());
 	}
 
 }

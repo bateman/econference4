@@ -1,5 +1,8 @@
 package org.apertium.api.translate;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
@@ -15,19 +18,28 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	public static final String ID = "org.apertium.api.translate";
 	private static TranslatePlugin plugin;
 
-	private IBackendEventListener translateListener = null;
+	private List<IBackendEventListener> translateListeners = null;
 	
 	public TranslatePlugin() {
 		System.out.println("TranslatePlugin()");
 		plugin = this;
+		
+		translateListeners = new LinkedList<IBackendEventListener>();
+		translateListeners.add(new TranslateListener());
+	}
+	
+	public void addListener(IBackendEventListener listener) {
+		translateListeners.add(listener);
+		NetworkPlugin.getDefault().getHelper().registerBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), listener);
 	}
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		System.out.println("TranslatePlugin.start()");
 		
-		translateListener = new TranslateListener();
-		NetworkPlugin.getDefault().getHelper().registerBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), translateListener);
+		for (IBackendEventListener listener : translateListeners) {
+			NetworkPlugin.getDefault().getHelper().registerBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), listener);
+		}
 	}
 
 	public void stop(BundleContext context) throws Exception {
@@ -35,7 +47,9 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		super.stop(context);
 		System.out.println("TranslatePluginr.stop()");
 		
-		NetworkPlugin.getDefault().getHelper().unregisterBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), translateListener);
+		for (IBackendEventListener listener : translateListeners) {
+			NetworkPlugin.getDefault().getHelper().unregisterBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), listener);
+		}
 	}
 
 	public static TranslatePlugin getDefault() {
