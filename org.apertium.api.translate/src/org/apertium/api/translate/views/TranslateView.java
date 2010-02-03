@@ -8,10 +8,12 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.ui.part.ViewPart;
 
 import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.xcore.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
@@ -57,21 +59,22 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 		translations.setEditable(false);
     }
 
-    @SwtAsyncExec
     public void messageReceived(final String text, final String who) {
         appendMessage(String.format("[%s] %s", who, text));
     }
     
-    @SwtAsyncExec
     public void appendMessage(final String message) {
     	System.out.println("TranslateView.appendMessage()");
     	
-        String textToAppend = message + SEPARATOR;
-        translations.append(textToAppend);
-        scrollToEnd();
-    }
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				String textToAppend = message + SEPARATOR;
+				translations.append(textToAppend);
+				scrollToEnd();
+			}
+		});
+	}
 
-    @SwtAsyncExec
     protected void scrollToEnd() {
     	System.out.println("TranslateView.scrollToEnd()");
     	
@@ -92,7 +95,6 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
         translations.showSelection();
     }
 
-    @SwtAsyncExec
 	@Override
 	public void onBackendEvent(final IBackendEvent event) {
 		System.out.println("TranslateView.onBackendEvent() - event is " + event.getClass().toString());
