@@ -27,6 +27,9 @@ public class TranslateView extends ViewPart implements ITranslateView {
         createSashForm();
         
 		translations.setText("Qui appariranno le traduzioni");
+		
+		//TestThread tt = new TestThread(this);
+		//tt.start();
 	}
 
 	@Override
@@ -42,8 +45,16 @@ public class TranslateView extends ViewPart implements ITranslateView {
 		translations = new StyledText(sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
 		translations.setEditable(false);
     }
+    
+    public void appendMessage(final String message) {
+    	System.out.println("TranslateView.appendMessage()");
+    	
+    	translations.append(message);
+    }
 
     protected void scrollToEnd() {
+    	System.out.println("TranslateView.scrollToEnd()");
+    	
         ScrollBar scrollBar = translations.getVerticalBar();
         scrollBar.addSelectionListener(new SelectionListener(){
 			@Override
@@ -55,6 +66,7 @@ public class TranslateView extends ViewPart implements ITranslateView {
 				System.out.println("TranslateView.widgetSelected()");
 			}
         });
+        
         int n = translations.getCharCount();
         translations.setSelection( n, n );
         translations.showSelection();
