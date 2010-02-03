@@ -12,8 +12,8 @@
            id="org.apertium.api.translate.views.translateView"
            name="Translations"/>
         <category
-              id="translateViews"
-              name="translateViews"
+              id="TranslateViews"
+              name="TranslateViews"
               parentCategory="econferenceViews"/>
   </extension>
 
