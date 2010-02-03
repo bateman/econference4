@@ -58,12 +58,12 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
     }
 
     @SwtAsyncExec
-    public void messageReceived(String text, String who) {
+    public void messageReceived(final String text, final String who) {
         appendMessage(String.format("[%s] %s", who, text));
     }
     
     @SwtAsyncExec
-    public void appendMessage(String message) {
+    public void appendMessage(final String message) {
     	System.out.println("TranslateView.appendMessage()");
     	
         String textToAppend = message + SEPARATOR;
@@ -94,9 +94,9 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 
     @SwtAsyncExec
 	@Override
-	public void onBackendEvent(IBackendEvent event) {
+	public void onBackendEvent(final IBackendEvent event) {
 		System.out.println("TranslateView.onBackendEvent() - event is " + event.getClass().toString());
-		messageReceived(event.getClass().toString(), "Sysyem");
+		messageReceived(event.getClass().toString(), "System");
 	}
     
 }

@@ -7,9 +7,7 @@ import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
 import org.apertium.api.translate.listeners.TranslateListener;
-import org.apertium.api.translate.views.TranslateView;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
