@@ -19,6 +19,8 @@ public class TranslateView extends ViewPart implements ITranslateView {
 	
 	protected StyledText translations = null;
 	
+    private static final String SEPARATOR = System.getProperty("line.separator");
+	
 	@Override
 	public void createPartControl(Composite parent) {
 		System.out.println("TranslateView.createPartControl()");
@@ -28,7 +30,6 @@ public class TranslateView extends ViewPart implements ITranslateView {
 		
         createSashForm();
         
-		//translations.setText("Qui appariranno le traduzioni");
         appendMessage("Qui appariranno le traduzioni");
         
 		//TestThread tt = new TestThread(this);
@@ -43,17 +44,20 @@ public class TranslateView extends ViewPart implements ITranslateView {
 	}
 	
     private void createSashForm() {
-        sashForm = new SashForm( top, SWT.NONE );
-        sashForm.setOrientation( org.eclipse.swt.SWT.VERTICAL );
+        sashForm = new SashForm(top, SWT.NONE);
+        sashForm.setOrientation(org.eclipse.swt.SWT.VERTICAL);
+        
 		translations = new StyledText(sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
 		translations.setEditable(false);
     }
     
     @SwtAsyncExec
-    public void appendMessage(final String message) {
+    public void appendMessage(String message) {
     	System.out.println("TranslateView.appendMessage()");
     	
-    	translations.append(message);
+        String textToAppend = message + SEPARATOR;
+        translations.append(textToAppend);
+        scrollToEnd();
     }
 
     protected void scrollToEnd() {
@@ -72,7 +76,7 @@ public class TranslateView extends ViewPart implements ITranslateView {
         });
         
         int n = translations.getCharCount();
-        translations.setSelection( n, n );
+        translations.setSelection(n, n);
         translations.showSelection();
     }
     
