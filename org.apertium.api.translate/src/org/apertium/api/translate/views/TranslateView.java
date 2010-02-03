@@ -12,23 +12,23 @@ import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.ui.part.ViewPart;
 
 import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
+import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
-public class TranslateView extends ViewPart implements ITranslateView {
+public class TranslateView extends ViewPart implements ITranslateView, IBackendEventListener {
 	
 	private Composite top = null;
 	private SashForm sashForm = null;
 	
 	protected StyledText translations = null;
 	
-	private static TranslateView instance = null;
-	
-	public static TranslateView getInstance() {
-		return instance;
-	}
-	
 	public static final String ID = TranslatePlugin.ID + ".views.translateView";
     private static final String SEPARATOR = System.getProperty("line.separator");
 	
+    public TranslateView() {
+    	super();
+    }
+    
 	@Override
 	public void createPartControl(Composite parent) {
 		System.out.println("TranslateView.createPartControl()");
@@ -36,13 +36,10 @@ public class TranslateView extends ViewPart implements ITranslateView {
         top = new Composite(parent, SWT.NONE);
         top.setLayout(new FillLayout());
 		
-        createSashForm();
-        
+        createSashForm();        
         appendMessage("Qui appariranno le traduzioni");
         
-        instance = this;
-		//TestThread tt = new TestThread(this);
-		//tt.start();
+        TranslatePlugin.getDefault().addListener(this);
 	}
 
 	@Override
@@ -59,6 +56,11 @@ public class TranslateView extends ViewPart implements ITranslateView {
 		translations = new StyledText(sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
 		translations.setEditable(false);
     }
+
+    @SwtAsyncExec
+    public void messageReceived(String text, String who) {
+        appendMessage(String.format("[%s] %s", who, text));
+    }
     
     @SwtAsyncExec
     public void appendMessage(String message) {
@@ -69,6 +71,7 @@ public class TranslateView extends ViewPart implements ITranslateView {
         scrollToEnd();
     }
 
+    @SwtAsyncExec
     protected void scrollToEnd() {
     	System.out.println("TranslateView.scrollToEnd()");
     	
@@ -88,5 +91,12 @@ public class TranslateView extends ViewPart implements ITranslateView {
         translations.setSelection(n, n);
         translations.showSelection();
     }
+
+    @SwtAsyncExec
+	@Override
+	public void onBackendEvent(IBackendEvent event) {
+		System.out.println("TranslateView.onBackendEvent() - event is " + event.getClass().toString());
+		messageReceived(event.getClass().toString(), "Sysyem");
+	}
     
 }
