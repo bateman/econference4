@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.apertium.api.translate;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: org.apertium.api.translate.Activator
 Require-Bundle: org.eclipse.ui,
+ it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.util,
  it.uniba.di.cdg.xcore.network,
  org.eclipse.core.runtime
