@@ -19,22 +19,21 @@
         </actionSet>
   </extension>
 
-   <extension
-         point="org.eclipse.ui.views">
-      <view
-            allowMultiple="false"
-            category="translateViews"
-            class="org.apertium.api.translate.views.TranslateView"
-            icon="icons/apertium_res.png"
-            id="org.apertium.api.translate.views.translateView"
-            name="Translations"/>
-      <category
-            id="translateViews"
-            name="translateViews"/>
-   </extension>
+  <extension point="org.eclipse.ui.views">
+        <view
+           allowMultiple="false"
+           category="translateViews"
+           class="org.apertium.api.translate.views.TranslateView"
+           icon="icons/apertium_res.png"
+           id="org.apertium.api.translate.views.translateView"
+           name="Translations"/>
+        <category
+           id="translateViews"
+           name="translateViews"/>
+  </extension>
 
   <extension point="org.eclipse.ui.startup">
-      <startup class="org.apertium.api.translate.Activator"></startup>
+        <startup class="org.apertium.api.translate.Activator"></startup>
   </extension>
 
 </plugin>
