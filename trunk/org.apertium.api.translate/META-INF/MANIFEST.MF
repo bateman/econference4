@@ -8,6 +8,9 @@ Require-Bundle: org.eclipse.ui,
  it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.util,
  it.uniba.di.cdg.xcore.network,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.aspectj.runtime,
+ org.jivesoftware.smack
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: it.uniba.di.cdg.xcore.aspects

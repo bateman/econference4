@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.ui.part.ViewPart;
 
+import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+
 public class TranslateView extends ViewPart implements ITranslateView {
 	
 	private Composite top = null;
@@ -26,8 +28,9 @@ public class TranslateView extends ViewPart implements ITranslateView {
 		
         createSashForm();
         
-		translations.setText("Qui appariranno le traduzioni");
-		
+		//translations.setText("Qui appariranno le traduzioni");
+        appendMessage("Qui appariranno le traduzioni");
+        
 		//TestThread tt = new TestThread(this);
 		//tt.start();
 	}
@@ -46,6 +49,7 @@ public class TranslateView extends ViewPart implements ITranslateView {
 		translations.setEditable(false);
     }
     
+    @SwtAsyncExec
     public void appendMessage(final String message) {
     	System.out.println("TranslateView.appendMessage()");
     	
