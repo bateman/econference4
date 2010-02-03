@@ -14,7 +14,7 @@ import org.osgi.framework.BundleContext;
 public class TranslatePlugin extends AbstractUIPlugin {
 
 	public static final String ID = "org.apertium.api.translate";
-	private static TranslatePlugin plugin;
+	private static TranslatePlugin plugin = null;
 
 	private List<IBackendEventListener> translateListeners = null;
 	
@@ -41,13 +41,14 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	}
 
 	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
-		System.out.println("TranslatePluginr.stop()");
+		System.out.println("TranslatePlugin.stop()");
 		
 		for (IBackendEventListener listener : translateListeners) {
 			NetworkPlugin.getDefault().getHelper().unregisterBackendListener(NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(), listener);
 		}
+		
+		plugin = null;
+		super.stop(context);
 	}
 
 	public static TranslatePlugin getDefault() {
