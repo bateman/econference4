@@ -6,7 +6,7 @@
   <extension point="org.eclipse.ui.views">
         <view
            allowMultiple="false"
-           category="translateViews"
+           category="TranslateViews"
            class="org.apertium.api.translate.views.TranslateView"
            icon="icons/apertium_res.png"
            id="org.apertium.api.translate.views.translateView"
