@@ -18,10 +18,6 @@ public class TranslateConfigurationDialog extends JDialog implements ActionListe
 	private JButton cancelButton = null;
 	private JButton applyButton = null;
 
-	private Services.ServiceType service = null;
-	private LanguagePair langPair = null;
-	private String url = null;
-
 	private boolean answer = false;
 
 	public TranslateConfigurationDialog(Frame owner) {
@@ -91,51 +87,17 @@ public class TranslateConfigurationDialog extends JDialog implements ActionListe
 
 	private void saveProperties() {
 		TranslateConfiguration data = form.getData();
+		TranslateConfiguration configuration = TranslateConfigurationAction.getInstance().getConfiguration();
 		
-		service = data.getService();
-		langPair = data.getLangPair();
-		url = data.getUrl();
+		configuration.setService(data.getService());
+		configuration.setLangPair(data.getLangPair());
+		configuration.setUrl(data.getUrl());
 	}
 
 	public void loadProperties() {
 		System.out.println("TranslateConfigDialog.loadProperties()");
-		
-		TranslateConfiguration data = new TranslateConfiguration();
-		
-		if (service != null)
-			data.setService(service);
-		
-		if (langPair != null)
-			data.setLangPair(langPair);
-		
-		if (url != null)
-			data.setUrl(url);
-		
-		form.setData(data);
-	}
-
-	public Services.ServiceType getService() {
-		return service;
-	}
-
-	public void setService(Services.ServiceType s) {
-		this.service = s;
-	}
-	
-	public LanguagePair getLangPair() {
-		return langPair;
-	}
-
-	public void setLangPair(LanguagePair langPair) {
-		this.langPair = langPair;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
+		TranslateConfiguration configuration = TranslateConfigurationAction.getInstance().getConfiguration();
+		form.setData(configuration);
 	}
 
 	public boolean isAnswer() {
