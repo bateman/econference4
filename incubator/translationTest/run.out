@@ -1,7 +1,11 @@
 Translating: hi all
 Hits: 1
+Hit: hola a todos
+Hits: 1
 Hit: Ciao a tutti
 Translating: anyone want to be scribe
+Hits: 1
+Hit: nadie quiere que se escriba
 Hits: 1
 Hit: chi vuole essere Scribe
 Translating: yeah
@@ -15,47 +19,85 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: i'll be
+Hits: 1
+Hit: Estaré
 Hits: 1
 Hit: I'll be
 Translating: done
 Hits: 1
+Hit: hecho
+Hits: 1
 Hit: fatto
 Translating: goeff, I'm going to disconnect, and then invite me again ok
+Hits: 1
+Hit: goeff, me voy a desconectar, y luego me invitan de nuevo en Aceptar
 Hits: 1
 Hit: goeff, ho intenzione di staccare, e poi mi invitano di nuovo ok
 Translating: are we all here??
 Hits: 1
+Hit: ¿Estamos todos??
+Hits: 1
 Hit: siamo tutti qui?
 Translating: fine
+Hits: 1
+Hit: estupendo
 Hits: 1
 Hit: multa
 Translating: why
 Hits: 1
+Hit: por qué
+Hits: 1
 Hit: perché
 Translating: oh the echo
+Hits: 1
+Hit: oh el eco
 Hits: 1
 Hit: oh l'eco
 Translating: because i have 2 invites, and is
 Hits: 1
+Hit: porque tengo 2 invitaciones, y es
+Hits: 1
 Hit: perché ho 2 invita, ed è
 Translating: yes
+Hits: 1
+Hit: sí
 Hits: 1
 Hit: sì
 Translating: just a sec disconnecting
 Hits: 1
+Hit: Un segundo desconectar
+Hits: 1
 Hit: solo un secondo di scollegare
 Translating: are we missing anyonw?
 Hits: 1
+Hit: Nos estamos dejando anyonw?
+Hits: 1
 Hit: siamo mancanti anyonw?
 Translating: anyone
+Hits: 1
+Hit: cualquier persona
 Hits: 1
 Hit: chiunque
 Translating: eah warren isnt back yet y
 
 Hits: 1
+Hit: isnt Warren eah atrás y aún
+Hits: 1
 Hit: isnt warren eah ancora tornato y
 Translating: alright
+Hits: 1
+Hit: Alright
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -68,14 +110,22 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: already then
 Hits: 1
+Hit: ya continuación
+Hits: 1
 Hit: già allora
 Translating: were al here
+Hits: 1
+Hit: fueron al aquí
 Hits: 1
 Hit: sono qui al
 Translating: want to start
 Hits: 1
+Hit: desea iniciar
+Hits: 1
 Hit: vuole iniziare
 Translating: how do i raise my hand?
+Hits: 1
+Hit: ¿Cómo puedo levantar la mano?
 Hits: 1
 Hit: Come faccio ad aumentare la mia mano?
 Translating: ?
@@ -89,10 +139,24 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: We're all present on the client team here
+Hits: 1
+Hit: Estamos todos presentes en el equipo cliente aquí
 Hits: 1
 Hit: Siamo tutti presenti sul team client qui
 Translating: k lets go
+Hits: 1
+Hit: k deja ir
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -105,20 +169,32 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: After reading the RFP this is the idea we have for your project: Essentially a secure messenger clone for the client end, with file sharing and transfers capabilties. These clients are facilitated by a centralized server that stores all user info and logs the conversations and stores them in a DB.
 Hits: 1
+Hit: Después de leer la solicitud de propuestas esta es la idea que tenemos para su proyecto: Esencialmente, un clon de mensajería seguro para el cliente final, con el intercambio de archivos y las transferencias de los capacidad. Estos clientes se ven facilitadas por un servidor centralizado que almacena toda la información de usuario y los registros de las conversaciones y los almacena en una BD.
+Hits: 1
 Hit: Dopo aver letto le RFP questa è l'idea che abbiamo per il vostro progetto: Essenzialmente un clone sicuro Messenger per il lato client, con la condivisione di file e capabilties trasferimenti. Questi clienti sono agevolate da un server centralizzato che memorizza tutte le informazioni degli utenti e registra le conversazioni e li memorizza in un DB.
 Translating: is that pretty much it?
+Hits: 1
+Hit: es que casi no?
 Hits: 1
 Hit: è che più o meno vero?
 Translating: Yes
 Hits: 1
+Hit: Sí
+Hits: 1
 Hit: Sì
 Translating: good
+Hits: 1
+Hit: bueno
 Hits: 1
 Hit: buono
 Translating: Though we don't necessarilly need the conversations to be stored in a DB...
 Hits: 1
+Hit: Aunque no necessarilly necesidad de las conversaciones que se almacena en una BD ...
+Hits: 1
 Hit: Anche se non abbiamo bisogno di necessarilly le conversazioni di essere memorizzati in un DB ...
 Translating: We also need application sharing.  IE - letting someone else access a single window on my computer.
+Hits: 1
+Hit: También es necesario compartir aplicaciones. IE - dejando que otra persona tener acceso a una ventanilla única en mi equipo.
 Hits: 1
 Hit: Abbiamo bisogno anche di condivisione di applicazioni. IE - lasciando che qualcun altro l'accesso di una sola finestra sul mio computer.
 Translating: k
@@ -132,25 +208,49 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: how do we move to the next topic
+Hits: 1
+Hit: ¿Cómo pasar al siguiente tema
 Hits: 1
 Hit: come possiamo passare al prossimo argomento
 Translating: You were on it
 Hits: 1
+Hit: Usted estaba en él
+Hits: 1
 Hit: Eri su di esso
 Translating: there
+Hits: 1
+Hit: allí
 Hits: 1
 Hit: là
 Translating: ah perfect
 Hits: 1
+Hit: ah perfecto
+Hits: 1
 Hit: ah perfetto
 Translating: ok I preparde all the questions eariler
+Hits: 1
+Hit: ok I preparde eariler todas las preguntas
 Hits: 1
 Hit: ok ho preparde tutte le domande eariler
 Translating: so I'll just cut and paste em
 Hits: 1
+Hit: así que voy a cortar y pegar em
+Hits: 1
 Hit: quindi mi limiterò a tagliare e incollare em
 Translating: great
+Hits: 1
+Hit: gran
 Hits: 1
 Hit: grande
 Translating: 2.0 share source code quickly and easily with another remote employee
@@ -158,32 +258,52 @@ Translating: 2.0 share source code quickly and easily with another remote employ
  How many users should be able to share code??
  Does sharing code men simultaneous editing??
 Hits: 1
+Hit: 2,0 código fuente de compartir fácil y rápidamente con otro empleado remoto ¿Cuántos usuarios deben ser capaces de compartir código?? ¿Tiene hombres de código compartido la edición simultánea??
+Hits: 1
 Hit: 2,0 parti di codice sorgente in modo rapido e facilmente con un altro dipendente a distanza Quanti utenti dovrebbero essere in grado di condividere il codice? Se gli uomini code sharing editing simultaneo?
 Translating: I believe sharing code refers to the ability to copy and paste code easily.  Without it getting messy.
+Hits: 1
+Hit: Creo que en código compartido se refiere a la posibilidad de copiar y pegar código fácilmente. Sin ella ensuciarte.
 Hits: 1
 Hit: Credo che la condivisione del codice si riferisce alla possibilità di copiare e incollare il codice facilmente. Senza di essa ottenendo disordinato.
 Translating: unless you're referring to the application sharing part
 Hits: 1
+Hit: a menos que usted se refiere a la aplicación de compartir parte
+Hits: 1
 Hit: a meno che non ti riferisci alla domanda di condivisione da parte
 Translating: no we're just dealing with the 2.0 portion right now
+Hits: 1
+Hit: no estamos tratando solamente con la porción del 2,0 ahora
 Hits: 1
 Hit: Non siamo solo fare con la porzione 2,0 adesso
 Translating: Yeah, we should be able to share a coding application between two users
 Hits: 1
+Hit: Sí, debemos ser capaces de compartir una aplicación de codificación entre dos usuarios de
+Hits: 1
 Hit: Sì, dovremmo essere in grado di condividere una domanda di codifica tra due utenti
 Translating: refering to the first bullet of 2.0
+Hits: 1
+Hit: refiriéndose a la primera viñeta de 2,0
 Hits: 1
 Hit: riferendosi al primo proiettile di 2,0
 Translating: But in terms of sharing code, I think with respect to that we just meant copy and paste functionality
 Hits: 1
+Hit: Pero en términos de código compartido, creo que con respecto a la que acabamos de decir copiar y pegar la funcionalidad de
+Hits: 1
 Hit: Ma in termini di condivisione del codice, penso che rispetto a quella che abbiamo appena significava funzionalità di copia e incolla
 Translating: so passing a viewable window of the code to the other person
+Hits: 1
+Hit: para pasar de una ventana puede ver el código a la otra persona
 Hits: 1
 Hit: così passa una finestra visibile del codice per l'altra persona
 Translating: exactly
 Hits: 1
+Hit: exactamente
+Hits: 1
 Hit: esattamente
 Translating: ok
+Hits: 1
+Hit: vale
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -196,20 +316,32 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: and they can get access to it and make changes
 Hits: 1
+Hit: y que pueden obtener acceso a ella y hacer cambios
+Hits: 1
 Hit: e possono accedere ad esso e di apportare modifiche
 Translating: while both people watch
+Hits: 1
+Hit: mientras que tanto la gente mira
 Hits: 1
 Hit: mentre entrambe le persone guardano
 Translating: not both trying to do it at the same time
 Hits: 1
+Hit: no tanto tratar de hacerlo al mismo tiempo
+Hits: 1
 Hit: non sia tentare di farlo, allo stesso tempo
 Translating: one will have to allow the other to view/modify
+Hits: 1
+Hit: uno tendrá que permitir que el otro para ver / modificar
 Hits: 1
 Hit: si avrà per consentire agli altri di visualizzare / modificare
 Translating: I think it would be sufficient just if they could send big blocks of source code to each other via a copy and paste kind of system, and then if editing is required they could use the application sharing feature...
 Hits: 1
+Hit: Creo que sería suficiente sólo si podían enviar grandes bloques de código fuente entre sí a través de una copia y pega tipo de sistema, y luego, si la edición es necesario que podían usar la aplicación característica para compartir ...
+Hits: 1
 Hit: Penso che sarebbe sufficiente solo se si poteva inviare grandi blocchi di codice sorgente a ogni altra attraverso una sorta di copia e incolla di sistema, e poi se la modifica è necessario poter utilizzare l'applicazione di condivisione di funzionalità ...
 Translating: what do you guys think?
+Hits: 1
+Hit: ¿Qué piensan ustedes?
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -231,16 +363,34 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: Yeah, that was what we had envisioned.
+Hits: 1
+Hit: Sí, eso era lo que había imaginado.
 Hits: 1
 Hit: Sì, che era quello che avevamo immaginato.
 Translating: done.
 Hits: 1
+Hit: hecho.
+Hits: 1
 Hit: fatto.
 Translating: that sounds good
 Hits: 1
+Hit: que suena bien
+Hits: 1
 Hit: che suona bene
 Translating: okay
+Hits: 1
+Hit: bien
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -253,8 +403,12 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: done
 Hits: 1
+Hit: hecho
+Hits: 1
 Hit: fatto
 Translating: Make sense, Jeff?
+Hits: 1
+Hit: ¿Tiene sentido, Jeff?
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -267,17 +421,27 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: yeah makes sense to me
 Hits: 1
+Hit: sí tiene sentido para mí
+Hits: 1
 Hit: yeah ha senso per me
 Translating: did we want a dedicated window for this?
+Hits: 1
+Hit: no queremos una ventana dedicada a este tema?
 Hits: 1
 Hit: volevamo una finestra dedicata per questo?
 Translating: All we wanted was an IM feature that wasn't length restricted and preserved indentation.
 Hits: 1
+Hit: Todo lo que queríamos era una característica de mensajería instantánea que no se limita la longitud y la sangría conservado.
+Hits: 1
 Hit: Tutto quello che volevamo era una funzione di chat, che non era la lunghezza limitata e rientro conservati.
 Translating: A dedicated window could be nice, but that's more of an implementation detail
 Hits: 1
+Hit: Una ventana dedicada puede ser agradable, pero eso es más de un detalle de implementación
+Hits: 1
 Hit: Una finestra dedicata potrebbe essere piacevole, ma questo è più di un dettaglio di implementazione
 Translating: ok perfect
+Hits: 1
+Hit: ok perfecto
 Hits: 1
 Hit: ok perfetto
 Translating: yeah
@@ -291,25 +455,49 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: next q
+Hits: 1
+Hit: q siguiente
 Hits: 1
 Hit: Next q
 Translating: Directory of users  basically a contact list with everyone from the company??
 Hits: 1
+Hit: Directorio de usuarios, básicamente, una lista de contactos con todo el mundo de la empresa??
+Hits: 1
 Hit: Directory degli utenti fondamentalmente una lista di contatti con tutti, dalla società?
 Translating: yes
+Hits: 1
+Hit: sí
 Hits: 1
 Hit: sì
 Translating: split into sections or something
 Hits: 1
+Hit: dividido en secciones o algo
+Hits: 1
 Hit: suddiviso in sezioni o qualcosa del genere
 Translating: stored on the central server
+Hits: 1
+Hit: almacenados en el servidor central
 Hits: 1
 Hit: memorizzati sul server centrale
 Translating: like different dept
 Hits: 1
+Hit: como el departamento diferentes
+Hits: 1
 Hit: come dept diversi
 Translating: right
+Hits: 1
+Hit: derecho
 Hits: 1
 Hit: destra
 Translating: yeah
@@ -323,16 +511,34 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: exactly
+Hits: 1
+Hit: exactamente
 Hits: 1
 Hit: esattamente
 Translating: and different offices
 Hits: 1
+Hit: y las diferentes oficinas
+Hits: 1
 Hit: e diversi uffici
 Translating: different offices=diff locations? right
 Hits: 1
+Hit: las oficinas de diferentes lugares diff =? derecho
+Hits: 1
 Hit: diversi uffici luoghi diff =? destra
 Translating: yes
+Hits: 1
+Hit: sí
 Hits: 1
 Hit: sì
 Translating: k
@@ -346,13 +552,29 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: Archive Can users view other conversations like if you missed a meeting?? Or do you need an invite to view??
+Hits: 1
+Hit: Archivo ¿Pueden los usuarios ver las conversaciones de otros, como si te perdiste una reunión?? ¿O necesita una invitación para ver??
 Hits: 1
 Hit: Archivio Gli utenti possono visualizzare altre conversazioni, come se vi siete persi una riunione? Oppure avete bisogno di un invito per vederlo?
 Translating: The directory also needs to include favorites type functionality.  So that users can see a list of the users they talk to most.
 Hits: 1
+Hit: El directorio también debe incluir la funcionalidad de los favoritos de tipo. De modo que los usuarios pueden ver una lista de los usuarios que hablan a la mayoría.
+Hits: 1
 Hit: La directory deve anche includere funzionalità di tipo preferiti. In modo che gli utenti possono visualizzare l'elenco degli utenti parlano di più.
 Translating: yeah i envisioned that
+Hits: 1
+Hit: yeah i prevé que
 Hits: 1
 Hit: yeah i immaginato che
 Translating: 0
@@ -366,7 +588,19 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: ok
+Hits: 1
+Hit: vale
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -379,23 +613,37 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: But it would be nice if a user could choose to make a conversation public.
 Hits: 1
+Hit: Pero sería bueno que un usuario puede optar por hacer pública una conversación.
+Hits: 1
 Hit: Ma sarebbe bello se un utente può scegliere di fare una pubblica conversazione.
 Translating: thats what i was thinking
+Hits: 1
+Hit: thats lo que estaba pensando
 Hits: 1
 Hit: thats che cosa stavo pensando
 Translating: I agree.
 Hits: 1
+Hit: Estoy de acuerdo.
+Hits: 1
 Hit: Sono d'accordo.
 Translating: maybe if we could set different permissions on the logs
+Hits: 1
+Hit: tal vez si pudiéramos establecer diferentes permisos en los registros
 Hits: 1
 Hit: magari se si potesse impostare autorizzazioni diverse per i registri
 Translating: oh ok I like that idea
 Hits: 1
+Hit: oh ok me gusta esa idea
+Hits: 1
 Hit: Ah ok mi piace l'idea
 Translating: yeah, that sounds good
 Hits: 1
+Hit: Sí, eso suena bien
+Hits: 1
 Hit: yeah, che suona bene
 Translating: The company security/privacy officer will also need to be able to read all logs.
+Hits: 1
+Hit: La seguridad de la empresa / oficial de la intimidad también tendrá que ser capaz de leer todos los registros.
 Hits: 1
 Hit: La società di sicurezza / privacy officer dovrà inoltre essere in grado di leggere tutti i registri.
 Translating: yeah
@@ -409,10 +657,24 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: Though all his access to the logs should be in turn logged.
+Hits: 1
+Hit: Aunque toda su acceso a los registros deben ser a su vez conectado.
 Hits: 1
 Hit: Anche se tutto il suo accesso ai registri deve essere a sua volta registrato.
 Translating: ok
+Hits: 1
+Hit: vale
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -425,17 +687,27 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: Secure connections inter office or can users connect from home etc. ??
 Hits: 1
+Hit: Asegurar las conexiones entre oficinas o los usuarios pueden conectarse desde casa, etc??
+Hits: 1
 Hit: Connessioni sicure ufficio o l'altro gli utenti possono connettersi da casa, ecc?
 Translating: jeff, how bout the next question
+Hits: 1
+Hit: Jeff, ¿cómo combate la siguiente pregunta
 Hits: 1
 Hit: Jeff, how bout la prossima domanda
 Translating: No, only inter office
 Hits: 1
+Hit: No, el cargo sólo cosas
+Hits: 1
 Hit: No, carica solo l'altro
 Translating: for security's sake
 Hits: 1
+Hit: por el bien de la seguridad de
+Hits: 1
 Hit: per sicurezza
 Translating: ok
+Hits: 1
+Hit: vale
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -447,6 +719,8 @@ Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
 Translating: I think users who are connected via the corporate VPN should be able to participate in conversations.
+Hits: 1
+Hit: Creo que los usuarios que están conectados a través de la VPN corporativa debe ser capaz de participar en las conversaciones.
 Hits: 1
 Hit: Credo che gli utenti che sono collegati tramite la VPN aziendale deve essere in grado di partecipare alle conversazioni.
 Translating: VPN?
@@ -460,52 +734,94 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: we can have secure VPN
+Hits: 1
+Hit: podemos tener VPN segura
 Hits: 1
 Hit: possiamo avere VPN sicure
 Translating: Do we have a VPN...
 Hits: 1
+Hit: ¿Tenemos una VPN ...
+Hits: 1
 Hit: Abbiamo una VPN ...
 Translating: Would our company really have that service?
+Hits: 1
+Hit: Sería de nuestra compañía realmente tienen ese servicio?
 Hits: 1
 Hit: Sarebbe la nostra azienda ha in effetti il servizio?
 Translating: I don't think we do.
 Hits: 1
+Hit: No creo que lo que hacemos.
+Hits: 1
 Hit: Non credo che facciamo.
 Translating: It's kind of a security risk to allow employees to take source code home with them
+Hits: 1
+Hit: Es una especie de un riesgo de seguridad para permitir a los empleados para llevar a casa el código fuente con ellos
 Hits: 1
 Hit: È una specie di un rischio di sicurezza per consentire ai dipendenti di portare a casa il codice sorgente con loro
 Translating: so no VPN?
 Hits: 1
+Hit: por lo que no VPN?
+Hits: 1
 Hit: quindi non VPN?
 Translating: Most of the software companies I've worked for have implemented some form of VPN.
+Hits: 1
+Hit: La mayoría de las empresas de software que he trabajado han implementado algún tipo de VPN.
 Hits: 1
 Hit: La maggior parte delle aziende produttrici di software che ho lavorato per avere attuato una qualche forma di VPN.
 Translating: Let's say that we'd like that feature but we probably wouldn't use it yet
 Hits: 1
+Hit: Digamos que nos gustaría que la característica, pero probablemente no lo utilizaría pero
+Hits: 1
 Hit: Diciamo che ci piacerebbe che la funzione, ma probabilmente non saremmo uso ancora
 Translating: Yeah, but we're a "secure" company.
+Hits: 1
+Hit: Sí, pero somos un "seguro" de la empresa.
 Hits: 1
 Hit: Sì, ma siamo un "sicuro" società.
 Translating: In the future we may need this system to support it
 Hits: 1
+Hit: En el futuro es posible que tengamos este sistema de apoyo que
+Hits: 1
 Hit: In futuro potremmo avere bisogno di questo sistema di sostegno
 Translating: maybe leave the VPN for RES 2.0?
+Hits: 1
+Hit: tal vez salir de la VPN para RES 2.0?
 Hits: 1
 Hit: forse lasciare le VPN per le FER 2.0?
 Translating: so set it up to be compatible with a future VPN
 Hits: 1
+Hit: para configurarlo para que sea compatible con una VPN futuro
+Hits: 1
 Hit: così impostato per essere compatibile con una VPN futuro
 Translating: Yes
+Hits: 1
+Hit: Sí
 Hits: 1
 Hit: Sì
 Translating: How about anyone who is connected to our private TCP/IP network can access our the system.  For the timebeing that is only local users but in the future it could include vpn users...
 Hits: 1
+Hit: ¿Qué hay de cualquier persona que esté conectado a nuestro privado de TCP / IP puede acceder a nuestro sistema. Para el timebeing que sólo los usuarios locales, pero en el futuro podría incluir a los usuarios de VPN ...
+Hits: 1
 Hit: Che ne dite chi è connesso al nostro privato rete TCP / IP è possibile accedere al nostro sistema. Per il timebeing che solo gli utenti locali, ma in futuro potrebbe includere gli utenti VPN ...
 Translating: Yeah, what Chris said
 Hits: 1
+Hit: Sí, lo que Chris dijo
+Hits: 1
 Hit: Sì, quello che ha detto Chris
 Translating: ok sounds good
+Hits: 1
+Hit: ok suena bien
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -518,8 +834,12 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: next q
 Hits: 1
+Hit: q siguiente
+Hits: 1
 Hit: Next q
 Translating: sounds good
+Hits: 1
+Hit: suena bien
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -532,23 +852,37 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: provide intrasite connectivity if external connections are interrupted. Do you mean ability to connect with other users internally when there is no external internet connection??
 Hits: 1
+Hit: proporcionar conectividad entre sitios, si se interrumpen las conexiones externas. ¿Quiere decir que la capacidad de conectarse con otros usuarios internos cuando no hay conexión a Internet externa??
+Hits: 1
 Hit: fornire connettività IntraSite se i collegamenti esterni sono interrotte. Vuoi dire la capacità di connettersi con altri utenti internamente quando non vi è alcun collegamento Internet esterno?
 Translating: Yes, in a nutshell
+Hits: 1
+Hit: Sí, en pocas palabras,
 Hits: 1
 Hit: Sì, in poche parole
 Translating: I think we meant, with our multiple offices, if one of the sites loses connectivity, the other should still be able to communicate with itself and others
 Hits: 1
+Hit: Creo que quería decir, con nuestras oficinas múltiples, si uno de los sitios pierde la conexión, el otro aún debe ser capaz de comunicarse consigo misma y con los demás
+Hits: 1
 Hit: Penso che dire, con i nostri uffici di più, se uno dei siti perde la connettività, l'altra dovrebbe essere ancora in grado di comunicare con se stesso e gli altri
 Translating: yes
+Hits: 1
+Hit: sí
 Hits: 1
 Hit: sì
 Translating: if its a centralized server what if the server site loses connectivity
 Hits: 1
+Hit: si es un servidor centralizado, lo que si el sitio del servidor pierde la conexión
+Hits: 1
 Hit: se un server centralizzato che se il sito server perde la connettività
 Translating: or are you more interested in a server for each site
 Hits: 1
+Hit: o estás más interesado en un servidor para cada sitio
+Hits: 1
 Hit: o siete più interessati a un server per ogni sito
 Translating: We're interested in whatever solution will give us the functionality we need
+Hits: 1
+Hit: Estamos interesados en cualquier solución que nos dará la funcionalidad que necesitamos
 Hits: 1
 Hit: Siamo interessati a qualunque soluzione ci darà la funzionalità di cui abbiamo bisogno
 Translating: yeah
@@ -562,10 +896,24 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: start with one office, the R2
+Hits: 1
+Hit: comenzar con una oficina, la R2
 Hits: 1
 Hit: iniziare con un ufficio, la R2
 Translating: here here!
+Hits: 1
+Hit: aquí aquí!
 Hits: 1
 Hit: qui qui!
 Translating: k
@@ -579,55 +927,99 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: No eavesdropping do you want the log files encrypted too?? If so, how??  Saved conversations Password protected or public key, or other??
+Hits: 1
+Hit: No escucha lo que desea el registro de los archivos cifrados demasiado?? Si es así, ¿cómo?? Conversaciones guardadas protegidos con contraseña o clave pública, o de otro??
 Hits: 1
 Hit: No le intercettazioni non si desidera che il file di log criptati troppo? Se sì, come? Conversazioni salvate protetti da password o chiave pubblica, o di altri?
 Translating: I think above they stated that the conversations were not to be in db
 Hits: 1
+Hit: Creo que por encima de ellos declaró que las conversaciones no iban a ser en el PP
+Hits: 1
 Hit: Credo che in precedenza hanno dichiarato che le conversazioni non sarebbero stati in db
 Translating: We need employees at one site to be able to talk to each other even if their connection to other sites is down.
+Hits: 1
+Hit: Tenemos empleados en un sitio para poder hablar unos con otros, incluso si su conexión a otros sitios está abajo.
 Hits: 1
 Hit: Abbiamo bisogno di lavoratori dipendenti su un unico sito per essere in grado di parlare gli uni gli altri, anche se il loro collegamento ad altri siti è il basso.
 Translating: maybe not necessary since the invite would be requiered
 Hits: 1
+Hit: tal vez no sea necesario ya que la invitación se Requiere
+Hits: 1
 Hit: forse non necessaria, in quanto l'invito sarebbe requiered
 Translating: We need the logs to be secure against intruders/hackers/rogue employees.
+Hits: 1
+Hit: Tenemos los registros a la protección contra intrusos / hackers / empleados deshonestos.
 Hits: 1
 Hit: Abbiamo bisogno del log di essere al sicuro contro gli intrusi / hacker / dipendenti disonesti.
 Translating: but how can anyone access their conversations are they going to be stored on the individual machines
 Hits: 1
+Hit: pero ¿cómo se puede acceder a sus conversaciones van a ser almacenados en las máquinas individuales
+Hits: 1
 Hit: ma come si può accedere alle loro conversazioni stanno andando per essere memorizzati sulla singola macchina
 Translating: We also need the software to handle network outages cleanly.  Forinstance, let's pretend beckd lost his network connection.  He should regain his scribe priveledges as soon as he regains his network connection.
+Hits: 1
+Hit: También necesitamos el software para manejar las interrupciones de red limpiamente. Por ejem-plo, supongamos beckd perdido su conexión de red. Se debe recuperar sus privilegios escriba tan pronto como se recupera su conexión de red.
 Hits: 1
 Hit: Abbiamo anche bisogno del software per gestire le interruzioni di rete pulito. Forinstance, facciamo finta beckd perso la connessione di rete. Egli deve riconquistare i suoi privilegi scriba appena riacquista la sua connessione di rete.
 Translating: i see how you could get your own but invites to others
 Hits: 1
+Hit: veo cómo se podría conseguir a su propio sino que invita a los demás
+Hits: 1
 Hit: vedo come si possa ottenere il vostro proprio, ma invita ad altri
 Translating: It makes a lot of duplicated space without a DB for the conversations
+Hits: 1
+Hit: Tiene un montón de espacio duplicado sin un DB para las conversaciones
 Hits: 1
 Hit: Fa un sacco di spazio ripetuto senza un DB per le conversazioni
 Translating: No, about the db, I was just saying we weren't specifying how you would handle the logs
 Hits: 1
+Hit: No, sobre el PP, estaba diciendo que no se especifica cómo se manejan los registros
+Hits: 1
 Hit: No, per il db, mi ha appena detto che non eravamo specificare come si gestiscono i registri
 Translating: Well, I don't think we mean to rule out the possiblity of the DB
+Hits: 1
+Hit: Bueno, yo no creo que tenemos la intención de descartar la posibilidad de la DB
 Hits: 1
 Hit: Beh, non credo che si intende per escludere la possiblity del DB
 Translating: you're free to use a db server if you want
 Hits: 1
+Hit: usted es libre de utilizar un servidor de DB si desea
+Hits: 1
 Hit: siete liberi di utilizzare un server db se si desidera
 Translating: Yes
+Hits: 1
+Hit: Sí
 Hits: 1
 Hit: Sì
 Translating: it's up to you guys how you want to implement it
 Hits: 1
+Hit: le toca a ustedes cómo desea implementarlo
+Hits: 1
 Hit: it's up to you guys come si desidera per la sua attuazione
 Translating: i think its the most logical way
+Hits: 1
+Hit: Creo que es la manera más lógica
 Hits: 1
 Hit: penso che sia il modo più logico
 Translating: In terms of requirements, we want the log files accessible by the authorized employee, be it a conversation they participated in or one they have been given access to
 Hits: 1
+Hit: En términos de necesidades, queremos que los archivos de registro accesible por el empleado autorizado, ya sea una conversación que participaron o uno que hayan tenido acceso a los
+Hits: 1
 Hit: In termini di requisiti, vogliamo che il file di log accessibile da parte dei dipendenti autorizzati, sia che si tratti di una conversazione hanno partecipato o quella che hanno avuto accesso ai
 Translating: sounds about right
+Hits: 1
+Hit: suena bastante bien
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -640,26 +1032,42 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: ok understood
 Hits: 1
+Hit: bien entendido
+Hits: 1
 Hit: ok capito
 Translating: k sorry i skipped 3.0
+Hits: 1
+Hit: k i sentimos saltado 3,0
 Hits: 1
 Hit: Mi dispiace k saltato 3,0
 Translating: Is the support staff supporting all thesoftware you use or supporting this application, or is it supporting the software that your company sells??
 Hits: 1
+Hit: Es el personal de apoyo de apoyo a todos los thesoftware utiliza o el apoyo a esta solicitud, o se trata de apoyar el software que su compañía vende??
+Hits: 1
 Hit: È il personale di supporto sostenere tutti thesoftware utilizzare o sostenere questa applicazione, o è di supporto al software che l'azienda vende?
 Translating: No, they're supporting our workstations
+Hits: 1
+Hit: No, están apoyando a nuestros puestos de trabajo
 Hits: 1
 Hit: No, sono a sostegno della nostra workstation
 Translating: Making sure that our employees workstations are running and the correct software is installed and all that
 Hits: 1
+Hit: Asegurarse de que las estaciones de trabajo de nuestros empleados están en marcha y el software adecuado está instalado y todo lo que
+Hits: 1
 Hit: Fare in modo che i nostri posti di lavoro i dipendenti sono in esecuzione e il software corretto sia installato e tutto ciò che
 Translating: as tech helpers?
+Hits: 1
+Hit: como ayudantes de alta tecnología?
 Hits: 1
 Hit: come aiutanti tech?
 Translating: yeah, exactly
 Hits: 1
+Hit: Sí, exactamente
+Hits: 1
 Hit: Sì, esattamente
 Translating: alright
+Hits: 1
+Hit: Alright
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -671,6 +1079,8 @@ Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
 Translating: ok
+Hits: 1
+Hit: vale
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -683,107 +1093,177 @@ Hits: 0
 Sleeping.. tries left: 0
 Translating: If you're running XP why not use remote assistance that's included with the OS??
 Hits: 1
+Hit: Si está ejecutando XP ¿Por qué no utilizar la asistencia remota que se incluye con el sistema operativo??
+Hits: 1
 Hit: Se stai usando XP perché non usare l'assistenza remota che è incluso con il sistema operativo?
 Translating: Yeah, that would be fine
+Hits: 1
+Hit: Sí, eso estaría bien
 Hits: 1
 Hit: Yeah, che sarebbe bene
 Translating: But we'd need an interface into it via this messaging system
 Hits: 1
+Hit: Pero necesitaríamos una interfaz en él a través de este sistema de mensajería
+Hits: 1
 Hit: Ma avevamo bisogno di una interfaccia in esso attraverso questo sistema di messaggistica
 Translating: Or at least, that's what we'd like
+Hits: 1
+Hit: O al menos, eso es lo que nos gustaría
 Hits: 1
 Hit: O almeno, questo è quello che ci piacerebbe
 Translating: Umm - maybe remote assistance isn't compatible with our WAN
 Hits: 1
+Hit: Umm - Asistencia remota tal vez no es compatible con nuestra WAN
+Hits: 1
 Hit: Umm - l'assistenza remota, forse non è compatibile con la nostra WAN
 Translating: why wouldn't it be?
+Hits: 1
+Hit: ¿Por qué no sería?
 Hits: 1
 Hit: Perché non dovrebbe esserlo?
 Translating: I've used remote assistance over a WAN before
 Hits: 1
+Hit: He utilizado la asistencia remota a través de una red WAN antes de
+Hits: 1
 Hit: Ho usato l'assistenza remota su una WAN prima
 Translating: security reasons again
+Hits: 1
+Hit: razones de seguridad, de nuevo
 Hits: 1
 Hit: ragioni di sicurezza, di nuovo
 Translating: Well, as long as it's as secure as our instant messaging
 Hits: 1
+Hit: Bueno, siempre es tan seguro como nuestra mensajería instantánea
+Hits: 1
 Hit: Beh, finché è sicuro come il nostro instant messaging
 Translating: which section we on goeff?
+Hits: 1
+Hit: que en la sección goeff?
 Hits: 1
 Hit: quale sezione abbiamo il goeff?
 Translating: 4.0
 Hits: 1
 Hit: 4,0
+Hits: 1
+Hit: 4,0
 Translating: doesnt it say at the top of your screen
+Hits: 1
+Hit: doesnt dice en la parte superior de la pantalla
 Hits: 1
 Hit: doesnt it dire nella parte superiore dello schermo
 Translating: it's off screen abit ;)
 Hits: 1
+Hit: es fuera de ABIT pantalla;)
+Hits: 1
 Hit: it's off Abit schermo;)
 Translating: We'd want the same constraint as we had regarding access to the messaging system
+Hits: 1
+Hit: Nos gustaría que la restricción misma que hemos tenido en materia de acceso al sistema de mensajería
 Hits: 1
 Hit: Ci vorrebbe lo stesso vincolo che abbiamo avuto per quanto riguarda l'accesso al sistema di messaggistica
 Translating: only hosts on the private TCP/IP network should be able to use remote assistance features
 Hits: 1
+Hit: anfitriones sólo en el privado de TCP / IP debe ser capaz de utilizar las funciones de asistencia remota
+Hits: 1
 Hit: solo gli host della privato rete TCP / IP dovrebbe essere in grado di utilizzare le funzioni di assistenza remota
 Translating: then where do the securty risks come from
+Hits: 1
+Hit: ¿Entonces de donde los riesgos de SECURTY provienen de
 Hits: 1
 Hit: allora da dove i rischi SECURTY provengono da
 Translating: inter office, and office to office
 Hits: 1
+Hit: entre oficinas, y una oficina a otra
+Hits: 1
 Hit: ufficio l'altro, e un ufficio all'altro
 Translating: yeah, we have multiple sites
+Hits: 1
+Hit: Sí, tenemos varios sitios
 Hits: 1
 Hit: Sì, abbiamo più siti
 Translating: Also, only authorized personal - support staff should be able to connect using remote assistance.
 Hits: 1
+Hit: Además, sólo personal autorizado - personal de apoyo debe ser capaz de conectarse a través de la asistencia remota.
+Hits: 1
 Hit: Inoltre, solo il personale autorizzato - personale di sostegno dovrebbero essere in grado di connettersi utilizzando l'assistenza remota.
 Translating: i would think youd' have tech support on site
+Hits: 1
+Hit: Yo pensaría que el youd 'cuentan con el apoyo técnico en el sitio
 Hits: 1
 Hit: Penserei youd 'hanno il supporto tecnico sul sito
 Translating: yes, that's correct
 Hits: 1
+Hit: Sí, es correcto
+Hits: 1
 Hit: Sì, è corretto
 Translating: Some tasks require specialised technicians from a particular site.
+Hits: 1
+Hit: Algunas tareas requieren técnicos especializados de un sitio en particular.
 Hits: 1
 Hit: Alcuni compiti richiedono tecnici specializzati da un sito particolare.
 Translating: so then remote assistance would really only need to be done within a site
 Hits: 1
+Hit: la asistencia remota realmente así, entonces sólo tendrían que hacerse dentro de un sitio
+Hits: 1
 Hit: assistenza remota e allora sarebbe davvero solo bisogno di essere fatto all'interno di un sito
 Translating: It would probably be sufficient if only geographically local tech support staff could access the feature
+Hits: 1
+Hit: Probablemente sería suficiente si sólo geográficamente, personal local de soporte técnico puede acceder a la función de
 Hits: 1
 Hit: Probabilmente sarebbe sufficiente se solo in senso geografico locale del personale del supporto tecnico potrebbe accedere alla funzione
 Translating: I dissagree with nordmanr.
 Hits: 1
 Hit: I dissagree con nordmanr.
+Hits: 1
+Hit: I dissagree con nordmanr.
 Translating: although it would be nice if it worked inter-office
+Hits: 1
+Hit: aunque sería bueno que funcionó entre oficinas
 Hits: 1
 Hit: anche se sarebbe bello se ha funzionato inter-office
 Translating: that would be nice
 Hits: 1
+Hit: que sería bueno
+Hits: 1
 Hit: che sarebbe bello
 Translating: Certain inhouse products are primarely supported from our New York office.
+Hits: 1
+Hit: Algunos son productos Inhouse primarely apoyo de nuestra oficina de Nueva York.
 Hits: 1
 Hit: Alcuni sono prodotti inhouse primarely supportati dal nostro ufficio di New York.
 Translating: Yeah, that's true
 Hits: 1
+Hit: Sí, eso es cierto
+Hits: 1
 Hit: Sì, è vero
 Translating: so then essentially it will have to work across the exact same network as the messaging
+Hits: 1
+Hit: Así que básicamente tendrá que trabajar a través de la red exactamente igual que la mensajería de
 Hits: 1
 Hit: Dunque in sostanza, si dovrà lavorare attraverso la rete stessa identica come la messaggistica
 Translating: not a subset
 Hits: 1
+Hit: no un subconjunto
+Hits: 1
 Hit: non è un sottoinsieme
 Translating: Right
+Hits: 1
+Hit: Derecho
 Hits: 1
 Hit: Destra
 Translating: Time....
 Hits: 1
+Hit: Tiempo ....
+Hits: 1
 Hit: Tempo ....
 Translating: time?
 Hits: 1
+Hit: tiempo?
+Hits: 1
 Hit: tempo?
 Translating: whoops that was 5.0
+Hits: 1
+Hit: ¡Vaya que fue del 5,0
 Hits: 1
 Hit: whoops che è stato 5,0
 Translating: 407
@@ -797,19 +1277,47 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: Good point we only have 13minutes left.
+Hits: 1
+Hit: Buen punto sólo tenemos 13 minutos a la izquierda.
 Hits: 1
 Hit: Ottimo punto abbiamo solo 13 minuti a sinistra.
 Translating: nope, thats it
 Hits: 1
+Hit: No, Eso es todo
+Hits: 1
 Hit: No, thats it
 Translating: ok then
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Hits: 1
 Hit: ok allora
 Translating: awesome
 Hits: 1
+Hit: imponente
+Hits: 1
 Hit: impressionante
 Translating: done deal
+Hits: 1
+Hit: trato hecho
 Hits: 0
 Sleeping.. tries left: 4
 Hits: 0
@@ -821,6 +1329,8 @@ Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
 Translating: who's saving this convo
+Hits: 1
+Hit: ¿Quién es salvar a esta convo
 Hits: 1
 Hit: Chi è di salvare questo convo
 Translating: ??
@@ -834,7 +1344,19 @@ Hits: 0
 Sleeping.. tries left: 1
 Hits: 0
 Sleeping.. tries left: 0
+Hits: 0
+Sleeping.. tries left: 4
+Hits: 0
+Sleeping.. tries left: 3
+Hits: 0
+Sleeping.. tries left: 2
+Hits: 0
+Sleeping.. tries left: 1
+Hits: 0
+Sleeping.. tries left: 0
 Translating: Thank you, gentlemen, we look forward to working with you
+Hits: 1
+Hit: Gracias, señores, estamos deseando trabajar con usted
 Hits: 1
 Hit: Grazie, signori, siamo ansiosi di lavorare con voi
 Translating: Anybody who wants to can save it 
@@ -852,5 +1374,7 @@ Translating: Anybody who wants to can save it
  Decision 9 - WinXP's remote assitance would be fine, as long as it is integrated into our messaging system and only hosts on private network should be able to use features.
  Decision 10 - We are willing to increase our max memory usage to 15+ Mb, but would like as little as possible.
 
+Hits: 1
+Hit: Todo el que quiera puede guardar la Decisión 1 - Soy escriba la Decisión 2 - La idea principal detrás del software es: un clon del mensajero seguro para el cliente final, con el intercambio de archivos y las transferencias de los capacidad. Estos clientes se ven facilitadas por un servidor centralizado que almacena toda la información del usuario y registra las conversaciones y los almacena en una DB. Con la aplicación de intercambio de capacidad de decisión 3 - código compartido implica la capacidad de pegar el código en el formato sin mirar feo. No deben tener longitud máxima de mensaje y preservar la sangría. Decisión 4 - Directorio de usuarios es la lista de contactos de todos en la empresa, ordenados por departamento, ubicación de la Decisión 5 - Para los archivos, que son privadas, a menos invitados a ver por el propietario, la opción de poner a disposición pública. Decisión 6 - Por el momento, cualquier persona conectada a nuestro privado de TCP / IP puede tener acceso al sistema. En futuras versiones pueden incluir la propiedad intelectual fuera de sitio Decisión 7 - Logfiles deben ser accesibles por un empleados autorizados Decisión 8 - El personal de apoyo es el apoyo a nuestras estaciones de trabajo exclusivamente a la Decisión 9 - Assitance remoto WinXP sería un problema, siempre, al estar integrada en nuestro sistema de mensajería y sólo los hosts en la red privada debe ser capaz de utilizar. Decisión 10 - Estamos dispuestos a aumentar nuestro uso de la memoria máxima de 15 + MB, pero quisiera tan poco como sea posible.
 Hits: 1
 Hit: Chiunque vuole può salvare la decisione n. 1 - I'm scriba decisione n. 2 - L'idea principale dietro il software è: un clone sicuro Messenger per il lato client, con la condivisione di file e capabilties trasferimenti. Questi clienti sono agevolate da un server centralizzato che memorizza tutte le informazioni degli utenti e registra le conversazioni e li memorizza in un DB. Con la funzionalità di Application Sharing decisione 3 - condivisione del codice implica la capacità di incollare il codice in formattazione, senza guardare brutto. Non dovrebbe avere la lunghezza massima dei messaggi e di preservare il rientro. Decisione n. 4 - Elenco degli utenti viene in lista di contatti di tutti nella società in ordine di reparto, sede decisione n. 5 - per gli archivi, che sono private, a meno invitati a vedere dal proprietario, possibilità di mettere a disposizione del pubblico. Decisione 6 - Per il momento, chiunque sia connesso al nostro privato rete TCP / IP è possibile accedere al sistema. Nelle versioni future possono includere off ip sito la decisione n. 7 - Logfiles devono essere accessibili da parte di un personale autorizzato decisione 8 - Il personale di supporto è supportare i nostri posti di lavoro esclusivamente decisione 9 - ASSISTENZA remoto WinXP sarebbe bene, fintanto che è integrato nel nostro sistema di messaggistica e ospita solo sulla rete privata dovrebbe essere in grado di utilizzare le funzionalità. Decisione 10 - Noi siamo disposti ad aumentare il nostro utilizzo della memoria max a 15 + Mb, ma vorrei il meno possibile.

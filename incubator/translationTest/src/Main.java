@@ -156,7 +156,7 @@ public class Main {
 			
 			if (hits == 0) {
 				System.out.println("Sleeping.. tries left: " + tries);
-				Thread.sleep(5000);
+				Thread.sleep(1000);
 			}
 			
 		} while (hits == 0 && tries > 0);
@@ -185,37 +185,65 @@ public class Main {
 		List<Utterance> utterances = readUtterances("log.xml");
 		
 		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://www.neuralnoise.com:6173/RPC2"));
-		IQuery q = new GoogleMTConnector();
 		
-		q.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
-		q.open();
+		IQuery qes = new GoogleMTConnector();
+		IQuery qit = new GoogleMTConnector();
 		
-		List<Utterance> utterancesApertium = new LinkedList<Utterance>();
-		List<Utterance> utterancesGoogle = new LinkedList<Utterance>();
+		qes.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("es"));
+		qit.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
+
+		qes.open();
+		qit.open();
+		
+		List<Utterance> utterancesApertiumEs = new LinkedList<Utterance>();
+		List<Utterance> utterancesApertiumIt = new LinkedList<Utterance>();
+		
+		List<Utterance> utterancesGoogleEs = new LinkedList<Utterance>();
+		List<Utterance> utterancesGoogleIt = new LinkedList<Utterance>();
 		
 		for (Utterance u : utterances) {
 			
 			System.out.println("Translating: " + u.getUtterance());
 			
-			String tradApertium = a.translate(u.getUtterance(), "en", "it").get("translation");
-			String tradGoogle = invokeGoogle(u.getUtterance(), q);
+			String tradApertiumEs = a.translate(u.getUtterance(), "en", "es").get("translation");
+			String tradApertiumIt = a.translate(u.getUtterance(), "en", "it").get("translation");
 			
-			Utterance ua = u.clona();
-			ua.setUtterance(tradApertium);
+			String tradGoogleEs = invokeGoogle(u.getUtterance(), qes);
+			String tradGoogleIt = invokeGoogle(u.getUtterance(), qit);
 			
-			Utterance ug = u.clona();
-			ug.setUtterance(tradGoogle);
+			Utterance uaes = u.clona();
+			Utterance uait = u.clona();
 			
-			utterancesApertium.add(ua);
-			utterancesGoogle.add(ug);
+			uaes.setUtterance(tradApertiumEs);
+			uait.setUtterance(tradApertiumIt);
+			
+			Utterance uges = u.clona();
+			Utterance ugit = u.clona();
+			
+			uges.setUtterance(tradGoogleEs);
+			ugit.setUtterance(tradGoogleIt);
+			
+			utterancesApertiumEs.add(uaes);
+			utterancesApertiumIt.add(uait);
+			
+			utterancesGoogleEs.add(uges);
+			utterancesGoogleIt.add(ugit);
 		}
 		
-		out = new BufferedWriter(new FileWriter("log-apertium.xml"));
-		out.write(makeXML(utterancesApertium));
+		out = new BufferedWriter(new FileWriter("log-apertium-es.xml"));
+		out.write(makeXML(utterancesApertiumEs));
 		out.close();
 		
-		out = new BufferedWriter(new FileWriter("log-google.xml"));
-		out.write(makeXML(utterancesGoogle));
+		out = new BufferedWriter(new FileWriter("log-apertium-it.xml"));
+		out.write(makeXML(utterancesApertiumIt));
+		out.close();
+		
+		out = new BufferedWriter(new FileWriter("log-google-es.xml"));
+		out.write(makeXML(utterancesGoogleEs));
+		out.close();
+		
+		out = new BufferedWriter(new FileWriter("log-google-it.xml"));
+		out.write(makeXML(utterancesGoogleIt));
 		out.close();
 	}
 
