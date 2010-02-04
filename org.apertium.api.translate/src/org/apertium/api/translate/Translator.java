@@ -50,6 +50,8 @@ public class Translator {
 				LocaleId.fromString(configuration.getLangPair().getSrcLang().getCode()), 
 				LocaleId.fromString(configuration.getLangPair().getDestLang().getCode()));
 
+		//q.setLanguages(LocaleId.fromString("it"), LocaleId.fromString("en"));
+		
 		System.out.println("Translator.translate() 4");
 		
 		q.open();
