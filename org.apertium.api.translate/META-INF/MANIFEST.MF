@@ -13,3 +13,15 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: it.uniba.di.cdg.xcore.aspects
+Bundle-ClassPath: lib/okapi-lib-0.4.1.jar,
+ lib/okapi-lib-0.6-SNAPSHOT.jar,
+ lib/snakeyaml-1.4.jar,
+ lib/snakeyaml-1.5.jar,
+ lib/stax-api-1.0.1.jar,
+ lib/tikal.jar,
+ lib/trov4j-2.1.0.jar,
+ lib/ws-commons-util-1.0.2.jar,
+ lib/wstx-lgpl-3.2.8.jar,
+ lib/xmlrpc-client-3.1.jar,
+ lib/xmlrpc-common-3.1.jar,
+ .
