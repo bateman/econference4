@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TranslateConfigDialog extends JDialog implements ActionListener {
+public class TranslateConfigurationDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 3929003692312556323L;
 
@@ -24,14 +24,12 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 
 	private boolean answer = false;
 
-	public TranslateConfigDialog(Frame owner) {
+	public TranslateConfigurationDialog(Frame owner) {
 		super(owner, true);
 
 		System.out.println("TranslateConfigDialog()");
 		
 		form = new TranslateConfigurationForm();
-
-		System.out.println("TranslateConfigDialog() 2");
 		
 		okButton = new JButton("Ok");
 		cancelButton = new JButton("Cancel");
@@ -114,8 +112,6 @@ public class TranslateConfigDialog extends JDialog implements ActionListener {
 			data.setUrl(url);
 		
 		form.setData(data);
-		
-		System.out.println("TranslateConfigDialog.loadProperties() 1");
 	}
 
 	public Services.ServiceType getService() {

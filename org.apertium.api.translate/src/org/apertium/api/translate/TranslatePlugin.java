@@ -17,13 +17,13 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	private List<IBackendEventListener> translateListeners = null;
 	
 	private static TranslatePlugin plugin = null;
-	private static TranslateHelper translateHelper = null;
+	//private static TranslateHelper translateHelper = null;
 	
 	public TranslatePlugin() {
 		System.out.println("TranslatePlugin()");
 		plugin = this;
 		
-		translateHelper = new TranslateHelper();
+		//translateHelper = new TranslateHelper();
 		
 		translateListeners = new LinkedList<IBackendEventListener>();
 		translateListeners.add(new TranslateListener());
@@ -63,9 +63,9 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	public TranslateHelper getTranslateHelper() {
-		return translateHelper;
-	}
+	//public TranslateHelper getTranslateHelper() {
+	//	return translateHelper;
+	//}
 	
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(ID, path);

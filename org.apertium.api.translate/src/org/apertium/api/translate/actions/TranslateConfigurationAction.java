@@ -18,22 +18,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
+public class TranslateConfigurationAction implements IWorkbenchWindowActionDelegate {
 		
 	private Services.ServiceType service = null;
 	private LanguagePair langPair = null;
 	private String url = null;
 
-	private static Services services = null;
-	private static ConfigTranslateAction instance = null;
+	private Services services = null;
+	
+	private static TranslateConfigurationAction instance = null;
 
-	public static ConfigTranslateAction getInstance() {
+	public static TranslateConfigurationAction getInstance() {
 		System.out.println("ConfigTranslateAction.getInstance()");
 		
 		if (instance == null) {
 			try {
-				instance = new ConfigTranslateAction();
-				services = new Services();
+				instance = new TranslateConfigurationAction();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -107,7 +107,9 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 		}
 	}
 
-	public ConfigTranslateAction() throws Exception {
+	public TranslateConfigurationAction() throws Exception {
+		services = new Services();
+		
 		Properties systemProps = System.getProperties();
 
 		if (url != null && url.trim().length() > 0) {
@@ -124,7 +126,7 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 		
 		readProperties();
 		
-		final TranslateConfigDialog dialog = new TranslateConfigDialog(null);
+		final TranslateConfigurationDialog dialog = new TranslateConfigurationDialog(null);
 		
 		dialog.setService(service);
 		dialog.setLangPair(langPair);
