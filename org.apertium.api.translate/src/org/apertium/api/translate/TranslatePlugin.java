@@ -16,14 +16,13 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	public static final String ID = "org.apertium.api.translate";
 	private List<IBackendEventListener> translateListeners = null;
 	
+	private Translator translator = null;
+	
 	private static TranslatePlugin plugin = null;
-	//private static TranslateHelper translateHelper = null;
 	
 	public TranslatePlugin() {
 		System.out.println("TranslatePlugin()");
 		plugin = this;
-		
-		//translateHelper = new TranslateHelper();
 		
 		translateListeners = new LinkedList<IBackendEventListener>();
 		translateListeners.add(new TranslateListener());
@@ -63,9 +62,12 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	//public TranslateHelper getTranslateHelper() {
-	//	return translateHelper;
-	//}
+	public Translator getTranslator() {
+		if (translator == null) {
+			translator = new Translator();
+		}
+		return translator;
+	}
 	
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(ID, path);
