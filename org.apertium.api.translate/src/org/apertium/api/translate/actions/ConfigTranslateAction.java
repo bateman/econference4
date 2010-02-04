@@ -57,17 +57,11 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 			}
 		}
 		
-		System.out.println("ConfigTranslateAction.readProperties() 2");
-		
 		String tservice = (String)props.get("translate.service");
-		
-		System.out.println("ConfigTranslateAction.readProperties() 2.5 " + tservice);
 		
 		if (tservice != null) {
 			service = services.getServiceType(tservice);
 		}
-		
-		System.out.println("ConfigTranslateAction.readProperties() 3");
 		
 		String tsrc = (String)props.get("translate.srcLang");
 		String tdest = (String)props.get("translate.destLang");
@@ -76,12 +70,8 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 			Language src = new Language(tsrc);
 			Language dest = new Language(tdest);
 
-			System.out.println("ConfigTranslateAction.readProperties() 4");
-
 			langPair = new LanguagePair(src, dest);
 		}
-		
-		System.out.println("ConfigTranslateAction.readProperties() 5");
 		
 		String turl = (String) props.get("translate.url");
 		
@@ -133,22 +123,14 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 		System.out.println("ConfigTranslateAction.run()");
 		
 		readProperties();
-
-		System.out.println("ConfigTranslateAction.run() 2");
 		
 		final TranslateConfigDialog dialog = new TranslateConfigDialog(null);
-		
-		System.out.println("ConfigTranslateAction.run() 3");
 		
 		dialog.setService(service);
 		dialog.setLangPair(langPair);
 		dialog.setUrl(url);
 		
-		System.out.println("ConfigTranslateAction.run() 4");
-		
 		dialog.loadProperties();
-
-		System.out.println("ConfigTranslateAction.run() 5");
 		
 		dialog.pack();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -167,14 +149,8 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 			}
 		});
 
-		System.out.println("ConfigTranslateAction.run() 6");
-		
 		dialog.setVisible(true);
-		
-		System.out.println("ConfigTranslateAction.run() 7");
 	}
-
-	//public void setActiveEditor(IAction action, IEditorPart targetEditor) { }
 
 	public Services.ServiceType getService() {
 		return service;
@@ -203,22 +179,16 @@ public class ConfigTranslateAction implements IWorkbenchWindowActionDelegate {
 	@Override
 	public void dispose() {
 		System.out.println("ConfigTranslateAction.dispose()");
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void init(IWorkbenchWindow window) {
-		System.out.println("ConfigTranslateAction.init()");
-		// TODO Auto-generated method stub
-		
+		System.out.println("ConfigTranslateAction.init()");	
 	}
 
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		System.out.println("ConfigTranslateAction.selectionChanged()");
-		// TODO Auto-generated method stub
-		
 	}
 
 }

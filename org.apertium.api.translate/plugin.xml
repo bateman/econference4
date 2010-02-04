@@ -33,8 +33,10 @@
               parentCategory="econferenceViews"/>
   </extension>
 
+<!--
   <extension point="org.eclipse.ui.startup">
         <startup class="org.apertium.api.translate.TranslatePlugin"></startup>
   </extension>
+-->
 
 </plugin>
