@@ -65,8 +65,12 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 		translations.setEditable(false);
     }
 
-    public void messageReceived(final String text, final String who) {
-        appendMessage(String.format("[%s] %s", who, text));
+    public void messageReceived(String text, String who) {
+    	appendMessage(String.format("[%s] %s", who, text));
+    	
+    	String translation =  TranslatePlugin.getDefault().getTranslator().translate(text);
+    	
+        appendMessage(String.format("[%s] %s", who, translation));
     }
     
     public void appendMessage(final String message) {
@@ -102,10 +106,8 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
     }
 
 	@Override
-	public void onBackendEvent(final IBackendEvent event) {
+	public void onBackendEvent(IBackendEvent event) {
 		System.out.println("TranslateView.onBackendEvent() - event is " + event.getClass().toString());
-		
-		//messageReceived(event.getClass().toString(), "System");
 		
 		if (event instanceof ChatMessageReceivedEvent) {
 			ChatMessageReceivedEvent cmrEvent = (ChatMessageReceivedEvent)event;

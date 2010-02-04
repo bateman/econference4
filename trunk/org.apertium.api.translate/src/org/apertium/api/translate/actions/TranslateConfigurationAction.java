@@ -19,11 +19,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class TranslateConfigurationAction implements IWorkbenchWindowActionDelegate {
-		
-	private Services.ServiceType service = null;
-	private LanguagePair langPair = null;
-	private String url = null;
-
+	
+	private TranslateConfiguration configuration = null;
+	
 	private Services services = null;
 	
 	private static TranslateConfigurationAction instance = null;
@@ -42,6 +40,10 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		return instance;
 	}
 
+	public TranslateConfiguration getConfiguration() {
+		return configuration;
+	}
+	
 	private void readProperties() {
 		System.out.println("ConfigTranslateAction.readProperties()");
 		
@@ -60,7 +62,7 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		String tservice = (String)props.get("translate.service");
 		
 		if (tservice != null) {
-			service = services.getServiceType(tservice);
+			configuration.setService(services.getServiceType(tservice));
 		}
 		
 		String tsrc = (String)props.get("translate.srcLang");
@@ -70,13 +72,13 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 			Language src = new Language(tsrc);
 			Language dest = new Language(tdest);
 
-			langPair = new LanguagePair(src, dest);
+			configuration.setLangPair(new LanguagePair(src, dest));
 		}
 		
 		String turl = (String) props.get("translate.url");
 		
 		if (turl != null) {
-			url = (String) props.get("translate.url");
+			configuration.setUrl(turl);
 		}
 	}
 
@@ -85,17 +87,17 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 
 		Properties props = new Properties();
 		
-		if (service != null) {
-			props.put("translate.service", services.getService(service));
+		if (configuration.getService() != null) {
+			props.put("translate.service", services.getService(configuration.getService()));
 		}
 		
-		if (langPair != null) {
-			props.put("translate.srcLang", langPair.getSrcLang().getCode());
-			props.put("translate.destLang", langPair.getDestLang().getCode());
+		if (configuration.getLangPair() != null) {
+			props.put("translate.srcLang", configuration.getLangPair().getSrcLang().getCode());
+			props.put("translate.destLang", configuration.getLangPair().getDestLang().getCode());
 		}
 		
-		if (url != null) {
-			props.put("translate.url", url);
+		if (configuration.getUrl() != null) {
+			props.put("translate.url", configuration.getUrl());
 		}
 		
 		File file = new File(userDir + "/" + ".translate");
@@ -109,16 +111,7 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 
 	public TranslateConfigurationAction() throws Exception {
 		services = new Services();
-		
-		Properties systemProps = System.getProperties();
-
-		if (url != null && url.trim().length() > 0) {
-			systemProps.put("urlSet", "true");
-			systemProps.put("url", url);
-		}
-
-		systemProps.put("urlSet", "true");
-		systemProps.put("url", "http://www.neuralnoise.com:6173/RPC2");
+		configuration = new TranslateConfiguration();
 	}
 
 	public void run(IAction action) {
@@ -128,9 +121,9 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		
 		final TranslateConfigurationDialog dialog = new TranslateConfigurationDialog(null);
 		
-		dialog.setService(service);
-		dialog.setLangPair(langPair);
-		dialog.setUrl(url);
+		dialog.setService(configuration.getService());
+		dialog.setLangPair(configuration.getLangPair());
+		dialog.setUrl(configuration.getUrl());
 		
 		dialog.loadProperties();
 		
@@ -142,9 +135,9 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 			public void windowClosed(WindowEvent e) {
 				if (dialog.isAnswer()) {
 					
-					service = dialog.getService();
-					langPair = dialog.getLangPair();
-					url = dialog.getUrl();
+					configuration.setService(dialog.getService());
+					configuration.setLangPair(dialog.getLangPair());
+					configuration.setUrl(dialog.getUrl());
 
 					writeProperties();
 				}
@@ -152,30 +145,6 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		});
 
 		dialog.setVisible(true);
-	}
-
-	public Services.ServiceType getService() {
-		return service;
-	}
-
-	public void setService(Services.ServiceType s) {
-		this.service = s;
-	}
-	
-	public LanguagePair getLangPair() {
-		return langPair;
-	}
-
-	public void setLangPair(LanguagePair langPair) {
-		this.langPair = langPair;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	@Override
