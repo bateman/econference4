@@ -12,10 +12,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.ui.part.ViewPart;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
-import it.uniba.di.cdg.xcore.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
+import  it.uniba.di.cdg.xcore.network.events.chat.*;
 
 public class TranslateView extends ViewPart implements ITranslateView, IBackendEventListener {
 	
@@ -105,7 +104,14 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 	@Override
 	public void onBackendEvent(final IBackendEvent event) {
 		System.out.println("TranslateView.onBackendEvent() - event is " + event.getClass().toString());
-		messageReceived(event.getClass().toString(), "System");
+		
+		//messageReceived(event.getClass().toString(), "System");
+		
+		if (event instanceof ChatMessageReceivedEvent) {
+			ChatMessageReceivedEvent cmrEvent = (ChatMessageReceivedEvent)event;
+			messageReceived(cmrEvent.getMessage(), cmrEvent.getFrom());
+		}
+		
 	}
     
 }
