@@ -29,5 +29,6 @@
 	<classpathentry kind="lib" path="lib/wstx-lgpl-3.2.8.jar"/>
 	<classpathentry kind="lib" path="lib/xmlrpc-client-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/xmlrpc-common-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/google-api-translate-java-0.92.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

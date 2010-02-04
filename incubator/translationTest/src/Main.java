@@ -17,6 +17,8 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import com.csvreader.*;
+import com.google.api.translate.Language;
+import com.google.api.translate.Translate;
 
 public class Main {
 
@@ -186,14 +188,16 @@ public class Main {
 		
 		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://www.neuralnoise.com:6173/RPC2"));
 		
-		IQuery qes = new GoogleMTConnector();
-		IQuery qit = new GoogleMTConnector();
+		//IQuery qes = new GoogleMTConnector();
+		//IQuery qit = new GoogleMTConnector();
 		
-		qes.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("es"));
-		qit.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
+		//qes.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("es"));
+		//qit.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
 
-		qes.open();
-		qit.open();
+		//qes.open();
+		//qit.open();
+		
+		Translate.setHttpReferrer("http://www.neuralnoise.com");
 		
 		List<Utterance> utterancesApertiumEs = new LinkedList<Utterance>();
 		List<Utterance> utterancesApertiumIt = new LinkedList<Utterance>();
@@ -206,10 +210,17 @@ public class Main {
 			System.out.println("Translating: " + u.getUtterance());
 			
 			String tradApertiumEs = a.translate(u.getUtterance(), "en", "es").get("translation");
+			System.out.println("Apertium EN -> ES: " + tradApertiumEs);
 			String tradApertiumIt = a.translate(u.getUtterance(), "en", "it").get("translation");
+			System.out.println("Apertium EN -> IT: " + tradApertiumIt);
 			
-			String tradGoogleEs = invokeGoogle(u.getUtterance(), qes);
-			String tradGoogleIt = invokeGoogle(u.getUtterance(), qit);
+			String tradGoogleEs = Translate.execute(u.getUtterance(), Language.ENGLISH, Language.SPANISH);
+			System.out.println("Google EN -> ES: " + tradGoogleEs);
+			String tradGoogleIt = Translate.execute(u.getUtterance(), Language.ENGLISH, Language.ITALIAN);
+			System.out.println("Google EN -> IT: " + tradGoogleIt);
+			
+			//String tradGoogleEs = invokeGoogle(u.getUtterance(), qes);
+			//String tradGoogleIt = invokeGoogle(u.getUtterance(), qit);
 			
 			Utterance uaes = u.clona();
 			Utterance uait = u.clona();
