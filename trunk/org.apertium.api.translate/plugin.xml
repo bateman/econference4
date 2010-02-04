@@ -9,13 +9,13 @@
         id="org.apertium.api.translate.actionSet">
      
      <action
-        id="org.apertium.api.translate.actions.configTranslateAction" 
+        id="org.apertium.api.translate.actions.translateConfigurationAction" 
         label="Configure the Translator" 
         icon="icons/apertium_res.png"
         tooltip="Configure the Translator"
         menubarPath="TranslatorMenu/TranslatorGroup"
         toolbarPath="TranslatorGroup"
-        class="org.apertium.api.translate.actions.ConfigTranslateAction"> 
+        class="org.apertium.api.translate.actions.TranslateConfigurationAction"> 
      </action>
       
      </actionSet>

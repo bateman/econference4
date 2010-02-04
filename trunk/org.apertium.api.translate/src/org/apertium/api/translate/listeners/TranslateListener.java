@@ -1,7 +1,5 @@
 package org.apertium.api.translate.listeners;
 
-//import org.apertium.api.translate.views.TranslateView;
-
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
