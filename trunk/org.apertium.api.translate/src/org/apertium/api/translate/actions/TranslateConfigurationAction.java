@@ -83,6 +83,7 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 	}
 
 	private void writeProperties() {
+		
 		String userDir = System.getProperty("user.dir");
 
 		Properties props = new Properties();
@@ -103,6 +104,7 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		File file = new File(userDir + "/" + ".translate");
 		
 		try {
+			
 			props.store(new FileOutputStream(file), "translate properties");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -120,11 +122,7 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		readProperties();
 		
 		final TranslateConfigurationDialog dialog = new TranslateConfigurationDialog(null);
-		
-		dialog.setService(configuration.getService());
-		dialog.setLangPair(configuration.getLangPair());
-		dialog.setUrl(configuration.getUrl());
-		
+
 		dialog.loadProperties();
 		
 		dialog.pack();
@@ -134,11 +132,6 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 
 			public void windowClosed(WindowEvent e) {
 				if (dialog.isAnswer()) {
-					
-					configuration.setService(dialog.getService());
-					configuration.setLangPair(dialog.getLangPair());
-					configuration.setUrl(dialog.getUrl());
-
 					writeProperties();
 				}
 			}

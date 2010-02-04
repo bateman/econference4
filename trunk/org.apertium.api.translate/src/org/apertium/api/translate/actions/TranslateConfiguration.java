@@ -13,6 +13,14 @@ public class TranslateConfiguration {
 		url = "http://www.neuralnoise.com:6173/RPC2";
 	}
 
+	public TranslateConfiguration clona() {
+		TranslateConfiguration ret = new TranslateConfiguration();
+		ret.setLangPair(langPair);
+		ret.setService(service);
+		ret.setUrl(url);
+		return ret;
+	}
+	
 	public LanguagePair getLangPair() {
 		return langPair;
 	}
