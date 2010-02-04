@@ -15,9 +15,13 @@
 	<classpathentry kind="lib" path="lib/jericho-html-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-core-2.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-core-3.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-spellchecker-2.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-spellchecker-3.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/okapi-lib-0.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/okapi-lib-0.6-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/snakeyaml-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/snakeyaml-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/tikal.jar"/>
 	<classpathentry kind="lib" path="lib/trov4j-2.1.0.jar"/>

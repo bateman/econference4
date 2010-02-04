@@ -24,6 +24,8 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		System.out.println("TranslatePlugin()");
 		plugin = this;
 		
+		translator = new Translator();
+		
 		translateListeners = new LinkedList<IBackendEventListener>();
 		translateListeners.add(new TranslateListener());
 	}
@@ -59,13 +61,13 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	}
 
 	public static TranslatePlugin getDefault() {
+		System.out.println("TranslatePlugin.getDefault()");
+		
 		return plugin;
 	}
 
 	public Translator getTranslator() {
-		if (translator == null) {
-			translator = new Translator();
-		}
+		System.out.println("TranslatePlugin.getTranslator()");
 		return translator;
 	}
 	
