@@ -3,7 +3,8 @@ package org.apertium.api.translate;
 import java.util.*;
 
 public class Services {
-	public enum ServiceType { APERTIUM, GOOGLE };
+	public enum ServiceType { APERTIUM, GOOGLE, MICROSOFT };
+	
 	
 	private Map<String, ServiceType> serviceMap = null;
 	private Map<ServiceType, String> revServiceMap = null;
@@ -13,6 +14,7 @@ public class Services {
 		
 		serviceMap.put("Apertium XML-RPC", ServiceType.APERTIUM);
 		serviceMap.put("Google", ServiceType.GOOGLE);
+		serviceMap.put("Microsoft", ServiceType.MICROSOFT);
 		
 		revServiceMap = new HashMap<ServiceType, String>();
 		for (String l : serviceMap.keySet()) {
