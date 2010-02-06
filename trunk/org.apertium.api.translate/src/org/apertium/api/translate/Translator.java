@@ -11,18 +11,23 @@ import org.apertium.api.translate.actions.TranslateConfigurationAction;
 public class Translator {
 	
 	private TranslateConfiguration lastConfiguration = null;
-	
 	private IQuery connector = null;
 	
 	public Translator() {
 		System.out.println("Translator()");
+		lastConfiguration = new TranslateConfiguration();
 	}
 	
 	private void refresh(TranslateConfiguration c) {
+		System.out.println("Translator.refresh()");
+		
 		if (!c.equals(lastConfiguration)) {
 			if (connector != null) {
 				connector.close();
+				connector = null;
 			}
+			
+			System.out.println("Translator.refresh() 2");
 			
 			switch (c.getService()) {
 			case GOOGLE:
@@ -36,13 +41,19 @@ public class Translator {
 				break;
 			}
 			
+			System.out.println("Translator.refresh() 3");
+			
 			connector.open();
 		}
 
+		System.out.println("Translator.refresh() 4");
+		
 		lastConfiguration = c.clona();
 	}
 	
 	private String _translate(String text, TranslateConfiguration c) {
+		System.out.println("Translator._translate()");
+		
 		String ret = text;
 		
 		connector.setLanguages(

@@ -9,7 +9,7 @@ public class TranslateConfiguration {
 	
 	public TranslateConfiguration() {
 		langPair = new LanguagePair("it", "en");
-		service = Services.ServiceType.APERTIUM;
+		service = Services.ServiceType.NONE;
 		url = "http://www.neuralnoise.com:6173/RPC2";
 	}
 
