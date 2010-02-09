@@ -38,9 +38,13 @@ public class Main {
 
 			un.setAttribute("turn", u.getTurn().toString());
 			un.setAttribute("who", u.getWho());
-			un.setAttribute("role", u.getRole().toString());
+			
+			if (u.getRole() != null)
+				un.setAttribute("role", u.getRole().toString());
 			//un.setAttribute("utterance", u.getUtterance());
-			un.setAttribute("category", u.getCategory());
+			
+			if (u.getCategory() != null)
+				un.setAttribute("category", u.getCategory());
 			
 			un.appendChild(doc.createTextNode(u.getUtterance()));
 		}
@@ -82,28 +86,66 @@ public class Main {
 			Node utteranceNode = utteranceNodes.item(i);
 			
 			NamedNodeMap attributes = utteranceNode.getAttributes();
-			
-			Integer turn = Integer.decode(attributes.getNamedItem("turn").getNodeValue());
-			
+
+			Integer turn = Integer.decode(attributes.getNamedItem("turn")
+					.getNodeValue());
+
 			String who = attributes.getNamedItem("who").getNodeValue();
 
-			Utterance.Role role = Utterance.Role.OTHER;
-			
-			if (attributes.getNamedItem("role").equals("Client"))
-				role = Utterance.Role.CLIENT;
-			else if (attributes.getNamedItem("role").equals("Developer"))
-				role = Utterance.Role.DEVELOPER;
-			
+			Utterance.Role role = null;
+
+			if (attributes.getNamedItem("role") != null) {
+				if (attributes.getNamedItem("role").equals("Client"))
+					role = Utterance.Role.CLIENT;
+				else if (attributes.getNamedItem("role").equals("Developer"))
+					role = Utterance.Role.DEVELOPER;
+				else
+					role = Utterance.Role.OTHER;
+			}
+
 			String utterance = utteranceNode.getTextContent();
-			
-			String category = attributes.getNamedItem("category").getNodeValue();
-			
+
+			String category = null;
+			if (attributes.getNamedItem("category") != null) {
+				category = attributes.getNamedItem("category").getNodeValue();
+			}
 			Utterance u = new Utterance(turn, who, role, utterance, category);
-			
+
 			ret.add(u);
 		}
 		
 		return ret;
+	}
+	
+	public static List<Utterance> readCSVnew(String path) throws IOException {
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(path));
+        CsvReader csvReader = new CsvReader(isr, ';');
+        
+        List<Utterance> uts = new LinkedList<Utterance>();
+        
+        while (csvReader.readRecord()) {
+        	
+            Integer turn = 0;
+            try {
+            	turn = Integer.parseInt(csvReader.get(0));
+            } catch (Exception e) {
+            	//
+            }
+            
+            String who = csvReader.get(1);
+
+            
+            String utterance = csvReader.get(2);
+            
+            if (turn > 0) {
+            	Utterance u = new Utterance(turn, who, null, utterance, null);
+            	uts.add(u);
+            }
+        }
+        
+        csvReader.close();
+        
+        return uts;
 	}
 	
 	public static List<Utterance> readCSV(String path) throws IOException {
@@ -177,6 +219,30 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception {
+		List<Utterance> orig = readCSVnew("newlog.csv");
+		
+		BufferedWriter out = new BufferedWriter(new FileWriter("newlog.xml"));
+		out.write(makeXML(orig));
+		out.close();
+		
+		List<Utterance> utterances = readUtterances("newlog.xml");
+		
+		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://localhost:6173/RPC2"));
+		
+		List<Utterance> newutterances = new LinkedList<Utterance>();
+		
+		for (Utterance u : utterances) {
+			Utterance nu = u.clona();
+			nu.setUtterance(a.translate(u.getUtterance(), "en", "it").get("translation"));
+			newutterances.add(nu);
+		}
+		
+		out = new BufferedWriter(new FileWriter("newlogtrans.xml"));
+		out.write(makeXML(newutterances));
+		out.close();
+	}
+	
+	public static void _main(String[] args) throws Exception {
 		
 		List<Utterance> orig = readCSV("log.csv");
 		
