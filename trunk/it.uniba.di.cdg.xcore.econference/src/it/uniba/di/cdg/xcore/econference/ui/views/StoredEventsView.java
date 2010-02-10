@@ -305,12 +305,10 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
                         UiPlugin.getUIHelper().showErrorMessage( "Please, connect first!" );
                     } else {                    	
 	                        try{//User pressed yes
-	                        	
-	                        	
+	                        	                	
 	                        	EConferenceContext context = EConferencePlugin.getDefault().getHelper()
                     			.askUserAcceptInvitation( (InvitationEvent) invitation);
 	                        	if( context!=null){
-
 	                        		EConferencePlugin.getDefault().getHelper().open( context );
 	                        	}else{ 
 		                        	MultiChatContext mcContext = new MultiChatContext(null, null, (InvitationEvent) invitation);
