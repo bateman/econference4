@@ -219,27 +219,29 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		List<Utterance> orig = readCSVnew("newlog.csv");
-		
-		BufferedWriter out = new BufferedWriter(new FileWriter("newlog.xml"));
-		out.write(makeXML(orig));
-		out.close();
-		
-		List<Utterance> utterances = readUtterances("newlog.xml");
-		
 		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://localhost:6173/RPC2"));
-		
-		List<Utterance> newutterances = new LinkedList<Utterance>();
-		
-		for (Utterance u : utterances) {
-			Utterance nu = u.clona();
-			nu.setUtterance(a.translate(u.getUtterance(), "en", "it").get("translation"));
-			newutterances.add(nu);
+
+		for (int i = 1; i <= 5; ++i) {
+			List<Utterance> orig = readCSVnew("testset/test set log " + i + ".csv");
+
+			BufferedWriter out = new BufferedWriter(new FileWriter("testset/test set log " + i + ".xml"));
+			out.write(makeXML(orig));
+			out.close();
+
+			List<Utterance> utterances = readUtterances("testset/test set log " + i	+ ".xml");
+
+			List<Utterance> newutterances = new LinkedList<Utterance>();
+
+			for (Utterance u : utterances) {
+				Utterance nu = u.clona();
+				nu.setUtterance(a.translate(u.getUtterance(), "en", "it").get("translation"));
+				newutterances.add(nu);
+			}
+
+			out = new BufferedWriter(new FileWriter("testset/test set log " + i	+ ".trans.xml"));
+			out.write(makeXML(newutterances));
+			out.close();
 		}
-		
-		out = new BufferedWriter(new FileWriter("newlogtrans.xml"));
-		out.write(makeXML(newutterances));
-		out.close();
 	}
 	
 	public static void _main(String[] args) throws Exception {
