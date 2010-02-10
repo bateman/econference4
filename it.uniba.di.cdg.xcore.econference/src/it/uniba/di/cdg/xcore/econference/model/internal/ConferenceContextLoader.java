@@ -85,6 +85,10 @@ public class ConferenceContextLoader {
             context.setTopic( topic );
             
             String room = xPath.evaluate( "/meeting/room", doc );
+            //FIXME toppa momentanea per evitare di aprire il pannello per
+            //      la sclenta della stanza
+            if (room.equals("")) room = "testroom";
+            //////////////////////////////////////////////////////////////
             context.setRoom( room );
             
             IItemList itemList = getItemList( xPath, doc, context );
