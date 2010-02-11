@@ -69,7 +69,7 @@ public class Buddy extends AbstractBuddy {
     public Buddy( IBuddyRoster roster, String jid, String name, boolean online, String status, String statusMessage ) {
         this.roster = roster;
         this.id = jid;
-        this.name = name;
+        this.name = (name.equals("")) ? jid : name;
         this.online = online;
         this.statusMessage = statusMessage;
         this.status = Status.OFFLINE;
@@ -87,7 +87,7 @@ public class Buddy extends AbstractBuddy {
     }
     
     public Buddy( IBuddyRoster roster, String jid, String name, String statusMessage ) {
-        this( roster, jid, name, false, "", statusMessage );
+        this( roster, jid, name , false, "", statusMessage );
     }
 
     /* (non-Javadoc)
