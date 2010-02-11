@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.one2oneinfo.objectContribution4"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddy">
+         <action
+               class="it.uniba.di.cdg.xcore.one2oneinfo.GetUserInfo"
+               id="it.uniba.di.cdg.xcore.one2oneinfo.action1"
+               label="Get Info"
+               tooltip="Get Info By user">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin">
+      </startup>
+   </extension>
+
+</plugin>
