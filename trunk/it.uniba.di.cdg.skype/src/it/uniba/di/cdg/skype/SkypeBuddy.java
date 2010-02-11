@@ -22,7 +22,7 @@ public class SkypeBuddy extends AbstractBuddy {
 		super();
 		this.skypeRoster = skypeRoster;
 		this.buddyId = buddyId;
-		this.buddyName = buddyName;
+		this.buddyName = (buddyName.equals("")) ? buddyId : buddyName;
 		this.statusMessage = statusMessage;
 		this.buddyStatus = buddyStatus;
 		this.buddyOnline = buddyOnline;
