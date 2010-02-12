@@ -51,7 +51,7 @@
 <utterance turn="49" who="clarkn">La lista pare un #poco basso</utterance>
 <utterance turn="50" who="longleyl">Andrew, bene.</utterance>
 <utterance turn="51" who="laihok">*whos *mcknightp?</utterance>
-<utterance turn="52" who="clarkn">Non sa ma è *sittting prossimo a #mí</utterance>
+<utterance turn="52" who="clarkn">Non sa ma è *sittting prossimo a me</utterance>
 <utterance turn="53" who="mcknightp">Ciao *Im *Pat Un @developer di Gruppo 1</utterance>
 <utterance turn="54" who="longleyl">È un @interloper.</utterance>
 <utterance turn="55" who="longleyl">@Must essere #eseguire.</utterance>
@@ -87,7 +87,7 @@
 <utterance turn="83" who="chenl">#Tutto il *infomation negozio giusto localmente,</utterance>
 <utterance turn="84" who="clarkn">In il @various *cleint macchine</utterance>
 <utterance turn="85" who="clarkn">Informazione sei *permitted a #il @view è @store nel computer di cliente locale</utterance>
-<utterance turn="86" who="mcknightp">Tanto se qualcuno non è on-line come può qualcuno più gli invita a una riunione?</utterance>
+<utterance turn="86" who="mcknightp">Tanto se qualcuno non è on-line come può qualcuno più li invita a una riunione?</utterance>
 <utterance turn="87" who="clarkn">?</utterance>
 <utterance turn="89" who="clarkn">Questo software non è un software di riunione, è un calendario *applicaiton</utterance>
 <utterance turn="88" who="mcknightp">Per esempio</utterance>
@@ -110,7 +110,7 @@
 <utterance turn="106" who="clarkn">Esattamente</utterance>
 <utterance turn="107" who="Jared Haines">Il *RFP menzionò che i documenti sono spesso inviato fuori per essere letto previo a una riunione.  Fa la necessità di applicazione per distribuire i documenti, o  #prpers essere inviato fuori per e-mail?</utterance>
 <utterance turn="108" who="laihok">Puoi *upload il documento</utterance>
-<utterance turn="109" who="longleyl">La applicazione gli distribuirà con il avviso di riunione, classe di come un attaccamento di e-mail.</utterance>
+<utterance turn="109" who="longleyl">La applicazione li distribuirà con il avviso di riunione, classe di come un attaccamento di e-mail.</utterance>
 <utterance turn="110" who="clarkn">Sì, necessita per distribuire *documens e nessun non saranno inviati fuori per e-mail</utterance>
 <utterance turn="111" who="chaingj">Avviso di e-mail sarà inviare</utterance>
 <utterance turn="112" who="laihok">Come un attaccamento</utterance>
@@ -134,8 +134,8 @@
 <utterance turn="130" who="Jared Haines"> gli utenti sicuri hanno permessi di priorità più alta? Per esempio, se @one direttore cambia un orario potrebbe un altro direttore *override il #redigere, o modificare una entrata di calendario fatta per un altro utente?</utterance>
 <utterance turn="131" who="clarkn">Ma il *hr la gente può porre fuori un orario per #tutto i  personali sotto *thier controllo</utterance>
 <utterance turn="132" who="clarkn">Ma per *tiems piace che la persona @schedule può chiedere che il suo orario essere cambiato</utterance>
-<utterance turn="133" who="longleyl">Credo che gente sopra qualcuno nella gerarchia può influire gente sotto #prpers, ma la gente non può influire altri in lo stesso livello della gerarchia.</utterance>
-<utterance turn="134" who="longleyl">A meno che la persona esplicitamente gli dà permesso per fare tanto.</utterance>
+<utterance turn="133" who="longleyl">Credo che gente sopra qualcuno nella gerarchia può influire gente sotto loro, ma la gente non può influire altri in lo stesso livello della gerarchia.</utterance>
+<utterance turn="134" who="longleyl">A meno che la persona esplicitamente li dà permesso per fare tanto.</utterance>
 <utterance turn="136" who="chaingj">Deve *negociate prima di cambio</utterance>
 <utterance turn="135" who="clarkn">Quando creando un orario il sistema dovrebbe #provare ottimizzare il @time di una riunione a *minimize esistendo *conflitcs</utterance>
 <utterance turn="137" who="clarkn">@So un metodo per chiedere tempi differenti</utterance>
@@ -162,7 +162,7 @@
 <utterance turn="155" who="clarkn">Anche @may essere il leader di squadra di un altro progetto</utterance>
 <utterance turn="156" who="longleyl">@Oh, bene, che fa senso.</utterance>
 <utterance turn="157" who="longleyl">Indovino che lo potresti organizzare in una struttura di albero.</utterance>
-<utterance turn="158" who="longleyl">Dove #tutti quanti sotto qualcuno può avere #alcunché @schedule per la persona sopra #prpers.</utterance>
+<utterance turn="158" who="longleyl">Dove #tutti quanti sotto qualcuno può avere #alcunché @schedule per la persona sopra loro.</utterance>
 <utterance turn="159" who="chenl">Opinai #que il permesso è associato con ogni evento,</utterance>
 <utterance turn="160" who="clarkn">Può chiedere che altra gente non sotto il suo *controll frequentare una riunione pose deve chiedere la sua presenza e #prpers devono accettare prima che possono essere aggiunti alla riunione</utterance>
 <utterance turn="162" who="clarkn">Anche possono @schedule i suoi eventi proprii tanto @long secondo #prpers  non conflitto</utterance>
@@ -186,9 +186,9 @@
 <utterance turn="179" who="Jared Haines">Sì, accordo #que il concetto di ruoli fa @more senso</utterance>
 <utterance turn="180" who="longleyl">Bene, potresti fare ruoli in una struttura di albero, giusto un provvisorio @one.</utterance>
 <utterance turn="181" who="longleyl">È giusto che sarebbe duro a relazioni di modello tra impiegati in altro modo.</utterance>
-<utterance turn="182" who="clarkn">*i Opina di #prpers tanto essendo più @flat</utterance>
+<utterance turn="182" who="clarkn">*i Opina di esso tanto essendo più @flat</utterance>
 <utterance turn="183" who="clarkn">Hai insiemi di utenti ognuno con i suoi permessi proprii</utterance>
-<utterance turn="184" who="clarkn">@So un leader di gruppo può @schedule qualunque sotto #prpers #ancora se sono *manageing un altro progetto</utterance>
+<utterance turn="184" who="clarkn">@So un leader di gruppo può @schedule qualunque sotto loro #ancora se sono *manageing un altro progetto</utterance>
 <utterance turn="185" who="longleyl">Ma se hai "direttori e @programmer", come  defini #quale direttori sono sopra #quale @programmer?</utterance>
 <utterance turn="186" who="chaingj">La applicazione dovrebbe essere capace di creare o togliere i livelli di base di permesso in livelli di ruolo</utterance>
 <utterance turn="187" who="clarkn">Ruoli</utterance>
@@ -200,8 +200,8 @@
 <utterance turn="193" who="clarkn">Esattamente</utterance>
 <utterance turn="194" who="laihok">Opino #que questo è #migliore #allora #quanto avemmo prima</utterance>
 <utterance turn="195" who="longleyl">Tanto, avresti gruppi di gente, e avresti livello differente dentro gruppi?</utterance>
-<utterance turn="196" who="clarkn">Se qualcuno è assegnato un *mananement ruolo @may essere capaci di creare ruoli nuovi e assegnare qualunque sotto #prpers a quello ruolo</utterance>
-<utterance turn="197" who="longleyl">Quello fa senso a #mí.</utterance>
+<utterance turn="196" who="clarkn">Se qualcuno è assegnato un *mananement ruolo @may essere capaci di creare ruoli nuovi e assegnare qualunque sotto loro a quello ruolo</utterance>
+<utterance turn="197" who="longleyl">Quello fa senso a me.</utterance>
 <utterance turn="198" who="longleyl">*Yeah.</utterance>
 <utterance turn="199" who="andrews">Non è lì una potenzialità per logica @circular @though?</utterance>
 <utterance turn="200" who="clarkn">Ma possono non *escilate il suo ruolo proprio</utterance>
@@ -242,7 +242,7 @@
 <utterance turn="235" who="chaingj">Prossimo piacere...Il tempo sta volando</utterance>
 <utterance turn="236" who="Jared Haines">*yep</utterance>
 <utterance turn="237" who="clarkn">ok Tutto lì realmente è per questo è il seguente</utterance>
-<utterance turn="238" who="clarkn">*rols Può #redigere per *thoes sotto #prpers</utterance>
+<utterance turn="238" who="clarkn">*rols Può #redigere per *thoes sotto loro</utterance>
 <utterance turn="239" who="clarkn">Un utente può chiedere che il orario essere cambiato</utterance>
 <utterance turn="240" who="clarkn">Il direttore di ruolo può #allora corso una caratteristica per ottimizzare le richieste</utterance>
 <utterance turn="241" who="clarkn">E trovare il orario #migliore</utterance>
@@ -293,7 +293,7 @@
 <utterance turn="285" who="clarkn">Bene il suo non #tutto quello importante</utterance>
 <utterance turn="287" who="clarkn">*i Abbastanza riceverebbe tutto della materia di @schedule in lì primo</utterance>
 <utterance turn="286" who="longleyl">Questa classe di cosa sarebbe una caratteristica aggiunse @once la carne del progetto è finita.</utterance>
-<utterance turn="288" who="longleyl">Non è #alcunché che  @doom il progetto senza #prpers.</utterance>
+<utterance turn="288" who="longleyl">Non è #alcunché che  @doom il progetto senza esso.</utterance>
 <utterance turn="289" who="clarkn">Esattamente</utterance>
 <utterance turn="290" who="chaingj">#Niente</utterance>
 <utterance turn="291" who="chaingj">arrivederci</utterance>
@@ -305,7 +305,7 @@
 <utterance turn="297" who="clarkn">Altro @than il fatto @must essere capace di connettere utenti intorno al mondo</utterance>
 <utterance turn="298" who="longleyl">Non posso opinare di #qualsiasi cosa.</utterance>
 <utterance turn="299" who="clarkn">In modo che non affida in un locale *lan</utterance>
-<utterance turn="300" who="clarkn">Ma che è sopra #prpers</utterance>
+<utterance turn="300" who="clarkn">Ma che è sopra esso</utterance>
 <utterance turn="301" who="clarkn"> Hai #qualunque altre questioni</utterance>
 <utterance turn="302" who="clarkn">*jxta.*org Ha bene *networking biblioteche per *p2*p</utterance>
 <utterance turn="303" who="clarkn">Ma non lo devi usare</utterance>
@@ -327,7 +327,7 @@
 <utterance turn="319" who="mcknightp">*LOL Ha dei tipi di #fine settimana buoni :)</utterance>
 <utterance turn="320" who="laihok">*haha..</utterance>
 <utterance turn="321" who="clarkn">@oh Il sistema deve lavorare in *linux, *mac e finestre</utterance>
-<utterance turn="322" who="clarkn">Giusto per farlo divertito per #ti tipi</utterance>
+<utterance turn="322" who="clarkn">Giusto per farlo divertito per te tipi</utterance>
 <utterance turn="323" who="clarkn">Ma *i opinare quello è nel *rfp *alread</utterance>
 <utterance turn="324" who="clarkn">*y</utterance>
 <utterance turn="325" who="Jared Haines">*yep</utterance>
@@ -342,7 +342,7 @@
 <utterance turn="333" who="chaingj">È #prpers addirittura ancora?</utterance>
 <utterance turn="334" who="chenl">#Cui importa</utterance>
 <utterance turn="335" who="longleyl">Sì, siamo #fare.</utterance>
-<utterance turn="336" who="clarkn">Per #ti *n4mai</utterance>
+<utterance turn="336" who="clarkn">Per te *n4mai</utterance>
 <utterance turn="337" who="chaingj">ok</utterance>
 <utterance turn="338" who="Jared Haines">Siamo #fare, detenni la conferenza già</utterance>
 <utterance turn="339" who="chaingj">Il dio ti ama</utterance>

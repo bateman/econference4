@@ -90,7 +90,7 @@
 <utterance turn="88" who="nguyenh">Il mio nome è Thanh, io sono il paziente e visitatori di rappresentanza</utterance>
 <utterance turn="89" who="rizwanp">ok</utterance>
 <utterance turn="90" who="Michael Clark">Elicitazione sessione di oggi sarà gestita come una sessione di domande e risposte. Invito tutti i clienti di porre domande e rispondere a quelle formulate da Tri-Systems.</utterance>
-<utterance turn="90" who="Michael Clark">Stiamo utilizzando una tecnologia relativamente nuova per facilitare questa sessione, quindi se ci sono problemi si prega di chiudere in collaborazione Workbench e riaprirlo. Dopo si riapre assicuratevi di collegare nuovamente e riceverai un invito a ri-partecipare alla riunione.</utterance>
+<utterance turn="90" who="Michael Clark">Stiamo utilizzando una tecnologia relativamente nuova per facilitare questa sessione, quindi se ci sono problemi si prega di chiudere in collaborazione Workbench e riaprirlo. Dopo aver riaperto Assicurarsi di collegare nuovamente e riceverai un invito a ri-partecipare alla riunione.</utterance>
 <utterance turn="90" who="Michael Clark">È tutto pronto per iniziare?</utterance>
 <utterance turn="91" who="gosselinc">sì</utterance>
 <utterance turn="92" who="kaspara">Penso che siamo</utterance>
@@ -487,7 +487,7 @@
 <utterance turn="477" who="reynens">ma, non si hanno più?</utterance>
 <utterance turn="478" who="nguyenh">per il denaro che proprio l'ospedale</utterance>
 <utterance turn="479" who="rizwanp">attendere</utterance>
-<utterance turn="480" who="Michael Clark">Okay. Quindi non ci sono informazioni che un membro della famiglia dovrebbe essere in grado di accedere a informazioni su un paziente che tutte le parole non possono accedere.</utterance>
+<utterance turn="480" who="Michael Clark">Okay. Quindi non vi sono informazioni che un membro della famiglia dovrebbe essere in grado di accedere a informazioni su un paziente che tutte le parole non possono accedere.</utterance>
 <utterance turn="481" who="rizwanp">inwe ppl desidera accedere i pazienti mentre sono in ospedale</utterance>
 <utterance turn="483" who="rizwanp">non dopo ...</utterance>
 <utterance turn="482" who="nguyenh">se hanno il codice di accesso del paziente</utterance>
