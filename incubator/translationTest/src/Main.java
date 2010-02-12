@@ -9,6 +9,7 @@ import javax.xml.transform.stream.*;
 
 import net.sf.okapi.common.LocaleId;
 import net.sf.okapi.connectors.google.GoogleMTConnector;
+import net.sf.okapi.connectors.microsoft.MicrosoftMTConnector;
 import net.sf.okapi.lib.translation.IQuery;
 import net.sf.okapi.lib.translation.QueryResult;
 
@@ -184,62 +185,92 @@ public class Main {
         
         return uts;
 	}
-	
-	public static String invokeGoogle(String u, IQuery q) throws InterruptedException {
-		String ret = "";
+	private static String _translate(String text, IQuery q) throws InterruptedException {
+		String ret = text;
 		
+		if (q instanceof MicrosoftMTConnector) {
+			net.sf.okapi.connectors.microsoft.Parameters p = new net.sf.okapi.connectors.microsoft.Parameters();
+			p.setAppId("28AEB40E8307D187104623046F6C31B0A4DF907E");
+			q.setParameters(p);
+		}
+		
+		q.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
+		
+		int tries = 2;
 		int hits = 0;
-		int tries = 5;
 		
 		do {
-			hits = q.query(u);
-			
-			System.out.println("Hits: " + hits);
-			
-			--tries;
-			
-			if (hits == 0) {
-				System.out.println("Sleeping.. tries left: " + tries);
-				Thread.sleep(1000);
+			try {
+				if (hits == 0) {
+					Thread.sleep(100);
+				}
+				hits = q.query(text);
+			} catch (Exception e) {
+				e.printStackTrace();
+				Thread.sleep(5000);
 			}
-			
-		} while (hits == 0 && tries > 0);
+		} while (--tries > 0 && hits == 0);
 		
-		if (hits != 0) {
-			if (q.hasNext()) {
-				QueryResult r = q.next();
-				ret = r.target.toString();
-				System.out.println("Hit: " + ret);
-			}
-		}// else {
-		//	ret = u;
-		//}
+		
+		if (q.hasNext()) {
+			ret = q.next().target.toString();
+		}
 		
 		return ret;
 	}
+
 	
 	public static void main(String[] args) throws Exception {
 		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://localhost:6173/RPC2"));
 
-		for (int i = 1; i <= 5; ++i) {
-			List<Utterance> orig = readCSVnew("testset/test set log " + i + ".csv");
+		IQuery qm = new MicrosoftMTConnector();
+		IQuery qg = new GoogleMTConnector();
+		
+		qm.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
+		qg.setLanguages(LocaleId.fromString("en"), LocaleId.fromString("it"));
 
-			BufferedWriter out = new BufferedWriter(new FileWriter("testset/test set log " + i + ".xml"));
+		qm.open();
+		qg.open();
+		
+		for (int i = 1; i <= 5; ++i) {
+			List<Utterance> orig = readCSVnew("testset/testset_log_" + i + ".csv");
+
+			BufferedWriter out = new BufferedWriter(new FileWriter("testset/testset_log " + i + ".xml"));
 			out.write(makeXML(orig));
 			out.close();
 
-			List<Utterance> utterances = readUtterances("testset/test set log " + i	+ ".xml");
+			List<Utterance> utterances = readUtterances("testset/testset_log " + i	+ ".xml");
 
-			List<Utterance> newutterances = new LinkedList<Utterance>();
-
+			List<Utterance> newutterancesa = new LinkedList<Utterance>();
+			List<Utterance> newutterancesm = new LinkedList<Utterance>();
+			List<Utterance> newutterancesg = new LinkedList<Utterance>();
+			
 			for (Utterance u : utterances) {
-				Utterance nu = u.clona();
-				nu.setUtterance(a.translate(u.getUtterance(), "en", "it").get("translation"));
-				newutterances.add(nu);
+				Utterance nua = u.clona();
+				Utterance num = u.clona();
+				Utterance nug = u.clona();
+				
+				System.out.println(u.getUtterance());
+				
+				nua.setUtterance(a.translate(u.getUtterance(), "en", "it").get("translation"));
+				num.setUtterance(_translate(u.getUtterance(), qm));
+				nug.setUtterance(_translate(u.getUtterance(), qg));
+				
+				newutterancesa.add(nua);
+				newutterancesm.add(num);
+				newutterancesg.add(nug);
 			}
 
-			out = new BufferedWriter(new FileWriter("testset/test set log " + i	+ ".trans.xml"));
-			out.write(makeXML(newutterances));
+			out = new BufferedWriter(new FileWriter("testset/testset_log " + i	+ ".trans.apertium.xml"));
+			out.write(makeXML(newutterancesa));
+			out.close();
+			
+			out = new BufferedWriter(new FileWriter("testset/testset_log " + i	+ ".trans.microsoft.xml"));
+			out.write(makeXML(newutterancesm));
+			out.close();
+			
+			out = new BufferedWriter(new FileWriter("testset/testset_log " + i	+ ".trans.google.xml"));
+			out.write(makeXML(newutterancesg));
 			out.close();
 		}
 	}
