@@ -33,7 +33,7 @@
 <utterance turn="31" who="Jeff">*scott È un *scribe?</utterance>
 <utterance turn="32" who="riz">E *Stiffler di Torta americana</utterance>
 <utterance turn="33" who="ScottReynen">"Poco tuono... Poco @lightning"</utterance>
-<utterance turn="34" who="Mindy">#Prpers *aws bene</utterance>
+<utterance turn="34" who="Mindy">Lui *aws bene</utterance>
 <utterance turn="35" who="Jeff">@So è *hehehe</utterance>
 <utterance turn="36" who="ScottReynen">*i *dont Sa se *i sono *scribing</utterance>
 <utterance turn="37" who="riz">ok @So come è #tutti quanti questo pomeriggio?</utterance>
@@ -51,12 +51,12 @@
 <utterance turn="49" who="hainesj">@hello</utterance>
 <utterance turn="50" who="Jeff">*wassup *josh :*P</utterance>
 <utterance turn="51" who="riz">@hello *jared</utterance>
-<utterance turn="52" who="Thanh Nguyen">Questione nuova: il @backup @On-line sarà fornito per il sistema. @How critico è questo informazione? @How lontano difendere il @backup dovrebbe andare? Forse uno anno accademico?</utterance>
+<utterance turn="52" who="Thanh Nguyen">Questione nuova: #il @backup #On-line sarà fornito per il sistema. @How critico è questo informazione? @How lontano difendere il @backup dovrebbe andare? Forse uno anno accademico?</utterance>
 <utterance turn="53" who="ScottReynen">*i Non può aspettare per Daniela per dirci per diffondere fuori più</utterance>
 <utterance turn="54" who="riz">Come ti è questo pomeriggio/</utterance>
 <utterance turn="55" who="riz">Il tempo buono esteriore</utterance>
 <utterance turn="56" who="Charles">*hey</utterance>
-<utterance turn="57" who="ScottReynen">@Backup @on-line?</utterance>
+<utterance turn="57" who="ScottReynen">@Backup #on-line?</utterance>
 <utterance turn="58" who="riz">Pacifico, *serene</utterance>
 <utterance turn="59" who="ScottReynen">Quando fece quello passa?</utterance>
 <utterance turn="60" who="Charles">#Cui ha *scribing per questa riunione?</utterance>
@@ -187,7 +187,7 @@
 <utterance turn="185" who="ScottReynen">@wow</utterance>
 <utterance turn="186" who="ScottReynen">*riz</utterance>
 <utterance turn="187" who="riz">Ma @whatever, *i'*ll prende *ur parola</utterance>
-<utterance turn="188" who="ScottReynen">*i *didnt Vede che uno @coming</utterance>
+<utterance turn="188" who="ScottReynen">*i *didnt Vede che uno imminente</utterance>
 <utterance turn="189" who="ScottReynen">#Tale intelligente *jibes</utterance>
 <utterance turn="190" who="Josh">*im @In!</utterance>
 <utterance turn="191" who="ScottReynen">È @in!</utterance>
@@ -248,7 +248,7 @@
 <utterance turn="246" who="Mindy">*Welcome #Tutti quanti a le trattative. Sono *Mindy il *moderator per Gruppo 2.</utterance>
 <utterance turn="247" who="Ben">@hello</utterance>
 <utterance turn="248" who="Aaron K">ciao *mindy!</utterance>
-<utterance turn="249" who="Thanh Nguyen">La documentazione @On-line sarà disponibile per il gioco a @completion e consegna.  Il gioco  anche venuto con edificato in lime di aiuto e *tutorials per gioco di gioco. #-&gt; Dovere anche creiamo un @website per il gioco. Giusto un posto per gente per trovare aiuto, scaricare il gioco, etc.</utterance>
+<utterance turn="249" who="Thanh Nguyen">La documentazione on-line sarà disponibile per il gioco a @completion e consegna.  Il gioco  anche venuto con edificato in lime di aiuto e *tutorials per gioco di gioco. #-&gt; Dovere anche creiamo un @website per il gioco. Giusto un posto per gente per trovare aiuto, scaricare il gioco, etc.</utterance>
 <utterance turn="250" who="ScottReynen">Sono Scott, Signore Scott il *Scribe.</utterance>
 <utterance turn="251" who="Jeff">*lol....È questo *thanh o alcuna classe di questione *bot??</utterance>
 <utterance turn="252" who="Mindy">@Sorry sopra quello</utterance>
@@ -275,7 +275,7 @@
 <utterance turn="273" who="riz">Lascia porta addirittura</utterance>
 <utterance turn="274" who="Jeff">*BAH....Non #prpers può vedere di nuovo :*S</utterance>
 <utterance turn="275" who="riz">*dfjfjjf</utterance>
-<utterance turn="276" who="Mindy">2. Può dai una minima @approximate # di ore di gioco del gioco richiese  per ogni livello di nota?  [O può @supply il numero @approximate di studenti 
+<utterance turn="276" who="Mindy">2. Può dai una minima approssimata # di ore di gioco del gioco richiese  per ogni livello di nota?  [O può @supply il numero approssimato di studenti 
  di ore toccherà ogni settimana?]</utterance>
 <utterance turn="277" who="Jeff">*damn ti Decisioni =/</utterance>
 <utterance turn="278" who="Chris">Il modulo di gioco è una descrizione @pretty @broad di #prpers. È che *everythin oltretutto il studentesco *stats?</utterance>
@@ -346,9 +346,9 @@
 <utterance turn="341" who="Jeff">*i Vado a tentare un laboratorio differente...Pare il *linux la versione è *bugged :*S</utterance>
 <utterance turn="342" who="Chris">Spostiamo al tema prossimo :*P</utterance>
 <utterance turn="343" who="Jeff">Dietro in pochi</utterance>
-<utterance turn="344" who="Mindy">1. Il @backup @On-line sarà fornito per il sistema. @How critico è questo informazione? @How lontano difendere il @backup dovrebbe andare? Forse uno anno accademico?</utterance>
+<utterance turn="344" who="Mindy">1. #Il @backup #on-line sarà fornito per il sistema. @How critico è questo informazione? @How lontano difendere il @backup dovrebbe andare? Forse uno anno accademico?</utterance>
 <utterance turn="345" who="hainesj">@One anno sarebbe ragionevole</utterance>
-<utterance turn="346" who="Ben">@On-line?</utterance>
+<utterance turn="346" who="Ben">On-line?</utterance>
 <utterance turn="347" who="scott">@One anno sarebbe #piuttosto</utterance>
 <utterance turn="348" who="horelj">@One anno dovrebbe essere @more than enough</utterance>
 <utterance turn="349" who="Chris">*Shouldnt' Atti studenteschi essere mantenuto per più lungo?</utterance>
@@ -380,7 +380,7 @@
 <utterance turn="375" who="Aaron K">*okayu</utterance>
 <utterance turn="376" who="Mindy">Ha qualunque riuscì  una decisione in questo o  #prpers tornano a questa questione</utterance>
 <utterance turn="377" who="Aaron K">Opinai #que la decisione era che *info soggiorni in il sistema per almeno @one anno....</utterance>
-<utterance turn="378" who="Chris">Opino #prpers tutti accordano in un 1 anno accesso @immediate a dato e abilità per esportare il dato alla fine dell'anno... *ofcourse In importazione di necessità dietro in il sistema e @view.</utterance>
+<utterance turn="378" who="Chris">Opino #prpers tutti accordano in un 1 anno accesso immediato a dato e abilità per esportare il dato alla fine dell'anno... *ofcourse In importazione di necessità dietro in il sistema e @view.</utterance>
 <utterance turn="379" who="Ben">Suoni bene</utterance>
 <utterance turn="380" who="Mindy">ok</utterance>
 <utterance turn="381" who="ScottReynen">Tanto #quanto passa alla fine di @one anno? (@Sorry)</utterance>
@@ -401,7 +401,7 @@
 <utterance turn="396" who="mcknightp">Se una nota 2 può *hack la rete allora desidera la nota #sé dette/diede</utterance>
 <utterance turn="397" who="Chris">*i'*d Dice *ssl *shoul essere un buono *oprion</utterance>
 <utterance turn="398" who="ScottReynen">Nota 1 e 2?</utterance>
-<utterance turn="399" who="scott">Se può fare quello @more potere a #prpers</utterance>
+<utterance turn="399" who="scott">Se può fare quello @more potere a lui</utterance>
 <utterance turn="400" who="Ben">Accordato</utterance>
 <utterance turn="401" who="hainesj">Allora riceve marche di @bonus :D</utterance>
 <utterance turn="402" who="horelj">*yeah</utterance>
@@ -419,7 +419,7 @@
 <utterance turn="414" who="mcknightp">Tanto @long secondo #prpers possiamo esportare a Virgola lima delimitata che dovrebbe lavorare</utterance>
 <utterance turn="415" who="riz">*hallo</utterance>
 <utterance turn="416" who="Mindy">ok</utterance>
-<utterance turn="417" who="Chris">Se ti piacerebbe un *sugguestion uno @alternative a *CSV è *xml, e #alcuno *db è come il oracolo può esportare dato direttamente a *xml....Giusto un *sugguestion.</utterance>
+<utterance turn="417" who="Chris">Se ti piacerebbe un *sugguestion uno alternativo a *CSV è *xml, e #alcuno *db è come il oracolo può esportare dato direttamente a *xml....Giusto un *sugguestion.</utterance>
 <utterance turn="418" who="Ben">*booo *xml</utterance>
 <utterance turn="419" who="hainesj">Perdemmo *jon di nuovo, necessita altro invita :(</utterance>
 <utterance turn="420" who="Jeff">Dietro :D</utterance>
@@ -440,7 +440,7 @@
 <utterance turn="435" who="ScottReynen">*i #Domandarsi perché chiuderesti @up per tanto lungo *charles</utterance>
 <utterance turn="436" who="Mindy">*okkkkkk</utterance>
 <utterance turn="437" who="ScottReynen">Dietro a *buizness</utterance>
-<utterance turn="438" who="Mindy">La documentazione @On-line sarà disponibile per il gioco a @completion e consegna.  Il gioco  anche venuto con edificato in lime di aiuto e *tutorials per gioco di gioco. 5.   Dovere anche creiamo un @website per il gioco. Giusto un posto per gente per trovare aiuto, scaricare il gioco, etc.</utterance>
+<utterance turn="438" who="Mindy">La documentazione on-line sarà disponibile per il gioco a @completion e consegna.  Il gioco  anche venuto con edificato in lime di aiuto e *tutorials per gioco di gioco. 5.   Dovere anche creiamo un @website per il gioco. Giusto un posto per gente per trovare aiuto, scaricare il gioco, etc.</utterance>
 <utterance turn="439" who="Ben">Sicuro se vuoi un @website che sarebbe buono</utterance>
 <utterance turn="440" who="ScottReynen">@Silence *Riz piacere</utterance>
 <utterance turn="441" who="scott">*yah Che sarebbe un @bonus ma probabilmente non richiesto</utterance>
@@ -448,7 +448,7 @@
 <utterance turn="443" who="Ben">Non pagava per #prpers @though</utterance>
 <utterance turn="444" who="Mindy">E neanche è #prpers</utterance>
 <utterance turn="445" who="Jeff">@Might essere un modo buono di distribuire materiale aggiungere#-*ons anche :*P</utterance>
-<utterance turn="446" who="Chris">Bene vogliamo codice documentato bene @so possiamo ampliare nel progetto...*i'*d Dice prendiamo il @on-line *Docs.</utterance>
+<utterance turn="446" who="Chris">Bene vogliamo codice documentato bene @so possiamo ampliare nel progetto...*i'*d Dice prendiamo il on-line *Docs.</utterance>
 <utterance turn="447" who="Charles">*hey *mindy... Necessiti a *reinvite qualcuno</utterance>
 <utterance turn="448" who="Mindy">ok Che</utterance>
 <utterance turn="449" who="ScottReynen">*horelj</utterance>
@@ -456,7 +456,7 @@
 <utterance turn="451" who="ScottReynen">Letto le mani</utterance>
 <utterance turn="452" who="ScottReynen">*hey Jon...?</utterance>
 <utterance turn="453" who="horelj">Dietro</utterance>
-<utterance turn="454" who="horelj">Filo @wireless fuori</utterance>
+<utterance turn="454" who="horelj">Filo senza fili fuori</utterance>
 <utterance turn="455" who="ScottReynen">*ach</utterance>
 <utterance turn="456" who="Ben">Nome di gioco?</utterance>
 <utterance turn="457" who="Chris">#Calcio</utterance>
@@ -486,7 +486,7 @@
 <utterance turn="481" who="Chris">*Yeah...Saranno bene *asleep prima che lancia</utterance>
 <utterance turn="482" who="ScottReynen">Nessun #no</utterance>
 <utterance turn="483" who="ScottReynen">Vedi</utterance>
-<utterance turn="484" who="ScottReynen">Abbiamo *awesome @fun caricando schermi</utterance>
+<utterance turn="484" who="ScottReynen">Abbiamo *awesome divertito caricando schermi</utterance>
 <utterance turn="485" who="riz">Perde</utterance>
 <utterance turn="486" who="ScottReynen">@Quiet *riz</utterance>
 <utterance turn="487" who="horelj">*minigames In i schermi di carica?</utterance>
@@ -501,8 +501,8 @@
 <utterance turn="496" who="Ben">*ya</utterance>
 <utterance turn="497" who="scott">Quello suono *sgood a #mí</utterance>
 <utterance turn="498" who="horelj">Quelli lavori</utterance>
-<utterance turn="499" who="riz">Se puoi dirigere restare @awake, #allora *ur gioco...</utterance>
-<utterance turn="500" who="Mindy">2. Dovere miglioriamo i requisiti per fare *Rendering e Suono nella mosca? Se non possiamo fare ha #prpers *prepackaged??</utterance>
+<utterance turn="499" who="riz">Se puoi dirigere restare sveglio, #allora *ur gioco...</utterance>
+<utterance turn="500" who="Mindy">2. Dovere miglioriamo i requisiti per fare *Rendering e Suono nella mosca? Se non possiamo fare ha lui *prepackaged??</utterance>
 <utterance turn="501" who="riz">*ya *i Non riceve quella questione</utterance>
 <utterance turn="502" who="Aaron K">*hunh?</utterance>
 <utterance turn="503" who="Charles">Quella ultima questione...</utterance>
@@ -586,7 +586,7 @@
 <utterance turn="581" who="Ben">#Prpers offristi  un @website e #prpers accettarono ????</utterance>
 <utterance turn="582" who="ScottReynen">Sono in @uproar</utterance>
 <utterance turn="583" who="Ben">#No</utterance>
-<utterance turn="584" who="scott">Almeno documentazione @on-line</utterance>
+<utterance turn="584" who="scott">Almeno documentazione on-line</utterance>
 <utterance turn="585" who="riz">ok #Allora @take quella decisione</utterance>
 <utterance turn="586" who="ScottReynen">...</utterance>
 <utterance turn="587" who="scott">Quello prenderà 2 ore</utterance>
@@ -595,7 +595,7 @@
 <utterance turn="590" who="Ben">Non realmente #prpers necessitiamo</utterance>
 <utterance turn="591" who="ScottReynen">Lascia dice che i @pay di federazione dei professori per #prpers</utterance>
 <utterance turn="592" who="riz">*i *dunno Non vogliamo più scioperi di professore</utterance>
-<utterance turn="593" who="Jeff">ti I tipi già hanno un @website, giusto @host la documentazione lì....Il problema risolse</utterance>
+<utterance turn="593" who="Jeff">ti I tipi già hanno un @website, giusto anfitrione la documentazione lì....Il problema risolse</utterance>
 <utterance turn="594" who="Chris">Necessiti fornire documentazione per il codice secondo #prpers *dont sapere #cui #prpers manterrà. Sarà il *easyest cosa per tirare un *webpage con *docs.</utterance>
 <utterance turn="595" who="ScottReynen">#Facilmente potremmo includere documentazione con il software?</utterance>
 <utterance turn="596" who="ScottReynen">*AGH</utterance>
@@ -669,7 +669,7 @@
 <utterance turn="664" who="Chris">@Call buono.</utterance>
 <utterance turn="665" who="ScottReynen">Nessun "*vanquishing" il drago</utterance>
 <utterance turn="666" who="ScottReynen">(A meno che te/tu *pummel #prpers @gently con il tuo *iq)</utterance>
-<utterance turn="667" who="riz">I draghi sono @fun @once *u ricevere @past che intero 3 ustioni di grado cosa</utterance>
+<utterance turn="667" who="riz">I draghi sono divertiti @once *u ricevere passato che intero 3 ustioni di grado cosa</utterance>
 <utterance turn="668" who="Ben">Sì; *stry sezione di linea</utterance>
 <utterance turn="669" who="ScottReynen">E il drago entra il *NIIIIIGHT</utterance>
 <utterance turn="670" who="ScottReynen">ok</utterance>
@@ -701,7 +701,7 @@
 <utterance turn="696" who="ScottReynen">"@Bacon scimmie fritte"</utterance>
 <utterance turn="697" who="Mindy">#Qualunque cambi di nome per il gioco dovranno essere *finalized per *rs 3.0</utterance>
 <utterance turn="698" who="horelj">ok</utterance>
-<utterance turn="699" who="hainesj">Voto cambiamo il nome a *T #prpers Jared è *Awesome Gioco</utterance>
+<utterance turn="699" who="hainesj">Voto cambiamo il nome a *T lui Jared è *Awesome Gioco</utterance>
 <utterance turn="700" who="hainesj">*hey dove Fece quello allinea #il @break #venire di</utterance>
 <utterance turn="701" who="ScottReynen">*i Opina #haber @disagreement</utterance>
 <utterance turn="702" who="Charles">Il turno introduce</utterance>
@@ -719,7 +719,7 @@
 <utterance turn="714" who="ScottReynen">Finalmente!</utterance>
 <utterance turn="715" who="ScottReynen">*i Cattivo..</utterance>
 <utterance turn="716" who="riz">Opini?</utterance>
-<utterance turn="717" who="riz">Essere @confident *mindy</utterance>
+<utterance turn="717" who="riz">Essere sicuro *mindy</utterance>
 <utterance turn="718" who="mcknightp">Bene grazie tutto</utterance>
 <utterance turn="719" who="Mindy">Che?</utterance>
 <utterance turn="720" who="ScottReynen">È #prpers ancora registrando? @Turn il @tape</utterance>
@@ -741,7 +741,7 @@
 <utterance turn="736" who="riz">arrivederci</utterance>
 <utterance turn="737" who="Aaron K">*Cheerio</utterance>
 <utterance turn="738" who="Charles">*i &lt;3 io</utterance>
-<utterance turn="739" who="ScottReynen">*i Sono @glad questo va a essere salvato</utterance>
+<utterance turn="739" who="ScottReynen">*i Sono felice questo va a essere salvato</utterance>
 <utterance turn="740" who="Charles">*lol</utterance>
 <utterance turn="741" who="ScottReynen">*i  e-mail una copia a Daniela</utterance>
 <utterance turn="742" who="riz">@So sono *i</utterance>
