@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <meeting>
-<utterance turn="1" who="Craig Stuart">#Cui vuole *scribe #prpers sopra?</utterance>
-<utterance turn="2" who="laneb">*shotty Non #prpers</utterance>
+<utterance turn="1" who="Craig Stuart">#Cui vuole *scribe lo sopra?</utterance>
+<utterance turn="2" who="laneb">*shotty Non lo</utterance>
 <utterance turn="3" who="laneb">*heh</utterance>
-<utterance turn="4" who="Ryan Nordman">#Prpers farò</utterance>
+<utterance turn="4" who="Ryan Nordman">Lo farò</utterance>
 <utterance turn="5" who="Craig Stuart">grazie *ryan</utterance>
 <utterance turn="6" who="Odysseus">@So sai Ryan, *everytime introduci #alcunché al posto di decisioni, necessiti incollare il *refresh. Ultimo tempo *i dovette/dové *anyhow</utterance>
 <utterance turn="7" who="Odysseus">@So #tutti quanti può vedere #quanto ponesti</utterance>
@@ -12,7 +12,7 @@
 <utterance turn="10" who="beckd">@hello?&gt;</utterance>
 <utterance turn="11" who="Craig Stuart">Opino #que dovremmo essere ok senza la mano #que alza</utterance>
 <utterance turn="12" who="Christopher Hanlon">Ciao *Beckd, potrebbe #prpers dici il tuo nome pieno.</utterance>
-<utterance turn="13" who="Craig Stuart">#Prpers possiamo toccare per orecchio @though</utterance>
+<utterance turn="13" who="Craig Stuart">Lo possiamo toccare per orecchio @though</utterance>
 <utterance turn="14" who="Craig Stuart">È che #tutti quanti?</utterance>
 <utterance turn="15" who="Odysseus">Il nostro gruppo è tutto #lì</utterance>
 <utterance turn="16" who="beckd">Daniel *Beck</utterance>
@@ -28,10 +28,10 @@
 <utterance turn="26" who="Odysseus">Suoni bene</utterance>
 <utterance turn="27" who="zhangc">*yse</utterance>
 <utterance turn="28" who="Kia Dastmalchian">Suoni bene</utterance>
-<utterance turn="29" who="Tyler Gates">Dal prototipo fu basato in quello, #prpers direi è bene</utterance>
+<utterance turn="29" who="Tyler Gates">Dal prototipo fu basato in quello, lo direi è bene</utterance>
 <utterance turn="30" who="laneb">Direi che suoni bene.</utterance>
 <utterance turn="31" who="Michael">Sì</utterance>
-<utterance turn="32" who="Ryan Nordman">#Prpers opino è possibile @might cambiare le nostre menti @though...</utterance>
+<utterance turn="32" who="Ryan Nordman">Lo opino è possibile @might cambiare le nostre menti @though...</utterance>
 <utterance turn="33" who="Michael">Mi piace la ortografia di *speeking.</utterance>
 <utterance turn="34" who="Price, Tyler">Realmente @how?</utterance>
 <utterance turn="35" who="Ryan Nordman">Sono giusto non sicuro quanto @more possiamo sviluppare i requisiti e prototipi per il chiosco, considerando quanto abbiamo già *delved a quello</utterance>
@@ -79,7 +79,7 @@
 <utterance turn="77" who="Ryan Nordman">Ok</utterance>
 <utterance turn="78" who="Ryan Nordman">@So aggiungeremo funzionalità di ricerca all'orario *lookup @interface</utterance>
 <utterance turn="79" who="mcmahonp">Bene,  non qualcuno #solo vuole vedere un orario se regolarmente presero il autobus?  In altro modo  non usano planning  di viaggio?</utterance>
-<utterance turn="80" who="Michael">In teoria, o se #prpers piacerebbe sapere @how spesso un autobus dato viene.</utterance>
+<utterance turn="80" who="Michael">In teoria, o se gli piacerebbe sapere @how spesso un autobus dato viene.</utterance>
 <utterance turn="81" who="Price, Tyler">(Il *translink il orario è un pò #migliore, puoi scegliere #quale ti detiene vuole *t @time di)</utterance>
 <utterance turn="82" who="beckd">Opino che *paul  il punto è vigente, ma so che #ancora in *victoria, #hay alcun autobus di #il quale *i *dont' sapere le rotte esatte, sarebbe benefico per #prpers opino per essere capace di scoprire se altri autobus possono andare a punti</utterance>
 <utterance turn="83" who="Christopher Hanlon">@Testing 123...</utterance>
@@ -138,7 +138,7 @@
 <utterance turn="136" who="Price, Tyler">Che numero è il *Majestic, non so</utterance>
 <utterance turn="137" who="Bryan Lane">*i'*d Ricorda il nome prima del numero</utterance>
 <utterance turn="138" who="Michael">Tyler @Sorry.</utterance>
-<utterance turn="139" who="Ryan Nordman">Se non è utile a un @rider di autobus, non #prpers devono usare :)</utterance>
+<utterance turn="139" who="Ryan Nordman">Se non è utile a un @rider di autobus, non lo devono usare :)</utterance>
 <utterance turn="140" who="sheny">*yeha...Il nome della rotta di autobus può dire dove il *dest è..</utterance>
 <utterance turn="141" who="Kia Dastmalchian">Nomi di *hte le rotte sono più facili di ricordare @than numeri, e @may significare #alcunché a qualcuno che non sa le rotte</utterance>
 <utterance turn="142" who="Tyler Gates">Realmente?</utterance>
@@ -167,7 +167,7 @@
 <utterance turn="165" who="Ryan Nordman">Caratteristiche tanto basiche includono *panning intorno alla mappa di città, e *zooming in o fuori</utterance>
 <utterance turn="166" who="Kia Dastmalchian">Bene, è importante che in un chiosco particolare, la mappa che vedi mostra il autobus che di fatto @pass per la stazione il chiosco è in, per *default</utterance>
 <utterance turn="167" who="Ryan Nordman">*Yeah</utterance>
-<utterance turn="168" who="Odysseus">@Select una regione con una scatola quadrata e #prpers @zoom @in a quella area?</utterance>
+<utterance turn="168" who="Odysseus">@Select una regione con una scatola quadrata e lo @zoom @in a quella area?</utterance>
 <utterance turn="169" who="Tyler Gates">Esattamente</utterance>
 <utterance turn="170" who="Ryan Nordman">#No, opino #que vorremmo #alcunché più semplice giusto come un *magnifying tazza + o #- @button</utterance>
 <utterance turn="171" who="Bryan Lane">Mi piace il +/#- cosa</utterance>
@@ -194,7 +194,7 @@
 <utterance turn="192" who="Chris Hanlon">Prova.</utterance>
 <utterance turn="193" who="Ryan Nordman">Io controllo detto giusto @button di stile di la scatola</utterance>
 <utterance turn="194" who="Bryan Lane">Bene è una destra di schermo d'il @touch?</utterance>
-<utterance turn="195" who="Bryan Lane">Potrebbe non lui giusto essere una lista di numeri che se #prpers tocchi vira verde e spettacoli in schermo, e se #prpers tocchi di nuovo, il numero vira rosso e gli autobus non sono mostrati?</utterance>
+<utterance turn="195" who="Bryan Lane">Potrebbe non lui giusto essere una lista di numeri che se lo tocchi vira verde e spettacoli in schermo, e se lo tocchi di nuovo, il numero vira rosso e gli autobus non sono mostrati?</utterance>
 <utterance turn="196" who="Ryan Nordman">Giusto tentavo per descrivere la funzionalità d'i @button, ovviamente vorremmo #alcunché #piuttosto grande per il dito d'un utente</utterance>
 <utterance turn="197" who="Ryan Nordman">#Ad ogni modo,  spostiamo addirittura?</utterance>
 <utterance turn="198" who="beckd">Ok</utterance>
@@ -210,7 +210,7 @@
 <utterance turn="208" who="Michael">*i Non sono sicuro perché necessita essere una scatola di controllo... Autobus che ha un *paticular destino o iniziando punto, o @pass #attraverso a una regione sicura o lavori di stop per #mí... Allora può tutto è ricerca basato @instead of coprire @half la regione di mappa con una lista...???</utterance>
 <utterance turn="209" who="Ryan Nordman">*Yeah,</utterance>
 <utterance turn="210" who="Ryan Nordman">@That's why sto opinandolo @pop sopra</utterance>
-<utterance turn="211" who="Ryan Nordman">@So non vedresti la lista di rotte a meno che #prpers chiamasti sopra</utterance>
+<utterance turn="211" who="Ryan Nordman">@So non vedresti la lista di rotte a meno che lo chiamasti sopra</utterance>
 <utterance turn="212" who="Ryan Nordman">Allora @select le rotte, e accettare</utterance>
 <utterance turn="213" who="Ryan Nordman">E vedi la mappa di nuovo, schermo pieno</utterance>
 <utterance turn="214" who="Bryan Lane">*yeah</utterance>
@@ -232,7 +232,7 @@
 <utterance turn="230" who="Tyler Gates">ok Prossimo</utterance>
 <utterance turn="231" who="Craig Stuart">Abbiamo 6 @more temi</utterance>
 <utterance turn="232" who="Michael">Sì a *landmarks. :#-)</utterance>
-<utterance turn="233" who="Price, Tyler">Per il *landmarks *mabye #prpers potresti fare tanto il *admins aggiungergli e creare categorie per #prpers</utterance>
+<utterance turn="233" who="Price, Tyler">Per il *landmarks *mabye lo potresti fare tanto il *admins aggiungergli e creare categorie per #prpers</utterance>
 <utterance turn="234" who="Ryan Nordman">Che dettaglio #extra  necessitiamo #lì tipi?</utterance>
 <utterance turn="235" who="">Forse possiamo *skip questo tema per ora</utterance>
 <utterance turn="236" who="Price, Tyler">Giusto aggiungere per strada / codici postali</utterance>
@@ -248,7 +248,7 @@
 <utterance turn="246" who="Bryan Lane">@Might avere una tonnellata di categorie come quello</utterance>
 <utterance turn="247" who="Kia Dastmalchian">Accorda con *tyler</utterance>
 <utterance turn="248" who="Ryan Nordman">*Yeah, #quanto Tyler disse</utterance>
-<utterance turn="249" who="Odysseus">Bene tanto @long tanto #hay categorie e #tale #prpers potremmo aggiungere in #prpers</utterance>
+<utterance turn="249" who="Odysseus">Bene tanto @long tanto #hay categorie e #tale gli potremmo aggiungere in #prpers</utterance>
 <utterance turn="250" who="Bryan Lane">@Might essere #migliore di andare per *keyword</utterance>
 <utterance turn="251" who="beckd">Volemmo mantenere il livello superiore *landmarks #bene semplice</utterance>
 <utterance turn="252" who="Ryan Nordman">Se #prpers  che, non necessitiamo per specificare #quanto le categorie esisteranno</utterance>
@@ -257,7 +257,7 @@
 <utterance turn="255" who="mcmahonp">Scegli #quanto categorie vuoi, e edifichiamo la lista</utterance>
 <utterance turn="256" who="Ryan Nordman">Bene, che può essere la sua elezione</utterance>
 <utterance turn="257" who="Ryan Nordman">Nessuna necessità di costringerlo in il nostro fine</utterance>
-<utterance turn="258" who="Price, Tyler">Bene se lasciasti il *admins scegliere il *categoreis #prpers sarebbe fino #prpers, non i @developer</utterance>
+<utterance turn="258" who="Price, Tyler">Bene se lasciasti il *admins scegliere il *categoreis lo sarebbe fino #prpers, non i @developer</utterance>
 <utterance turn="259" who="Ryan Nordman">Accordato</utterance>
 <utterance turn="260" who="Craig Stuart">Destro</utterance>
 <utterance turn="261" who="Michael">Buono</utterance>
@@ -268,7 +268,7 @@
 <utterance turn="266" who="Odysseus">Suoni bene a #mí</utterance>
 <utterance turn="267" who="Craig Stuart">Il tema prossimo è il accesso a il sistema di dispositivi mobili come *PDA è e *cellphones</utterance>
 <utterance turn="268" who="Price, Tyler">*i Opinava giusto un foglio di stile @separate per il @website ...</utterance>
-<utterance turn="269" who="Ryan Nordman">#Prpers è bene se semplicemente forniamo un *scalled #giù *mini versione del *webpage?</utterance>
+<utterance turn="269" who="Ryan Nordman">Lo è bene se semplicemente forniamo un *scalled #giù *mini versione del *webpage?</utterance>
 <utterance turn="270" who="Tyler Gates">*yeah</utterance>
 <utterance turn="271" who="Odysseus">*yea</utterance>
 <utterance turn="272" who="Kia Dastmalchian">Opino tanto</utterance>
@@ -307,7 +307,7 @@
 <utterance turn="305" who="Bryan Lane">Uno allinea?</utterance>
 <utterance turn="306" who="Bryan Lane">Come *scrolling testo?</utterance>
 <utterance turn="307" who="Bryan Lane">*i Non opina quello lavorerebbe</utterance>
-<utterance turn="308" who="Kia Dastmalchian">Per 'orario proprio', significa il suo reale, duro, orario, non un dinamicamente cambiando cosa...Almeno quello è come io #prpers capisce</utterance>
+<utterance turn="308" who="Kia Dastmalchian">Per 'orario proprio', significa il suo reale, duro, orario, non un dinamicamente cambiando cosa...Almeno quello è come io lo capisce</utterance>
 <utterance turn="309" who="Ryan Nordman">Sì, potrebbe *scroll</utterance>
 <utterance turn="310" who="Bryan Lane">Bene, quello'*d essere duro delle ggere @driving di @while</utterance>
 <utterance turn="311" who="Bryan Lane"> Non opini?</utterance>
@@ -315,7 +315,7 @@
 <utterance turn="313" who="Tyler Gates">Nessun *scrolling. #Distrarre il conduttore</utterance>
 <utterance turn="314" who="Price, Tyler">Forse un minuto *lcd che ha come il stop prossimo grande e #allora *acouple @more sotto</utterance>
 <utterance turn="315" who="Ryan Nordman">Sì</utterance>
-<utterance turn="316" who="Ryan Nordman">, opinerei #prpers  giusto letto #prpers quando sono in un stop</utterance>
+<utterance turn="316" who="Ryan Nordman">, opinerei #prpers  giusto letto lo quando sono in un stop</utterance>
 <utterance turn="317" who="Kia Dastmalchian">ok Controllo in un *sec</utterance>
 <utterance turn="318" who="Kia Dastmalchian">Un conduttore non necessita per sapere il suo stop prossimo @one after the other</utterance>
 <utterance turn="319" who="Michael">Io  avere *atleast 3 o tanto, eccetto quando fine vicino di rotta... Allora avrebbe tempo di arrivo in ultimo stop, e tempo di marcia.</utterance>
@@ -362,16 +362,16 @@
 <utterance turn="360" who="Ryan Nordman">Opino giusto potremmo usare lo stesso @display, ma avere due @button per permettere il conduttore di autobus per @select cosa per vedere</utterance>
 <utterance turn="361" who="Ryan Nordman">Forse con una allerta di suono quando connettendo il dato sta entrando?</utterance>
 <utterance turn="362" who="Price, Tyler">Direi che ogni viaggio ha sopra 10 minuti di gioco, tanto in connessione importante *stopes (*hubs, terminali) i conduttori aspetteranno fino come 3 minuti per connettere autobus...</utterance>
-<utterance turn="363" who="Tyler Gates">Forse se #hay un altro autobus dentro una prossimità sicura, #prpers mostrerebbe</utterance>
+<utterance turn="363" who="Tyler Gates">Forse se #hay un altro autobus dentro una prossimità sicura, lo mostrerebbe</utterance>
 <utterance turn="364" who="Chris Hanlon">Potrebbe inviiamo un *auditory allerta (come un *beep) per animare il conduttore di autobus per parere nella consolle per informazione sopra cambi di rotta/di autobus tardii.</utterance>
 <utterance turn="365" who="beckd">Se ogni conduttore di autobus è *willing per aspettare 3 minuti</utterance>
 <utterance turn="366" who="beckd">Allora un autobus che posteriormente sta connettendo a #prpers #dovere aspettare almeno 3 minuti 1 secondo per connettere a #prpers</utterance>
 <utterance turn="367" who="Michael">Non so se un *audiable la allerta è necessaria.</utterance>
 <utterance turn="368" who="mcmahonp">Attesa un conduttore di autobus aspetterà 3 minuti in un stop #-  non che @really disordine @up il sistema</utterance>
 <utterance turn="369" who="beckd">Condurrebbe a un spingendo dietro di tempi</utterance>
-<utterance turn="370" who="Tyler Gates">Se sono già in ritardo, allora #prpers farebbe posteriormente</utterance>
+<utterance turn="370" who="Tyler Gates">Se sono già in ritardo, allora gli farebbe posteriormente</utterance>
 <utterance turn="371" who="Price, Tyler">Se sono già in ritardo non necessiterebbero aspettare</utterance>
-<utterance turn="372" who="Bryan Lane">Quello è classe di perché #prpers rappresentai sarebbe una cosa buona per lasciare il conduttore sa @how lontano dietro il autobus è, @so giusto potrebbe fare una decisione informata</utterance>
+<utterance turn="372" who="Bryan Lane">Quello è classe di perché lo rappresentai sarebbe una cosa buona per lasciare il conduttore sa @how lontano dietro il autobus è, @so giusto potrebbe fare una decisione informata</utterance>
 <utterance turn="373" who="Craig Stuart">Quello spingendo dietro di tempi  disordine @up gente che aveva verificato il orario una ora prima che</utterance>
 <utterance turn="374" who="beckd">Bene il *instand che stanno aspettando 3 minuti, sono in ritardo</utterance>
 <utterance turn="375" who="Michael">Non aspetterei il conduttore di autobus per aspettare più di 30 secondi. Ma se il sistema mostrerà autobus fino 3 minuti in ritardo permettendo il conduttore di autobus per scegliere.</utterance>
@@ -380,7 +380,7 @@
 <utterance turn="378" who="Ryan Nordman">Il mio @thinking è che il sistema intero lavorerebbe più se affidiamo nel giudizio del conduttore  in se per aspettare per un autobus di connettere</utterance>
 <utterance turn="379" who="Kia Dastmalchian">Fa il sistema #ancora sa quando un autobus è in ritardo? Sono confuso sopra questo</utterance>
 <utterance turn="380" who="sheny">@So il *onboard il sistema non ricorderà il conduttore per aspettare se è già in ritardo?</utterance>
-<utterance turn="381" who="Ryan Nordman">#Prpers possiamo informare di @how in ritardo il autobus di connettere è e lasciato #prpers decide</utterance>
+<utterance turn="381" who="Ryan Nordman">Gli possiamo informare di @how in ritardo il autobus di connettere è e lasciato gli decide</utterance>
 <utterance turn="382" who="Bryan Lane">*yeah, è supposto a *kia</utterance>
 <utterance turn="383" who="Kia Dastmalchian">Opinai #que questo mostrerebbe la ubicazione dell'autobus di connettere, tanto @in se lui giusto semplice non è lì</utterance>
 <utterance turn="384" who="Odysseus">*Yea, dovrebbe essere @more decisione di conduttore dell'autobus basò</utterance>
@@ -398,7 +398,7 @@
 <utterance turn="396" who="Ryan Nordman">Se dovrebbero essere capaci di verificarlo in il stop PRIMA DELLA connessione, allora necessitiamo ricevere quello dato all'*onboard sistema di autobus @in advance</utterance>
 <utterance turn="397" who="Michael">Sempre sarà lì per *upcoming detiene appena è disponibile.</utterance>
 <utterance turn="398" who="Ryan Nordman">Bene, tanto forse se il conduttore di autobus spinge un @button in il suo @display</utterance>
-<utterance turn="399" who="Ryan Nordman">#Prpers mostrerà @how in ritardo il autobus di connettere sta correndo al prossimo connettendo stop?</utterance>
+<utterance turn="399" who="Ryan Nordman">Gli mostrerà @how in ritardo il autobus di connettere sta correndo al prossimo connettendo stop?</utterance>
 <utterance turn="400" who="Michael">Se sono già in quello schermo, allora #niente necessita essere pulsato.</utterance>
 <utterance turn="401" who="Ryan Nordman">Michael #- sì</utterance>
 <utterance turn="402" who="Bryan Lane">Piaccio essere capace a manualmente *toggle *betweent lui schermi</utterance>
@@ -410,11 +410,11 @@
 <utterance turn="408" who="beckd">Il conduttore potrebbe guardare in *whichever desiderano</utterance>
 <utterance turn="409" who="beckd">@So è più facile per il conduttore per vedere informazione pertinente</utterance>
 <utterance turn="410" who="Bryan Lane">2 schermi è un @alternative</utterance>
-<utterance turn="411" who="Price, Tyler">Ho veduto i nostri @button di stampa d'i @diver prima, #prpers possono fare</utterance>
+<utterance turn="411" who="Price, Tyler">Ho veduto i nostri @button di stampa d'i @diver prima, lo possono fare</utterance>
 <utterance turn="412" who="Chris Hanlon">Perché  necessitiamo 2 schermi?</utterance>
 <utterance turn="413" who="Ryan Nordman">Quello farà il @display @more caro</utterance>
 <utterance turn="414" who="Ryan Nordman">, è fino #ti tipi come clienti</utterance>
-<utterance turn="415" who="Ryan Nordman">Non realmente #prpers sento è necessario</utterance>
+<utterance turn="415" who="Ryan Nordman">Non realmente lo sento è necessario</utterance>
 <utterance turn="416" who="Kia Dastmalchian">Opino i 2 schermi #que cambiano suoni bene</utterance>
 <utterance turn="417" who="Tyler Gates">*yeah, per semplicità</utterance>
 <utterance turn="418" who="Craig Stuart">Perché non giusto rompere il schermo solo a un numero di marchi?</utterance>
@@ -448,7 +448,7 @@
 <utterance turn="446" who="Price, Tyler">(Un lato: cosa #prpers questi necessitato per @analysis giusto?)</utterance>
 <utterance turn="447" who="Craig Stuart">Prossimo #prpers piacerebbe domandare come ti piacerebbe il @passenger di uscire *statistics per essere registrato</utterance>
 <utterance turn="448" who="beckd">Se il sistema sta permettendo dato per essere registrato in #cui sta abbordando il autobus</utterance>
-<utterance turn="449" who="beckd">Perché #prpers è importante di avere uscendo *stats anche</utterance>
+<utterance turn="449" who="beckd">Perché lo è importante di avere uscendo *stats anche</utterance>
 <utterance turn="450" who="Chris Hanlon">Assumo le imprese di autobus vogliono sapere #quale detiene @exit di gente in.  È che corretto.</utterance>
 <utterance turn="451" who="Chris Hanlon">?</utterance>
 <utterance turn="452" who="Price, Tyler">Uscendo *stats  permette per sapere quanta gente è nell'autobus in @one tempo durante parti sicure della rotta.</utterance>
@@ -460,7 +460,7 @@
 <utterance turn="458" who="Price, Tyler">Non credo abbiamo il @hardware</utterance>
 <utterance turn="459" who="mcmahonp">Come è un conduttore di autobus #que va per contare la gente #que @get?</utterance>
 <utterance turn="460" who="Kia Dastmalchian">Quello è difficile nei conduttori</utterance>
-<utterance turn="461" who="Price, Tyler">Non opino conduttori di autobus #prpers possono fare</utterance>
+<utterance turn="461" who="Price, Tyler">Non opino conduttori di autobus lo possono fare</utterance>
 <utterance turn="462" who="Michael">La mia Proposta:  Autobus avere *infared travi #attraverso a *entraces che semplicemente informare quando trave *interruopted.</utterance>
 <utterance turn="463" who="Price, Tyler">Conduttori di autobus potrebbero contare *oncoming ma non entusiasmando</utterance>
 <utterance turn="464" who="Tyler Gates">I lavori supplementari per i conduttori di autobus è sempre cattivo</utterance>
@@ -472,7 +472,7 @@
 <utterance turn="470" who="mcmahonp">O se qualcuno sta addossando contro #prpers, non conterà qualunque</utterance>
 <utterance turn="471" who="Tyler Gates">Necessitiamo affittare alcun tipo per stare lì e *cound gente</utterance>
 <utterance turn="472" who="Chris Hanlon"> *infared ravvicinamenti essere accettabile.</utterance>
-<utterance turn="473" who="Michael">Non avrei i conduttori #prpers contano. È troppo per trattare durante abbordare tempo....</utterance>
+<utterance turn="473" who="Michael">Non avrei i conduttori lo contano. È troppo per trattare durante abbordare tempo....</utterance>
 <utterance turn="474" who="Michael">*Infared È #piuttosto vicino la porta nessuno addosserebbe in #prpers.</utterance>
 <utterance turn="475" who="Price, Tyler">Che sopra sensori di peso nelle ruote, #allora dividere per il peso mediano per persona</utterance>
 <utterance turn="476" who="Ryan Nordman">Per essere onesto, opino affittare #que un tipo @might essere il tuo #migliore e @most costo#-soluzione effettiva...</utterance>
@@ -494,7 +494,7 @@
 <utterance turn="492" who="Ryan Nordman">*Yeah, non posso cambiare il posto di decisione *anymore</utterance>
 <utterance turn="493" who="Ryan Nordman">Giusto mi #scalciare</utterance>
 <utterance turn="494" who="mcmahonp">Per la gente #que subisce/sube #facilmente possiamo contare gente @via contare *fares #-#- ancora non vedo qualunque modo facile di contare @exit</utterance>
-<utterance turn="495" who="Michael">Tenta fare mi un *scribe anche e io  *refresh #prpers per Ryan. È giusto un schermo di spazio destro *ryan?</utterance>
+<utterance turn="495" who="Michael">Tenta fare mi un *scribe anche e io  *refresh lo per Ryan. È giusto un schermo di spazio destro *ryan?</utterance>
 <utterance turn="496" who="Ryan Nordman">Io  e-mail ti un sommario di decisione alla fine</utterance>
 <utterance turn="497" who="beckd">Tanto, decisione? Non avremo @exit *stats</utterance>
 <utterance turn="498" who="Ryan Nordman">Sì, è spazio</utterance>
@@ -531,7 +531,7 @@
 <utterance turn="529" who="Tyler Gates">Dama vecchia = molta gente</utterance>
 <utterance turn="530" who="Price, Tyler">Quello @hardware stesso potrebbe applicare al mio sensore di peso, *lol</utterance>
 <utterance turn="531" who="Michael">Sicuro, porta lavori di ravvicinamento aperto bene.</utterance>
-<utterance turn="532" who="Bryan Lane">#Prpers indovino è #migliore @than #niente @though</utterance>
+<utterance turn="532" who="Bryan Lane">Lo indovino è #migliore @than #niente @though</utterance>
 <utterance turn="533" who="Michael">Bene, hanno vissuto tanto @long secondo molta gente... Possono avere il *bennifit di essere molta gente.</utterance>
 <utterance turn="534" who="Bryan Lane">*haha</utterance>
 <utterance turn="535" who="Craig Stuart">Bene, ultimi tipi di tema</utterance>
@@ -561,14 +561,14 @@
 <utterance turn="559" who="Tyler Gates">*french, #solo in *quebec</utterance>
 <utterance turn="560" who="Bryan Lane">@oh *yeah... Il *french.</utterance>
 <utterance turn="561" who="Tyler Gates">Lascia giusto assumere che separarono</utterance>
-<utterance turn="562" who="Michael">Propongo che i @developer venuti @up con alcune icone che credono rappresentare il nostro sistema e corso #prpers passato #prpers nel prototipo prossimo.</utterance>
+<utterance turn="562" who="Michael">Propongo che i @developer venuti @up con alcune icone che credono rappresentare il nostro sistema e corso gli passato #prpers nel prototipo prossimo.</utterance>
 <utterance turn="563" who="Michael">:D</utterance>
 <utterance turn="564" who="Bryan Lane">ok. Se devo parlare *french lì, devono parlare *english #lì</utterance>
 <utterance turn="565" who="beckd">ok</utterance>
 <utterance turn="566" who="beckd">*i Opina siamo bene per ora tipi</utterance>
 <utterance turn="567" who="Tyler Gates">ok</utterance>
 <utterance turn="568" who="Craig Stuart">Bene, quello è lui *folks</utterance>
-<utterance turn="569" who="Michael">Bene #prpers @so passa che la nostra città è il *capitol del paese....</utterance>
+<utterance turn="569" who="Michael">Bene lo @so passa che la nostra città è il *capitol del paese....</utterance>
 <utterance turn="570" who="Michael">:#-) Bene.</utterance>
 <utterance turn="571" who="Bryan Lane">@wow! Promosso!</utterance>
 <utterance turn="572" who="Price, Tyler">*logout</utterance>

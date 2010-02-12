@@ -84,7 +84,7 @@
 <utterance turn="81" who="reynens">*default È fuori</utterance>
 <utterance turn="82" who="chiuo">Ciao Tutto, *i sono *Ody, sarò il *scribe oggi</utterance>
 <utterance turn="83" who="reynens">Il mio nome è Scott e sono il maestro di ragnatela del cliente.</utterance>
-<utterance turn="84" who="Michael Clark">*Welcome Al primo *elicitation riunione. Il goal di questa prima riunione tra *St. il ospedale di Peter  e *Tri#-i sistemi è per portare entrambe le feste vicino di collaborare e aiuto *Tri#-i sistemi capiscono i requisiti d'il sistema delineato nel *RFP. *Odysseus E sono @developer di software per *Tri#-Sistemi. Sono Michael e sarò moderare questa riunione. *Odysseus Sarà registrare #tutto le  decisioni nel posto di Decisione in il lato destro del tuo schermo. Se in qualunque tempo non accordi con uno d'a le decisioni #prpers piace inviare un messaggio e #prpers parleranno @further.</utterance>
+<utterance turn="84" who="Michael Clark">*Welcome Al primo *elicitation riunione. Il goal di questa prima riunione tra *St. il ospedale di Peter  e *Tri#-i sistemi è per portare entrambe le feste vicino di collaborare e aiuto *Tri#-i sistemi capiscono i requisiti d'il sistema delineato nel *RFP. *Odysseus E sono @developer di software per *Tri#-Sistemi. Sono Michael e sarò moderare questa riunione. *Odysseus Sarà registrare #tutto le  decisioni nel posto di Decisione in il lato destro del tuo schermo. Se in qualunque tempo non accordi con uno d'a le decisioni gli piace inviare un messaggio e #prpers parleranno @further.</utterance>
 <utterance turn="85" who="chiuo">Sono *Odysseus per il modo.</utterance>
 <utterance turn="86" who="rizwanp">ok</utterance>
 <utterance turn="87" who="Michael Clark">Per i minuti il seguente è in frequentazione. 
@@ -104,7 +104,7 @@
 <utterance turn="88" who="nguyenh">Il mio nome è *Thanh, sono il paziente e rappresentante di visitatore</utterance>
 <utterance turn="89" who="rizwanp">ok</utterance>
 <utterance turn="90" who="Michael Clark">Oggi  *elicitation #il @session sarà corso come questione e @session di risposta. Invito tutto dei clienti per domandare questioni così come risposta quelli domandato per *Tri#-Sistemi.</utterance>
-<utterance turn="90" who="Michael Clark">Stiamo usando una tecnologia relativamente nuova per facilitare questo @session, @so se #hay #qualunque problemi piacere *quit *Collaborative @Workbench e riaprirlo. @After #prpers riapri fa sicuro connetti di nuovo e riceverai un invito a *re#-unire la riunione.</utterance>
+<utterance turn="90" who="Michael Clark">Stiamo usando una tecnologia relativamente nuova per facilitare questo @session, @so se #hay #qualunque problemi piacere *quit *Collaborative @Workbench e riaprirlo. @After lo riapri fa sicuro connetti di nuovo e riceverai un invito a *re#-unire la riunione.</utterance>
 <utterance turn="90" who="Michael Clark">È #tutti quanti @ready per iniziare?</utterance>
 <utterance turn="91" who="gosselinc">Sì</utterance>
 <utterance turn="92" who="kaspara">Opino #que siamo</utterance>
@@ -225,7 +225,7 @@
 <utterance turn="201" who="reynens">Il suo chiamato un tavolo ;)</utterance>
 <utterance turn="202" who="reynens">Scrivi in #prpers</utterance>
 <utterance turn="203" who="rizwanp">Un tavolo di #carta di nuovo?</utterance>
-<utterance turn="204" who="Michael Clark">*Q4Un.  #Prpers #potere essere @schedule o riservato, o è #prpers tutto @pretty molto in primo venire primo servire base in modo che quando uno foglie pazienti, altro riceve ammesso?</utterance>
+<utterance turn="204" who="Michael Clark">*Q4Un.  Lo #potere essere @schedule o riservato, o è #prpers tutto @pretty molto in primo venire primo servire base in modo che quando uno foglie pazienti, altro riceve ammesso?</utterance>
 <utterance turn="205" who="saroyam">Primo venire primo servì</utterance>
 <utterance turn="206" who="rizwanp">No @schedule *facilties ancora</utterance>
 <utterance turn="207" who="rizwanp">O attualmente</utterance>
@@ -311,7 +311,7 @@
 <utterance turn="287" who="kaspara">Esattamente</utterance>
 <utterance turn="288" who="rizwanp">ok</utterance>
 <utterance turn="289" who="nguyenh">Per paziente di vedere quanto lui/possiede</utterance>
-<utterance turn="290" who="Michael Clark">Ma non dietro scrivanie dove un utente solo sarà usare #prpers.</utterance>
+<utterance turn="290" who="Michael Clark">Ma non dietro scrivanie dove un utente solo sarà usare gli.</utterance>
 <utterance turn="291" who="rizwanp">Terminali ! = Computers</utterance>
 <utterance turn="292" who="rizwanp">Per i nostri propositi</utterance>
 <utterance turn="293" who="gosselinc">#Il @patient @must dare @consent per #essere #mostrare nei terminali!</utterance>
@@ -328,7 +328,7 @@
 <utterance turn="303" who="reynens">Siamo?</utterance>
 <utterance turn="304" who="reynens">#Il @consent era #alcunché nel *rfp *i opinò *Riz</utterance>
 <utterance turn="306" who="rizwanp">*michael</utterance>
-<utterance turn="307" who="chiuo">#Prpers chiamasti *info *booths o #alcunché nel *rfp *i credere</utterance>
+<utterance turn="307" who="chiuo">Gli chiamasti *info *booths o #alcunché nel *rfp *i credere</utterance>
 <utterance turn="309" who="reynens">Sì</utterance>
 <utterance turn="308" who="rizwanp">Ripetere la questione di nuovo chiaramente *plz</utterance>
 <utterance turn="310" who="rizwanp">*i  Non vuole *scroll sopra</utterance>
@@ -363,10 +363,10 @@
 <utterance turn="339" who="nguyenh">@May essere per verificare e-mail brevemente</utterance>
 <utterance turn="340" who="Michael Clark">Un *google la mappa non @might dare un piano di suolo attento... O uno @at all. @Suggest #alcunché più.</utterance>
 <utterance turn="341" who="saroyam">*i Opina una mappa dell'ospedale dovrebbe essere #piuttosto</utterance>
-<utterance turn="342" who="rizwanp"> #Prpers vogliamo per edificare un software di mappa?</utterance>
+<utterance turn="342" who="rizwanp"> Gli vogliamo per edificare un software di mappa?</utterance>
 <utterance turn="343" who="corbettj">&lt;3 *yahoo mappe :*P</utterance>
 <utterance turn="344" who="rizwanp">ok Qualcuno disse guidare direzioni</utterance>
-<utterance turn="345" who="reynens">*Riz, *riz, non #prpers possiamo dare disegna istruzioni, requisiti giusti</utterance>
+<utterance turn="345" who="reynens">*Riz, *riz, non gli possiamo dare disegna istruzioni, requisiti giusti</utterance>
 <utterance turn="346" who="rizwanp">Tanto *i era *talkin *bout quello</utterance>
 <utterance turn="347" who="saroyam">La gente può trovare il suo modo proprio all'ospedale</utterance>
 <utterance turn="348" who="Michael Clark">Terra di Google darebbe un eccellente @shoot del tetto se quello è #quanto sei dopo.</utterance>
@@ -384,7 +384,7 @@
 <utterance turn="360" who="rizwanp">La mappa è bene</utterance>
 <utterance turn="361" who="saroyam">*u È #lì. *heres Come *u riceve a quello posto</utterance>
 <utterance turn="362" who="reynens">#No, ... Lascia dire un INDIRIZZO all'ospedale è attualmente parte d'il sistema</utterance>
-<utterance turn="363" who="corbettj">*ppl Può prendere un *cab all'ospedale se non #prpers possono trovare :*P</utterance>
+<utterance turn="363" who="corbettj">*ppl Può prendere un *cab all'ospedale se non lo possono trovare :*P</utterance>
 <utterance turn="364" who="nguyenh">@So dovrebbero essere capaci di accedere il internet *abit #allora</utterance>
 <utterance turn="365" who="rizwanp">*u Opina *reyens?</utterance>
 <utterance turn="366" who="chiuo">Indovino informazione di ospedale generale è bene @too?</utterance>
@@ -392,11 +392,11 @@
 <utterance turn="368" who="kaspara">SÌ</utterance>
 <utterance turn="369" who="nguyenh">Sì</utterance>
 <utterance turn="370" who="Michael Clark">Prossimo!</utterance>
-<utterance turn="371" who="Michael Clark">*Q9. Che è gli altri doveri menzionarono in cura di sanità di obiettivi di progetto #il #personale @perform che il sistema nuovo deve aiuto #prpers con?</utterance>
+<utterance turn="371" who="Michael Clark">*Q9. Che è gli altri doveri menzionarono in cura di sanità di obiettivi di progetto #il #personale @perform che il sistema nuovo deve aiuto gli con?</utterance>
 <utterance turn="372" who="rizwanp">Che linea, ?</utterance>
 <utterance turn="373" who="reynens">*i Opina *i saperlo</utterance>
-<utterance turn="374" who="reynens">Il suo non che #prpers aiuti #prpers con i doveri</utterance>
-<utterance turn="375" who="reynens">Ma aiuti #prpers, @while stanno facendo altre cose</utterance>
+<utterance turn="374" who="reynens">Il suo non che lo aiuti gli con i doveri</utterance>
+<utterance turn="375" who="reynens">Ma aiuti gli, @while stanno facendo altre cose</utterance>
 <utterance turn="376" who="saroyam">*i Opina quello significò che il *self scrivania di aiuto preverrà @distraction in modo che gli infermieri etc possono fare altro lavoro come consegnare fuori *meds</utterance>
 <utterance turn="377" who="nguyenh">Come operatività, pulizia ...</utterance>
 <utterance turn="378" who="Michael Clark">Ok. Disattende questione.</utterance>
@@ -444,7 +444,7 @@
 <utterance turn="420" who="fairheadj">#Qualunque uno</utterance>
 <utterance turn="421" who="rizwanp">Dovrebbe permettere accesso di password</utterance>
 <utterance turn="422" who="chiuo">Introduce password in che?</utterance>
-<utterance turn="423" who="Michael Clark">Il nostro opinato con un *keycard è che #prpers potrebbero usare per prevenire introducendo un *username, #allora richiedere una password oltretutto.</utterance>
+<utterance turn="423" who="Michael Clark">Il nostro opinato con un *keycard è che lo potrebbero usare per prevenire introducendo un *username, #allora richiedere una password oltretutto.</utterance>
 <utterance turn="424" who="reynens">*oooh</utterance>
 <utterance turn="426" who="reynens">*i Ti riceve</utterance>
 <utterance turn="425" who="chiuo">Come una spilla?</utterance>
@@ -458,7 +458,7 @@
 <utterance turn="432" who="rizwanp">Se una carta va cattiva</utterance>
 <utterance turn="435" who="rizwanp">Allora *waht?</utterance>
 <utterance turn="436" who="reynens">#No @more *buts lì *Riz</utterance>
-<utterance turn="437" who="saroyam">Se una carta va cattiva #prpers possono ricevere riparati</utterance>
+<utterance turn="437" who="saroyam">Se una carta va cattiva lo possono ricevere riparati</utterance>
 <utterance turn="438" who="rizwanp">ok *u E mi fuori rito adesso</utterance>
 <utterance turn="439" who="rizwanp">*yeah</utterance>
 <utterance turn="440" who="rizwanp">Ma che prenderebbe un tempo lungo</utterance>
@@ -472,7 +472,7 @@
 <utterance turn="448" who="rizwanp">Sì</utterance>
 <utterance turn="449" who="rizwanp">@Deal buono</utterance>
 <utterance turn="450" who="saroyam">Bene necessitano la sua carta per ricevere a parti sicure dell'edilizia *anyways</utterance>
-<utterance turn="451" who="reynens">Sono *screwed e #PRPERS @must domandare</utterance>
+<utterance turn="451" who="reynens">Sono *screwed e LO @must domandare</utterance>
 <utterance turn="452" who="kaspara">Questo è classe di giusto una cosa di design.</utterance>
 <utterance turn="453" who="saroyam">Necessitano la sua carta chiave per tutto non giusto il sistema</utterance>
 <utterance turn="454" who="Michael Clark">Punto buono.</utterance>
@@ -543,7 +543,7 @@
 <utterance turn="520" who="nguyenh">*arounbd 50@</utterance>
 <utterance turn="519" who="rizwanp">Lasciato è dice mediamente un @patient ha 5 parenti</utterance>
 <utterance turn="521" who="rizwanp">Quella cura sopra lui</utterance>
-<utterance turn="522" who="rizwanp">O le</utterance>
+<utterance turn="522" who="rizwanp">O le/la</utterance>
 <utterance turn="523" who="nguyenh">#50%</utterance>
 <utterance turn="524" who="rizwanp">#50% che?</utterance>
 <utterance turn="525" who="gosselinc">?</utterance>
@@ -598,7 +598,7 @@
 <utterance turn="573" who="rizwanp">*wtf</utterance>
 <utterance turn="574" who="Michael Clark">*Q14. Necessitiamo un quadro chiaro di come il sistema attuale segue atti pazienti tanto possiamo venire @up con un metodo @more attento e efficace. Come è *inaccuracies introdotto al tuo sistema attuale, e #quanto #essere #prpers? Cosa farebbe atti pazienti @more efficace e accessibile a dottori e infermieri?</utterance>
 <utterance turn="575" who="rizwanp">ok</utterance>
-<utterance turn="576" who="reynens">*Riz, #PRPERS sei</utterance>
+<utterance turn="576" who="reynens">*Riz, LO sei</utterance>
 <utterance turn="577" who="rizwanp">Lasciato mi parla sopra *inaccuracies</utterance>
 <utterance turn="578" who="rizwanp">#Tutti quanti più chiuso</utterance>
 <utterance turn="579" who="rizwanp">Primo</utterance>
@@ -669,7 +669,7 @@
 <utterance turn="643" who="corbettj">*ofc...Naturalmente :*P</utterance>
 <utterance turn="644" who="rizwanp">Numero di sala è #piuttosto?</utterance>
 <utterance turn="645" who="corbettj">*typo</utterance>
-<utterance turn="646" who="Michael Clark">*Q18. Che tipo di attrezzatura sarebbe ideale di avere @hardware che segue ubicazione @attach a, e #quanto i tipi resterebbero in un poster#-fuori base? #Prpers è possibile che un poster#-fuori il elemento anche richiederà la ubicazione #que segue?</utterance>
+<utterance turn="646" who="Michael Clark">*Q18. Che tipo di attrezzatura sarebbe ideale di avere @hardware che segue ubicazione @attach a, e #quanto i tipi resterebbero in un poster#-fuori base? Lo è possibile che un poster#-fuori il elemento anche richiederà la ubicazione #que segue?</utterance>
 <utterance turn="647" who="reynens">ok</utterance>
 <utterance turn="648" who="rizwanp">ok Necessitiamo seguire un *freaking ago in un 1000 *sq. *ft Sala</utterance>
 <utterance turn="650" who="rizwanp">*wtf Compagno</utterance>
@@ -678,7 +678,7 @@
 <utterance turn="652" who="rizwanp">#Niente che #interferire con *freakin *pacemakers</utterance>
 <utterance turn="653" who="rizwanp">Necessitiamo seguire *pacemakers</utterance>
 <utterance turn="654" who="reynens">Nessun #no</utterance>
-<utterance turn="655" who="rizwanp">*ppl È *stealin #prpers d'i @patient</utterance>
+<utterance turn="655" who="rizwanp">*ppl È *stealin gli d'i @patient</utterance>
 <utterance turn="656" who="rizwanp">E sono *dyin</utterance>
 <utterance turn="657" who="reynens">La tecnologia di seguire</utterance>
 <utterance turn="658" who="reynens">Quello è fino #ti, ma assicurare che non #interferire con attrezzatura medica</utterance>
@@ -694,7 +694,7 @@
 <utterance turn="668" who="reynens">Cose che mantengono vivo = lavorando con il sistema di seguire in posto</utterance>
 <utterance turn="669" who="rizwanp">*i Vuole parlare sopra che @supply seguire *precision</utterance>
 <utterance turn="670" who="nguyenh">Ogni volta il movimento di attrezzatura, il @database dovrebbe essere aggiornato</utterance>
-<utterance turn="671" who="Michael Clark">#Prpers è possibile che un poster#-fuori il elemento anche richiederà la ubicazione #que segue?</utterance>
+<utterance turn="671" who="Michael Clark">Lo è possibile che un poster#-fuori il elemento anche richiederà la ubicazione #que segue?</utterance>
 <utterance turn="672" who="reynens">Seriamente, *i seconda la Mozione @Mute</utterance>
 <utterance turn="673" who="saroyam">Sì</utterance>
 <utterance turn="674" who="kaspara">*Yeap</utterance>
@@ -710,7 +710,7 @@
 <utterance turn="684" who="nguyenh">Sì, che sarebbe buono</utterance>
 <utterance turn="685" who="corbettj">*i Non opina la ubicazione di dottori e infermieri è supposta per essere seguito</utterance>
 <utterance turn="686" who="reynens">*i Opinò decidemmo non per andare con quello?</utterance>
-<utterance turn="688" who="reynens">#Prpers è ancora @in?</utterance>
+<utterance turn="688" who="reynens">Lo è ancora @in?</utterance>
 <utterance turn="687" who="saroyam">*yeah No seguire di dottori o #personale</utterance>
 <utterance turn="689" who="reynens">ok</utterance>
 <utterance turn="690" who="reynens">Nessun dottore, nessun #personale</utterance>
@@ -744,7 +744,7 @@
 <utterance turn="717" who="rizwanp">Indesiderabile</utterance>
 <utterance turn="718" who="saroyam">#No</utterance>
 <utterance turn="719" who="chiuo">ok Nessun #personale di seguire</utterance>
-<utterance turn="720" who="reynens">#Prpers vogliamo per VEDERE la ubicazione PAZIENTE</utterance>
+<utterance turn="720" who="reynens">Gli vogliamo per VEDERE la ubicazione PAZIENTE</utterance>
 <utterance turn="723" who="reynens">Non vedere LA SUA ubicazione</utterance>
 <utterance turn="721" who="rizwanp">Sì</utterance>
 <utterance turn="722" who="nguyenh">In #personale seguendo @at all</utterance>
@@ -764,7 +764,7 @@
 <utterance turn="737" who="Michael Clark">Ok. Tanto @once riescono il magazzino è fino #personale per #introdurre il numero di sala dove sono aperti.</utterance>
 <utterance turn="738" who="rizwanp">Ma possiamo lasciare *u sapere</utterance>
 <utterance turn="739" who="kaspara">Necessità di provviste per essere seguito nell'*incoming magazzino anche</utterance>
-<utterance turn="740" who="corbettj">Sarebbe buono se giusto potresti seguire quando un *consumable il elemento è tolto di #prpers è area di archiviazione rispettiva....Allora sapresti che era nel processo di essere usato @up tanto #prpers potresti @replace</utterance>
+<utterance turn="740" who="corbettj">Sarebbe buono se giusto potresti seguire quando un *consumable il elemento è tolto di #prpers è area di archiviazione rispettiva....Allora sapresti che era nel processo di essere usato @up tanto lo potresti @replace</utterance>
 <utterance turn="741" who="Michael Clark">Sì, un *isle e numero di @shelf per il magazzino o #alcunché simile.</utterance>
 <utterance turn="742" who="nguyenh">#Alcunché come quello</utterance>
 <utterance turn="743" who="reynens">Opina in termini di programmazione</utterance>
@@ -773,7 +773,7 @@
 <utterance turn="746" who="corbettj">Che ti è dicendo *charles?</utterance>
 <utterance turn="747" who="corbettj">:*P</utterance>
 <utterance turn="748" who="gosselinc">@Saying giusto</utterance>
-<utterance turn="749" who="Michael Clark">Ok...Tanto fino la persona #que #prpers toglie #allora.</utterance>
+<utterance turn="749" who="Michael Clark">Ok...Tanto fino la persona #que lo toglie #allora.</utterance>
 <utterance turn="750" who="reynens">Chioccia, *simmer #giù adesso</utterance>
 <utterance turn="751" who="gosselinc">Il laboratorio è vicino a essere fatto</utterance>
 <utterance turn="752" who="reynens">Nessun #no</utterance>
@@ -863,7 +863,7 @@
 <utterance turn="834" who="reynens">Sicuro</utterance>
 <utterance turn="836" who="reynens">Sì, @once un anno, a @tape</utterance>
 <utterance turn="837" who="Michael Clark">Che è *APC?</utterance>
-<utterance turn="838" who="rizwanp">Lasciato #prpers decide se necessitiamo *UPC o *APC o *BMC</utterance>
+<utterance turn="838" who="rizwanp">Lasciato gli decide se necessitiamo *UPC o *APC o *BMC</utterance>
 <utterance turn="839" who="reynens">Seriamente @though, *i *dont sa</utterance>
 <utterance turn="840" who="saroyam">@Once un mese</utterance>
 <utterance turn="841" who="saroyam">In @tape</utterance>
@@ -887,14 +887,14 @@
 <utterance turn="858" who="Michael Clark">*oaky.</utterance>
 <utterance turn="859" who="rizwanp">*i Dice 24 *hrs</utterance>
 <utterance turn="860" who="nguyenh">Marchio di dito del potere prende *aroudn 10 *min in alcuna area</utterance>
-<utterance turn="861" who="Michael Clark">*Q30. È il tre #PRPERS #personale *presently familiare con il sistema attuale e il software installarono?  Sviluppano e *setup il sistema attuale?</utterance>
+<utterance turn="861" who="Michael Clark">*Q30. È il tre LO #personale *presently familiare con il sistema attuale e il software installarono?  Sviluppano e *setup il sistema attuale?</utterance>
 <utterance turn="862" who="gosselinc">Dici molte cose</utterance>
 <utterance turn="863" who="reynens">Dici #niente *Riz</utterance>
 <utterance turn="864" who="rizwanp">#No</utterance>
 <utterance turn="865" who="rizwanp">Sono liceo *dropouts</utterance>
 <utterance turn="866" who="gosselinc">*admin_Divieto *riwanp "*cuz ti parla troppo"</utterance>
 <utterance turn="867" who="saroyam">Familiare con #prpers</utterance>
-<utterance turn="868" who="reynens">Non #prpers montarono</utterance>
+<utterance turn="868" who="reynens">Non lo montarono</utterance>
 <utterance turn="869" who="gosselinc">Dovette/Dové tentare quello</utterance>
 <utterance turn="870" who="Michael Clark">Possono essere allenati.</utterance>
 <utterance turn="871" who="Michael Clark">Due @more questioni!</utterance>
@@ -949,7 +949,7 @@
 <utterance turn="920" who="rizwanp">*i *gotta Essere capace di picchiare il cagare #fuori *u *b4 afferrando il prossimo 26</utterance>
 <utterance turn="921" who="chiuo">ok Tutto *scribed @up *i opina</utterance>
 <utterance turn="922" who="Michael Clark">Grazie Tutto.</utterance>
-<utterance turn="923" who="gosselinc">*riz Parla troppo... Dobbiamo @really @mute #prpers</utterance>
+<utterance turn="923" who="gosselinc">*riz Parla troppo... Dobbiamo @really @mute gli</utterance>
 <utterance turn="924" who="gosselinc">Per la prossima volta</utterance>
 <utterance turn="925" who="Michael Clark">*Meh.</utterance>
 <utterance turn="926" who="reynens">26 è per @loser</utterance>
