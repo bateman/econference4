@@ -43,7 +43,7 @@
 <utterance turn="41" who="Ryan Nordman">@One possibilità @might essere il addirittura#-sistema di autobus del bordo per il conduttore</utterance>
 <utterance turn="42" who="zhangc">Bene,sì, Michael</utterance>
 <utterance turn="43" who="beckd">Opino #que quello era un pò sta sfidando</utterance>
-<utterance turn="44" who="Ryan Nordman">*Yeah, quello è un punto buono Paul</utterance>
+<utterance turn="44" who="Ryan Nordman">Sì, quello è un punto buono Paul</utterance>
 <utterance turn="45" who="beckd">Opino che una caratteristica di planning del viaggio, andando ai modi differenti sarebbe acceduto #attraverso a cose come chiosco, la ragnatela basata e *pda @might essere un pò @more fattibile</utterance>
 <utterance turn="46" who="Craig Stuart">Quello anche potrebbe essere un pò duro</utterance>
 <utterance turn="47" who="Ryan Nordman">ok,</utterance>
@@ -77,32 +77,32 @@
 <utterance turn="75" who="laneb">Numeri di rotta dell'autobus #solo significano #alcunché a qualcuno che prende quello autobus #tutto il tempo</utterance>
 <utterance turn="76" who="Price, Tyler">Cercando per numero di nome/della rotta @may essere utile anche</utterance>
 <utterance turn="77" who="Ryan Nordman">Ok</utterance>
-<utterance turn="78" who="Ryan Nordman">@So aggiungeremo funzionalità di ricerca all'orario *lookup @interface</utterance>
+<utterance turn="78" who="Ryan Nordman">@So aggiungeremo funzionalità di ricerca all'orario *lookup interfaccia</utterance>
 <utterance turn="79" who="mcmahonp">Bene,  non qualcuno #solo vuole vedere un orario se regolarmente presero il autobus?  In altro modo  non usano planning  di viaggio?</utterance>
 <utterance turn="80" who="Michael">In teoria, o se li piacerebbe sapere @how spesso un autobus dato viene.</utterance>
 <utterance turn="81" who="Price, Tyler">(Il *translink il orario è un pò #migliore, puoi scegliere #quale ti detiene vuole *t @time di)</utterance>
 <utterance turn="82" who="beckd">Opino che *paul  il punto è vigente, ma so che #ancora in *victoria, #hay alcun autobus di #il quale *i *dont' sapere le rotte esatte, sarebbe benefico per loro opino per essere capace di scoprire se altri autobus possono andare a punti</utterance>
 <utterance turn="83" who="Christopher Hanlon">@Testing 123...</utterance>
-<utterance turn="84" who="Bryan Lane">Fece #tutti quanti riceve #scalciare lì o giusto mi?</utterance>
+<utterance turn="84" who="Bryan Lane">Fece #tutti quanti riceve scalciato lì o giusto mi?</utterance>
 <utterance turn="85" who="Price, Tyler">Non mi</utterance>
-<utterance turn="86" who="Odysseus">*i Non ricevette #scalciare</utterance>
+<utterance turn="86" who="Odysseus">*i Non ricevette scalciato</utterance>
 <utterance turn="87" who="beckd">Sono bene</utterance>
 <utterance turn="88" who="Craig Stuart">Dove  Chris va</utterance>
 <utterance turn="89" who="hanlonc">#Improvvisamente detenni ricevere messaggi.</utterance>
-<utterance turn="90" who="Odysseus">Apparentemente *ppl sta essendo *randomly #scalciare</utterance>
+<utterance turn="90" who="Odysseus">Apparentemente *ppl sta essendo *randomly scalciò</utterance>
 <utterance turn="91" who="Tyler Gates">Grande</utterance>
 <utterance turn="92" who="beckd">Cosa  ti i tipi opinano dell'opzione di vedere le rotte d'un *zoomable mappa, *chooseing rotte @via area di città</utterance>
 <utterance turn="93" who="beckd">O essendo capace *ot @select numero di rotta</utterance>
-<utterance turn="94" who="hanlonc">Ha qualunque in un essere di computer di le Finestre #scalciare?</utterance>
+<utterance turn="94" who="hanlonc">Ha qualunque in un essere di computer di le Finestre scalciò?</utterance>
 <utterance turn="95" who="zhangc">Sono bene #lì</utterance>
-<utterance turn="96" who="Ryan Nordman">Ok, tanto forse 2 @view #differente dell'orario?  Come un @view per una rotta di autobus sola, listando stop multiplo e i suoi tempi di stop così come un @view per un stop solo, listando autobus multiplo e i suoi tempi di stop in quello @one stop?</utterance>
+<utterance turn="96" who="Ryan Nordman">Ok, tanto forse 2 #vista differenti dell'orario?  Come una #vista per una rotta di autobus sola, listando stop multiplo e i suoi tempi di stop così come una #vista per un stop solo, listando autobus multiplo e i suoi tempi di stop in quello @one stop?</utterance>
 <utterance turn="97" who="Michael">Una caratteristica di questo programma che il *eConference a arnese #prpers piace dimostrare spesso.</utterance>
 <utterance turn="98" who="Michael">Quelli lavori con me.</utterance>
 <utterance turn="99" who="Odysseus">*i Sono bene *i opinarlo suona bene</utterance>
 <utterance turn="100" who="beckd">Era che *ryan  commento rispondevi a?</utterance>
 <utterance turn="101" who="Michael">Di fatto era.</utterance>
-<utterance turn="102" who="Price, Tyler">2 @view, e una mappa, e cercando per rotta/di area/postale</utterance>
-<utterance turn="103" who="Bryan Lane">#Provare menzionare quando ricevetti #scalciare, che forse se abbiamo la idea di ricerca che possiamo cercare per un *landmark nella rotta</utterance>
+<utterance turn="102" who="Price, Tyler">2 #vista, e una mappa, e cercando per rotta/di area/postale</utterance>
+<utterance turn="103" who="Bryan Lane">#Provare menzionare quando ricevetti scalciato, che forse se abbiamo la idea di ricerca che possiamo cercare per un *landmark nella rotta</utterance>
 <utterance turn="104" who="Bryan Lane">@So potrei dire, cercare una rotta che carriere per *x.</utterance>
 <utterance turn="105" who="Bryan Lane">Forse quello è rotta pianificando @though</utterance>
 <utterance turn="106" who="beckd">Quello suona molto come planning di rotta</utterance>
@@ -132,7 +132,7 @@
 <utterance turn="130" who="Bryan Lane">ok, quello è #migliore.</utterance>
 <utterance turn="131" who="Ryan Nordman">Grande</utterance>
 <utterance turn="132" who="Tyler Gates">Il nome non è che utile opino</utterance>
-<utterance turn="133" who="Kia Dastmalchian">#No, il nome è #bene utile</utterance>
+<utterance turn="133" who="Kia Dastmalchian">Non, il nome è #bene utile</utterance>
 <utterance turn="134" who="Michael">Accordo con *Kia. :#-)</utterance>
 <utterance turn="135" who="Bryan Lane">Il nome è utile</utterance>
 <utterance turn="136" who="Price, Tyler">Che numero è il *Majestic, non so</utterance>
@@ -150,26 +150,26 @@
 <utterance turn="148" who="Michael">Centrico sarebbe utile secondo darebbe #tutto i  autobus che ha un *dest di centrico.</utterance>
 <utterance turn="149" who="Michael">Allora listerebbe #tutto il differente @via è per un esempio</utterance>
 <utterance turn="150" who="Tyler Gates">ok @So  facciamo entrambi #allora?</utterance>
-<utterance turn="151" who="Bryan Lane">*yeah, il nome di rotta copre il mio @concern, i nomi sono #piuttosto descrittivi</utterance>
-<utterance turn="152" who="Christopher Hanlon">Sto ricevendo #scalciare *whenever le discussioni sono *logged.</utterance>
+<utterance turn="151" who="Bryan Lane">Sì, il nome di rotta copre la mia preoccupazione, i nomi sono #piuttosto descrittivi</utterance>
+<utterance turn="152" who="Christopher Hanlon">Sto ricevendo scalciato *whenever le discussioni sono *logged.</utterance>
 <utterance turn="153" who="Michael">*anyways Opino #que abbiamo accordato includere ricerca per nome di autobus #ad ogni modo...</utterance>
 <utterance turn="154" who="Ryan Nordman">Bene</utterance>
 <utterance turn="155" who="Ryan Nordman">, siamo #fuori tempo in questo tema, lasciato  movimento addirittura</utterance>
 <utterance turn="156" who="Tyler Gates">Sì</utterance>
 <utterance turn="157" who="Craig Stuart">Necessitiamo spostare lungo al tema prossimo</utterance>
-<utterance turn="158" who="zhangc">Bene, *yeah, il nome è utile in questo caso</utterance>
+<utterance turn="158" who="zhangc">Bene, sì, il nome è utile in questo caso</utterance>
 <utterance turn="159" who="Bryan Lane">Apparentemente il @boot in discussione *log è un saputo *bug</utterance>
 <utterance turn="160" who="Odysseus">*yea, *i opina siamo buoni a *mvoe addirittura</utterance>
 <utterance turn="161" who="Kia Dastmalchian">Dovremmo essere capaci di cercare per entrambi, secondo le rotte hanno #entrambi i nome e numero</utterance>
 <utterance turn="162" who="Craig Stuart">Il nostro tema prossimo è sopra il *Realtime caratteristica di mappa che presentammo in giovedì</utterance>
 <utterance turn="163" who="Craig Stuart">Giusto vogliamo ricevere #alcuno @more *feedback di te sopra i modi differenti di vedere/@select/ubicazioni di filtro in questa mappa</utterance>
-<utterance turn="164" who="Tyler Gates">Per il @view, opino #que volemmo una caratteristica di @zoom</utterance>
+<utterance turn="164" who="Tyler Gates">Per la #vista, opino #que volemmo una caratteristica di @zoom</utterance>
 <utterance turn="165" who="Ryan Nordman">Caratteristiche tanto basiche includono *panning intorno alla mappa di città, e *zooming in o fuori</utterance>
 <utterance turn="166" who="Kia Dastmalchian">Bene, è importante che in un chiosco particolare, la mappa che vedi mostra il autobus che di fatto @pass per la stazione il chiosco è in, per *default</utterance>
-<utterance turn="167" who="Ryan Nordman">*Yeah</utterance>
+<utterance turn="167" who="Ryan Nordman">Sì</utterance>
 <utterance turn="168" who="Odysseus">@Select una regione con una scatola quadrata e lo @zoom @in a quella area?</utterance>
 <utterance turn="169" who="Tyler Gates">Esattamente</utterance>
-<utterance turn="170" who="Ryan Nordman">#No, opino #que vorremmo #alcunché più semplice giusto come un *magnifying tazza + o #- @button</utterance>
+<utterance turn="170" who="Ryan Nordman">Non, opino #que vorremmo #alcunché più semplice giusto come un *magnifying tazza + o #- @button</utterance>
 <utterance turn="171" who="Bryan Lane">Mi piace il +/#- cosa</utterance>
 <utterance turn="172" who="beckd">Attualmente il filtrando filtrerà qualunque stop intorno a il stop specifico che il chiosco è localizzato in.  Se la mappa è *zoomed e *panned, ti è bene che #solo le rotte che @intersect un stop sarà mostrato nel *realtime mappa</utterance>
 <utterance turn="173" who="Kia Dastmalchian">Opino tanto,</utterance>
@@ -180,7 +180,7 @@
 <utterance turn="178" who="Michael">La caratteristica di mappa dovrebbe essere disponibile quando il viaggio #que pianifica anche @so la rotta reale il viaggio *planner ha creato sarà delineato con colori di linea differente o #alcunché per marcare rotte  di autobus *vs camminando aree.</utterance>
 <utterance turn="179" who="beckd">Quello è #quanto opinavo,</utterance>
 <utterance turn="180" who="beckd">Ma fa il filtrando un pò *messy</utterance>
-<utterance turn="181" who="Ryan Nordman">*Yeah, la idea di Bryan è un buono @one,</utterance>
+<utterance turn="181" who="Ryan Nordman">Sì, la idea di Bryan è un buono @one,</utterance>
 <utterance turn="182" who="Ryan Nordman">@So potremmo @pop @up una finestra con @button di stile di scatola di controllo per ogni rotta di autobus, in modo che un utente può aggiungere qualunque rotta di autobus alla mappa e vedere #quanto è sopra con esso</utterance>
 <utterance turn="183" who="Tyler Gates">Mi piace che idea</utterance>
 <utterance turn="184" who="beckd">Bryan, #Quanto @suggest è *currenly #quanto va a passare, @however è difficile di listare #tutto il autobus nella città @in this fashion</utterance>
@@ -208,12 +208,12 @@
 <utterance turn="206" who="Craig Stuart">Necessitiamo spostare in tipi</utterance>
 <utterance turn="207" who="Kia Dastmalchian">Controllo sopra</utterance>
 <utterance turn="208" who="Michael">*i Non sono sicuro perché necessita essere una scatola di controllo... Autobus che ha un *paticular destino o iniziando punto, o @pass #attraverso a una regione sicura o lavori di stop per me... Allora può tutto è ricerca basato @instead of coprire @half la regione di mappa con una lista...???</utterance>
-<utterance turn="209" who="Ryan Nordman">*Yeah,</utterance>
+<utterance turn="209" who="Ryan Nordman">Sì,</utterance>
 <utterance turn="210" who="Ryan Nordman">@That's why sto opinandolo @pop sopra</utterance>
 <utterance turn="211" who="Ryan Nordman">@So non vedresti la lista di rotte a meno che lo chiamasti sopra</utterance>
 <utterance turn="212" who="Ryan Nordman">Allora @select le rotte, e accettare</utterance>
 <utterance turn="213" who="Ryan Nordman">E vedi la mappa di nuovo, schermo pieno</utterance>
-<utterance turn="214" who="Bryan Lane">*yeah</utterance>
+<utterance turn="214" who="Bryan Lane">Sì</utterance>
 <utterance turn="215" who="Bryan Lane">, potrebbe essere nascosto e @pop @up la scatola, @select rotte, e la scatola va fuori</utterance>
 <utterance turn="216" who="Michael">@So stai @suggest che supplementare filtrando può essere fatto *ontop del cercando menzionò.</utterance>
 <utterance turn="217" who="Ryan Nordman">Perché opino lì'*d essere troppe rotte per listare in il lato d'il schermo</utterance>
@@ -223,7 +223,7 @@
 <utterance turn="221" who="Ryan Nordman">Ogni rotta nella città</utterance>
 <utterance turn="222" who="Tyler Gates">Per *default, dovrebbe mostrare ogni rotta in il livello di @zoom attuale</utterance>
 <utterance turn="223" who="Bryan Lane">Ma il *default sarebbe la rotta @select(*s)</utterance>
-<utterance turn="224" who="Michael">*Yeah</utterance>
+<utterance turn="224" who="Michael">Sì</utterance>
 <utterance turn="225" who="Michael">, cercheresti una area o #alcunché... Allora filtro fuori rotte di lì?</utterance>
 <utterance turn="226" who="Ryan Nordman">Bene, io *envision che quando #prpers primo @call @up la mappa già avrà @select le rotte che passano per il stop del chiosco</utterance>
 <utterance turn="227" who="Craig Stuart">Bene tipi,</utterance>
@@ -243,17 +243,17 @@
 <utterance turn="241" who="Craig Stuart">Ristoranti @too forse</utterance>
 <utterance turn="242" who="beckd">Tanto lontano opinavamo ristoranti, *nightlife, parchi, centri di #spesa</utterance>
 <utterance turn="243" who="Kia Dastmalchian">Strade, edilizie, parchi</utterance>
-<utterance turn="244" who="Price, Tyler">*yeah Ma averlo tanto il *admins può aggiungere @more marche di terra e categorie</utterance>
+<utterance turn="244" who="Price, Tyler">Sì ma averlo tanto il *admins può aggiungere @more marche di terra e categorie</utterance>
 <utterance turn="245" who="Craig Stuart">Suoni bene</utterance>
 <utterance turn="246" who="Bryan Lane">@Might avere una tonnellata di categorie come quello</utterance>
 <utterance turn="247" who="Kia Dastmalchian">Accorda con *tyler</utterance>
-<utterance turn="248" who="Ryan Nordman">*Yeah, #quanto Tyler disse</utterance>
+<utterance turn="248" who="Ryan Nordman">Sì, #quanto Tyler disse</utterance>
 <utterance turn="249" who="Odysseus">Bene tanto @long tanto #hay categorie e #tale li potremmo aggiungere in #prpers</utterance>
 <utterance turn="250" who="Bryan Lane">@Might essere #migliore di andare per *keyword</utterance>
 <utterance turn="251" who="beckd">Volemmo mantenere il livello superiore *landmarks #bene semplice</utterance>
 <utterance turn="252" who="Ryan Nordman">Se #prpers  che, non necessitiamo per specificare #quanto le categorie esisteranno</utterance>
 <utterance turn="253" who="Ryan Nordman">Giusto sarà fino te</utterance>
-<utterance turn="254" who="beckd">#No più di sopra 6#-7 tipi</utterance>
+<utterance turn="254" who="beckd">Non più di sopra 6#-7 tipi</utterance>
 <utterance turn="255" who="mcmahonp">Scegli #quanto categorie vuoi, e edifichiamo la lista</utterance>
 <utterance turn="256" who="Ryan Nordman">Bene, che può essere la sua elezione</utterance>
 <utterance turn="257" who="Ryan Nordman">Nessuna necessità di costringerlo in il nostro fine</utterance>
@@ -267,13 +267,13 @@
 <utterance turn="265" who="Bryan Lane">ok</utterance>
 <utterance turn="266" who="Odysseus">Suoni bene a me</utterance>
 <utterance turn="267" who="Craig Stuart">Il tema prossimo è il accesso a il sistema di dispositivi mobili come *PDA è e *cellphones</utterance>
-<utterance turn="268" who="Price, Tyler">*i Opinava giusto un foglio di stile @separate per il @website ...</utterance>
+<utterance turn="268" who="Price, Tyler">*i Opinava giusto un foglio di stile @separate per il sito web ...</utterance>
 <utterance turn="269" who="Ryan Nordman">Lo è bene se semplicemente forniamo un *scalled #giù *mini versione del *webpage?</utterance>
-<utterance turn="270" who="Tyler Gates">*yeah</utterance>
+<utterance turn="270" who="Tyler Gates">Sì</utterance>
 <utterance turn="271" who="Odysseus">*yea</utterance>
 <utterance turn="272" who="Kia Dastmalchian">Opino tanto</utterance>
-<utterance turn="273" who="Bryan Lane">Quello è #quanto opinavo *yeah</utterance>
-<utterance turn="274" who="Ryan Nordman">*Yeah, in modo che #tutto la stessa funzionalità di la @website sarà lì, giusto sarà *setup per un schermo più minuto</utterance>
+<utterance turn="273" who="Bryan Lane">Quello è #quanto opinavo sì</utterance>
+<utterance turn="274" who="Ryan Nordman">Sì, in modo che #tutto la stessa funzionalità d'il sito web sarà lì, giusto sarà *setup per un schermo più minuto</utterance>
 <utterance turn="275" who="Odysseus">Probabilmente tanto chiaro in grafici come possibile?</utterance>
 <utterance turn="276" who="Bryan Lane">Destro...</utterance>
 <utterance turn="277" who="Bryan Lane"> Necessitiamo la mappa?</utterance>
@@ -301,7 +301,7 @@
 <utterance turn="299" who="Ryan Nordman">Quanti stop @in advance  vuoi mostrato?</utterance>
 <utterance turn="300" who="Kia Dastmalchian">*umm</utterance>
 <utterance turn="301" who="Michael">Per il posto di decisione mi piacerebbe vedere la ricerca aggiunse a *realtime parte di mappa.</utterance>
-<utterance turn="302" who="Ryan Nordman">Opino #que stiamo considerando un schermo minuto, forse #ancora giusto un digitale @one testo di linea @display</utterance>
+<utterance turn="302" who="Ryan Nordman">Opino #que stiamo considerando un schermo minuto, forse #ancora giusto un digitale @one testo di linea esibizione</utterance>
 <utterance turn="303" who="Price, Tyler">Tanto giusto il stop prossimo?...</utterance>
 <utterance turn="304" who="Ryan Nordman">Michael #- che classe di ricerca?</utterance>
 <utterance turn="305" who="Bryan Lane">Uno allinea?</utterance>
@@ -309,7 +309,7 @@
 <utterance turn="307" who="Bryan Lane">*i Non opina quello lavorerebbe</utterance>
 <utterance turn="308" who="Kia Dastmalchian">Per 'orario proprio', significa il suo reale, duro, orario, non un dinamicamente cambiando cosa...Almeno quello è come io lo capisce</utterance>
 <utterance turn="309" who="Ryan Nordman">Sì, potrebbe *scroll</utterance>
-<utterance turn="310" who="Bryan Lane">Bene, quello'*d essere duro delle ggere @driving di @while</utterance>
+<utterance turn="310" who="Bryan Lane">Bene, quello'*d essere duro delle ggere conduzione di @while</utterance>
 <utterance turn="311" who="Bryan Lane"> Non opini?</utterance>
 <utterance turn="312" who="Odysseus">*yea @One linea è insufficiente *i opinare</utterance>
 <utterance turn="313" who="Tyler Gates">Nessun *scrolling. #Distrarre il conduttore</utterance>
@@ -323,7 +323,7 @@
 <utterance turn="321" who="Kia Dastmalchian">Può leggere il *router o @whatever prima che guida, #quanto il *onscreen può fornire è una copia di questo per il suo riferimento</utterance>
 <utterance turn="322" who="Kia Dastmalchian">Non necessita per vederlo mentre guidando</utterance>
 <utterance turn="323" who="Price, Tyler">Nessun #hay come tempo *checkpoints tanto non va @too rapido</utterance>
-<utterance turn="324" who="Bryan Lane">*yeah, è @more per se è puntualmente o ricevendo dietro/avanti</utterance>
+<utterance turn="324" who="Bryan Lane">Sì, è @more per se è puntualmente o ricevendo dietro/avanti</utterance>
 <utterance turn="325" who="Michael">Lui  aspetto @more probabile in esso quando detenendo per captare gente.</utterance>
 <utterance turn="326" who="Kia Dastmalchian">@As for vedere materia in schermo, il suo piacere *bryan giusto detto #lì</utterance>
 <utterance turn="327" who="Michael">*yep</utterance>
@@ -332,7 +332,7 @@
 <utterance turn="330" who="Price, Tyler">Secondo una opzione</utterance>
 <utterance turn="331" who="Bryan Lane">Ancora opino che un *scrolling linea di testo ti forzerebbe per parere in il schermo per una quantità @fixed di tempo</utterance>
 <utterance turn="332" who="Michael">Accordo con il punto di Brian.</utterance>
-<utterance turn="333" who="Ryan Nordman">ok, @so sto udendo che *multi#-@display di linea sarebbe più</utterance>
+<utterance turn="333" who="Ryan Nordman">ok, @so sto udendo che *multi#-esibizione di linea sarebbe più</utterance>
 <utterance turn="334" who="Michael">Sì.</utterance>
 <utterance turn="335" who="Odysseus">*yea</utterance>
 <utterance turn="336" who="Tyler Gates">Sì</utterance>
@@ -340,14 +340,14 @@
 <utterance turn="338" who="Kia Dastmalchian">Che approssimativamente @instead of *scrolling, lui giusto *flashes linee differenti, @so non devi *stare in esso�</utterance>
 <utterance turn="339" who="Kia Dastmalchian"> Sai #quanto significo?</utterance>
 <utterance turn="340" who="Michael">Sicuro.</utterance>
-<utterance turn="341" who="Michael">Lui  non @really necessità di sollevare se il conduttore è in ritardo o avanti. Non dovrebbero essere avanti con questo @display tanto #haber tempo *checkpoint. La gente aspetta il autobus non per venire @too presto.</utterance>
+<utterance turn="341" who="Michael">Lui  non @really necessità di sollevare se il conduttore è in ritardo o avanti. Non dovrebbero essere avanti con questa esibizione tanto #haber tempo *checkpoint. La gente aspetta il autobus non per venire @too presto.</utterance>
 <utterance turn="342" who="Bryan Lane">Ancora dovresti vigilare per la linea stai buscando</utterance>
-<utterance turn="343" who="Ryan Nordman"> Vuoi il conduttore di autobus per avanzare il @display di stop manualmente?</utterance>
+<utterance turn="343" who="Ryan Nordman"> Vuoi il conduttore di autobus per avanzare la esibizione di stop manualmente?</utterance>
 <utterance turn="344" who="Ryan Nordman">Per il suo orario?</utterance>
 <utterance turn="345" who="Craig Stuart">*i Non opina #hay qualunque necessità di farlo manualmente....</utterance>
-<utterance turn="346" who="Michael">#No, dovrebbe essere automatico. Nessuna entrata richiesta di @while di conduttore in rotta.</utterance>
+<utterance turn="346" who="Michael">Non, dovrebbe essere automatico. Nessuna entrata richiesta di @while di conduttore in rotta.</utterance>
 <utterance turn="347" who="Ryan Nordman">Perché la altra opzione è per legarlo in con GPS e averlo mostra il stop basò in dove il autobus è</utterance>
-<utterance turn="348" who="Craig Stuart">*yeah</utterance>
+<utterance turn="348" who="Craig Stuart">Sì</utterance>
 <utterance turn="349" who="Michael">Sì al commento di Ryan.</utterance>
 <utterance turn="350" who="Bryan Lane">Mi piace che anche</utterance>
 <utterance turn="351" who="beckd">Opino che sarebbe @pretty *resonable *ryan, secondo tutto è già legato @in</utterance>
@@ -355,11 +355,11 @@
 <utterance turn="353" who="Ryan Nordman">ok</utterance>
 <utterance turn="354" who="beckd">*soudns Buono</utterance>
 <utterance turn="355" who="Craig Stuart">Il tema prossimo è @regarding connessioni tra rotte</utterance>
-<utterance turn="356" who="Price, Tyler">*whoa,  il @display dice #qualsiasi cosa sopra tardio connettendo autobus *es?</utterance>
-<utterance turn="357" who="Ryan Nordman">anche mi piacerebbe parlare il *onboard @display di autobus per il dato di connessione anche</utterance>
+<utterance turn="356" who="Price, Tyler">*whoa,  la esibizione dice #qualsiasi cosa sopra tardio connettendo autobus *es?</utterance>
+<utterance turn="357" who="Ryan Nordman">anche mi piacerebbe parlare il *onboard esibizione di autobus per il dato di connessione anche</utterance>
 <utterance turn="358" who="Craig Stuart">Bene........Il nostro tempo è @pretty limitato, abbiamo 5 minuti lasciarono</utterance>
 <utterance turn="359" who="Bryan Lane">Bene, possiamo coprire il tardio connettendo autobus in questa sezione, da esso è pertinente</utterance>
-<utterance turn="360" who="Ryan Nordman">Opino giusto potremmo usare lo stesso @display, ma avere due @button per permettere il conduttore di autobus per @select cosa per vedere</utterance>
+<utterance turn="360" who="Ryan Nordman">Opino giusto potremmo usare la stessa esibizione, ma avere due @button per permettere il conduttore di autobus per @select cosa per vedere</utterance>
 <utterance turn="361" who="Ryan Nordman">Forse con una allerta di suono quando connettendo il dato sta entrando?</utterance>
 <utterance turn="362" who="Price, Tyler">Direi che ogni viaggio ha sopra 10 minuti di gioco, tanto in connessione importante *stopes (*hubs, terminali) i conduttori aspetteranno fino come 3 minuti per connettere autobus...</utterance>
 <utterance turn="363" who="Tyler Gates">Forse se #hay un altro autobus dentro una prossimità sicura, lo mostrerebbe</utterance>
@@ -376,34 +376,34 @@
 <utterance turn="374" who="beckd">Bene il *instand che stanno aspettando 3 minuti, sono in ritardo</utterance>
 <utterance turn="375" who="Michael">Non aspetterei il conduttore di autobus per aspettare più di 30 secondi. Ma se il sistema mostrerà autobus fino 3 minuti in ritardo permettendo il conduttore di autobus per scegliere.</utterance>
 <utterance turn="376" who="Bryan Lane">Se è 5 secondi dietro (*ie intorno all'angolo), potrebbe giusto attesa. Se è 5 minuti, non molesta.</utterance>
-<utterance turn="377" who="Ryan Nordman">*Yeah,</utterance>
+<utterance turn="377" who="Ryan Nordman">Sì,</utterance>
 <utterance turn="378" who="Ryan Nordman">Il mio @thinking è che il sistema intero lavorerebbe più se affidiamo nel giudizio del conduttore  in se per aspettare per un autobus di connettere</utterance>
 <utterance turn="379" who="Kia Dastmalchian">Fa il sistema #ancora sa quando un autobus è in ritardo? Sono confuso sopra questo</utterance>
 <utterance turn="380" who="sheny">@So il *onboard il sistema non ricorderà il conduttore per aspettare se è già in ritardo?</utterance>
 <utterance turn="381" who="Ryan Nordman">Li possiamo informare di @how in ritardo il autobus di connettere è e lasciato li decide</utterance>
-<utterance turn="382" who="Bryan Lane">*yeah, è supposto a *kia</utterance>
+<utterance turn="382" who="Bryan Lane">Sì, è supposto a *kia</utterance>
 <utterance turn="383" who="Kia Dastmalchian">Opinai #que questo mostrerebbe la ubicazione dell'autobus di connettere, tanto @in se lui giusto semplice non è lì</utterance>
 <utterance turn="384" who="Odysseus">*Yea, dovrebbe essere @more decisione di conduttore dell'autobus basò</utterance>
 <utterance turn="385" who="Odysseus">Il suo giudizio se per aspettare o non</utterance>
-<utterance turn="386" who="Kia Dastmalchian">*yeah</utterance>
+<utterance turn="386" who="Kia Dastmalchian">Sì</utterance>
 <utterance turn="387" who="Odysseus">E 3 minuti è @too @long per aspettare</utterance>
 <utterance turn="388" who="Craig Stuart">Sicuro</utterance>
 <utterance turn="389" who="Price, Tyler">Ti dice è in un autobus che va di *UVic al cambio Occidentale e lui è suppone per compiere un autobus che va di Dell'ovest Ex a *Wishart #- ma il *UVic il autobus è poco in ritardo, il *Wishart il conduttore potrebbe *aford per aspettare 3min.</utterance>
 <utterance turn="390" who="Michael">Il conduttore verificherà il schermo quando lasciando importante/connettendo stop, nessun molesto *beeps necessario o altre notifiche. Informazione supplementare giusto per fare decisioni @smart.</utterance>
-<utterance turn="391" who="Bryan Lane">*yeah,</utterance>
+<utterance turn="391" who="Bryan Lane">Sì,</utterance>
 <utterance turn="392" who="Bryan Lane">E se sei avanti, puoi permettere per aspettare più lungo</utterance>
 <utterance turn="393" who="Tyler Gates">Rotte di autobus rurale sono differenti</utterance>
 <utterance turn="394" who="Craig Stuart">*i Opina alcuna classe di notifica di @audio sarebbe benefica</utterance>
 <utterance turn="395" who="Ryan Nordman">ok, @so quando dovere il sistema mostra il informazione al conduttore di autobus?</utterance>
 <utterance turn="396" who="Ryan Nordman">Se dovrebbero essere capaci di verificarlo in il stop PRIMA DELLA connessione, allora necessitiamo ricevere quello dato all'*onboard sistema di autobus @in advance</utterance>
 <utterance turn="397" who="Michael">Sempre sarà lì per *upcoming detiene appena è disponibile.</utterance>
-<utterance turn="398" who="Ryan Nordman">Bene, tanto forse se il conduttore di autobus spinge un @button in il suo @display</utterance>
+<utterance turn="398" who="Ryan Nordman">Bene, tanto forse se il conduttore di autobus spinge un @button in la sua esibizione</utterance>
 <utterance turn="399" who="Ryan Nordman">Li mostrerà @how in ritardo il autobus di connettere sta correndo al prossimo connettendo stop?</utterance>
 <utterance turn="400" who="Michael">Se sono già in quello schermo, allora #niente necessita essere pulsato.</utterance>
 <utterance turn="401" who="Ryan Nordman">Michael #- sì</utterance>
 <utterance turn="402" who="Bryan Lane">Piaccio essere capace a manualmente *toggle *betweent lui schermi</utterance>
 <utterance turn="403" who="Michael">Se cambiarono dietro a il schermo di orario, allora necessiterebbero pulsare il altro @button.</utterance>
-<utterance turn="404" who="Chris Hanlon">Preferirei che il passeggio non necessita pulsare #qualunque @button in il @display.</utterance>
+<utterance turn="404" who="Chris Hanlon">Preferirei che il passeggio non necessita pulsare #qualunque @button nell'esibizione.</utterance>
 <utterance turn="405" who="Craig Stuart">*i Accorda con Chris</utterance>
 <utterance turn="406" who="beckd">@How sopra mostrare due *seperate schermi</utterance>
 <utterance turn="407" who="beckd">Uno in il lasciato/uno nel destro</utterance>
@@ -412,22 +412,22 @@
 <utterance turn="410" who="Bryan Lane">2 schermi è un @alternative</utterance>
 <utterance turn="411" who="Price, Tyler">Ho veduto i nostri @button di stampa d'i @diver prima, lo possono fare</utterance>
 <utterance turn="412" who="Chris Hanlon">Perché  necessitiamo 2 schermi?</utterance>
-<utterance turn="413" who="Ryan Nordman">Quello farà il @display @more caro</utterance>
+<utterance turn="413" who="Ryan Nordman">Quello farà la esibizione @more caro</utterance>
 <utterance turn="414" who="Ryan Nordman">, è fino te tipi come clienti</utterance>
 <utterance turn="415" who="Ryan Nordman">Non realmente lo sento è necessario</utterance>
 <utterance turn="416" who="Kia Dastmalchian">Opino i 2 schermi #que cambiano suoni bene</utterance>
-<utterance turn="417" who="Tyler Gates">*yeah, per semplicità</utterance>
+<utterance turn="417" who="Tyler Gates">Sì, per semplicità</utterance>
 <utterance turn="418" who="Craig Stuart">Perché non giusto rompere il schermo solo a un numero di marchi?</utterance>
-<utterance turn="419" who="Ryan Nordman">I tassisti quasi hanno un #tastiera pieno in le sue macchine, sono conduttori di autobus @sure può sopportare due @button</utterance>
+<utterance turn="419" who="Ryan Nordman">I tassisti quasi hanno una tastiera piena in le sue macchine, sono conduttori di autobus @sure può sopportare due @button</utterance>
 <utterance turn="420" who="Bryan Lane">Non opino il schermo duale è necessario</utterance>
 <utterance turn="421" who="Bryan Lane">, ma il @button a *toggle il mostrato *info è bene</utterance>
 <utterance turn="422" who="Bryan Lane">Quello è il mio voto.</utterance>
 <utterance turn="423" who="Michael">Ho fede in i nostri conduttori di autobus. Di fatto la necessità a cambio potrebbe essere eliminata come *necessity e lì tanto una opzione se nella tazza d'il schermo di autobus tardio sarebbe il tempo il conduttore dovrebbe lasciare il stop prossimo.</utterance>
-<utterance turn="424" who="beckd">Opino che ammassando un @display fa il dato difficile a #facilmente *comprehend</utterance>
+<utterance turn="424" who="beckd">Opino che ammassando una esibizione fa il dato difficile a #facilmente *comprehend</utterance>
 <utterance turn="425" who="Kia Dastmalchian">Il suo non piacere dovrebbero necessitare cambiare tutto  che spesso, in alcuna classe di @while di panico guidano</utterance>
 <utterance turn="426" who="zhangc">Troppo informazione per conduttori, 2 schermo non è *usefull</utterance>
 <utterance turn="427" who="Bryan Lane">ok @So *toggle #allora?</utterance>
-<utterance turn="428" who="Price, Tyler">*yeah @One schermo *toggling mostra probabilmente più</utterance>
+<utterance turn="428" who="Price, Tyler">Sì @one schermo *toggling mostra probabilmente più</utterance>
 <utterance turn="429" who="Odysseus">*toggle È bene</utterance>
 <utterance turn="430" who="Tyler Gates">+1 per *toggling</utterance>
 <utterance turn="431" who="Ryan Nordman">ok</utterance>
@@ -437,7 +437,7 @@
 <utterance turn="435" who="Craig Stuart">Spostando lungo</utterance>
 <utterance turn="436" who="Michael">Sì, ma mi piacque il mio suggerimento per avendo il tempo il conduttore dovrebbe lasciare il stop prossimo, e il tempo attuale nella tazza d'il schermo di autobus tardio anche.</utterance>
 <utterance turn="437" who="Michael">Quello ridurrebbe sempre *toggling.</utterance>
-<utterance turn="438" who="Bryan Lane">*yeah, la prima linea potrebbe essere uguale in entrambi i @display</utterance>
+<utterance turn="438" who="Bryan Lane">Sì, la prima linea potrebbe essere uguale in entrambe le esibizioni</utterance>
 <utterance turn="439" who="beckd">*toggling Potrebbe essere un *hassle che i conduttori giusto evitano</utterance>
 <utterance turn="440" who="Michael">Sicuro.</utterance>
 <utterance turn="441" who="beckd">Suoni tipi grandi</utterance>
@@ -445,7 +445,7 @@
 <utterance turn="443" who="Michael">&gt;#-|</utterance>
 <utterance turn="444" who="Craig Stuart">Bene</utterance>
 <utterance turn="445" who="">, @so spostando lungo</utterance>
-<utterance turn="446" who="Price, Tyler">(Un lato: cosa #prpers questi necessitato per @analysis giusto?)</utterance>
+<utterance turn="446" who="Price, Tyler">(Un lato: cosa #prpers questi necessitato per #analisi giusta?)</utterance>
 <utterance turn="447" who="Craig Stuart">Prossimo #prpers piacerebbe domandare come ti piacerebbe il @passenger di uscire *statistics per essere registrato</utterance>
 <utterance turn="448" who="beckd">Se il sistema sta permettendo dato per essere registrato in #cui sta abbordando il autobus</utterance>
 <utterance turn="449" who="beckd">Perché lo è importante di avere uscendo *stats anche</utterance>
@@ -456,7 +456,7 @@
 <utterance turn="454" who="mcmahonp">Come  raccogliamo questo *stats?</utterance>
 <utterance turn="455" who="mcmahonp"> Hai il @hardware?</utterance>
 <utterance turn="456" who="Michael">Uscendo è importante di permettere autobus *planners per sapere #quale stop sono usati e #che non è. Tanto *statistics intorno a #quanto è #richiedere sarebbe il stop #prpers *departed in, tempo #prpers *departed, rotta e una stima.... Se il numero di gente è @too duro di seguire, giusto il sapere che qualcuno @get in quello stop.</utterance>
-<utterance turn="457" who="Craig Stuart">Credo #que la idea originale era che il conduttore introdurrebbe i numeri a il suo/il suo @display</utterance>
+<utterance turn="457" who="Craig Stuart">Credo #que la idea originale era che il conduttore introdurrebbe i numeri a la sua/la sua esibizione</utterance>
 <utterance turn="458" who="Price, Tyler">Non credo abbiamo il @hardware</utterance>
 <utterance turn="459" who="mcmahonp">Come è un conduttore di autobus #que va per contare la gente #que @get?</utterance>
 <utterance turn="460" who="Kia Dastmalchian">Quello è difficile nei conduttori</utterance>
@@ -468,7 +468,7 @@
 <utterance turn="466" who="Bryan Lane">Quello non lavorerà. No #hay nessun modo.</utterance>
 <utterance turn="467" who="mcmahonp">Problema stesso con *infared</utterance>
 <utterance turn="468" who="mcmahonp">Non conterà un gruppo</utterance>
-<utterance turn="469" who="Craig Stuart">*yeah</utterance>
+<utterance turn="469" who="Craig Stuart">Sì</utterance>
 <utterance turn="470" who="mcmahonp">O se qualcuno sta addossando contro esso, non conterà qualunque</utterance>
 <utterance turn="471" who="Tyler Gates">Necessitiamo affittare alcun tipo per stare lì e *cound gente</utterance>
 <utterance turn="472" who="Chris Hanlon"> *infared ravvicinamenti essere accettabile.</utterance>
@@ -491,8 +491,8 @@
 <utterance turn="489" who="Kia Dastmalchian">Auspicavamo #que il sistema #prpers fornirebbe dato di ogni giorno @instead of @once ogni tanto</utterance>
 <utterance turn="490" who="Michael">Sì.</utterance>
 <utterance turn="491" who="Bryan Lane">Non sto vedendo il *ryan contando nella decisione *pane</utterance>
-<utterance turn="492" who="Ryan Nordman">*Yeah, non posso cambiare il posto di decisione *anymore</utterance>
-<utterance turn="493" who="Ryan Nordman">Giusto mi #scalciare</utterance>
+<utterance turn="492" who="Ryan Nordman">Sì, non posso cambiare il posto di decisione *anymore</utterance>
+<utterance turn="493" who="Ryan Nordman">Giusto mi scalcia</utterance>
 <utterance turn="494" who="mcmahonp">Per la gente #que subisce/sube #facilmente possiamo contare gente @via contare *fares #-#- ancora non vedo qualunque modo facile di contare @exit</utterance>
 <utterance turn="495" who="Michael">Tenta fare mi un *scribe anche e io  *refresh lo per Ryan. È giusto un schermo di spazio destro *ryan?</utterance>
 <utterance turn="496" who="Ryan Nordman">Io  e-mail ti un sommario di decisione alla fine</utterance>
@@ -507,7 +507,7 @@
 <utterance turn="505" who="beckd">Spostando destro lungo?</utterance>
 <utterance turn="506" who="Kia Dastmalchian">(Potremmo *ditch @exit *stats?)</utterance>
 <utterance turn="507" who="Kia Dastmalchian">Dove la gente subisce/sube è dato @more importante</utterance>
-<utterance turn="508" who="Bryan Lane">*yeah, abbiamo il *stats che il autobus sarebbe detenere</utterance>
+<utterance turn="508" who="Bryan Lane">Sì, abbiamo il *stats che il autobus sarebbe detenere</utterance>
 <utterance turn="509" who="Craig Stuart">Il suono buono a #tutti quanti?</utterance>
 <utterance turn="510" who="beckd">I suoni grandi</utterance>
 <utterance turn="511" who="Tyler Gates">ok</utterance>
@@ -559,7 +559,7 @@
 <utterance turn="557" who="Michael">Con opzione di aggiungere @more lingua in data futura.</utterance>
 <utterance turn="558" who="Price, Tyler">Necessità unica *french per materia federale</utterance>
 <utterance turn="559" who="Tyler Gates">*french, #solo in *quebec</utterance>
-<utterance turn="560" who="Bryan Lane">@oh *yeah... Il *french.</utterance>
+<utterance turn="560" who="Bryan Lane">@oh Sì... Il *french.</utterance>
 <utterance turn="561" who="Tyler Gates">Lascia giusto assumere che separarono</utterance>
 <utterance turn="562" who="Michael">Propongo che i @developer venuti @up con alcune icone che credono rappresentare il nostro sistema e corso li passato #prpers nel prototipo prossimo.</utterance>
 <utterance turn="563" who="Michael">:D</utterance>

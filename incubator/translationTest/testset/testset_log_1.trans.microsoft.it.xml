@@ -67,9 +67,8 @@
 <utterance turn="65" who="Michael Clark">Benvenuti alla prima riunione di elicitation. Ci accingiamo a iniziare qui tra poco, ma nel frattempo sentitevi liberi di indicare il nome e il ruolo. C'È qualcuno mancante che richiede un invito?</utterance>
 <utterance turn="66" who="nguyenh">Hey Scott, siete su?</utterance>
 <utterance turn="67" who="reynens">argh</utterance>
-<utterance turn="68" who="kaspara">Esiste un modo per dimostrare i nostri nomi actauly anziché semplicemente «gosselinc» ecc.?
-</utterance>
-<utterance turn="69" who="reynens">Scott---</utterance>
+<utterance turn="68" who="kaspara">Esiste un modo per dimostrare i nostri nomi actauly anziché semplicemente «gosselinc» ecc.?</utterance>
+<utterance turn="69" who="reynens">Scott&lt;---&gt;&lt;/---&gt;</utterance>
 <utterance turn="70" who="chiuo">Mike, mi hanno apportate mi scribe già?</utterance>
 <utterance turn="71" who="nguyenh">Ok</utterance>
 <utterance turn="72" who="reynens">OK, spiegherò</utterance>
@@ -352,7 +351,7 @@
 <utterance turn="340" who="Michael Clark">Una mappa di google potrebbe non dare un preciso piano di parola... o uno affatto. Vorrei suggerire di qualcos'altro.</utterance>
 <utterance turn="341" who="saroyam">Credo che una mappa dell'ospedale dovrebbe essere sufficiente</utterance>
 <utterance turn="342" who="rizwanp">vogliamo creare una mappa del software?</utterance>
-<utterance turn="343" who="corbettj">3 mappe yahoo: P</utterance>
+<utterance turn="343" who="corbettj">&lt;3 yahoo maps :p yahoo="" maps=""&gt;&lt;/3 yahoo maps :p&gt;</utterance>
 <utterance turn="344" who="rizwanp">OK qualcuno ha detto indicazioni stradali</utterance>
 <utterance turn="345" who="reynens">Riz, riz, possiamo dare istruzioni di progettazione, soli requisiti</utterance>
 <utterance turn="346" who="rizwanp">così stavo talkin bout che</utterance>
@@ -948,7 +947,7 @@
 <utterance turn="931" who="reynens">salvare i risultati qui persone</utterance>
 <utterance turn="932" who="rizwanp">chi è corbett?</utterance>
 <utterance turn="933" who="rizwanp">Ho pensato che fosse l'edificio</utterance>
-<utterance turn="934" who="corbettj">--Giacomo</utterance>
+<utterance turn="934" who="corbettj">&lt;-- jeff&gt;&lt;/-- jeff&gt;</utterance>
 <utterance turn="935" who="reynens">whups</utterance>
 <utterance turn="936" who="rizwanp">Oh</utterance>
 <utterance turn="937" who="gosselinc">Abbiamo fatto?</utterance>

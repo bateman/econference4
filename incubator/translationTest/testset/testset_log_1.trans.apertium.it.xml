@@ -104,7 +104,7 @@
 <utterance turn="88" who="nguyenh">Il mio nome è *Thanh, sono il paziente e rappresentante di visitatore</utterance>
 <utterance turn="89" who="rizwanp">ok</utterance>
 <utterance turn="90" who="Michael Clark">Oggi  *elicitation #il @session sarà corso come questione e @session di risposta. Invito tutto dei clienti per domandare questioni così come risposta quelli domandato per *Tri#-Sistemi.</utterance>
-<utterance turn="90" who="Michael Clark">Stiamo usando una tecnologia relativamente nuova per facilitare questo @session, @so se #hay #qualunque problemi piacere *quit *Collaborative @Workbench e riaprirlo. @After lo riapri fa sicuro connetti di nuovo e riceverai un invito a *re#-unire la riunione.</utterance>
+<utterance turn="90" who="Michael Clark">Stiamo usando una tecnologia relativamente nuova per facilitare questo @session, @so se #hay #qualunque problemi piacere *quit *Collaborative Banco di lavoro e riaprirlo. @After lo riapri fa sicuro connetti di nuovo e riceverai un invito a *re#-unire la riunione.</utterance>
 <utterance turn="90" who="Michael Clark">È #tutti quanti @ready per iniziare?</utterance>
 <utterance turn="91" who="gosselinc">Sì</utterance>
 <utterance turn="92" who="kaspara">Opino #que siamo</utterance>
@@ -127,14 +127,14 @@
 <utterance turn="108" who="nguyenh">Il nostro *max la calotta è una 400</utterance>
 <utterance turn="109" who="chiuo">Bene che era la capacità</utterance>
 <utterance turn="110" who="saroyam">*i *didnt Sa decidemmo che</utterance>
-<utterance turn="111" who="rizwanp">*yeah È nel *RFP</utterance>
+<utterance turn="111" who="rizwanp">Sì è nel *RFP</utterance>
 <utterance turn="112" who="chiuo">Ma quanto entrando e fuori  aspetti?</utterance>
 <utterance turn="113" who="Michael Clark">La mia comprensione è che #hay sopra 400 @patient con letti.</utterance>
 <utterance turn="114" who="rizwanp">@oh</utterance>
 <utterance turn="115" who="nguyenh">Sì</utterance>
 <utterance turn="116" who="Michael Clark">Quanti  tratti in una base quotidiana che è *walkins?</utterance>
 <utterance turn="116" who="Michael Clark">350?</utterance>
-<utterance turn="117" who="corbettj">*yeah Specificammo 400 nel *RFP</utterance>
+<utterance turn="117" who="corbettj">Sì specificammo 400 nel *RFP</utterance>
 <utterance turn="118" who="nguyenh">Abbiamo una ronda 350</utterance>
 <utterance turn="119" who="nguyenh">Abbiamo intorno a 400 letto</utterance>
 <utterance turn="120" who="Michael Clark">Eccellente.</utterance>
@@ -149,10 +149,10 @@
 <utterance turn="129" who="reynens">*yup,</utterance>
 <utterance turn="129" who="reynens">Gente con *slivers incluse</utterance>
 <utterance turn="130" who="nguyenh">Quello è *mke inviare #allora, lasciato va con *Mindy *sugesstion</utterance>
-<utterance turn="131" who="corbettj">*yeah</utterance>
+<utterance turn="131" who="corbettj">Sì</utterance>
 <utterance turn="131" who="corbettj">Giusto @in, vede dottore, congedo...'*outpatients'</utterance>
 <utterance turn="132" who="saroyam">Molto controllo di @patient in ma non #tutto soggiorno per una epoca lunga di tempo</utterance>
-<utterance turn="133" who="rizwanp">*yeah Tanto lasciato è dire sopra 24 *hurs</utterance>
+<utterance turn="133" who="rizwanp">Sì tanto lasciato è dire sopra 24 *hurs</utterance>
 <utterance turn="134" who="rizwanp">**hrs</utterance>
 <utterance turn="135" who="Michael Clark">Ok... 350? O 4000?</utterance>
 <utterance turn="136" who="saroyam">ok</utterance>
@@ -171,9 +171,9 @@
 <utterance turn="147" who="rizwanp">*scribe È tutto aggiornò</utterance>
 <utterance turn="148" who="nguyenh">#100%</utterance>
 <utterance turn="149" who="kaspara">Il sistema necessiterà essere capace di manipolare #100% tutto del tempo</utterance>
-<utterance turn="150" who="rizwanp">Nessun #no</utterance>
+<utterance turn="150" who="rizwanp">Nessun non</utterance>
 <utterance turn="151" who="rizwanp">Non #100%</utterance>
-<utterance turn="152" who="rizwanp">*yeah Lui </utterance>
+<utterance turn="152" who="rizwanp">Sì lui </utterance>
 <utterance turn="153" who="rizwanp">Ma addirittura *averaage non è</utterance>
 <utterance turn="154" who="reynens">...</utterance>
 <utterance turn="155" who="gosselinc">...</utterance>
@@ -182,7 +182,7 @@
 <utterance turn="158" who="nguyenh">...</utterance>
 <utterance turn="159" who="reynens">Vogliono sapere @how spesso i nostri letti sono pieni</utterance>
 <utterance turn="160" who="reynens">Tutto 400</utterance>
-<utterance turn="161" who="rizwanp">*yeah</utterance>
+<utterance turn="161" who="rizwanp">Sì</utterance>
 <utterance turn="162" who="saroyam">Bene più gli ospedali sono pieni #100% del tempo</utterance>
 <utterance turn="163" who="reynens">ok</utterance>
 <utterance turn="164" who="chiuo">Direi il suo spesso pieno anche, #prpers sempre corso #fuori letti  non #prpers?</utterance>
@@ -206,7 +206,7 @@
 <utterance turn="182" who="rizwanp">O opinare...</utterance>
 <utterance turn="183" who="">:*P</utterance>
 <utterance turn="184" who="gosselinc">*i Ti ama 2</utterance>
-<utterance turn="185" who="saroyam">*yeah Lascia andare con 10 in *max</utterance>
+<utterance turn="185" who="saroyam">Sì lascia andare con 10 in *max</utterance>
 <utterance turn="186" who="fairheadj">ok</utterance>
 <utterance turn="187" who="Michael Clark">Ok.</utterance>
 <utterance turn="188" who="rizwanp">ok @So lasciato è tutti accordano con *rizwan questa volta</utterance>
@@ -241,7 +241,7 @@
 <utterance turn="217" who="saroyam">Se il @patient ha @check per sopra un mese allora il suo informazione dovrebbe essere *archived</utterance>
 <utterance turn="220" who="saroyam">Ma ancora restare accessibile se necessità essere</utterance>
 <utterance turn="218" who="corbettj">@Than....Quello riceverebbe a un 2 *tier sistema :*P</utterance>
-<utterance turn="219" who="kaspara">*Yeah.  Gli atti pazienti sono *perminant</utterance>
+<utterance turn="219" who="kaspara">Sì.  Gli atti pazienti sono *perminant</utterance>
 <utterance turn="221" who="Michael Clark">*Q7. Che è la differenza tra attrezzatura e provviste?</utterance>
 <utterance turn="222" who="reynens">@oh @oh , lasciato mi</utterance>
 <utterance turn="223" who="corbettj">Materia di provviste come fasciature, materia che riceve usata sopra...</utterance>
@@ -261,7 +261,7 @@
 <utterance turn="237" who="saroyam">*lol</utterance>
 <utterance turn="238" who="corbettj">*lol</utterance>
 <utterance turn="239" who="Michael Clark">*Q7Un.  È #tutto le  provviste ordinarono, o #alcuno creato in casa come donazioni di sangue?</utterance>
-<utterance turn="240" who="reynens">*yeah, sangue, *pharmaceuticals, provviste di aghi</utterance>
+<utterance turn="240" who="reynens">Sì, sangue, *pharmaceuticals, provviste di aghi</utterance>
 <utterance turn="241" who="nguyenh">Sì</utterance>
 <utterance turn="242" who="gosselinc">Entrambi</utterance>
 <utterance turn="243" who="Michael Clark">Grazie.</utterance>
@@ -275,7 +275,7 @@
 <utterance turn="251" who="rizwanp">ok</utterance>
 <utterance turn="252" who="kaspara">*nope</utterance>
 <utterance turn="253" who="rizwanp">È il essere di decisioni salvò?</utterance>
-<utterance turn="254" who="nguyenh">#No</utterance>
+<utterance turn="254" who="nguyenh">Non</utterance>
 <utterance turn="255" who="Michael Clark">Controllerò #cui sta scrivendo prima di spostare addirittura.</utterance>
 <utterance turn="256" who="corbettj">#Niente #lì</utterance>
 <utterance turn="257" who="rizwanp">*cuz *i Non è *writin questo #giù</utterance>
@@ -314,19 +314,19 @@
 <utterance turn="290" who="Michael Clark">Ma non dietro scrivanie dove un utente solo sarà usare li.</utterance>
 <utterance turn="291" who="rizwanp">Terminali ! = Computers</utterance>
 <utterance turn="292" who="rizwanp">Per i nostri propositi</utterance>
-<utterance turn="293" who="gosselinc">#Il @patient @must dare @consent per #essere #mostrare nei terminali!</utterance>
+<utterance turn="293" who="gosselinc">#Il @patient @must dare sopportazione per essere mostrata nei terminali!</utterance>
 <utterance turn="294" who="corbettj">Per @clarity, lì *arent attualmente terminali in il nostro sistema.....#Alcunché che vogliamo attuati</utterance>
 <utterance turn="305" who="corbettj">Essere come un *ATM che ti permette a consulta ubicazione paziente etc.. :*P</utterance>
 <utterance turn="295" who="rizwanp">*whoa *whoa</utterance>
 <utterance turn="296" who="reynens">*haha</utterance>
-<utterance turn="297" who="rizwanp">Che è questo sopra @consent e *dissent?</utterance>
+<utterance turn="297" who="rizwanp">Che è questo sopra sopportazione e *dissent?</utterance>
 <utterance turn="298" who="saroyam">Come un *self#-computer di aiuto</utterance>
 <utterance turn="299" who="nguyenh">Forse direzione a una sala</utterance>
 <utterance turn="300" who="rizwanp">@So parlando di Pc in ospedale</utterance>
 <utterance turn="301" who="nguyenh">O trovare un @lot di parcheggio</utterance>
 <utterance turn="302" who="rizwanp">ok Lasciato è essere @serious</utterance>
 <utterance turn="303" who="reynens">Siamo?</utterance>
-<utterance turn="304" who="reynens">#Il @consent era #alcunché nel *rfp *i opinò *Riz</utterance>
+<utterance turn="304" who="reynens">La sopportazione era #alcunché nel *rfp *i opinò *Riz</utterance>
 <utterance turn="306" who="rizwanp">*michael</utterance>
 <utterance turn="307" who="chiuo">Li chiamasti *info *booths o #alcunché nel *rfp *i credere</utterance>
 <utterance turn="309" who="reynens">Sì</utterance>
@@ -345,11 +345,11 @@
 <utterance turn="321" who="rizwanp">Ma</utterance>
 <utterance turn="322" who="Michael Clark">Naturalmente.</utterance>
 <utterance turn="323" who="nguyenh">Guidando direzione come *wll</utterance>
-<utterance turn="324" who="corbettj">*yeah Quando dei controlli pazienti all'ospedale dovrebbero essere dati una opzione per permettere gente per parere @up there *info</utterance>
+<utterance turn="324" who="corbettj">Sì quando dei controlli pazienti all'ospedale dovrebbero essere dati una opzione per permettere gente per parere @up there *info</utterance>
 <utterance turn="325" who="reynens">Sì, un @patient @must consentire a accesso pubblico (#tutti quanti più ha accesso @though, Dottori, *Admin, Sicurezza)</utterance>
 <utterance turn="326" who="Michael Clark">Sì.</utterance>
 <utterance turn="327" who="rizwanp">Guidando direzione a che?</utterance>
-<utterance turn="328" who="gosselinc">ok #Ancora senza @consent gli impiegati dell'ospedale ancora ha accesso al dato</utterance>
+<utterance turn="328" who="gosselinc">ok #Ancora senza sopportazione gli impiegati dell'ospedale ancora ha accesso al dato</utterance>
 <utterance turn="330" who="gosselinc">Giusto non il pubblico generale</utterance>
 <utterance turn="329" who="reynens">*Non @must, può</utterance>
 <utterance turn="331" who="rizwanp">@How sopra un collegamento a *google mappe in cambio?</utterance>
@@ -371,9 +371,9 @@
 <utterance turn="347" who="saroyam">La gente può trovare il suo modo proprio all'ospedale</utterance>
 <utterance turn="348" who="Michael Clark">Terra di Google darebbe un eccellente @shoot del tetto se quello è #quanto sei dopo.</utterance>
 <utterance turn="349" who="reynens">*ooooh</utterance>
-<utterance turn="350" who="nguyenh">#No, ma @must avere un3*d piano di suolo di #tutto la edilizia</utterance>
+<utterance turn="350" who="nguyenh">Non, ma @must avere un3*d piano di suolo di #tutto la edilizia</utterance>
 <utterance turn="351" who="rizwanp">Quello non è disegnare istruzioni</utterance>
-<utterance turn="352" who="reynens">Destro, in il nostro @website esterno**</utterance>
+<utterance turn="352" who="reynens">Destro, in il nostro sito web esterno**</utterance>
 <utterance turn="354" who="corbettj">*lol *google Terra</utterance>
 <utterance turn="353" who="rizwanp"> Vogliamo includere guidando direzioni?</utterance>
 <utterance turn="355" who="rizwanp">*i Non opina tanto</utterance>
@@ -383,7 +383,7 @@
 <utterance turn="359" who="rizwanp">Sì</utterance>
 <utterance turn="360" who="rizwanp">La mappa è bene</utterance>
 <utterance turn="361" who="saroyam">*u È #lì. *heres Come *u riceve a quello posto</utterance>
-<utterance turn="362" who="reynens">#No, ... Lascia dire un INDIRIZZO all'ospedale è attualmente parte d'il sistema</utterance>
+<utterance turn="362" who="reynens">Non, ... Lascia dire un INDIRIZZO all'ospedale è attualmente parte d'il sistema</utterance>
 <utterance turn="363" who="corbettj">*ppl Può prendere un *cab all'ospedale se non lo possono trovare :*P</utterance>
 <utterance turn="364" who="nguyenh">@So dovrebbero essere capaci di accedere il internet *abit #allora</utterance>
 <utterance turn="365" who="rizwanp">*u Opina *reyens?</utterance>
@@ -392,19 +392,19 @@
 <utterance turn="368" who="kaspara">SÌ</utterance>
 <utterance turn="369" who="nguyenh">Sì</utterance>
 <utterance turn="370" who="Michael Clark">Prossimo!</utterance>
-<utterance turn="371" who="Michael Clark">*Q9. Che è gli altri doveri menzionarono in cura di sanità di obiettivi di progetto #il #personale @perform che il sistema nuovo deve aiuto li con?</utterance>
+<utterance turn="371" who="Michael Clark">*Q9. Che è gli altri doveri menzionarono in cura di sanità di obiettivi di progetto #il #personale #svolgere che il sistema nuovo deve aiuto li con?</utterance>
 <utterance turn="372" who="rizwanp">Che linea, ?</utterance>
 <utterance turn="373" who="reynens">*i Opina *i saperlo</utterance>
 <utterance turn="374" who="reynens">Il suo non che lo aiuti li con i doveri</utterance>
 <utterance turn="375" who="reynens">Ma aiuti li, @while stanno facendo altre cose</utterance>
-<utterance turn="376" who="saroyam">*i Opina quello significò che il *self scrivania di aiuto preverrà @distraction in modo che gli infermieri etc possono fare altro lavoro come consegnare fuori *meds</utterance>
+<utterance turn="376" who="saroyam">*i Opina quello significò che il *self scrivania di aiuto preverrà distrazione in modo che gli infermieri etc possono fare altro lavoro come consegnare fuori *meds</utterance>
 <utterance turn="377" who="nguyenh">Come operatività, pulizia ...</utterance>
 <utterance turn="378" who="Michael Clark">Ok. Disattende questione.</utterance>
 <utterance turn="379" who="rizwanp">ok</utterance>
 <utterance turn="380" who="Michael Clark">Grazie Per il @clarification.</utterance>
 <utterance turn="381" who="nguyenh">Il sistema non necessita per assistere quello</utterance>
 <utterance turn="382" who="Michael Clark">*Q10. Che informazione  ognuno impiego dipendente a *login a il sistema? È una carta chiave una considerazione?</utterance>
-<utterance turn="383" who="corbettj">*yeah....Dovrebbe automatizzare #alcuno d'i suoi lavori per liberargli per fare altre cose</utterance>
+<utterance turn="383" who="corbettj">Sì....Dovrebbe automatizzare #alcuno d'i suoi lavori per liberargli per fare altre cose</utterance>
 <utterance turn="384" who="rizwanp">Sicuro</utterance>
 <utterance turn="385" who="gosselinc">Dito *id!</utterance>
 <utterance turn="386" who="rizwanp">Scanner di retina</utterance>
@@ -422,7 +422,7 @@
 <utterance turn="398" who="reynens">Controllo @up *i ha una questione connessa</utterance>
 <utterance turn="399" who="gosselinc">*i Dice carta chiave</utterance>
 <utterance turn="400" who="Michael Clark">Ti è *presently usando un *keycard per accesso di porta?</utterance>
-<utterance turn="401" who="rizwanp">*yeah</utterance>
+<utterance turn="401" who="rizwanp">Sì</utterance>
 <utterance turn="402" who="nguyenh">Sì</utterance>
 <utterance turn="403" who="rizwanp">Siamo</utterance>
 <utterance turn="404" who="saroyam">Sì</utterance>
@@ -438,7 +438,7 @@
 <utterance turn="414" who="fairheadj">*yea Entrambi</utterance>
 <utterance turn="415" who="reynens">*swipe Una carta, introdurre la password</utterance>
 <utterance turn="416" who="nguyenh">*ket La carta venne con codice</utterance>
-<utterance turn="417" who="rizwanp">#No</utterance>
+<utterance turn="417" who="rizwanp">Non</utterance>
 <utterance turn="418" who="saroyam">Ma le scrivanie di aiuto *dont necessitare una password</utterance>
 <utterance turn="419" who="reynens">#Allora iniettare *dna</utterance>
 <utterance turn="420" who="fairheadj">#Qualunque uno</utterance>
@@ -449,7 +449,7 @@
 <utterance turn="426" who="reynens">*i Ti riceve</utterance>
 <utterance turn="425" who="chiuo">Come una spilla?</utterance>
 <utterance turn="427" who="nguyenh">Dovrebbe usare quello codice per accedere se non può trovare la carta</utterance>
-<utterance turn="428" who="rizwanp">*yeah Quello è bene</utterance>
+<utterance turn="428" who="rizwanp">Sì quello è bene</utterance>
 <utterance turn="429" who="rizwanp"> Lui</utterance>
 <utterance turn="430" who="reynens">*swipe La tua carta O introdurre una password</utterance>
 <utterance turn="433" who="nguyenh">Quello è bene</utterance>
@@ -457,10 +457,10 @@
 <utterance turn="431" who="rizwanp">Ma</utterance>
 <utterance turn="432" who="rizwanp">Se una carta va cattiva</utterance>
 <utterance turn="435" who="rizwanp">Allora *waht?</utterance>
-<utterance turn="436" who="reynens">#No @more *buts lì *Riz</utterance>
+<utterance turn="436" who="reynens">Non @more *buts lì *Riz</utterance>
 <utterance turn="437" who="saroyam">Se una carta va cattiva lo possono ricevere riparati</utterance>
 <utterance turn="438" who="rizwanp">ok *u E mi fuori rito adesso</utterance>
-<utterance turn="439" who="rizwanp">*yeah</utterance>
+<utterance turn="439" who="rizwanp">Sì</utterance>
 <utterance turn="440" who="rizwanp">Ma che prenderebbe un tempo lungo</utterance>
 <utterance turn="441" who="reynens">#Il #personale #potere *swipe la sua carta, o introdurre una password di accesso per ricevere in il sistema.</utterance>
 <utterance turn="442" who="fairheadj">*yup</utterance>
@@ -468,7 +468,7 @@
 <utterance turn="444" who="nguyenh">Tanto #prpers *ethe password in cambio</utterance>
 <utterance turn="445" who="chiuo">@So il *swipe e *username/password in lo stesso @panel? È che il piano?</utterance>
 <utterance turn="446" who="Michael Clark">Ok, tanto @how sopra un *keycard, e password. Ma se quello fallisce hanno #alcuno altro *username che possono usare.</utterance>
-<utterance turn="447" who="reynens">#No</utterance>
+<utterance turn="447" who="reynens">Non</utterance>
 <utterance turn="448" who="rizwanp">Sì</utterance>
 <utterance turn="449" who="rizwanp">@Deal buono</utterance>
 <utterance turn="450" who="saroyam">Bene necessitano la sua carta per ricevere a parti sicure dell'edilizia *anyways</utterance>
@@ -482,19 +482,19 @@
 <utterance turn="458" who="Michael Clark">Tanto *keycard e password per accesso di sistema.</utterance>
 <utterance turn="459" who="nguyenh">*yep</utterance>
 <utterance turn="460" who="corbettj">Quello è bene</utterance>
-<utterance turn="461" who="saroyam">*yeah Piace ricevere a i @medicine cabinet e materia</utterance>
+<utterance turn="461" who="saroyam">Sì piace ricevere a i @medicine cabinet e materia</utterance>
 <utterance turn="462" who="reynens">Punto buono *kaspara</utterance>
 <utterance turn="463" who="Michael Clark">Ok, considereremo opzioni.</utterance>
 <utterance turn="464" who="corbettj">*lol</utterance>
 <utterance turn="466" who="rizwanp">ok @So qualcuno posto la decisione @up tanto *i sapere</utterance>
 <utterance turn="467" who="rizwanp">Cosa decidemmo *jus adesso</utterance>
-<utterance turn="465" who="Michael Clark">*Q11. Come  utenti di ragnatela essere autorizzato per accedere informazione paziente in il @website di ospedale?</utterance>
+<utterance turn="465" who="Michael Clark">*Q11. Come  utenti di ragnatela essere autorizzato per accedere informazione paziente in il sito web di ospedale?</utterance>
 <utterance turn="468" who="Michael Clark">O lì sarà nessun *infromation possono accedere.</utterance>
 <utterance turn="469" who="nguyenh">#Il @patient dovrebbe ricevere il suo *invoce</utterance>
 <utterance turn="470" who="nguyenh">*precriptions</utterance>
 <utterance turn="471" who="reynens">ok ok</utterance>
 <utterance turn="473" who="Michael Clark">Che è un *preciption?</utterance>
-<utterance turn="474" who="reynens">Il @website ha lo stesso informazione come i Terminali</utterance>
+<utterance turn="474" who="reynens">Il sito web ha lo stesso informazione come i Terminali</utterance>
 <utterance turn="475" who="rizwanp">Che fattura?</utterance>
 <utterance turn="472" who="corbettj">Va al posto, cercare la persona il tuo</utterance>
 <utterance turn="476" who="corbettj">*Stai buscando....Il suo *info viene sopra</utterance>
@@ -506,38 +506,38 @@
 <utterance turn="483" who="rizwanp">Non dopo...</utterance>
 <utterance turn="482" who="nguyenh">Se hanno il codice di accesso paziente</utterance>
 <utterance turn="484" who="nguyenh">Il membro familiare dovrebbe essere capace di accedere</utterance>
-<utterance turn="485" who="rizwanp">*yeah</utterance>
+<utterance turn="485" who="rizwanp">Sì</utterance>
 <utterance turn="486" who="saroyam">#Prpers *dont necessità di sapere che tipo di *meds i brevetti sono addirittura</utterance>
 <utterance turn="487" who="reynens">@So #tutto i  @patient riceveranno un *username e password?</utterance>
 <utterance turn="488" who="saroyam">Giusto #quanto numero di sala e suolo sono addirittura</utterance>
-<utterance turn="489" who="rizwanp">#No</utterance>
+<utterance turn="489" who="rizwanp">Non</utterance>
 <utterance turn="490" who="Michael Clark">Primo domando #quanto necessiteranno fornire per ricevere accesso... Allora domandherò #quanto hanno accesso a.</utterance>
-<utterance turn="491" who="saroyam">#No</utterance>
+<utterance turn="491" who="saroyam">Non</utterance>
 <utterance turn="492" who="nguyenh">Hanno *acccess carta anche</utterance>
 <utterance turn="494" who="nguyenh">Secondo sono adesso</utterance>
 <utterance turn="493" who="corbettj">Il pubblico non può accedere atti medici pazienti etc....Il accesso esteriore è limitato a tipo di Visitazione *info</utterance>
 <utterance turn="500" who="corbettj">Quello dovrebbe essere disponibile a qualunque che vuole visitare</utterance>
 <utterance turn="495" who="rizwanp">Esattamente</utterance>
-<utterance turn="496" who="reynens">*yeah</utterance>
+<utterance turn="496" who="reynens">Sì</utterance>
 <utterance turn="497" who="rizwanp">È la classe di *info scrivania di aiuto fornirebbe</utterance>
 <utterance turn="498" who="reynens">*i Vado a @restate di nuovo</utterance>
 <utterance turn="499" who="Michael Clark">ok. È che la decisione.</utterance>
 <utterance turn="501" who="rizwanp">Sì</utterance>
 <utterance turn="502" who="saroyam">Sicuro</utterance>
 <utterance turn="503" who="reynens">Il informazione che i TERMINALI forniscono, suolo e sala e nome</utterance>
-<utterance turn="505" who="reynens">Sarà in il @Website</utterance>
+<utterance turn="505" who="reynens">Sarà in il Sito web</utterance>
 <utterance turn="504" who="rizwanp">@So dovrebbe essere fino #prpers #quanto *info vogliamo porre in lì</utterance>
 <utterance turn="506" who="chiuo">Visitando *info è finale?</utterance>
-<utterance turn="507" who="rizwanp">*yeah</utterance>
+<utterance turn="507" who="rizwanp">Sì</utterance>
 <utterance turn="508" who="rizwanp">*reyens Ha un punto buono</utterance>
-<utterance turn="509" who="saroyam">*yeah</utterance>
+<utterance turn="509" who="saroyam">Sì</utterance>
 <utterance turn="510" who="rizwanp">*i Totalmente dimenticò</utterance>
 <utterance turn="511" who="rizwanp">Deve essere accessibile di ragnatela</utterance>
-<utterance turn="512" who="Michael Clark">Ok. Tanto per i terminali di atto *info è anche accessibile in @website...Forse con una mappa di ubicazione.</utterance>
+<utterance turn="512" who="Michael Clark">Ok. Tanto per i terminali di atto *info è anche accessibile in sito web...Forse con una mappa di ubicazione.</utterance>
 <utterance turn="513" who="rizwanp">Sicuro</utterance>
 <utterance turn="514" who="kaspara">Sì</utterance>
 <utterance turn="515" who="Michael Clark">Fatto.</utterance>
-<utterance turn="517" who="reynens">Sì, il @website maggiore dovrebbe avere una mappa all'ospedale :*P</utterance>
+<utterance turn="517" who="reynens">Sì, il sito web maggiore dovrebbe avere una mappa all'ospedale :*P</utterance>
 <utterance turn="516" who="Michael Clark">*Q12. Che è un volume aspettato di visitatori in una base quotidiana che potenzialmente sarà *interacting con il sistema nuovo @instead of parlare alla persona in la scrivania di informazione?</utterance>
 <utterance turn="518" who="gosselinc">Migliaia</utterance>
 <utterance turn="520" who="nguyenh">*arounbd 50@</utterance>
@@ -550,20 +550,20 @@
 <utterance turn="526" who="kaspara">Sono*m *uhhhhhh perse</utterance>
 <utterance turn="527" who="saroyam">Lasciato tenta e tipo @one sentenza in la stessa linea</utterance>
 <utterance turn="528" who="rizwanp">*ur Ancora #lì?</utterance>
-<utterance turn="529" who="Michael Clark">Stiamo buscando un numero secondo al numero di utenti i terminali e necessità di @website per sopportare.</utterance>
+<utterance turn="529" who="Michael Clark">Stiamo buscando un numero secondo al numero di utenti i terminali e necessità di sito web per sopportare.</utterance>
 <utterance turn="530" who="reynens">Già decidemmo quanta gente va all'ospedale e *Thanh sta dicendo #50%</utterance>
 <utterance turn="531" who="nguyenh">#50% del *visiotr userà il *info *booth più dell'*helpddesk</utterance>
 <utterance turn="532" who="rizwanp">Perché?</utterance>
 <utterance turn="533" who="Michael Clark">Ok.</utterance>
 <utterance turn="534" who="reynens">@So 2000 un giorno?</utterance>
 <utterance turn="535" who="corbettj">Infine #tutti quanti dovrebbe essere usare i terminali...</utterance>
-<utterance turn="536" who="saroyam">*yeah 2000 suoni bene</utterance>
+<utterance turn="536" who="saroyam">Sì 2000 suoni bene</utterance>
 <utterance turn="537" who="reynens">*thats Non Mike finale</utterance>
 <utterance turn="538" who="rizwanp">Attesa</utterance>
 <utterance turn="539" who="Michael Clark">#Finale per *RS 1.0?</utterance>
 <utterance turn="540" who="rizwanp">2000?</utterance>
 <utterance turn="541" who="corbettj">Verrà #giù a gente @how comoda sta usandogli</utterance>
-<utterance turn="542" who="reynens">Nessun #no, nella conversazione</utterance>
+<utterance turn="542" who="reynens">Nessun non, nella conversazione</utterance>
 <utterance turn="543" who="chiuo">2000 per ragnatela?</utterance>
 <utterance turn="544" who="rizwanp">*whoa *whoa</utterance>
 <utterance turn="545" who="reynens">@oh, questione buona</utterance>
@@ -572,7 +572,7 @@
 <utterance turn="548" who="rizwanp">*wtf?</utterance>
 <utterance turn="552" who="rizwanp">Sì</utterance>
 <utterance turn="549" who="reynens">La questione ti È parlando sopra i visitatori #que usano i TERMINALI?</utterance>
-<utterance turn="550" who="rizwanp">#No</utterance>
+<utterance turn="550" who="rizwanp">Non</utterance>
 <utterance turn="551" who="corbettj">ok *i'*ll Compra quello</utterance>
 <utterance turn="553" who="chiuo">Terminali e la ragnatela *i crede</utterance>
 <utterance turn="554" who="reynens">Sto domandando Mike</utterance>
@@ -585,7 +585,7 @@
 <utterance turn="561" who="reynens">Impiego terminale giusto</utterance>
 <utterance turn="562" who="rizwanp">Ma *i può essere lì in 5 min.</utterance>
 <utterance turn="563" who="Michael Clark">Tecnicamente che era #quanto la questione era approssimativamente. I terminali nell'ospedale. Ma se la ragnatela sta usando lo stesso sistema sarebbe quantità combinata.</utterance>
-<utterance turn="563" who="Michael Clark">La questione prossima era quanta gente  aspetti usare il tuo @website al giorno.</utterance>
+<utterance turn="563" who="Michael Clark">La questione prossima era quanta gente  aspetti usare il tuo sito web al giorno.</utterance>
 <utterance turn="564" who="rizwanp">Dipende</utterance>
 <utterance turn="566" who="rizwanp">Se è un @holiday o giorno di lavoro</utterance>
 <utterance turn="565" who="nguyenh">Intorno a 20  00</utterance>
@@ -637,7 +637,7 @@
 <utterance turn="611" who="chiuo">Giusto seguendo in generale?</utterance>
 <utterance turn="612" who="reynens">Un *admin è un *admin è un *admin, e un dottore è un dottore è un dottore?</utterance>
 <utterance turn="613" who="reynens">*i Opina *i ruppe #alcunché</utterance>
-<utterance turn="614" who="rizwanp">*yeah *ur Naso</utterance>
+<utterance turn="614" who="rizwanp">Sì *ur naso</utterance>
 <utterance turn="615" who="rizwanp">E mi fu</utterance>
 <utterance turn="616" who="corbettj">*lol</utterance>
 <utterance turn="617" who="Michael Clark">Livello di gruppo è.</utterance>
@@ -657,11 +657,11 @@
 <utterance turn="631" who="reynens">*Tutto</utterance>
 <utterance turn="632" who="corbettj">Sala di sala giusta</utterance>
 <utterance turn="633" who="kaspara">Direi sala di suolo</utterance>
-<utterance turn="636" who="nguyenh">#No, numero di sala giusta</utterance>
+<utterance turn="636" who="nguyenh">Non, numero di sala giusta</utterance>
 <utterance turn="634" who="gosselinc">Numero di sala è bene #piuttosto</utterance>
 <utterance turn="635" who="reynens">Suolo e sala</utterance>
 <utterance turn="637" who="rizwanp">Attesa</utterance>
-<utterance turn="638" who="corbettj">*yeah Suolo @too *offc</utterance>
+<utterance turn="638" who="corbettj">Sì suolo @too *offc</utterance>
 <utterance turn="639" who="kaspara">*offc?</utterance>
 <utterance turn="640" who="saroyam">Dentro le premesse di ospedale</utterance>
 <utterance turn="641" who="reynens">#Prpers *dont necessitare un gps *marker nell'ubicazione esatta *lat/@long</utterance>
@@ -669,7 +669,7 @@
 <utterance turn="643" who="corbettj">*ofc...Naturalmente :*P</utterance>
 <utterance turn="644" who="rizwanp">Numero di sala è #piuttosto?</utterance>
 <utterance turn="645" who="corbettj">*typo</utterance>
-<utterance turn="646" who="Michael Clark">*Q18. Che tipo di attrezzatura sarebbe ideale di avere @hardware che segue ubicazione @attach a, e #quanto i tipi resterebbero in un poster#-fuori base? Lo è possibile che un poster#-fuori il elemento anche richiederà la ubicazione #que segue?</utterance>
+<utterance turn="646" who="Michael Clark">*Q18. Che tipo di attrezzatura sarebbe ideale di avere @hardware che segue ubicazione attaccò a, e #quanto i tipi resterebbero in un poster#-fuori base? Lo è possibile che un poster#-fuori il elemento anche richiederà la ubicazione #que segue?</utterance>
 <utterance turn="647" who="reynens">ok</utterance>
 <utterance turn="648" who="rizwanp">ok Necessitiamo seguire un *freaking ago in un 1000 *sq. *ft Sala</utterance>
 <utterance turn="650" who="rizwanp">*wtf Compagno</utterance>
@@ -677,7 +677,7 @@
 <utterance turn="649" who="reynens">Primo è primo</utterance>
 <utterance turn="652" who="rizwanp">#Niente che #interferire con *freakin *pacemakers</utterance>
 <utterance turn="653" who="rizwanp">Necessitiamo seguire *pacemakers</utterance>
-<utterance turn="654" who="reynens">Nessun #no</utterance>
+<utterance turn="654" who="reynens">Nessun non</utterance>
 <utterance turn="655" who="rizwanp">*ppl È *stealin li d'i @patient</utterance>
 <utterance turn="656" who="rizwanp">E sono *dyin</utterance>
 <utterance turn="657" who="reynens">La tecnologia di seguire</utterance>
@@ -705,13 +705,13 @@
 <utterance turn="679" who="Michael Clark">Prossimo.</utterance>
 <utterance turn="680" who="Michael Clark">*Q5. I stati di descrizione del problema che stai buscando un modo di seguire la ubicazione di provviste, attrezzatura e @patient. Sotto sezione 4.0 del *RFP *v1.0 il requisito per sapere la ubicazione di dottori e infermieri è anche sollevò.  Vuoi la ubicazione #que segue di gente per estendere per ricercare personale, #personale di amministrazione e #personale di sicurezza anche?</utterance>
 <utterance turn="681" who="reynens">Più marcatamente soprattutto</utterance>
-<utterance turn="682" who="reynens">Attesa, questione incorretta per #contestare</utterance>
+<utterance turn="682" who="reynens">Attesa, questione incorretta per contestare</utterance>
 <utterance turn="683" who="reynens">*@Scratch</utterance>
 <utterance turn="684" who="nguyenh">Sì, che sarebbe buono</utterance>
 <utterance turn="685" who="corbettj">*i Non opina la ubicazione di dottori e infermieri è supposta per essere seguito</utterance>
 <utterance turn="686" who="reynens">*i Opinò decidemmo non per andare con quello?</utterance>
 <utterance turn="688" who="reynens">Lo è ancora @in?</utterance>
-<utterance turn="687" who="saroyam">*yeah No seguire di dottori o #personale</utterance>
+<utterance turn="687" who="saroyam">Sì no seguire di dottori o #personale</utterance>
 <utterance turn="689" who="reynens">ok</utterance>
 <utterance turn="690" who="reynens">Nessun dottore, nessun #personale</utterance>
 <utterance turn="693" who="reynens">Possono #commettere i crimini e #prpers non sapranno</utterance>
@@ -733,16 +733,16 @@
 <utterance turn="707" who="rizwanp">*i Sono @serious</utterance>
 <utterance turn="708" who="Michael Clark">Sezione 4.0 Dottori.</utterance>
 <utterance turn="709" who="gosselinc">..... Che è sezione 4.0?</utterance>
-<utterance turn="710" who="rizwanp">@Must essere capace di accedere informazione sopra @patient #attuale. Il informazione dovrebbe includere la sua ubicazione nell'ospedale, un atto di tutto @medication amministrato, un @listing di qualunque operatività @schedule, una storia d'i suoi @visit anteriori all'ospedale, etc.</utterance>
+<utterance turn="710" who="rizwanp">@Must essere capace di accedere informazione sopra @patient #attuale. Il informazione dovrebbe includere la sua ubicazione nell'ospedale, un atto di tutto @medication amministrato, un @listing di qualunque operatività @schedule, una storia di le sue visite anteriori all'ospedale, etc.</utterance>
 <utterance turn="711" who="rizwanp">Dove?</utterance>
-<utterance turn="712" who="corbettj">@Must essere capace di accedere informazione sopra @patient #attuale. Il informazione dovrebbe includere la sua ubicazione nell'ospedale, un atto di tutto @medication amministrato, un @listing di qualunque operatività @schedule, una storia d'i suoi @visit anteriori all'ospedale, etc.</utterance>
+<utterance turn="712" who="corbettj">@Must essere capace di accedere informazione sopra @patient #attuale. Il informazione dovrebbe includere la sua ubicazione nell'ospedale, un atto di tutto @medication amministrato, un @listing di qualunque operatività @schedule, una storia di le sue visite anteriori all'ospedale, etc.</utterance>
 <utterance turn="713" who="Michael Clark">Ok. @So nessun dottore #que segue...</utterance>
 <utterance turn="713" who="Michael Clark">O  essere desiderabile.</utterance>
 <utterance turn="714" who="corbettj">Quello è informazione che dovrebbero essere capaci di accedere sopra i @patient</utterance>
-<utterance turn="715" who="reynens">#No nessun #no</utterance>
-<utterance turn="716" who="rizwanp">#No</utterance>
+<utterance turn="715" who="reynens">Non nessun non</utterance>
+<utterance turn="716" who="rizwanp">Non</utterance>
 <utterance turn="717" who="rizwanp">Indesiderabile</utterance>
-<utterance turn="718" who="saroyam">#No</utterance>
+<utterance turn="718" who="saroyam">Non</utterance>
 <utterance turn="719" who="chiuo">ok Nessun #personale di seguire</utterance>
 <utterance turn="720" who="reynens">Li vogliamo per VEDERE la ubicazione PAZIENTE</utterance>
 <utterance turn="723" who="reynens">Non vedere LA SUA ubicazione</utterance>
@@ -759,7 +759,7 @@
 <utterance turn="732" who="reynens">Aghi = nessun</utterance>
 <utterance turn="733" who="nguyenh">No dovrebbe #haber nessuna ubicazione di seguire per provvista</utterance>
 <utterance turn="734" who="nguyenh">Giusto il numero di sala</utterance>
-<utterance turn="735" who="nguyenh">Significo #no la ubicazione on-line #que segue</utterance>
+<utterance turn="735" who="nguyenh">Significo non la ubicazione on-line #que segue</utterance>
 <utterance turn="736" who="rizwanp">ok Non possiamo decidere #proprio ora</utterance>
 <utterance turn="737" who="Michael Clark">Ok. Tanto @once riescono il magazzino è fino #personale per #introdurre il numero di sala dove sono aperti.</utterance>
 <utterance turn="738" who="rizwanp">Ma possiamo lasciare *u sapere</utterance>
@@ -776,7 +776,7 @@
 <utterance turn="749" who="Michael Clark">Ok...Tanto fino la persona #que lo toglie #allora.</utterance>
 <utterance turn="750" who="reynens">Chioccia, *simmer #giù adesso</utterance>
 <utterance turn="751" who="gosselinc">Il laboratorio è vicino a essere fatto</utterance>
-<utterance turn="752" who="reynens">Nessun #no</utterance>
+<utterance turn="752" who="reynens">Nessun non</utterance>
 <utterance turn="755" who="reynens">#Alcunché deve macchina#-seguire i numeri</utterance>
 <utterance turn="753" who="rizwanp">@So?</utterance>
 <utterance turn="754" who="gosselinc">@Saying giusto</utterance>
@@ -795,26 +795,26 @@
 <utterance turn="768" who="corbettj">Per carta di sicurezza</utterance>
 <utterance turn="769" who="rizwanp">La prima cosa *u dire e è cani</utterance>
 <utterance turn="770" who="rizwanp">*u @Retard</utterance>
-<utterance turn="771" who="Michael Clark">*Q24. È lì un @concern per #personale e/o #il @patient #que tolgono i dispositivi di seguire? È la sicurezza supplementare richiesta in @attach seguendo dispositivi a attrezzatura?</utterance>
+<utterance turn="771" who="Michael Clark">*Q24. È lì una preoccupazione per #personale e/o #il @patient #que tolgono i dispositivi di seguire? È la sicurezza supplementare richiesta in attaccare seguendo dispositivi a attrezzatura?</utterance>
 <utterance turn="772" who="fairheadj">*keycard Accesso</utterance>
 <utterance turn="773" who="reynens">Sì, carte Chiavi</utterance>
 <utterance turn="774" who="saroyam">Carte chiavi</utterance>
 <utterance turn="775" who="nguyenh">Non, i personali sono gente buona</utterance>
-<utterance turn="776" who="Michael Clark">*Q26. Che classe di controllo (se qualunque) è richiesto per assicurare che #tutto i  elementi sono firmati#-fuori propriamente per mantenere il inventario in il sistema attento? Per esempio, è lì un *storeroom una coppia di impiegate dirige, o  un automatizzato *vending#-necessità di macchina a @interface con il sistema?</utterance>
+<utterance turn="776" who="Michael Clark">*Q26. Che classe di controllo (se qualunque) è richiesto per assicurare che #tutto i  elementi sono firmati#-fuori propriamente per mantenere il inventario in il sistema attento? Per esempio, è lì un *storeroom una coppia di impiegate dirige, o  un automatizzato *vending#-necessità di macchina a interfaccia con il sistema?</utterance>
 <utterance turn="777" who="rizwanp">Attesa di attesa</utterance>
 <utterance turn="778" who="reynens">*Riz, "i cani" è #migliore @than #quanto hai detto</utterance>
-<utterance turn="779" who="corbettj">Nessun @concern sopra #personale togliendo</utterance>
+<utterance turn="779" who="corbettj">Nessuna preoccupazione sopra #personale togliendo</utterance>
 <utterance turn="780" who="rizwanp">*i *dunno Sopra JIM</utterance>
 <utterance turn="781" who="rizwanp">È *kinda @shady</utterance>
 <utterance turn="782" who="rizwanp">Tanto #il #personale non #essere *trustable</utterance>
 <utterance turn="783" who="nguyenh">Dovrebbero essere fiducia</utterance>
 <utterance turn="784" who="reynens">Ok</utterance>
 <utterance turn="785" who="Michael Clark">Ok...</utterance>
-<utterance turn="785" who="Michael Clark">#Qualunque @concern sopra attrezzatura lasciarono con @patient.... La materia grande è nessuna preoccupazione. Duro di riceverlo per sicurezza.</utterance>
+<utterance turn="785" who="Michael Clark">#Qualunque preoccupazioni sopra attrezzatura lasciarono con @patient.... La materia grande è nessuna preoccupazione. Duro di riceverlo per sicurezza.</utterance>
 <utterance turn="786" who="reynens">Se una provvista è giù, la gente di provviste è notificata per il sistema (*admin anche *i opinare</utterance>
 <utterance turn="788" who="reynens">*i Sono @pretty sicuro quello è nel *rfp, *i opinò</utterance>
 <utterance turn="787" who="nguyenh">*everythng Dovere tanto automatizzato tanto possibile</utterance>
-<utterance turn="789" who="reynens">*yeah,</utterance>
+<utterance turn="789" who="reynens">Sì,</utterance>
 <utterance turn="790" who="reynens">Posto nella macchina</utterance>
 <utterance turn="791" who="Michael Clark">Sì, *admins sarà notificato....</utterance>
 <utterance turn="792" who="reynens">Le provviste saranno notificate anche</utterance>
@@ -853,7 +853,7 @@
 <utterance turn="825" who="kaspara">Il ospedale ha un @generator di @backup</utterance>
 <utterance turn="826" who="reynens">Abbiamo potere di @backup</utterance>
 <utterance turn="827" who="corbettj">Il potere è coperto secondo abbiamo altro non#-computer sistemi relazionati che richiedono sempre in potere</utterance>
-<utterance turn="828" who="rizwanp">Ricevevamo cavalli @ready per andare in un @whip *lash</utterance>
+<utterance turn="828" who="rizwanp">Ricevevamo cavalli @ready per andare in una #frusta *lash</utterance>
 <utterance turn="829" who="reynens">*thats La risposta</utterance>
 <utterance turn="831" who="Michael Clark">ok. @Reliable io *presume. :#-)</utterance>
 <utterance turn="830" who="nguyenh">Ma potere  dito</utterance>
@@ -875,7 +875,7 @@
 <utterance turn="847" who="corbettj">*Q29 = @once un mese in @tape</utterance>
 <utterance turn="848" who="nguyenh">Quello è *corrent</utterance>
 <utterance turn="849" who="corbettj">*nightly #Allora?</utterance>
-<utterance turn="850" who="saroyam">*yeah *everynite</utterance>
+<utterance turn="850" who="saroyam">Sì *everynite</utterance>
 <utterance turn="850" who="saroyam">E un mensile uno anche</utterance>
 <utterance turn="851" who="Michael Clark">@Backup = @once un mese in @tape.</utterance>
 <utterance turn="852" who="reynens">Mese/di @tape</utterance>
@@ -890,7 +890,7 @@
 <utterance turn="861" who="Michael Clark">*Q30. È il tre LO #personale *presently familiare con il sistema attuale e il software installarono?  Sviluppano e *setup il sistema attuale?</utterance>
 <utterance turn="862" who="gosselinc">Dici molte cose</utterance>
 <utterance turn="863" who="reynens">Dici #niente *Riz</utterance>
-<utterance turn="864" who="rizwanp">#No</utterance>
+<utterance turn="864" who="rizwanp">Non</utterance>
 <utterance turn="865" who="rizwanp">Sono liceo *dropouts</utterance>
 <utterance turn="866" who="gosselinc">*admin_Divieto *riwanp "*cuz ti parla troppo"</utterance>
 <utterance turn="867" who="saroyam">Familiare con esso</utterance>
@@ -908,11 +908,11 @@
 <utterance turn="879" who="reynens">Sì</utterance>
 <utterance turn="880" who="nguyenh">1 *g nel *backbond</utterance>
 <utterance turn="881" who="Michael Clark">Ok. 100 *Mbit in macchina di cliente. *T1 a ospedale.</utterance>
-<utterance turn="882" who="nguyenh">#No</utterance>
+<utterance turn="882" who="nguyenh">Non</utterance>
 <utterance turn="883" who="Michael Clark">Ok...?</utterance>
 <utterance turn="884" who="rizwanp">Ascolta a *nguyen questa volta</utterance>
 <utterance turn="885" who="nguyenh">1*g in *backbone di edificare a edilizia</utterance>
-<utterance turn="886" who="reynens">*yeah</utterance>
+<utterance turn="886" who="reynens">Sì</utterance>
 <utterance turn="887" who="Michael Clark">1 *g nel *backbone... ok.</utterance>
 <utterance turn="888" who="nguyenh">All'ospedale è un 30*mbbs *dsl</utterance>
 <utterance turn="889" who="reynens">Il osso nel dietro</utterance>
@@ -934,13 +934,13 @@
 <utterance turn="905" who="reynens">Sei consigliato per avvolgerlo sopra</utterance>
 <utterance turn="906" who="reynens">@So dice un "*ta"</utterance>
 <utterance turn="907" who="Michael Clark">@The one usarono per seguire provviste #proprio ora opino.</utterance>
-<utterance turn="908" who="rizwanp">*yeah Tutti di loro hanno *NICs</utterance>
+<utterance turn="908" who="rizwanp">Sì tutti di loro hanno *NICs</utterance>
 <utterance turn="909" who="nguyenh">Sì</utterance>
 <utterance turn="910" who="reynens">Hanno *ethernet carte</utterance>
 <utterance turn="911" who="Michael Clark">Ok.</utterance>
 <utterance turn="912" who="nguyenh">ok</utterance>
 <utterance turn="913" who="reynens">Osservazioni finali?</utterance>
-<utterance turn="914" who="Michael Clark">Grazie Per partecipare in questo *elicitation @session. I minuti di riunione e un pieno *log sarà *posted in *Tri#-#il @website d'i sistemi  nel prossimo pochi giorni. Non esita per metterci se hai #qualunque questioni o @concern. Uno di nuovo, grazie per il tuo tempo.\</utterance>
+<utterance turn="914" who="Michael Clark">Grazie Per partecipare in questo *elicitation @session. I minuti di riunione e un pieno *log sarà *posted in *Tri#-il sito web d'i sistemi  nel prossimo pochi giorni. Non esita per metterci se hai #qualunque questioni o preoccupazioni. Uno di nuovo, grazie per il tuo tempo.\</utterance>
 <utterance turn="915" who="reynens">*Riz, parcheggiando @lot</utterance>
 <utterance turn="916" who="rizwanp">Stop di autobus</utterance>
 <utterance turn="917" who="reynens">Grazie Mike.</utterance>
@@ -954,7 +954,7 @@
 <utterance turn="925" who="Michael Clark">*Meh.</utterance>
 <utterance turn="926" who="reynens">26 è per @loser</utterance>
 <utterance turn="927" who="gosselinc">:)</utterance>
-<utterance turn="928" who="rizwanp">*yeah @Mute mi</utterance>
+<utterance turn="928" who="rizwanp">Sì @mute mi</utterance>
 <utterance turn="929" who="saroyam">arrivederci</utterance>
 <utterance turn="930" who="corbettj">*riz / *scott...ti I tipi mi uccisero....#Ridere il mio somaro di qui :*P</utterance>
 <utterance turn="931" who="reynens">Salvare i tuoi risultati #lì gente</utterance>

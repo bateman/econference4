@@ -167,7 +167,7 @@
 <utterance turn="165" who="riz">ti calmi</utterance>
 <utterance turn="166" who="ScottReynen">log off e indietro</utterance>
 <utterance turn="167" who="hainesj">Jon ha bisogno di un invito</utterance>
-<utterance turn="168" who="ScottReynen">you're talkin doppio</utterance>
+<utterance turn="168" who="ScottReynen">siete talkin doppio</utterance>
 <utterance turn="169" who="Thanh Nguyen">Nuova domanda: Il sistema fornirà in-tutorial di gioco e di aiuto. Dobbiamo includere un clip introduzione?</utterance>
 <utterance turn="170" who="riz">Perché abbiamo 2 Scotts?</utterance>
 <utterance turn="171" who="Charles">Thanh .. rallentare l'uomo</utterance>
@@ -220,10 +220,10 @@
 <utterance turn="218" who="riz">ciao</utterance>
 <utterance turn="219" who="Charles">hoy</utterance>
 <utterance turn="220" who="ScottReynen">riz no, no</utterance>
-<utterance turn="221" who="ScottReynen">bad riz</utterance>
+<utterance turn="221" who="ScottReynen">Bad riz</utterance>
 <utterance turn="222" who="riz">hehe</utterance>
 <utterance turn="223" who="Jeff">indietro</utterance>
-<utterance turn="224" who="Jeff">do you guys vedere cosa digito quando ho avviato?</utterance>
+<utterance turn="224" who="Jeff">do you guys vedere cosa sto digitando quando ho avviato?</utterance>
 <utterance turn="225" who="riz">sembra Mindy non ha molto potere, che, dopo tutto</utterance>
 <utterance turn="226" who="Ben">Penso che tutti di un gruppo è qui</utterance>
 <utterance turn="227" who="Mindy">sì</utterance>
@@ -358,7 +358,7 @@
 <utterance turn="355" who="ScottReynen">Jeff e riz hanno difficoltà tech</utterance>
 <utterance turn="356" who="Aaron K">Così, un anno va bene, ei dati sono esportati solo alla fine dell'anno?</utterance>
 <utterance turn="357" who="ScottReynen">essi werent anyways importante (che sarà di ritorno)</utterance>
-<utterance turn="358" who="hainesj">Credo che fino a quando i dati possono essere esportati 1 anno è un lasso di tempo ragionevole per mantenere i dati all'interno del sistema</utterance>
+<utterance turn="358" who="hainesj">Credo che fino a quando i dati possono essere esportati 1 anno è una quantità ragionevole di tempo per mantenere i dati all'interno del sistema</utterance>
 <utterance turn="359" who="scott">che mi sarebbe bene pensare</utterance>
 <utterance turn="360" who="Ben">possono importare le informazioni vecchie</utterance>
 <utterance turn="361" who="Ben">?</utterance>
@@ -438,7 +438,7 @@
 <utterance turn="435" who="ScottReynen">Mi chiedevo perché avresti chiuso per Charles così a lungo</utterance>
 <utterance turn="436" who="Mindy">okkkkkk</utterance>
 <utterance turn="437" who="ScottReynen">Torna a buizness</utterance>
-<utterance turn="438" who="Mindy">Documentazione on-line saranno disponibili per il gioco dopo il completamento e la consegna. Il gioco uscirà anche con costruito nel file di help e tutorial per il gioco. 5. Dovremmo anche creare un sito web per il gioco. Solo un posto per le persone a trovare aiuto, scaricare il gioco, ecc</utterance>
+<utterance turn="438" who="Mindy">Documentazione on-line saranno disponibili per il gioco dopo il completamento e la consegna. Il gioco uscirà anche con costruito nel file di help e tutorial per il gioco. 5. Dovremmo creare anche un sito web per il gioco. Solo un posto per le persone a trovare aiuto, scaricare il gioco, ecc</utterance>
 <utterance turn="439" who="Ben">certo se si desidera che un sito web che sarebbe bene</utterance>
 <utterance turn="440" who="ScottReynen">Riz silenzio per favore</utterance>
 <utterance turn="441" who="scott">yah che sarebbe un premio, ma probabilmente non richiesti</utterance>

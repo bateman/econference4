@@ -254,10 +254,10 @@
 <utterance turn="252" who="Mindy">dispiace</utterance>
 <utterance turn="253" who="Chris">Ciao io sono Chris</utterance>
 <utterance turn="254" who="horelj">Salve sono Jon</utterance>
-<utterance turn="255" who="Charles">&lt;-----Charles / Chuck Norris</utterance>
+<utterance turn="255" who="Charles">&lt;----- charles/ chuck norris charles/="" chuck=""&gt;&lt;/----- charles/ chuck norris&gt;</utterance>
 <utterance turn="256" who="Mindy">OK Passiamo alle domande</utterance>
 <utterance turn="257" who="mcknightp">Ciao tutti, I ' m Pat</utterance>
-<utterance turn="258" who="hainesj">--Jared</utterance>
+<utterance turn="258" who="hainesj">&lt;--jared&gt;&lt;/--jared&gt;</utterance>
 <utterance turn="259" who="Mindy">1. Abbiamo scelto di entrare nei dettagli con il modulo di gioco per RS 3.0. Si tratta di ok?</utterance>
 <utterance turn="260" who="Ben">YUP</utterance>
 <utterance turn="261" who="hainesj">suona bene a me</utterance>
@@ -284,8 +284,7 @@
 <utterance turn="282" who="">tutto tranne il database e il modulo di insegnante</utterance>
 <utterance turn="283" who="Ben">i ragazzi gioca eventualmente 3-10 ore settimanali per intero anno scolastico</utterance>
 <utterance turn="284" who="mcknightp">WOW pensi che molto ben?</utterance>
-<utterance turn="285" who="scott">Penso sarebbe 1.5-3 sarebbe una buona stima 
-</utterance>
+<utterance turn="285" who="scott">Penso sarebbe 1.5-3 sarebbe una buona stima</utterance>
 <utterance turn="286" who="Thanh Nguyen">Così dovremmo andiamo di circa 5 ore/settimana?</utterance>
 <utterance turn="287" who="Ben">Se l'insegnante ha specificato tempo per gioco.... 3hrs</utterance>
 <utterance turn="288" who="horelj">Se si sta giocando a casa anche 10hrs non così male</utterance>
@@ -340,8 +339,7 @@
 <utterance turn="337" who="horelj">il contenuto deve essere praticamente lo stesso</utterance>
 <utterance turn="338" who="Ben">Ya</utterance>
 <utterance turn="339" who="Mindy">OK lo spostamento su un altro argomento, il sistema</utterance>
-<utterance turn="340" who="ScottReynen">Whoa ora 
-</utterance>
+<utterance turn="340" who="ScottReynen">Whoa ora</utterance>
 <utterance turn="341" who="Jeff">' m gonna cerco un diverso lab... sembra la versione linux è bugged: S</utterance>
 <utterance turn="342" who="Chris">Passiamo all'argomento successivo: P</utterance>
 <utterance turn="343" who="Jeff">Torna in alcuni</utterance>
@@ -739,7 +737,7 @@
 <utterance turn="735" who="Mindy">Ciao</utterance>
 <utterance turn="736" who="riz">Ciao</utterance>
 <utterance turn="737" who="Aaron K">Cheerio</utterance>
-<utterance turn="738" who="Charles">Io stesso 3</utterance>
+<utterance turn="738" who="Charles">Mi&lt;3 myself&gt;&lt;/3 myself&gt;</utterance>
 <utterance turn="739" who="ScottReynen">sono contento che questo sarà per il salvataggio</utterance>
 <utterance turn="740" who="Charles">lol</utterance>
 <utterance turn="741" who="ScottReynen">invierà una copia a Daniela</utterance>

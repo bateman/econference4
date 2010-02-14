@@ -10,7 +10,7 @@
 <utterance turn="8" who="clarkn">*i Opina il programma @store il *log</utterance>
 <utterance turn="9" who="clarkn">Aspetto questo un modo #-#-#-&gt;</utterance>
 <utterance turn="10" who="clarkn">*yep</utterance>
-<utterance turn="11" who="Jared Haines">*yeah Quando tu *quit il programma domanda se vuoi @store le decisioni e ciarla *logs</utterance>
+<utterance turn="11" who="Jared Haines">Sì quando tu *quit il programma domanda se vuoi @store le decisioni e ciarla *logs</utterance>
 <utterance turn="12" who="mcknightp">ok Fresco</utterance>
 <utterance turn="13" who="Jared Haines">*hmm, qualunque idea se il resto di gruppo 6  è in ancora?  Dovere io forse *re#-invitargli?</utterance>
 <utterance turn="14" who="longleyl">QUESTO sta ENTUSIASMANDO</utterance>
@@ -33,7 +33,7 @@
 <utterance turn="31" who="longleyl">'*t Sapere dove è.</utterance>
 <utterance turn="32" who="longleyl">Dovrebbe essere in la stessa sala sono @in, ma non gli vedo.</utterance>
 <utterance turn="33" who="chaingj">*clarkn È *neal</utterance>
-<utterance turn="34" who="longleyl">*Yeah, so.</utterance>
+<utterance turn="34" who="longleyl">Sì, so.</utterance>
 <utterance turn="35" who="chaingj">*jchiang È *jack</utterance>
 <utterance turn="36" who="longleyl">Ma non sta dicendo #qualsiasi cosa.</utterance>
 <utterance turn="37" who="laihok">Opino #que gli vidi in *anoother sala</utterance>
@@ -86,7 +86,7 @@
 <utterance turn="82" who="clarkn">Il informazione pubblico sarà *posted a un *webserver</utterance>
 <utterance turn="83" who="chenl">#Tutto il *infomation negozio giusto localmente,</utterance>
 <utterance turn="84" who="clarkn">In il @various *cleint macchine</utterance>
-<utterance turn="85" who="clarkn">Informazione sei *permitted a #il @view è @store nel computer di cliente locale</utterance>
+<utterance turn="85" who="clarkn">Informazione sei *permitted a la #vista è @store nel computer di cliente locale</utterance>
 <utterance turn="86" who="mcknightp">Tanto se qualcuno non è on-line come può qualcuno più li invita a una riunione?</utterance>
 <utterance turn="87" who="clarkn">?</utterance>
 <utterance turn="89" who="clarkn">Questo software non è un software di riunione, è un calendario *applicaiton</utterance>
@@ -153,7 +153,7 @@
 <utterance turn="147" who="mcknightp">ok</utterance>
 <utterance turn="147" who="mcknightp">Può un direttore ha due o @more livelli di priorità?</utterance>
 <utterance turn="148" who="clarkn">#Il @roll sono #montare i miei amministratori e #allora assegnato a il #personale</utterance>
-<utterance turn="149" who="longleyl">#No, essendo un direttore mette il suo livello di priorità.</utterance>
+<utterance turn="149" who="longleyl">Non, essendo un direttore mette il suo livello di priorità.</utterance>
 <utterance turn="150" who="longleyl">Non sono sicuro #quanto significhi.</utterance>
 <utterance turn="151" who="clarkn">Un direttore può appartenere a ruoli multipli</utterance>
 <utterance turn="152" who="chenl">Perché necessitiamo *multilevel,  dai alcun esempio</utterance>
@@ -171,7 +171,7 @@
 <utterance turn="164" who="andrews">*hey I tipi @sorry *im in ritardo</utterance>
 <utterance turn="165" who="clarkn">@Sorry siamo #fare ;)</utterance>
 <utterance turn="166" who="longleyl">*Haha.</utterance>
-<utterance turn="167" who="clarkn">Ti abbiamo deciso è @coding il progetto intero</utterance>
+<utterance turn="167" who="clarkn">Ti abbiamo deciso è codificazione il progetto intero</utterance>
 <utterance turn="168" who="clarkn">Avemmo un voto e #tutti quanti accordarono</utterance>
 <utterance turn="169" who="longleyl">E #tutto i  utili andranno a #prpers.</utterance>
 <utterance turn="170" who="chaingj">Sì</utterance>
@@ -202,7 +202,7 @@
 <utterance turn="195" who="longleyl">Tanto, avresti gruppi di gente, e avresti livello differente dentro gruppi?</utterance>
 <utterance turn="196" who="clarkn">Se qualcuno è assegnato un *mananement ruolo @may essere capaci di creare ruoli nuovi e assegnare qualunque sotto loro a quello ruolo</utterance>
 <utterance turn="197" who="longleyl">Quello fa senso a me.</utterance>
-<utterance turn="198" who="longleyl">*Yeah.</utterance>
+<utterance turn="198" who="longleyl">Sì.</utterance>
 <utterance turn="199" who="andrews">Non è lì una potenzialità per logica @circular @though?</utterance>
 <utterance turn="200" who="clarkn">Ma possono non *escilate il suo ruolo proprio</utterance>
 <utterance turn="201" who="longleyl">Come tanto?</utterance>
@@ -266,14 +266,14 @@
 <utterance turn="258" who="chaingj">Formato di calendario è complicato per descrivere uomo</utterance>
 <utterance turn="259" who="clarkn">@Various dipendendo nell'informazione *displayes</utterance>
 <utterance turn="260" who="clarkn">*d</utterance>
-<utterance turn="261" who="clarkn">Vogliamo mensilmente,  settimanalmente, e @breakdown quotidiani</utterance>
+<utterance turn="261" who="clarkn">Vogliamo mensilmente,  settimanalmente, e guasti quotidiani</utterance>
 <utterance turn="262" who="clarkn">@Plus la abilità di cambiare tra calendari</utterance>
 <utterance turn="263" who="chenl">Marchio giusto sicuro è @friendly e facile delle ggere</utterance>
 <utterance turn="265" who="laihok">*ya...Il utente @friendly è la parte più importante</utterance>
 <utterance turn="266" who="chaingj">@Friendly e facile ......</utterance>
 <utterance turn="264" who="clarkn">Lui *hr può posta il tuo orario di lavoro e #allora durante che ti @time ha @various riunioni e eventi</utterance>
 <utterance turn="267" who="longleyl">Attesa, ti è domandando sopra formato per archiviazione o formato per mostrare?</utterance>
-<utterance turn="268" who="Jared Haines">Formato di @display</utterance>
+<utterance turn="268" who="Jared Haines">Formato di esibizione</utterance>
 <utterance turn="269" who="clarkn">E vogliamo *clippy</utterance>
 <utterance turn="270" who="longleyl">@Oh, ok.</utterance>
 <utterance turn="271" who="chaingj">Quadri di ragazze calde come *backgound = @friendly</utterance>
@@ -288,7 +288,7 @@
 <utterance turn="280" who="laihok">Sì...Gli utenti possono mettere la sua preferenza propria</utterance>
 <utterance turn="281" who="clarkn">@So un @zombie *clippy</utterance>
 <utterance turn="282" who="chenl">È che opzionale?</utterance>
-<utterance turn="283" who="chaingj">#No</utterance>
+<utterance turn="283" who="chaingj">Non</utterance>
 <utterance turn="284" who="chaingj">@Must</utterance>
 <utterance turn="285" who="clarkn">Bene il suo non #tutto quello importante</utterance>
 <utterance turn="287" who="clarkn">*i Abbastanza riceverebbe tutto della materia di @schedule in lì primo</utterance>
@@ -302,7 +302,7 @@
 <utterance turn="294" who="longleyl">Sì, dovrebbe #haber un Uovo di pasqua dove un #gigante *stack di cadute di calendari in *Clippy.</utterance>
 <utterance turn="295" who="mcknightp"> Manco #qualsiasi cosa importante nelle note in il lato?</utterance>
 <utterance turn="296" who="chenl">*ye, #prpers fatto</utterance>
-<utterance turn="297" who="clarkn">Altro @than il fatto @must essere capace di connettere utenti intorno al mondo</utterance>
+<utterance turn="297" who="clarkn">Oltre al fatto @must essere capace di connettere utenti intorno al mondo</utterance>
 <utterance turn="298" who="longleyl">Non posso opinare di #qualsiasi cosa.</utterance>
 <utterance turn="299" who="clarkn">In modo che non affida in un locale *lan</utterance>
 <utterance turn="300" who="clarkn">Ma che è sopra esso</utterance>
@@ -324,7 +324,7 @@
 <utterance turn="316" who="andrews">*yep Ti vede molto</utterance>
 <utterance turn="317" who="longleyl">Il virus è ok @though./</utterance>
 <utterance turn="318" who="chaingj">Nessun *backdoor</utterance>
-<utterance turn="319" who="mcknightp">*LOL Ha dei tipi di #fine settimana buoni :)</utterance>
+<utterance turn="319" who="mcknightp">*LOL Ha dei tipi di fine settimana buoni :)</utterance>
 <utterance turn="320" who="laihok">*haha..</utterance>
 <utterance turn="321" who="clarkn">@oh Il sistema deve lavorare in *linux, *mac e finestre</utterance>
 <utterance turn="322" who="clarkn">Giusto per farlo divertito per te tipi</utterance>
