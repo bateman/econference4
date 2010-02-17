@@ -47,6 +47,12 @@
                label="%action.label"
                menubarPath="file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
                style="push"/>
+         <action
+			   class= "it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+               id= "it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+               label="%action.label.new"
+               menubarPath = "file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
+               style="push"/>               
          <menu
                id="it.uniba.di.cdg.xcore.econference.ui.menu"
                label="%menu.label"
