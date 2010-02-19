@@ -71,12 +71,12 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
     	appendMessage(String.format("[%s] %s", who, text));
     	
 		Translator tran = TranslatePlugin.getDefault().getTranslator();
-		String translated = "";
+		String translated = text;
 		
 		try {
 			translated = tran.translate(text);
 		} catch (Exception e) {
-			translated = e.getStackTrace().toString();
+			e.printStackTrace();
 		}
     	
         appendMessage(String.format("[%s] %s", who, translated));
