@@ -6,8 +6,82 @@
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddyGroup">
+
+         <action
+               class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.RemoveGroupAction"
+               enablesFor="1"
+               icon="icons/action_chat.png"
+               id="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.removeGroupAction"
+               label="Remove group"
+               menubarPath="chatGroup"
+               tooltip="Remove this group!">
+         </action> 
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddyGroup">
+
+         <action
+               class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.RenameGroupAction"
+               enablesFor="1"
+               icon="icons/action_chat.png"
+               id="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.renameGroupAction"
+               label="Rename group"
+               menubarPath="chatGroup"
+               tooltip="Rename this group!">
+         </action> 
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
             objectClass="it.uniba.di.cdg.xcore.network.model.IBuddy">
 
+         <action
+               class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.RemoveBuddyAction"
+               enablesFor="1"
+               icon="icons/action_chat.png"
+               id="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.removeBuddyAction"
+               label="Remove contact"
+               menubarPath="chatGroup"
+               tooltip="Remove this user!">
+         </action> 
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddy">
+
+         <action
+               class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.MoveBuddyAction"
+               enablesFor="1"
+               icon="icons/action_chat.png"
+               id="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.moveBuddyAction"
+               label="Move contact"
+               menubarPath="chatGroup"
+               tooltip="Move this user!">
+         </action> 
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddy">
+
+         <action
+               class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.RenameBuddyAction"
+               enablesFor="1"
+               icon="icons/action_chat.png"
+               id="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.renameBuddyAction"
+               label="Rename contact"
+               menubarPath="chatGroup"
+               tooltip="Rename this user!">           
+         </action> 
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
+            objectClass="it.uniba.di.cdg.xcore.network.model.IBuddy">
          <action
                class="it.uniba.di.cdg.xcore.one2one.ui.actions.popup.ChatAction"
                enablesFor="1"
@@ -47,6 +121,7 @@
             </enablement>
          </action>
       </objectContribution>
+      
    </extension>
       
    <extension
