@@ -43,7 +43,7 @@ public interface IImageResources {
     public static final String ICON_USER_BUSY = "user_busy"; //$NON-NLS-1$
     public static final String ICON_USER_FROZEN = "user_frozen"; //$NON-NLS-1$
     public static final String ICON_USER_OFFLINE = "user_offline"; //$NON-NLS-1$
-    public static final String ICON_GROUP = "group"; //$NON-NLS-1$
+    public static final String ICON_GROUP = "people"; //$NON-NLS-1$
     public static final String ICON_BACKEND_ONLINE = "backend_online"; //$NON-NLS-1$
     public static final String ICON_BACKEND_OFFLINE = "backend_offline"; //$NON-NLS-1$
     
@@ -64,7 +64,7 @@ public interface IImageResources {
      */
     public static final String ICON_ACTION_CONNECT = "action_connect"; //$NON-NLS-1$
     public static final String ICON_ACTION_DISCONNECT = "action_disconnect"; //$NON-NLS-1$
-
+    public static final String ICON_ACTION_RELOAD = "action_reload"; //$NON-NLS-1$
 
 
     /**
