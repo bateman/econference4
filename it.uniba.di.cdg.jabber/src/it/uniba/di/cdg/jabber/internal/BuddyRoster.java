@@ -424,10 +424,13 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
     public void moveToGroup(String user, String nameNewGroup){
         try{
             RosterEntry entry = jroster.getEntry( user );
+            if(!entry.getGroups().isEmpty()){
             RosterGroup oldgroup = entry.getGroups().iterator().next();
-            RosterGroup newGroup = jroster.getGroup( nameNewGroup );  
             oldgroup.removeEntry(entry);
-            newGroup.addEntry( entry ); 
+            }
+            if(!nameNewGroup.equals("---")){
+            RosterGroup newGroup = jroster.getGroup( nameNewGroup );  
+            newGroup.addEntry( entry ); }
             Thread.sleep(1000);
            }
         catch (XMPPException e) {
