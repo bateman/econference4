@@ -33,6 +33,7 @@ import it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
 import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -47,6 +48,7 @@ import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.RosterGroup;
 import org.jivesoftware.smack.RosterListener;
+import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Presence;
 
 /**
@@ -178,7 +180,7 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             else if (Presence.Mode.away.equals( mode ))
                 buddy.setStatus( Status.AWAY );
             else if (Presence.Mode.dnd.equals( mode ))
-                buddy.setStatus( Status.BUSY );
+                buddy.setStatus( Status.BUSY ); 
             else if (Presence.Mode.chat.equals( mode ))
                 buddy.setStatus(Status.CHAT);
             else if (Presence.Mode.xa.equals( mode ))
@@ -207,8 +209,9 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
         for (Iterator<RosterEntry> it = jroster.getEntries().iterator(); it.hasNext();) {
             RosterEntry entry = (RosterEntry) it.next();
             Presence presence = jroster.getPresence(entry.getUser());
-            Buddy buddy = new Buddy( this, entry.getUser(), entry.getName(), presence.getStatus());
-            buddies.put( buddy.getCleanJid(), buddy );
+            Buddy buddy = new Buddy( this, entry.getUser(), entry.getName(), presence,"", presence.getStatus());
+            //Buddy buddy = new Buddy( this, entry.getUser(), entry.getName(), presence.getStatus());
+            buddies.put( buddy.getCleanJid(), buddy ); 
         }
     }
 
@@ -353,4 +356,125 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
         
         return all.toArray( new IEntry[all.size()] );
     }
+    
+    @Override
+    public void removeBuddy(String user)  {
+        // TODO Auto-generated method stub
+        try{
+        RosterEntry entry = jroster.getEntry( user );
+        jroster.removeEntry( entry ); 
+        Thread.sleep(1000);
+        }
+        catch(XMPPException e){
+            e.getMessage();
+        }
+        catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        rosterModified();
+
+    }
+    
+    @Override
+    public void addBuddy(String name, String id, String[] gruppi){
+        // TODO Auto-generated method stub
+        try{
+        jroster.createEntry( name, id, gruppi );
+        Thread.sleep(1000);
+        }
+        catch(XMPPException e){
+            e.getMessage();
+        }        
+        catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        rosterModified();
+    }
+   
+    @Override
+    public void renameBuddy(String user, String name)  {
+        // TODO Auto-generated method stub
+        RosterEntry entry = jroster.getEntry( user );
+        entry.setName( name );
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        rosterModified();
+    }
+    
+    public void renameGroup(String old_name, String new_name){
+        
+        RosterGroup group = jroster.getGroup( old_name );
+        group.setName( new_name );
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        rosterModified();
+    }
+
+    public void moveToGroup(String user, String nameNewGroup){
+        try{
+            RosterEntry entry = jroster.getEntry( user );
+            RosterGroup oldgroup = entry.getGroups().iterator().next();
+            RosterGroup newGroup = jroster.getGroup( nameNewGroup );  
+            oldgroup.removeEntry(entry);
+            newGroup.addEntry( entry ); 
+            Thread.sleep(1000);
+           }
+        catch (XMPPException e) {
+            
+        }catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        rosterModified();
+    }
+
+	@Override
+	public void addGroup(String name) {
+		jroster.createGroup(name);
+		rosterModified();
+	}
+
+	@Override
+	public void removeGroup(String namegroup, String newGroup ) {
+		RosterGroup group = jroster.getGroup( namegroup );
+		RosterGroup nGroup = jroster.getGroup( newGroup );
+		Iterator<RosterEntry> buddy = group.getEntries().iterator();
+		RosterEntry entry;
+		while (buddy.hasNext()) {
+			entry = buddy.next();
+			try {
+				group.removeEntry(entry);
+				nGroup.addEntry(entry);
+			} catch (XMPPException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		rosterModified();		
+	}
+
+	@Override
+	public void reload() {
+		jroster.reload();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		rosterModified();
+		
+		
+	}
 }

@@ -24,6 +24,9 @@
  */
 package it.uniba.di.cdg.jabber.internal;
 
+import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smack.packet.Presence.Mode;
+
 import it.uniba.di.cdg.xcore.network.model.AbstractBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
@@ -37,7 +40,7 @@ import it.uniba.di.cdg.xcore.network.model.IEntry;
 public class Buddy extends AbstractBuddy {
     /**
      * Buddy's unique id.
-     */
+     */ 
     private String id;
 
     /**
@@ -65,14 +68,52 @@ public class Buddy extends AbstractBuddy {
      */
     private String statusMessage;
     
-    
-    public Buddy( IBuddyRoster roster, String jid, String name, boolean online, String status, String statusMessage ) {
-        this.roster = roster;
+    public Buddy( IBuddyRoster roster, String jid, String name, Boolean online, String status, String statusMessage ) {
+    	this.roster = roster;
         this.id = jid;
         this.name = (name.equals("")) ? jid : name;
         this.online = online;
+        this.statusMessage = statusMessage;  
+    	this.status =  Status.OFFLINE;
+    	
+    }
+    
+    public Buddy( IBuddyRoster roster, String jid, String name, Presence presence, String status, String statusMessage ) {
+    	this.roster = roster;
+        this.id = jid;
+        this.name = (name==null || name.equals("")) ? jid : name;;
         this.statusMessage = statusMessage;
-        this.status = Status.OFFLINE;
+        if(presence != null){
+	        Mode mode = presence.getMode();	        
+	        if (Presence.Mode.available.equals( mode )|| (mode==null && Presence.Type.available.equals(presence.getType()))){
+	        	this.status  = Status.AVAILABLE;
+	        	this.online = true;
+	        }
+	        else if (Presence.Mode.away.equals( mode )){
+	        	this.status  = Status.AWAY;
+	        	this.online = true;
+	        }
+	        else if (Presence.Mode.dnd.equals( mode )){
+	        	this.status  = Status.BUSY;
+	        	this.online = true;
+	        }
+	        else if (Presence.Mode.chat.equals( mode )){
+	        	this.status = Status.CHAT;
+	        	this.online = true;
+	        }
+	        else if (Presence.Mode.xa.equals( mode )){
+	        	this.status = Status.EXTENDED_AWAY;
+	        	this.online = true;
+	        } 
+	        else {
+	        	this.status =  Status.OFFLINE;
+	        	this.online = false;
+	        }
+        }
+    	else {
+    	this.status =  Status.OFFLINE;
+    	this.online = false;
+    	}
     }
 
     /**
@@ -247,4 +288,6 @@ public class Buddy extends AbstractBuddy {
 	public void setStatusMessage(String statusMessage) {
 		this.statusMessage = statusMessage;		
 	}
+
+	
 }
