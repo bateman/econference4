@@ -156,8 +156,8 @@ public class ConnectionDialogUI extends Composite {
         groupServerContext.setText( "Server:" );
         groupServerContext.setLayout( gridLayout1 );
         GridData groupServerContextLData = new GridData();
-        groupServerContextLData.widthHint = 285;
-        groupServerContextLData.heightHint = 102;
+        groupServerContextLData.widthHint = 323;
+        groupServerContextLData.heightHint = 113;
         groupServerContext.setLayoutData(groupServerContextLData);
         serverHostLabel = new Label( groupServerContext, SWT.NONE );
         serverHostLabel.setText( "&Host:" );
@@ -252,8 +252,8 @@ public class ConnectionDialogUI extends Composite {
         groupBuddy.setText( "Login as:" );
         groupBuddy.setLayout(new GridLayout(2,false));
         GridData groupBuddyLData = new GridData();
-        groupBuddyLData.widthHint = 285;
-        groupBuddyLData.heightHint = 104;
+        groupBuddyLData.widthHint = 325;
+        groupBuddyLData.heightHint = 118;
         groupBuddy.setLayoutData(groupBuddyLData);
 //        {
 //        	profileIdLabel = new Label(groupBuddy, SWT.NONE);
