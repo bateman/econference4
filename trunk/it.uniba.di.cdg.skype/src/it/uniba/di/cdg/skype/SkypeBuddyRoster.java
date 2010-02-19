@@ -166,5 +166,56 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
     		l.rosterChanged();
     	}
     }
-    
+
+    @Override
+	public void addGroup(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addBuddy(String name, String id, String[] gruppi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveToGroup(String user, String nameNewGroup) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeBuddy(String user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renameBuddy(String user, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renameGroup(String oldName, String newName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeGroup(String group, String newGroup) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+   
+
+	
 }
