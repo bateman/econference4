@@ -33,13 +33,21 @@ import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
+import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 import it.uniba.di.cdg.xcore.ui.adapters.BuddyAdapterFactory;
+import it.uniba.di.cdg.xcore.ui.actions.NewContactAction;
+import it.uniba.di.cdg.xcore.ui.actions.NewGroupAction;
+import it.uniba.di.cdg.xcore.ui.actions.ReloadAction;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
@@ -47,9 +55,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.internal.UIPlugin;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.IActionBars;
 
 /**
  * GUI for the buddy list: its shows an hierachical view of the buddies this user account provides.
@@ -58,7 +68,11 @@ import org.eclipse.ui.part.ViewPart;
  * Actions and context menu-related functionalities mustr be provided by derived classes.
  */
 public class BuddyListView extends ViewPart {
-    /**
+	
+	private Action addBuddyAction;
+	private Action addGroupAction,reloadRosterAction;
+	
+	/**
      * This view unique id.
      */
     public static final String ID = UiPlugin.ID + ".views.buddyListView";
@@ -148,7 +162,8 @@ public class BuddyListView extends ViewPart {
         roster.addListener( rosterListener );
         treeViewer.setContentProvider( new BaseWorkbenchContentProvider() );
         treeViewer.setInput( roster );
-        
+        makeActions();
+        contributeToActionBars();
         hookContextMenu();
     }
     
@@ -199,5 +214,71 @@ public class BuddyListView extends ViewPart {
         if (treeViewer.getControl().isDisposed())
             return;
         treeViewer.refresh();
+    }
+    
+    private void contributeToActionBars() {
+        IActionBars bars = getViewSite().getActionBars();
+        fillLocalPullDown( bars.getMenuManager() );
+        fillLocalToolBar( bars.getToolBarManager() );
+    }
+    
+    private void fillLocalPullDown( IMenuManager manager ) {
+    	manager.add( reloadRosterAction );
+    	manager.add( addBuddyAction );
+        manager.add( addGroupAction );
+        
+
+    }
+
+   private void fillLocalToolBar( IToolBarManager manager ) {
+	   manager.add( reloadRosterAction ); 
+	   manager.add( addBuddyAction );
+       manager.add( addGroupAction );
+        
+    }
+    
+   private void makeActions() {
+	   reloadRosterAction = new Action() {
+	       public void run() {
+	    	   IBuddyRoster roster = NetworkPlugin.getDefault().getHelper().getRoster();
+	    	   ReloadAction action = new ReloadAction();
+               action.run(roster);
+	           
+	           
+	       }
+	    };
+	    reloadRosterAction.setText( "Reload roster" );
+	    reloadRosterAction.setToolTipText( "Reload roster" );
+	    reloadRosterAction.setImageDescriptor( UiPlugin.getDefault().getImageDescriptor(IImageResources.ICON_ACTION_RELOAD ));
+        
+	    addBuddyAction = new Action() {
+           public void run() {
+        	   final IBuddyRoster roster = NetworkPlugin.getDefault().getHelper().getRoster();
+               NewContactAction action = new NewContactAction();
+               action.run(roster);
+               
+               
+           }
+        };
+        addBuddyAction.setText( "Add Contact" );
+        addBuddyAction.setToolTipText( "Add new contact" );
+        addBuddyAction.setImageDescriptor( UiPlugin.getDefault().getImageDescriptor(IImageResources.ICON_USER_ACTIVE ));
+        
+        addGroupAction = new Action() {
+            public void run() {
+         	   final IBuddyRoster roster = NetworkPlugin.getDefault().getHelper().getRoster();
+                NewGroupAction action = new NewGroupAction();
+                action.run(roster);
+                
+                
+            }
+         };
+         addGroupAction.setText( "Add Group" );
+         addGroupAction.setToolTipText( "Add new group" );
+         addGroupAction.setImageDescriptor( UiPlugin.getDefault().getImageDescriptor(IImageResources.ICON_GROUP ));
+
+        
+        
+        
     }
 }
