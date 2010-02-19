@@ -25,6 +25,7 @@
 package it.uniba.di.cdg.xcore.ui.actions;
 
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
+import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -99,6 +100,15 @@ public abstract class AbstractBuddyActionDelegate implements IObjectActionDelega
      */
     protected IBuddy getSelected() {
         return (IBuddy) getSelection().getFirstElement();
+    }
+    
+    /**
+     * Returns the first selected group.
+     * 
+     * @return the first selected group
+     */
+    protected IBuddyGroup getSelectedGroup() {
+        return (IBuddyGroup) getSelection().getFirstElement();
     }
     
     /**
