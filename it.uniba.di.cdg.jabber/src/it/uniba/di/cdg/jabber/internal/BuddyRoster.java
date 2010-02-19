@@ -451,14 +451,15 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
 	@Override
 	public void removeGroup(String namegroup, String newGroup ) {
 		RosterGroup group = jroster.getGroup( namegroup );
-		RosterGroup nGroup = jroster.getGroup( newGroup );
+		RosterGroup nGroup = null;
+		if(!newGroup.equals("None")){nGroup = jroster.getGroup( newGroup );}
 		Iterator<RosterEntry> buddy = group.getEntries().iterator();
 		RosterEntry entry;
 		while (buddy.hasNext()) {
 			entry = buddy.next();
 			try {
 				group.removeEntry(entry);
-				nGroup.addEntry(entry);
+				if(!newGroup.equals("None")){nGroup.addEntry(entry);}
 			} catch (XMPPException e) {
 				e.printStackTrace();
 			}
