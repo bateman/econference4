@@ -8,7 +8,7 @@ public class TranslateConfiguration {
 	private String url = null;
 	
 	public TranslateConfiguration() {
-		langPair = new LanguagePair("it", "en");
+		langPair = new LanguagePair("en", "it");
 		service = Services.ServiceType.NONE;
 		url = "http://www.neuralnoise.com:6173/RPC2";
 	}
