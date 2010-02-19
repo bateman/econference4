@@ -428,7 +428,7 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             RosterGroup oldgroup = entry.getGroups().iterator().next();
             oldgroup.removeEntry(entry);
             }
-            if(!nameNewGroup.equals("---")){
+            if(!nameNewGroup.equals("None")){
             RosterGroup newGroup = jroster.getGroup( nameNewGroup );  
             newGroup.addEntry( entry ); }
             Thread.sleep(1000);
