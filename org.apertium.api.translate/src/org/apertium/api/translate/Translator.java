@@ -26,12 +26,17 @@ public class Translator {
 	private void refresh(TranslateConfiguration c) throws MalformedURLException {
 		System.out.println("Translator.refresh()");
 		
-		if (!c.equals(lastConfiguration)) {
+		boolean ref = true;
+		if (c != null) {
+			if (c.equals(lastConfiguration)) {
+				ref = false;
+			}
+		}
+		
+		if (ref) {
 			if (connector instanceof IQuery) {
 				((IQuery)connector).close();
 			}
-			
-			connector = null;
 			
 			System.out.println("Translator.refresh() 2");
 			
