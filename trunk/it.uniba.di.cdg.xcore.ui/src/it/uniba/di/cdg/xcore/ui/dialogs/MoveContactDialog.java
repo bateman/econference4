@@ -83,10 +83,16 @@ public class MoveContactDialog extends Dialog {
                 dialogShell.setDefaultButton(undoButton);
                 undoButton.setText("Cancel");
                 undoButton.setBounds(237, 101, 60, 30);
+                undoButton.addSelectionListener(new SelectionAdapter() {
+                    public void widgetSelected(SelectionEvent evt) {
+                            dialogShell.dispose();
+                       }
+                });
             }
             {
                 groupCombo = new CCombo(dialogShell, SWT.NONE);
                 groupCombo.setBounds(120, 69, 176, 18);
+                groupCombo.add( "None" );
                 Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
                 for(int i=0; i<roster.getAllGroups().size();i++){
                     IBuddyGroup group = iter.next();
