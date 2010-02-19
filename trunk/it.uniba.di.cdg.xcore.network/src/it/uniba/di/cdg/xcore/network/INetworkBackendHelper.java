@@ -36,7 +36,7 @@ import java.util.List;
 public interface INetworkBackendHelper {
     /**
      * Set-up internal data structures and register listeners.
-     * @throws Exception 
+     * @throws Exception  
      */
     void initialize() throws Exception;
 
