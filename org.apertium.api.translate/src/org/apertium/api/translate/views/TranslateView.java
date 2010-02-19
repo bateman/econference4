@@ -1,6 +1,8 @@
 package org.apertium.api.translate.views;
 
+import org.apertium.api.exceptions.ApertiumXMLRPCClientException;
 import org.apertium.api.translate.TranslatePlugin;
+import org.apertium.api.translate.Translator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyledText;
@@ -68,9 +70,16 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
     public void messageReceived(String text, String who) {
     	appendMessage(String.format("[%s] %s", who, text));
     	
-    	String translation =  TranslatePlugin.getDefault().getTranslator().translate(text);
+		Translator tran = TranslatePlugin.getDefault().getTranslator();
+		String translated = "";
+		
+		try {
+			translated = tran.translate(text);
+		} catch (Exception e) {
+			translated = e.getStackTrace().toString();
+		}
     	
-        appendMessage(String.format("[%s] %s", who, translation));
+        appendMessage(String.format("[%s] %s", who, translated));
     }
     
     public void appendMessage(final String message) {
@@ -111,6 +120,7 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 		
 		if (event instanceof ChatMessageReceivedEvent) {
 			ChatMessageReceivedEvent cmrEvent = (ChatMessageReceivedEvent)event;
+			
 			messageReceived(cmrEvent.getMessage(), cmrEvent.getFrom());
 		}
 		
