@@ -29,7 +29,7 @@ public class Main {
 
 			int hits = q.query(text);
 
-			System.out.println("Hits: " + hits);
+			//System.out.println("Hits: " + hits);
 
 			if (q.hasNext()) {
 				ret = q.next().target.toString();
@@ -42,10 +42,12 @@ public class Main {
 		return ret;
 	}
 	
-	public static long bench(String text, Object c) throws InterruptedException, ApertiumXMLRPCClientException {
+	public static long bench(String text, Object c, int runs) throws InterruptedException, ApertiumXMLRPCClientException {
 		long startTime = System.currentTimeMillis();
 
-		_translate(text, "en", "it", c);
+		for (int i = 0; i < runs; ++i) {
+			_translate(text, "en", "it", c);
+		}
 		
 		long stopTime = System.currentTimeMillis();
 		return stopTime - startTime;
@@ -64,9 +66,23 @@ public class Main {
         }
         return ret;
     }
+    
+    public static String showArray(String mark, List<Long> l) {
+    	String ret = mark + " = [";
+    	boolean first = true;
+    	for (Long v : l) {
+    		if (!first) {
+    			ret += ", ";
+    		}
+    		ret += v;
+    		first = false;
+    	}
+    	ret += "];";
+    	return ret;
+    }
 	
 	public static void main(String[] args) throws Exception {
-		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://www.neuralnoise.com:6173/RPC2"));
+		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://localhost:6173/RPC2"));
 		IQuery g = new GoogleMTConnector();
 		g.open();
 		
@@ -107,15 +123,19 @@ public class Main {
 		Collections.sort(strings, new StringLengthComparator());
 		
 		List<String> camp = campiona(strings);
-
-		System.out.println(camp.size());
-		
-		
+	
+		List<Long> len = new LinkedList<Long>();
+		List<Long> msa = new LinkedList<Long>();
+		List<Long> msg = new LinkedList<Long>();
 		
 		for (String s : camp) {
-			System.out.println("Length: " + s.length());
-			System.out.println("Apertium: " + bench(s, a));
-			System.out.println("Google: " + bench(s, g));
+			len.add(new Long(s.length()));
+			msa.add(bench(s, a, 32));
+			msg.add(bench(s, g, 32));
 		}
+		
+		System.out.println(showArray("len", len));
+		System.out.println(showArray("msa", msa));
+		System.out.println(showArray("msg", msg));
 	}
 }
