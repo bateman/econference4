@@ -112,4 +112,21 @@ public interface IBuddyRoster extends IEntry, Iterable<IBuddy> {
      * @return the network backend
      */
     IBackend getBackend();
+    
+    void removeBuddy(String user);
+    
+    void removeGroup(String group, String newGroup);
+    
+    void addBuddy(String name, String id, String[] gruppi);
+    
+    void addGroup(String name);
+    
+    void renameBuddy(String user, String name);
+    
+    void renameGroup(String old_name, String new_name);
+
+    void moveToGroup(String user, String nameNewGroup);
+    
+    void reload();
+    
 }
