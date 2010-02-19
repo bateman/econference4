@@ -27,11 +27,11 @@ public class Translator {
 		System.out.println("Translator.refresh()");
 		
 		if (!c.equals(lastConfiguration)) {
-			if (connector != null && connector instanceof IQuery) {
-				IQuery q = (IQuery)connector;
-				q.close();
-				connector = null;
+			if (connector instanceof IQuery) {
+				((IQuery)connector).close();
 			}
+			
+			connector = null;
 			
 			System.out.println("Translator.refresh() 2");
 			
@@ -41,7 +41,6 @@ public class Translator {
 				net.sf.okapi.connectors.microsoft.Parameters p = new net.sf.okapi.connectors.microsoft.Parameters();
 				p.setAppId("28AEB40E8307D187104623046F6C31B0A4DF907E");
 				((MicrosoftMTConnector)connector).setParameters(p);
-				((IQuery)connector).open();
 				break;
 			case APERTIUM:
 				connector = new ApertiumXMLRPCClient(new URL(c.getUrl()));
@@ -49,8 +48,11 @@ public class Translator {
 			case GOOGLE:
 				default:
 					connector = new GoogleMTConnector();
-					((IQuery)connector).open();
 					break;
+			}
+			
+			if (connector instanceof IQuery) {
+				((IQuery)connector).open();
 			}
 			
 			System.out.println("Translator.refresh() 3");
@@ -65,23 +67,13 @@ public class Translator {
 		String ret = text;
 		
 		if (c instanceof IQuery) {
-			IQuery q = (IQuery) c;
-			if (c instanceof MicrosoftMTConnector) {
-				net.sf.okapi.connectors.microsoft.Parameters p = new net.sf.okapi.connectors.microsoft.Parameters();
-				p.setAppId("28AEB40E8307D187104623046F6C31B0A4DF907E");
-				q.setParameters(p);
-			}
-
-			q.setLanguages(LocaleId.fromString(src), LocaleId.fromString(dest));
-
-			int hits = q.query(text);
-
-			if (q.hasNext()) {
-				ret = q.next().target.toString();
+			((IQuery)c).setLanguages(LocaleId.fromString(src), LocaleId.fromString(dest));
+			((IQuery)c).query(text);
+			if (((IQuery)c).hasNext()) {
+				ret = ((IQuery)c).next().target.toString();
 			}
 		} else if (c instanceof ApertiumXMLRPCClient) {
-			ApertiumXMLRPCClient a = (ApertiumXMLRPCClient)c;
-			ret = a.translate(text, src, dest).get("translation");
+			ret = ((ApertiumXMLRPCClient)c).translate(text, src, dest).get("translation");
 		}
 		
 		return ret;
