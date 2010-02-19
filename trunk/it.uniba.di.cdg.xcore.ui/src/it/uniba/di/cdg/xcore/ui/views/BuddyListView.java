@@ -248,7 +248,7 @@ public class BuddyListView extends ViewPart {
 	       }
 	    };
 	    reloadRosterAction.setText( "Reload roster" );
-	    reloadRosterAction.setToolTipText( "Reload roster" );
+	    reloadRosterAction.setToolTipText( "Force reload" );
 	    reloadRosterAction.setImageDescriptor( UiPlugin.getDefault().getImageDescriptor(IImageResources.ICON_ACTION_RELOAD ));
         
 	    addBuddyAction = new Action() {
