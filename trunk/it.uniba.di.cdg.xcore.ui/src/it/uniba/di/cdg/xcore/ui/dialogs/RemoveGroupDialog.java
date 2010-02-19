@@ -74,7 +74,7 @@ public class RemoveGroupDialog extends Dialog {
             {
                 sendButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
                 sendButton.setText("OK");
-                sendButton.setBounds(246, 97, 60, 30);
+                sendButton.setBounds(331, 97, 60, 30);
                 sendButton.addSelectionListener(new SelectionAdapter() {
                     public void widgetSelected(SelectionEvent evt) {
                        try{
@@ -93,7 +93,7 @@ public class RemoveGroupDialog extends Dialog {
                 undoButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
                 dialogShell.setDefaultButton(undoButton);
                 undoButton.setText("Cancel");
-                undoButton.setBounds(312, 97, 60, 30);
+                undoButton.setBounds(397, 97, 60, 30);
                 undoButton.addSelectionListener(new SelectionAdapter() {
                     public void widgetSelected(SelectionEvent evt) {
                             dialogShell.dispose();
@@ -107,7 +107,8 @@ public class RemoveGroupDialog extends Dialog {
             }
             {
                 groupCombo = new CCombo(dialogShell, SWT.NONE);
-                groupCombo.setBounds(112, 73, 176, 18);
+                groupCombo.setBounds(294, 51, 176, 18);
+                groupCombo.add( "None" );
                 Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
                 for(int i=0; i<roster.getAllGroups().size();i++){
                 	IBuddyGroup group = iter.next();
