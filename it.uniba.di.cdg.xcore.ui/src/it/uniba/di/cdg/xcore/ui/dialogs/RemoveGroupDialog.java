@@ -2,6 +2,7 @@ package it.uniba.di.cdg.xcore.ui.dialogs;
 
 import java.util.Iterator;
 
+import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
@@ -58,7 +59,7 @@ public class RemoveGroupDialog extends Dialog {
             final String gruppo = buddyGroup.getName();
             Iterator<IBuddy> buddies = buddyGroup.getBuddies().iterator();
             if(!buddies.hasNext()){
-            	UiPlugin.getUIHelper().showMessage("You can't remove empty groups!");
+            	NetworkPlugin.getDefault().getHelper().getRoster().reload();
             	return;
 			}
             final IBuddyRoster roster = buddies.next().getRoster();
@@ -93,6 +94,11 @@ public class RemoveGroupDialog extends Dialog {
                 dialogShell.setDefaultButton(undoButton);
                 undoButton.setText("Cancel");
                 undoButton.setBounds(312, 97, 60, 30);
+                undoButton.addSelectionListener(new SelectionAdapter() {
+                    public void widgetSelected(SelectionEvent evt) {
+                            dialogShell.dispose();
+                       }
+                });
             }
             {
             	whereLabel = new Label(dialogShell, SWT.NONE);

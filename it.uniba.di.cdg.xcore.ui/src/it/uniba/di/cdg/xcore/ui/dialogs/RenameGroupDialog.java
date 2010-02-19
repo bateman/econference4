@@ -2,6 +2,7 @@ package it.uniba.di.cdg.xcore.ui.dialogs;
 
 import java.util.Iterator;
 
+import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
@@ -52,7 +53,7 @@ public class RenameGroupDialog extends Dialog {
             final String current = buddyGroup.getName();
             Iterator<IBuddy> buddies = buddyGroup.getBuddies().iterator();
             if(!buddies.hasNext()){
-            	UiPlugin.getUIHelper().showMessage("You can't rename empty groups!");
+            	UiPlugin.getUIHelper().showMessage("You can't remove empty groups!");
             	return;
 			}
             final IBuddyRoster roster = buddies.next().getRoster();
