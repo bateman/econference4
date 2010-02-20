@@ -359,7 +359,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
     
     @Override
     public void removeBuddy(String id)  {
-        // TODO Auto-generated method stub
         try{
         RosterEntry entry = jroster.getEntry( id );
         jroster.removeEntry( entry ); 
@@ -369,7 +368,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             e.getMessage();
         }
         catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         rosterModified();
@@ -378,7 +376,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
     
     @Override
     public void addBuddy(String id, String name, String[] gruppi){
-        // TODO Auto-generated method stub
         try{
         	if(gruppi[0].equals("None")){
         		jroster.createEntry(id, name, null);
@@ -392,7 +389,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             e.getMessage();
         }        
         catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         rosterModified();
@@ -400,16 +396,15 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
    
     @Override
     public void renameBuddy(String user, String name)  {
-        // TODO Auto-generated method stub
         RosterEntry entry = jroster.getEntry( user );
         entry.setName( name );
         try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         rosterModified();
+        refreshBuddies();
     }
     
     public void renameGroup(String old_name, String new_name){
@@ -419,7 +414,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
         try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
@@ -441,7 +435,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
         catch (XMPPException e) {
             
         }catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         rosterModified();
@@ -479,10 +472,10 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		rosterModified();
+		refreshBuddies();
 		
 		
 	}
