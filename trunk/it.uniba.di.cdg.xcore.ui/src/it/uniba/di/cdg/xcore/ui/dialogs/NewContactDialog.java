@@ -1,5 +1,4 @@
 package it.uniba.di.cdg.xcore.ui.dialogs;
-import com.cloudgarden.resource.SWTResourceManager;
 
 import java.util.Iterator;
 
@@ -12,6 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
@@ -94,7 +94,7 @@ public class NewContactDialog extends Dialog {
                         	}
                         	else{
                         		labelerror.setVisible(true);
-                        		usernameLabel.setForeground(SWTResourceManager.getColor(255, 0, 0));
+                        		
                         	}
                           }
                     });
@@ -133,8 +133,6 @@ public class NewContactDialog extends Dialog {
                 	labelerror = new Label(newContactGroup, SWT.NONE);
                 	labelerror.setText("username is not valid");
                 	labelerror.setBounds(86, 103, 184, 20);
-                	labelerror.setFont(SWTResourceManager.getFont("Sans", 7, 0, false, false));
-                	labelerror.setForeground(SWTResourceManager.getColor(255, 0, 0));
                 	labelerror.setAlignment(SWT.RIGHT);
                 	labelerror.setVisible(false);
                 }
