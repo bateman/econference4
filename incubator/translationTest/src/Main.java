@@ -42,10 +42,10 @@ public class Main {
 		return ret;
 	}
 	
-	public static long bench(String text, Object c, int runs) throws InterruptedException, ApertiumXMLRPCClientException {
+	public static long bench(String text, Object c, int cycles) throws InterruptedException, ApertiumXMLRPCClientException {
 		long startTime = System.currentTimeMillis();
 
-		for (int i = 0; i < runs; ++i) {
+		for (int i = 0; i < cycles; ++i) {
 			_translate(text, "en", "it", c);
 		}
 		
