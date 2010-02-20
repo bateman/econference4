@@ -1,5 +1,8 @@
 package org.apertium.api.translate.views;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.apertium.api.translate.TranslatePlugin;
 import org.apertium.api.translate.Translator;
 import org.eclipse.swt.SWT;
@@ -42,7 +45,6 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
         top.setLayout(new FillLayout());
 		
         createSashForm();        
-        //appendMessage("Qui appariranno le traduzioni");
         
         TranslatePlugin.getDefault().addListener(this);
 	}
@@ -69,6 +71,14 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 		translations.setEditable(false);
     }
 
+    private static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
+    
+	private static String now() {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		return sdf.format(cal.getTime());
+	}
+    
     public void newMessage(String original, String who, boolean toTranslate) {
     	Color orange = new Color(Display.getCurrent(), 255, 127, 0);
     	Color lime = new Color(Display.getCurrent(), 127, 255, 127);
@@ -82,8 +92,10 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 			e.printStackTrace();
 		}
 		
-		appendMessage(String.format("[%s] %s", who, original), orange);
-        appendMessage(String.format("[%s] %s", who, translated), lime);
+		String n = now();
+		
+		appendMessage(String.format("[%s - %s] %s", who, n, original), orange);
+        appendMessage(String.format("[%s - %s] %s", who, n, translated), lime);
     }
     
     public void appendMessage(final String message, final Color color) {
