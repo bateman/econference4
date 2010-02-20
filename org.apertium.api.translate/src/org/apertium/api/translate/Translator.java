@@ -11,7 +11,6 @@ import net.sf.okapi.lib.translation.IQuery;
 import org.apertium.api.ApertiumXMLRPCClient;
 import org.apertium.api.exceptions.ApertiumXMLRPCClientException;
 import org.apertium.api.translate.actions.TranslateConfiguration;
-import org.apertium.api.translate.actions.TranslateConfigurationAction;
 
 public class Translator {
 	
@@ -25,8 +24,8 @@ public class Translator {
 	
 	private void refresh(TranslateConfiguration c) throws MalformedURLException {
 		System.out.println("Translator.refresh()");
-		
 		boolean ref = true;
+		
 		if (c != null) {
 			if (c.equals(lastConfiguration)) {
 				ref = false;
@@ -35,11 +34,13 @@ public class Translator {
 		
 		if (ref) {
 			if (connector instanceof IQuery) {
-				((IQuery)connector).close();
+				System.out.println("Translator.refresh() 1.9");
+				
+				IQuery q = (IQuery)connector;
+				q.close();
 			}
-			
 			System.out.println("Translator.refresh() 2");
-			
+		
 			switch (c.getService()) {
 			case MICROSOFT:
 				connector = new MicrosoftMTConnector();	
@@ -51,34 +52,41 @@ public class Translator {
 				connector = new ApertiumXMLRPCClient(new URL(c.getUrl()));
 				break;
 			case GOOGLE:
-				default:
-					connector = new GoogleMTConnector();
-					break;
+				connector = new GoogleMTConnector();
+				break;
+			case NONE:
+				connector = null;
+				break;
 			}
-			
 			if (connector instanceof IQuery) {
-				((IQuery)connector).open();
-			}
-			
+				System.out.println("Translator.refresh() 2.1");
+				
+				IQuery q = (IQuery)connector;
+				q.open();
+			}	
 			System.out.println("Translator.refresh() 3");
 		}
-
 		System.out.println("Translator.refresh() 4");
-		
 		lastConfiguration = c.clona();
 	}
 	
-	private static String _translate(String text, String src, String dest, Object c) throws InterruptedException, ApertiumXMLRPCClientException {
+	public static String _translate(String text, String src, String dest, Object connector) throws InterruptedException, ApertiumXMLRPCClientException {
 		String ret = text;
 		
-		if (c instanceof IQuery) {
-			((IQuery)c).setLanguages(LocaleId.fromString(src), LocaleId.fromString(dest));
-			((IQuery)c).query(text);
-			if (((IQuery)c).hasNext()) {
-				ret = ((IQuery)c).next().target.toString();
+		System.out.println("Translator._translate(): " + text + " " + src + " " + dest + " " + connector);
+		
+		if (connector instanceof IQuery) {
+			IQuery q = (IQuery)connector;
+			
+			q.setLanguages(LocaleId.fromString(src), LocaleId.fromString(dest));
+			q.query(text);
+			
+			if (q.hasNext()) {
+				ret = q.next().target.toString();
 			}
-		} else if (c instanceof ApertiumXMLRPCClient) {
-			ret = ((ApertiumXMLRPCClient)c).translate(text, src, dest).get("translation");
+		} else if (connector instanceof ApertiumXMLRPCClient) {
+			ApertiumXMLRPCClient a = (ApertiumXMLRPCClient)connector;
+			ret = a.translate(text, src, dest).get("translation");
 		}
 		
 		return ret;
@@ -87,7 +95,7 @@ public class Translator {
 	public String translate(String text) throws InterruptedException, ApertiumXMLRPCClientException, MalformedURLException {
 		System.out.println("Translator.translate()");
 		
-		TranslateConfiguration c = TranslateConfigurationAction.getInstance().getConfiguration();
+		TranslateConfiguration c = TranslatePlugin.getDefault().getConfiguration();
 		refresh(c);
 		
 		String ret = _translate(text, 

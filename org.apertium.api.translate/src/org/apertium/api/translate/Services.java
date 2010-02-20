@@ -12,9 +12,10 @@ public class Services {
 	public Services() {
 		serviceMap = new HashMap<String, ServiceType>();
 		
-		//serviceMap.put("Apertium XML-RPC", ServiceType.APERTIUM);
+		serviceMap.put("Apertium XML-RPC", ServiceType.APERTIUM);
 		serviceMap.put("Google", ServiceType.GOOGLE);
 		serviceMap.put("Microsoft", ServiceType.MICROSOFT);
+		serviceMap.put("Nessuno", ServiceType.NONE);
 		
 		revServiceMap = new HashMap<ServiceType, String>();
 		for (String l : serviceMap.keySet()) {
@@ -35,6 +36,7 @@ public class Services {
 		if (t != null) {
 			ret = revServiceMap.get(t);
 		}
+		System.out.println("Service.getService(): asked for " + t + ", returning " + ret);
 		return ret;
 	}
 	

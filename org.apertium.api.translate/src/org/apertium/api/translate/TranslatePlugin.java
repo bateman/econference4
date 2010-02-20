@@ -6,6 +6,7 @@ import java.util.List;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
+import org.apertium.api.translate.actions.TranslateConfiguration;
 import org.apertium.api.translate.listeners.TranslateListener;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -17,6 +18,7 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	private List<IBackendEventListener> translateListeners = null;
 	
 	private Translator translator = null;
+	private TranslateConfiguration configuration = null;
 	
 	private static TranslatePlugin plugin = null;
 	
@@ -25,6 +27,7 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		plugin = this;
 		
 		translator = new Translator();
+		configuration = new TranslateConfiguration();
 		
 		translateListeners = new LinkedList<IBackendEventListener>();
 		translateListeners.add(new TranslateListener());
@@ -69,6 +72,11 @@ public class TranslatePlugin extends AbstractUIPlugin {
 	public Translator getTranslator() {
 		System.out.println("TranslatePlugin.getTranslator()");
 		return translator;
+	}
+	
+	public TranslateConfiguration getConfiguration() {
+		System.out.println("TranslatePlugin.getTConfiguration()");
+		return configuration;
 	}
 	
 	public static ImageDescriptor getImageDescriptor(String path) {
