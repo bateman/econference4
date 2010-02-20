@@ -1,13 +1,14 @@
 package org.apertium.api.translate.views;
 
-import org.apertium.api.exceptions.ApertiumXMLRPCClientException;
 import org.apertium.api.translate.TranslatePlugin;
 import org.apertium.api.translate.Translator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -24,6 +25,7 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 	private SashForm sashForm = null;
 	
 	protected StyledText translations = null;
+	protected int position = 0;
 	
 	public static final String ID = TranslatePlugin.ID + ".views.translateView";
     private static final String SEPARATOR = System.getProperty("line.separator");
@@ -40,7 +42,7 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
         top.setLayout(new FillLayout());
 		
         createSashForm();        
-        appendMessage("Qui appariranno le traduzioni");
+        //appendMessage("Qui appariranno le traduzioni");
         
         TranslatePlugin.getDefault().addListener(this);
 	}
@@ -67,28 +69,39 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 		translations.setEditable(false);
     }
 
-    public void messageReceived(String text, String who) {
-    	appendMessage(String.format("[%s] %s", who, text));
+    public void newMessage(String original, String who, boolean toTranslate) {
+    	Color orange = new Color(Display.getCurrent(), 255, 127, 0);
+    	Color lime = new Color(Display.getCurrent(), 127, 255, 127);
     	
 		Translator tran = TranslatePlugin.getDefault().getTranslator();
-		String translated = text;
+		String translated = original;
 		
 		try {
-			translated = tran.translate(text);
+			translated = tran.translate(original);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	
-        appendMessage(String.format("[%s] %s", who, translated));
+		
+		appendMessage(String.format("[%s] %s", who, original), orange);
+        appendMessage(String.format("[%s] %s", who, translated), lime);
     }
     
-    public void appendMessage(final String message) {
+    public void appendMessage(final String message, final Color color) {
     	System.out.println("TranslateView.appendMessage()");
     	
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				String textToAppend = message + SEPARATOR;
 				translations.append(textToAppend);
+				
+				StyleRange styleRange = new StyleRange();
+				styleRange.start = position;
+				styleRange.length = textToAppend.length();
+				styleRange.fontStyle = SWT.BOLD;
+				styleRange.foreground = color;
+				translations.setStyleRange(styleRange);
+				
+				position += textToAppend.length();
 				scrollToEnd();
 			}
 		});
@@ -121,7 +134,7 @@ public class TranslateView extends ViewPart implements ITranslateView, IBackendE
 		if (event instanceof ChatMessageReceivedEvent) {
 			ChatMessageReceivedEvent cmrEvent = (ChatMessageReceivedEvent)event;
 			
-			messageReceived(cmrEvent.getMessage(), cmrEvent.getFrom());
+			newMessage(cmrEvent.getMessage(), cmrEvent.getFrom(), true);
 		}
 		
 	}
