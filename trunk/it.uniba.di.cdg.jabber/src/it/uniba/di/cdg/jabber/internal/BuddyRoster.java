@@ -358,10 +358,10 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
     }
     
     @Override
-    public void removeBuddy(String user)  {
+    public void removeBuddy(String id)  {
         // TODO Auto-generated method stub
         try{
-        RosterEntry entry = jroster.getEntry( user );
+        RosterEntry entry = jroster.getEntry( id );
         jroster.removeEntry( entry ); 
         Thread.sleep(1000);
         }
@@ -377,10 +377,15 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
     }
     
     @Override
-    public void addBuddy(String name, String id, String[] gruppi){
+    public void addBuddy(String id, String name, String[] gruppi){
         // TODO Auto-generated method stub
         try{
-        jroster.createEntry( name, id, gruppi );
+        	if(gruppi[0].equals("None")){
+        		jroster.createEntry(id, name, null);
+        	}
+        	else{
+        		jroster.createEntry(id, name, gruppi );
+        	}
         Thread.sleep(1000);
         }
         catch(XMPPException e){
