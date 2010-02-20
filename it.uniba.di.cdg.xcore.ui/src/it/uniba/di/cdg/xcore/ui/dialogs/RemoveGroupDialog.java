@@ -112,7 +112,9 @@ public class RemoveGroupDialog extends Dialog {
                 Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
                 for(int i=0; i<roster.getAllGroups().size();i++){
                 	IBuddyGroup group = iter.next();
+                	if(!(group.getName().equals(buddyGroup.getName()))){
                     groupCombo.add( group.getName() );
+                	}
                 }
                 groupCombo.setEditable( false );
                 groupCombo.select( 0 );

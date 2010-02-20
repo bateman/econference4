@@ -1,6 +1,5 @@
 package it.uniba.di.cdg.xcore.ui.dialogs;
-
-
+import com.cloudgarden.resource.SWTResourceManager;
 
 import java.util.Iterator;
 
@@ -35,10 +34,12 @@ import org.eclipse.swt.widgets.Text;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class NewContactDialog extends Dialog {
-    private Shell dialogShell;
+
+	private Shell dialogShell;
     private Text usernameText;
     private Text aliasText;
     private CCombo groupCombo;
+    private Label labelerror;
     private Group newContactGroup;
     private Button undoButton;
     private Button sendButton;
@@ -62,7 +63,7 @@ public class NewContactDialog extends Dialog {
                 newContactGroup = new Group(dialogShell, SWT.NONE);
                 newContactGroup.setLayout(null);
                 newContactGroup.setText("Add new contact");
-                newContactGroup.setBounds(0, 0, 291, 148);
+                newContactGroup.setBounds(0, 0, 291, 157);
                 {
                     groupLabel = new Label(newContactGroup, SWT.NONE);
                     groupLabel.setText("Group");
@@ -71,7 +72,7 @@ public class NewContactDialog extends Dialog {
                 {
                     undoButton = new Button(newContactGroup, SWT.PUSH | SWT.CENTER);
                     undoButton.setText("Cancel");
-                    undoButton.setBounds(207, 116, 60, 30);
+                    undoButton.setBounds(213, 122, 60, 30);
                     undoButton.addSelectionListener(new SelectionAdapter() {
                         public void widgetSelected(SelectionEvent evt) {
                                 dialogShell.dispose();
@@ -81,21 +82,21 @@ public class NewContactDialog extends Dialog {
                 {
                     sendButton = new Button(newContactGroup, SWT.PUSH | SWT.CENTER);
                     sendButton.setText("Ok");
-                    sendButton.setBounds(141, 116, 60, 30);
+                    sendButton.setBounds(147, 122, 60, 30);
                     sendButton.addSelectionListener(new SelectionAdapter() {
                         public void widgetSelected(SelectionEvent evt) {
-                           try{
                         	String gruppo = groupCombo.getItem(groupCombo.getSelectionIndex());
-                        	final String[] group = {gruppo};         
-                            roster.addBuddy(aliasText.getText(), usernameText.getText(), group);
-                            }
-                           catch(Exception e){
-                               e.getMessage();
-                           }
-                           finally{
-                               dialogShell.dispose();
-                           }
-                        }
+                        	String username = usernameText.getText();
+                        	if(username.matches("[A-Za-z0-9_.-]+@[A-Za-z0-9_.]+[.]{1}[A-Za-z]{2,4}")){
+                        		final String[] group = {gruppo};
+                        		roster.addBuddy(username,aliasText.getText(), group);
+                        		dialogShell.dispose();
+                        	}
+                        	else{
+                        		labelerror.setVisible(true);
+                        		usernameLabel.setForeground(SWTResourceManager.getColor(255, 0, 0));
+                        	}
+                          }
                     });
                 }
                 {
@@ -105,12 +106,13 @@ public class NewContactDialog extends Dialog {
                 }
                 {
                     usernameLabel = new Label(newContactGroup, SWT.NONE);
-                    usernameLabel.setText("Username");
-                    usernameLabel.setBounds(7, 20, 64, 15);
+                    usernameLabel.setText("Username*");
+                    usernameLabel.setBounds(7, 20, 79, 15);
                 }
                 {
                 	groupCombo = new CCombo(dialogShell, SWT.NONE);
-                    groupCombo.setBounds(113, 74, 161, 18);
+                    groupCombo.setBounds(119, 75, 161, 18);
+                    groupCombo.add( "None" );
                     Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
                     for(int i=0; i<roster.getAllGroups().size();i++){
                         IBuddyGroup group = iter.next();
@@ -121,11 +123,20 @@ public class NewContactDialog extends Dialog {
                 }
                 {
                     aliasText = new Text(newContactGroup, SWT.NONE);
-                    aliasText.setBounds(114, 20, 158, 19);
+                    aliasText.setBounds(121, 47, 158, 19);
                 }
                 {
                     usernameText = new Text(newContactGroup, SWT.NONE);
-                    usernameText.setBounds(114, 47, 158, 19);
+                    usernameText.setBounds(121, 20, 158, 19);
+                }
+                {
+                	labelerror = new Label(newContactGroup, SWT.NONE);
+                	labelerror.setText("username is not valid");
+                	labelerror.setBounds(86, 103, 184, 20);
+                	labelerror.setFont(SWTResourceManager.getFont("Sans", 7, 0, false, false));
+                	labelerror.setForeground(SWTResourceManager.getColor(255, 0, 0));
+                	labelerror.setAlignment(SWT.RIGHT);
+                	labelerror.setVisible(false);
                 }
             }
 

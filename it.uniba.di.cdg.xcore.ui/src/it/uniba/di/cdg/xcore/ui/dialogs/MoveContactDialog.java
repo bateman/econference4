@@ -91,12 +91,17 @@ public class MoveContactDialog extends Dialog {
             }
             {
                 groupCombo = new CCombo(dialogShell, SWT.NONE);
-                groupCombo.setBounds(120, 69, 176, 18);
-                groupCombo.add( "None" );
+                groupCombo.setBounds(120, 69, 176, 18);                
                 Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
+                IBuddyGroup buddygroup = null;
+                if(!roster.getGroups(buddy).isEmpty()){
+                groupCombo.add( "None" );
+                buddygroup = roster.getGroups(buddy).iterator().next();}
                 for(int i=0; i<roster.getAllGroups().size();i++){
                     IBuddyGroup group = iter.next();
+                    if(buddygroup==null || !(group.getName().equals(buddygroup.getName()))){
                     groupCombo.add( group.getName() );
+                    }
                 }
                 groupCombo.setEditable( false );
                 groupCombo.select( 0 );
