@@ -5,6 +5,8 @@ import org.apertium.api.translate.*;
 import javax.swing.*;
 
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.*;
 
 public class TranslateConfigurationForm {
@@ -70,6 +72,13 @@ public class TranslateConfigurationForm {
 		serviceComboBox.setModel(createServiceModel(services));
 		serviceComboBox.setRenderer(new EntryRenderer());
 		
+		serviceComboBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				checkUrl();
+			}
+		});
+		
 		srcComboBox.removeAllItems();
 		srcComboBox.setModel(createLanguageModel(iso));
 		srcComboBox.setRenderer(new EntryRenderer());
@@ -85,8 +94,21 @@ public class TranslateConfigurationForm {
 		if (destComboBox.getModel().getSize() > 0) {
 			destComboBox.setSelectedIndex(0);
 		}
+		
+		checkUrl();
 	}
 
+	public void checkUrl() {
+		String selected = (String)serviceComboBox.getSelectedItem();
+		Services.ServiceType ser = services.getServiceType(selected);
+		
+		if (ser == Services.ServiceType.APERTIUM) {
+			urlTextField.setEditable(true);
+		} else {
+			urlTextField.setEditable(false);
+		}
+	}
+	
 	public JComboBox getSrcComboBox() {
 		return srcComboBox;
 	}
