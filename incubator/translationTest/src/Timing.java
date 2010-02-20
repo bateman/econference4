@@ -3,7 +3,6 @@ import org.apertium.api.exceptions.ApertiumXMLRPCClientException;
 class Timing extends Thread {
 	
 	private Object connector = null;
-	
 	private String text = null;
 	private int cycles = 0;
 	
@@ -13,11 +12,11 @@ class Timing extends Thread {
 		cycles = cy;
 	}
 	
-	public static long bench(Object c, String text, int cycles, int threads) throws InterruptedException {
+	public static long bench(Object connector, String text, int cycles, int threads) throws InterruptedException {
 		Timing[] t = new Timing[threads];
 		
 		for (int i = 0; i < threads; ++i)
-			t[i] = new Timing(c, text, cycles);
+			t[i] = new Timing(connector, text, cycles);
 		
 		long startTime = System.currentTimeMillis();
 		

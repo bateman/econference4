@@ -86,41 +86,7 @@ public class Main {
 		IQuery g = new GoogleMTConnector();
 		g.open();
 		
-		List<Utterance> utterancestr = Utils.readUtterances("trainingset/log.xml");
-		
-		List<Utterance> utterancests1 = Utils.readUtterances("testset/testset_log_1.xml");
-		List<Utterance> utterancests2 = Utils.readUtterances("testset/testset_log_2.xml");
-		List<Utterance> utterancests3 = Utils.readUtterances("testset/testset_log_3.xml");
-		List<Utterance> utterancests4 = Utils.readUtterances("testset/testset_log_4.xml");
-		List<Utterance> utterancests5 = Utils.readUtterances("testset/testset_log_5.xml");
-		
-		List<String> strings = new LinkedList<String>();
-		
-		for (Utterance u : utterancestr) {
-			strings.add(u.getUtterance());
-		}
-		
-		for (Utterance u : utterancests1) {
-			strings.add(u.getUtterance());
-		}
-		
-		for (Utterance u : utterancests2) {
-			strings.add(u.getUtterance());
-		}
-		
-		for (Utterance u : utterancests3) {
-			strings.add(u.getUtterance());
-		}
-		
-		for (Utterance u : utterancests4) {
-			strings.add(u.getUtterance());
-		}
-		
-		for (Utterance u : utterancests5) {
-			strings.add(u.getUtterance());
-		}
-		
-		Collections.sort(strings, new StringLengthComparator());
+		List<String> strings = Utils.getAllSortedStrings();
 		
 		List<String> camp = campiona(strings);
 	
