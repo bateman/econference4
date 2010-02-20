@@ -7,6 +7,7 @@ import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 
 import org.apertium.api.translate.actions.TranslateConfiguration;
+import org.apertium.api.translate.actions.TranslateConfigurationAction;
 import org.apertium.api.translate.listeners.TranslateListener;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -28,6 +29,8 @@ public class TranslatePlugin extends AbstractUIPlugin {
 		
 		translator = new Translator();
 		configuration = new TranslateConfiguration();
+		
+		TranslateConfigurationAction.getInstance();
 		
 		translateListeners = new LinkedList<IBackendEventListener>();
 		translateListeners.add(new TranslateListener());
