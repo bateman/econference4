@@ -20,8 +20,6 @@ import java.util.Properties;
 
 public class TranslateConfigurationAction implements IWorkbenchWindowActionDelegate {
 	
-	private TranslateConfiguration configuration = null;
-	
 	private Services services = null;
 	
 	private static TranslateConfigurationAction instance = null;
@@ -38,10 +36,6 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 			instance.readProperties();
 		}
 		return instance;
-	}
-
-	public TranslateConfiguration getConfiguration() {
-		return configuration;
 	}
 	
 	private void readProperties() {
@@ -60,6 +54,8 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 		}
 		
 		String tservice = (String)props.get("translate.service");
+		
+		TranslateConfiguration configuration = TranslatePlugin.getDefault().getConfiguration();
 		
 		if (tservice != null) {
 			configuration.setService(services.getServiceType(tservice));
@@ -83,10 +79,12 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 	}
 
 	private void writeProperties() {
-		
+		System.out.println("TranslateConfigurationAction.writeProperties()");
 		String userDir = System.getProperty("user.dir");
 
 		Properties props = new Properties();
+		
+		TranslateConfiguration configuration = TranslatePlugin.getDefault().getConfiguration();
 		
 		if (configuration.getService() != null) {
 			props.put("translate.service", services.getService(configuration.getService()));
@@ -113,7 +111,6 @@ public class TranslateConfigurationAction implements IWorkbenchWindowActionDeleg
 
 	public TranslateConfigurationAction() throws Exception {
 		services = new Services();
-		configuration = new TranslateConfiguration();
 	}
 
 	public void run(IAction action) {

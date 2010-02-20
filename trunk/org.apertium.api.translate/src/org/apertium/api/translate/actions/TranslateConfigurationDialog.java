@@ -87,7 +87,9 @@ public class TranslateConfigurationDialog extends JDialog implements ActionListe
 
 	private void saveProperties() {
 		TranslateConfiguration data = form.getData();
-		TranslateConfiguration configuration = TranslateConfigurationAction.getInstance().getConfiguration();
+		TranslateConfiguration configuration = TranslatePlugin.getDefault().getConfiguration();
+		
+		System.out.println("TranslateConfigurationDialog.saveProperties(): " + data.getService());
 		
 		configuration.setService(data.getService());
 		configuration.setLangPair(data.getLangPair());
@@ -96,7 +98,7 @@ public class TranslateConfigurationDialog extends JDialog implements ActionListe
 
 	public void loadProperties() {
 		System.out.println("TranslateConfigDialog.loadProperties()");
-		TranslateConfiguration configuration = TranslateConfigurationAction.getInstance().getConfiguration();
+		TranslateConfiguration configuration = TranslatePlugin.getDefault().getConfiguration();
 		form.setData(configuration);
 	}
 
