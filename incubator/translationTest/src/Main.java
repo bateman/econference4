@@ -14,35 +14,42 @@ import com.google.api.translate.Translate;
 
 public class Main {
 
-	private static String _translate(String text, String src, String dest, Object c) throws InterruptedException, ApertiumXMLRPCClientException {
+	private static String _translate(String text, String src, String dest, Object c) throws Exception {
 		String ret = text;
 		
-		if (c instanceof IQuery) {
-			IQuery q = (IQuery) c;
-			if (c instanceof MicrosoftMTConnector) {
-				net.sf.okapi.connectors.microsoft.Parameters p = new net.sf.okapi.connectors.microsoft.Parameters();
-				p.setAppId("28AEB40E8307D187104623046F6C31B0A4DF907E");
-				q.setParameters(p);
+		if (c != null) {
+			if (c instanceof IQuery) {
+				IQuery q = (IQuery) c;
+				if (c instanceof MicrosoftMTConnector) {
+					net.sf.okapi.connectors.microsoft.Parameters p = new net.sf.okapi.connectors.microsoft.Parameters();
+					p.setAppId("28AEB40E8307D187104623046F6C31B0A4DF907E");
+					q.setParameters(p);
+				}
+
+				q.setLanguages(LocaleId.fromString(src), LocaleId
+						.fromString(dest));
+
+				int hits = q.query(text);
+
+				// System.out.println("Hits: " + hits);
+
+				if (q.hasNext()) {
+					ret = q.next().target.toString();
+				}
+			} else if (c instanceof ApertiumXMLRPCClient) {
+				ApertiumXMLRPCClient a = (ApertiumXMLRPCClient) c;
+				ret = a.translate(text, src, dest).get("translation");
 			}
-
-			q.setLanguages(LocaleId.fromString(src), LocaleId.fromString(dest));
-
-			int hits = q.query(text);
-
-			//System.out.println("Hits: " + hits);
-
-			if (q.hasNext()) {
-				ret = q.next().target.toString();
-			}
-		} else if (c instanceof ApertiumXMLRPCClient) {
-			ApertiumXMLRPCClient a = (ApertiumXMLRPCClient)c;
-			ret = a.translate(text, src, dest).get("translation");
+		} else { 
+			ret = Translate.execute(text, Language.fromString(src), Language.fromString(dest));
+			
+			System.out.println(ret);
 		}
 		
 		return ret;
 	}
 	
-	public static long bench(String text, Object c, int cycles) throws InterruptedException, ApertiumXMLRPCClientException {
+	public static long bench(String text, Object c, int cycles) throws Exception {
 		long startTime = System.currentTimeMillis();
 
 		for (int i = 0; i < cycles; ++i) {
@@ -83,8 +90,12 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://localhost:6173/RPC2"));
-		IQuery g = new GoogleMTConnector();
-		g.open();
+		
+		//IQuery g = new GoogleMTConnector();
+		//g.open();
+		Object g = null;
+		
+		Translate.setHttpReferrer("http://www.neuralnoise.com");
 		
 		List<String> strings = Utils.getAllSortedStrings();
 		

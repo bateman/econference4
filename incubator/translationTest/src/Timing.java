@@ -34,9 +34,7 @@ class Timing extends Thread {
 	public void run() {
 		try {
 			Main.bench(text, connector, cycles);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ApertiumXMLRPCClientException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
