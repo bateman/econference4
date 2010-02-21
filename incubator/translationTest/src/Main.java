@@ -55,7 +55,7 @@ public class Main {
 
     public static List<String> campiona(List<String> l) {
         List<String> ret = new LinkedList<String>();
-        long u = new Long(l.get(l.size() - 2).length()) / 10;
+        long u = new Long(l.get(l.size() - 1).length()) / 20;
         long count = 1;
         for (String s : l) {
                 long t = u * count;
@@ -88,8 +88,12 @@ public class Main {
 		
 		List<String> strings = Utils.getAllSortedStrings();
 		
+		strings.remove(strings.size() - 1);
+		strings.remove(strings.size() - 1);
+		strings.remove(strings.size() - 1);
+		
 		List<String> camp = campiona(strings);
-	
+		
 		List<Long> len = new LinkedList<Long>();
 		List<Long> msa = new LinkedList<Long>();
 		List<Long> msg = new LinkedList<Long>();
@@ -103,5 +107,24 @@ public class Main {
 		System.out.println(showArray("len", len));
 		System.out.println(showArray("msa", msa));
 		System.out.println(showArray("msg", msg));
+		
+		String bigger = strings.get(strings.size() - 1);
+		
+		List<Long> threads = new LinkedList<Long>();
+		List<Long> msat = new LinkedList<Long>();
+		List<Long> msgt = new LinkedList<Long>();
+		
+		for (int i = 1; i <= 8; ++i) {
+			long at = Timing.bench(a, bigger, 32, i) / i;
+			long gt = Timing.bench(g, bigger, 32, i) / i;
+			
+			threads.add(new Long(i));
+			msat.add(at);
+			msgt.add(gt);
+		}
+		
+		System.out.println(showArray("threads", len));
+		System.out.println(showArray("msat", msat));
+		System.out.println(showArray("msgt", msgt));
 	}
 }
