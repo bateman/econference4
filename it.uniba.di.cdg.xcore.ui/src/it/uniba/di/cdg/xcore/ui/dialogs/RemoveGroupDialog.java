@@ -58,11 +58,18 @@ public class RemoveGroupDialog extends Dialog {
             Shell parent = getParent();
             final String gruppo = buddyGroup.getName();
             Iterator<IBuddy> buddies = buddyGroup.getBuddies().iterator();
+            Boolean emptygroup = false;
+            IBuddyRoster roster_ap = null;
             if(!buddies.hasNext()){
-            	NetworkPlugin.getDefault().getHelper().getRoster().reload();
-            	return;
+            	roster_ap = NetworkPlugin.getDefault().getHelper().getRoster();
+            	emptygroup = true;
 			}
-            final IBuddyRoster roster = buddies.next().getRoster();
+            else {
+				roster_ap = buddies.next().getRoster();
+				emptygroup = false;
+			}
+            final Boolean empty= emptygroup;
+            final IBuddyRoster roster = roster_ap;
             dialogShell = new Shell(parent, SWT.DIALOG_TRIM
                     | SWT.APPLICATION_MODAL);
             dialogShell.setText("RemoveGroup");
@@ -78,7 +85,12 @@ public class RemoveGroupDialog extends Dialog {
                 sendButton.addSelectionListener(new SelectionAdapter() {
                     public void widgetSelected(SelectionEvent evt) {
                        try{
-                        roster.removeGroup( gruppo,groupCombo.getItem(groupCombo.getSelectionIndex()).toString() );
+                    	   if(empty){
+                    		   roster.reload();
+                    	   }
+                    	   else{
+                    		   roster.removeGroup( gruppo,groupCombo.getItem(groupCombo.getSelectionIndex()).toString() );
+                        }
                         }
                        catch(Exception e){
                            e.getMessage();
