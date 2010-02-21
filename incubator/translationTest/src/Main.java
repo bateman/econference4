@@ -142,7 +142,7 @@ public class Main {
 			msgt.add(gt);
 		}
 		
-		System.out.println(showArray("threads", len));
+		System.out.println(showArray("threads", threads));
 		System.out.println(showArray("msat", msat));
 		System.out.println(showArray("msgt", msgt));
 	}
