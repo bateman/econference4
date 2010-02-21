@@ -42,8 +42,6 @@ public class Main {
 			}
 		} else { 
 			ret = Translate.execute(text, Language.fromString(src), Language.fromString(dest));
-			
-			System.out.println(ret);
 		}
 		
 		return ret;
