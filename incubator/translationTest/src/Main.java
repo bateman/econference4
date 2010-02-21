@@ -101,6 +101,9 @@ public class Main {
 		strings.remove(strings.size() - 1);
 		strings.remove(strings.size() - 1);
 		
+		int train = 32;
+		int cycles = 256;
+		
 		List<String> camp = campiona(strings);
 		
 		List<Long> len = new LinkedList<Long>();
@@ -109,8 +112,12 @@ public class Main {
 		
 		for (String s : camp) {
 			len.add(new Long(s.length()));
-			msa.add(bench(s, a, 32));
-			msg.add(bench(s, g, 32));
+			
+			bench(s, a, train);
+			msa.add(bench(s, a, cycles));
+			
+			bench(s, g, train);
+			msg.add(bench(s, g, cycles));
 		}
 		
 		System.out.println(showArray("len", len));
@@ -124,8 +131,11 @@ public class Main {
 		List<Long> msgt = new LinkedList<Long>();
 		
 		for (int i = 1; i <= 8; ++i) {
-			long at = Timing.bench(a, bigger, 32, i) / i;
-			long gt = Timing.bench(g, bigger, 32, i) / i;
+			Timing.bench(a, bigger, train, i);
+			long at = Timing.bench(a, bigger, cycles, i) / i;
+			
+			Timing.bench(g, bigger, train, i);
+			long gt = Timing.bench(g, bigger, cycles, i) / i;
 			
 			threads.add(new Long(i));
 			msat.add(at);
