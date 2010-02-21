@@ -22,7 +22,7 @@ print lentime.png -dpng -mono -solid -F:30;
 replot;
 
 plot(threads, msat, "-*;apertium-service;",
-	len, msgt, "-+;Google Translate;");
+	threads, msgt, "-+;Google Translate;");
 
 title ('Comparison in the "Concurrent Requests - Time" space', "fontsize", 30);
 xlabel ("Concurrent Requests (num)", "fontsize", 30);
