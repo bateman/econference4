@@ -10,27 +10,27 @@ msgt = [16495, 8257, 6001, 4516, 3724, 2817, 2411, 2085];
 plot(len, msa, "-*;apertium-service;", 
 	len, msg, "-+;Google Translate;");
 
-title ('Comparison in the "Sentence Length - Time" space', "fontsize", 30);
-xlabel ("Sentence Length (string length)", "fontsize", 30);
-ylabel ("Time (ms)", "fontsize", 30);
+title ('Comparison in the "Sentence Length - Time" space', "FontSize", 64);
+xlabel ("Sentence Length (string length)", "FontSize", 64);
+ylabel ("Time (ms)", "FontSize", 64);
 legend ("location", "northwest");
 legend ("boxon");
 grid ("on");
 
-print lentime.png -dpng -mono -solid -F:30;
+print lentime.png -dpng -mono -solid -F:64;
 
 replot;
 
 plot(threads, msat, "-*;apertium-service;",
 	threads, msgt, "-+;Google Translate;");
 
-title ('Comparison in the "Concurrent Requests - Time" space', "fontsize", 30);
-xlabel ("Concurrent Requests (num)", "fontsize", 30);
-ylabel ("Time (ms)", "fontsize", 30);
+title ('Comparison in the "Concurrent Requests - Time" space', "FontSize", 64);
+xlabel ("Concurrent Requests (num)", "FontSize", 64);
+ylabel ("Time (ms)", "FontSize", 64);
 legend ("location", "northwest");
 legend ("boxon");
 grid ("on");
 
-print threadstime.png -dpng -mono -solid -F:30;
+print threadstime.png -dpng -mono -solid -F:64;
 
 replot;
