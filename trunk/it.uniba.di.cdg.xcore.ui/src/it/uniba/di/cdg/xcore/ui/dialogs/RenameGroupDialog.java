@@ -52,11 +52,18 @@ public class RenameGroupDialog extends Dialog {
             Shell parent = getParent();
             final String current = buddyGroup.getName();
             Iterator<IBuddy> buddies = buddyGroup.getBuddies().iterator();
+            Boolean emptygroup = false;
+            IBuddyRoster roster_ap = null;
             if(!buddies.hasNext()){
-            	UiPlugin.getUIHelper().showMessage("You can't remove empty groups!");
-            	return;
+            	roster_ap = NetworkPlugin.getDefault().getHelper().getRoster();
+            	emptygroup = true;
 			}
-            final IBuddyRoster roster = buddies.next().getRoster();
+            else {
+				roster_ap = buddies.next().getRoster();
+				emptygroup = false;
+			}
+            final Boolean empty= emptygroup;
+            final IBuddyRoster roster = roster_ap;
             dialogShell = new Shell(parent, SWT.DIALOG_TRIM
                     | SWT.APPLICATION_MODAL);
             dialogShell.setText("RenameGroup");
@@ -69,6 +76,11 @@ public class RenameGroupDialog extends Dialog {
                     undoButton = new Button(newContactGroup, SWT.PUSH | SWT.CENTER);
                     undoButton.setText("Cancel");
                     undoButton.setBounds(250, 93, 60, 30);
+                    undoButton.addSelectionListener(new SelectionAdapter() {
+                        public void widgetSelected(SelectionEvent evt) {
+                                dialogShell.dispose();
+                           }
+                    });
                 }
                 {
                     sendButton = new Button(newContactGroup, SWT.PUSH | SWT.CENTER);
@@ -77,7 +89,13 @@ public class RenameGroupDialog extends Dialog {
                     sendButton.addSelectionListener(new SelectionAdapter() {
                         public void widgetSelected(SelectionEvent evt) {
                            try{
-                            roster.renameGroup( current, newNameText.getText());
+                        	   if (empty){
+                        		   roster.reload();
+                        		   roster.addGroup(newNameText.getText());
+                        	   }
+                        	   else{
+                        		   roster.renameGroup( current, newNameText.getText());
+                        	   }
                             }
                            catch(Exception e){
                                e.getMessage();
