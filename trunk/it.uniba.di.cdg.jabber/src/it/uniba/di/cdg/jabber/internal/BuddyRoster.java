@@ -429,7 +429,12 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             oldgroup.removeEntry(entry);
             }
             if(!nameNewGroup.equals("None")){
-            RosterGroup newGroup = jroster.getGroup( nameNewGroup );  
+            RosterGroup newGroup = jroster.getGroup( nameNewGroup );
+            if(newGroup == null){
+            	addGroup(nameNewGroup);
+            	newGroup = jroster.getGroup( nameNewGroup );
+            	
+            }
             newGroup.addEntry( entry ); }
             Thread.sleep(1000);
            }
