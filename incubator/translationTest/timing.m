@@ -18,6 +18,8 @@ legend ('location', 'northwest');
 legend ('boxon');
 grid ('on');
 
+ylim([0, 100]);
+
 print('lentime.png', '-dpng', '-F:64');
 
 replot;
