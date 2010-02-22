@@ -6,31 +6,32 @@ threads = [1, 2, 3, 4, 5, 6, 7, 8];
 msat = [7416, 3914, 2844, 2802, 3574, 4697, 5178, 5198] ./ 256;
 msgt = [16495, 8257, 6001, 4516, 3724, 2817, 2411, 2085] ./ 256;
 
+set(0, "Defaulttextfontsize", 64);
 
-plot(len, msa, "-*;apertium-service;", 
-	len, msg, "-+;Google Translate;");
+plot(len, msa, '-*r;apertium-service;', 
+	len, msg, '-+b;Google Translate;');
 
-title ('Comparison in the "Sentence Length - Time" space', "FontSize", 64);
-xlabel ("Sentence Length (string length)", "FontSize", 64);
-ylabel ("Time (ms)", "FontSize", 64);
-legend ("location", "northwest");
-legend ("boxon");
-grid ("on");
+title ('Comparison in the "Sentence Length - Time" space', 'FontSize', 64);
+xlabel ('Sentence Length (string length)', 'FontSize', 64);
+ylabel ('Time (ms)', 'FontSize', 64);
+legend ('location', 'northwest');
+legend ('boxon');
+grid ('on');
 
-print lentime.png -dpng -mono -solid -F:64;
+print('lentime.png', '-dpng', '-F:64');
 
 replot;
 
-plot(threads, msat, "-*;apertium-service;",
-	threads, msgt, "-+;Google Translate;");
+plot(threads, msat, '-*r;apertium-service;',
+	threads, msgt, '-+b;Google Translate;');
 
-title ('Comparison in the "Concurrent Requests - Time" space', "FontSize", 64);
-xlabel ("Concurrent Requests (num)", "FontSize", 64);
-ylabel ("Time (ms)", "FontSize", 64);
-legend ("location", "northwest");
-legend ("boxon");
-grid ("on");
+title ('Comparison in the "Concurrent Requests - Time" space', 'FontSize', 64);
+xlabel ('Concurrent Requests (num)', 'FontSize', 64);
+ylabel ('Time (ms)', 'FontSize', 64);
+legend ('location', 'northwest');
+legend ('boxon');
+grid ('on');
 
-print threadstime.png -dpng -mono -solid -F:64;
+print('threadstime.png', '-dpng', '-F:64');
 
 replot;
