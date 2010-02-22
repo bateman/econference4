@@ -403,8 +403,9 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-        rosterModified();
-        refreshBuddies();
+		if(entry.getGroups().isEmpty())refreshBuddies();
+		else rosterModified();
+        
     }
     
     public void renameGroup(String old_name, String new_name){
