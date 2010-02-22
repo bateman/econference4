@@ -16,8 +16,8 @@ xlabel ('Sentence Length (string length)', 'FontSize', 64);
 ylabel ('Time (ms)', 'FontSize', 64);
 legend ('location', 'northwest');
 legend ('boxon');
-grid ('on');
 
+grid ('on');
 ylim([0, 100]);
 
 print('lentime.png', '-dpng', '-F:64');
@@ -32,7 +32,9 @@ xlabel ('Concurrent Requests (num)', 'FontSize', 64);
 ylabel ('Time (ms)', 'FontSize', 64);
 legend ('location', 'northwest');
 legend ('boxon');
+
 grid ('on');
+ylim([0, 100]);
 
 print('threadstime.png', '-dpng', '-F:64');
 
