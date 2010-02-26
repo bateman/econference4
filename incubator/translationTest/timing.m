@@ -6,36 +6,44 @@ threads = [1, 2, 3, 4, 5, 6, 7, 8];
 msat = [7416, 3914, 2844, 2802, 3574, 4697, 5178, 5198] ./ 256;
 msgt = [16495, 8257, 6001, 4516, 3724, 2817, 2411, 2085] ./ 256;
 
-set(0, "Defaulttextfontsize", 64);
+set(0, "Defaulttextfontsize", 14);
 
 plot(len, msa, '-*; apertium-service;', 'linewidth', 2, 'markersize', 15, 'color', [0.2, 0.2, 0.2],
 	len, msg, '-+; Google Translate;', 'linewidth', 2, 'markersize', 15, 'color', [0.7, 0.7, 0.7]);
 
-title ('Comparison in the "Sentence Length - Time" space', 'FontSize', 64);
-xlabel ('Sentence Length (string length)', 'FontSize', 64);
-ylabel ('Time (ms)', 'FontSize', 64);
+title ('Comparison in the "Sentence Length - Time" space', 'fontsize', 14);
+hx = xlabel ('Sentence Length (string length)', 'fontsize', 14);
+hy = ylabel ('Time (ms)', 'fontsize', 14);
+
+set(hx, "fontsize", 14);
+set(hy, "fontsize", 14);
+
 legend ('location', 'northwest');
 legend ('boxon');
 
 grid ('on');
 ylim([0, 100]);
 
-print('lentime.png', '-dpng', '-F:64');
+print('lentime.png', '-dpng', '-F:14');
 
 replot;
 
 plot(threads, msat, '-*; apertium-service;', 'linewidth', 2, 'markersize', 15, 'color', [0.2, 0.2, 0.2],
 	threads, msgt, '-+; Google Translate;', 'linewidth', 2, 'markersize', 15, 'color', [0.7, 0.7, 0.7]);
 
-title ('Comparison in the "Concurrent Requests - Time" space', 'FontSize', 64);
-xlabel ('Concurrent Requests (num)', 'FontSize', 64);
-ylabel ('Time (ms)', 'FontSize', 64);
+title ('Comparison in the "Concurrent Requests - Time" space', 'fontsize', 14);
+hx = xlabel ('Concurrent Requests (num)', 'fontsize', 14);
+hy = ylabel ('Time (ms)', 'fontsize', 14);
+
+set(hx, "fontsize", 14);
+set(hy, "fontsize", 14);
+
 legend ('location', 'northwest');
 legend ('boxon');
 
 grid ('on');
 ylim([0, 100]);
 
-print('threadstime.png', '-dpng', '-F:64');
+print('threadstime.png', '-dpng', '-F:14');
 
 replot;
