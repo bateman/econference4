@@ -293,8 +293,9 @@ public class ChatManager implements IServiceManager, ISendMessagelListener, ITyp
 		}else 
 		if (event instanceof ChatMessageReceivedEvent){
 			ChatMessageReceivedEvent chatMessageReceivedEvent = (ChatMessageReceivedEvent)event;
-			if (chatMessageReceivedEvent.getFrom().equals(chatContext.getBuddyId()))
-				talkView.appendMessage( backendHelper.getRoster().getBuddy(getBuddyId()).getName() + " > " + chatMessageReceivedEvent.getMessage() );
+			if (chatMessageReceivedEvent.getBuddy().getId().equals(chatContext.getBuddyId()))
+				talkView.appendMessage( chatMessageReceivedEvent.getBuddy().getName() + " > " + chatMessageReceivedEvent.getMessage() );
+				//talkView.appendMessage( backendHelper.getRoster().getBuddy(getBuddyId()).getName() + " > " + chatMessageReceivedEvent.getMessage() );
 		
 		}
 		if (event instanceof ChatExtensionProtocolEvent){
