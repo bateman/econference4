@@ -1,23 +1,25 @@
 package it.uniba.di.cdg.xcore.network.events.chat;
 
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
+import it.uniba.di.cdg.xcore.network.model.IBuddy;
 
 public class ChatMessageReceivedEvent implements IBackendEvent{
 	
-	private String from;
+	private IBuddy buddy;
 	private String message;
 	private String backendId;
 	
-	public ChatMessageReceivedEvent(String from, String message, String backendId) {
+	public ChatMessageReceivedEvent(IBuddy buddy, String message, String backendId) {
 		super();
-		this.from = from;
+		this.buddy = buddy;
 		this.message = message;
 		this.backendId = backendId;
 	}
-
-	public String getFrom(){
-		return from;
+	
+	public IBuddy getBuddy(){
+		return buddy;
 	}
+
 	
 	public String getMessage(){
 		return message;
