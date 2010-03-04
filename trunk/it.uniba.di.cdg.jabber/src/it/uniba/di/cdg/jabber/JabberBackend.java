@@ -290,7 +290,8 @@ public class JabberBackend implements IBackend, PacketListener,
                 return;
     		
     		//ricevuto messaggio contenente testo
-    		event = new ChatMessageReceivedEvent(mess.getFrom(), mess.getBody(), ID);
+    		event = new ChatMessageReceivedEvent(getRoster().getBuddy(mess.getFrom()), 
+    				 mess.getBody(), ID);
     		notifyEventListeners(event);
     		
     	}
