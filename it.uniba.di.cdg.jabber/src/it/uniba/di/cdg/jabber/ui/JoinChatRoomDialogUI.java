@@ -101,13 +101,13 @@ public class JoinChatRoomDialogUI extends Composite {
         serverNameLabel = new CLabel(this, SWT.NONE);
         serverNameLabel.setText("Server name");
         serverText = new Text(this, SWT.BORDER);
-        serverText.setText("conference.casa");
+        serverText.setText("");
         serverText.setLayoutData(gridData2);
         nickNameLabel = new CLabel(this, SWT.NONE);
         nickNameLabel.setText("NickName");
         nickNameLabel.setLayoutData(gridData3);
         nickNameText = new Text(this, SWT.BORDER);
-        nickNameText.setText("Peppe");
+        nickNameText.setText("");
         nickNameText.setLayoutData(gridData6);
         passwordLabel = new CLabel(this, SWT.NONE);
         passwordLabel.setText("Password");
