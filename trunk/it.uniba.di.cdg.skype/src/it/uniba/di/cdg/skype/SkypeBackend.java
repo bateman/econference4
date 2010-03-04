@@ -129,7 +129,7 @@ public class SkypeBackend implements IBackend {
 					HashMap<String, String> param = XmlUtil.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
 					IBackendEvent event = new ChatMessageReceivedEvent(
-							senderId, msg, getBackendId());
+							getRoster().getBuddy(senderId), msg, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
 				
@@ -170,7 +170,7 @@ public class SkypeBackend implements IBackend {
 			
 			if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE)){ // chat one2one
 				IBackendEvent event = new ChatMessageReceivedEvent(
-						senderId, content, getBackendId());
+						getRoster().getBuddy(senderId), content, getBackendId());
 				getHelper().notifyBackendEvent(event);
 			}else{
 				IBackendEvent event = new MultiChatMessageEvent(
