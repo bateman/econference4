@@ -146,8 +146,8 @@ public class ChatPlugin extends Plugin implements IBackendEventListener {
 			final ChatMessageReceivedEvent chatMessageReceivedEvent = (ChatMessageReceivedEvent) event;
 
 			final ChatContext chatContext = new ChatContext(
-					chatMessageReceivedEvent.getFrom(),
-					new ChatMessage(chatMessageReceivedEvent.getFrom(), chatMessageReceivedEvent.getMessage()));
+					chatMessageReceivedEvent.getBuddy().getId(),
+					new ChatMessage(chatMessageReceivedEvent.getBuddy().getId(), chatMessageReceivedEvent.getMessage()));
 			openChatWindow(chatContext);
 		}
 		
