@@ -88,6 +88,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         register(changePasswordAction);
         
         aboutAction = ActionFactory.ABOUT.create( window );
+        aboutAction.setText("About eConference");
         register( aboutAction );
     
         preferencesAction = ActionFactory.PREFERENCES.create( window );
@@ -143,6 +144,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         // Help menu
         MenuManager helpMenu = new MenuManager( "&Help", IWorkbenchActionConstants.M_HELP );
         menuBar.add( helpMenu );
+        
         helpMenu.add( aboutAction );
         helpMenu.add( new Separator( IWorkbenchActionConstants.MB_ADDITIONS ) );
     }
