@@ -2,12 +2,10 @@ import java.net.URL;
 import java.util.*;
 
 import net.sf.okapi.common.LocaleId;
-import net.sf.okapi.connectors.google.GoogleMTConnector;
 import net.sf.okapi.connectors.microsoft.MicrosoftMTConnector;
 import net.sf.okapi.lib.translation.IQuery;
 
 import org.apertium.api.ApertiumXMLRPCClient;
-import org.apertium.api.exceptions.ApertiumXMLRPCClientException;
 
 import com.google.api.translate.Language;
 import com.google.api.translate.Translate;
