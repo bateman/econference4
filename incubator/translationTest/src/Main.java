@@ -90,16 +90,24 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
+		if (args.length < 1) {
+			System.out.println("params: europarl.es");
+			System.exit(-1);
+		}
+		
+		String europarl = args[0];
+		
 		ApertiumXMLRPCClient a = new ApertiumXMLRPCClient(new URL("http://localhost:6173/RPC2"));
 		MosesXMLRPCClient m = new MosesXMLRPCClient(new URL("http://localhost:8080/RPC2"));
 		
 		//IQuery g = new GoogleMTConnector();
 		//g.open();
+		
 		Object g = null;
 		
 		Translate.setHttpReferrer("http://www.neuralnoise.com");
 		
-		List<String> strings = Utils.getAllSortedStrings();
+		List<String> strings = Utils.readSortedLines(europarl);
 		
 		strings.remove(strings.size() - 1);
 		strings.remove(strings.size() - 1);

@@ -385,6 +385,12 @@ public class Utils {
 		return strings;
 	}
 	
+	public static List<String> readSortedLines(String fileName) {
+		List<String> ret = readLines(fileName);
+		Collections.sort(ret, new StringLengthComparator());
+		return ret;
+	}
+	
 	public static List<String> readLines(String fileName) {
 		List<String> ret = new LinkedList<String>();
 
