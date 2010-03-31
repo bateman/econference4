@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary A short guide on how to use eConference.
 #labels Phase-Support
 
 = Introduction =
