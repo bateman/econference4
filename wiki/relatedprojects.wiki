@@ -1,8 +1,8 @@
 #summary This page collects all the plugins that lives within the eConference project forest.
 
 === eConference3P ===
-
 [http://code.google.com/p/econference-planning-poker-plugin/ eConference: Planning Poker Plugin] is an eConference extension created for distributed agile development teams that want to adopt the Planning Poker methodology for collaborative user-stories estimation.
 
 
 === eConference MT ===
+[http://code.google.com/p/econference-mt-plugin/ eConference: Machine Translation] 
