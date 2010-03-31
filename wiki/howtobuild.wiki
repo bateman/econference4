@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary A guide to build eConference 4 on Win32 and Linux boxes.
 #labels Phase-Deploy
 <wiki:toc max_depth="4" />
 
