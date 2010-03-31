@@ -14,7 +14,7 @@ You can get the latest build of eConference from the [http://code.google.com/p/e
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/screenshot.png 
-*Figure 1. The eConference tool*
+<br />*Figure 1. The eConference tool*
 </p>  
 
 
@@ -37,7 +37,7 @@ Click on the Plug icon in the top-left corner of the GUI (see Figure  2).
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/basicgui.png 
-*Figure 2. The basic GUI*   
+<br />*Figure 2. The basic GUI*   
 </p>
 
 
@@ -50,7 +50,7 @@ When the Login Dialog is displayed (see Figure  3) fill in the fields with the d
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/logindlg.png 
-*Figure 3. Login dialog*   
+<br /><br />*Figure 3. Login dialog*   
 </p>
 
 
@@ -61,7 +61,7 @@ To check whether you are connected, see if the light bulb in the bottom-right co
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/connected_new.png 
-*Figure  4. Lights on, you are connected*  
+<br />*Figure  4. Lights on, you are connected*  
 </p>
 
 
@@ -85,7 +85,7 @@ Browse and select the .ecx file wherever you saved it. Press Ok and you will see
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/loading.png 
-*Figure  5. Loading the .ecx file*  
+<br />*Figure  5. Loading the .ecx file*  
 </p>
 
 
@@ -94,7 +94,7 @@ http://econference4.googlecode.com/svn/wiki/img/loading.png
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/joiningmod.png 
-*Figure  6. Moderator is about to create and join the event*  
+<br />*Figure  6. Moderator is about to create and join the event*  
 </p>
 
 
@@ -112,7 +112,7 @@ To join an eConference event, just double-click on the item or press the button 
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/invited_part.png 
-*Figure  7. The participant has been invited*  
+<br />*Figure  7. The participant has been invited*  
 </p>
 
 
@@ -130,7 +130,7 @@ Once you have entered the event, you will see the online stakeholders in the Who
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/whoson.png 
-*Figure  8. Who's on list, showing online stakeholders*   
+<br />*Figure  8. Who's on list, showing online stakeholders*   
 </p>
 
 
@@ -140,13 +140,13 @@ Before the event starts, the Moderator must grant a participant the Scribe privi
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/select_scribe.png 
-*Figure  9. Selecting the scribe*  
+<br />*Figure  9. Selecting the scribe*  
 </p>
 
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/scribe.png 
-*Figure  10. Tester 2 is the scribe* 
+<br />*Figure  10. Tester 2 is the scribe* 
 </p>
 
 
@@ -163,7 +163,7 @@ If you have been selected as a Scribe, then you will see the refresh icon   in t
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/decisions_place.png 
-*Figure  11. Decision places view being edited* 
+<br />*Figure  11. Decision places view being edited* 
 </p>
 
 
@@ -183,11 +183,11 @@ This view basically shows the list of the items that the stakeholders have to di
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/agenda.png 
-*Figure  12. The agenda view*  
+<br />*Figure  12. The agenda view*  
 
 
 http://econference4.googlecode.com/svn/wiki/img/append_q.png 
-*Figure  13. Appending a new question*   
+<br />*Figure  13. Appending a new question*   
 </p>
   
 As soon as the moderator selects the first item in the Agenda, say Item 1, you will see the talk view tab renamed from 'Free talk' into 'Item 1'. Also, all the previous messages will be hidden, just to show only the newly-entered statements related to the current item (see Figure  14). 
@@ -197,7 +197,7 @@ As soon as the moderator selects the first item in the Agenda, say Item 1, you w
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/threaded1.png 
-*Figure  14. Conversation about "Item 1"*  
+<br />*Figure  14. Conversation about "Item 1"*  
 </p>
 
 Suppose you have reached a consensus about the current item, and the Scribe has summed up the decisions taken: It is time to move the another item, say Item 2. The Moderator selects it in the agenda. All the statements about Item 1 are hidden, and the talk view is again clean, ready to list only the statements related to Item 2 (see below).
@@ -206,7 +206,7 @@ Suppose you have reached a consensus about the current item, and the Scribe has 
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/threaded2.png 
-*Figure  15. Conversation about "Item 2"*   
+<br />*Figure  15. Conversation about "Item 2"*   
 </p>
 
 
@@ -215,7 +215,7 @@ Yeah, but suppose that someone reads what the scribe has written is in the Decis
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/threaded1_1.png 
-*Figure  16.  Sessions in the conversation about "Item 1"*  
+<br />*Figure  16.  Sessions in the conversation about "Item 1"*  
 </p>
 
 The discussion goes on for each single item, until all have been discussed and consensus on them reached. Then the Moderator presses the Stop button and you are back in the free talk view to say Ciao to the stakeholders=  =
@@ -233,7 +233,7 @@ Fill the popup with a brief description of what you want to ask for instance, an
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/ask_q.png 
-*Figure  17. Asking a question (Participant role)*  
+<br />*Figure  17. Asking a question (Participant role)*  
 </p>
 
 The questions will appear in the view and the moderator has the power to approve question or reject them right-clicking on each of them (see below). Question approved will show in the Talk view.
@@ -245,7 +245,7 @@ The moderator should avoid to reject questions as much as he/she can, or at leas
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/approve_reject_q.png 
-*Figure  18.  Moderator can approve/reject questions* 
+<br />*Figure  18.  Moderator can approve/reject questions* 
 </p>
 
 
@@ -254,7 +254,7 @@ The event is over. As soon as you try to disconnect, close the perspective or ev
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/savelog.png 
-*Figure  19. Save your logs*
+<br />*Figure  19. Save your logs*
 </p>
 
 
@@ -268,7 +268,7 @@ If you get accidentally disconnected and you are the moderator, reconnect and lo
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/manual_invitation.png 
-*Figure  20. Manual invitation* 
+<br />*Figure  20. Manual invitation* 
 </p>
 
 
