@@ -1,13 +1,8 @@
 #summary This page collects all the plugins that lives within the eConference project forest.
 
-= Introduction =
+= eConference3P =
 
-Add your content here.
+[http://code.google.com/p/econference-planning-poker-plugin/ eConference: Planning Poker Plugin] .
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= eConference MT =
