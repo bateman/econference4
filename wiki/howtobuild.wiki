@@ -46,14 +46,14 @@ After switching to the _SVN Repository Exploring_ perspective, add a new reposit
 <br>
 <br>
 
-Now, enter {{{http://econference.googlecode.com/svn/trunk/}}} in the url field of the wizard and click the _Finish_ button. Accept the Digital Certificate when prompted.
+Now, enter {{{http://econference4.googlecode.com/svn/trunk/}}} in the url field of the wizard and click the _Finish_ button. Accept the Digital Certificate when prompted.
 
 <p align=center>http://econference.googlecode.com/svn/wiki/img/svn5.JPG <br>
 <p align=center>*Figure 6. URL of the remote SVN Repository Location*</p>
 <br>
 <br>
 
-Once Subclipse has finished fetching data from the new repository, you will see the repository name show up in the tree table viewer on the left pane (Fig. 7). Browse _Trunck_, then select all the plugins and right-click and choose _Checkout..._ from the menu. 
+Once Subclipse has finished fetching data from the new repository, you will see the repository name show up in the tree table viewer on the left pane (Fig. 7). Browse _Trunk_, then select all the plugins and right-click and choose _Checkout..._ from the menu. 
 
 <p align=center>http://econference.googlecode.com/svn/wiki/img/svn6.JPG <br>
 <p align=center>*Figure 7. Checking out the projects into the workspace*</p>
@@ -147,9 +147,12 @@ Now look at Fig. 14: Make sure to check <u>all and only</u> the AJ projects in t
 Press the _Finish_ button. Then, go to the root folder containing your product and double-click on the executable file, named {{{econference}}}. Easy, uh? :)
 <br>
 <br>
-<br>
-<br>
 
+=== Adding Skype support under Linux boxes ===
+While eConference works fine with Skype on Windows out of the box, you need a couple of extra steps for a proper configuration.
+TBD.
+<br>
+<br>
 == Code & Comments style ==
 Last but not least, be also sure to stick on the same coding style that has been used so far.
 
