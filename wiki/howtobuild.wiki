@@ -153,6 +153,9 @@ While eConference works fine with Skype on Windows out of the box, you need a co
 TBD.
 <br>
 <br>
+<br>
+<br>
+
 == Code & Comments style ==
 Last but not least, be also sure to stick on the same coding style that has been used so far.
 
