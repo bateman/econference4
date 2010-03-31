@@ -1,0 +1,192 @@
+#summary One-sentence summary of this page.
+#labels Phase-Deploy
+<wiki:toc max_depth="4" />
+
+= How to build eConference 4.x =
+This guide has been tested on Windows and Ubuntu boxes.
+
+== Plugins Needed ==
+eConference is built on the Eclipse RCP 3.5.x (_NOTE: we don't ensure that the build process is going to work with any other earlier versions_), so you will need to download and install [http://www.eclipse.org/downloads/   Eclipse] and, of course, [http://java.sun.com/javase/downloads/index.jsp Java 6]. eConference also uses AOP, so you will need to install the [http://www.eclipse.org/ajdt/ AJDT] plugin for Eclispe as well. You had better install it from the Eclipse Update Manager.
+For further info, please refer to the project [http://code.google.com/p/econference/ homepage].
+
+Now run Eclipse and make sure you start using an empty workspace (see Fig. 1). If you are already running Eclipse, instead, go to the _File | Switch workspace" menu.
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/workspace.JPG <br>
+<p align=center>*Figure 1. Select a clean workspace for the eConference project*</p>
+<br>
+<br>
+
+== Checkout the SVN repository ==
+Even if you don't have a Gmail account registered to Google Code, you can check out the source code from our SVN repository directly from within Eclipse. You will need the [http://subclipse.tigris.org/install.html Subclipse] plugin. Again, it is recommended to install it from the Update Manager.
+
+Once you have installed it, go to the _Windows | Preferences..._ menu, then select _SVN_ under the _Team_ branch (see Fig 2).
+<p align=center>http://econference.googlecode.com/svn/wiki/img/svn.JPG <br>
+<p align=center>*Figure 2. Make sure to select 'SVNKit' (Pure Java) interface*</p>
+<br>
+<br>
+
+After that, open the _Window | Open perspective_ menu (see Fig. 3)...
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/svn2.JPG <br>
+<p align=center>*Figure 3. Display all the available perspectives*</p>
+<br>
+<br>
+
+...and select _SVN Repository Exploring_ (see Fig. 4)
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/svn3.JPG <br>
+<p align=center>*Figure 4. Add the SVN Repository Exploring perspective to the workbench*</p>
+<br>
+<br>
+
+After switching to the _SVN Repository Exploring_ perspective, add a new repository as shown below (Fig. 5).
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/svn4.JPG <br>
+<p align=center>*Figure 5. Add the SVN Repository Location*</p>
+<br>
+<br>
+
+Now, enter {{{http://econference.googlecode.com/svn/trunk/}}} in the url field of the wizard and click the _Finish_ button. Accept the Digital Certificate when prompted.
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/svn5.JPG <br>
+<p align=center>*Figure 6. URL of the remote SVN Repository Location*</p>
+<br>
+<br>
+
+Once Subclipse has finished fetching data from the new repository, you will see the repository name show up in the tree table viewer on the left pane (Fig. 7). Browse _Trunck_, then select all the plugins and right-click and choose _Checkout..._ from the menu. 
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/svn6.JPG <br>
+<p align=center>*Figure 7. Checking out the projects into the workspace*</p>
+<br>
+<br>
+
+A 2-steps wizard will guide you. You are going to checkout each plugin as a separate project into your workspace. It could take a while, so be patient.
+
+== What if I don't want to install Subclipse? ==
+Then, you can access repository using other SVN tool, like [http://tortoisesvn.tigris.org/ Tortoise SVN]. Besides, you can als download the latest tarball of the source code from [http://cde.di.uniba.it/snapshots.php?group_id=9 here]. Now extract somewhere the tgz file (if you are running a Win OS, make sure to extract it in locations like {{{DRIVE_LETTER:}}} (e.g.,{{{C:}}} or {{{D:}}}), otherwise you'll get errors due to maximum path-lenght limitations).
+
+Assuming you have either extracted the content in the root dir (you should have a new dir like this: {{{C:/econference-scm-yyyy-mm-ddtrunk}}}) or checked out the source with a SVN tool somewhere else: All the folders within (except for {{{.svn}}}) are plugins (they are 23 as of this writing) that must be imported into your workspace as separate projects. Do this, then you are ready to build the workspace.
+
+Otherwise, you can always [https://cde.di.uniba.it/plugins/scmsvn/viewcvs.php/?root=econference browse the code online] :D
+<br>
+<br>
+
+== Building the workspace ==
+Once either the checkout or the import is complete, you can build your workspace, but just make sure that the Java compiler compliance level is set to 1.6 (see Fig. 8)
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/javasettings.JPG <br>
+<p align=center>*Figure 8. Set the Java Compiler Compliance Level to 1.6*</p>
+<br>
+<br>
+
+== Launching the product ==
+To launch the tool for the first time, open the {{{collaborativeworkbench.boot}}} project (see Fig. 9, A) and open the product file (B). Then just click on the _Launch the product_ link in the _Overview_ tab (C).
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/launchingproduct.JPG <br>
+<p align=center>*Figure 9. Launching the product from Eclipse*</p>
+<br>
+<br>
+
+If everthing is fine, you should see the tool splashscreen come up. Otherwise, you'll get a popup with error. Sometimes, on some machine, the tool doesn't start because it misses some of the plugins/projects that are supposed to be already in the classpath. To fix this issue, go to the _Run | Run ..._ menu and select the current product configuration under the _Eclipse Application_ (Fig. 10, A). Then press the _Validate Plug-in Set_ button (B). If an error message pops up, then close it and press the _Add Required Plug-ins_ button (C); otherwise here you are already ok (and the problem should be somewhere else :S).
+
+From now on, you can just run the tool the way you usually do in Eclipse.
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/runconf.JPG <br>
+<p align=center>*Figure 10. Validate the plug-ins set*</p>
+<br>
+<br>
+
+
+== Exporting the product ==
+Of course, you need Eclipse only to build the tool. But if you also want to run the tool as a standalone application, then you need to export the product to your filesystem.
+
+Again, open the {{{collaborativeworkbench.boot}}} project and open the product file. After that, just click on the _Eclipse Product export wizard_ link in the _Overview_ tab (Fig. 11).
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/export.JPG <br>
+<p align=center>*Figure 11. Launch the Eclipse Product export wizard*</p>
+<br>
+<br>
+
+
+Now, as shown in Fig. 12, just choose the _Root directory_ name (e.g. econference), which will be the root folder containing all the stuff exported, and the destination directory (e.g. {{{C:\myproduct}}}).
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/export2.JPG <br>
+<p align=center>*Figure 12. Choose the destination directory to export to*</p>
+<br>
+<br>
+
+Leave all the other options unchanged. Press finish and wait: you will find the tool exported in the choosen path (in this case, {{{C:\myproduct\econference}}}). Done? 
+
+<p align=center>*No! You can't run it yet!!!*</p>
+
+This is because, unfortunately, you still need to export the 'AspectJ' projects manually and then replace the older files created by the Export Wizard.
+
+So go to the _Package Explorer_ and select one of the 'AspectJ'-enabled project (e.g.
+{{{it.uniba.cdg.xcore.econference}}}): You will recognize them easily, as those project are marked with the AJ initial. Then, right-click on it and select _Export..._.
+
+Now choose the options _Deployable plug-ins and fragments with 'AspectJ' support_, as show in Fig. 13.
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/ea.JPG <br>
+<p align=center>*Figure 13. Plugins with 'AspectJ' support must be exported manually*</p>
+<br>
+<br>
+
+
+Now look at Fig. 14: Make sure to check <u>all and only</u> the AJ projects in the _Available Plug-ins and Fragments_ list view, then check the _Directory_ radio-button and choose the same path where you exported the product before. The new plug-ins and fragments will automatically replace the older ones inside the {{{plugins/}}} folder.
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/exportaspectJ.JPG <br>
+<p align=center>*Figure 14. Select the plugins with 'AspectJ' support*</p>
+<br>
+<br>
+
+Press the _Finish_ button. Then, go to the root folder containing your product and double-click on the executable file, named {{{econference}}}. Easy, uh? :)
+<br>
+<br>
+<br>
+<br>
+
+== Code & Comments style ==
+Last but not least, be also sure to stick on the same coding style that has been used so far.
+
+Provided that you have succesfully configured and built the whole workspace, download [http://cdg.di.uniba.it/uploads/Research/econf_style.zip this archive], and finally import the following XML files, {{{codestyle.xml}}} and {{{codetemplates.xml}}} in Eclipse. To do so, just go in the _Windows | Preferences..._ menu, the browse the tree viewer and select _Code Style_ under the _Java_ branch. Import the two XML files in the proper page (see Fig. 15).
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/formatter.JPG <br>
+<p align=center>*Figure 15. Import code template and formatter style for the eConference project*</p>
+<br>
+<br>
+
+
+== Troubleshooting ==
+=== _- Can't build the workspace without errors_ ===
+So you have set the Java compiler compliance level to 1.6, but still get annoying red crosses everywhere in the workspace, uh?
+
+Well most of the times they are due to the the 'AspectJ' Compiler. To get rid of them, you should try to clean the workspace and rebuild it from scratch.
+
+Also disabling the automatic build of the workspace is not a bad idea, as AJDT starts a new build too often and slows you down.
+
+
+
+If you have errors in a few projects only (two or three), try to close and re-open those projects, then right-click on each of them and select _Build project_ from the context menu.
+<br>
+<br>
+
+
+=== _- Can't see my changes when I build and run_ ===
+In this case, you should just try to add the {{{-clean}}} argument when you run the tool.
+
+Go to the _Run | Run Configurations ..._ menu and select the current product configuration under the _Eclipse Application_ (Fig. 16). Then append {{{-clean}}} to the _Program Arguments_ field.
+
+This does the trick for Eclipse, and so it is supposed to do with eConference...
+
+
+<p align=center>http://econference.googlecode.com/svn/wiki/img/clean.JPG <br>
+<p align=center>*Figure 16. Adding {{{-clean}}} as program argument does the trick sometimes...*</p>
+
+
+Please report comments or suggestions sending an email to one of the project owners. Thanks.
