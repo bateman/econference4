@@ -11,7 +11,7 @@ For further info, please refer to the project [http://code.google.com/p/econfere
 
 Now run Eclipse and make sure you start using an empty workspace (see Fig. 1). If you are already running Eclipse, instead, go to the _File | Switch workspace" menu.
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/workspace.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/workspace.JPG <br>
 <p align=center>*Figure 1. Select a clean workspace for the eConference project*</p>
 <br>
 <br>
@@ -20,42 +20,42 @@ Now run Eclipse and make sure you start using an empty workspace (see Fig. 1). I
 Even if you don't have a Gmail account registered to Google Code, you can check out the source code from our SVN repository directly from within Eclipse. You will need the [http://subclipse.tigris.org/install.html Subclipse] plugin. Again, it is recommended to install it from the Update Manager.
 
 Once you have installed it, go to the _Windows | Preferences..._ menu, then select _SVN_ under the _Team_ branch (see Fig 2).
-<p align=center>http://econference.googlecode.com/svn/wiki/img/svn.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/svn.JPG <br>
 <p align=center>*Figure 2. Make sure to select 'SVNKit' (Pure Java) interface*</p>
 <br>
 <br>
 
 After that, open the _Window | Open perspective_ menu (see Fig. 3)...
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/svn2.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/svn2.JPG <br>
 <p align=center>*Figure 3. Display all the available perspectives*</p>
 <br>
 <br>
 
 ...and select _SVN Repository Exploring_ (see Fig. 4)
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/svn3.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/svn3.JPG <br>
 <p align=center>*Figure 4. Add the SVN Repository Exploring perspective to the workbench*</p>
 <br>
 <br>
 
 After switching to the _SVN Repository Exploring_ perspective, add a new repository as shown below (Fig. 5).
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/svn4.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/svn4.JPG <br>
 <p align=center>*Figure 5. Add the SVN Repository Location*</p>
 <br>
 <br>
 
 Now, enter {{{http://econference4.googlecode.com/svn/trunk/}}} in the url field of the wizard and click the _Finish_ button. Accept the Digital Certificate when prompted.
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/svn5.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/svn5.JPG <br>
 <p align=center>*Figure 6. URL of the remote SVN Repository Location*</p>
 <br>
 <br>
 
 Once Subclipse has finished fetching data from the new repository, you will see the repository name show up in the tree table viewer on the left pane (Fig. 7). Browse _Trunk_, then select all the plugins and right-click and choose _Checkout..._ from the menu. 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/svn6.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/svn6.JPG <br>
 <p align=center>*Figure 7. Checking out the projects into the workspace*</p>
 <br>
 <br>
@@ -75,7 +75,7 @@ Otherwise, you can always [https://cde.di.uniba.it/plugins/scmsvn/viewcvs.php/?r
 Once either the checkout or the import is complete, you can build your workspace, but just make sure that the Java compiler compliance level is set to 1.6 (see Fig. 8)
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/javasettings.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/javasettings.JPG <br>
 <p align=center>*Figure 8. Set the Java Compiler Compliance Level to 1.6*</p>
 <br>
 <br>
@@ -83,7 +83,7 @@ Once either the checkout or the import is complete, you can build your workspace
 == Launching the product ==
 To launch the tool for the first time, open the {{{collaborativeworkbench.boot}}} project (see Fig. 9, A) and open the product file (B). Then just click on the _Launch the product_ link in the _Overview_ tab (C).
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/launchingproduct.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/launchingproduct.JPG <br>
 <p align=center>*Figure 9. Launching the product from Eclipse*</p>
 <br>
 <br>
@@ -93,7 +93,7 @@ If everthing is fine, you should see the tool splashscreen come up. Otherwise, y
 From now on, you can just run the tool the way you usually do in Eclipse.
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/runconf.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/runconf.JPG <br>
 <p align=center>*Figure 10. Validate the plug-ins set*</p>
 <br>
 <br>
@@ -104,7 +104,7 @@ Of course, you need Eclipse only to build the tool. But if you also want to run 
 
 Again, open the {{{collaborativeworkbench.boot}}} project and open the product file. After that, just click on the _Eclipse Product export wizard_ link in the _Overview_ tab (Fig. 11).
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/export.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/export.JPG <br>
 <p align=center>*Figure 11. Launch the Eclipse Product export wizard*</p>
 <br>
 <br>
@@ -113,7 +113,7 @@ Again, open the {{{collaborativeworkbench.boot}}} project and open the product f
 Now, as shown in Fig. 12, just choose the _Root directory_ name (e.g. econference), which will be the root folder containing all the stuff exported, and the destination directory (e.g. {{{C:\myproduct}}}).
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/export2.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/export2.JPG <br>
 <p align=center>*Figure 12. Choose the destination directory to export to*</p>
 <br>
 <br>
@@ -130,7 +130,7 @@ So go to the _Package Explorer_ and select one of the 'AspectJ'-enabled project 
 Now choose the options _Deployable plug-ins and fragments with 'AspectJ' support_, as show in Fig. 13.
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/ea.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/ea.JPG <br>
 <p align=center>*Figure 13. Plugins with 'AspectJ' support must be exported manually*</p>
 <br>
 <br>
@@ -139,7 +139,7 @@ Now choose the options _Deployable plug-ins and fragments with 'AspectJ' support
 Now look at Fig. 14: Make sure to check <u>all and only</u> the AJ projects in the _Available Plug-ins and Fragments_ list view, then check the _Directory_ radio-button and choose the same path where you exported the product before. The new plug-ins and fragments will automatically replace the older ones inside the {{{plugins/}}} folder.
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/exportaspectJ.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/exportaspectJ.JPG <br>
 <p align=center>*Figure 14. Select the plugins with 'AspectJ' support*</p>
 <br>
 <br>
@@ -162,7 +162,7 @@ Last but not least, be also sure to stick on the same coding style that has been
 Provided that you have succesfully configured and built the whole workspace, download [http://cdg.di.uniba.it/uploads/Research/econf_style.zip this archive], and finally import the following XML files, {{{codestyle.xml}}} and {{{codetemplates.xml}}} in Eclipse. To do so, just go in the _Windows | Preferences..._ menu, the browse the tree viewer and select _Code Style_ under the _Java_ branch. Import the two XML files in the proper page (see Fig. 15).
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/formatter.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/formatter.JPG <br>
 <p align=center>*Figure 15. Import code template and formatter style for the eConference project*</p>
 <br>
 <br>
@@ -191,7 +191,7 @@ Go to the _Run | Run Configurations ..._ menu and select the current product con
 This does the trick for Eclipse, and so it is supposed to do with eConference...
 
 
-<p align=center>http://econference.googlecode.com/svn/wiki/img/clean.JPG <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/clean.JPG <br>
 <p align=center>*Figure 16. Adding {{{-clean}}} as program argument does the trick sometimes...*</p>
 
 
