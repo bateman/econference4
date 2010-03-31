@@ -89,7 +89,7 @@ http://econference4.googlecode.com/svn/wiki/img/loading.png
 </p>
 
 
-
+<br />
 
 
 <p align="center">
@@ -143,6 +143,7 @@ http://econference4.googlecode.com/svn/wiki/img/select_scribe.png
 <br />*Figure  9. Selecting the scribe*  
 </p>
 
+<br />
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/scribe.png 
@@ -184,8 +185,9 @@ This view basically shows the list of the items that the stakeholders have to di
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/agenda.png 
 <br />*Figure  12. The agenda view*  
-
-
+</p>
+<br />
+<p align="center">
 http://econference4.googlecode.com/svn/wiki/img/append_q.png 
 <br />*Figure  13. Appending a new question*   
 </p>
