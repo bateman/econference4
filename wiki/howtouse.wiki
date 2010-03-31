@@ -3,7 +3,7 @@
 
 <wiki:toc max_depth="3" />
 
-= How to use eConference 3.0 =
+= How to use eConference 4.0 =
 
 This tutorial will show you how to use the eConference tool, according to the role you will play during the requirements workshop.
 
@@ -13,7 +13,7 @@ You can get the latest build of eConference from the [http://code.google.com/p/e
 
 
 
-http://econference.googlecode.com/svn/wiki/img/screenshot.png 
+http://econference4.googlecode.com/svn/wiki/img/screenshot.png 
 
 
 
@@ -38,7 +38,7 @@ Click on the Plug icon in the top-left corner of the GUI (see Figure  2).
 
 
 
-http://econference.googlecode.com/svn/wiki/img/basicgui.png 
+http://econference4.googlecode.com/svn/wiki/img/basicgui.png 
 
 
 
@@ -54,7 +54,7 @@ When the Login Dialog is displayed (see Figure  3) fill in the fields with the d
 
 
 
-http://econference.googlecode.com/svn/wiki/img/logindlg.png 
+http://econference4.googlecode.com/svn/wiki/img/logindlg.png 
 
 
 
@@ -68,7 +68,7 @@ To check whether you are connected, see if the light bulb in the bottom-right co
 
 
 
-http://econference.googlecode.com/svn/wiki/img/connected_new.png 
+http://econference4.googlecode.com/svn/wiki/img/connected_new.png 
 
 
 
@@ -95,7 +95,7 @@ Browse and select the .ecx file wherever you saved it. Press Ok and you will see
 
 
 
-http://econference.googlecode.com/svn/wiki/img/loading.png 
+http://econference4.googlecode.com/svn/wiki/img/loading.png 
 
 
 
@@ -107,7 +107,7 @@ http://econference.googlecode.com/svn/wiki/img/loading.png
 
 
 
-http://econference.googlecode.com/svn/wiki/img/joiningmod.png 
+http://econference4.googlecode.com/svn/wiki/img/joiningmod.png 
 
 
 *Figure  6. Moderator is about to create and join the event*  
@@ -127,7 +127,7 @@ To join an eConference event, just double-click on the item or press the button 
 
 
 
-http://econference.googlecode.com/svn/wiki/img/invited_part.png 
+http://econference4.googlecode.com/svn/wiki/img/invited_part.png 
 
 
 
@@ -148,7 +148,7 @@ Once you have entered the event, you will see the online stakeholders in the Who
 
 
 
-http://econference.googlecode.com/svn/wiki/img/whoson.png 
+http://econference4.googlecode.com/svn/wiki/img/whoson.png 
 
 
 *Figure  8. Who's on list, showing online stakeholders*   
@@ -160,7 +160,7 @@ Before the event starts, the Moderator must grant a participant the Scribe privi
 
 
 
-http://econference.googlecode.com/svn/wiki/img/select_scribe.png 
+http://econference4.googlecode.com/svn/wiki/img/select_scribe.png 
 
 
 
@@ -169,7 +169,7 @@ http://econference.googlecode.com/svn/wiki/img/select_scribe.png
 
 
 
-http://econference.googlecode.com/svn/wiki/img/scribe.png 
+http://econference4.googlecode.com/svn/wiki/img/scribe.png 
 
 
 
@@ -189,7 +189,7 @@ If you have been selected as a Scribe, then you will see the refresh icon   in t
 
 
 
-http://econference.googlecode.com/svn/wiki/img/decisions_place.png 
+http://econference4.googlecode.com/svn/wiki/img/decisions_place.png 
 
 
 *Figure  11. Decision places view being edited* 
@@ -213,7 +213,7 @@ This view basically shows the list of the items that the stakeholders have to di
 
 
 
-http://econference.googlecode.com/svn/wiki/img/agenda.png 
+http://econference4.googlecode.com/svn/wiki/img/agenda.png 
 
 
 *Figure  12. The agenda view*  
@@ -221,7 +221,7 @@ http://econference.googlecode.com/svn/wiki/img/agenda.png
 
 
 
-http://econference.googlecode.com/svn/wiki/img/append_q.png 
+http://econference4.googlecode.com/svn/wiki/img/append_q.png 
 
 
 *Figure  13. Appending a new question*   
@@ -233,7 +233,7 @@ As soon as the moderator selects the first item in the Agenda, say Item 1, you w
 
 
 
-http://econference.googlecode.com/svn/wiki/img/threaded1.png 
+http://econference4.googlecode.com/svn/wiki/img/threaded1.png 
 
 
 
@@ -245,7 +245,7 @@ Suppose you have reached a consensus about the current item, and the Scribe has 
 
 
 
-http://econference.googlecode.com/svn/wiki/img/threaded2.png 
+http://econference4.googlecode.com/svn/wiki/img/threaded2.png 
 
 
 
@@ -257,7 +257,7 @@ Yeah, but suppose that someone reads what the scribe has written is in the Decis
 
 
 
-http://econference.googlecode.com/svn/wiki/img/threaded1_1.png 
+http://econference4.googlecode.com/svn/wiki/img/threaded1_1.png 
 
 
 
@@ -278,7 +278,7 @@ Fill the popup with a brief description of what you want to ask for instance, an
 
 
 
-http://econference.googlecode.com/svn/wiki/img/ask_q.png 
+http://econference4.googlecode.com/svn/wiki/img/ask_q.png 
 
 
 
@@ -293,7 +293,7 @@ The moderator should avoid to reject questions as much as he/she can, or at leas
 
 
 
-http://econference.googlecode.com/svn/wiki/img/approve_reject_q.png 
+http://econference4.googlecode.com/svn/wiki/img/approve_reject_q.png 
 
 
 
@@ -306,7 +306,7 @@ The event is over. As soon as you try to disconnect, close the perspective or ev
 
 
 
-http://econference.googlecode.com/svn/wiki/img/savelog.png 
+http://econference4.googlecode.com/svn/wiki/img/savelog.png 
 
 
 *Figure  19. Save your logs*
@@ -322,7 +322,7 @@ If you get accidentally disconnected and you are the moderator, reconnect and lo
 
 
 
-http://econference.googlecode.com/svn/wiki/img/manual_invitation.png 
+http://econference4.googlecode.com/svn/wiki/img/manual_invitation.png 
 
 
 
