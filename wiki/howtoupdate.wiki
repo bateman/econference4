@@ -1,14 +1,26 @@
-#summary One-sentence summary of this page.
+#summary  A guide to update eConference using the auto update feature.
 #labels Phase-Deploy,Featured
+
+<wiki:toc max_depth="4" />
 
 = Introduction =
 
-Add your content here.
+This guide helps users updating the eConference tool without having to manually
+download and uncompress a new archive, each and every time a new build is release.
+The update is performed using the built-in, auto-update feature available via Eclipse RCP.
 
 
 = Details =
+Select the Help > Install New Software menu entry. Then, add a new site entering a description and
+the following url: {{{http://econference4.googlecode.com/svn/update/}}}, as 
+described in *Figure 1*.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/addsite.png <br>
+<p align=center>*Figure 1. Add the update site location.*</p>
+<br>
+<br>
+
+Now, you can update eConference by just selecting Help > Check for Updates. A window like that in 
+*Figure 2*.
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/update.png<br>
+<p align=center>*Figure 2. Perform the update.*</p>
