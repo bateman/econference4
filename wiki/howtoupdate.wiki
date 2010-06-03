@@ -11,7 +11,7 @@ The update is performed using the built-in, auto-update feature available via Ec
 
 
 = Details =
-Select the Help > Install New Software menu entry. Then, add a new site entering a description and
+Select the {{{Help > Install New Software}}} menu entry. Then, add a new site entering a description and
 the following url: {{{http://econference4.googlecode.com/svn/update/}}}, as 
 described in *Figure 1*.
 
@@ -20,7 +20,7 @@ described in *Figure 1*.
 <br>
 <br>
 
-Now, you can update eConference by just selecting Help > Check for Updates. A window like that in 
+Now, you can update eConference by just selecting {{{Help > Check for Updates}}}. A window like that in 
 *Figure 2*.
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/update.png<br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/update.png <br>
 <p align=center>*Figure 2. Perform the update.*</p>
