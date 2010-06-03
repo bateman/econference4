@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compile it.uniba.di.cdg.xcore.econference_feature" default="main">
+	<target name="main">
+		<ant antfile="build.xml" dir="../it.uniba.di.cdg.xcore.econference" target="build.jars"/>
+	</target>
+</project>
