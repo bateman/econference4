@@ -2,7 +2,7 @@
 <feature
       id="it.uniba.di.cdg.jabber_feature"
       label="it.uniba.di.cdg.jabber-feature"
-      version="1.0.0"
+      version="1.0.1"
       provider-name="Collaborative Development Group - Dipartimento di Informatica, University of Bari">
 
    <description url="http://www.example.com/description">
