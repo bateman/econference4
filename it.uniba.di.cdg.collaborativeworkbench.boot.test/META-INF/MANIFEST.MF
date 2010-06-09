@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: it.uniba.di.cdg.collaborativeworkbench.boot.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: it.uniba.di.cdg.xcore.network,
+ it.uniba.di.cdg.xcore.network.events,
+ it.uniba.di.cdg.xcore.network.events.chat,
+ it.uniba.di.cdg.xcore.network.events.multichat,
+ org.junit,
+ org.osgi.framework
+Require-Bundle: it.uniba.di.cdg.xcore.network,
+ org.junit4
