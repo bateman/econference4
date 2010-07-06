@@ -59,103 +59,116 @@ public class SkypeBackend implements IBackend {
 	private SkypeCallAction skypeCallAction;
 	private SkypeMultiCallAction skypeMultiCallAction;
 	private boolean connected = false;
-	
-	static{
+
+	static {
 		Connector.useJNIConnector(true);
 	}
-	
+
 	int count = 0;
-	
-	private ChatMessageListener chatMessageListener =  new ChatMessageListener() {
-		
+
+	private ChatMessageListener chatMessageListener = new ChatMessageListener() {
+
 		@Override
 		public void chatMessageSent(ChatMessage arg0) throws SkypeException {
 		}
-		
+
 		@Override
-		public void chatMessageReceived(ChatMessage chatMessage) throws SkypeException {
-			processMessageReceived(chatMessage.getContent(), chatMessage.getSenderId(),
-					chatMessage.getSenderDisplayName(), chatMessage.getChat());			
+		public void chatMessageReceived(ChatMessage chatMessage)
+				throws SkypeException {
+			processMessageReceived(chatMessage.getContent(),
+					chatMessage.getSenderId(),
+					chatMessage.getSenderDisplayName(), chatMessage.getChat());
 		}
 	};
-	
-	public void processMessageReceived(String content, String senderId, String senderName, Chat chat) throws SkypeException{
-		
+
+	public void processMessageReceived(String content, String senderId,
+			String senderName, Chat chat) throws SkypeException {
+
 		if (content.equals(""))
 			return;
-		
-		//is Skype internal message
-		if(XmlUtil.isSkypeXmlMessage(content))
+
+		// is Skype internal message
+		if (XmlUtil.isSkypeXmlMessage(content))
 			return;
-		
-		String extensionName = XmlUtil.extansionName(content);
-		//è presente un estensione al protocollo
-		if(extensionName != null){
-			if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE)) // chat one2one
+
+		String extensionName = XmlUtil.extensionName(content);
+		// è presente un estensione al protocollo
+		if (extensionName != null) {
+			if (XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE)) // chat
+																					// one2one
 			{
-				if(extensionName.equals(ExtensionConstants.CHAT_COMPOSING)){
-					IBackendEvent event = new ChatComposingtEvent(
-							senderId, getBackendId());
+				if (extensionName.equals(ExtensionConstants.CHAT_COMPOSING)) {
+					IBackendEvent event = new ChatComposingtEvent(senderId,
+							getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
-				
-				else if(extensionName.equals(ExtensionConstants.ROOM_INVITE)){
+
+				else if (extensionName.equals(ExtensionConstants.ROOM_INVITE)) {
 					IMessage m = new SystemMessage("");
-					HashMap<String, String> param = XmlUtil.readXmlExtension(content);
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
 					String reason = param.get(ExtensionConstants.REASON);
-					if (reason == null) reason = "";
+					if (reason == null)
+						reason = "";
 					String roomId = chat.getId();
-					
-					skypeMultiChatServiceAction.putWaitingRoom(chat.getId(), senderId);
-					IBackendEvent event = new InvitationEvent( getBackendId(), roomId,
-							senderId, reason, "", m);
+
+					skypeMultiChatServiceAction.putWaitingRoom(chat.getId(),
+							senderId);
+					IBackendEvent event = new InvitationEvent(getBackendId(),
+							roomId, senderId, reason, "", m);
 					getHelper().notifyBackendEvent(event);
 				}
-				
-				else if(extensionName.equals(ExtensionConstants.ROOM_INVITE_ACCEPT)){
+
+				else if (extensionName
+						.equals(ExtensionConstants.ROOM_INVITE_ACCEPT)) {
 					skypeMultiChatServiceAction.sendChatRoom(senderId);
 				}
-				
-				else if(extensionName.equals(ExtensionConstants.ROOM_INVITE_DECLINE)){
-					HashMap<String, String> param = XmlUtil.readXmlExtension(content);
+
+				else if (extensionName
+						.equals(ExtensionConstants.ROOM_INVITE_DECLINE)) {
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
 					String reason = param.get(ExtensionConstants.REASON);
-					if (reason == null) reason = "";
+					if (reason == null)
+						reason = "";
 					IBackendEvent event = new MultiChatInvitationDeclinedEvent(
 							senderId, reason, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
-				
-				else if(extensionName.equals(ExtensionConstants.CHAT_MESSAGE)){
-					HashMap<String, String> param = XmlUtil.readXmlExtension(content);
+
+				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
 					IBackendEvent event = new ChatMessageReceivedEvent(
 							getRoster().getBuddy(senderId), msg, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
-				
-				//è un estensione gestita dal core
-				else{
+
+				// è un estensione gestita dal core
+				else {
 					HashMap<String, String> param;
 					param = XmlUtil.readXmlExtension(content);
 					IBackendEvent event = new ChatExtensionProtocolEvent(
 							senderId, extensionName, param, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
-			}else{ //chat m2m
-				
-				if(extensionName.equals(ExtensionConstants.CHAT_ROOM)){
+			} else { // chat m2m
+
+				if (extensionName.equals(ExtensionConstants.CHAT_ROOM)) {
 					skypeMultiChatServiceAction.updateChatRoom(chat);
 				}
-				
-				else if(extensionName.equals(ExtensionConstants.CHAT_MESSAGE)){
-					HashMap<String, String> param = XmlUtil.readXmlExtension(content);
+
+				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
 					IBackendEvent event = new MultiChatMessageEvent(
 							getBackendId(), msg, getUserId());
 					getHelper().notifyBackendEvent(event);
 				}
-				
-				else{
+
+				else {
 					HashMap<String, String> param;
 					param = XmlUtil.readXmlExtension(content);
 					IBackendEvent event = new MultiChatExtensionProtocolEvent(
@@ -164,54 +177,58 @@ public class SkypeBackend implements IBackend {
 				}
 			}
 		}
-		
-		//è un normale messaggio di testo
-		else{
-			
-			if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE)){ // chat one2one
-				IBackendEvent event = new ChatMessageReceivedEvent(
-						getRoster().getBuddy(senderId), content, getBackendId());
+
+		// it's just a regular skype text-based msg
+		else {
+			String chatMsg = XmlUtil.chatType(content);
+			// we assume it's always a one2one chat in case we get a regular msg
+			if (null == chatMsg // null means a regular message has no extensions
+					|| chatMsg.equals(ExtensionConstants.ONE_TO_ONE)) {
+				IBackendEvent event = new ChatMessageReceivedEvent(getRoster()
+						.getBuddy(senderId), content, getBackendId());
 				getHelper().notifyBackendEvent(event);
-			}else{
-				IBackendEvent event = new MultiChatMessageEvent(
+			} else {
+				// check: this else would probably be never reached
+				IBackendEvent event = new MultiChatMessageEvent( // chat m2m
 						getBackendId(), content, senderName);
 				getHelper().notifyBackendEvent(event);
 			}
 		}
 	}
-	
+
 	private CallListener callListener = new CallListener() {
-		
+
 		@Override
 		public void callReceived(Call call) throws SkypeException {
-			if(call.getParticipantsCount().equals("2")){
-				IBackendEvent event = new CallEvent(getBackendId(), call.getPartnerId());
+			if (call.getParticipantsCount().equals("2")) {
+				IBackendEvent event = new CallEvent(getBackendId(),
+						call.getPartnerId());
 				getHelper().notifyBackendEvent(event);
 				skypeCallAction.addCall(call.getPartnerId(), call);
-			}else{
-				IBackendEvent event = new CallEvent(getBackendId(), call.getConferenceId());
+			} else {
+				IBackendEvent event = new CallEvent(getBackendId(),
+						call.getConferenceId());
 				getHelper().notifyBackendEvent(event);
 				skypeCallAction.addCall(call.getConferenceId(), call);
 				skypeMultiCallAction.addCall(call.getConferenceId(), call);
 			}
 		}
-		
+
 		@Override
 		public void callMaked(Call arg0) throws SkypeException {
 			// TODO Auto-generated method stub
 		}
 	};
-	
-	 public SkypeBackend getBackendFromProxy(){
-	    	return this;
-	    }
-	 
-    /**
-     * This backend's unique id.
-     */
+
+	public SkypeBackend getBackendFromProxy() {
+		return this;
+	}
+
+	/**
+	 * This backend's unique id.
+	 */
 	public static final String ID = "it.uniba.di.cdg.skype.skypeBackend";
 
-	
 	public SkypeBackend() {
 		super();
 		skypeBuddyRoster = new SkypeBuddyRoster(this);
@@ -228,11 +245,11 @@ public class SkypeBackend implements IBackend {
 	@Override
 	public void connect(ServerContext ctx, UserContext userAccount)
 			throws BackendException {
-		
+
 		Connector.Status status = null;
-		
+
 		Connector conn = Connector.getInstance();
-		
+
 		try {
 			status = conn.connect();
 		} catch (ConnectorException e1) {
@@ -240,16 +257,18 @@ public class SkypeBackend implements IBackend {
 			throw new BackendException(e1.getMessage());
 		}
 
-		if(status != Connector.Status.ATTACHED)
-			throw new BackendException(new Exception("E' necessario installare ed avviare Skype\nE' possibile scaricarlo da www.skype.com"));
-	
-		//notifico l'avvenuta connessione
-		helper.notifyBackendEvent(new BackendStatusChangeEvent( ID, true ));
-		
-		//notifico l'aggiornamento del roster
+		if (status != Connector.Status.ATTACHED)
+			throw new BackendException(
+					new Exception(
+							"E' necessario installare ed avviare Skype\nE' possibile scaricarlo da www.skype.com"));
+
+		// notifico l'avvenuta connessione
+		helper.notifyBackendEvent(new BackendStatusChangeEvent(ID, true));
+
+		// notifico l'aggiornamento del roster
 		skypeBuddyRoster.updateRoster();
-		
-		//aggiungo i listeners di Skype4Java
+
+		// aggiungo i listeners di Skype4Java
 		try {
 			Skype.addChatMessageListener(chatMessageListener);
 			Skype.addCallListener(callListener);
@@ -257,7 +276,7 @@ public class SkypeBackend implements IBackend {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		connected = true;
 	}
 
@@ -270,15 +289,15 @@ public class SkypeBackend implements IBackend {
 
 	@Override
 	public void disconnect() {
-		//notifico la disconnessione del roster
+		// notifico la disconnessione del roster
 		skypeBuddyRoster.disconnectRoster();
-		
-		//notifico l'avvenuta disconnessione
-		helper.notifyBackendEvent(new BackendStatusChangeEvent( ID, false ));
-	
-		//rimuovo i listeners di Skype4Java
+
+		// notifico l'avvenuta disconnessione
+		helper.notifyBackendEvent(new BackendStatusChangeEvent(ID, false));
+
+		// rimuovo i listeners di Skype4Java
 		Skype.removeChatMessageListener(chatMessageListener);
-		
+
 		connected = false;
 	}
 
@@ -290,19 +309,19 @@ public class SkypeBackend implements IBackend {
 
 	@Override
 	public Job getConnectJob() {
-        final Job connectJob = new Job( "Connecting ..." ) {
-            @Override
-            protected IStatus run( IProgressMonitor monitor ) {
-                try {
-                    connect( null, null );
-                } catch (BackendException e) {
-                    e.printStackTrace();
-                    return Status.CANCEL_STATUS;
-                }
-                return Status.OK_STATUS;
-            }
-        };
-        return connectJob;
+		final Job connectJob = new Job("Connecting ...") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				try {
+					connect(null, null);
+				} catch (BackendException e) {
+					e.printStackTrace();
+					return Status.CANCEL_STATUS;
+				}
+				return Status.OK_STATUS;
+			}
+		};
+		return connectJob;
 	}
 
 	@Override
@@ -324,7 +343,7 @@ public class SkypeBackend implements IBackend {
 	@Override
 	public UserContext getUserAccount() {
 		// da sistemare
-		UserContext userContect = new UserContext(getUserId(),"");
+		UserContext userContect = new UserContext(getUserId(), "");
 		try {
 			userContect.setName(Skype.getProfile().getFullName());
 		} catch (SkypeException e) {
@@ -382,8 +401,6 @@ public class SkypeBackend implements IBackend {
 	public void registerNewAccount(String userId, String password,
 			ServerContext server, Map<String, String> attributes)
 			throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
