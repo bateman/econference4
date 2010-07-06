@@ -32,13 +32,10 @@ import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
@@ -92,20 +89,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
         Buddy buddy = (Buddy) buddies.get( XMPPUtils.cleanJid( buddyId ) );
 
         return buddy;
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#contains(java.lang.String)
-     */
-    public boolean contains( String buddyId ) {
-        return buddies.containsKey( buddyId );
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Iterable#iterator()
-     */
-    public Iterator<IBuddy> iterator() {
-        return buddies.values().iterator();
     }
 
     /* (non-Javadoc)
@@ -221,40 +204,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             l.rosterChanged();
     }
 
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#getAllGroups()
-     */
-    public Collection<IBuddyGroup> getAllGroups() {
-        return Collections.unmodifiableCollection( groups.values() );
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#getGroups(net.osslabs.jabber.client.model.IBuddy)
-     */
-    public Collection<IBuddyGroup> getGroups( IBuddy buddy ) {
-        List<IBuddyGroup> groupsForBuddy = new ArrayList<IBuddyGroup>();
-
-        for (IBuddyGroup group : groups.values()) {
-            if (group.contains( buddy ))
-                groupsForBuddy.add( group );
-        }
-        System.out.println( String.format( "Got groups for  %s are %s", buddy, groupsForBuddy ) );
-        return groupsForBuddy;
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#hasGroups()
-     */
-    public boolean hasGroups() {
-        return !groups.isEmpty();
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#hasBuddies()
-     */
-    public boolean hasBuddies() {
-        return !buddies.isEmpty();
-    }
 
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
