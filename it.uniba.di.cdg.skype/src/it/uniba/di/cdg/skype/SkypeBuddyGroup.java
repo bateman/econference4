@@ -10,60 +10,51 @@ import it.uniba.di.cdg.xcore.network.model.IEntry;
 public class SkypeBuddyGroup extends AbstractBuddyGroup {
 
 	public SkypeBuddyGroup() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	public void addBuddy(IBuddy buddy) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public boolean contains(IBuddy buddy) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Collection<IBuddy> getBuddies() {
-		// TODO Auto-generated method stub
+	public Collection<IBuddy> getBuddies() {		
 		return null;
 	}
 
 	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
+	public String getName() {		
 		return null;
 	}
 
 	@Override
-	public boolean hasBuddies() {
-		// TODO Auto-generated method stub
+	public boolean hasBuddies() {		
 		return false;
 	}
 
 	@Override
 	public void removeBuddy(IBuddy buddy) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public IEntry[] getChilds() {
-		// TODO Auto-generated method stub
+	public IEntry[] getChilds() {		
 		return null;
 	}
 
 	@Override
-	public IEntry getParent() {
-		// TODO Auto-generated method stub
+	public IEntry getParent() {		
 		return null;
 	}
 
 	@Override
-	public int compareTo(IBuddyGroup arg0) {
-		// TODO Auto-generated method stub
+	public int compareTo(IBuddyGroup group) {
 		return 0;
 	}
 

@@ -24,270 +24,145 @@
  */
 package it.uniba.di.cdg.jabber.internal;
 
+import it.uniba.di.cdg.xcore.network.model.AbstractBuddy;
+import it.uniba.di.cdg.xcore.network.model.IBuddy;
+import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
+
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Presence.Mode;
 
-import it.uniba.di.cdg.xcore.network.model.AbstractBuddy;
-import it.uniba.di.cdg.xcore.network.model.IBuddy;
-import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
-import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
-import it.uniba.di.cdg.xcore.network.model.IEntry;
-
 /**
- * Implementation of a Jabber/XMPP buddy. Note that this implements <code>IAdaptable</code> 
- * to provide an <code>IActionFilter</code> for GUI actions. 
+ * Implementation of a Jabber/XMPP buddy. 
  */
 public class Buddy extends AbstractBuddy {
-    /**
-     * Buddy's unique id.
-     */ 
-    private String id;
 
-    /**
-     * The visible name of this buddy.
-     */
-    private String name;
-    
-    /**
-     * The online status.
-     */
-    private boolean online;
-    
-    /**
-     * The roster this buddy belongs to.
-     */
-    private final IBuddyRoster roster;
-    
-    /**
-     * The message the buddy's current activity (away, do not disturb, ...)
-     */
-    private Status status;
+	public Buddy(IBuddyRoster roster, String jid, String name, Boolean online,
+			String status, String statusMessage) {
+		this.roster = roster;
+		this.id = jid;
+		this.name = (name.equals("")) ? jid : name;
+		this.online = online;
+		this.statusMessage = statusMessage;
+		this.status = Status.OFFLINE;
 
-    /**
-     * The message the remote buddy has put ("I'm gone", "Need food", "Whatever", ...).
-     */
-    private String statusMessage;
-    
-    public Buddy( IBuddyRoster roster, String jid, String name, Boolean online, String status, String statusMessage ) {
-    	this.roster = roster;
-        this.id = jid;
-        this.name = (name.equals("")) ? jid : name;
-        this.online = online;
-        this.statusMessage = statusMessage;  
-    	this.status =  Status.OFFLINE;
-    	
-    }
-    
-    public Buddy( IBuddyRoster roster, String jid, String name, Presence presence, String status, String statusMessage ) {
-    	this.roster = roster;
-        this.id = jid;
-        this.name = (name==null || name.equals("")) ? jid : name;;
-        this.statusMessage = statusMessage;
-        if(presence != null){
-	        Mode mode = presence.getMode();	        
-	        if (Presence.Mode.available.equals( mode )|| (mode==null && Presence.Type.available.equals(presence.getType()))){
-	        	this.status  = Status.AVAILABLE;
-	        	this.online = true;
-	        }
-	        else if (Presence.Mode.away.equals( mode )){
-	        	this.status  = Status.AWAY;
-	        	this.online = true;
-	        }
-	        else if (Presence.Mode.dnd.equals( mode )){
-	        	this.status  = Status.BUSY;
-	        	this.online = true;
-	        }
-	        else if (Presence.Mode.chat.equals( mode )){
-	        	this.status = Status.CHAT;
-	        	this.online = true;
-	        }
-	        else if (Presence.Mode.xa.equals( mode )){
-	        	this.status = Status.EXTENDED_AWAY;
-	        	this.online = true;
-	        } 
-	        else {
-	        	this.status =  Status.OFFLINE;
-	        	this.online = false;
-	        }
-        }
-    	else {
-    	this.status =  Status.OFFLINE;
-    	this.online = false;
-    	}
-    }
-
-    /**
-     * Super-compact form: provides only the id. The id itself may contain the "/Resource" format: this 
-     * constructor will separate them and initialize them accordingly.
-     * 
-     * @param roster
-     * @param jid
-     */
-    public Buddy( IBuddyRoster roster, String jid) {
-        this( roster, jid, null, false, "", "" );
-    }
-    
-    public Buddy( IBuddyRoster roster, String jid, String name, String statusMessage ) {
-        this( roster, jid, name , false, "", statusMessage );
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddy#getName()
-     */
-    public String getName() {
-    	if(name=="" || name==null )
-    		return getCleanJid();
-    	else
-    		return name;
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddy#setName(java.lang.String)
-     */
-    public void setName( String name ) {
-        this.name = name;
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddy#getUser()
-     */
-    public String getId() {
-        return id;
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddy#setId(java.lang.String)
-     */
-    public void setId( String user ) {
-        this.id = user;
-    }
-    
-    /**
-     * Returns the Jabber id, without any resource specification
-     *  
-     * @return the jid, without any resource specification
-     */
-    public String getCleanJid() {
-        return XMPPUtils.cleanJid( id );
-    }
-
-    /**
-     * @return Returns the resource.
-     */
-    public String getResource() {
-        int i = id.indexOf( "/" );
-        if (i == -1) // No resource
-            return "";
-        else
-            return id.substring( i + 1, id.length() );
-    }
-    
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddy#isOnline()
-     */
-    public boolean isOnline() {
-        return online;
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddy#setOnline(boolean)
-     */
-    public void setOnline( boolean online ) {
-        this.online = online;
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IBuddy#getStatus()
-     */
-    public Status getStatus() {
-        return status;
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IBuddy#setStatus(it.uniba.di.cdg.xcore.network.model.IBuddy.Status)
-     */
-    public void setStatus( Status status ) {
-        this.status = status;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return String.format( "%s [%s]", name, id );
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals( Object other ) {
-        if (other == null || !(other instanceof IBuddy) )
-            return false;
-        IBuddy that = (IBuddy) other;
-        // Note that we ignore the "Resource field"
-        return this.getId().equals( that.getId() );
-    }
-    
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        return getId().hashCode();
-    }
-
-    public int compareTo( IBuddy that ) {
-        return String.CASE_INSENSITIVE_ORDER.compare( this.getName(), that.getName() );
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IBuddy#getRoster()
-     */
-    public IBuddyRoster getRoster() {
-        return roster;
-    }
-    
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IBuddy#getPrintableLabel()
-     */
-    public String getPrintableLabel() {
-        String s = getName();
-        if (s == null)
-            s = getId();
-        
-        if (!Status.OFFLINE.equals( getStatus() ) && 
-        		statusMessage!=null && !statusMessage.isEmpty())
-            s += " (" + statusMessage + ")";
-        
-        return s;
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IEntry#getParent()
-     */
-    public IEntry getParent() {
-        IBuddyGroup parentGroup = (IBuddyGroup) getRoster().getGroups( this ).toArray()[0];
-        return parentGroup;
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IEntry#getChilds()
-     */
-    public IEntry[] getChilds() {
-        return new IEntry[0];
-    }
-
-	@Override
-	public String getStatusMessage() {
-		return statusMessage;
 	}
 
-	@Override
-	public void setStatusMessage(String statusMessage) {
-		this.statusMessage = statusMessage;		
+	public Buddy(IBuddyRoster roster, String jid, String name,
+			Presence presence, String status, String statusMessage) {
+		this.roster = roster;
+		this.id = jid;
+		this.name = (name == null || name.equals("")) ? jid : name;
+		;
+		this.statusMessage = statusMessage;
+		if (presence != null) {
+			Mode mode = presence.getMode();
+			if (Presence.Mode.available.equals(mode)
+					|| (mode == null && Presence.Type.available.equals(presence
+							.getType()))) {
+				this.status = Status.AVAILABLE;
+				this.online = true;
+			} else if (Presence.Mode.away.equals(mode)) {
+				this.status = Status.AWAY;
+				this.online = true;
+			} else if (Presence.Mode.dnd.equals(mode)) {
+				this.status = Status.BUSY;
+				this.online = true;
+			} else if (Presence.Mode.chat.equals(mode)) {
+				this.status = Status.CHAT;
+				this.online = true;
+			} else if (Presence.Mode.xa.equals(mode)) {
+				this.status = Status.EXTENDED_AWAY;
+				this.online = true;
+			} else {
+				this.status = Status.OFFLINE;
+				this.online = false;
+			}
+		} else {
+			this.status = Status.OFFLINE;
+			this.online = false;
+		}
 	}
 
-	
+	/**
+	 * Super-compact form: provides only the id. The id itself may contain the
+	 * "/Resource" format: this constructor will separate them and initialize
+	 * them accordingly.
+	 * 
+	 * @param roster
+	 * @param jid
+	 */
+	public Buddy(IBuddyRoster roster, String jid) {
+		this(roster, jid, null, false, "", "");
+	}
+
+	public Buddy(IBuddyRoster roster, String jid, String name,
+			String statusMessage) {
+		this(roster, jid, name, false, "", statusMessage);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.osslabs.jabber.client.model.IBuddy#getName()
+	 */
+	public String getName() {
+		if (name == "" || name == null)
+			return getCleanJid();
+		else
+			return name;
+	}
+
+	/**
+	 * Returns the Jabber id, without any resource specification
+	 * 
+	 * @return the jid, without any resource specification
+	 */
+	public String getCleanJid() {
+		return XMPPUtils.cleanJid(id);
+	}
+
+	/**
+	 * @return Returns the resource.
+	 */
+	public String getResource() {
+		int i = id.indexOf("/");
+		if (i == -1) // No resource
+			return "";
+		else
+			return id.substring(i + 1, id.length());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%s [%s]", name, id);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof IBuddy))
+			return false;
+		IBuddy that = (IBuddy) other;
+		// Note that we ignore the "Resource field"
+		return this.getId().equals(that.getId());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		return getId().hashCode();
+	}
+
 }

@@ -8,10 +8,8 @@ package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;

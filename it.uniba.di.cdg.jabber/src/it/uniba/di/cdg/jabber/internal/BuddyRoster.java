@@ -25,14 +25,12 @@
 package it.uniba.di.cdg.jabber.internal;
 
 import it.uniba.di.cdg.jabber.JabberBackend;
-import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.model.AbstractBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
+import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
-import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
-
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,8 +39,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
@@ -57,14 +53,6 @@ import org.jivesoftware.smack.packet.Presence;
 public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
 
     private Roster jroster;
-
-    private final Map<String, IBuddy> buddies;
-
-    private final Map<String, IBuddyGroup> groups;
-
-    private final Set<IBuddyRosterListener> listeners;
-
-    private final JabberBackend backend;
 
     /**
      * Creates a new empty buddy roster.
@@ -118,27 +106,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
      */
     public Iterator<IBuddy> iterator() {
         return buddies.values().iterator();
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#getBuddies()
-     */
-    public Collection<IBuddy> getBuddies() {
-        return buddies.values();
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#addListener(net.osslabs.jabber.client.model.IBuddyRosterListener)
-     */
-    public void addListener( IBuddyRosterListener listener ) {
-        listeners.add( listener );
-    }
-
-    /* (non-Javadoc)
-     * @see net.osslabs.jabber.client.model.IBuddyRoster#removeListener(net.osslabs.jabber.client.model.IBuddyRosterListener)
-     */
-    public void removeListener( IBuddyRosterListener listener ) {
-        listeners.remove( listener );
     }
 
     /* (non-Javadoc)
@@ -302,13 +269,6 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             sb.append( "\n" );
         }
         return sb.toString();
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#getBackend()
-     */
-    public IBackend getBackend() {
-        return backend;
     }
 
     /* (non-Javadoc)

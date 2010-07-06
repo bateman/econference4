@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Vector;
 
 import com.skype.Friend;
@@ -23,11 +22,6 @@ import com.skype.User.Status;
 public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 		IBuddyRoster {
 
-    private final Map<String, IBuddyGroup> groups;
-    private final Map<String, IBuddy> buddies;
-    private final Collection<IBuddyRosterListener> listeners;
-    private IBackend backend;
-
 	public SkypeBuddyRoster(IBackend backend) {
 		this.backend = backend;
 
@@ -36,10 +30,6 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 		listeners = new Vector<IBuddyRosterListener>();
 	}
 
-	@Override
-	public void addListener(IBuddyRosterListener listener) {
-		listeners.add(listener);
-	}
 
 	@Override
 	public void clear() {
@@ -48,25 +38,13 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 	}
 
 	@Override
-	public boolean contains(String buddyId) {
-		// TODO Auto-generated method stub
+	public boolean contains(String buddyId) {		
 		return false;
 	}
 
 	@Override
 	public Collection<IBuddyGroup> getAllGroups() {
-		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public IBackend getBackend() {
-		return backend;
-	}
-
-	@Override
-	public Collection<IBuddy> getBuddies() {
-		return buddies.values();
 	}
 
 	@Override
@@ -92,10 +70,6 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 		return false;
 	}
 
-	@Override
-	public void removeListener(IBuddyRosterListener listener) {
-		listeners.remove(listener);
-	}
 
 	@Override
 	public IEntry[] getChilds() {		
@@ -109,14 +83,12 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 	}
 
 	@Override
-	public IEntry getParent() {
-		// TODO Auto-generated method stub
+	public IEntry getParent() {		
 		return null;
 	}
 
 	@Override
-	public Iterator<IBuddy> iterator() {
-		// TODO Auto-generated method stub
+	public Iterator<IBuddy> iterator() {		
 		return null;
 	}
 
@@ -169,53 +141,59 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 
     @Override
 	public void addGroup(String name) {
-		// TODO Auto-generated method stub
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?
 		
 	}
 
 	@Override
 	public void addBuddy(String name, String id, String[] gruppi) {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?		
 	}
 
 	@Override
 	public void moveToGroup(String user, String nameNewGroup) {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?		
 	}
 
 	@Override
 	public void removeBuddy(String user) {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?		
 	}
 
 	@Override
 	public void renameBuddy(String user, String name) {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?		
 	}
 
 	@Override
 	public void renameGroup(String oldName, String newName) {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?		
 	}
 
 	@Override
 	public void removeGroup(String group, String newGroup) {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?
 	}
 
 	@Override
 	public void reload() {
-		// TODO Auto-generated method stub
-		
+		// emtpy stub for compatibility with group management features
+    	// in Jabber backend
+    	// CHECK do these apply to skype too?
 	}
-	
-   
-
 	
 }
