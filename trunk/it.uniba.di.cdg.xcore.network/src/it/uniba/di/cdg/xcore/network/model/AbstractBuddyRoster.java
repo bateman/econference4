@@ -24,11 +24,49 @@
  */
 package it.uniba.di.cdg.xcore.network.model;
 
+import it.uniba.di.cdg.xcore.network.IBackend;
+
+import java.util.Collection;
+import java.util.Map;
+
 import org.eclipse.core.runtime.PlatformObject;
 
 /**
  * Just add <code>PlatformObject</code> to the hierarchy.
  */
-public abstract class AbstractBuddyRoster extends PlatformObject implements IBuddyRoster {
-    // Nothing
+public abstract class AbstractBuddyRoster extends PlatformObject implements
+		IBuddyRoster {
+	protected Map<String, IBuddyGroup> groups;
+	protected Map<String, IBuddy> buddies;
+	protected Collection<IBuddyRosterListener> listeners;
+	protected IBackend backend;
+	
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#addListener(it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener)
+     */
+    public void addListener( IBuddyRosterListener listener ) {
+        listeners.add( listener );
+    }
+
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#removeListener(it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener)
+     */
+    public void removeListener( IBuddyRosterListener listener ) {
+        listeners.remove( listener );
+    }
+
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#getBackend()
+     */
+    public IBackend getBackend() {
+        return backend;
+    }
+    
+	/* (non-Javadoc)
+	 * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#getBuddies()
+	 */
+	public Collection<IBuddy> getBuddies() {
+		return buddies.values();
+	}
+
 }
