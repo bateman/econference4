@@ -26,7 +26,11 @@ package it.uniba.di.cdg.xcore.network.model;
 
 import it.uniba.di.cdg.xcore.network.IBackend;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.PlatformObject;
@@ -68,5 +72,60 @@ public abstract class AbstractBuddyRoster extends PlatformObject implements
 	public Collection<IBuddy> getBuddies() {
 		return buddies.values();
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#hasBuddies()
+	 */
+    public boolean hasBuddies() {
+        return !buddies.isEmpty();
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#hasGroups()
+     */
+    public boolean hasGroups() {
+        return !groups.isEmpty();
+    } 
+    
+    /*
+     * (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#getGroups(it.uniba.di.cdg.xcore.network.model.IBuddy)
+     */
+    public Collection<IBuddyGroup> getGroups( IBuddy buddy ) {
+        List<IBuddyGroup> groupsForBuddy = new ArrayList<IBuddyGroup>();
+
+        for (IBuddyGroup group : groups.values()) {
+            if (group.contains( buddy ))
+                groupsForBuddy.add( group );
+        }
+        System.out.println( String.format( "Got groups for  %s are %s", buddy, groupsForBuddy ) );
+        return groupsForBuddy;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#getAllGroups()
+     */
+    public Collection<IBuddyGroup> getAllGroups() {
+        return Collections.unmodifiableCollection( groups.values() );
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see java.lang.Iterable#iterator()
+     */
+    public Iterator<IBuddy> iterator() {
+        return buddies.values().iterator();
+    }
+   
+    /*
+     * (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.network.model.IBuddyRoster#contains(java.lang.String)
+     */
+    public boolean contains( String buddyId ) {
+        return buddies.containsKey( buddyId );
+    }
 
 }
