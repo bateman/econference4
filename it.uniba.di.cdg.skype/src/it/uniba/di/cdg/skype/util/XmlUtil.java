@@ -2,7 +2,6 @@ package it.uniba.di.cdg.skype.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
@@ -134,17 +133,16 @@ public class XmlUtil {
 		eventWriter.add(eventFactory.createDTD("\n"));
 	}
 
-	public static String extansionName(String xmlString) {
+	public static String extensionName(String xmlString) {
 		return getValueByElement(xmlString, ExtensionConstants.EXTENSION_NAME);
 	}
 	
 	public static String chatType(String xmlString){
-		return getValueByElement(xmlString, ExtensionConstants.CHAT_TYPE);	
+		return getValueByElement(xmlString, ExtensionConstants.CHAT_TYPE);
 	}
 	
 	public static boolean isSkypeXmlMessage(String xmlString){
 		return (getValueByElement(xmlString, "partlist") != null);
-	}
-	
+	}	
 
 }
