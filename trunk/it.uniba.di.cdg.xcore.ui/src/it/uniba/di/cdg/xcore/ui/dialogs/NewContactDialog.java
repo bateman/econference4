@@ -1,37 +1,24 @@
 package it.uniba.di.cdg.xcore.ui.dialogs;
 
-import java.util.Iterator;
-
-import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
-import it.uniba.di.cdg.xcore.ui.views.BuddyListView;
+
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+* 
 */
 public class NewContactDialog extends Dialog {
 
@@ -48,9 +35,7 @@ public class NewContactDialog extends Dialog {
     private Label usernameLabel;
 
     public NewContactDialog( Shell parent, int style ) {
-        super( parent, style );
-        // TODO Auto-generated constructor stub
-        
+        super( parent, style );        
     }
     
     public void open(final IBuddyRoster roster) {
