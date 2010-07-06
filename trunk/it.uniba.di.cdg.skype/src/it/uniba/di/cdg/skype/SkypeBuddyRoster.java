@@ -11,7 +11,6 @@ import it.uniba.di.cdg.xcore.network.model.IEntry;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Vector;
 
 import com.skype.Friend;
@@ -38,38 +37,9 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 	}
 
 	@Override
-	public boolean contains(String buddyId) {		
-		return false;
-	}
-
-	@Override
-	public Collection<IBuddyGroup> getAllGroups() {
-		return null;
-	}
-
-	@Override
 	public IBuddy getBuddy(String buddyId) {
 		return buddies.get(buddyId);
 	}
-
-	@Override
-	public Collection<IBuddyGroup> getGroups(IBuddy buddy) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean hasBuddies() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean hasGroups() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 	@Override
 	public IEntry[] getChilds() {		
@@ -84,11 +54,6 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 
 	@Override
 	public IEntry getParent() {		
-		return null;
-	}
-
-	@Override
-	public Iterator<IBuddy> iterator() {		
 		return null;
 	}
 
