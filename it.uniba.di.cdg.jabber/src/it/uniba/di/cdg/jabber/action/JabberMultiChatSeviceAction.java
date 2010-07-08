@@ -1,11 +1,5 @@
 package it.uniba.di.cdg.jabber.action;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
-
 import it.uniba.di.cdg.jabber.JabberBackend;
 import it.uniba.di.cdg.jabber.internal.XMPPUtils;
 import it.uniba.di.cdg.jabber.ui.JoinChatRoomDialog;
@@ -29,23 +23,25 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.jivesoftware.smack.PacketListener;
-import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.AndFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.Message.Type;
+import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.util.StringUtils;
 import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.DefaultParticipantStatusListener;
 import org.jivesoftware.smackx.muc.DefaultUserStatusListener;
-import org.jivesoftware.smackx.muc.DiscussionHistory;
 import org.jivesoftware.smackx.muc.InvitationRejectionListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.jivesoftware.smackx.muc.Occupant;
@@ -227,7 +223,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 			Message message = (Message)packet;
 			
 			if(message.getType() == Type.groupchat){
-				if(message.getProperty(JabberBackend.EXTANSION_NAME) != null){
+				if(message.getProperty(JabberBackend.EXTENSION_NAME) != null){
 					HashMap<String, String> prop = new HashMap<String, String>();
 	    			Collection<String> propName = message.getPropertyNames();
 	    			Iterator<String> it = propName.iterator();
@@ -236,7 +232,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 	    				prop.put(val, (String)message.getProperty(val));
 	    			}
 					IBackendEvent event = new MultiChatExtensionProtocolEvent(
-							prop, (String)message.getProperty(JabberBackend.EXTANSION_NAME)
+							prop, (String)message.getProperty(JabberBackend.EXTENSION_NAME)
 								, JabberBackend.ID, message.getFrom());
 					backend.getHelper().notifyBackendEvent(event);
 					
@@ -329,7 +325,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 		
 		@Override
 		public boolean accept(Packet packet) {
-			return (String)packet.getProperty(JabberBackend.EXTANSION_NAME) != null;
+			return (String)packet.getProperty(JabberBackend.EXTENSION_NAME) != null;
 		}
 	}; 
 	
