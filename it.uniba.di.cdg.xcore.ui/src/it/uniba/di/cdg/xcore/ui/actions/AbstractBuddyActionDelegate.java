@@ -38,97 +38,108 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * Common base for all <code>IBuddy</code> action delegates. Clients must implement <code>run()</code>
- * at the minimum.
+ * Common base for all <code>IBuddy</code> action delegates. Clients must
+ * implement <code>run()</code> at the minimum.
  */
-public abstract class AbstractBuddyActionDelegate implements IObjectActionDelegate {
-    /**
-     * The selected buddies.
-     */
-    private IWorkbenchPart targetPart;
-    
-    /**
-     * Enforce that this must not be used alone.
-     */
-    protected AbstractBuddyActionDelegate() {
-        super();
-    }
+public abstract class AbstractBuddyActionDelegate implements
+		IObjectActionDelegate {
+	/**
+	 * The selected buddies.
+	 */
+	private IWorkbenchPart targetPart;
 
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction, org.eclipse.ui.IWorkbenchPart)
-     */
-    public void setActivePart( IAction action, IWorkbenchPart targetPart ) {
-        this.targetPart = targetPart;
-    }
+	/**
+	 * Enforce that this must not be used alone.
+	 */
+	protected AbstractBuddyActionDelegate() {
+		super();
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-     */
-    public void selectionChanged( IAction action, ISelection selection ) {
-        // Nothing is done.
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.
+	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
+	 */
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+		this.targetPart = targetPart;
+	}
 
-    /**
-     * @return Returns the targetPart.
-     */
-    protected IWorkbenchPart getTargetPart() {
-        return targetPart;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action
+	 * .IAction, org.eclipse.jface.viewers.ISelection)
+	 */
+	public void selectionChanged(IAction action, ISelection selection) {
+		// Nothing is done.
+	}
 
-    /**
-     * Returns the currently selected buddies.
-     * 
-     * @param selection
-     */
-    protected Collection<IBuddy> getSelectedBuddies() {
-        IStructuredSelection selected = (IStructuredSelection) getSelection();
+	/**
+	 * @return Returns the targetPart.
+	 */
+	protected IWorkbenchPart getTargetPart() {
+		return targetPart;
+	}
 
-        final Collection<IBuddy> selectedBuddies = new ArrayList<IBuddy>();
-        for (Iterator it = selected.iterator(); it.hasNext(); ) {
-            IBuddy buddy = (IBuddy) it.next();
-            selectedBuddies.add( buddy );
-            System.out.println( "You selected: " + buddy );
-        }
-        
-        return selectedBuddies;
-    }
-    
-    /**
-     * Returns the first selected buddy.
-     * 
-     * @return the first selected buddy
-     */
-    protected IBuddy getSelected() {
-        return (IBuddy) getSelection().getFirstElement();
-    }
-    
-    /**
-     * Returns the first selected group.
-     * 
-     * @return the first selected group
-     */
-    protected IBuddyGroup getSelectedGroup() {
-        return (IBuddyGroup) getSelection().getFirstElement();
-    }
-    
-    /**
-     * Returns the ids of the selected buddies.
-     * 
-     * @return the ids of the selected buddies
-     */
-    public Collection<String> getSelectedBuddiesId() {
-        Collection<String> strings = new ArrayList<String>();
-        for (IBuddy b : getSelectedBuddies())
-            strings.add( b.getId() );
-        return strings;
-    }
-    
-    /**
-     * Returns the current selection.
-     * 
-     * @return the current selection
-     */
-    protected IStructuredSelection getSelection() {
-        return (IStructuredSelection) targetPart.getSite().getSelectionProvider().getSelection();
-    }
+	/**
+	 * Returns the currently selected buddies.
+	 * 
+	 * @param selection
+	 */
+	protected Collection<IBuddy> getSelectedBuddies() {
+		IStructuredSelection selected = (IStructuredSelection) getSelection();
+
+		final Collection<IBuddy> selectedBuddies = new ArrayList<IBuddy>();
+		Iterator<IBuddy> it = selected.iterator();
+		while (it.hasNext()) {
+			IBuddy buddy = it.next();
+			selectedBuddies.add(buddy);
+			System.out.println("You selected: " + buddy);
+		}
+
+		return selectedBuddies;
+	}
+
+	/**
+	 * Returns the first selected buddy.
+	 * 
+	 * @return the first selected buddy
+	 */
+	protected IBuddy getSelected() {
+		return (IBuddy) getSelection().getFirstElement();
+	}
+
+	/**
+	 * Returns the first selected group.
+	 * 
+	 * @return the first selected group
+	 */
+	protected IBuddyGroup getSelectedGroup() {
+		return (IBuddyGroup) getSelection().getFirstElement();
+	}
+
+	/**
+	 * Returns the ids of the selected buddies.
+	 * 
+	 * @return the ids of the selected buddies
+	 */
+	public Collection<String> getSelectedBuddiesId() {
+		Collection<String> strings = new ArrayList<String>();
+		for (IBuddy b : getSelectedBuddies())
+			strings.add(b.getId());
+		return strings;
+	}
+
+	/**
+	 * Returns the current selection.
+	 * 
+	 * @return the current selection
+	 */
+	protected IStructuredSelection getSelection() {
+		return (IStructuredSelection) targetPart.getSite()
+				.getSelectionProvider().getSelection();
+	}
 }
