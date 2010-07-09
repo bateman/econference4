@@ -80,471 +80,551 @@ import org.jivesoftware.smackx.muc.InvitationListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
- * Jabber/XMPP backend implementation. A backend may be extended by providing additional services through 
- * the use of the <code>it.uniba.di.cdg.jabber.services</code> extension point.
+ * Jabber/XMPP backend implementation. A backend may be extended by providing
+ * additional services through the use of the
+ * <code>it.uniba.di.cdg.jabber.services</code> extension point.
  * 
- * FIXME ConnectionEstablishedListener doesn't work. Check this again with SMACK 2.1.0.
- * FIXED: ConnectionEstablishedListener class is not present in the 3.1.0 version of Smack, so it has removed
+ * FIXME ConnectionEstablishedListener doesn't work. Check this again with SMACK
+ * 2.1.0. FIXED: ConnectionEstablishedListener class is not present in the 3.1.0
+ * version of Smack, so it has removed
  */
 public class JabberBackend implements IBackend, PacketListener,
-        ConnectionListener {
-    /**
-     * This backend's unique id.
-     */
-    public static final String ID = JabberPlugin.ID + ".jabberBackend";
-    
-    public static final String EXTANSION_NAME = "ExtensionName";
-    
-    /**
-     * The capabilities supported by this backend (these depend on the implemented feature set). 
-     */
-    private final ICapabilities capabilities;
+		ConnectionListener {
+	/**
+	 * This backend's unique id.
+	 */
+	public static final String ID = JabberPlugin.ID + ".jabberBackend";
 
-    /**
-     * Connection to the XMPP server: it can be used for creating new chats, adding filters, callbacks, ...
-     */
-    private XMPPConnection connection;
+	public static final String EXTENSION_NAME = "ExtensionName";
 
-    
-    public JabberBackend getBackendFromProxy(){
-    	return this;
-    }
-    /**
-     * The roster is the core 
-     */
-    private BuddyRoster buddies;
+	/**
+	 * The capabilities supported by this backend (these depend on the
+	 * implemented feature set).
+	 */
+	private final ICapabilities capabilities;
 
-    /**
-     * Provides useful methods.
-     */
-    private INetworkBackendHelper helper;
+	/**
+	 * Connection to the XMPP server: it can be used for creating new chats,
+	 * adding filters, callbacks, ...
+	 */
+	private XMPPConnection connection;
 
-    // Multi-user chat setup
-    private InvitationListener invitationListener = new InvitationListener() {
-        public void invitationReceived( XMPPConnection connection, String room, String inviter,
-                String reason, String password, Message message ) {
-            if (JabberBackend.this.connection == connection) {
-                final IMessage m = convertFromSmack( message );
-                notifyEventListeners( new CustomInvitationEvent( JabberBackend.this, ID, room,
-                        inviter, reason, password, m ) );
-            }
-        }
-    };
+	public JabberBackend getBackendFromProxy() {
+		return this;
+	}
 
-    /**
-     * The context information related to the server we are currently connected. It is initialized by
-     * {@see #connect(ServerContext, UserAccount)}. When disconneted it should be <code>null</code>. 
-     */
-    private ServerContext serverContext;
+	/**
+	 * The roster is the core
+	 */
+	private BuddyRoster buddies;
 
-    /**   
-     * The user account we are currently authenticated with. It is initialized by
-     * {@see #connect(ServerContext, UserAccount)}. When disconneted it should be <code>null</code>.
-     */
-    private UserContext userAccount;
+	/**
+	 * Provides useful methods.
+	 */
+	private INetworkBackendHelper helper;
 
-    /**
-     * Create a new jabber backend.
-     */
-    public JabberBackend() {
-        super();
-        this.capabilities = new Capabilities();
-        this.buddies = new BuddyRoster( this );
-
-        // Chat, multi-chat and e-conference support are built-in.
-        capabilities.add( IChatService.CHAT_SERVICE );
-       // capabilities.add( IMultiChatService.MULTI_CHAT_SERVICE );
-//        capabilities.add( IEConferenceService.ECONFERENCE_SERVICE );        
-    }
-
-    /**
-     * Create a normal XMPP connection. Clients are not expected to re-implement this method:
-     * it is used as an hook for testing.
-     * 
-     * @param host
-     * @param port
-     * @param serviceName this is not required, you can use the empty string
-     * @return a new XMPP connection
-     * @throws XMPPException
-     */
-    protected XMPPConnection createConnection( String host, int port, String serviceName ) throws XMPPException {
-    	ConnectionConfiguration config;
-    	if (serviceName=="" || serviceName == null) 
-    		config = new ConnectionConfiguration(host, port);
-    	else
-    		config = new ConnectionConfiguration(host, port, serviceName);
-	//TODO: verify how the following statement works
-	config.setReconnectionAllowed(true);
-
-        return new XMPPConnection( config );
-    }
-
-    /**
-     * Create an SSL XMPP connection. Clients are not expected to re-implement this method:
-     * it is used as an hook for testing.
-     * 
-     * @param host
-     * @param port
-     * @param serviceName this is not required, you can use the empty string
-     * @return a new XMPP connection
-     * @throws XMPPException
-     */
-    protected XMPPConnection createSecureConnection( String host, int port, String serviceName ) throws XMPPException {
-    	ConnectionConfiguration config;
-    	if (serviceName=="" || serviceName == null) 
-    		config = new ConnectionConfiguration(host, port);
-    	else
-    		config = new ConnectionConfiguration(host, port, serviceName);
-    	config.setCompressionEnabled(true);
-    	config.setSASLAuthenticationEnabled(true);    	
-    	//TODO: verify how the following statement works
-    	config.setReconnectionAllowed(true);    	
-    	return new XMPPConnection(config);
-    }
-
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#connect(it.uniba.di.cdg.xcore.network.ServerContext, it.uniba.di.cdg.xcore.network.UserAccount)
-     */
-    public void connect( final ServerContext ctx, final UserContext userAccount )
-            throws BackendException {
-        disconnect();
-        this.serverContext = ctx;
-        this.userAccount = userAccount;
-
-        // TODO make the strings constants 
-        /*Preferences preferences = new ConfigurationScope().getNode( "it.uniba.di.cdg.xcore.ui" );
-        XMPPConnection.DEBUG_ENABLED = preferences.getBoolean(
-                "it.uniba.di.cdg.xcore.ui.preferences_xmppbackend_showdebugger", false );
-         */
-        final ServerContext GOOGLE_TALK = new ServerContext( "talk.google.com", true, false, 5222, "googlemail.com" );
-        
-        try {        	
-         	if(userAccount.isGmail()){
-         		serverContext = GOOGLE_TALK;
-         	}         	
-            if (ctx.isSecure())              	
-                connection = createSecureConnection( serverContext.getServerHost(), ctx.getPort(), serverContext.getServiceName() );            	
-            else
-                connection = createConnection( serverContext.getServerHost(), ctx.getPort(), serverContext.getServiceName());//serverContext.getServiceName() );
-         	                     
-            // This doesn't work ...
-            //XMPPConnection.addConnectionListener( (ConnectionEstablishedListener) this );
-/////TODO controllare l'ordine tra connect & addListener
-            connection.connect();  
-           
-            connection.addConnectionListener(this);            
-            connection.login( userAccount.getId(), userAccount.getPassword() );
-            buddies.setJabberRoster( connection.getRoster() );
-        } catch (XMPPException e) {        	
-        	//TODO: inserire il metodo per avviare la finestra di riconnessione automatica
-            throw new BackendException( e );
-        }
-        // [CHAT] We need a way to monitor incoming traffic for generating "Wanna chat" events.
-        PacketFilter filter = new PacketTypeFilter( Message.class );
-        connection.addPacketListener( this, filter );
-
-        MultiUserChat.addInvitationListener( connection, invitationListener );
-
-       
-        // FIXME XMPPConnection.addConnectionListener( (ConnectionEstablishedListener) this ) does nothing :S
-        connectionEstablished( connection );
-    }
-
-    /* (non-Javadoc)
-     * @see org.jivesoftware.smack.PacketListener#processPacket(org.jivesoftware.smack.packet.Packet)
-     */
-    public void processPacket( Packet packet ) {
-    	
-    	Message mess = (Message) packet;
-    	IBackendEvent event;
-    	
-    	//Il messaggio si riferisce alla chat 1 ad 1
-    	if (Message.Type.chat.equals( mess.getType() )) {
-    		
-    		//test su estensione al protocollo
-    		if(mess.getProperty(EXTANSION_NAME) != null){
-    			HashMap<String, String> prop = new HashMap<String, String>();
-    			Collection<String> propName = mess.getPropertyNames();
-    			Iterator<String> it = propName.iterator();
-    			while(it.hasNext()){
-    				String val = it.next();
-    				prop.put(val, (String)mess.getProperty(val));
-    			}
-    				
-    			event = new ChatExtensionProtocolEvent(mess.getFrom(),
-    					(String)mess.getProperty(EXTANSION_NAME), prop, ID);
-    			notifyEventListeners(event);
-    			return;
-    		}
-    		
-    		//ricevuta notifica di composizione
-    		if(mess.getExtension(TypingNotificationPacket.ELEMENT_NAME,
-    						TypingNotificationPacket.ELEMENT_NS) != null){
-    			event = new ChatComposingtEvent(mess.getFrom(), ID);
-    			notifyEventListeners(event);
-    			return;
-    		}
-    		
-    		//ricevuto messaggio vuoto
-    		if (mess.getBody() == null || mess.getBody().length() == 0)
-                return;
-    		
-    		//ricevuto messaggio contenente testo
-    		event = new ChatMessageReceivedEvent(getRoster().getBuddy(mess.getFrom()), 
-    				 mess.getBody(), ID);
-    		notifyEventListeners(event);
-    		
-    	}
-    	//Il messaggio si riferisce alla multichat in una stanza
-    	else if(Message.Type.groupchat.equals(mess.getType())){
-    		
-    	}
-    	
-    	/**
-    	 * 		final TypingNotificationPacket typingPacket = (TypingNotificationPacket) mess
-		.getExtension(TypingNotificationPacket.ELEMENT_NAME,
-				TypingNotificationPacket.ELEMENT_NS);
-		
-		if(typingPacket != null){
-			for(IChatServiceListener l: chatServiceListener)
-    			l.TypingMessage(mess.getFrom());
+	// Multi-user chat setup
+	private InvitationListener invitationListener = new InvitationListener() {
+		public void invitationReceived(XMPPConnection connection, String room,
+				String inviter, String reason, String password, Message message) {
+			if (JabberBackend.this.connection == connection) {
+				final IMessage m = convertFromSmack(message);
+				notifyEventListeners(new CustomInvitationEvent(
+						JabberBackend.this, ID, room, inviter, reason,
+						password, m));
+			}
 		}
-    	 */
-    }
+	};
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#disconnect()
-     */
-    public void disconnect() {
-        if (connection == null)
-            return;
-        connection.disconnect();
-        connection = null;
+	/**
+	 * The context information related to the server we are currently connected.
+	 * It is initialized by {@see #connect(ServerContext, UserAccount)}. When
+	 * disconneted it should be <code>null</code>.
+	 */
+	private ServerContext serverContext;
 
-        connectionClosed();
-    }
+	/**
+	 * The user account we are currently authenticated with. It is initialized
+	 * by {@see #connect(ServerContext, UserAccount)}. When disconneted it
+	 * should be <code>null</code>.
+	 */
+	private UserContext userAccount;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#isConnected()
-     */
-    public boolean isConnected() {
-        return connection != null && connection.isConnected();
-    }
+	/**
+	 * Create a new jabber backend.
+	 */
+	public JabberBackend() {
+		super();
+		this.capabilities = new Capabilities();
+		this.buddies = new BuddyRoster(this);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#getRoster()
-     */
-    public IBuddyRoster getRoster() {
-        return buddies;
-    }
+		// Chat, multi-chat and e-conference support are built-in.
+		capabilities.add(IChatService.CHAT_SERVICE);
+		// capabilities.add( IMultiChatService.MULTI_CHAT_SERVICE );
+		// capabilities.add( IEConferenceService.ECONFERENCE_SERVICE );
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#getUserAccount()
-     */
-    public UserContext getUserAccount() {
-        return userAccount;
-    }
+	/**
+	 * Create a normal XMPP connection. Clients are not expected to re-implement
+	 * this method: it is used as an hook for testing.
+	 * 
+	 * @param host
+	 * @param port
+	 * @param serviceName
+	 *            this is not required, you can use the empty string
+	 * @return a new XMPP connection
+	 * @throws XMPPException
+	 */
+	protected XMPPConnection createConnection(String host, int port,
+			String serviceName) throws XMPPException {
+		ConnectionConfiguration config;
+		if (serviceName == "" || serviceName == null)
+			config = new ConnectionConfiguration(host, port);
+		else
+			config = new ConnectionConfiguration(host, port, serviceName);
+		// TODO: verify how the following statement works
+		config.setReconnectionAllowed(true);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#getServerContext()
-     */
-    public ServerContext getServerContext() {
-        return serverContext;
-    }
+		return new XMPPConnection(config);
+	}
 
-    /* (non-Javadoc)
-     * @see org.jivesoftware.smack.ConnectionEstablishedListener#connectionEstablished(org.jivesoftware.smack.XMPPConnection)
-     */
-    public void connectionEstablished( XMPPConnection connection ) {
-        notifyOnline();
-    }
+	/**
+	 * Create an SSL XMPP connection. Clients are not expected to re-implement
+	 * this method: it is used as an hook for testing.
+	 * 
+	 * @param host
+	 * @param port
+	 * @param serviceName
+	 *            this is not required, you can use the empty string
+	 * @return a new XMPP connection
+	 * @throws XMPPException
+	 */
+	protected XMPPConnection createSecureConnection(String host, int port,
+			String serviceName) throws XMPPException {
+		ConnectionConfiguration config;
+		if (serviceName == "" || serviceName == null)
+			config = new ConnectionConfiguration(host, port);
+		else
+			config = new ConnectionConfiguration(host, port, serviceName);
+		config.setCompressionEnabled(true);
+		config.setSASLAuthenticationEnabled(true);
+		// TODO: verify how the following statement works
+		config.setReconnectionAllowed(true);
+		return new XMPPConnection(config);
+	}
 
-    /* (non-Javadoc)
-     * @see org.jivesoftware.smack.ConnectionListener#connectionClosed()
-     */
-    public void connectionClosed() {
-        notifyOffline();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.network.IBackend#connect(it.uniba.di.cdg.xcore.
+	 * network.ServerContext, it.uniba.di.cdg.xcore.network.UserAccount)
+	 */
+	public void connect(final ServerContext ctx, final UserContext userAccount)
+			throws BackendException {
+		disconnect();
+		this.serverContext = ctx;
+		this.userAccount = userAccount;
 
-        getRoster().clear();
-        this.serverContext = null;
-        this.userAccount = null;
-    }
+		// TODO make the strings constants
+		/*
+		 * Preferences preferences = new ConfigurationScope().getNode(
+		 * "it.uniba.di.cdg.xcore.ui" ); XMPPConnection.DEBUG_ENABLED =
+		 * preferences.getBoolean(
+		 * "it.uniba.di.cdg.xcore.ui.preferences_xmppbackend_showdebugger",
+		 * false );
+		 */
+		final ServerContext GOOGLE_TALK = new ServerContext("talk.google.com",
+				true, false, 5222, "googlemail.com");
 
-    /* (non-Javadoc)
-     * @see org.jivesoftware.smack.ConnectionListener#connectionClosedOnError(java.lang.Exception)
-     */
-    public void connectionClosedOnError( Exception ex ) {
-        System.err.println( "Connection closed because of an error: " + ex.getMessage() );
-        // TODO Should diplay and error dialog and clear state.
-        notifyOffline();
-    }
+		try {
+			if (userAccount.isGmail()) {
+				serverContext = GOOGLE_TALK;
+			}
+			if (ctx.isSecure())
+				connection = createSecureConnection(
+						serverContext.getServerHost(), ctx.getPort(),
+						serverContext.getServiceName());
+			else
+				connection = createConnection(serverContext.getServerHost(),
+						ctx.getPort(), serverContext.getServiceName());// serverContext.getServiceName()
+																		// );
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#getConnectJob(it.uniba.di.cdg.xcore.network.ServerContext, it.uniba.di.cdg.xcore.network.UserAccount)
-     */
-    public Job getConnectJob() {
-    	ConnectionDialog dlg = new ConnectionDialog( new Shell() );
-        int result =  dlg.open();
-        if (result == Dialog.OK) {
-            final ServerContext serverCtx = dlg.getProfileContext().getServerContext();
-            final UserContext userCtx =  dlg.getProfileContext().getUserContext();
-	    	final Job connectJob = new Job( "Connecting ..." ) {
-	            @Override
-	            protected IStatus run( IProgressMonitor monitor ) {
-	                try {
-	                    connect( serverCtx, userCtx );
-	                } catch (BackendException e) {
-	                    e.printStackTrace();
-	                    return Status.CANCEL_STATUS;
-	                }
-	                return Status.OK_STATUS;
-	            }
-	        };
-	        return connectJob;
-        }else{
-        	return null;
-        }
-    }
+			// This doesn't work ...
+			// XMPPConnection.addConnectionListener(
+			// (ConnectionEstablishedListener) this );
+			// ///TODO controllare l'ordine tra connect & addListener
+			connection.connect();
+			System.out.println("secure: " + connection.isSecureConnection() + " TLS:" + connection.isUsingTLS());
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#getCapabilities()
-     */
-    public ICapabilities getCapabilities() {
-        return capabilities;
-    }
+			connection.addConnectionListener(this);
+			connection.login(userAccount.getId(), userAccount.getPassword());
+			buddies.setJabberRoster(connection.getRoster());
+		} catch (XMPPException e) {
+			// TODO: inserire il metodo per avviare la finestra di riconnessione
+			// automatica
+			throw new BackendException(e);
+		}
+		// [CHAT] We need a way to monitor incoming traffic for generating
+		// "Wanna chat" events.
+		PacketFilter filter = new PacketTypeFilter(Message.class);
+		connection.addPacketListener(this, filter);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#createService(it.uniba.di.cdg.xcore.network.services.ICapability, it.uniba.di.cdg.xcore.network.services.INetworkServiceContext)
-     */
-    public INetworkService createService( ICapability service, INetworkServiceContext context )
-            throws BackendException {
-        //if (IChatService.CHAT_SERVICE.equals( service ))
-            //return new JabberChatService( (ChatContext) context, this );
-//        else if (IMultiChatService.MULTI_CHAT_SERVICE.equals( service ))
-//            return new JabberMultiChatService( (MultiChatContext) context, this );
-//        else if (IEConferenceService.ECONFERENCE_SERVICE.equals( service ))
-//            return new JabberEConferenceService( (EConferenceContext) context, this );
-//        else if (IPlanningPokerService.PLANNINGPOKER_SERVICE.equals( service ))
-//            return new JabberPlanningPokerService( (PlanningPokerContext) context, this );
-        INetworkService networkService = findInServiceExtensionPoint(service, context);
-        if (networkService!=null)
-        	return networkService;
-        throw new BackendException( String.format( "Unknown service (%s) requested", service ) );
-    }
+		MultiUserChat.addInvitationListener(connection, invitationListener);
 
-    private INetworkService findInServiceExtensionPoint(ICapability service,INetworkServiceContext context ) {
-    	try {
-    		ServiceRegistry registry = JabberPlugin.getDefault().getRegistry();
-    		INetworkService networkService = registry.getService(service.getName());
-    		networkService.setBackend(this);
-    		networkService.setContext(context);
-    		return networkService;
+		// FIXME XMPPConnection.addConnectionListener(
+		// (ConnectionEstablishedListener) this ) does nothing :S
+		connectionEstablished(connection);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.jivesoftware.smack.PacketListener#processPacket(org.jivesoftware.
+	 * smack.packet.Packet)
+	 */
+	public void processPacket(Packet packet) {
+
+		Message mess = (Message) packet;
+		IBackendEvent event;
+
+		// Il messaggio si riferisce alla chat 1 ad 1
+		if (Message.Type.chat.equals(mess.getType())) {
+
+			// test su estensione al protocollo
+			if (mess.getProperty(EXTENSION_NAME) != null) {
+				HashMap<String, String> prop = new HashMap<String, String>();
+				Collection<String> propName = mess.getPropertyNames();
+				Iterator<String> it = propName.iterator();
+				while (it.hasNext()) {
+					String val = it.next();
+					prop.put(val, (String) mess.getProperty(val));
+				}
+
+				event = new ChatExtensionProtocolEvent(mess.getFrom(),
+						(String) mess.getProperty(EXTENSION_NAME), prop, ID);
+				notifyEventListeners(event);
+				return;
+			}
+
+			// ricevuta notifica di composizione
+			if (mess.getExtension(TypingNotificationPacket.ELEMENT_NAME,
+					TypingNotificationPacket.ELEMENT_NS) != null) {
+				event = new ChatComposingtEvent(mess.getFrom(), ID);
+				notifyEventListeners(event);
+				return;
+			}
+
+			// ricevuto messaggio vuoto
+			if (mess.getBody() == null || mess.getBody().length() == 0)
+				return;
+
+			// ricevuto messaggio contenente testo
+			event = new ChatMessageReceivedEvent(getRoster().getBuddy(
+					mess.getFrom()), mess.getBody(), ID);
+			notifyEventListeners(event);
+
+		}
+		// Il messaggio si riferisce alla multichat in una stanza
+		else if (Message.Type.groupchat.equals(mess.getType())) {
+
+		}
+
+		/**
+		 * final TypingNotificationPacket typingPacket =
+		 * (TypingNotificationPacket) mess
+		 * .getExtension(TypingNotificationPacket.ELEMENT_NAME,
+		 * TypingNotificationPacket.ELEMENT_NS);
+		 * 
+		 * if(typingPacket != null){ for(IChatServiceListener l:
+		 * chatServiceListener) l.TypingMessage(mess.getFrom()); }
+		 */
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#disconnect()
+	 */
+	public void disconnect() {
+		if (connection == null)
+			return;
+		connection.disconnect();
+		connection = null;
+
+		connectionClosed();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#isConnected()
+	 */
+	public boolean isConnected() {
+		return connection != null && connection.isConnected();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#getRoster()
+	 */
+	public IBuddyRoster getRoster() {
+		return buddies;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#getUserAccount()
+	 */
+	public UserContext getUserAccount() {
+		return userAccount;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#getServerContext()
+	 */
+	public ServerContext getServerContext() {
+		return serverContext;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.jivesoftware.smack.ConnectionEstablishedListener#connectionEstablished
+	 * (org.jivesoftware.smack.XMPPConnection)
+	 */
+	public void connectionEstablished(XMPPConnection connection) {
+		notifyOnline();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jivesoftware.smack.ConnectionListener#connectionClosed()
+	 */
+	public void connectionClosed() {
+		notifyOffline();
+
+		getRoster().clear();
+		this.serverContext = null;
+		this.userAccount = null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.jivesoftware.smack.ConnectionListener#connectionClosedOnError(java
+	 * .lang.Exception)
+	 */
+	public void connectionClosedOnError(Exception ex) {
+		System.err.println("Connection closed because of an error: "
+				+ ex.getMessage());
+		// TODO Should diplay and error dialog and clear state.
+		notifyOffline();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.network.IBackend#getConnectJob(it.uniba.di.cdg.
+	 * xcore.network.ServerContext, it.uniba.di.cdg.xcore.network.UserAccount)
+	 */
+	public Job getConnectJob() {
+		ConnectionDialog dlg = new ConnectionDialog(new Shell());
+		int result = dlg.open();
+		if (result == Dialog.OK) {
+			final ServerContext serverCtx = dlg.getProfileContext()
+					.getServerContext();
+			final UserContext userCtx = dlg.getProfileContext()
+					.getUserContext();
+			final Job connectJob = new Job("Connecting ...") {
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+					try {
+						connect(serverCtx, userCtx);
+					} catch (BackendException e) {
+						e.printStackTrace();
+						return Status.CANCEL_STATUS;
+					}
+					return Status.OK_STATUS;
+				}
+			};
+			return connectJob;
+		} else {
+			return null;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#getCapabilities()
+	 */
+	public ICapabilities getCapabilities() {
+		return capabilities;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.network.IBackend#createService(it.uniba.di.cdg.
+	 * xcore.network.services.ICapability,
+	 * it.uniba.di.cdg.xcore.network.services.INetworkServiceContext)
+	 */
+	public INetworkService createService(ICapability service,
+			INetworkServiceContext context) throws BackendException {
+		// if (IChatService.CHAT_SERVICE.equals( service ))
+		// return new JabberChatService( (ChatContext) context, this );
+		// else if (IMultiChatService.MULTI_CHAT_SERVICE.equals( service ))
+		// return new JabberMultiChatService( (MultiChatContext) context, this
+		// );
+		// else if (IEConferenceService.ECONFERENCE_SERVICE.equals( service ))
+		// return new JabberEConferenceService( (EConferenceContext) context,
+		// this );
+		// else if (IPlanningPokerService.PLANNINGPOKER_SERVICE.equals( service
+		// ))
+		// return new JabberPlanningPokerService( (PlanningPokerContext)
+		// context, this );
+		INetworkService networkService = findInServiceExtensionPoint(service,
+				context);
+		if (networkService != null)
+			return networkService;
+		throw new BackendException(String.format(
+				"Unknown service (%s) requested", service));
+	}
+
+	private INetworkService findInServiceExtensionPoint(ICapability service,
+			INetworkServiceContext context) {
+		try {
+			ServiceRegistry registry = JabberPlugin.getDefault().getRegistry();
+			INetworkService networkService = registry.getService(service
+					.getName());
+			networkService.setBackend(this);
+			networkService.setContext(context);
+			return networkService;
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return null;
 		}
 
-    	
-		
 	}
 
-	/* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#setHelper(it.uniba.di.cdg.xcore.network.INetworkBackendHelper)
-     */
-    public void setHelper( INetworkBackendHelper helper ) {
-        this.helper = helper;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.network.IBackend#setHelper(it.uniba.di.cdg.xcore
+	 * .network.INetworkBackendHelper)
+	 */
+	public void setHelper(INetworkBackendHelper helper) {
+		this.helper = helper;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackend#getHelper()
-     */
-    public INetworkBackendHelper getHelper() {
-        return helper;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.network.IBackend#getHelper()
+	 */
+	public INetworkBackendHelper getHelper() {
+		return helper;
+	}
 
-    /**
-     * Returns the XMPP connection. This method is meant to be used by extensions.
-     * 
-     * @return the XMPP connection
-     */
-    public XMPPConnection getConnection() {
-        return connection;
-    }
+	/**
+	 * Returns the XMPP connection. This method is meant to be used by
+	 * extensions.
+	 * 
+	 * @return the XMPP connection
+	 */
+	public XMPPConnection getConnection() {
+		return connection;
+	}
 
-    /**
-     * Returna the user jid. If the backend has no connection then it returns <code>null</code>.
-     * 
-     * @return a string like <code>harry@ugres.di.uniba.it/Smack</code>
-     */
-    public String getUserJid() {
-        if (connection != null)
-            return connection.getUser();
-        return null;
-    }
+	/**
+	 * Returna the user jid. If the backend has no connection then it returns
+	 * <code>null</code>.
+	 * 
+	 * @return a string like <code>harry@ugres.di.uniba.it/Smack</code>
+	 */
+	public String getUserJid() {
+		if (connection != null)
+			return connection.getUser();
+		return null;
+	}
 
-    /**
-     * Convert from a SMACK message to a normal <code>IMessage</code>.
-     * TODO Add more SMACK message types and checks here
-     * 
-     * @param smackMessage
-     * @return the converted message or <code>null</code> if it doesn't know how to convert it
-     */
-    public IMessage convertFromSmack( Message smackMessage ) {
-        IMessage message = null;
+	/**
+	 * Convert from a SMACK message to a normal <code>IMessage</code>. TODO Add
+	 * more SMACK message types and checks here
+	 * 
+	 * @param smackMessage
+	 * @return the converted message or <code>null</code> if it doesn't know how
+	 *         to convert it
+	 */
+	public IMessage convertFromSmack(Message smackMessage) {
+		IMessage message = null;
 
-        // Cripple messages with empty body: they are often used for "secret functions"
-        if (smackMessage.getBody() == null || smackMessage.getBody().length() == 0)
-            return null;
+		// Cripple messages with empty body: they are often used for
+		// "secret functions"
+		if (smackMessage.getBody() == null
+				|| smackMessage.getBody().length() == 0)
+			return null;
 
-        /*if (Message.Type.chat.equals( smackMessage.getType() )
-                || Message.Type.normal.equals( smackMessage.getType() )) {
-            message = new ChatMessage( smackMessage.getThread(), smackMessage.getFrom(),
-                    smackMessage.getBody(), smackMessage.getSubject() );
-        } else */if (Message.Type.error.equals( smackMessage.getType() )) {
-            message = new SystemMessage( smackMessage.getBody() );
-        }
-        return message;
-    }
+		/*
+		 * if (Message.Type.chat.equals( smackMessage.getType() ) ||
+		 * Message.Type.normal.equals( smackMessage.getType() )) { message = new
+		 * ChatMessage( smackMessage.getThread(), smackMessage.getFrom(),
+		 * smackMessage.getBody(), smackMessage.getSubject() ); } else
+		 */if (Message.Type.error.equals(smackMessage.getType())) {
+			message = new SystemMessage(smackMessage.getBody());
+		}
+		return message;
+	}
 
-    /**
-     * Notify listeners that this backend has gone online.
-     */
-    private void notifyOnline() {
-        notifyEventListeners( new BackendStatusChangeEvent( ID, true ) );
-    }
+	/**
+	 * Notify listeners that this backend has gone online.
+	 */
+	private void notifyOnline() {
+		notifyEventListeners(new BackendStatusChangeEvent(ID, true));
+	}
 
-    /**
-     * Notify listeners that this backend has gone offline.
-     */
-    private void notifyOffline() {
-        notifyEventListeners( new BackendStatusChangeEvent( ID, false ) );
-    }
+	/**
+	 * Notify listeners that this backend has gone offline.
+	 */
+	private void notifyOffline() {
+		notifyEventListeners(new BackendStatusChangeEvent(ID, false));
+	}
 
-    /**
-     * Notify all event listeners about an event generated by this backend.
-     * 
-     * @param event
-     */
-    private void notifyEventListeners( IBackendEvent event ) {
-        helper.notifyBackendEvent( event );
-    }
-    
-    @Override
+	/**
+	 * Notify all event listeners about an event generated by this backend.
+	 * 
+	 * @param event
+	 */
+	private void notifyEventListeners(IBackendEvent event) {
+		helper.notifyBackendEvent(event);
+	}
+
+	@Override
 	public void changePassword(String newpasswd) throws Exception {
 		AccountManager man = new AccountManager(this.connection);
 		man.changePassword(newpasswd);
-		
+
 	}
 
 	@Override
 	public void reconnectingIn(int arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void reconnectionFailed(Exception arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -552,14 +632,15 @@ public class JabberBackend implements IBackend, PacketListener,
 	public void reconnectionSuccessful() {
 		notifyOnline();
 	}
-	
+
 	@Override
-	public void registerNewAccount(String userId, String password, ServerContext server, Map<String,String> info) throws Exception{
+	public void registerNewAccount(String userId, String password,
+			ServerContext server, Map<String, String> info) throws Exception {
 		XMPPConnection conn = new XMPPConnection(server.getServiceName());
 		conn.connect();
-		conn.getAccountManager().createAccount(userId, password, info);		
+		conn.getAccountManager().createAccount(userId, password, info);
 		conn.disconnect();
-		
+
 	}
 
 	@Override
@@ -583,14 +664,12 @@ public class JabberBackend implements IBackend, PacketListener,
 	}
 
 	@Override
-	public ICallAction getCallAction() {
-		// TODO Auto-generated method stub
+	public ICallAction getCallAction() {		
 		return null;
 	}
 
 	@Override
-	public IMultiCallAction getMultiCallAction() {
-		// TODO Auto-generated method stub
+	public IMultiCallAction getMultiCallAction() {		
 		return null;
 	}
 

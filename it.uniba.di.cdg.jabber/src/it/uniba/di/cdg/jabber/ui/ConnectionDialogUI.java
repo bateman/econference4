@@ -46,208 +46,210 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo
+ * SWT/Swing GUI Builder, which is free for non-commercial
+ * use. If Jigloo is being used commercially (ie, by a corporation,
+ * company or business for any purpose whatever) then you
+ * should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details.
+ * Use of Jigloo implies acceptance of these licensing terms.
+ * A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+ * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+ * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 /**
  * 
  */
 public class ConnectionDialogUI extends Composite {
 
-    private Group groupServerContext = null;
+	private Group groupServerContext = null;
 
-    private Label serverHostLabel = null;
+	private Label serverHostLabel = null;
 
-    private Group groupBuddy = null;
+	private Group groupBuddy = null;
 
-    private Text passwordField = null;
+	private Text passwordField = null;
 
-    private Label passwordFieldLabel = null;
+	private Label passwordFieldLabel = null;
 
-    private Label jidLabel = null;
+	private Label jidLabel = null;
 
-    private CCombo jabberIdCombo = null;
+	private CCombo jabberIdCombo = null;
 
-    // Label profileIdLabel = null;
+	// Label profileIdLabel = null;
 
-    //private CCombo profileIdCombo = null;
+	// private CCombo profileIdCombo = null;
 
-    private Label portNumberLabel = null;
+	private Label portNumberLabel = null;
 
-    private Text serverHostField = null;
+	private Text serverHostField = null;
 
-    private Label secureCheckLabel = null;
+	private Label secureCheckLabel = null;
 
-    private Text portNumberField = null;
-    private Button checkNewAccount;
+	private Text portNumberField = null;
+	private Button checkNewAccount;
 
-    private Button secureCheck = null;
+	private Button secureCheck = null;
 
-    private Label useDefaultPortCheckLabel;
+	private Label useDefaultPortCheckLabel;
 
-    private Button useDefaultPortCheck;
+	private Button useDefaultPortCheck;
 
-    private Map<String, ProfileContext> savedProfileContexts;
+	private Map<String, ProfileContext> savedProfileContexts;
 
 	private Button checkSaveProfile;
 
-    public ConnectionDialogUI( Composite parent, int style,
-            Map<String, ProfileContext> savedProfileContexts, String lastLoadedProfile ) {
-        super( parent, style );
-        this.savedProfileContexts = savedProfileContexts;
-        initialize( lastLoadedProfile );
-    }
+	public ConnectionDialogUI(Composite parent, int style,
+			Map<String, ProfileContext> savedProfileContexts,
+			String lastLoadedProfile) {
+		super(parent, style);
+		this.savedProfileContexts = savedProfileContexts;
+		initialize(lastLoadedProfile);
+	}
 
-    private void initialize( String lastLoadedProfile ) {
-        GridLayout fillLayout = new GridLayout();
-        fillLayout.makeColumnsEqualWidth = true;
-        this.setLayout(fillLayout);
-        createLoginGroup();
-        createServerGroup();
-        initializeUsers( lastLoadedProfile );
-        pack();
-    }
+	private void initialize(String lastLoadedProfile) {
+		GridLayout fillLayout = new GridLayout();
+		fillLayout.makeColumnsEqualWidth = true;
+		this.setLayout(fillLayout);
+		createLoginGroup();
+		createServerGroup();
+		initializeUsers(lastLoadedProfile);
+		pack();
+	}
 
-    protected void initializeUsers( final String lastProfile ) {
-    	jabberIdCombo.removeAll();
-        jabberIdCombo.setText( "" );
-        passwordField.setText( "" );
-        serverHostField.setText( "" );
-        for (String prof : savedProfileContexts.keySet()) {
-        	jabberIdCombo.add( prof );
-        }
-        if (lastProfile != null) {
-            int index = Math.max( jabberIdCombo.indexOf( lastProfile ), 0 );
-            jabberIdCombo.select( index );
-        }
-    }
+	protected void initializeUsers(final String lastProfile) {
+		jabberIdCombo.removeAll();
+		jabberIdCombo.setText("");
+		passwordField.setText("");
+		serverHostField.setText("");
+		for (String prof : savedProfileContexts.keySet()) {
+			jabberIdCombo.add(prof);
+		}
+		if (lastProfile != null) {
+			int index = Math.max(jabberIdCombo.indexOf(lastProfile), 0);
+			jabberIdCombo.select(index);
+		}
+	}
 
-    /**
-     * This method initializes group
-     */
-    private void createServerGroup() {
-        GridData gridData2 = new org.eclipse.swt.layout.GridData();
-        gridData2.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
-        gridData2.grabExcessHorizontalSpace = false;
-        gridData2.horizontalIndent = 0;
-        gridData2.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
-        GridData gridData1 = new org.eclipse.swt.layout.GridData();
-        gridData1.grabExcessHorizontalSpace = true;
-        gridData1.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
-        gridData1.widthHint = 60;
-        gridData1.horizontalAlignment = org.eclipse.swt.layout.GridData.BEGINNING;
-        GridData gridData = new org.eclipse.swt.layout.GridData();
-        gridData.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
-        gridData.grabExcessHorizontalSpace = true;
-        gridData.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
-        GridLayout gridLayout1 = new GridLayout();
-        gridLayout1.numColumns = 2;
-        groupServerContext = new Group( this, SWT.FILL );
-        groupServerContext.setText( "Server:" );
-        groupServerContext.setLayout( gridLayout1 );
-        GridData groupServerContextLData = new GridData();
-        groupServerContextLData.widthHint = 323;
-        groupServerContextLData.heightHint = 113;
-        groupServerContext.setLayoutData(groupServerContextLData);
-        serverHostLabel = new Label( groupServerContext, SWT.NONE );
-        serverHostLabel.setText( "&Host:" );
-        serverHostField = new Text( groupServerContext, SWT.BORDER );
-        serverHostField.setText( "ugres.di.uniba.it" );
-        serverHostField.setLayoutData( gridData );
-        serverHostField.addFocusListener(new FocusAdapter(){
-            @Override
-            public void focusGained( FocusEvent e ) {
-                serverHostField.setSelection(0, serverHostField.getText().length());
-            }            
-        });
-        useDefaultPortCheckLabel = new Label( groupServerContext, SWT.NONE );
-        useDefaultPortCheckLabel.setText( "Use &default port" );
-        useDefaultPortCheck = new Button( groupServerContext, SWT.CHECK );
-        useDefaultPortCheck.setSelection( true );
-        useDefaultPortCheck.addSelectionListener( new SelectionAdapter() {
-            @Override
-            public void widgetSelected( SelectionEvent e ) {
-                boolean selected = useDefaultPortCheck.getSelection();
-                if (selected) {
-                    portNumberField.setEnabled( false );
-                } else {
-                    portNumberField.setEnabled( true );
-                }
-            }
-        } );
-        portNumberLabel = new Label( groupServerContext, SWT.NONE );
-        portNumberLabel.setText( "P&ort:" );
-        portNumberField = new Text( groupServerContext, SWT.BORDER );
-        portNumberField.setText( "5222" );
-        portNumberField.setEnabled( false );
-        portNumberField.setLayoutData( gridData1 );
-        portNumberField.addFocusListener(new FocusAdapter(){
-            @Override
-            public void focusGained( FocusEvent e ) {
-                portNumberField.setSelection(0, portNumberField.getText().length());
-            }            
-        });
-        secureCheckLabel = new Label( groupServerContext, SWT.NONE );
-        secureCheckLabel.setText( "&Secure:" );
-        secureCheckLabel.setLayoutData( gridData2 );
-        secureCheck = new Button( groupServerContext, SWT.CHECK );
-        secureCheck.setSelection( false );
-        secureCheck.addSelectionListener( new SelectionAdapter() {
-            @Override
-            public void widgetSelected( SelectionEvent e ) {
-                if (useDefaultPortCheck.getSelection() == true) {
-                    boolean selected = secureCheck.getSelection();
-                    if (selected) {
-                        portNumberField.setText( "5223" );
-                    } else {
-                        portNumberField.setText( "5222" );
-                    }
-                }
-            }
-        } );
-    }
+	/**
+	 * This method initializes group
+	 */
+	private void createServerGroup() {
+		GridData gridData2 = new org.eclipse.swt.layout.GridData();
+		gridData2.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
+		gridData2.grabExcessHorizontalSpace = false;
+		gridData2.horizontalIndent = 0;
+		gridData2.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
+		GridData gridData1 = new org.eclipse.swt.layout.GridData();
+		gridData1.grabExcessHorizontalSpace = true;
+		gridData1.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
+		gridData1.widthHint = 60;
+		gridData1.horizontalAlignment = org.eclipse.swt.layout.GridData.BEGINNING;
+		GridData gridData = new org.eclipse.swt.layout.GridData();
+		gridData.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
+		GridLayout gridLayout1 = new GridLayout();
+		gridLayout1.numColumns = 2;
+		groupServerContext = new Group(this, SWT.FILL);
+		groupServerContext.setText("Server:");
+		groupServerContext.setLayout(gridLayout1);
+		GridData groupServerContextLData = new GridData();
+		groupServerContextLData.widthHint = 323;
+		groupServerContextLData.heightHint = 113;
+		groupServerContext.setLayoutData(groupServerContextLData);
+		serverHostLabel = new Label(groupServerContext, SWT.NONE);
+		serverHostLabel.setText("&Host:");
+		serverHostField = new Text(groupServerContext, SWT.BORDER);
+		serverHostField.setText("ugres.di.uniba.it");
+		serverHostField.setLayoutData(gridData);
+		serverHostField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				serverHostField.setSelection(0, serverHostField.getText()
+						.length());
+			}
+		});
+		useDefaultPortCheckLabel = new Label(groupServerContext, SWT.NONE);
+		useDefaultPortCheckLabel.setText("Use &default port");
+		useDefaultPortCheck = new Button(groupServerContext, SWT.CHECK);
+		useDefaultPortCheck.setSelection(true);
+		useDefaultPortCheck.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				boolean selected = useDefaultPortCheck.getSelection();
+				if (selected) {
+					portNumberField.setEnabled(false);
+				} else {
+					portNumberField.setEnabled(true);
+				}
+			}
+		});
+		portNumberLabel = new Label(groupServerContext, SWT.NONE);
+		portNumberLabel.setText("P&ort:");
+		portNumberField = new Text(groupServerContext, SWT.BORDER);
+		portNumberField.setText("5222");
+		portNumberField.setEnabled(false);
+		portNumberField.setLayoutData(gridData1);
+		portNumberField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				portNumberField.setSelection(0, portNumberField.getText()
+						.length());
+			}
+		});
+		secureCheckLabel = new Label(groupServerContext, SWT.NONE);
+		secureCheckLabel.setText("&Secure:");
+		secureCheckLabel.setLayoutData(gridData2);
+		secureCheck = new Button(groupServerContext, SWT.CHECK);
+		secureCheck.setSelection(false);
+		secureCheck.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (useDefaultPortCheck.getSelection() == true) {
+					boolean selected = secureCheck.getSelection();
+					if (selected) {
+						portNumberField.setText("5223");
+					} else {
+						portNumberField.setText("5222");
+					}
+				}
+			}
+		});
+	}
 
-    /**
-     * Returns the profile the user wants to use.
-     * 
-     * @return the profile context
-     */
-    public ProfileContext getProfileContext() {
+	/**
+	 * Returns the profile the user wants to use.
+	 * 
+	 * @return the profile context
+	 */
+	public ProfileContext getProfileContext() {
 
-        final String serverHost = serverHostField.getText();
-        final boolean defaultPort = useDefaultPortCheck.getSelection();
-        final int port = Integer.parseInt( portNumberField.getText() );
-        final boolean secure = secureCheck.getSelection();
-        ServerContext sc = new ServerContext( serverHost, defaultPort, secure, port );
+		final String serverHost = serverHostField.getText();
+		final boolean defaultPort = useDefaultPortCheck.getSelection();
+		final int port = Integer.parseInt(portNumberField.getText());
+		final boolean secure = secureCheck.getSelection();
+		ServerContext sc = new ServerContext(serverHost, defaultPort, secure,
+				port);
 
-        final String jid = jabberIdCombo.getText();
-        final String password = passwordField.getText();
-        
-        UserContext ua = new UserContext( jid, password);
-        final boolean newacc = checkNewAccount.getSelection();
-        return new ProfileContext( jabberIdCombo.getText(), ua, sc,newacc );
-    }
-    
-    
-    public boolean isSaveProfileChecked(){
-    	return checkSaveProfile.getSelection();
-    }
+		final String jid = jabberIdCombo.getText();
+		final String password = passwordField.getText();
 
-    /**
-     * This method initializes group
-     * 
-     */
-    private void createLoginGroup() {
+		UserContext ua = new UserContext(jid, password);
+		final boolean newacc = checkNewAccount.getSelection();
+		return new ProfileContext(jabberIdCombo.getText(), ua, sc, newacc);
+	}
+
+	public boolean isSaveProfileChecked() {
+		return checkSaveProfile.getSelection();
+	}
+
+	/**
+	 * This method initializes group
+	 * 
+	 */
+	private void createLoginGroup() {
         groupBuddy = new Group( this, SWT.FILL );
         groupBuddy.setText( "Login as:" );
         groupBuddy.setLayout(new GridLayout(2,false));
@@ -288,13 +290,11 @@ public class ConnectionDialogUI extends Composite {
         jidLabel = new Label( groupBuddy, SWT.NONE );
         jidLabel.setText( "&Id:" );
         jidLabel.setLayoutData(gd);
-        //jidLabel.setBounds(8, 47, 50, 13);
         
         gd = new GridData(); 
         gd.widthHint= 200;
         jabberIdCombo = new CCombo(groupBuddy, SWT.BORDER );
         jabberIdCombo.setToolTipText("Enter the user id.\n john.doe for Jabber servers\njohn.doe@gmail.com for GTalk");
-        //jabberIdCombo.setBounds(85, 46, 158, 19);
         jabberIdCombo.setLayoutData(gd);
         jabberIdCombo.addFocusListener(new FocusAdapter(){
             @Override
@@ -321,6 +321,15 @@ public class ConnectionDialogUI extends Composite {
         			if(jabberIdCombo.getText().contains("gmail.com") ||
         					jabberIdCombo.getText().contains("googlemail.com")){
         				sc = ServerContext.GOOGLE_TALK;
+        				serverHostField.setEnabled(false);
+        				useDefaultPortCheck.setEnabled(false);
+        				secureCheck.setEnabled(false);
+        				portNumberField.setEnabled(false);        				
+        			} else {
+        				serverHostField.setEnabled(true);
+        				useDefaultPortCheck.setEnabled(true);
+        				secureCheck.setEnabled(true);
+        				portNumberField.setEnabled(true); 
         			}
         		}
         		if(sc!=null){
@@ -344,9 +353,7 @@ public class ConnectionDialogUI extends Composite {
         
         gd = new GridData();
         gd.widthHint= 200;
-        //passwordFieldLabel.setBounds(8, 71, 50, 13);
-        passwordField = new Text( groupBuddy, SWT.BORDER | SWT.PASSWORD );
-        //passwordField.setBounds(85, 70, 158, 19);
+         passwordField = new Text( groupBuddy, SWT.BORDER | SWT.PASSWORD );
         passwordField.setLayoutData(gd);
         passwordField.addFocusListener(new FocusAdapter() {
         	@Override
@@ -360,13 +367,11 @@ public class ConnectionDialogUI extends Composite {
         checkSaveProfile = new Button(groupBuddy, SWT.CHECK | SWT.LEFT);
         checkSaveProfile.setText("Save profile");
         checkSaveProfile.setLayoutData(gd);
-        //checkSaveProfile.setBounds(8, 22, 34, 13);
         
         gd = new GridData();
         gd.horizontalSpan = 2;
     	checkNewAccount = new Button(groupBuddy, SWT.CHECK | SWT.LEFT);
     	checkNewAccount.setText("Register New Account (only for XMPP servers)");
-    	//checkNewAccount.setBounds(8, 92, 140, 16);
     	checkNewAccount.setLayoutData(gd);
     }
 } // @jve:decl-index=0:visual-constraint="10,10"
