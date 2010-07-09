@@ -44,7 +44,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench"
-            name="Collaborative workbench">
+            name="eConference">
          <property
                name="windowImages"
                value="cw_16x16.gif,cw_32x32.gif">
@@ -59,7 +59,7 @@
          </property>
          <property
                name="appName"
-               value="Collaborative workbench">
+               value="eConference">
          </property>
          <property
                name="startupProgressRect"

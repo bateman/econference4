@@ -24,7 +24,6 @@
  */
 package it.uniba.di.cdg.collaborativeworkbench.ui;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
