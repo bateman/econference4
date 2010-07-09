@@ -24,8 +24,6 @@
  */
 package it.uniba.di.cdg.xcore.econference.internal;
 
-import javax.swing.JOptionPane;
-
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 import it.uniba.di.cdg.xcore.econference.IEConferenceHelper;
 import it.uniba.di.cdg.xcore.econference.IEConferenceManager;
@@ -51,165 +49,200 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.service.prefs.Preferences;
 
 /**
- * Implementation of {@see it.uniba.di.cdg.xcore.econference.IEConferenceHelper}. 
+ * Implementation of {@see it.uniba.di.cdg.xcore.econference.IEConferenceHelper}
+ * .
  */
 public class EConferenceHelper implements IEConferenceHelper {
-    
-    /**
-     * The User interface helper provides function for accessing user interface without 
-     * caring on how it is implemented.
-     */
-    private final IUIHelper uihelper;
 
-    /**
-     * The backend helper provides dependency object for handling backends. 
-     */
-    private final INetworkBackendHelper backendHelper;
+	/**
+	 * The User interface helper provides function for accessing user interface
+	 * without caring on how it is implemented.
+	 */
+	private final IUIHelper uihelper;
 
-    /**
-     * Construct a new helper for econferences. This constructor acts as "constructor 
-     * injection" in IoC.
-     * 
-     * @param uihelper
-     */
-    public EConferenceHelper( IUIHelper uihelper, INetworkBackendHelper backendHelper ) {
-        this.uihelper = uihelper;
-        this.backendHelper = backendHelper;
-    }
+	/**
+	 * The backend helper provides dependency object for handling backends.
+	 */
+	private final INetworkBackendHelper backendHelper;
 
-    // nn credo sia + necessario che sia un backend listener
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#init()
-     */
-    public void init() {
-        //        Collection<IBackendDescriptor> descriptors = backendHelper.getRegistry().getDescriptors();
-        //        for (IBackendDescriptor d : descriptors) {
-        //            backendHelper.registerBackendListener( d.getId(), this );
-        //        }
-    }
+	/**
+	 * Construct a new helper for econferences. This constructor acts as
+	 * "constructor injection" in IoC.
+	 * 
+	 * @param uihelper
+	 */
+	public EConferenceHelper(IUIHelper uihelper,
+			INetworkBackendHelper backendHelper) {
+		this.uihelper = uihelper;
+		this.backendHelper = backendHelper;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#dispose()
-     */
-    public void dispose() {
-        //        Collection<IBackendDescriptor> descriptors = backendHelper.getRegistry().getDescriptors();
-        //        for (IBackendDescriptor d : descriptors) {
-        //            backendHelper.unregisterBackendListener( d.getId(), this );
-        //        }
-    }
+	// nn credo sia + necessario che sia un backend listener
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#init()
+	 */
+	public void init() {
+		// Collection<IBackendDescriptor> descriptors =
+		// backendHelper.getRegistry().getDescriptors();
+		// for (IBackendDescriptor d : descriptors) {
+		// backendHelper.registerBackendListener( d.getId(), this );
+		// }
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#open(it.uniba.di.cdg.xcore.econference.EConferenceContext)
-     */
-    public IEConferenceManager open( EConferenceContext context ) {
-        IEConferenceManager manager = null;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#dispose()
+	 */
+	public void dispose() {
+		// Collection<IBackendDescriptor> descriptors =
+		// backendHelper.getRegistry().getDescriptors();
+		// for (IBackendDescriptor d : descriptors) {
+		// backendHelper.unregisterBackendListener( d.getId(), this );
+		// }
+	}
 
-        try {
-            final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-            manager = new EConferenceManager();
-            manager.setBackendHelper( NetworkPlugin.getDefault().getHelper() );
-            manager.setUihelper( UiPlugin.getUIHelper() );
-            manager.setWorkbenchWindow( window );
-            manager.addListener( new IMultiChatListener() {
-                private Point previousSize;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#open(it.uniba.di
+	 * .cdg.xcore.econference.EConferenceContext)
+	 */
+	public IEConferenceManager open(EConferenceContext context) {
+		IEConferenceManager manager = null;
 
-                public void open() {
-                    System.out.println( "Resizing window!" );
-                    Shell shell = window.getShell();
-                    Point size = shell.getSize();
-                    if (size.x < 800 || size.y < 600)
-                        shell.setSize( 800, 600 );
-                    previousSize = size;
-                }
+		try {
+			final IWorkbenchWindow window = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow();
+			manager = new EConferenceManager();
+			manager.setBackendHelper(NetworkPlugin.getDefault().getHelper());
+			manager.setUihelper(UiPlugin.getUIHelper());
+			manager.setWorkbenchWindow(window);
+			manager.addListener(new IMultiChatListener() {
+				private Point previousSize;
 
-                public void closed() {
-                    Shell shell = window.getShell();
-                    shell.setSize( previousSize );
-                }
-            } );
+				public void open() {
+					System.out.println("Resizing window!");
+					Shell shell = window.getShell();
+					Point size = shell.getSize();
+					if (size.x < 800 || size.y < 600)
+						shell.setSize(800, 600);
+					previousSize = size;
+				}
 
-            manager.open( context );
-        } catch (Exception e) {
-            e.printStackTrace();
-            uihelper.showErrorMessage( "Could not start eConference: " + e.getMessage() );
+				public void closed() {
+					Shell shell = window.getShell();
+					shell.setSize(previousSize);
+				}
+			});
 
-            // Close this perspective since it is unuseful ...
-            uihelper.closeCurrentPerspective();
-        }
-        return manager;
-    }
+			manager.open(context);
+		} catch (Exception e) {
+			e.printStackTrace();
+			uihelper.showErrorMessage("Could not start eConference: "
+					+ e.getMessage());
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#openFromFile(java.lang.String)
-     */
-    public void openFromFile() {
-        final JoinConferenceDialog dlg = new JoinConferenceDialog( null );
-        if (Dialog.OK == dlg.open()) {
-            // 1. Open a file dialog, asking the conference file name
-            IEConferenceManager manager = open( dlg.getContext() );
+			// Close this perspective since it is unuseful ...
+			uihelper.closeCurrentPerspective();
+		}
+		return manager;
+	}
 
-            if (dlg.isSendInvitations()) {
-                for (Invitee i : dlg.getContext().getInvitees())
-                    manager.inviteNewParticipant( i.getId() );
-            }
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#openFromFile(java
+	 * .lang.String)
+	 */
+	public void openFromFile() {
+		final JoinConferenceDialog dlg = new JoinConferenceDialog(null);
+		if (Dialog.OK == dlg.open()) {
+			// 1. Open a file dialog, asking the conference file name
+			IEConferenceManager manager = open(dlg.getContext());
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#askUserAcceptInvitation(it.uniba.di.cdg.xcore.m2m.InvitationEvent)
-     */
-    
-    public void openInviteWizard(){
-    	Display display = Display.getDefault();
+			if (dlg.isSendInvitations()) {
+				for (Invitee i : dlg.getContext().getInvitees())
+					manager.inviteNewParticipant(i.getId());
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#askUserAcceptInvitation
+	 * (it.uniba.di.cdg.xcore.m2m.InvitationEvent)
+	 */
+
+	public void openInviteWizard() {
+		Display display = Display.getDefault();
 		Shell shell = new Shell(display);
 		InviteWizard wizard = new InviteWizard();
-			// Instantiates the wizard container with the wizard and opens it
-		WizardDialog dialog = new WizardDialog( shell, wizard);		
+		// Instantiates the wizard container with the wizard and opens it
+		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
 		dialog.open();
-		IEConferenceManager manager = open( wizard.getContext());
-		if (wizard.canSendInvitation())
+		if (wizard.canSendInvitation()) {
+			IEConferenceManager manager = open(wizard.getContext());
 			for (Invitee i : wizard.getContext().getInvitees())
-				manager.inviteNewParticipant( i.getId() );
-    }
-    
-    public EConferenceContext askUserAcceptInvitation( InvitationEvent invitation ) {
-        // Skip invitations which do not interest us ...
-        if (!ECONFERENCE_REASON.equals( invitation.getReason() ))
-            return null;
+				manager.inviteNewParticipant(i.getId());
+		}
+	}
 
-        IBackend backend = backendHelper.getRegistry().getBackend( invitation.getBackendId() );
+	public EConferenceContext askUserAcceptInvitation(InvitationEvent invitation) {
+		// Skip invitations which do not interest us ...
+		if (!ECONFERENCE_REASON.equals(invitation.getReason()))
+			return null;
 
-        String message = String
-                .format(
-                        "User %s has invited you to join to an eConference."
-                                + "\nIf you want to accept, choose your display name and press Yes, otherwise press Cancel.",
-                        invitation.getInviter() );
-        String chosenNickNamer = uihelper.askFreeQuestion( "Invitation received", message, backend
-                .getUserAccount().getId() );
-        if (chosenNickNamer != null) {
-            EConferenceContext context = new EConferenceContext( chosenNickNamer,"", invitation );
-            return context;
-        } else
-            invitation.decline( "No reason" );
+		IBackend backend = backendHelper.getRegistry().getBackend(
+				invitation.getBackendId());
 
-        return null;
-    }
+		String message = String
+				.format("User %s has invited you to join to an eConference."
+						+ "\nIf you want to accept, choose your display name and press Yes, otherwise press Cancel.",
+						invitation.getInviter());
+		String chosenNickNamer = uihelper.askFreeQuestion(
+				"Invitation received", message, backend.getUserAccount()
+						.getId());
+		if (chosenNickNamer != null) {
+			EConferenceContext context = new EConferenceContext(
+					chosenNickNamer, "", invitation);
+			return context;
+		} else
+			invitation.decline("No reason");
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#getBooleanPreference(java.lang.String)
-     */
-    public boolean getBooleanPreference( final String prefName ) {
-        Preferences preferences = new ConfigurationScope().getNode( ECONFERENCE_PREFS_NODE );
-        return preferences.getBoolean( prefName, false );
-    }
+		return null;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#getStringPreference(java.lang.String)
-     */
-    public String getStringPreference( String prefName ) {
-        Preferences preferences = new ConfigurationScope().getNode( ECONFERENCE_PREFS_NODE );
-        return preferences.get( prefName, "" );
-    }
-        
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#getBooleanPreference
+	 * (java.lang.String)
+	 */
+	public boolean getBooleanPreference(final String prefName) {
+		Preferences preferences = new ConfigurationScope()
+				.getNode(ECONFERENCE_PREFS_NODE);
+		return preferences.getBoolean(prefName, false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#getStringPreference
+	 * (java.lang.String)
+	 */
+	public String getStringPreference(String prefName) {
+		Preferences preferences = new ConfigurationScope()
+				.getNode(ECONFERENCE_PREFS_NODE);
+		return preferences.get(prefName, "");
+	}
+
 }

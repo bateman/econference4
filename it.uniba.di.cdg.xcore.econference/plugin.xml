@@ -43,16 +43,24 @@
             visible="true">
          <action
                class="it.uniba.di.cdg.xcore.econference.ui.actions.LoadConferenceFromFileAction"
+               definitionId="it.uniba.di.cdg.xcore.econference.ui.actions.load"
+               icon="icons/action_fileopen.png"
                id="it.uniba.di.cdg.xcore.econference.ui.actions.loadConferenceFromFileAction"
                label="%action.label"
                menubarPath="file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
-               style="push"/>
+               style="push"
+               toolbarPath="new_load_group"
+               tooltip="Open an eConference from file"/>
          <action
-			   class= "it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
-               id= "it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+               class="it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+               definitionId="it.uniba.di.cdg.xcore.econference.ui.actions.wizard"
+               icon="icons/action_wizard.png"
+               id="it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
                label="%action.label.new"
-               menubarPath = "file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
-               style="push"/>               
+               menubarPath="file/it.uniba.di.cdg.xcore.econference.ui.menu/additions"
+               style="push"
+               toolbarPath="new_load_group"
+               tooltip="Open new eConference wizard"/>               
          <menu
                id="it.uniba.di.cdg.xcore.econference.ui.menu"
                label="%menu.label"
@@ -223,7 +231,42 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="it.uniba.di.cdg.xcore.econference.ui.actions.wizard"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+N">
+      </key>
+      <key
+            commandId="it.uniba.di.cdg.xcore.econference.ui.actions.load"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+L">
+      </key>
+      <key
+            commandId="org.eclipse.ui.file.exit"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+Q">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.ui.category.window"
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.actions.WizardAction"
+            id="it.uniba.di.cdg.xcore.econference.ui.actions.wizard"
+            name="wizard">
+      </command>
+      <command
+            categoryId="org.eclipse.ui.category.window"
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.actions.LoadConferenceFromFileAction"
+            id="it.uniba.di.cdg.xcore.econference.ui.actions.load"
+            name="load">
+      </command>
+   </extension>
 
-	
 
 </plugin>
