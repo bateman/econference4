@@ -6,9 +6,6 @@ Bundle-Version: 1.0.1
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Require-Bundle: it.uniba.di.cdg.xcore.ui,
- org.eclipse.core.runtime,
  org.eclipse.ui,
- it.uniba.di.cdg.xcore.network,
- it.uniba.di.cdg.skype;bundle-version="1.0.0",
- it.uniba.di.cdg.xcore.one2one;bundle-version="1.0.0"
+ it.uniba.di.cdg.xcore.network
 Bundle-Activator: it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin
