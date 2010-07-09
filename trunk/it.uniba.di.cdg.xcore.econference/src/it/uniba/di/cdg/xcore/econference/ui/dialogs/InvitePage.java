@@ -63,14 +63,14 @@ public class InvitePage extends WizardPage implements Listener {
 		buddyList.setText("Buddy List:");
 		new CLabel(composite, SWT.NONE);
 		CLabel eConfList = new CLabel(composite, SWT.NONE);
-		eConfList.setText("Conference members:");
+		eConfList.setText("Selected conference members:");
 		IBuddyRoster roster = NetworkPlugin.getDefault().getHelper()
 				.getRoster();
 		Collection<IBuddy> contatti = roster.getBuddies();
 		Iterator<IBuddy> it = contatti.iterator();
 		fromBuddy = new Table(composite, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL
 				| SWT.H_SCROLL);
-		gd = new GridData(200, 250);
+		gd = new GridData(300, 250);
 		fromBuddy.setLayoutData(gd);
 		imageRegistry = new ImageRegistry();
 		ImageDescriptor activeIcon = UiPlugin.getDefault().getImageDescriptor(
@@ -142,7 +142,7 @@ public class InvitePage extends WizardPage implements Listener {
 		removeMember.pack();
 		toConference = new Table(composite, SWT.MULTI | SWT.BORDER
 				| SWT.V_SCROLL | SWT.H_SCROLL);
-		gd = new GridData(200, 250);
+		gd = new GridData(300, 250);
 		toConference.setLayoutData(gd);
 		setControl(composite);
 		setPageComplete(true);

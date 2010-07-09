@@ -51,7 +51,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 	protected GenInfoPage(String arg0) {
 		super(arg0);
 		setTitle("General conference info");
-		setDescription("Step 1: Enter conference's Information\n Fields marked with * are required");
+		setDescription("Step 1: Enter conference information.\n Fields marked with * are required.");
 		context = new EConferenceContext();
 	}
 
@@ -150,7 +150,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 		serviceCombo.setItems(items);
 		serviceCombo.setLayoutData(new GridData(129, 15));
 		serviceText = new Text(composite, SWT.BORDER);
-		serviceText.setLayoutData(new GridData(98, 15));
+		serviceText.setLayoutData(new GridData(200, 15));
 		serviceText.setEnabled(false);
 		serviceText.addFocusListener(new FocusListener() {
 			@Override
@@ -168,13 +168,13 @@ public class GenInfoPage extends WizardPage implements Listener {
 		});
 		new CLabel(composite, SWT.NONE)
 				.setText("Conference name (recommended): ");
-		gd = new GridData(265, 15);
+		gd = new GridData(435, 15);
 		gd.horizontalSpan = 2;
 		gd.grabExcessHorizontalSpace = true;
 		nameConferenceText = new Text(composite, SWT.BORDER);
 		nameConferenceText.setLayoutData(gd);
 		new CLabel(composite, SWT.NONE).setText("Topic:");
-		gd = new GridData(265, 15);
+		gd = new GridData(435, 15);
 		gd.horizontalSpan = 2;
 		gd.grabExcessHorizontalSpace = true;
 		topicText = new Text(composite, SWT.BORDER);
@@ -185,7 +185,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 		new CLabel(composite, SWT.NONE).setText("Item/s:\n(One per line)");
 		itemText = new Text(composite, SWT.BORDER | SWT.MULTI);
 		itemText.setToolTipText("Use newline to new item");
-		gd = new GridData(265, 110);
+		gd = new GridData(435, 110);
 		gd.horizontalSpan = 2;
 		gd.grabExcessHorizontalSpace = true;
 		itemText.setLayoutData(gd);
@@ -218,9 +218,9 @@ public class GenInfoPage extends WizardPage implements Listener {
 			ServiceDiscoveryManager discoManager = ServiceDiscoveryManager
 					.getInstanceFor(connection);
 			DiscoverItems discoItems = discoManager.discoverItems(cases);
-			Iterator it = discoItems.getItems();
+			Iterator<DiscoverItems.Item> it = discoItems.getItems();
 			while (it.hasNext()) {
-				DiscoverItems.Item item = (DiscoverItems.Item) it.next();
+				DiscoverItems.Item item = it.next();
 				String current = item.toXML();
 				if (current.contains("name")) {
 					if (current.contains("Public Chatrooms")
@@ -264,7 +264,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 			return page;
 		} else
 			MessageDialog.openWarning(getShell(), "",
-					"Please fill all required field");
+					"Please fill all required fields in.");
 		return this;
 	}
 

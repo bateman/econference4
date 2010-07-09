@@ -29,6 +29,9 @@ import it.uniba.di.cdg.xcore.econference.internal.EConferenceHelper;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -37,7 +40,7 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 /**
  * Join to an already existing chat room. 
  */
-public class LoadConferenceFromFileAction implements IWorkbenchWindowActionDelegate {
+public class LoadConferenceFromFileAction extends AbstractHandler implements IWorkbenchWindowActionDelegate {
     /**
      * The unique id of this action.
      */
@@ -83,4 +86,10 @@ public class LoadConferenceFromFileAction implements IWorkbenchWindowActionDeleg
     public void selectionChanged( IAction action, ISelection selection ) {
         // Nothing
     }
+
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		run(null);
+		return null;
+	}
 }
