@@ -3,15 +3,12 @@ package it.uniba.di.cdg.xcore.ui.actions;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
-import it.uniba.di.cdg.xcore.ui.dialogs.ChangePasswordDialog;
-import it.uniba.di.cdg.xcore.ui.dialogs.NewContactDialog;
 import it.uniba.di.cdg.xcore.ui.dialogs.NewGroupDialog;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
 
 public class NewGroupAction extends Action implements ActionFactory.IWorkbenchAction {

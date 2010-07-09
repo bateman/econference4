@@ -6,12 +6,9 @@ Bundle-Version: 1.0.0
 Bundle-Activator: it.uniba.di.cdg.xcore.ui.UiPlugin
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- it.uniba.di.cdg.xcore.util,
+Require-Bundle: org.eclipse.ui,
  it.uniba.di.cdg.xcore.network,
- org.aspectj.runtime,
- org.jivesoftware.smack
+ org.aspectj.runtime
 Eclipse-LazyStart: true
 Export-Package: it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.ui.actions,
