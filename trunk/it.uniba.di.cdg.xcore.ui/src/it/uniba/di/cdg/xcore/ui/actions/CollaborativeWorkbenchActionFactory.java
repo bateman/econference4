@@ -49,20 +49,6 @@ public class CollaborativeWorkbenchActionFactory  {
             
             return action;
         }
-    };
-    
-    public static final ActionFactory PASSWORDUSERS = new ActionFactory( "password" ) {
-        /* (non-Javadoc)
-         * @see org.eclipse.ui.actions.ActionFactory#create(org.eclipse.ui.IWorkbenchWindow)
-         */
-        @Override
-        public IWorkbenchAction create( IWorkbenchWindow window ) {
-            if (window == null)
-                throw new IllegalArgumentException();
-            
-            IWorkbenchAction action = new ChangePasswordAction (window);
-            
-            return action;
-        }
-    };
+    };  
+
 }
