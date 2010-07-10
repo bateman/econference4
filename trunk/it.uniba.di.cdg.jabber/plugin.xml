@@ -11,5 +11,27 @@
             name="Jabber"
             secure="false"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="actions that should be available only when the jabber backend is loaded"
+            id="it.uniba.di.cdg.jabber.actionSet"
+            label="Jabber Action Set"
+            visible="true">
+         <action
+               class="it.uniba.di.cdg.jabber.action.ChangePasswdAction"
+               id="it.uniba.di.cdg.jabber.action.ChangePasswdAction"
+               label="%change-passwd.name "
+               menubarPath="file/additions"
+               tooltip="Change your Jabber/XMPP account password">
+               <enablement>					
+						<pluginState id="it.uniba.di.cdg.jabber" value="activated"/> 					
+				</enablement>
+				<!--visibility> 										
+						<pluginState id="it.uniba.di.cdg.jabber" value="activated"/> 					
+				</visibility--> 
+         </action>
+      </actionSet>
+   </extension>
 
 </plugin>

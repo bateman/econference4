@@ -21,3 +21,4 @@ Export-Package: it.uniba.di.cdg.jabber,
  it.uniba.di.cdg.smackproviders
 Bundle-ActivationPolicy: lazy
 Import-Package: it.uniba.di.cdg.xcore.m2m.events
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
