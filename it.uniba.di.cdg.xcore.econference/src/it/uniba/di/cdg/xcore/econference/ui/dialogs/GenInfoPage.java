@@ -1,14 +1,19 @@
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
-import it.uniba.di.cdg.jabber.JabberBackend;
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.internal.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.internal.ItemList;
-import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
 
 import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -16,8 +21,6 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -27,10 +30,8 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
-import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smackx.ServiceDiscoveryManager;
-import org.jivesoftware.smackx.packet.DiscoverItems;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 public class GenInfoPage extends WizardPage implements Listener {
 	Composite composite;
@@ -38,8 +39,8 @@ public class GenInfoPage extends WizardPage implements Listener {
 	private Combo backendIdCombo = null;
 	private Text nameConferenceText = null;
 	GridData gd;
-	private String nick;
-	private String password;
+	//private String nick;
+	//private String password;
 	private Text topicText = null;
 	private Text itemText = null;
 	private Text nickNameText = null;
@@ -111,19 +112,22 @@ public class GenInfoPage extends WizardPage implements Listener {
 		new CLabel(composite, SWT.NONE);
 		new CLabel(composite, SWT.NONE).setText("Conference service: *");
 		serviceCombo = new Combo(composite, SWT.READ_ONLY);
-		String items[] = { "ugres.di.uniba.it", "0nl1ne.at", "codingteam.net",
-				"jabber-br.org", "jabber-hispano.org", "jabber-me.de",
-				"jabber.ccc.de", "jabber.chaotic.de", "jabber.co.nz",
-				"jabber.cz", "jabber.fourecks.de", "jabber.fsinf.at",
-				"jabber.hot-chilli.net", "jabber.i-pobox.net",
-				"jabber.iitsp.com", "jabber.loudas.com", "jabber.minus273.org",
-				"jabber.no", "jabber.org", "jabber.rootbash.com",
-				"jabber.scha.de", "jabber.second-home.de", "jabber.sow.as",
-				"jabber.yeahnah.co.nz", "jabberbr.com", "jabberd.eu",
-				"jabberes.org", "jabberim.de", "jabbim.com", "jabbim.cz",
-				"jabbim.pl", "jabbim.sk", "jabster.pl", "jaim.at",
-				"linuxlovers.at", "thiessen.it", "thiessen.org",
-				"ubuntu-jabber.de", "ubuntu-jabber.net", "Other..." };
+		final MucServers confServices = loadConferenceServices();
+		/*
+		 * String items[] = { "ugres.di.uniba.it", "0nl1ne.at",
+		 * "codingteam.net", "jabber-br.org", "jabber-hispano.org",
+		 * "jabber-me.de", "jabber.ccc.de", "jabber.chaotic.de", "jabber.co.nz",
+		 * "jabber.cz", "jabber.fourecks.de", "jabber.fsinf.at",
+		 * "jabber.hot-chilli.net", "jabber.i-pobox.net", "jabber.iitsp.com",
+		 * "jabber.loudas.com", "jabber.minus273.org", "jabber.no",
+		 * "jabber.org", "jabber.rootbash.com", "jabber.scha.de",
+		 * "jabber.second-home.de", "jabber.sow.as", "jabber.yeahnah.co.nz",
+		 * "jabberbr.com", "jabberd.eu", "jabberes.org", "jabberim.de",
+		 * "jabbim.com", "jabbim.cz", "jabbim.pl", "jabbim.sk", "jabster.pl",
+		 * "jaim.at", "linuxlovers.at", "thiessen.it", "thiessen.org",
+		 * "ubuntu-jabber.de", "ubuntu-jabber.net", "Other..." };
+		 */
+		String items[] = confServices.getServerAddresses();
 		serviceCombo
 				.addSelectionListener(new org.eclipse.swt.events.SelectionListener() {
 					@Override
@@ -132,18 +136,21 @@ public class GenInfoPage extends WizardPage implements Listener {
 
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						if (serviceCombo.getText().equals("Other..."))
+						if (serviceCombo.getText().equals("Other...")) {
 							serviceText.setEnabled(true);
+							serviceText.setFocus();
+						}
 						else {
 							serviceText.setEnabled(false);
-							try {
-								serviceText
-										.setText(checkConnection(serviceCombo
-												.getText()));
-							} catch (BackendException e1) {
-								e1.printStackTrace();
-							}
+							/*
+							 * try { serviceText
+							 * .setText(checkConnection(serviceCombo
+							 * .getText())); } catch (BackendException e1) {
+							 * e1.printStackTrace(); }
+							 */
 						}
+						serviceText.setText(confServices.getMucService(serviceCombo
+								.getSelectionIndex()));
 					}
 				});
 		serviceCombo.setEnabled(false);
@@ -152,20 +159,22 @@ public class GenInfoPage extends WizardPage implements Listener {
 		serviceText = new Text(composite, SWT.BORDER);
 		serviceText.setLayoutData(new GridData(200, 15));
 		serviceText.setEnabled(false);
-		serviceText.addFocusListener(new FocusListener() {
+		/*serviceText.addFocusListener(new FocusListener() {
 			@Override
 			public void focusGained(FocusEvent e) {
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				try {
-					serviceText.setText(checkConnection(serviceText.getText()));
-				} catch (BackendException e1) {
-					e1.printStackTrace();
-				}
+				// try {
+				// serviceText.setText(checkConnection(serviceText.getText()));
+				serviceText.setText(confServices.getMucService(serviceCombo
+						.getSelectionIndex()));
+				// } catch (BackendException e1) {
+				// e1.printStackTrace();
+				// }
 			}
-		});
+		});*/
 		new CLabel(composite, SWT.NONE)
 				.setText("Conference name (recommended): ");
 		gd = new GridData(435, 15);
@@ -194,7 +203,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 		setControl(composite);
 	}
 
-	private String checkConnection(String cases) throws BackendException {
+	/*private String checkConnection(String cases) throws BackendException {
 		XMPPConnection connection;
 		boolean disconnected = false;
 		// return "conference."+cases;
@@ -241,7 +250,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 							+ "; please select a different service.");
 		}
 		return "";
-	}
+	}*/
 
 	public void handleEvent(Event e) {
 
@@ -264,7 +273,7 @@ public class GenInfoPage extends WizardPage implements Listener {
 			return page;
 		} else
 			MessageDialog.openWarning(getShell(), "",
-					"Please fill all required fields in.");
+					"Please fill in all the required fields shown with a *.");
 		return this;
 	}
 
@@ -276,13 +285,13 @@ public class GenInfoPage extends WizardPage implements Listener {
 		return true;
 	}
 
-	public void setNick(String value) {
+	/*public void setNick(String value) {
 		this.nick = value;
 	}
 
 	public void setPass(String value) {
 		this.password = value;
-	}
+	}*/
 
 	private void saveData() {
 		this.context.setBackendId(media);
@@ -318,5 +327,66 @@ public class GenInfoPage extends WizardPage implements Listener {
 	 */
 	public boolean isPageComplete() {
 		return true;
+	}
+
+	private static MucServers loadConferenceServices() {
+		MucServers confServices = new MucServers();
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true); // never forget this!
+		DocumentBuilder builder;
+		try {
+			builder = factory.newDocumentBuilder();
+			Document doc = builder
+					.parse("http://www.jabberes.org/servers/servers.xml");
+			XPath xpath = XPathFactory.newInstance().newXPath();
+			XPathExpression expr = xpath
+					.compile("//server[@offline='no']/component[@category='conference'][@available='yes'][@type='x-muc']");
+
+			NodeList nodes = (NodeList) expr.evaluate(doc,
+					XPathConstants.NODESET);
+
+			for (int i = 0; i < nodes.getLength(); i++) {
+				// muc service
+				confServices.addMucService(nodes.item(i).getAttributes()
+						.getNamedItem("jid").getTextContent());
+				// xmpp server
+				confServices.addServerAddress(nodes.item(i).getParentNode()
+						.getAttributes().getNamedItem("jid").getTextContent());
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return confServices;
+	}
+
+	private static class MucServers {
+		private ArrayList<String> serverAddresses = new ArrayList<String>(120);
+		private ArrayList<String> mucServices = new ArrayList<String>(120);
+
+		public MucServers() {
+			addServerAddress("Other...");
+			addMucService("");
+		}
+
+		public void addServerAddress(String serverAddress) {
+			this.serverAddresses.add(serverAddress);
+		}
+
+		public String[] getServerAddresses() {
+			return (String[]) serverAddresses
+					.toArray(new String[serverAddresses.size()]);
+		}
+
+		public void addMucService(String mucService) {
+			this.mucServices.add(mucService);
+		}
+
+		public String getMucService(int index) {
+			return mucServices.get(index);
+		}
+
 	}
 }

@@ -69,8 +69,8 @@ public class ServersCredential extends Dialog {
 	}
 
 	private void buttonOkMouseUp(MouseEvent evt) {
-		this.infopage.setNick(this.nickName.getText());
-		this.infopage.setPass(this.password.getText());
+		//this.infopage.setNick(this.nickName.getText());
+		//this.infopage.setPass(this.password.getText());
 		dialogShell.close();
 	}
 
