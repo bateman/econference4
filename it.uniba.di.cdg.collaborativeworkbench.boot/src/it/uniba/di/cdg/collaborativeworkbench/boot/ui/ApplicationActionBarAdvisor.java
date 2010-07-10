@@ -55,10 +55,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     
     private IWorkbenchAction aboutAction;
     
-    private IWorkbenchAction preferencesAction;
-    
-    private IWorkbenchAction changePasswordAction;
-    
+    private IWorkbenchAction preferencesAction;   
+     
     /**
      * We use the save action to save the content of the current talk view: note that since we 
      * are implementing talk views as "ViewPart" and not as "EditorPart" we rely on a feature of 
@@ -84,9 +82,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         showViewsMenu = ContributionItemFactory.VIEWS_SHORTLIST.create( window );
         switchPerspectivesMenu = ContributionItemFactory.PERSPECTIVES_SHORTLIST.create( window );
         
-        changePasswordAction = CollaborativeWorkbenchActionFactory.PASSWORDUSERS.create(window);
-        register(changePasswordAction);
-        
         aboutAction = ActionFactory.ABOUT.create( window );
         aboutAction.setText("About eConference");
         register( aboutAction );
@@ -110,7 +105,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         menuBar.add( fileMenu );
         fileMenu.add( saveAction );
         fileMenu.add( new GroupMarker( IWorkbenchActionConstants.MB_ADDITIONS ) );
-        fileMenu.add(changePasswordAction);
         fileMenu.add( new Separator() );
         fileMenu.add( exitAction );
 
