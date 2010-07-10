@@ -249,7 +249,7 @@
             commandId="org.eclipse.ui.file.exit"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M3+Q">
+            sequence="M1+M3+X">
       </key>
    </extension>
    <extension
