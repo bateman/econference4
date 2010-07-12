@@ -61,6 +61,20 @@ public interface IBuddy extends IEntry, Comparable<IBuddy> {
      * @return <code>true</code> if the buddy is online, <code>false</code> otherwise
      */
     boolean isOnline();
+
+    /**
+     * Check if the buddy is reported as offline.
+     * 
+     * @return <code>true</code> if the buddy is offline, <code>false</code> otherwise
+     */
+    boolean isOffline();
+    
+    /**
+     * Check if the buddy is reported as not offline.
+     * 
+     * @return  <code>true</code> if the buddy is any status other than <code>OFFLINE</code>, <code>false</code> otherwise
+     */
+    boolean isNotOffline();
     
     /**
      * Set this buddy as online. Clients are not expected to use this method directly.
