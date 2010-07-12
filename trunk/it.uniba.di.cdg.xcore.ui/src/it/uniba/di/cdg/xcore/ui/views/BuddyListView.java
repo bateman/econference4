@@ -30,6 +30,7 @@ import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
+import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
@@ -77,15 +78,40 @@ public class BuddyListView extends ViewPart {
 	public static final String ID = UiPlugin.ID + ".views.buddyListView";
 
 	/**
-	 * Sort the groups and buddies lexicographically.
+	 * Sort the groups and buddies lexicographically. 
 	 */
 	private class BuddySorter extends ViewerSorter {
 		@Override
 		public int compare(Viewer viewer, Object o1, Object o2) {
-			String s1 = o1.toString();
-			String s2 = o2.toString();
-			return String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
+			int res;
+
+			if (o1 instanceof IBuddy && o2 instanceof IBuddy) {
+
+				IBuddy b1 = (IBuddy) o1;
+				IBuddy b2 = (IBuddy) o2;
+				if (b1.isNotOffline() && b2.isOffline())
+					res = -1;
+				else if (b1.isOffline() && b2.isNotOffline())
+					res = 1;
+				else { // both not offline
+					String s1 = o1.toString();
+					String s2 = o2.toString();
+					res = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
+				}
+			} else { // at least one is a buddygroup
+				if (o1 instanceof IBuddyGroup && o2 instanceof IBuddy) {
+					res = -1;
+				} else if (o2 instanceof IBuddyGroup && o1 instanceof IBuddy) {
+					res = 1;
+				} else { // both are groups
+					String s1 = o1.toString();
+					String s2 = o2.toString();
+					res = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);					
+				}
+			}
+			return res;
 		}
+
 	}
 
 	/**
@@ -112,9 +138,11 @@ public class BuddyListView extends ViewPart {
 		 */
 		@SwtAsyncExec
 		public void presenceChanged(final IBuddy buddy) {
-			if (treeViewer.getControl().isDisposed())
-				return;
-			treeViewer.refresh(buddy);
+			if (!treeViewer.getControl().isDisposed())
+				//treeViewer.refresh(buddy);
+				// refresh the whole tree because, if buddy goes offline
+				// it'll be moved down, below those online
+				treeViewer.refresh();
 		}
 
 		/*
@@ -233,9 +261,8 @@ public class BuddyListView extends ViewPart {
 
 	@SwtAsyncExec
 	private void refreshTreeViewer() {
-		if (treeViewer.getControl().isDisposed())
-			return;
-		treeViewer.refresh();
+		if (!treeViewer.getControl().isDisposed())
+			treeViewer.refresh();
 	}
 
 	private void contributeToActionBars() {

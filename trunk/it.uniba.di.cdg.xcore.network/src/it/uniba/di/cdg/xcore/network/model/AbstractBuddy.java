@@ -115,7 +115,17 @@ public abstract class AbstractBuddy extends PlatformObject implements IBuddy {
 	public void setOnline(boolean online) {
 		this.online = online;
 	}
+	
+	@Override
+	public boolean isNotOffline() {		 
+		return status == Status.OFFLINE ? false : true ;
+	}
 
+	@Override
+	public boolean isOffline() {		
+		return !isOnline();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
