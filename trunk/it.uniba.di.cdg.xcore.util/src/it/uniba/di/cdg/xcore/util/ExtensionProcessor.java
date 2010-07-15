@@ -25,14 +25,12 @@
 package it.uniba.di.cdg.xcore.util;
 
 import java.util.HashMap;
-import java.util.Vector;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * Abstracts the common idiom for visiting the extenders of specific
@@ -75,12 +73,14 @@ public class ExtensionProcessor implements IExtensionProcessor {
             backends.put(member.getAttribute( "name" ), member);
         }
 
-        Vector<String> defaultBackand = new Vector<String>();
+//        Vector<String> defaultBackend = new Vector<String>();
+//        
+//        SelectBackendDialog dlg = new SelectBackendDialog( new Shell() , defaultBackend, backends.keySet());
+//        dlg.open();
         
-        SelectBackendDialog dlg = new SelectBackendDialog( new Shell() , defaultBackand, backends.keySet());
-        dlg.open();
+        String selectedBackend = CommandlineArgs.parse(Platform.getApplicationArgs(), backends.keySet());
         
-        IConfigurationElement member = backends.get(defaultBackand.get(0));
+        IConfigurationElement member = backends.get(selectedBackend); //(defaultBackend.get(0));
         
         IExtension extension = member.getDeclaringExtension();
 

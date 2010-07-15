@@ -31,6 +31,7 @@ import it.uniba.di.cdg.xcore.econference.model.IItemListListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -215,6 +216,11 @@ public class ItemList implements IItemList {
                 "|| execution( public void ItemList+.add*(..) ) " )
         protected void writeOperations() {}
     }
+
+	@Override
+	public Iterator<IDiscussionItem> iterator() {		
+		return items.iterator();
+	}
 
 
 }

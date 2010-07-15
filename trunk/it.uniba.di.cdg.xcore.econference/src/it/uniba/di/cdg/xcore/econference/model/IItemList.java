@@ -24,6 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.econference.model;
 
+import java.util.Iterator;
+
 /**
  * Operations possible on a conference's items list. This is an ordered list of items to be
  * discussed. 
@@ -120,4 +122,10 @@ public interface IItemList{
      * @param listener
      */
     void removeListener( IItemListListener listener );
+    
+    /**
+     * Returns the list as a IDiscussionItem iterator
+     * @return string iterator
+     */
+    public Iterator<IDiscussionItem> iterator();
 }

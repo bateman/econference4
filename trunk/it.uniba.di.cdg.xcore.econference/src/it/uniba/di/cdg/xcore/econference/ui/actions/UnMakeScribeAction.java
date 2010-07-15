@@ -24,8 +24,9 @@
  */
 package it.uniba.di.cdg.xcore.econference.ui.actions;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.util.Assert;
+
 
 import it.uniba.di.cdg.xcore.econference.IEConferenceManager;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;

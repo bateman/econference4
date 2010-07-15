@@ -52,6 +52,12 @@ import com.skype.connector.Connector;
 import com.skype.connector.ConnectorException;
 
 public class SkypeBackend implements IBackend {
+	
+	/**
+	 * This backend's unique id.
+	 */
+	public static final String ID = "it.uniba.di.cdg.skype.skypeBackend";
+
 
 	private INetworkBackendHelper helper;
 	private SkypeBuddyRoster skypeBuddyRoster;
@@ -223,12 +229,7 @@ public class SkypeBackend implements IBackend {
 	public SkypeBackend getBackendFromProxy() {
 		return this;
 	}
-
-	/**
-	 * This backend's unique id.
-	 */
-	public static final String ID = "it.uniba.di.cdg.skype.skypeBackend";
-
+	
 	public SkypeBackend() {
 		super();
 		skypeBuddyRoster = new SkypeBuddyRoster(this);

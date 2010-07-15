@@ -51,8 +51,6 @@ public class LoadConferenceFromFileAction extends AbstractHandler implements IWo
      */
     public static final String[] FILE_EXT = new String[] { "*.ecx" };   
     
-    private IWorkbenchWindow window;
-    
     /* (non-Javadoc)
      * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
      */
@@ -63,7 +61,6 @@ public class LoadConferenceFromFileAction extends AbstractHandler implements IWo
      * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
      */
     public void init( IWorkbenchWindow window ) {
-        this.window = window;
     }
 
     /* (non-Javadoc)

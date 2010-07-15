@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.Text;
  */
 
 public class LastPage extends WizardPage implements Listener {
-	
+
 	boolean isModerator = false;
 	Composite composite;
 	GridData gridData;
@@ -69,7 +69,7 @@ public class LastPage extends WizardPage implements Listener {
 		composite.setLayout(gridLayout);
 		table = new Table(composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL
 				| SWT.FULL_SELECTION);
-		gridData = new GridData(475, 200);
+		gridData = new GridData(575, 200);
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.horizontalSpan = 5;
 		table.setLayoutData(gridData);
@@ -93,7 +93,7 @@ public class LastPage extends WizardPage implements Listener {
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.widthHint = 140;
 		sendInvitationsCheckBox = new Button(composite, SWT.CHECK);
-		sendInvitationsCheckBox.setText("Send Invitations");
+		sendInvitationsCheckBox.setText("Send invitations");
 		sendInvitationsCheckBox.setSelection(true);
 		sendInvitationsCheckBox.addSelectionListener(new SelectionListener() {
 			@Override
@@ -109,6 +109,7 @@ public class LastPage extends WizardPage implements Listener {
 			}
 
 		});
+
 		setControl(composite);
 		setPageComplete(true);
 	}
@@ -190,7 +191,9 @@ public class LastPage extends WizardPage implements Listener {
 		editor.setEditor(fullname, item, 2);
 		editor = new TableEditor(table);
 		final Text email = new Text(table, SWT.NONE);
-		email.setText("");
+		email.setText(NetworkPlugin.getDefault().getRegistry()
+				.getBackend(((InviteWizard) this.getWizard()).getMedia())
+				.getUserAccount().getEmail());
 		item.setText(3, email.getText());
 		email.addFocusListener(new FocusListener() {
 
@@ -352,16 +355,16 @@ public class LastPage extends WizardPage implements Listener {
 		editor.setEditor(organization, newRow, 4);
 	}
 
-	private void changeUsersRole(boolean isModerator) {
-		TableItem current = table.getItem(0);
-		editor = new TableEditor(table);
-		if (isModerator)
-			currentUserRoles.setText("Moderator");
-		else
-			currentUserRoles.setText("Participant");
-		editor.grabHorizontal = true;
-		editor.setEditor(currentUserRoles, current, 0);
-	}
+	// private void changeUsersRole(boolean isModerator) {
+	// TableItem current = table.getItem(0);
+	// editor = new TableEditor(table);
+	// if (isModerator)
+	// currentUserRoles.setText("Moderator");
+	// else
+	// currentUserRoles.setText("Participant");
+	// editor.grabHorizontal = true;
+	// editor.setEditor(currentUserRoles, current, 0);
+	// }
 
 	public void setContext(EConferenceContext ctx) {
 		this.context = ctx;
@@ -406,7 +409,7 @@ public class LastPage extends WizardPage implements Listener {
 	public boolean getCanSendInvitations() {
 		return this.canSendInvitations;
 	}
-	
+
 	public void setCanSendInvitations(boolean canSendInvitations) {
 		this.canSendInvitations = canSendInvitations;
 	}
@@ -414,4 +417,5 @@ public class LastPage extends WizardPage implements Listener {
 	public EConferenceContext getContext() {
 		return this.context;
 	}
+	
 }
