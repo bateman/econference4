@@ -42,6 +42,16 @@ public class Participant extends PlatformObject implements IParticipant {
     private IChatRoomModel chatRoom;
     
     /**
+     * The name of this participant.
+     */
+    private String email;
+    
+    /**
+     * The affiliation.
+     */
+    private String organization;
+    
+    /**
      * The (unique) id of this participant.
      */
     private String id;
@@ -273,4 +283,24 @@ public class Participant extends PlatformObject implements IParticipant {
         if (chatRoom != null)
             chatRoom.changed( this );
     }
+
+	@Override
+	public String getEmail() {		
+		return email;
+	}
+
+	@Override
+	public void setEmail(String email) {
+		this.email = email;		
+	}
+	
+	@Override
+	public String getOrganization() {		
+		return organization;
+	}
+
+	@Override
+	public void setOrganization(String organization) {
+		this.organization = organization;		
+	}
 }

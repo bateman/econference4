@@ -6,9 +6,15 @@
 
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
+import java.io.FileNotFoundException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.model.internal.ConferenceContextWriter;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -58,10 +64,12 @@ public class InviteWizard extends Wizard implements INewWizard {
 	}
 
 	public boolean canFinish() {
-		if (this.getContainer().getCurrentPage() == genInfoPage)
+		IWizardPage current = this.getContainer().getCurrentPage();
+		if (current == genInfoPage)
 			return false;
-		if (this.getContainer().getCurrentPage() == invitePage)
+		if (current == invitePage)
 			return false;
+
 		return true;
 	}
 
@@ -73,6 +81,18 @@ public class InviteWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		lastOnePage.saveData();
 		this.context = lastOnePage.getContext();
+		String filepath = genInfoPage.getFilePath();
+		try {
+			ConferenceContextWriter writer = new ConferenceContextWriter(filepath, context);
+			writer.serialize();			
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 

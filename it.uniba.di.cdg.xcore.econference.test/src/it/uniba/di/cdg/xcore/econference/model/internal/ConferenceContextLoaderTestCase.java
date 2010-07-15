@@ -49,11 +49,11 @@ public class ConferenceContextLoaderTestCase extends TestCase {
     private static final IDiscussionItem EXPECTED_ITEM1 = new DiscussionItem( "Item 1" );
     private static final IDiscussionItem EXPECTED_ITEM2 = new DiscussionItem( "Item 2" );
     
-    private static final String EXPECTED_DIRECTOR_ID = "director@jabber.organization.com";
+//    private static final String EXPECTED_DIRECTOR_ID = "director@jabber.organization.com";
 //    private static final String EXPECTED_DIRECTOR_PASSWORD = "secret";
-    private static final String EXPECTED_DIRECTOR_FULLNAME = "Director";
-    private static final String EXPECTED_DIRECTOR_EMAIL = "director@organization.com";
-    private static final String EXPECTED_DIRECTOR_ORGANIZATION = "Organization";
+//    private static final String EXPECTED_DIRECTOR_FULLNAME = "Director";
+//    private static final String EXPECTED_DIRECTOR_EMAIL = "director@organization.com";
+//    private static final String EXPECTED_DIRECTOR_ORGANIZATION = "Organization";
     
     private static final String EXPECTED_MODERATOR_FULLNAME = "Fabio Calefato";
     private static final String EXPECTED_SCRIBE_FULLNAME = "diavoletto";
@@ -93,13 +93,13 @@ public class ConferenceContextLoaderTestCase extends TestCase {
         assertEquals( IItemList.NO_ITEM_SELECTED, itemList.getCurrentItemIndex() );
         
         // Check the support team
-        Invitee director = context.getDirector();
-        assertEquals( EConferenceContext.ROLE_DIRECTOR, director.getRole() );
-        assertEquals( EXPECTED_DIRECTOR_ID, director.getId() );
-//        assertEquals( EXPECTED_DIRECTOR_PASSWORD, director.getPassword() );
-        assertEquals( EXPECTED_DIRECTOR_FULLNAME, director.getFullName() );
-        assertEquals( EXPECTED_DIRECTOR_EMAIL, director.getEmail() );
-        assertEquals( EXPECTED_DIRECTOR_ORGANIZATION, director.getOrganization() );
+//        Invitee director = context.getDirector();
+//        assertEquals( EConferenceContext.ROLE_DIRECTOR, director.getRole() );
+//        assertEquals( EXPECTED_DIRECTOR_ID, director.getId() );
+////        assertEquals( EXPECTED_DIRECTOR_PASSWORD, director.getPassword() );
+//        assertEquals( EXPECTED_DIRECTOR_FULLNAME, director.getFullName() );
+//        assertEquals( EXPECTED_DIRECTOR_EMAIL, director.getEmail() );
+//        assertEquals( EXPECTED_DIRECTOR_ORGANIZATION, director.getOrganization() );
         
         Invitee moderator = context.getModerator();
         assertEquals( EConferenceContext.ROLE_MODERATOR, moderator.getRole() );
@@ -116,7 +116,7 @@ public class ConferenceContextLoaderTestCase extends TestCase {
             assertNotNull( i.getId() );
             final String r = i.getRole(); 
             assertTrue( r.equals( EConferenceContext.ROLE_PARTICIPANT ) 
-                    || r.equals( EConferenceContext.ROLE_DIRECTOR )
+//                    || r.equals( EConferenceContext.ROLE_DIRECTOR )
                     || r.equals( EConferenceContext.ROLE_MODERATOR )
                     || r.equals( EConferenceContext.ROLE_SCRIBE ) );
         }

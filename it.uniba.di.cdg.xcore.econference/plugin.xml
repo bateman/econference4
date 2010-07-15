@@ -68,6 +68,40 @@
             <groupMarker name="additions"/>
          </menu>
       </actionSet>
+      <actionSet
+            description="%actionSet.description.switchbackends"
+            id="it.uniba.di.cdg.xcore.econference.ui.actionSet.SwitchNetwork"
+            label="%actionSet.label.switchbackends"
+            visible="true">
+         <menu
+               id="switchNetwork"
+               label="%menu.label.switchbackends"
+               path="file/additions.1">
+               <groupMarker name="additions.1"/>
+         </menu>
+         <action
+               class="it.uniba.di.cdg.xcore.econference.ui.actions.SwitchToXMPPBackendRelaunchAction"
+               icon="icons/action_jabber_relaunch.png"
+               id="it.uniba.di.cdg.xcore.econference.actions.SwitchToXMPPBackendRelaunchAction"
+               label="%action.label.xmmp"
+               menubarPath="file/switchNetwork/additions.1"
+               tooltip="Relaunch eConference switching to the XMPP network">
+               <enablement>
+                 	<systemProperty name="econference.currentbackend" value="Skype"/> 
+               </enablement>
+         </action>
+          <action
+                class="it.uniba.di.cdg.xcore.econference.ui.actions.SwitchToSkypeBackendRelaunchAction"
+                icon="icons/action_skype_relaunch.png"
+                id="it.uniba.di.cdg.xcore.econference.actions.SwitchToSkypeBackendRelaunchAction"
+                label="%action.label.skype"
+                menubarPath="file/switchNetwork/additions.1"
+                tooltip="Relaunch eConference switching to the Skype network">
+				<enablement>
+                 	<systemProperty name="econference.currentbackend" value="Jabber"/> 
+                </enablement>
+         </action>
+      </actionSet>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">

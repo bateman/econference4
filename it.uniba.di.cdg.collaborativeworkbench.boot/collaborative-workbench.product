@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="eConference" id="it.uniba.di.cdg.collaborativeworkbench.boot.product" application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench" version="4.0.2" useFeatures="true" includeLaunchers="false">
+<product name="eConference" id="it.uniba.di.cdg.collaborativeworkbench.boot.product" application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench" version="4.0.3" useFeatures="true" includeLaunchers="false">
 
    <aboutInfo>
       <image path="/it.uniba.di.cdg.collaborativeworkbench.boot/about_logo.gif"/>
       <text>
-         eConference 4.0.2
+         eConference 4.0.3
 
 eConference has been developed by the Collaborative Development Group,
 Dipartimento di Informatica, University of Bari and it is distributed under the 
 terms of the MIT license. 
-More details on the project homepage at http://cdg.di.uniba.it/projects/econference/ .
+More details on the project homepage at http://cdg.di.uniba.it/projects/econference/ 
 
-This software is based upon the Eclipse Rich Client Platform, http://eclipse.org/rcp/ .
+This software is based upon the Eclipse Rich Client Platform, http://eclipse.org/rcp/
 
-The Jabber plug-in uses the SMACK library, http://www.jivesoftware.org/smack/ .
+The Jabber plug-in uses the SMACK library, http://www.jivesoftware.org/smack/ 
 
 Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation, Inc.
       </text>
@@ -25,6 +25,7 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
    </configIni>
 
    <launcherArgs>
+      <vmArgs>-Xms40m -Xmx256m</vmArgs>
    </launcherArgs>
 
    <windowImages i16="/it.uniba.di.cdg.collaborativeworkbench.boot/cw_16x16.gif" i32="/it.uniba.di.cdg.collaborativeworkbench.boot/cw_32x32.gif"/>
@@ -39,8 +40,8 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
       </win>
    </launcher>
 
+
    <vm>
-      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
    </vm>
 
    <license>

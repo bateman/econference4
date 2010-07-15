@@ -92,6 +92,34 @@ public interface IParticipant extends IAdaptable {
     void setNickName( String nickName );
     
     /**
+     * Returns the email for this participant.
+     * 
+     * @return
+     */
+    public String getEmail();
+    
+    /**
+     * Sets the email of this participant.
+     * 
+     * @param fullName
+     */
+    void setEmail(String email);
+    
+    /**
+     * Returns the organization for this participant.
+     * 
+     * @return
+     */
+    public String getOrganization();
+    
+    /**
+     * Sets the organization of this participant.
+     * 
+     * @param fullName
+     */
+    void setOrganization(String organization);
+    
+    /**
      * The participant role.
      * 
      * @return the actual role of this participant

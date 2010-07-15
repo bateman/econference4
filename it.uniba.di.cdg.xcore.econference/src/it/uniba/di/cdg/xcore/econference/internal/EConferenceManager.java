@@ -24,20 +24,16 @@
  */
 package it.uniba.di.cdg.xcore.econference.internal;
 
-import javax.swing.JOptionPane;
-
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-
 import it.uniba.di.cdg.xcore.econference.IEConferenceHelper;
 import it.uniba.di.cdg.xcore.econference.IEConferenceManager;
 import it.uniba.di.cdg.xcore.econference.IEConferenceService;
-import it.uniba.di.cdg.xcore.econference.IEConferenceService.AgendaOperation;
 import it.uniba.di.cdg.xcore.econference.model.ConferenceModelListenerAdapter;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel;
+import it.uniba.di.cdg.xcore.econference.model.IConferenceModel.ConferenceStatus;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.IItemListListener;
 import it.uniba.di.cdg.xcore.econference.model.ItemListListenerAdapter;
-import it.uniba.di.cdg.xcore.econference.model.IConferenceModel.ConferenceStatus;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
 import it.uniba.di.cdg.xcore.econference.service.EConferenceService;
@@ -50,8 +46,8 @@ import it.uniba.di.cdg.xcore.econference.ui.views.WhiteBoardView;
 import it.uniba.di.cdg.xcore.m2m.internal.MultiChatManager;
 import it.uniba.di.cdg.xcore.m2m.model.ChatRoomModelAdapter;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
-import it.uniba.di.cdg.xcore.m2m.model.Privileged;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
+import it.uniba.di.cdg.xcore.m2m.model.Privileged;
 import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.messages.SystemMessage;
