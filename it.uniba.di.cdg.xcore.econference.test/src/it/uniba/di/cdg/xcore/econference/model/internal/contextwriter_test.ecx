@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:meeting>
+    <target:platform>
+        <target:backendid>it.uniba.di.cdg.skype.skypeBackend</target:backendid>
+        <target:room>econference</target:room>
+    </target:platform>
+    <conference:name>econference</conference:name>
+    <conference:topic>test</conference:topic>
+    <conference:schedule>156:2010</conference:schedule>
+    <conference:item>
+        <conference:items>item</conference:items>
+    </conference:item>
+    <role:supportTeam>
+        <role:moderator>
+            <role:fullname>Fabio</role:fullname>
+            <role:email>f@gmail.com</role:email>
+            <role:organization>org1</role:organization>
+            <role:id>calefato</role:id>
+        </role:moderator>
+        <role:participants>
+            <role:expert>
+                <role:fullname>Fabio</role:fullname>
+                <role:email>f@gmail.com</role:email>
+                <role:organization>org1</role:organization>
+                <role:id>calefato</role:id>
+            </role:expert>
+            <role:expert>
+                <role:fullname>Casa Calefato</role:fullname>
+                <role:email>cSmac@gmail.com</role:email>
+                <role:organization>org2</role:organization>
+                <role:id>casacalefato</role:id>
+            </role:expert>
+        </role:participants>
+    </role:supportTeam>
+</m:meeting>
