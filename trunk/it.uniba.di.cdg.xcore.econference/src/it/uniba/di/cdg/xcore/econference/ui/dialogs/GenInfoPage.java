@@ -36,16 +36,6 @@ import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-// TODO auto select current backend on display
-//if (NetworkPlugin.getDefault().getRegistry()
-//		.getDefaultBackendId()
-//		.equals("it.uniba.di.cdg.jabber.jabberBackend"))
-//	backendIdCombo.select(0);
-//else if (NetworkPlugin.getDefault().getRegistry()
-//		.getDefaultBackendId()
-//		.equals("it.uniba.di.cdg.skype.skypeBackend"))
-//	backendIdCombo.select(1);
-
 public class GenInfoPage extends WizardPage {
 	private static final String CUSTOM_MUC_SERVICE = "Other...";
 	private static final String AUDIO_SKYPE = "Audio (Skype)";
@@ -121,6 +111,7 @@ public class GenInfoPage extends WizardPage {
 						} else if (backendIdCombo.getText().equals(AUDIO_SKYPE)) {
 							media = "it.uniba.di.cdg.skype.skypeBackend";
 							serviceCombo.setEnabled(false);
+							nameConferenceText.setText("econference");
 						}
 					}
 				});
@@ -168,6 +159,9 @@ public class GenInfoPage extends WizardPage {
 								.getMucService(serviceCombo.getSelectionIndex()));
 						nameConferenceText.setText("econference@"
 								+ serviceText.getText());
+						filePathText.setText(System.getProperty("user.home")
+								+ System.getProperty("file.separator")
+								+ nameConferenceText.getText() + ".ecx");
 					}
 				});
 		serviceCombo.setEnabled(false);
@@ -199,6 +193,20 @@ public class GenInfoPage extends WizardPage {
 		nameConferenceText = new Text(composite, SWT.BORDER);
 		nameConferenceText.setText("econference");
 		nameConferenceText.setLayoutData(gd);
+		nameConferenceText.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				filePathText.setText(System.getProperty("user.home")
+						+ System.getProperty("file.separator")
+						+ nameConferenceText.getText() + ".ecx");
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				nameConferenceText.setSelection(0);
+			}
+		});
 		new CLabel(composite, SWT.NONE).setText("Topic:");
 		gd = new GridData(435, 15);
 		gd.horizontalSpan = 2;
@@ -223,6 +231,8 @@ public class GenInfoPage extends WizardPage {
 		// gd.grabExcessHorizontalSpace = true;
 		filePathText = new Text(composite, SWT.BORDER);
 		filePathText.setLayoutData(gd);
+		filePathText.setText(System.getProperty("user.home")
+				+ System.getProperty("file.separator") + "econference.ecx");
 		Button browseButton = new Button(composite, SWT.PUSH);
 		browseButton.setText("Browse");
 		browseButton.setLayoutData(new GridData(50, 22));
@@ -238,6 +248,17 @@ public class GenInfoPage extends WizardPage {
 				}
 			}
 		});
+
+		// auto select current backend on display
+		if (NetworkPlugin.getDefault().getRegistry().getDefaultBackendId()
+				.equals("it.uniba.di.cdg.jabber.jabberBackend")) {
+			backendIdCombo.select(0);
+			serviceCombo.setEnabled(true);
+		} else if (NetworkPlugin.getDefault().getRegistry()
+				.getDefaultBackendId()
+				.equals("it.uniba.di.cdg.skype.skypeBackend"))
+			backendIdCombo.select(1);
+
 		setPageComplete(true);
 		// set the composite as the control for this page
 		setControl(composite);
@@ -320,12 +341,13 @@ public class GenInfoPage extends WizardPage {
 		for (int i = 0; i < items.length; i++)
 			il.addItem(new DiscussionItem(items[i]));
 		this.context.setItemList(il);
-		
-		String scheduleStr =  this.schedule.getDay() + "-"
-		+ (this.schedule.getMonth() + 1) + "-"
-		+ this.schedule.getYear();
+
+		String scheduleStr = this.schedule.getDay() + "-"
+				+ (this.schedule.getMonth() + 1) + "-"
+				+ this.schedule.getYear();
 		int min = this.time.getMinutes();
-		String dateStr = this.time.getHours() + ":" + (min <=9 ? "0" + min : min );
+		String dateStr = this.time.getHours() + ":"
+				+ (min <= 9 ? "0" + min : min);
 		this.context.setSchedule(scheduleStr + ", h. " + dateStr);
 	}
 
