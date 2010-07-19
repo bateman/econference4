@@ -28,6 +28,7 @@ import it.uniba.di.cdg.xcore.ui.UiConstants;
 import it.uniba.di.cdg.xcore.ui.actions.CollaborativeWorkbenchActionFactory;
 import it.uniba.di.cdg.xcore.ui.contribution.OnlineStatusIndicator;
 
+import org.eclipse.core.runtime.IExtension;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.ICoolBarManager;
@@ -43,6 +44,9 @@ import org.eclipse.ui.actions.ContributionItemFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
+import org.eclipse.ui.internal.WorkbenchPlugin;
+import org.eclipse.ui.internal.registry.ActionSetRegistry;
+import org.eclipse.ui.internal.registry.IActionSetDescriptor;
 
 /**
  * An action bar advisor is responsible for creating, adding, and disposing of the actions added to
