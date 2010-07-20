@@ -101,5 +101,9 @@ public interface IStoredEventEntry extends IBackendEvent {
      * @return
      */
     public InvitationEvent getInvitationEvent();
+    
+    public String getReceivedOn();
+    
+    public void setReceivedOn(String receivedOn);
 
 }
