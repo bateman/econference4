@@ -118,33 +118,7 @@ Now, as shown in Fig. 12, just choose the _Root directory_ name (e.g. econferenc
 <br>
 <br>
 
-Leave all the other options unchanged. Press finish and wait: you will find the tool exported in the choosen path (in this case, {{{C:\myproduct\econference}}}). Done? 
-
-<p align=center>*No! You can't run it yet!!!*</p>
-
-This is because, unfortunately, you still need to export the 'AspectJ' projects manually and then replace the older files created by the Export Wizard.
-
-So go to the _Package Explorer_ and select one of the 'AspectJ'-enabled project (e.g.
-{{{it.uniba.cdg.xcore.econference}}}): You will recognize them easily, as those project are marked with the AJ initial. Then, right-click on it and select _Export..._.
-
-Now choose the options _Deployable plug-ins and fragments with 'AspectJ' support_, as show in Fig. 13.
-
-
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/ea.JPG <br>
-<p align=center>*Figure 13. Plugins with 'AspectJ' support must be exported manually*</p>
-<br>
-<br>
-
-
-Now look at Fig. 14: Make sure to check <u>all and only</u> the AJ projects in the _Available Plug-ins and Fragments_ list view, then check the _Directory_ radio-button and choose the same path where you exported the product before. The new plug-ins and fragments will automatically replace the older ones inside the {{{plugins/}}} folder.
-
-
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/exportaspectJ.JPG <br>
-<p align=center>*Figure 14. Select the plugins with 'AspectJ' support*</p>
-<br>
-<br>
-
-Press the _Finish_ button. Then, go to the root folder containing your product and double-click on the executable file, named {{{econference}}}. Easy, uh? :)
+Leave all the other options unchanged. Press finish and wait: you will find the tool exported in the choosen path (in this case, {{{C:\myproduct\econference}}}). Done. 
 <br>
 <br>
 
@@ -153,8 +127,7 @@ While eConference works fine with Skype on Windows out of the box, you need a co
 TBD.
 <br>
 <br>
-<br>
-<br>
+
 
 == Code & Comments style ==
 Last but not least, be also sure to stick on the same coding style that has been used so far.
