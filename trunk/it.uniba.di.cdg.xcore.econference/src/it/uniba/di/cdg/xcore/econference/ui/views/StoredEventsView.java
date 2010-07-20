@@ -435,7 +435,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 							defaultPlugin.getHelper().openFromFile(
 									DEFAULT_FILE_PATH
 											+ invitation.getInvitationEvent()
-													.getRoom() + ".ecx");
+											+ ".ecx");
 
 							break;
 
