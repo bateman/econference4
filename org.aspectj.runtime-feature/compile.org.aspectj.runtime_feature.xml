@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="Compile org.aspectj.runtime_feature" default="main">
-	<target name="main">
-	</target>
-</project>

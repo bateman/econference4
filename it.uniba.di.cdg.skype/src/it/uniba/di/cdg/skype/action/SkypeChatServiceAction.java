@@ -31,6 +31,8 @@ public class SkypeChatServiceAction implements IChatServiceActions {
 
 		String message = XmlUtil.writeXmlExtension(extensionName, param);
 		try {
+			System.out.println("to: " + to);
+			System.out.println("message: " + message);
 			Skype.chat(to).send(message);
 		} catch (SkypeException e) {
 			e.printStackTrace();

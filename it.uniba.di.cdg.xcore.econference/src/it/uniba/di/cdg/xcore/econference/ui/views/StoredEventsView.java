@@ -34,6 +34,7 @@ import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModelLi
 import it.uniba.di.cdg.xcore.m2m.MultiChatPlugin;
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
+import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
@@ -448,6 +449,11 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 										.askUserAcceptInvitation(
 												invitation.getInvitationEvent());
 								if (context != null) {
+									if(context.getModerator() == null){
+										context.setModerator(new Invitee(context.getInvitation().getInviter(),
+																	context.getInvitation().getInviter(),
+																	"","",EConferenceContext.ROLE_MODERATOR));
+									}
 									EConferencePlugin.getDefault().getHelper()
 											.open(context);
 								} else {
