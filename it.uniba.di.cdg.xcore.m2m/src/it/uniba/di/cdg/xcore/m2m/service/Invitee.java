@@ -25,109 +25,121 @@
 package it.uniba.di.cdg.xcore.m2m.service;
 
 /**
- * A chat invitee. 
+ * A chat invitee.
  */
 public class Invitee {
 
-    String id;
-    
-    String fullName;
-    
-    String email;
-    
-    String organization;
+	String id;
 
-    String role;
-    
-    /**
-     * Default constructor (initialize nothing).
-     */
-    public Invitee() {
-        super();
-    }
-    
-    /**
-     * @param id
-     * @param fullName
-     * @param email
-     * @param organization
-     */
-    public Invitee( String id, String fullName, String email, String organization, String role ) {
-        super();
-        this.id = id;
-        this.fullName = fullName;
-        this.email = email;
-        this.organization = organization;
-        this.role = role;
-    }
+	String fullName;
 
-    /**
-     * @return Returns the email.
-     */
-    public String getEmail() {
-        return email;
-    }
+	String email;
 
-    /**
-     * @param email The email to set.
-     */
-    public void setEmail( String email ) {
-        this.email = email;
-    }
+	String organization;
 
-    /**
-     * @return Returns the fullName.
-     */
-    public String getFullName() {
-        return fullName;
-    }
+	String role;
 
-    /**
-     * @param fullName The fullName to set.
-     */
-    public void setFullName( String fullName ) {
-        this.fullName = fullName;
-    }
+	/**
+	 * Default constructor (initialize nothing).
+	 */
+	public Invitee() {
+		super();
+	}
 
-    /**
-     * @return Returns the id.
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * @param id
+	 * @param fullName
+	 * @param email
+	 * @param organization
+	 */
+	public Invitee(String id, String fullName, String email,
+			String organization, String role) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.email = email;
+		this.organization = organization;
+		this.role = role;
+	}
 
-    /**
-     * @param id The id to set.
-     */
-    public void setId( String id ) {
-        this.id = id;
-    }
+	/**
+	 * @return Returns the email.
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-    /**
-     * @return Returns the organization.
-     */
-    public String getOrganization() {
-        return organization;
-    }
+	/**
+	 * @param email
+	 *            The email to set.
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    /**
-     * @param organization The organization to set.
-     */
-    public void setOrganization( String organization ) {
-        this.organization = organization;
-    }
+	/**
+	 * @return Returns the fullName.
+	 */
+	public String getFullName() {
+		return fullName;
+	}
 
-    /**
-     * @return Returns the role.
-     */
-    public String getRole() {
-        return role;
-    }
+	/**
+	 * @param fullName
+	 *            The fullName to set.
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    /**
-     * @param role The role to set.
-     */
-    public void setRole( String role ) {
-        this.role = role;
-    }
+	/**
+	 * @return Returns the id.
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            The id to set.
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return Returns the organization.
+	 */
+	public String getOrganization() {
+		return organization;
+	}
+
+	/**
+	 * @param organization
+	 *            The organization to set.
+	 */
+	public void setOrganization(String organization) {
+		this.organization = organization;
+	}
+
+	/**
+	 * @return Returns the role.
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role
+	 *            The role to set.
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return fullName + "(" + id + ")\n" + organization + " (" + email
+				+ ")\n" + "Role: " + role;
+	}
 }

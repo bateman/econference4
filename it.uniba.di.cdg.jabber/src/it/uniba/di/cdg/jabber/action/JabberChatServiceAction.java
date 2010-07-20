@@ -1,20 +1,16 @@
 package it.uniba.di.cdg.jabber.action;
 
-import static it.uniba.di.cdg.smackproviders.SmackCommons.CDG_NAMESPACE;
 import it.uniba.di.cdg.jabber.JabberBackend;
 import it.uniba.di.cdg.smackproviders.TypingNotificationPacket;
 import it.uniba.di.cdg.xcore.network.action.IChatServiceActions;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smack.packet.PacketExtension;
 import org.jivesoftware.smack.util.StringUtils;
 
 public class JabberChatServiceAction implements IChatServiceActions{

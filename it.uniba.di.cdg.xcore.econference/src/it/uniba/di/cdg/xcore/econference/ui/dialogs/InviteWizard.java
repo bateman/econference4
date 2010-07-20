@@ -25,6 +25,12 @@ import org.eclipse.ui.IWorkbenchWizard;
  */
 
 public class InviteWizard extends Wizard implements INewWizard {
+
+	private static final String DEFAULT_FILE_PATH = System
+			.getProperty("user.home")
+			+ System.getProperty("file.separator")
+			+ ".econference" + System.getProperty("file.separator");
+
 	// wizard pages
 	GenInfoPage genInfoPage;
 	InvitePage invitePage;
@@ -83,16 +89,25 @@ public class InviteWizard extends Wizard implements INewWizard {
 		this.context = lastOnePage.getContext();
 		String filepath = genInfoPage.getFilePath();
 		try {
-			ConferenceContextWriter writer = new ConferenceContextWriter(filepath, context);
-			writer.serialize();			
+			ConferenceContextWriter writer = new ConferenceContextWriter(
+					filepath, context);
+			writer.serialize();
+			// if we save the ecx file not in the default location
+			// we store a copy there
+			if (!filepath.equals(DEFAULT_FILE_PATH)) {
+				String filename = genInfoPage.getConferenceName();
+				filename += ".ecx";
+				writer = new ConferenceContextWriter(
+						DEFAULT_FILE_PATH + filename, context);
+				writer.serialize();
+			}
+			
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return true;
 	}
 

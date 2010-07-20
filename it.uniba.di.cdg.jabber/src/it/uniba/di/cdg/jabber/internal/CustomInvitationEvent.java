@@ -31,35 +31,46 @@ import it.uniba.di.cdg.xcore.network.messages.IMessage;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
- * We customize the invitation event providing custom code for invitation rejectal.
+ * We customize the invitation event providing custom code for invitation
+ * rejectal.
  */
 public class CustomInvitationEvent extends InvitationEvent {
-    
-    private JabberBackend backend;
-    
-    /**
-     * (Just pass the parameters to the base constructor)
-     * 
-     * @param backend 
-     * @param backendId
-     * @param room
-     * @param inviter
-     * @param moderator 
-     * @param reason
-     * @param password
-     * @param message
-     */
-    public CustomInvitationEvent( JabberBackend backend, String backendId, String room, String inviter,
-    		String reason, String password, IMessage message ) {
-        super( backendId, room, inviter, reason, password, message );
-        this.backend = backend;
-    }
+	
+	private static final int CUSTOM_EVENT_TYPE = 0x03;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.InvitationEvent#decline(java.lang.String)
-     */
-    @Override
-    public void decline( String reason ) {
-        MultiUserChat.decline( backend.getConnection(), getRoom(), getInviter(), reason ); 
+	private JabberBackend backend;
+
+	/**
+	 * (Just pass the parameters to the base constructor)
+	 * 
+	 * @param backend
+	 * @param backendId
+	 * @param room
+	 * @param inviter
+	 * @param moderator
+	 * @param reason
+	 * @param password
+	 * @param message
+	 */
+	public CustomInvitationEvent(JabberBackend backend, String backendId,
+			String room, String schedule, String inviter, String reason,
+			String password, IMessage message) {		
+		super(backendId, room, inviter, schedule, reason, password);
+		this.backend = backend;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.InvitationEvent#decline(java.lang.String)
+	 */
+	@Override
+	public void decline(String reason) {
+		MultiUserChat.decline(backend.getConnection(), getRoom(), getInviter(),
+				reason);
+	}
+	
+	public int getEventType() {
+    	return CUSTOM_EVENT_TYPE;
     }
 }

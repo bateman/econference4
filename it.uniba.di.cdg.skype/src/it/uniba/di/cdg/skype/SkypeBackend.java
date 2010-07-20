@@ -25,8 +25,6 @@ import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatInvitationDeclinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
-import it.uniba.di.cdg.xcore.network.messages.IMessage;
-import it.uniba.di.cdg.xcore.network.messages.SystemMessage;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
 import it.uniba.di.cdg.xcore.network.services.ICapabilities;
 import it.uniba.di.cdg.xcore.network.services.ICapability;
@@ -109,8 +107,7 @@ public class SkypeBackend implements IBackend {
 					getHelper().notifyBackendEvent(event);
 				}
 
-				else if (extensionName.equals(ExtensionConstants.ROOM_INVITE)) {
-					IMessage m = new SystemMessage("");
+				else if (extensionName.equals(ExtensionConstants.ROOM_INVITE)) {					
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String reason = param.get(ExtensionConstants.REASON);
@@ -121,7 +118,7 @@ public class SkypeBackend implements IBackend {
 					skypeMultiChatServiceAction.putWaitingRoom(chat.getId(),
 							senderId);
 					IBackendEvent event = new InvitationEvent(getBackendId(),
-							roomId, senderId, reason, "", m);
+							roomId, senderId, "schedule n/a", reason, "");
 					getHelper().notifyBackendEvent(event);
 				}
 

@@ -68,6 +68,8 @@ public interface IEConferenceHelper {
      */
     void openFromFile();
     
+    void openFromFile(String filepath);
+    
     void openInviteWizard();
     /**
      * Ask the user whether to accept the invitation. Note that this method will automatically rejects invitation

@@ -23,3 +23,6 @@ Export-Package: it.uniba.di.cdg.xcore.aspects,
  it.uniba.di.cdg.xcore.econference.ui.actions,
  it.uniba.di.cdg.xcore.econference.ui.views
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/jpathwatch-0-92a.jar,
+ .,
+ lib/java_file_copy_library-0.9.6_all.jar

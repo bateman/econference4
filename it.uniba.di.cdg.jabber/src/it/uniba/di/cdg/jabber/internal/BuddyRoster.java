@@ -251,6 +251,7 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
 
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.network.model.IEntry#getChilds()
+     * FIXME generates a java.util.ConcurrentModificationException
      */
     public IEntry[] getChilds() {
         // Collect all groups and buddies without a group

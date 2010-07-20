@@ -24,10 +24,10 @@
  */
 package it.uniba.di.cdg.xcore.econference.model.storedevents;
 
-import java.io.UnsupportedEncodingException;
-
+import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
-import it.uniba.di.cdg.xcore.network.messages.IMessage;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * 
@@ -51,10 +51,6 @@ public interface IStoredEventEntry extends IBackendEvent {
      */
     String getInviter();
 
-    /**
-     * @return Returns the message.
-     */
-    IMessage getMessage();
 
     /**
      * @return Returns the password.
@@ -76,6 +72,8 @@ public interface IStoredEventEntry extends IBackendEvent {
      * @return
      */
     String getHash();
+    
+    String getSchedule();
 
     /**
      * 
@@ -97,5 +95,11 @@ public interface IStoredEventEntry extends IBackendEvent {
      * @throws UnsupportedEncodingException 
      */
     byte[] getBytes() throws UnsupportedEncodingException;
+    
+    /**
+     * Returns the wrapped InvitationEvent
+     * @return
+     */
+    public InvitationEvent getInvitationEvent();
 
 }

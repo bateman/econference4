@@ -37,7 +37,6 @@ import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
  * Clients are responsible to inject collaborators.
  */
 public class EConferenceContext extends MultiChatContext {
-    //public static final String ROLE_DIRECTOR = "director";
     public static final String ROLE_MODERATOR = "moderator";
     public static final String ROLE_SCRIBE = "scribe";
     public static final String ROLE_PARTICIPANT = "participant";
@@ -50,9 +49,7 @@ public class EConferenceContext extends MultiChatContext {
     private String name;
 
     private String topic;
-
-    //private Invitee director;    
-    
+      
     private String schedule;
     
     private Invitee scribe;
@@ -105,12 +102,7 @@ public class EConferenceContext extends MultiChatContext {
     public void setName( String name ) {
         this.name = name;
     }
-    
-    /**
-     * Returns the conference' topic
-     * 
-     * @return
-     */
+
     
     /**
      * Returns the conference' schedule.
@@ -125,6 +117,12 @@ public class EConferenceContext extends MultiChatContext {
     public void setSchedule( String schedule ) {
         this.schedule = schedule;
     }
+    
+    /**
+     * Returns the conference' topic
+     * 
+     * @return
+     */
     public String getTopic() {
         return topic;
     }
@@ -138,25 +136,7 @@ public class EConferenceContext extends MultiChatContext {
         this.topic = topic;
     }
     
-    /**
-     * Returns the conference's director.
-     * 
-     * @return the director
-     *
-    public Invitee getDirector() {
-        return director;
-    }*/
-
-    /**
-     * Set the conference' director. 
-     * 
-     * @param director
-     *
-    public void setDirector( Invitee director ) {
-        this.director = director;
-    }*/
-
-
+   
     /**
      * Returns the scribe associated to the conference.
      * 

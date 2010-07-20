@@ -168,10 +168,11 @@ public class UIHelper implements IUIHelper {
      * @see it.uniba.di.cdg.xcore.ui.IUIHelper#requestFile(java.lang.String[])
      */
     @SwtSyncExec
-    public String requestFile( String... fileExtensions ) {
+    public String requestFile( String[] fileExtensions, String filePath ) {
         FileDialog fileDialog = new FileDialog( getShell(), SWT.OPEN );
         fileDialog.setText("Open File");
         fileDialog.setFilterExtensions( fileExtensions );
+        fileDialog.setFilterPath(filePath);
 
         return fileDialog.open();
     }

@@ -1,19 +1,11 @@
 package it.uniba.di.cdg.jabber;
 
-import it.uniba.di.cdg.xcore.network.NetworkPlugin;
-import it.uniba.di.cdg.xcore.network.services.Capability;
 import it.uniba.di.cdg.xcore.network.services.INetworkService;
-import it.uniba.di.cdg.xcore.util.IExtensionProcessor;
-import it.uniba.di.cdg.xcore.util.IExtensionVisitor;
-import it.uniba.di.cdg.xcore.util.VirtualProxyFactory;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
 
 public class ServiceRegistry {
 

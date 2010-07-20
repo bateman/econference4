@@ -128,4 +128,6 @@ public interface IItemList{
      * @return string iterator
      */
     public Iterator<IDiscussionItem> iterator();
+
+	void toArray(String[] items);
 }

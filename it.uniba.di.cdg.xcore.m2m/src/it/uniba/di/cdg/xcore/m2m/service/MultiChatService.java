@@ -31,9 +31,9 @@ import it.uniba.di.cdg.xcore.m2m.events.ViewReadOnlyEvent;
 import it.uniba.di.cdg.xcore.m2m.model.ChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
-import it.uniba.di.cdg.xcore.m2m.model.Participant;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Status;
+import it.uniba.di.cdg.xcore.m2m.model.Participant;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.action.IMultiChatServiceActions;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
@@ -67,8 +67,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;

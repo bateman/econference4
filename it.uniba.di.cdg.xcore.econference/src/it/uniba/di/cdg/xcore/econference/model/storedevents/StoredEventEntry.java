@@ -26,101 +26,173 @@ package it.uniba.di.cdg.xcore.econference.model.storedevents;
 
 import java.io.UnsupportedEncodingException;
 
+import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 
 /**
  * 
  */
-public class StoredEventEntry extends InvitationEvent implements IStoredEventEntry {
+public class StoredEventEntry implements IStoredEventEntry {
 
-    /**
+	private InvitationEvent event;
+
+	/**
      * 
      */
-    private static final String ENCODING = "iso-8859-1";
+	private static final String ENCODING = "iso-8859-1";
 
-    /**
+	/**
      * 
      */
-    private String accountId;
+	private String accountId;
 
-    private String hash;
+	private String hash;
 
-    /**
-     * 
-     * @param accountId
-     * @param backendId
-     * @param room
-     * @param inviter
-     * @param reason
-     * @param password
-     */
-    public StoredEventEntry( String accountId, String backendId, String room, String inviter,
-            String reason, String password ) {
-        super( backendId, room, inviter, reason, password, null );
-        this.accountId = accountId;
-    }
+	/**
+	 * 
+	 * @param accountId
+	 * @param backendId
+	 * @param room
+	 * @param inviter
+	 * @param reason
+	 * @param password
+	 */
+	public StoredEventEntry(String accountId, String backendId, String room,
+			String inviter, String schedule, String reason, String password) {
+		event = new InvitationEvent(backendId, room, inviter, schedule, reason,
+				password);
+		this.accountId = accountId;
+	}
 
-    /**
-     * 
-     * @param event
-     */
-    public StoredEventEntry( InvitationEvent event ) {
-        super( event.getBackendId(), event.getRoom(), event.getInviter(), event.getReason(), event
-                .getPassword(), event.getMessage() );
-        this.accountId = "";
-    }
+	/**
+	 * 
+	 * @param event
+	 */
+	public StoredEventEntry(InvitationEvent event) {
+		this.event = event;
+		this.accountId = "";
+	}
 
-    /* (non-Javadoc) 
-     * @see it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry#getAccountId()
-     */
-    public String getAccountId() {
-        return accountId;
-    }
+	public StoredEventEntry(String accountid, String backendid, String room,
+			String inviter, String schedule, String reason, String passwd,
+			String[] invitees, String[] items) {
+		event = new ConferenceOrganizationEvent(backendid, room, inviter,
+				schedule, reason, passwd, invitees, items);
+		this.accountId = accountid;
+	}
 
-    public void setAccountId( String accountId ) {
-        this.accountId = accountId;
-    }
+	public InvitationEvent getEvent() {
+		return event;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.InvitationEvent#toString()
-     */
-    @Override
-    public String toString() {
-        return String.format( "Invitation to eConference %s", getRoom().split("@")[0] );
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry
+	 * #getAccountId()
+	 */
+	public String getAccountId() {
+		return accountId;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry#getHash()
-     */
-    public String getHash() {
-        return hash;
-    }
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry#setHash(java.lang.String)
-     */
-    public void setHash( String hash ) {
-        this.hash = hash;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.InvitationEvent#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("Invitation to eConference %s",
+				getRoom().split("@")[0]);
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry#getBytes()
-     */
-    public byte[] getBytes() throws UnsupportedEncodingException {
-        StringBuffer bf = new StringBuffer( accountId );
-        bf.append( getReason() ).append( getRoom() ).append( getBackendId() ).append( getInviter() );
-        return bf.toString().getBytes(ENCODING);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry
+	 * #getHash()
+	 */
+	public String getHash() {
+		return hash;
+	}
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals( Object eentry ) {
-        if (eentry instanceof IStoredEventEntry) {
-            IStoredEventEntry storedEntry = (IStoredEventEntry) eentry;           
-            return hash.equals( storedEntry.getHash() );
-        } else
-            return false;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry
+	 * #setHash(java.lang.String)
+	 */
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry
+	 * #getBytes()
+	 */
+	public byte[] getBytes() throws UnsupportedEncodingException {
+		StringBuffer bf = new StringBuffer(accountId);
+		bf.append(getReason()).append(getRoom()).append(getBackendId())
+				.append(getInviter());
+		return bf.toString().getBytes(ENCODING);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object eentry) {
+		if (eentry instanceof IStoredEventEntry) {
+			IStoredEventEntry storedEntry = (IStoredEventEntry) eentry;
+			return hash.equals(storedEntry.getHash());
+		} else
+			return false;
+
+	}
+
+	@Override
+	public String getBackendId() {		
+		return event.getBackendId();
+	}
+
+	@Override
+	public String getInviter() {		
+		return event.getInviter();
+	}
+
+	@Override
+	public String getPassword() {
+		return event.getPassword();
+	}
+
+	@Override
+	public String getReason() {
+		return event.getReason();
+	}
+
+	@Override
+	public String getRoom() {
+		return event.getRoom();
+	}
+
+	@Override
+	public String getSchedule() {
+		return event.getSchedule();
+	}
+
+	@Override
+	public InvitationEvent getInvitationEvent() {		
+		return event;
+	}
 }

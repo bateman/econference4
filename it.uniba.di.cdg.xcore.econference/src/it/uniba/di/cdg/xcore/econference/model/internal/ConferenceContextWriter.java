@@ -71,10 +71,10 @@ public class ConferenceContextWriter {
 	}
 
 	private void createConferenceItemsNode(Iterator<IDiscussionItem> iterator) {
-		Node conferenceItem = doc.createElement("conference:item");
+		Node conferenceItem = doc.createElement("conference:items");
 		while (iterator.hasNext()) {
 			IDiscussionItem item = (IDiscussionItem) iterator.next();
-			Node itemNode = doc.createElement("conference:items");
+			Node itemNode = doc.createElement("conference:item");
 			itemNode.appendChild(doc.createTextNode(item.getText()));
 			conferenceItem.appendChild(itemNode);
 		}
@@ -140,7 +140,7 @@ public class ConferenceContextWriter {
 			Invitee participant = (Invitee) invitees.next();
 			// prevents from adding scribe and moderator again
 			if (!participant.getId().equals(moderator.getId())
-					&& !participant.getId().equals(scribe.getId())) {
+					&& (scribe != null && !participant.getId().equals(scribe.getId())) ) {
 				Node participantNode = doc.createElement("role:expert");
 				Node fullName = doc.createElement("role:fullname");
 				fullName.appendChild(doc.createTextNode(participant
@@ -169,9 +169,7 @@ public class ConferenceContextWriter {
 
 	public void serialize() throws ParserConfigurationException,
 			FileNotFoundException {
-
 		buildDocument();
-
 		OutputStream out = new FileOutputStream(filepath);
 		prettyPrintWithDOM3LS(doc, out);
 	}

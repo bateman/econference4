@@ -24,7 +24,6 @@
  */
 package it.uniba.di.cdg.jabber;
 
-import static it.uniba.di.cdg.smackproviders.SmackCommons.CDG_NAMESPACE;
 import it.uniba.di.cdg.smackproviders.AgendaItemListPacket;
 import it.uniba.di.cdg.smackproviders.AgendaOperationPacket;
 import it.uniba.di.cdg.smackproviders.ConferenceStatusPacket;
@@ -37,22 +36,8 @@ import it.uniba.di.cdg.smackproviders.SpecialPrivilegeNotificationPacket;
 import it.uniba.di.cdg.smackproviders.TypingNotificationPacket;
 import it.uniba.di.cdg.smackproviders.ViewReadOnlyPacket;
 import it.uniba.di.cdg.smackproviders.WhiteBoardNotificationPacket;
-import it.uniba.di.cdg.xcore.network.NetworkPlugin;
-import it.uniba.di.cdg.xcore.network.services.Capability;
-import it.uniba.di.cdg.xcore.network.services.INetworkService;
-import it.uniba.di.cdg.xcore.util.ExtensionProcessor;
-import it.uniba.di.cdg.xcore.util.IExtensionProcessor;
-import it.uniba.di.cdg.xcore.util.IExtensionVisitor;
-import it.uniba.di.cdg.xcore.util.VirtualProxyFactory;
 
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.ISafeRunnable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.core.runtime.SafeRunner;
-import org.jivesoftware.smack.packet.PacketExtension;
-import org.jivesoftware.smack.provider.PacketExtensionProvider;
 import org.jivesoftware.smack.provider.ProviderManager;
 import org.osgi.framework.BundleContext;
 
@@ -133,35 +118,35 @@ public class JabberPlugin extends Plugin {
 	 * TODO: descrivere
 	 * @param manager
 	 */
-	private void addPacketExtensionFromExtensionPoint() {
-		try {
-			IConfigurationElement[] config = Platform.getExtensionRegistry()
-					.getConfigurationElementsFor(PACKETS_EXTENSION_POINT_ID);
-			for (IConfigurationElement e : config) {
-				final Object o = e.createExecutableExtension(CLASS_ATTR);
-				if (o instanceof IPacketExtension) {
-					ISafeRunnable runnable = new ISafeRunnable() {
-						@Override
-						public void handleException(Throwable exception) {
-							System.out.println("Exception in client");
-						}
-
-						@Override
-						public void run() throws Exception {
-							IPacketExtension packetExtension = (IPacketExtension) o;
-							manager.addExtensionProvider(packetExtension.getElementName(), 
-									packetExtension.getElementName(), packetExtension.getProvider());					
-						}
-					};
-					SafeRunner.run(runnable);
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			//System.out.println(ex.getMessage());
-		}
-
-	}
+//	private void addPacketExtensionFromExtensionPoint() {
+//		try {
+//			IConfigurationElement[] config = Platform.getExtensionRegistry()
+//					.getConfigurationElementsFor(PACKETS_EXTENSION_POINT_ID);
+//			for (IConfigurationElement e : config) {
+//				final Object o = e.createExecutableExtension(CLASS_ATTR);
+//				if (o instanceof IPacketExtension) {
+//					ISafeRunnable runnable = new ISafeRunnable() {
+//						@Override
+//						public void handleException(Throwable exception) {
+//							System.out.println("Exception in client");
+//						}
+//
+//						@Override
+//						public void run() throws Exception {
+//							IPacketExtension packetExtension = (IPacketExtension) o;
+//							manager.addExtensionProvider(packetExtension.getElementName(), 
+//									packetExtension.getElementName(), packetExtension.getProvider());					
+//						}
+//					};
+//					SafeRunner.run(runnable);
+//				}
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//			//System.out.println(ex.getMessage());
+//		}
+//
+//	}
 	
 	/**
 	 * This method looking for all packet extension point in order to add the Extension Provider to the manager
