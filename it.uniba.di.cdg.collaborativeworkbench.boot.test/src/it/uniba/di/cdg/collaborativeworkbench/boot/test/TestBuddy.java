@@ -102,4 +102,16 @@ public class TestBuddy implements IBuddy {
 		return 0;
 	}
 
+	@Override
+	public boolean isOffline() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isNotOffline() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
