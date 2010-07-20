@@ -48,6 +48,8 @@ public class StoredEventEntry implements IStoredEventEntry {
 
 	private String hash;
 
+	private String receivedOn;
+
 	/**
 	 * 
 	 * @param accountId
@@ -56,12 +58,14 @@ public class StoredEventEntry implements IStoredEventEntry {
 	 * @param inviter
 	 * @param reason
 	 * @param password
+	 * @param time 
 	 */
 	public StoredEventEntry(String accountId, String backendId, String room,
-			String inviter, String schedule, String reason, String password) {
+			String inviter, String schedule, String reason, String password, String time) {
 		event = new InvitationEvent(backendId, room, inviter, schedule, reason,
 				password);
 		this.accountId = accountId;
+		this.setReceivedOn(time);
 	}
 
 	/**
@@ -71,14 +75,16 @@ public class StoredEventEntry implements IStoredEventEntry {
 	public StoredEventEntry(InvitationEvent event) {
 		this.event = event;
 		this.accountId = "";
+		this.receivedOn = "";
 	}
 
 	public StoredEventEntry(String accountid, String backendid, String room,
 			String inviter, String schedule, String reason, String passwd,
-			String[] invitees, String[] items) {
+			String[] invitees, String[] items, String time) {
 		event = new ConferenceOrganizationEvent(backendid, room, inviter,
 				schedule, reason, passwd, invitees, items);
 		this.accountId = accountid;
+		this.setReceivedOn(time);
 	}
 
 	public InvitationEvent getEvent() {
@@ -194,5 +200,13 @@ public class StoredEventEntry implements IStoredEventEntry {
 	@Override
 	public InvitationEvent getInvitationEvent() {		
 		return event;
+	}
+
+	public void setReceivedOn(String receivedOn) {
+		this.receivedOn = receivedOn;
+	}
+
+	public String getReceivedOn() {
+		return receivedOn;
 	}
 }

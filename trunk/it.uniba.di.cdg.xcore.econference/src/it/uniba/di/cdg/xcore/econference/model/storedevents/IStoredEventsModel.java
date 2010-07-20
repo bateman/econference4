@@ -33,7 +33,7 @@ import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
  */
 public interface IStoredEventsModel extends IBackendEventListener {
 
-    void addStoredEventEntry( InvitationEvent event );
+    void addStoredEventEntry( InvitationEvent event, String time );
 
     void removeStoredEventEntry( IStoredEventEntry event );
 

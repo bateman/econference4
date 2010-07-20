@@ -45,7 +45,9 @@ import java.io.FilenameFilter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -95,7 +97,9 @@ public class StoredEventsModel implements IStoredEventsModel,
 
 	public static final String SCHEDULE = "schedule";
 
-	// public static final String EVENT_RCVD_ON = "rcvd_on";
+	public static final String EVENT_RCVD_ON = "rcvd_on";
+
+	public static final String EVENT_TYPE = "type";
 
 	public static final String BACKEND_ID = "backend_id";
 
@@ -109,6 +113,8 @@ public class StoredEventsModel implements IStoredEventsModel,
 
 	private Thread folderMonitorThread;
 
+	private DateFormat dateFormat;
+
 	/**
 	 * Default constructor.
 	 */
@@ -117,6 +123,8 @@ public class StoredEventsModel implements IStoredEventsModel,
 		listeners = new Vector<IStoredEventsModelListener>();
 		folderMonitorThread = new Thread(new FolderMonitor(this,
 				DEFAULT_FILE_PATH));
+		dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT,
+				DateFormat.SHORT);
 	}
 
 	/**
@@ -137,51 +145,54 @@ public class StoredEventsModel implements IStoredEventsModel,
 		// get a list of the ecx files
 		File dir = new File(DEFAULT_FILE_PATH);
 		File[] ecxFiles = dir.listFiles(new FilenameFilter() {
-
 			@Override
 			public boolean accept(File f, String name) {
 				return name.endsWith(".ecx") ? true : false;
 			}
 		});
-		// for each file generate an creation event to be stored
-		for (int i = 0; i < ecxFiles.length; i++) {
-			File f = ecxFiles[i];
-			EConferenceContext context = new EConferenceContext();
-			context.setBackendId(NetworkPlugin.getDefault().getHelper()
-					.getRegistry().getDefaultBackendId());
-			ConferenceContextLoader loader = new ConferenceContextLoader(
-					context);
-			try {
-				loader.load(new FileInputStream(f));
-				Iterator<Invitee> inviteeList = context.getInvitees()
-						.iterator();
-				String[] invitees = new String[context.getInvitees().size()];
-				for (int i1 = 0; inviteeList.hasNext(); i1++) {
-					Invitee invitee = (Invitee) inviteeList.next();
-					invitees[i1] = invitee.toString();
-				}
+		synchronized (this) {
+			// for each file generate an creation event to be stored
+			for (int i = 0; i < ecxFiles.length; i++) {
+				File f = ecxFiles[i];
+				EConferenceContext context = new EConferenceContext();
+				context.setBackendId(NetworkPlugin.getDefault().getHelper()
+						.getRegistry().getDefaultBackendId());
+				ConferenceContextLoader loader = new ConferenceContextLoader(
+						context);
+				try {
+					loader.load(new FileInputStream(f));
+					Iterator<Invitee> inviteeList = context.getInvitees()
+							.iterator();
+					String[] invitees = new String[context.getInvitees().size()];
+					for (int i1 = 0; inviteeList.hasNext(); i1++) {
+						Invitee invitee = (Invitee) inviteeList.next();
+						invitees[i1] = invitee.toString();
+					}
 
-				IItemList itemList = context.getItemList();
-				String[] items = new String[itemList.size()];
-				itemList.toArray(items);
-				InvitationEvent event = new ConferenceOrganizationEvent(
-						context.getBackendId(), context.getRoom(), context
-								.getModerator().getFullName()
-								+ "("
-								+ context.getModerator().getId() + ")",
-						context.getSchedule(), "", context.getPassword(),
-						invitees, items);
-				addStoredEventEntry(event);
-			} catch (InvalidContextException e) {
-				Logger.getLogger(
-						"it.uniba.di.cdg.xcore.econference.model.storedevents")
-						.log(Level.INFO, e.getMessage());
-				continue;
-			} catch (Exception e) {
-				System.err.println("Failed to load eConference context file: "
-						+ f.getAbsolutePath());
-				e.printStackTrace();
-				continue;
+					IItemList itemList = context.getItemList();
+					String[] items = new String[itemList.size()];
+					itemList.toArray(items);
+					InvitationEvent event = new ConferenceOrganizationEvent(
+							context.getBackendId(), context.getRoom(), context
+									.getModerator().getFullName()
+									+ "("
+									+ context.getModerator().getId() + ")",
+							context.getSchedule(), "", context.getPassword(),
+							invitees, items);
+					String time = dateFormat.format(new Date(f.lastModified()));
+					addStoredEventEntry(event, time);
+				} catch (InvalidContextException e) {
+					Logger.getLogger(
+							"it.uniba.di.cdg.xcore.econference.model.storedevents")
+							.log(Level.INFO, e.getMessage());
+					continue;
+				} catch (Exception e) {
+					System.err
+							.println("Failed to load eConference context file: "
+									+ f.getAbsolutePath());
+					e.printStackTrace();
+					continue;
+				}
 			}
 		}
 	}
@@ -214,12 +225,13 @@ public class StoredEventsModel implements IStoredEventsModel,
 	 * it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModel
 	 * #addStoredEventEntry(it.uniba.di.cdg.xcore.m2m.InvitationEvent)
 	 */
-	public void addStoredEventEntry(InvitationEvent event) {
+	public void addStoredEventEntry(InvitationEvent event, String time) {
 		IStoredEventEntry se = new StoredEventEntry(event);
 		String accId = getUserAccountId(event.getBackendId());
 		se.setAccountId(accId);
 		String hash = hexEncode(hash(se));
 		se.setHash(hash);
+		se.setReceivedOn(time);
 		storedEvents.put(hash, se);
 		storeEventsPreferences();
 		notifyUpdateToListeners();
@@ -413,8 +425,12 @@ public class StoredEventsModel implements IStoredEventsModel,
 							.println("event: " + EVENT_HASH + event.getHash());
 
 					connection.put(ACCOUNT_ID, userAccountId);
+					connection.put(EVENT_RCVD_ON, event.getReceivedOn());
 
-					if (event.getInvitationEvent() instanceof ConferenceOrganizationEvent) {
+					int eventType = event.getInvitationEvent().getEventType();
+					connection.putInt(EVENT_TYPE, eventType);
+
+					if (event.getInvitationEvent().getEventType() == ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE) {
 						ConferenceOrganizationEvent coe = (ConferenceOrganizationEvent) event
 								.getInvitationEvent();
 						if (coe.getItems() != null) {
@@ -516,11 +532,13 @@ public class StoredEventsModel implements IStoredEventsModel,
 
 				System.out.println("LOAD: " + events.length);
 				for (int i = 0; i < events.length; i++) {
+					IStoredEventEntry se;
 					String event = events[i];
 					Preferences node = connections.node(event);
 
 					System.out.println(event);
 
+					String time = node.get(EVENT_RCVD_ON, "");
 					String hash = node.get(HASH, "");
 					String accountid = node.get(ACCOUNT_ID, "");
 					String backendid = node.get(BACKEND_ID, "");
@@ -529,22 +547,29 @@ public class StoredEventsModel implements IStoredEventsModel,
 					String reason = node.get(REASON, "");
 					String passwd = node.get(PASSWORD, "");
 					String schedule = node.get(SCHEDULE, "");
-					String[] items = node.get(ITEM_LIST, "").split(SEPARATOR);
-					String[] invitees = node.get(INVITEES_LIST, "").split(
-							SEPARATOR);
+					int type = Integer.parseInt(node.get(EVENT_TYPE, "0"));
+					if (type == ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE) {
+						String[] items = node.get(ITEM_LIST, "").split(
+								SEPARATOR);
+						String[] invitees = node.get(INVITEES_LIST, "").split(
+								SEPARATOR);
 
-					IStoredEventEntry se;
-					// loaded prefs are for a ConferenceOrganizationEvent
-					if (items.length >= 1 && invitees.length >= 1)
-						se = new StoredEventEntry(accountid, backendid, room,
-								inviter, schedule, reason, passwd, invitees,
-								items);
-					else
+						// loaded prefs are for a ConferenceOrganizationEvent
+						if (items.length >= 1 && invitees.length >= 1) {
+							se = new StoredEventEntry(accountid, backendid,
+									room, inviter, schedule, reason, passwd,
+									invitees, items, time);
+							se.setHash(hash);
+							storedEvents.put(hash, se);
+						}
+					} else {
 						// loaded prefs are for a InvitationEvent
 						se = new StoredEventEntry(accountid, backendid, room,
-								inviter, schedule, reason, passwd);
-					se.setHash(hash);
-					storedEvents.put(hash, se);
+								inviter, schedule, reason, passwd, time);
+						se.setHash(hash);
+						storedEvents.put(hash, se);
+					}
+
 				}
 
 			}
@@ -598,7 +623,8 @@ public class StoredEventsModel implements IStoredEventsModel,
 	 */
 	public void onBackendEvent(IBackendEvent event) {
 		if (event instanceof InvitationEvent) {
-			addStoredEventEntry((InvitationEvent) event);
+			String time = dateFormat.format(new Date());
+			addStoredEventEntry((InvitationEvent) event, time);
 			System.out.println("New invitation event rcvd");
 		} else if (event instanceof BackendStatusChangeEvent) {
 			BackendStatusChangeEvent bs = (BackendStatusChangeEvent) event;
