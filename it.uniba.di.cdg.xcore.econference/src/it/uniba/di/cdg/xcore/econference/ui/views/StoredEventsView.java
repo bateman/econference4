@@ -449,11 +449,13 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 										.askUserAcceptInvitation(
 												invitation.getInvitationEvent());
 								if (context != null) {
-									if(context.getModerator() == null){
+									//TODO possibile soluzione al problema: Viene rilevato il moderatore della stanza 
+									//     solo se è il localUser
+									/*if(context.getModerator() == null){
 										context.setModerator(new Invitee(context.getInvitation().getInviter(),
 																	context.getInvitation().getInviter(),
 																	"","",EConferenceContext.ROLE_MODERATOR));
-									}
+									}*/
 									EConferencePlugin.getDefault().getHelper()
 											.open(context);
 								} else {
