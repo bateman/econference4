@@ -340,11 +340,12 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 				StringBuffer text = new StringBuffer();
 				if (null != invitation) {
 					text.append(String
-							.format("eConference: %s\nFrom: %s\nTo: %s\nRoom: %s\nPassword: %s",
+							.format("eConference: %s\nFrom: %s\nTo: %s\nRoom: %s\nSchedule: %s\nPassword: %s",
 									invitation.getRoom().split("@")[0],
 									invitation.getInviter(),
 									invitation.getAccountId(),
 									invitation.getRoom(),
+									invitation.getSchedule(),
 									invitation.getPassword()));
 					if (invitation.getInvitationEvent() instanceof ConferenceOrganizationEvent) {
 						ConferenceOrganizationEvent coe = (ConferenceOrganizationEvent) invitation
