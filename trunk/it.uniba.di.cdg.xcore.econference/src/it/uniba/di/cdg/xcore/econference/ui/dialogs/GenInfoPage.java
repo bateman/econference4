@@ -6,6 +6,7 @@ import it.uniba.di.cdg.xcore.econference.model.internal.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.internal.ItemList;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -41,6 +42,10 @@ public class GenInfoPage extends WizardPage {
 	private static final String AUDIO_SKYPE = "Audio (Skype)";
 	private static final String TEXT_ONLY_XMPP = "Text only (XMPP/GTalk)";
 	private static final String[] mediaTypes = { TEXT_ONLY_XMPP, AUDIO_SKYPE };
+	private static final String DEFAULT_FILE_PATH = System
+			.getProperty("user.home")
+			+ System.getProperty("file.separator")
+			+ ".econference" + System.getProperty("file.separator");
 
 	Composite composite;
 	EConferenceContext context;
@@ -62,8 +67,10 @@ public class GenInfoPage extends WizardPage {
 	protected GenInfoPage(String arg0) {
 		super(arg0);
 		setTitle("General conference info");
-		setDescription("Step 1: Enter conference information.\n Fields marked with * are required.");
+		setDescription("Step 1: Enter conference information.\nFields marked with * are required. "
+				+ "You should avoid using reserved chars (e.g. <, >, &) as they will be escaped.");
 		context = new EConferenceContext();
+		new File(DEFAULT_FILE_PATH).mkdirs();
 	}
 
 	/**
@@ -157,11 +164,11 @@ public class GenInfoPage extends WizardPage {
 						}
 						serviceText.setText(confServices
 								.getMucService(serviceCombo.getSelectionIndex()));
-						nameConferenceText.setText("econference@"
-								+ serviceText.getText());
-						filePathText.setText(System.getProperty("user.home")
-								+ System.getProperty("file.separator")
+						if (nameConferenceText.getText().equals(""))
+							nameConferenceText.setText("econference");
+						filePathText.setText(DEFAULT_FILE_PATH
 								+ nameConferenceText.getText() + ".ecx");
+
 					}
 				});
 		serviceCombo.setEnabled(false);
@@ -170,20 +177,6 @@ public class GenInfoPage extends WizardPage {
 		serviceText = new Text(composite, SWT.BORDER);
 		serviceText.setLayoutData(new GridData(188, 15));
 		serviceText.setEnabled(false);
-		serviceText.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				nameConferenceText.setText("econference@"
-						+ serviceText.getText());
-			}
-
-		});
 
 		new CLabel(composite, SWT.NONE)
 				.setText("Conference name (recommended): ");
@@ -197,9 +190,8 @@ public class GenInfoPage extends WizardPage {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				filePathText.setText(System.getProperty("user.home")
-						+ System.getProperty("file.separator")
-						+ nameConferenceText.getText() + ".ecx");
+				filePathText.setText(DEFAULT_FILE_PATH
+							+ nameConferenceText.getText() + ".ecx");			
 			}
 
 			@Override
@@ -231,8 +223,7 @@ public class GenInfoPage extends WizardPage {
 		// gd.grabExcessHorizontalSpace = true;
 		filePathText = new Text(composite, SWT.BORDER);
 		filePathText.setLayoutData(gd);
-		filePathText.setText(System.getProperty("user.home")
-				+ System.getProperty("file.separator") + "econference.ecx");
+		filePathText.setText(DEFAULT_FILE_PATH + "econference.ecx");
 		Button browseButton = new Button(composite, SWT.PUSH);
 		browseButton.setText("Browse");
 		browseButton.setLayoutData(new GridData(50, 22));
@@ -295,12 +286,9 @@ public class GenInfoPage extends WizardPage {
 	 */
 
 	private String setRoom() {
-		/*
-		 * if (this.nameConferenceText.getText().equals("")) return
-		 * this.nickNameText.getText() + ".room@" + this.serviceText.getText();
-		 */
-		return this.nameConferenceText.getText();// + "@"
-		// + this.serviceText.getText();
+		return this.serviceText.getText().equals("") ? this.nameConferenceText
+				.getText() : this.nameConferenceText.getText() + "@"
+				+ this.serviceText.getText();
 	}
 
 	public IWizardPage getNextPage() {
@@ -378,6 +366,10 @@ public class GenInfoPage extends WizardPage {
 	 */
 	public boolean isPageComplete() {
 		return true;
+	}
+
+	public String getConferenceName() {
+		return nameConferenceText.getText();
 	}
 
 	// TODO write the server list to a txt file

@@ -25,13 +25,15 @@
 package it.uniba.di.cdg.xcore.m2m.events;
 
 import it.uniba.di.cdg.xcore.network.events.AbstractBackendEvent;
-import it.uniba.di.cdg.xcore.network.messages.IMessage;
 
 /**
  * An invitation event is a a remote request from someone to participate to a 
  * multichat conversation. 
  */
 public class InvitationEvent extends AbstractBackendEvent {
+	
+	public static final int INVITATION_EVENT_TYPE = 0x01;
+	
     /**
      * The room name (id) to join to.
      */
@@ -51,11 +53,11 @@ public class InvitationEvent extends AbstractBackendEvent {
      * The (optional) password that should be used when joining the chat room.
      */
     private final String password;
-
+  
     /**
-     * The first message to display on the chat.
+     * When to join the meeting
      */
-    private final IMessage message;
+    private final String schedule;
 
     /**
      * Construct a new invitation event.
@@ -66,14 +68,14 @@ public class InvitationEvent extends AbstractBackendEvent {
      * @param password
      * @param message
      */
-    public InvitationEvent( String backendId, String room, String inviter, String reason,
-            String password, IMessage message ) {
+    public InvitationEvent( String backendId, String room, String inviter, String schedule, String reason, 
+            String password ) {
         super( backendId );
         this.room = room;
         this.inviter = inviter;
         this.reason = reason;
         this.password = (password == null ? "" : password);
-        this.message = message;
+        this.schedule = schedule;
     }
 
     /**
@@ -81,13 +83,6 @@ public class InvitationEvent extends AbstractBackendEvent {
      */
     public String getInviter() {
         return inviter;
-    }
-
-    /**
-     * @return Returns the message.
-     */
-    public IMessage getMessage() {
-        return message;
     }
 
     /**
@@ -111,7 +106,11 @@ public class InvitationEvent extends AbstractBackendEvent {
         return room;
     }
 
-    /**
+    public String getSchedule() {
+		return schedule;
+	}
+
+	/**
      * Decline the invitation: this method is left to implementation for performing custom
      * declination.
      * 
@@ -119,5 +118,16 @@ public class InvitationEvent extends AbstractBackendEvent {
      */
     public void decline( String reason ) {
         // By default it does nothing: implementation should implement this
+    }
+    
+    public int getEventType() {
+    	return INVITATION_EVENT_TYPE;
+    }
+    
+    @Override
+    public String toString() {
+    	// if it's jabber room we remove the @
+    	// skype does not need a @
+    	return getRoom().split("@")[0];
     }
 }

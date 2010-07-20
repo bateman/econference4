@@ -24,8 +24,6 @@
  */
 package it.uniba.di.cdg.smackproviders;
 
-import static it.uniba.di.cdg.smackproviders.SmackCommons.CDG_NAMESPACE;
-
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.PacketExtension;

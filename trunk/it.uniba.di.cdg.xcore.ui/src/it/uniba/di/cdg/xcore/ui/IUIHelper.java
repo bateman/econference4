@@ -125,9 +125,10 @@ public interface IUIHelper {
      * Show an open file dialog for picking up a single file matching the specified extensions.
      * 
      * @param fileExtensions extensions to accept (i.e. "*.ecx", "*.*" ) 
+     * @param filePath 
      * @return the absolute path file or <code>null</code> if no file was selected
      */
-    String requestFile( String... fileExtensions );
+    String requestFile( String[] fileExtensions, String filePath);
 
     /**
      * Show a "save as" dialog for inputting a filename for saving.

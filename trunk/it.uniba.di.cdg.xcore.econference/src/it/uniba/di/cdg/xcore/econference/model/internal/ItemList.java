@@ -222,5 +222,14 @@ public class ItemList implements IItemList {
 		return items.iterator();
 	}
 
+	@Override
+	public void toArray(String[] items) {
+		Iterator<IDiscussionItem> i = this.iterator();
+		for (int j = 0; j < items.length; j++) {
+			items[j] = i.next().toString();
+		}
+		
+	}
+
 
 }

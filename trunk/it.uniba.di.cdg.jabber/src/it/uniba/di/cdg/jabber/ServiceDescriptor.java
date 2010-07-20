@@ -24,11 +24,10 @@
  */
 package it.uniba.di.cdg.jabber;
 
+import it.uniba.di.cdg.xcore.network.services.INetworkService;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-
-import it.uniba.di.cdg.xcore.network.IBackend;
-import it.uniba.di.cdg.xcore.network.services.INetworkService;
 
 /**
  * Implementation of {@see it.uniba.di.cdg.xcore.network.IBackendDescriptor}.

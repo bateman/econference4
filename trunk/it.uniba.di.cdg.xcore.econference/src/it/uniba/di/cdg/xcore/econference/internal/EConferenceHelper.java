@@ -159,7 +159,13 @@ public class EConferenceHelper implements IEConferenceHelper {
 	 * .lang.String)
 	 */
 	public void openFromFile() {
-		final JoinConferenceDialog dlg = new JoinConferenceDialog(null);
+		openFromFile("");
+	}
+	
+	@Override
+	public void openFromFile(String filepath) {
+		final JoinConferenceDialog dlg = new JoinConferenceDialog(null, filepath);
+		dlg.setFileName(filepath);
 		if (Dialog.OK == dlg.open()) {
 			// 1. Open a file dialog, asking the conference file name
 			IEConferenceManager manager = open(dlg.getContext());
@@ -169,6 +175,7 @@ public class EConferenceHelper implements IEConferenceHelper {
 					manager.inviteNewParticipant(i.getId());
 			}
 		}
+		
 	}
 
 	/*

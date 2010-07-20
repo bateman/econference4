@@ -130,7 +130,7 @@ public class JabberBackend implements IBackend, PacketListener,
 			if (JabberBackend.this.connection == connection) {
 				final IMessage m = convertFromSmack(message);
 				notifyEventListeners(new CustomInvitationEvent(
-						JabberBackend.this, ID, room, inviter, reason,
+						JabberBackend.this, ID, room, "schedule n/a", inviter, reason,
 						password, m));
 			}
 		}

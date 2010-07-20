@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Shell;
 public class JoinConferenceDialog extends Dialog {
     private LoadConferenceFileDialogUI ui;
 
-    private String fileName;
+    private String fileName = "";
     private String nickName;
     private boolean sendInvitations;
     
@@ -54,7 +54,12 @@ public class JoinConferenceDialog extends Dialog {
         super( parentShell );
     }
     
-    /* (non-Javadoc)
+    public JoinConferenceDialog(Shell parentShell, String filepath) {		
+		this(parentShell);
+		setFileName(filepath);
+	}
+
+	/* (non-Javadoc)
      * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
      */
     @Override
@@ -64,7 +69,7 @@ public class JoinConferenceDialog extends Dialog {
         FillLayout layout = new FillLayout( SWT.VERTICAL );
         composite.setLayout( layout );
 
-        ui = new LoadConferenceFileDialogUI( composite, SWT.NONE );
+        ui = new LoadConferenceFileDialogUI( composite, SWT.NONE, fileName );
 
         return composite;
     }
@@ -100,6 +105,10 @@ public class JoinConferenceDialog extends Dialog {
      */
     public String getFileName() {
         return fileName;
+    }
+    
+    public void setFileName(String fileName) {
+    	this.fileName = fileName;
     }
 
     /**

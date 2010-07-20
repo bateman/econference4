@@ -78,11 +78,12 @@ public class ConferenceContextLoader {
 			// Get the backend
 			String backendid = xPath.evaluate("/meeting/platform/backendid",
 					doc);
-			if (!backendid.equals(context.getBackendId()))
-				throw new InvalidContextException("Backend mismatch:\n"
-						+ "Expected: " + context.getBackendId() + "\n Was: "
-						+ backendid);
-
+			if (!backendid.equals(context.getBackendId())) {
+				final String msg = "Skipping file due to backend mismatch:\n" + "Your current backend: "
+						+ context.getBackendId()
+						+ "\nFound: " + backendid;				
+				throw new InvalidContextException(msg);
+			}
 			// get the schedule
 			String schedule = xPath.evaluate("/meeting/schedule", doc);
 			context.setSchedule(schedule);
@@ -94,7 +95,7 @@ public class ConferenceContextLoader {
 			String topic = xPath.evaluate("/meeting/topic", doc);
 			context.setTopic(topic);
 
-			String room = xPath.evaluate("/meeting/room", doc);
+			String room = xPath.evaluate("/meeting/platform/room", doc);
 			// FIXME toppa momentanea per evitare di aprire il pannello per
 			// la sclenta della stanza
 			if (room.equals(""))
@@ -137,8 +138,9 @@ public class ConferenceContextLoader {
 			}
 
 			// Other experts
-			NodeList experts = (NodeList) xPath.evaluate(
-					"/meeting/participants/*", doc, XPathConstants.NODESET);
+			NodeList experts = (NodeList) xPath
+					.evaluate("participants/*", supportTeam,
+							XPathConstants.NODESET);
 			for (int i = 0; i < experts.getLength(); i++) {
 				Node n = experts.item(i);
 
