@@ -174,9 +174,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 					itemList.toArray(items);
 					InvitationEvent event = new ConferenceOrganizationEvent(
 							context.getBackendId(), context.getRoom(), context
-									.getModerator().getFullName()
-									+ "("
-									+ context.getModerator().getId() + ")",
+									.getModerator().getId(),
 							context.getSchedule(), "", context.getPassword(),
 							invitees, items);
 					String time = dateFormat.format(new Date(f.lastModified()));
