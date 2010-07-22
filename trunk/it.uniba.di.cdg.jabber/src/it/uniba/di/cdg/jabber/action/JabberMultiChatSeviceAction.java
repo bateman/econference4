@@ -161,9 +161,10 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 
         @Override
         public void joined( String userId ) {         
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
         	String name = XMPPUtils.getUserNameFromChatString( userId );
         	String role = smackMultiChat.getOccupant(userId).getRole();
-            IBackendEvent event = new MultiChatUserJoinedEvent(JabberBackend.ID, userId, name, role);
+            IBackendEvent event = new MultiChatUserJoinedEvent(JabberBackend.ID, cleanJid, name, role);
             backend.getHelper().notifyBackendEvent(event);
         }
                     
