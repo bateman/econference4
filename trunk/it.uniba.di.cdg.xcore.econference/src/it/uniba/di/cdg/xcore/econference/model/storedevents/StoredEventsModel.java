@@ -144,52 +144,59 @@ public class StoredEventsModel implements IStoredEventsModel,
 	public void reloadContextFiles() {
 		// get a list of the ecx files
 		File dir = new File(DEFAULT_FILE_PATH);
-		File[] ecxFiles = dir.listFiles(new FilenameFilter() {
-			@Override
-			public boolean accept(File f, String name) {
-				return name.endsWith(".ecx") ? true : false;
-			}
-		});
-		synchronized (this) {
-			// for each file generate an creation event to be stored
-			for (int i = 0; i < ecxFiles.length; i++) {
-				File f = ecxFiles[i];
-				EConferenceContext context = new EConferenceContext();
-				context.setBackendId(NetworkPlugin.getDefault().getHelper()
-						.getRegistry().getDefaultBackendId());
-				ConferenceContextLoader loader = new ConferenceContextLoader(
-						context);
-				try {
-					loader.load(new FileInputStream(f));
-					Iterator<Invitee> inviteeList = context.getInvitees()
-							.iterator();
-					String[] invitees = new String[context.getInvitees().size()];
-					for (int i1 = 0; inviteeList.hasNext(); i1++) {
-						Invitee invitee = (Invitee) inviteeList.next();
-						invitees[i1] = invitee.toString();
-					}
+		if (dir != null) {
+			File[] ecxFiles = dir.listFiles(new FilenameFilter() {
+				@Override
+				public boolean accept(File f, String name) {
+					return name.endsWith(".ecx") ? true : false;
+				}
+			});
+			if (ecxFiles != null) {
+				synchronized (this) {
+					// for each file generate an creation event to be stored
+					for (int i = 0; i < ecxFiles.length; i++) {
+						File f = ecxFiles[i];
+						EConferenceContext context = new EConferenceContext();
+						context.setBackendId(NetworkPlugin.getDefault()
+								.getHelper().getRegistry()
+								.getDefaultBackendId());
+						ConferenceContextLoader loader = new ConferenceContextLoader(
+								context);
+						try {
+							loader.load(new FileInputStream(f));
+							Iterator<Invitee> inviteeList = context
+									.getInvitees().iterator();
+							String[] invitees = new String[context
+									.getInvitees().size()];
+							for (int i1 = 0; inviteeList.hasNext(); i1++) {
+								Invitee invitee = (Invitee) inviteeList.next();
+								invitees[i1] = invitee.toString();
+							}
 
-					IItemList itemList = context.getItemList();
-					String[] items = new String[itemList.size()];
-					itemList.toArray(items);
-					InvitationEvent event = new ConferenceOrganizationEvent(
-							context.getBackendId(), context.getRoom(), context
-									.getModerator().getId(),
-							context.getSchedule(), "", context.getPassword(),
-							invitees, items);
-					String time = dateFormat.format(new Date(f.lastModified()));
-					addStoredEventEntry(event, time);
-				} catch (InvalidContextException e) {
-					Logger.getLogger(
-							"it.uniba.di.cdg.xcore.econference.model.storedevents")
-							.log(Level.INFO, e.getMessage());
-					continue;
-				} catch (Exception e) {
-					System.err
-							.println("Failed to load eConference context file: "
-									+ f.getAbsolutePath());
-					e.printStackTrace();
-					continue;
+							IItemList itemList = context.getItemList();
+							String[] items = new String[itemList.size()];
+							itemList.toArray(items);
+							InvitationEvent event = new ConferenceOrganizationEvent(
+									context.getBackendId(), context.getRoom(),
+									context.getModerator().getId(),
+									context.getSchedule(), "",
+									context.getPassword(), invitees, items);
+							String time = dateFormat.format(new Date(f
+									.lastModified()));
+							addStoredEventEntry(event, time);
+						} catch (InvalidContextException e) {
+							Logger.getLogger(
+									"it.uniba.di.cdg.xcore.econference.model.storedevents")
+									.log(Level.INFO, e.getMessage());
+							continue;
+						} catch (Exception e) {
+							System.err
+									.println("Failed to load eConference context file: "
+											+ f.getAbsolutePath());
+							e.printStackTrace();
+							continue;
+						}
+					}
 				}
 			}
 		}

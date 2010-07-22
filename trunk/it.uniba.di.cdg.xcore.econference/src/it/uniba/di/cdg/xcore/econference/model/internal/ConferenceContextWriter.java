@@ -140,7 +140,7 @@ public class ConferenceContextWriter {
 			Invitee participant = (Invitee) invitees.next();
 			// prevents from adding scribe and moderator again
 			if (!participant.getId().equals(moderator.getId())
-					&& (scribe != null && !participant.getId().equals(scribe.getId())) ) {
+					&& (scribe == null || !participant.getId().equals(scribe.getId())) ) {
 				Node participantNode = doc.createElement("role:expert");
 				Node fullName = doc.createElement("role:fullname");
 				fullName.appendChild(doc.createTextNode(participant
