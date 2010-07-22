@@ -167,7 +167,7 @@ public class SkypeBackend implements IBackend {
 							.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
 					IBackendEvent event = new MultiChatMessageEvent(
-							getBackendId(), msg, getUserId());
+							getBackendId(), msg, senderId);
 					getHelper().notifyBackendEvent(event);
 				}
 
