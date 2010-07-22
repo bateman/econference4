@@ -394,9 +394,14 @@ public class LastPage extends WizardPage implements Listener {
 		TableItem[] items = table.getItems();
 		Invitee p = null;
 		for (int i = 0; i < items.length; i++) {
-			p = new Invitee(items[i].getText(1), items[i].getText(2),
-					items[i].getText(3), items[i].getText(4), items[i].getText(
-							0).toLowerCase());
+			String id = items[i].getText(1);
+			if (NetworkPlugin.getDefault().getRegistry().getDefaultBackendId()
+					.equals("it.uniba.di.cdg.jabber.jabberBackend"))
+				if (id.indexOf("/") != -1)
+					id = id.substring(0, id.indexOf("/"));
+
+			p = new Invitee(id, items[i].getText(2), items[i].getText(3),
+					items[i].getText(4), items[i].getText(0).toLowerCase());
 			if (items[i].getText(0).equals("Moderator"))
 				this.getContext().setModerator(p);
 			if (items[i].getText(0).equals("Scribe"))
@@ -417,5 +422,5 @@ public class LastPage extends WizardPage implements Listener {
 	public EConferenceContext getContext() {
 		return this.context;
 	}
-	
+
 }
