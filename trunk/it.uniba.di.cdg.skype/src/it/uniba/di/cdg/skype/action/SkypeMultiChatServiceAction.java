@@ -81,8 +81,9 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void grantVoice(String room, String to) {
-		// TODO Auto-generated method stub
-
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put(ExtensionConstants.USER, to);
+		SendExtensionProtocolMessage(ExtensionConstants.GRANT_VOICE, param);
 	}
 
 	@Override
@@ -155,8 +156,9 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void revokeVoice(String room, String to) {
-		// TODO Auto-generated method stub
-
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put(ExtensionConstants.USER, to);
+		SendExtensionProtocolMessage(ExtensionConstants.REVOKE_VOICE, param);
 	}
 
 	@Override
@@ -179,7 +181,8 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	public void sendChatRoom(String userId){
 		try {
 			skypeRoom.addUser(Skype.getUser(userId));
-			addPartecipant(userId, Skype.getUser(userId).getFullName()); 
+			String name = Skype.getUser(userId).getFullName();
+			addPartecipant(userId, (name.equals("")) ? userId : name); 
 			SendExtensionProtocolMessage(ExtensionConstants.CHAT_ROOM, new HashMap<String, String>());
 		} catch (SkypeException e) {
 			e.printStackTrace();
@@ -199,8 +202,10 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		try {
 			users = chat.getAllMembers();
 			for(User u: users){
-				if(!u.getId().equals(backend.getUserId()))
-					addPartecipant(u.getId(), u.getFullName());
+				if(!u.getId().equals(backend.getUserId())){
+					String name = u.getFullName();
+					addPartecipant(u.getId(), (name.equals("") ? u.getId() : name));
+				}
 			}
 		} catch (SkypeException e) {
 			e.printStackTrace();
