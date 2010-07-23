@@ -332,9 +332,9 @@ public class MultiChatManager implements IMultiChatManager {
             if (Status.NOT_JOINED.equals( p.getStatus() ))
                 continue;
             if (Status.FROZEN.equals( p.getStatus() ))
-                unfrozen.add( p.getNickName() );
+                unfrozen.add( p.getId() );
             else if (Status.JOINED.equals( p.getStatus() ))
-                frozen.add( p.getNickName() );
+                frozen.add( p.getId() );
         }
         
         if (!frozen.isEmpty())

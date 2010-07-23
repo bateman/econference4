@@ -25,6 +25,8 @@ import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatInvitationDeclinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
 import it.uniba.di.cdg.xcore.network.services.ICapabilities;
 import it.uniba.di.cdg.xcore.network.services.ICapability;
@@ -171,6 +173,25 @@ public class SkypeBackend implements IBackend {
 					getHelper().notifyBackendEvent(event);
 				}
 
+				else if (extensionName.equals(ExtensionConstants.REVOKE_VOICE)){
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
+					String userId = param.get(ExtensionConstants.USER);
+					IBackendEvent event = new MultiChatVoiceRevokedEvent(
+							getBackendId(), userId);
+					getHelper().notifyBackendEvent(event);
+				}
+
+				else if (extensionName.equals(ExtensionConstants.GRANT_VOICE)){
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
+					String userId = param.get(ExtensionConstants.USER);
+					IBackendEvent event = new MultiChatVoiceGrantedEvent(
+							getBackendId(), userId);
+					getHelper().notifyBackendEvent(event);
+				}
+				
+				// è un estensione gestita dal core
 				else {
 					HashMap<String, String> param;
 					param = XmlUtil.readXmlExtension(content);

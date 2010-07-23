@@ -18,5 +18,7 @@ public class ExtensionConstants {
 	public final static String M_TO_M = "m2m";
 	public final static String MESSAGE = "message";
 	public final static String CHAT_MESSAGE = "chatMessage";
+	public final static String REVOKE_VOICE = "revokeVoice";
+	public final static String GRANT_VOICE = "grantVoice";
 
 }
