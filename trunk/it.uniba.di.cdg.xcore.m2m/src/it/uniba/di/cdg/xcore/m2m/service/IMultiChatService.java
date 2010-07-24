@@ -27,6 +27,7 @@ package it.uniba.di.cdg.xcore.m2m.service;
 import it.uniba.di.cdg.xcore.m2m.events.IManagerEventListener;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel;
+import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
 import it.uniba.di.cdg.xcore.network.events.ITypingEventListener;
 import it.uniba.di.cdg.xcore.network.events.ITypingListener;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
@@ -148,10 +149,10 @@ public interface IMultiChatService extends INetworkService, ITypingListener {
     /**
      * Send a private message to the specified user.
      * 
-     * @param userId
+     * @param p
      * @param message
      */
-    void sendPrivateMessage( String userId, String message );
+    void sendPrivateMessage( IParticipant p, String message );
 
     /**
      * Let the user the ability to speak.

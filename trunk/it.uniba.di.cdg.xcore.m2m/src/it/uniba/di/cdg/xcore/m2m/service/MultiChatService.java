@@ -415,8 +415,8 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#sendMessage(java.lang.String, java.lang.String)
      */
-    public void sendPrivateMessage( String userId, String message ) {
-    	
+    public void sendPrivateMessage( IParticipant p , String message ) {
+    	String userId = p.getId();
         HashMap<String, String> param = new HashMap<String, String>();
         param.put(MESSAGE, message);
         param.put(TO, userId);
@@ -424,8 +424,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
         
         multiChatServiceActions.SendExtensionProtocolMessage(PRIVATE_MESSAGE, param);
         
-        IParticipant p = getModel().getParticipant( userId );
-        notifyLocalSystemMessage( String.format( "[PM sent to %s] %s", p.getNickName(), message ) );
+       notifyLocalSystemMessage( String.format( "[PM sent to %s] %s", p.getNickName(), message ) );
     }
 
     /* (non-Javadoc)
@@ -753,7 +752,10 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		
 		else if(event instanceof MultiChatUserLeftEvent){
 			MultiChatUserLeftEvent mcule = (MultiChatUserLeftEvent)event;
-            IParticipant p = getModel().getParticipant( mcule.getUserId() );
+			// TODO see if it works with skype backend too
+			String nick = mcule.getUserId();
+			IParticipant p = getModel().getParticipantByNickName(nick);
+            //IParticipant p = getModel().getParticipant( mcule.getUserId() );
             if (p == null)
                 return;
             getModel().removeParticipant( p );
