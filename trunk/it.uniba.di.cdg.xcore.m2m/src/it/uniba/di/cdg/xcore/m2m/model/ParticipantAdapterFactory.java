@@ -24,17 +24,16 @@
  */
 package it.uniba.di.cdg.xcore.m2m.model;
 
-import java.util.Iterator;
-
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Status;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
-import it.uniba.di.cdg.xcore.network.services.Capabilities;
 import it.uniba.di.cdg.xcore.network.services.ICapabilities;
 import it.uniba.di.cdg.xcore.network.services.ICapability;
 import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 import it.uniba.di.cdg.xcore.ui.views.IActivatableView;
+
+import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -42,8 +41,6 @@ import org.eclipse.ui.IActionFilter;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
-
-import sun.security.action.GetBooleanAction;
 
 /**
  * Adapter for {@see it.uniba.di.cdg.xcore.m2m.model.IParticipant}: this will provide a 
