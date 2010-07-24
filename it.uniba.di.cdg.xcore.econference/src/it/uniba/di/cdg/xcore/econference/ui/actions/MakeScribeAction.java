@@ -30,8 +30,9 @@ import it.uniba.di.cdg.xcore.m2m.model.ParticipantSpecialPrivileges;
 import it.uniba.di.cdg.xcore.m2m.model.SpecialPrivilegesAction;
 import it.uniba.di.cdg.xcore.m2m.ui.actions.popup.AbstractParticipantActionDelegate;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.util.Assert;
+
 
 /**
  * Action for making a participant as scribe. 
