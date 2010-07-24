@@ -23,6 +23,7 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -44,7 +45,6 @@ import org.jivesoftware.smackx.muc.DefaultParticipantStatusListener;
 import org.jivesoftware.smackx.muc.DefaultUserStatusListener;
 import org.jivesoftware.smackx.muc.InvitationRejectionListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
-import org.jivesoftware.smackx.muc.Occupant;
 import org.jivesoftware.smackx.muc.ParticipantStatusListener;
 import org.jivesoftware.smackx.muc.RoomInfo;
 import org.jivesoftware.smackx.muc.SubjectUpdatedListener;
@@ -55,7 +55,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 	private JabberBackend backend;
 	private MultiUserChat smackMultiChat;
 	private String userId;
-	private String userRule; 
+	private String userRole; 
 	
 	/* Definizione di tutti i listeners usati per la stanza*/
 	PacketListener messageListener = new PacketListener() {
@@ -131,31 +131,36 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
          */
         @Override
         public void nicknameChanged( String userId, String userName ) {
-            IBackendEvent event = new MultiChatNameChangedEvent(JabberBackend.ID, userId, userName);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+            IBackendEvent event = new MultiChatNameChangedEvent(JabberBackend.ID, cleanJid, userName);
             backend.getHelper().notifyBackendEvent(event);
         }
 
         @Override
         public void moderatorGranted(String userId){
-        	IBackendEvent event = new MultiChatModeratorGrantedEvent(JabberBackend.ID, userId);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+        	IBackendEvent event = new MultiChatModeratorGrantedEvent(JabberBackend.ID, cleanJid);
         	backend.getHelper().notifyBackendEvent(event);
         }
         
         @Override
         public void moderatorRevoked(String userId) {
-            IBackendEvent event = new MultiChatModeratorRevokedEvent(JabberBackend.ID, userId);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+            IBackendEvent event = new MultiChatModeratorRevokedEvent(JabberBackend.ID, cleanJid);
             backend.getHelper().notifyBackendEvent(event);
         }
         
         @Override
         public void ownershipGranted(String userId) {
-            IBackendEvent event = new MultiChatOwnershipGrantedEvent(JabberBackend.ID, userId);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+            IBackendEvent event = new MultiChatOwnershipGrantedEvent(JabberBackend.ID, cleanJid);
             backend.getHelper().notifyBackendEvent(event);
         }
         
         @Override
         public void ownershipRevoked(String userId) {
-            IBackendEvent event = new MultiChatOwnershipRevokedEvent(JabberBackend.ID, userId);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+            IBackendEvent event = new MultiChatOwnershipRevokedEvent(JabberBackend.ID, cleanJid);
             backend.getHelper().notifyBackendEvent(event);
         }
 
@@ -170,20 +175,25 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
                     
 
         @Override
-        public void left( String userId ) {
+        public void left( String userId ) {   
+        	// here we'have to retrieve the Jid from the nick in case of a left event, 
+        	// this fails because that user is already out of the room
+        	// we then need to retrieve the jid from the nick, using the conference model, at a lower app level
         	IBackendEvent event = new MultiChatUserLeftEvent(JabberBackend.ID, userId);
         	backend.getHelper().notifyBackendEvent(event);
         }
 
         @Override
         public void voiceGranted( String userId ) {
-        	IBackendEvent event = new MultiChatVoiceGrantedEvent(JabberBackend.ID, userId);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+        	IBackendEvent event = new MultiChatVoiceGrantedEvent(JabberBackend.ID, cleanJid);
         	backend.getHelper().notifyBackendEvent(event);
         }
 
         @Override
         public void voiceRevoked( String userId ) {
-            IBackendEvent event = new MultiChatVoiceRevokedEvent(JabberBackend.ID, userId);
+        	String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(userId).getJid());
+            IBackendEvent event = new MultiChatVoiceRevokedEvent(JabberBackend.ID, cleanJid);
             backend.getHelper().notifyBackendEvent(event);
         }
 	};
@@ -401,20 +411,40 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 		
 		try {
 			smackMultiChat.create(nickName);
-			smackMultiChat.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+			// see http://xmpp.org/registrar/formtypes.html#http:--jabber.org-protocol-mucroomconfig 
+			// for more info
+			Form answerForm = smackMultiChat.getConfigurationForm().createAnswerForm();
+			answerForm.setAnswer("muc#roomconfig_moderatedroom", true);
+			// room non publicly listed on servers
+			answerForm.setAnswer("muc#roomconfig_publicroom", false);
+			// only moderator can invite others
+			answerForm.setAnswer("muc#roomconfig_allowinvites", false);
+			// anyone can see occupants' real jids
+			answerForm.setAnswer("muc#roomconfig_whois", Arrays.asList("anyone"));
+			smackMultiChat.sendConfigurationForm(answerForm);			
+			//smackMultiChat.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
 		} catch (XMPPException e) {
 			try {
 				smackMultiChat.join(nickName);
 				//FIXME controllare perchè grantModerator viene ignorata
-				if (moderator == true)
-		        	smackMultiChat.grantModerator(nickName);
+//				if (moderator == true) {
+//		        	smackMultiChat.grantModerator(nickName);
+//					Form form = smackMultiChat.getConfigurationForm();
+//					Form answerForm = form.createAnswerForm();
+//					answerForm.setAnswer("muc#roomconfig_moderatedroom", true);
+//					answerForm.setAnswer("muc#roomconfig_publicroom", false);
+//					answerForm.setAnswer("muc#roomconfig_allowinvites", false);
+//					answerForm.setAnswer("muc#roomconfig_whois", Arrays.asList("anyone"));
+//
+//					smackMultiChat.sendConfigurationForm(answerForm);
+//				}
 			} catch (XMPPException e1) {
 				e1.printStackTrace();
 			}
 		}
 		
 		if (moderator == true)
-			userRule = "moderator";
+			userRole = "moderator";
 		
         /*DiscussionHistory history = new DiscussionHistory();
         history.setMaxStanzas(Integer.MAX_VALUE);
@@ -441,7 +471,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 	@Override
 	public String getUserRole(String userId){
 		
-		return userRule;
+		return userRole;
 		
 		// XXX Wait a few time for the server to update its internal status
         /*Occupant me = null;
