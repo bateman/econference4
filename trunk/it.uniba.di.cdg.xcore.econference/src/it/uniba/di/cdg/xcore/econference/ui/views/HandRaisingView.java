@@ -530,6 +530,7 @@ public class HandRaisingView extends ViewPart implements IHandRaisingView {
      */
     public void setReadOnly( boolean readOnly ) {
         this.readOnly = readOnly;
+        updateActionStatusAccordingToStatus();
     }
 
     /* (non-Javadoc)
