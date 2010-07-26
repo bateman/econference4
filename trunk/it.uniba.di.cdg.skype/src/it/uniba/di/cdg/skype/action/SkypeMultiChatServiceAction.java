@@ -31,7 +31,16 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	Map<String, String> roomsId;
 	String userRule;
 	Vector<String> partecipants;
-	
+	String moderator;
+
+	public String getModerator() {
+		return moderator;
+	}
+
+	public void setModerator(String moderator) {
+		this.moderator = moderator;
+	}
+
 	public SkypeMultiChatServiceAction(IBackend backend) {
 		super();
 		this.backend = backend;
@@ -123,6 +132,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 				//setto i privilegi da moderatore
 				if(moderator){
 					userRule = "moderator";
+					setModerator(userId);
 				}
 				
 				//invito gli utenti coinvolti
@@ -150,8 +160,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -182,7 +191,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		try {
 			skypeRoom.addUser(Skype.getUser(userId));
 			String name = Skype.getUser(userId).getFullName();
-			addPartecipant(userId, (name.equals("")) ? userId : name); 
+			addPartecipant(userId, (name.equals("")) ? userId : name, ""); 
 			SendExtensionProtocolMessage(ExtensionConstants.CHAT_ROOM, new HashMap<String, String>());
 		} catch (SkypeException e) {
 			e.printStackTrace();
@@ -204,7 +213,8 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 			for(User u: users){
 				if(!u.getId().equals(backend.getUserId())){
 					String name = u.getFullName();
-					addPartecipant(u.getId(), (name.equals("") ? u.getId() : name));
+					addPartecipant(u.getId(), (name.equals("") ? u.getId() : name), 
+							(moderator.equals(u.getId()) ? "moderator" : ""));
 				}
 			}
 		} catch (SkypeException e) {
@@ -214,10 +224,10 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		
 	}
 	
-	private void addPartecipant(String partecipantId, String partecipantName){
+	private void addPartecipant(String partecipantId, String partecipantName, String role){
 		partecipants.add(partecipantId);
 		backend.getHelper().notifyBackendEvent(new MultiChatUserJoinedEvent(
-						backend.getBackendId(), partecipantId, partecipantName, ""));
+						backend.getBackendId(), partecipantId, partecipantName, role));
 	}
 
 }
