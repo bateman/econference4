@@ -211,14 +211,14 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		try {
 			users = chat.getAllMembers();
 			for(User u: users){
-				if(!u.getId().equals(backend.getUserId())){
+				//if(!u.getId().equals(backend.getUserId())){
 					String name = u.getFullName();
 					String role = "";
 					if (moderator != null)
 						role = moderator.equals(u.getId()) ? "moderator" : "";
 					addPartecipant(u.getId(), (name.equals("") ? u.getId() : name), 
 							role);
-				}
+				//}
 			}
 		} catch (SkypeException e) {
 			e.printStackTrace();
