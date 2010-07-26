@@ -93,4 +93,6 @@ public interface IChatRoomModel extends IParticipantListener {
     IParticipant getLocalUser();
     
     IParticipant getLocalUserOrParticipant( String id );
+
+	IParticipant getParticipantByNickName(String nick);
 }
