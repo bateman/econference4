@@ -20,5 +20,6 @@ public class ExtensionConstants {
 	public final static String CHAT_MESSAGE = "chatMessage";
 	public final static String REVOKE_VOICE = "revokeVoice";
 	public final static String GRANT_VOICE = "grantVoice";
+	public final static String MODERATOR = "moderator";
 
 }

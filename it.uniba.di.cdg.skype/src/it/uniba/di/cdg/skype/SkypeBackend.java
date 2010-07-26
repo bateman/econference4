@@ -126,6 +126,11 @@ public class SkypeBackend implements IBackend {
 
 				else if (extensionName
 						.equals(ExtensionConstants.ROOM_INVITE_ACCEPT)) {
+					if(skypeMultiChatServiceAction.getModerator().equals(getUserId())){
+						HashMap<String, String> param = new HashMap<String, String>();
+						param.put(ExtensionConstants.USER, getUserId());
+						skypeMultiChatServiceAction.SendExtensionProtocolMessage(ExtensionConstants.MODERATOR, param);
+					}
 					skypeMultiChatServiceAction.sendChatRoom(senderId);
 				}
 
@@ -189,6 +194,13 @@ public class SkypeBackend implements IBackend {
 					IBackendEvent event = new MultiChatVoiceGrantedEvent(
 							getBackendId(), userId);
 					getHelper().notifyBackendEvent(event);
+				}
+				
+				else if (extensionName.equals(ExtensionConstants.MODERATOR)){
+					HashMap<String, String> param = XmlUtil
+							.readXmlExtension(content);
+					String user = param.get(ExtensionConstants.USER);
+					skypeMultiChatServiceAction.setModerator(user);
 				}
 				
 				// è un estensione gestita dal core
