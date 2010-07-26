@@ -26,6 +26,7 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
 
    <launcherArgs>
       <vmArgs>-Xms40m -Xmx256m</vmArgs>
+      <vmArgsMac>-d32</vmArgsMac>
    </launcherArgs>
 
    <windowImages i16="/it.uniba.di.cdg.collaborativeworkbench.boot/cw_16x16.gif" i32="/it.uniba.di.cdg.collaborativeworkbench.boot/cw_32x32.gif"/>
