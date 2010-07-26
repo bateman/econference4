@@ -25,6 +25,7 @@
 package it.uniba.di.cdg.jabber.internal;
 
 import it.uniba.di.cdg.jabber.JabberBackend;
+import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.xcore.network.model.AbstractBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
@@ -252,8 +253,8 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.network.model.IEntry#getChilds()
      * FIXME generates a java.util.ConcurrentModificationException
-     */
-    public IEntry[] getChilds() {
+     * @SwtAsyncExec */    
+    public synchronized IEntry[] getChilds() {
         // Collect all groups and buddies without a group
         final Collection<IEntry> all = new HashSet<IEntry>( groups.values() );
         
