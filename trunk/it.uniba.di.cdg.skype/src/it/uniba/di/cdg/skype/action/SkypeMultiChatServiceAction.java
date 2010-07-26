@@ -91,7 +91,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	@Override
 	public void grantVoice(String room, String to) {
 		HashMap<String, String> param = new HashMap<String, String>();
-		param.put(ExtensionConstants.USER, to);
+		param.put(ExtensionConstants.USER, getIdFromNick(to));
 		SendExtensionProtocolMessage(ExtensionConstants.GRANT_VOICE, param);
 	}
 
@@ -166,7 +166,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	@Override
 	public void revokeVoice(String room, String to) {
 		HashMap<String, String> param = new HashMap<String, String>();
-		param.put(ExtensionConstants.USER, to);
+		param.put(ExtensionConstants.USER, getIdFromNick(to));
 		SendExtensionProtocolMessage(ExtensionConstants.REVOKE_VOICE, param);
 	}
 
@@ -211,14 +211,14 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		try {
 			users = chat.getAllMembers();
 			for(User u: users){
-				//if(!u.getId().equals(backend.getUserId())){
+				if(!u.getId().equals(backend.getUserId())){
 					String name = u.getFullName();
 					String role = "";
 					if (moderator != null)
 						role = moderator.equals(u.getId()) ? "moderator" : "";
 					addPartecipant(u.getId(), (name.equals("") ? u.getId() : name), 
 							role);
-				//}
+				}
 			}
 		} catch (SkypeException e) {
 			e.printStackTrace();
@@ -231,6 +231,24 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		partecipants.add(partecipantId);
 		backend.getHelper().notifyBackendEvent(new MultiChatUserJoinedEvent(
 						backend.getBackendId(), partecipantId, partecipantName, role));
+	}
+	
+	private String getIdFromNick(String nick){
+		String id = null;
+		try {
+			User[] users = skypeRoom.getAllMembers();
+			for(User u: users){
+				if(u.getFullName().equals(nick)){
+					id = u.getId();
+					break;
+				}
+			}
+					
+		} catch (SkypeException e) {
+			e.printStackTrace();
+		}
+		
+		return id;		
 	}
 
 }
