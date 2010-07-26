@@ -30,9 +30,9 @@ import it.uniba.di.cdg.xcore.m2m.events.IManagerEvent;
 import it.uniba.di.cdg.xcore.m2m.events.IManagerEventListener;
 import it.uniba.di.cdg.xcore.m2m.events.ViewReadOnlyEvent;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
-import it.uniba.di.cdg.xcore.m2m.model.Privileged;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Status;
+import it.uniba.di.cdg.xcore.m2m.model.Privileged;
 import it.uniba.di.cdg.xcore.m2m.service.IInvitationRejectedListener;
 import it.uniba.di.cdg.xcore.m2m.service.IMultiChatService;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
@@ -57,8 +57,6 @@ import it.uniba.di.cdg.xcore.ui.views.ITalkView.ISendMessagelListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveListener3;
@@ -332,9 +330,9 @@ public class MultiChatManager implements IMultiChatManager {
             if (Status.NOT_JOINED.equals( p.getStatus() ))
                 continue;
             if (Status.FROZEN.equals( p.getStatus() ))
-                unfrozen.add( p.getId() );
+                unfrozen.add( p.getNickName() );
             else if (Status.JOINED.equals( p.getStatus() ))
-                frozen.add( p.getId() );
+                frozen.add( p.getNickName() );
         }
         
         if (!frozen.isEmpty())
@@ -349,7 +347,7 @@ public class MultiChatManager implements IMultiChatManager {
     @Privileged( atleast = Role.PARTICIPANT )
     public void sendPrivateMessage( List<IParticipant> participants, String text ) {
         for (IParticipant p : participants) 
-            service.sendPrivateMessage( p.getId(), text );
+            service.sendPrivateMessage( p, text );
     }
 
     /* (non-Javadoc)
