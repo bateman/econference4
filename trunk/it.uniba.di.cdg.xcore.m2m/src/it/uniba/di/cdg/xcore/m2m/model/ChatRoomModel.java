@@ -28,6 +28,7 @@ import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +73,20 @@ public class ChatRoomModel implements IChatRoomModel {
      */
     public IParticipant getParticipant( String participantId ) {
         return participants.get( participantId );
+    }
+    
+    @Override
+    public IParticipant getParticipantByNickName(String nick) {
+    	Iterator<String> pIDs = participants.keySet().iterator();
+    	boolean found = false;
+    	IParticipant p = null;
+    	while (pIDs.hasNext() && !found) {
+			String id = (String) pIDs.next();
+			p = participants.get(id);
+			if (p.getNickName().equals(nick)) 
+				found = true;						
+		}
+    	return p;
     }
 
     /* (non-Javadoc)
