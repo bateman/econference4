@@ -83,10 +83,10 @@ public class ChatRoomModel implements IChatRoomModel {
     	while (pIDs.hasNext() && !found) {
 			String id = (String) pIDs.next();
 			p = participants.get(id);
-			if (p.getNickName().equals(nick)) 
+			if (p.getNickName().equals(nick) || p.getId().equals(nick)) 
 				found = true;						
 		}
-    	return p;
+    	return found == true ? p : null;
     }
 
     /* (non-Javadoc)
