@@ -126,12 +126,12 @@ public class SkypeBackend implements IBackend {
 
 				else if (extensionName
 						.equals(ExtensionConstants.ROOM_INVITE_ACCEPT)) {
+					skypeMultiChatServiceAction.sendChatRoom(senderId);
 					if(skypeMultiChatServiceAction.getModerator().equals(getUserId())){
 						HashMap<String, String> param = new HashMap<String, String>();
 						param.put(ExtensionConstants.USER, getUserId());
 						skypeMultiChatServiceAction.SendExtensionProtocolMessage(ExtensionConstants.MODERATOR, param);
 					}
-					skypeMultiChatServiceAction.sendChatRoom(senderId);
 				}
 
 				else if (extensionName
