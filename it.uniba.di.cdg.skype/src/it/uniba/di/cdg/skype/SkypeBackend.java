@@ -201,6 +201,7 @@ public class SkypeBackend implements IBackend {
 							.readXmlExtension(content);
 					String user = param.get(ExtensionConstants.USER);
 					skypeMultiChatServiceAction.setModerator(user);
+					skypeMultiChatServiceAction.updateChatRoom(chat);
 				}
 				
 				// è un estensione gestita dal core
