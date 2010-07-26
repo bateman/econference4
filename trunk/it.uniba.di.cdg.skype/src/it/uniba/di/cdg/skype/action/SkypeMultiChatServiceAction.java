@@ -213,8 +213,11 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 			for(User u: users){
 				if(!u.getId().equals(backend.getUserId())){
 					String name = u.getFullName();
+					String role = "";
+					if (moderator != null)
+						role = moderator.equals(u.getId()) ? "moderator" : "";
 					addPartecipant(u.getId(), (name.equals("") ? u.getId() : name), 
-							(moderator.equals(u.getId()) ? "moderator" : ""));
+							role);
 				}
 			}
 		} catch (SkypeException e) {
