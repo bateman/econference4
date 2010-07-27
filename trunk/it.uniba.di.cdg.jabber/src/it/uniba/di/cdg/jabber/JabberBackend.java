@@ -70,6 +70,7 @@ import org.jivesoftware.smack.AccountManager;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.PacketListener;
+import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.PacketFilter;
@@ -250,6 +251,9 @@ public class JabberBackend implements IBackend, PacketListener,
 						ctx.getPort(), serverContext.getServiceName());// serverContext.getServiceName()
 																		// );
 
+			// increase the response timeout to 10 secs. for slow connections and muc servers
+			SmackConfiguration.setPacketReplyTimeout(10000);
+			
 			// This doesn't work ...
 			// XMPPConnection.addConnectionListener(
 			// (ConnectionEstablishedListener) this );
