@@ -97,6 +97,9 @@ public class JabberBackend implements IBackend, PacketListener,
 	public static final String ID = JabberPlugin.ID + ".jabberBackend";
 
 	public static final String EXTENSION_NAME = "ExtensionName";
+	
+	private JabberChatServiceAction jabberChatServiceAction;
+	private JabberMultiChatSeviceAction jabberMultiChatSeviceAction;
 
 	/**
 	 * The capabilities supported by this backend (these depend on the
@@ -156,6 +159,8 @@ public class JabberBackend implements IBackend, PacketListener,
 	 */
 	public JabberBackend() {
 		super();
+		jabberChatServiceAction = new JabberChatServiceAction(this);
+		jabberMultiChatSeviceAction = new JabberMultiChatSeviceAction(this);
 		this.capabilities = new Capabilities();
 		this.buddies = new BuddyRoster(this);
 
@@ -306,8 +311,9 @@ public class JabberBackend implements IBackend, PacketListener,
 					prop.put(val, (String) mess.getProperty(val));
 				}
 
-				event = new ChatExtensionProtocolEvent(mess.getFrom(),
-						(String) mess.getProperty(EXTENSION_NAME), prop, ID);
+				event = new ChatExtensionProtocolEvent(getRoster().getBuddy(
+						mess.getFrom()).getId(), (String) mess.getProperty(EXTENSION_NAME)
+						, prop, ID);
 				notifyEventListeners(event);
 				return;
 			}
@@ -649,12 +655,12 @@ public class JabberBackend implements IBackend, PacketListener,
 
 	@Override
 	public IChatServiceActions getChatServiceAction() {
-		return new JabberChatServiceAction(this);
+		return jabberChatServiceAction;
 	}
 
 	@Override
 	public IMultiChatServiceActions getMultiChatServiceAction() {
-		return new JabberMultiChatSeviceAction(this);
+		return jabberMultiChatSeviceAction;
 	}
 
 	@Override
