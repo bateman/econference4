@@ -29,8 +29,9 @@ import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
 import it.uniba.di.cdg.xcore.m2m.ui.actions.popup.AbstractParticipantActionDelegate;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.util.Assert;
+
 
 /**
  * Action raise the hand and send a question to the selected moderator. 
