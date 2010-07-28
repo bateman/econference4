@@ -398,7 +398,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 	 * 
 	 * @see it.uniba.di.cdg.xcore.network.UserContext
 	 */
-	private void storeEventsPreferences() {
+	private synchronized void storeEventsPreferences() {
 		System.out.println("Storing entries");
 		Preferences preferences = new ConfigurationScope()
 				.getNode(CONFIGURATION_NODE_QUALIFIER);
@@ -493,7 +493,11 @@ public class StoredEventsModel implements IStoredEventsModel,
 			}
 			try {
 				connections.flush();
+				// lets give the OS a few millisecs to write before reloading
+				Thread.sleep(100);
 			} catch (BackingStoreException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {				
 				e.printStackTrace();
 			}
 		}
@@ -517,7 +521,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 	/**
 	 * Must be executed on connection.
 	 */
-	private void loadStoredEventsPreferences() {
+	private synchronized void loadStoredEventsPreferences() {
 		System.out.println("Loading entries");
 		try {
 			Preferences preferences = new ConfigurationScope()
