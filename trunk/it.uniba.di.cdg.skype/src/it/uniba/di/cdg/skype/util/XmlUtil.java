@@ -24,7 +24,7 @@ public class XmlUtil {
 		    XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		    // Setup a new eventReader
 		    InputStream in = new ByteArrayInputStream( xmlString.getBytes() );
-		    XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+		    XMLEventReader eventReader = inputFactory.createXMLEventReader(in, "ISO-8859-1");
 		    // Read the XML document
 		    while (eventReader.hasNext()) {
 	
@@ -101,7 +101,7 @@ public class XmlUtil {
 		    XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		    // Setup a new eventReader
 		    InputStream in = new ByteArrayInputStream( xmlString.getBytes() );
-		    XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+		    XMLEventReader eventReader = inputFactory.createXMLEventReader(in, "ISO-8859-1");
 		    // Read the XML document
 		    while (eventReader.hasNext()) {
 	
@@ -116,6 +116,7 @@ public class XmlUtil {
 				}
 		    }   
 		} catch (XMLStreamException e) {
+			e.printStackTrace();
 			//non è presente l'elemento
 		}
 		
