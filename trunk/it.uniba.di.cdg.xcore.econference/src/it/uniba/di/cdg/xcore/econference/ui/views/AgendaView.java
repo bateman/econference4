@@ -252,5 +252,11 @@ public class AgendaView extends AgendaViewUI implements IAgendaView {
     private IConferenceModel getModel() {
         return getManager().getService().getModel();
     }
+
+	@Override
+	public void refresh() {
+		// Do nothing
+		
+	}
 }    
     
