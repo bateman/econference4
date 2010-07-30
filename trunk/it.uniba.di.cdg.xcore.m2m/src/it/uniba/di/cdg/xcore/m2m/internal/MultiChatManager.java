@@ -164,6 +164,7 @@ public class MultiChatManager implements IMultiChatManager {
                 final IViewPart viewPart = getWorkbenchWindow().getActivePage().findView( ee.getViewId() );
                 if (viewPart instanceof IActivatableView) {
                     ((IActivatableView) viewPart).setReadOnly( ee.isReadOnly() );
+                    ((IActivatableView) viewPart).refresh();
                 }
             }
         }
