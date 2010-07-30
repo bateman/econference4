@@ -44,4 +44,9 @@ public interface IActivatableView {
      * @return <code>true</code> if read-only, <code>false</code> otherwise
      */
     boolean isReadOnly();
+    
+    /**
+     * Forces a refresh of the view upon changes to the model.
+     */
+    void refresh();
 }
