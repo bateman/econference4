@@ -543,4 +543,10 @@ public class HandRaisingView extends ViewPart implements IHandRaisingView {
     private IChatRoomModel getChatRoomModel() {
         return getManager().getService().getModel();
     }
+
+	@Override
+	public void refresh() {
+		updateActionStatusAccordingToStatus();
+		System.out.println("HandRaising view refreshed");
+	}
 }
