@@ -558,4 +558,9 @@ public class TalkView extends TalkViewUI implements ITalkView {
         }
         return sb;
     }
+
+	@Override
+	public void refresh() {
+		// do nothing
+	}
 }
