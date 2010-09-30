@@ -25,9 +25,9 @@
 package it.uniba.di.cdg.xcore.econference.model.storedevents;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.model.ConferenceContextLoader;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.InvalidContextException;
-import it.uniba.di.cdg.xcore.econference.model.internal.ConferenceContextLoader;
 import it.uniba.di.cdg.xcore.econference.util.FolderMonitor;
 import it.uniba.di.cdg.xcore.econference.util.IFolderMonitorListener;
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
