@@ -7,11 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.skype.Call;
-import com.skype.CallStatusChangedListener;
-import com.skype.CallStatusChangedListenerTest;
 import com.skype.Skype;
 import com.skype.SkypeException;
-import com.skype.Call.Status;
 
 public class SkypeCallAction implements ICallAction {
 	
