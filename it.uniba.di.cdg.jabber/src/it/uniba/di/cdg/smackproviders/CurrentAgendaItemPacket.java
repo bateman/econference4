@@ -34,6 +34,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
  * Packet for notifying the current agenda item. Client are expected to synch their models upon 
  * receiving such an event.  
  */
+@Deprecated
 public class CurrentAgendaItemPacket implements PacketExtension {
     /**
      * Just one element in this packet.

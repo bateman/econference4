@@ -35,6 +35,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
  * <p>
  * Note that clients must check the special role string for validity on their own.
  */
+@Deprecated
 public class SpecialPrivilegeNotificationPacket implements PacketExtension {
     /**
      * Just one element in this packet.
