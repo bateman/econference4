@@ -115,6 +115,7 @@ public interface IBackend {
      * @param context additional informations required by the service
      * @return a network service ready to be upcasted or <code>null</code> if the backend doesn't support such a capability
      * @throws BackendException if the backend was offline or some other error occurred 
+     * @deprecated
      */
     INetworkService createService( ICapability service, INetworkServiceContext context ) throws BackendException;
 
