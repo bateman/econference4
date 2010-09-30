@@ -282,7 +282,9 @@ public class EConferenceService extends MultiChatService implements IEConference
                     } catch (IllegalArgumentException e) {
                         // the item list will protest if we set an out-of-range index:
                         // here it is just safe ignoring its cries ...
-                    	e.printStackTrace();
+                    	//e.printStackTrace();
+                    	System.out.println("Agenda list empty (" + getModel().getItemList().size() + 
+                    			") or item index (" + itemId + ") out of range");
                     }
                 }
                 getTalkModel().setCurrentThread( strItemId );
@@ -377,7 +379,7 @@ public class EConferenceService extends MultiChatService implements IEConference
                 if (p != null)
                     who = p.getNickName();
 
-                getModel().setWhiteBoardText( text );
+                getModel().setWhiteBoardText( text == null? "" : text );
 			}
 			
 		}
