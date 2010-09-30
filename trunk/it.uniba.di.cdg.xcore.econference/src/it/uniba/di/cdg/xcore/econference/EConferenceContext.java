@@ -25,7 +25,7 @@
 package it.uniba.di.cdg.xcore.econference;
 
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
-import it.uniba.di.cdg.xcore.econference.model.internal.ItemList;
+import it.uniba.di.cdg.xcore.econference.model.ItemList;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
