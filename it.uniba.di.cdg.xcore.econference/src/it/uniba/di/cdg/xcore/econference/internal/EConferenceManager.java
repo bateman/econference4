@@ -252,7 +252,8 @@ public class EConferenceManager extends MultiChatManager implements IEConference
      * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyWhiteBoardChanged(java.lang.String)
      */
     public void notifyWhiteBoardChanged( String text ) {
-        getService().notifyWhiteBoardChanged( text );
+    	if(null != text)
+    		getService().notifyWhiteBoardChanged( text );
     }
 
     /* (non-Javadoc)
