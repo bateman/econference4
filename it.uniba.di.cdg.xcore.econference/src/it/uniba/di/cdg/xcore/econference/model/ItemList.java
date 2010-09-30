@@ -22,12 +22,9 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package it.uniba.di.cdg.xcore.econference.model.internal;
+package it.uniba.di.cdg.xcore.econference.model;
 
 import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
-import it.uniba.di.cdg.xcore.econference.model.IDiscussionItem;
-import it.uniba.di.cdg.xcore.econference.model.IItemList;
-import it.uniba.di.cdg.xcore.econference.model.IItemListListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;

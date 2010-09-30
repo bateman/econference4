@@ -1,7 +1,6 @@
-package it.uniba.di.cdg.xcore.econference.model.internal;
+package it.uniba.di.cdg.xcore.econference.model;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-import it.uniba.di.cdg.xcore.econference.model.IDiscussionItem;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 
 import java.io.FileNotFoundException;

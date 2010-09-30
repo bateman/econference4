@@ -22,11 +22,9 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package it.uniba.di.cdg.xcore.econference.model.internal;
+package it.uniba.di.cdg.xcore.econference.model;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-import it.uniba.di.cdg.xcore.econference.model.IItemList;
-import it.uniba.di.cdg.xcore.econference.model.InvalidContextException;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 
 import java.io.FileInputStream;
@@ -52,17 +50,17 @@ import org.w3c.dom.NodeList;
  * external data, like XML files.
  */
 public class ConferenceContextLoader {
-	public static final String XMPP_BACKENDID_VAL = "it.uniba.di.cdg.jabber.jabberBackend";
-	public static final String SKYPE_BACKENDID_VAL = "it.uniba.di.cdg.skype.skypeBackend";
-	public static final String BACKENDID_KEY = "backendId";
-	public static final String NAME_KEY = "name";
-	public static final String TOPIC_KEY = "topic";
-	public static final String ITEM_LIST_KEY = "itemList";
-	// public static final String DIRECTOR_KEY = "directory";
-	public static final String SCRIBE_KEY = "scribe";
-	public static final String MODERATOR_KEY = "moderator";
+	protected static final String XMPP_BACKENDID_VAL = "it.uniba.di.cdg.jabber.jabberBackend";
+	protected static final String SKYPE_BACKENDID_VAL = "it.uniba.di.cdg.skype.skypeBackend";
+	protected static final String BACKENDID_KEY = "backendId";
+	protected static final String NAME_KEY = "name";
+	protected static final String TOPIC_KEY = "topic";
+	protected static final String ITEM_LIST_KEY = "itemList";
+	protected static final String SCRIBE_KEY = "scribe";
+	protected static final String MODERATOR_KEY = "moderator";
 
-	private EConferenceContext context;
+	protected EConferenceContext context = null;
+	protected Document doc = null;
 
 	public ConferenceContextLoader(EConferenceContext context) {
 		this.context = context;
@@ -70,32 +68,32 @@ public class ConferenceContextLoader {
 
 	public void load(InputStream is) throws InvalidContextException {
 		try {
-			Document doc = loadDocument(is);
+			doc = loadDocument(is);
 
 			XPathFactory factory = XPathFactory.newInstance();
 			XPath xPath = factory.newXPath();
 
 			// Get the backend
 			String backendid = xPath.evaluate("/meeting/platform/backendid",
-					doc);
+					doc).trim();
 			if (!backendid.equals(context.getBackendId())) {
-				final String msg = "Skipping file due to backend mismatch:\n" + "Your current backend: "
+				final String msg = "Skipping file due to backend mismatch:\n" + "\nYour current backend: "
 						+ context.getBackendId()
 						+ "\nFound: " + backendid;				
 				throw new InvalidContextException(msg);
 			}
 			// get the schedule
-			String schedule = xPath.evaluate("/meeting/schedule", doc);
+			String schedule = xPath.evaluate("/meeting/schedule", doc).trim();
 			context.setSchedule(schedule);
 
 			// Get the fields, one by one
-			String name = xPath.evaluate("/meeting/name", doc);
+			String name = xPath.evaluate("/meeting/name", doc).trim();
 			context.setName(name); // XXX Either of these two ...
 
-			String topic = xPath.evaluate("/meeting/topic", doc);
+			String topic = xPath.evaluate("/meeting/topic", doc).trim();
 			context.setTopic(topic);
 
-			String room = xPath.evaluate("/meeting/platform/room", doc);
+			String room = xPath.evaluate("/meeting/platform/room", doc).trim();
 			// FIXME toppa momentanea per evitare di aprire il pannello per
 			// la sclenta della stanza
 			if (room.equals(""))
@@ -139,7 +137,7 @@ public class ConferenceContextLoader {
 
 			// Other experts
 			NodeList experts = (NodeList) xPath
-					.evaluate("participants/*", supportTeam,
+					.evaluate("/meeting/participants/expert", doc,
 							XPathConstants.NODESET);
 			for (int i = 0; i < experts.getLength(); i++) {
 				Node n = experts.item(i);
@@ -175,9 +173,9 @@ public class ConferenceContextLoader {
 			String role) throws Exception {
 		String id = xPath.evaluate("id", participantNode);
 		// String passwd = xPath.evaluate( "passwd", participantNode );
-		String fullName = xPath.evaluate("fullname", participantNode);
-		String email = xPath.evaluate("email", participantNode);
-		String organization = xPath.evaluate("organization", participantNode);
+		String fullName = xPath.evaluate("fullname", participantNode).trim();
+		String email = xPath.evaluate("email", participantNode).trim();
+		String organization = xPath.evaluate("organization", participantNode).trim();
 
 		if (id == null || id.length() == 0)
 			throw new InvalidContextException(
@@ -220,7 +218,7 @@ public class ConferenceContextLoader {
 	 * @return the XML DOM document object
 	 * @throws Exception
 	 */
-	private Document loadDocument(InputStream is) throws Exception {
+	protected Document loadDocument(InputStream is) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document doc = builder.parse(is);
