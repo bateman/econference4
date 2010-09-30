@@ -39,11 +39,13 @@ import org.eclipse.swt.widgets.Shell;
  * Collects the ECX filename to load, the user selected nickname and if  
  */
 public class JoinConferenceDialog extends Dialog {
-    private LoadConferenceFileDialogUI ui;
+    protected LoadConferenceFileDialogUI ui = null;
+    protected Composite composite = null;
+    protected FillLayout layout = null;
 
-    private String fileName = "";
-    private String nickName;
-    private boolean sendInvitations;
+    protected String fileName = "";
+    protected String nickName = "";
+    protected boolean sendInvitations = false;
     
     /**
      * Create a new dialog.
@@ -64,9 +66,9 @@ public class JoinConferenceDialog extends Dialog {
      */
     @Override
     protected Control createDialogArea( Composite parent ) {
-        Composite composite = (Composite) super.createDialogArea( parent );
+        composite = (Composite) super.createDialogArea( parent );
 
-        FillLayout layout = new FillLayout( SWT.VERTICAL );
+        layout = new FillLayout( SWT.VERTICAL );
         composite.setLayout( layout );
 
         ui = new LoadConferenceFileDialogUI( composite, SWT.NONE, fileName );
@@ -96,7 +98,7 @@ public class JoinConferenceDialog extends Dialog {
      * 
      * @return <code>true</code> if they are valid, <code>false</code> otherwise
      */
-    private boolean validate() {
+    protected boolean validate() {
         return !isEmpty( getFileName() ) && !isEmpty( getNickName() ) && getContext() != null;
     }
 

@@ -25,7 +25,7 @@
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-import it.uniba.di.cdg.xcore.econference.model.internal.ConferenceContextLoader;
+import it.uniba.di.cdg.xcore.econference.model.ConferenceContextLoader;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
@@ -35,6 +35,7 @@ import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -56,26 +57,44 @@ public class LoadConferenceFileDialogUI extends Composite {
 			+ System.getProperty("file.separator") + ".econference"
 			+ System.getProperty("file.separator");
 
-	private Composite fileNameComposite = null;
-	private Group conferenceOptionsGroup = null;
-	private CLabel labelFileName = null;
-	private Button selectFileButton = null;
-	private Text selectedFileNameText = null;
-	private Button sendInvitationsCheckBox = null;
-	private CLabel cLabel = null;
-	private Text nickNameText = null;
+	protected Composite fileNameComposite = new Composite(this, SWT.NONE);
+	protected GridData gridData11 = new org.eclipse.swt.layout.GridData(250, 15);
+	protected Group conferenceOptionsGroup = new Group(this, SWT.NONE);
+	protected CLabel labelFileName = null;
+	protected Button selectFileButton = null;
+	protected Text selectedFileNameText = null;
+	protected Button sendInvitationsCheckBox = null;
+	protected CLabel cLabel = null;
+	protected Text nickNameText = null;
 
-	private EConferenceContext context;
-	private String fileName;
+	protected EConferenceContext context = null;	
+	protected String fileName = "";
+	
+	protected SelectionAdapter listener = new SelectionAdapter() {
+		
+		public void widgetSelected(
+				org.eclipse.swt.events.SelectionEvent e) {
+			final String fileName = UiPlugin.getUIHelper()
+					.requestFile(FILE_EXT, FILE_PATH);
+			if (fileName == null) // CANCEL pressed
+				return;
 
+			setupContext(fileName);
+		}
+	};
+	
+	
+	public LoadConferenceFileDialogUI(Composite parent, int style) {
+		super(parent, style);
+	}
+	
 	public LoadConferenceFileDialogUI(Composite parent, int style,
 			String fileName) {
 		super(parent, style);
 		this.fileName = fileName;		
 
 		context = new EConferenceContext();
-		IBackend b = NetworkPlugin.getDefault().getHelper().getRoster()
-				.getBackend();
+		IBackend b = NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 		context.setBackendId(b.getBackendId());
 		
 		initialize();
@@ -96,8 +115,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 	 * This method initializes composite
 	 * 
 	 */
-	private void createComposite() {
-		GridData gridData11 = new org.eclipse.swt.layout.GridData(250, 15);
+	protected void createComposite() {		
 		gridData11.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
 		gridData11.grabExcessHorizontalSpace = true;
 		gridData11.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
@@ -115,7 +133,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 		gridLayout.marginWidth = 1;
 		gridLayout.marginHeight = 1;
 		gridLayout.verticalSpacing = 2;
-		fileNameComposite = new Composite(this, SWT.NONE);
+
 		fileNameComposite.setLayout(gridLayout);
 		labelFileName = new CLabel(fileNameComposite, SWT.NONE);
 		labelFileName.setText("Filename:");
@@ -125,18 +143,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 		selectedFileNameText.setText(fileName);
 		selectFileButton = new Button(fileNameComposite, SWT.NONE);
 		selectFileButton.setText("Browse...");
-		selectFileButton
-				.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-					public void widgetSelected(
-							org.eclipse.swt.events.SelectionEvent e) {
-						final String fileName = UiPlugin.getUIHelper()
-								.requestFile(FILE_EXT, FILE_PATH);
-						if (fileName == null) // CANCEL pressed
-							return;
-
-						setupContext(fileName);
-					}
-				});
+		selectFileButton.addSelectionListener(listener);
 		cLabel = new CLabel(fileNameComposite, SWT.NONE);
 		cLabel.setText("Nickname:");
 		nickNameText = new Text(fileNameComposite, SWT.BORDER);
@@ -169,7 +176,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 	 * @return <code>true</code> if the currently connected user is the
 	 *         moderator for conference file, <code>false</code> otherwise
 	 */
-	private boolean checkUserCanSendInvitations() {
+	protected boolean checkUserCanSendInvitations() {
 		String moderatorId = getContext().getModerator().getId();
 
 		// XXX We should let the user to choice its own backend
@@ -196,7 +203,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 	/**
 	 * Replace our id with the fullname found in the invitation.
 	 */
-	private void updateNickName() {
+	protected void updateNickName() {
 		IBackend b = NetworkPlugin.getDefault().getRegistry()
 				.getDefaultBackend();
 		String myId = b.getUserAccount().getId();
@@ -218,13 +225,13 @@ public class LoadConferenceFileDialogUI extends Composite {
 	/**
 	 * This method initializes group
 	 */
-	private void createGroup() {
+	protected void createGroup() {
 		GridData gridData3 = new org.eclipse.swt.layout.GridData();
 		gridData3.grabExcessVerticalSpace = false;
 		gridData3.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
 		gridData3.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
 		gridData3.grabExcessHorizontalSpace = true;
-		conferenceOptionsGroup = new Group(this, SWT.NONE);
+		
 		conferenceOptionsGroup.setText("Options");
 		conferenceOptionsGroup.setLayout(new GridLayout());
 		sendInvitationsCheckBox = new Button(conferenceOptionsGroup, SWT.CHECK);
@@ -234,9 +241,14 @@ public class LoadConferenceFileDialogUI extends Composite {
 	}
 
 	public String getFileName() {
-		return selectedFileNameText.getText();
+		return fileName = selectedFileNameText.getText();
 	}
 
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
 	public String getNickName() {
 		return nickNameText.getText();
 	}
