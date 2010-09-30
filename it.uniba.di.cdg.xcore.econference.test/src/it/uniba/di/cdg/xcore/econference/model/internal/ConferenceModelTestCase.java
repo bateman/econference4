@@ -28,6 +28,7 @@ import it.uniba.di.cdg.xcore.econference.model.ConferenceModel;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModelListener;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel.ConferenceStatus;
+import it.uniba.di.cdg.xcore.econference.model.ItemList;
 
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;

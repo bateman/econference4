@@ -25,6 +25,8 @@
 package it.uniba.di.cdg.xcore.econference.model.internal;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.model.ConferenceContextLoader;
+import it.uniba.di.cdg.xcore.econference.model.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IDiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.InvalidContextException;

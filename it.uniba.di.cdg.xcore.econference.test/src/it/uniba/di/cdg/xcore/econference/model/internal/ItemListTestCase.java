@@ -25,9 +25,11 @@
 package it.uniba.di.cdg.xcore.econference.model.internal;
 
 import static it.uniba.di.cdg.xcore.econference.model.IItemList.ENCODING_SEPARATOR;
+import it.uniba.di.cdg.xcore.econference.model.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IDiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.IItemListListener;
+import it.uniba.di.cdg.xcore.econference.model.ItemList;
 
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
