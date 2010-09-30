@@ -482,14 +482,7 @@ public class JabberBackend implements IBackend, PacketListener,
 		return capabilities;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * it.uniba.di.cdg.xcore.network.IBackend#createService(it.uniba.di.cdg.
-	 * xcore.network.services.ICapability,
-	 * it.uniba.di.cdg.xcore.network.services.INetworkServiceContext)
-	 */
+	@Override
 	public INetworkService createService(ICapability service,
 			INetworkServiceContext context) throws BackendException {
 		// if (IChatService.CHAT_SERVICE.equals( service ))

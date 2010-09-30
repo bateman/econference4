@@ -34,6 +34,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
 /**
  * Packet for notifying the conference status.  
  */
+@Deprecated
 public class ConferenceStatusPacket implements PacketExtension {
     /**
      * Just one element in this packet.

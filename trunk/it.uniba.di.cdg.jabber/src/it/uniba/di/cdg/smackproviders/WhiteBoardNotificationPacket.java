@@ -33,6 +33,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
 /**
  * Packet for notifying the new whiteboard content (yeah, _all_ the content: no diff for now).  
  */
+@Deprecated
 public class WhiteBoardNotificationPacket implements PacketExtension {
     /**
      * Just one element in this packet.

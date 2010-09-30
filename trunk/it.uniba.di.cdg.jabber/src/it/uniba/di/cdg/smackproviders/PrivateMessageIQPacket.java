@@ -33,6 +33,7 @@ import org.jivesoftware.smack.packet.IQ;
 /**
  * IQ implementation of raise hand. 
  */
+@Deprecated
 public class PrivateMessageIQPacket extends IQ {
     /**
      * Just one element in this packet.

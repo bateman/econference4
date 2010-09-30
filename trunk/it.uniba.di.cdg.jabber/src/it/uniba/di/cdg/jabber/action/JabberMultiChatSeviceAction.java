@@ -421,8 +421,9 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 			answerForm.setAnswer("muc#roomconfig_allowinvites", false);
 			// anyone can see occupants' real jids
 			answerForm.setAnswer("muc#roomconfig_whois", Arrays.asList("anyone"));
+			// room destroyed when last member leaves
+			// answerForm.setAnswer("muc#roomconfig_persistentroom", false);
 			smackMultiChat.sendConfigurationForm(answerForm);			
-			//smackMultiChat.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
 		} catch (XMPPException e) {
 			try {
 				smackMultiChat.join(nickName);
@@ -444,50 +445,14 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 		}
 		
 		if (moderator == true)
-			userRole = "moderator";
-		
-        /*DiscussionHistory history = new DiscussionHistory();
-        history.setMaxStanzas(Integer.MAX_VALUE);
-    	try {
-	        if (password != null )
-					smackMultiChat.join( nickName, password,
-							history, SmackConfiguration.getPacketReplyTimeout() );
-			else
-	            smackMultiChat.join( nickName, "", history, 
-	            		SmackConfiguration.getPacketReplyTimeout() );  
-	        
-	        if (moderator == true)
-	        	smackMultiChat.grantModerator(nickName);
-	
-		} catch (XMPPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-        
+			userRole = "moderator";        
 		
 	}
 
 
 	@Override
-	public String getUserRole(String userId){
-		
+	public String getUserRole(String userId){		
 		return userRole;
-		
-		// XXX Wait a few time for the server to update its internal status
-        /*Occupant me = null;
-                
-        int tentatives = 0;
-
-        while (me == null && tentatives++ < 5) { // Let's hope the server will give us an aswer!
-            try {
-                Thread.sleep( 100 );
-            } catch (InterruptedException e) { // Silence 
-            }
-
-            me = smackMultiChat.getOccupant( userId );
-        }
-        
-        return me == null ? null : me.getRole();*/
 	}
 
 	@Override

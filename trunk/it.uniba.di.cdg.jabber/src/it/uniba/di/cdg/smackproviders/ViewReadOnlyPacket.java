@@ -33,6 +33,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
 /**
  * Notify manager event regarding the change in the view read-only status.   
  */
+@Deprecated
 public class ViewReadOnlyPacket implements PacketExtension {
     /**
      * Just one element in this packet.

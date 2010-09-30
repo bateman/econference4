@@ -34,6 +34,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
  * Packet for notifying tha a question status must be updated. This kind of packet is usually
  * dispatched by some moderator to update the hand raising model of the other clients. 
  */
+@Deprecated
 public class QuestionUpdatePacket implements PacketExtension {
     /**
      * Just one element in this packet.

@@ -33,6 +33,7 @@ import org.jivesoftware.smack.packet.PacketExtension;
 /**
  * A packet containing the operation  
  */
+@Deprecated
 public class AgendaOperationPacket implements PacketExtension {
     /**
      * Just one element in this packet.
