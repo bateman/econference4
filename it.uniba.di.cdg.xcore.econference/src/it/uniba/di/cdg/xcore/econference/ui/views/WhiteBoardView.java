@@ -136,7 +136,7 @@ public class WhiteBoardView extends WhiteBoardViewUI implements IWhiteBoard {
             @Override
             public void whiteBoardChanged() {
                 setText( model.getWhiteBoardText() );
-                // FIXME people have complained about the fact
+                // XXX people have complained about the fact
                 // that the whiteboard (and the msg board too)
                 // dont remember the last position, and scroll
                 // back up on refresh.
