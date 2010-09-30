@@ -28,7 +28,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
-import it.uniba.di.cdg.xcore.econference.model.internal.ItemList;
 import it.uniba.di.cdg.xcore.m2m.model.ChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModelListener;
 
