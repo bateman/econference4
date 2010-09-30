@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-import it.uniba.di.cdg.xcore.econference.model.internal.ConferenceContextWriter;
+import it.uniba.di.cdg.xcore.econference.model.ConferenceContextWriter;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
