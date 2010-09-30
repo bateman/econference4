@@ -1,9 +1,9 @@
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.model.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
-import it.uniba.di.cdg.xcore.econference.model.internal.DiscussionItem;
-import it.uniba.di.cdg.xcore.econference.model.internal.ItemList;
+import it.uniba.di.cdg.xcore.econference.model.ItemList;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 
 import java.io.File;
