@@ -18,11 +18,13 @@ Export-Package: it.uniba.di.cdg.xcore.aspects,
  it.uniba.di.cdg.xcore.econference.internal;x-friends:="it.uniba.di.cdg.econference.planningpoker",
  it.uniba.di.cdg.xcore.econference.model,
  it.uniba.di.cdg.xcore.econference.model.hr,
- it.uniba.di.cdg.xcore.econference.model.internal;x-friends:="it.uniba.di.cdg.xcore.econference.test",
  it.uniba.di.cdg.xcore.econference.model.storedevents;x-friends:="it.uniba.di.cdg.xcore.econference.test",
+ it.uniba.di.cdg.xcore.econference.service,
  it.uniba.di.cdg.xcore.econference.ui.actions,
+ it.uniba.di.cdg.xcore.econference.ui.dialogs,
  it.uniba.di.cdg.xcore.econference.ui.views
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/jpathwatch-0-92a.jar,
  .,
  lib/java_file_copy_library-0.9.6_all.jar
+Import-Package: it.uniba.di.cdg.xcore.econference.model
