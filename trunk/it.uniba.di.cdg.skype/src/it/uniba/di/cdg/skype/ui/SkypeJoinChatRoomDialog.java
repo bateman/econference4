@@ -1,18 +1,12 @@
 package it.uniba.di.cdg.skype.ui;
 
-import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
-
-import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.window.IShellProvider;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.SWT;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.window.IShellProvider;
 
 public class SkypeJoinChatRoomDialog extends Dialog {
 
