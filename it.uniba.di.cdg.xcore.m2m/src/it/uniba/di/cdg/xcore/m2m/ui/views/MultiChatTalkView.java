@@ -32,7 +32,6 @@ import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
-import it.uniba.di.cdg.xcore.network.internal.NetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;
 import it.uniba.di.cdg.xcore.ui.views.TalkView;
 
@@ -41,8 +40,6 @@ import java.util.List;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 
@@ -127,10 +124,10 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
         }
     }
 
-    /**
-     * Action for changing the subject.
-     */
-    private IAction changeSubjectAction;
+//    /**
+//     * Action for changing the subject.
+//     */
+//    private IAction changeSubjectAction;
 
     /**
      * Action for inviting a user.
@@ -164,23 +161,23 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
      * Create the actions to attach to this view action bar.
      */
     protected void makeActions() {
-        changeSubjectAction = new Action() {
-            /* (non-Javadoc)
-             * @see org.eclipse.jface.action.Action#run()
-             */
-            @Override
-            public void run() {
-                InputDialog input = new InputDialog( getSite().getShell(),
-                        "Change the chat subject", "Please, type the new subject:", null, null );
-                if (Dialog.OK == input.open()) {
-                    getManager().changeSubject( input.getValue() );
-                }
-            }
-        };
-        changeSubjectAction.setText( "Change Subject" );
-        changeSubjectAction.setToolTipText( "Change current discussion subject" );
-        changeSubjectAction.setImageDescriptor( MultiChatPlugin.imageDescriptorFromPlugin(
-                MultiChatPlugin.ID, "icons/action_change_subject.png" ) );
+//        changeSubjectAction = new Action() {
+//            /* (non-Javadoc)
+//             * @see org.eclipse.jface.action.Action#run()
+//             */
+//            @Override
+//            public void run() {
+//                InputDialog input = new InputDialog( getSite().getShell(),
+//                        "Change the chat subject", "Please, type the new subject:", null, null );
+//                if (Dialog.OK == input.open()) {
+//                    getManager().changeSubject( input.getValue() );
+//                }
+//            }
+//        };
+//        changeSubjectAction.setText( "Change Subject" );
+//        changeSubjectAction.setToolTipText( "Change current discussion subject" );
+//        changeSubjectAction.setImageDescriptor( MultiChatPlugin.imageDescriptorFromPlugin(
+//                MultiChatPlugin.ID, "icons/action_change_subject.png" ) );
 
         inviteUserAction = new InviteUserViewAction( this );
         inviteUserAction.setText( "Invite user" );
