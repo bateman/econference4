@@ -30,8 +30,6 @@ import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
-import it.uniba.di.cdg.xcore.network.IBackend;
-import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;
 import it.uniba.di.cdg.xcore.ui.views.TalkView;
 
@@ -52,22 +50,7 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
      * Unique id of this view.
      */
     public static final String ID = MultiChatPlugin.ID + ".ui.views.multiChatTalkView";
-
-    private static class MultiCallViewAction extends Action {
-    	
-        /* (non-Javadoc)
-         * @see org.eclipse.jface.action.Action#run()
-         */
-        @Override
-        public void run() {
-        	IBackend b = NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
-        	if(b.getMultiCallAction().isCalling())
-        		b.getMultiCallAction().finishCall();
-        	else
-        		b.getMultiCallAction().call();
-        }
-        
-    }
+  
     
     /**
      * The invitation action needs to display the invitees' list (from the ECX file, i.e.) and 
@@ -133,8 +116,6 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
      * Action for inviting a user.
      */
     private IAction inviteUserAction;
-    
-    private IAction multiCallViewAction;
 
     private IMultiChatManager manager;
 
@@ -183,13 +164,7 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
         inviteUserAction.setText( "Invite user" );
         inviteUserAction.setToolTipText( "Invite another user to join this chat" );
         inviteUserAction.setImageDescriptor( MultiChatPlugin.imageDescriptorFromPlugin(
-                MultiChatPlugin.ID, "icons/action_invite_user.png" ) );
-        
-        multiCallViewAction = new MultiCallViewAction();
-        multiCallViewAction.setToolTipText( "Call Group / Close Call" );
-        multiCallViewAction.setImageDescriptor(MultiChatPlugin.imageDescriptorFromPlugin(
-        		MultiChatPlugin.ID, "icons/Telephone-1-icon-16.png"));
-        
+                MultiChatPlugin.ID, "icons/action_invite_user.png" ) );        
     }
 
     /**
@@ -200,11 +175,9 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
         // NO change subject upon fc request on 20.01.2006
         //        bars.getToolBarManager().add( changeSubjectAction );
         bars.getToolBarManager().add( inviteUserAction );
-        bars.getToolBarManager().add(multiCallViewAction);
 
         //        bars.getMenuManager().add( changeSubjectAction );
         bars.getMenuManager().add( inviteUserAction );
-        bars.getMenuManager().add(multiCallViewAction);
     }
 
     /* (non-Javadoc)
