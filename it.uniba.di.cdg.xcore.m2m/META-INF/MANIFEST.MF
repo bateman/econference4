@@ -53,3 +53,4 @@ Export-Package: it.uniba.di.cdg.xcore.aspects,
    org.eclipse.ui.part,
    it.uniba.di.cdg.xcore.network.messages,
    org.eclipse.swt.widgets"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
