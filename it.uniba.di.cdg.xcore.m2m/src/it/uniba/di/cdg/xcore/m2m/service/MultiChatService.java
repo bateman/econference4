@@ -49,7 +49,7 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatNameChangedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipRevokedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatSubjectUpdatedEvent;
-import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatTypingEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
@@ -278,7 +278,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 	
 	    if(context.getModerator()!=null && userId.equals(context.getModerator().getId()))
 			moderator = true;
-	    multiChatServiceActions.join(getRoomJid(), context.getPassword(), context.getNickName(), getLocalUserJid(), moderator);
+	    multiChatServiceActions.join(getRoomJid(), context.getPassword(), context.getNickName(), getLocalUserId(), moderator);
         updateInitialLocalUserStatus();
             
         // Notify listeners that we have joined ...
@@ -324,7 +324,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 	 * 
      */
     private void updateInitialLocalUserStatus() {
-    	String strRole = multiChatServiceActions.getUserRole(getLocalUserJid());
+    	String strRole = multiChatServiceActions.getUserRole(getLocalUserId());
     	Role role;
 
         if ("moderator".equals( strRole ) || "owner".equals( strRole ))
@@ -383,7 +383,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
      * @return the local participant
      */
     private IParticipant createLocalParticipant() {
-        String id = getLocalUserJid();
+        String id = getLocalUserId();
 
         IParticipant local = new Participant( getModel(), id, context.getNickName(),
         		context.getPersonalStatus(), Role.PARTICIPANT );
@@ -392,19 +392,15 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     }
 
     /**
-     * Returns the jid of the local user (kind of "room@conference.server.com/MyNickName").
+     * Returns the id of the local user. The format depends on the backend.
      * 
      * @return the jid of the local user
      */
-    protected String getLocalUserJid() {
-    	//FIXME controllare se funziona con jabber
-        /*return getRoomJid() + "/" + context.getNickName();*/
+    protected String getLocalUserId() {
         return backend.getUserId();
     }
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChatService#leave()
-     */
+    @Override
     public void leave() {
     	multiChatServiceActions.leave();
         // Notify listeners that we have left the chatroom ...
@@ -412,15 +408,13 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
             l.left();
     }
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#sendMessage(java.lang.String, java.lang.String)
-     */
+    @Override
     public void sendPrivateMessage( IParticipant p , String message ) {
     	String userId = p.getId();
         HashMap<String, String> param = new HashMap<String, String>();
         param.put(MESSAGE, message);
         param.put(TO, userId);
-        param.put(FROM, getLocalUserJid());
+        param.put(FROM, getLocalUserId());
         
         multiChatServiceActions.SendExtensionProtocolMessage(PRIVATE_MESSAGE, param);
         
@@ -778,7 +772,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
             if (p == null)
                 return;
             p.setStatus( Status.JOINED );
-            if (mcvge.getUserId().equals(getLocalUserJid())){
+            if (mcvge.getUserId().equals(getLocalUserId())){
             	for (IUserStatusListener l : userStatusListeners)
                     l.voiceGranted();
             }else
@@ -793,7 +787,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
                 return;
             p.setStatus( Status.FROZEN );
             //if is local user
-            if(mcvre.getUserId().equals(getLocalUserJid())){
+            if(mcvre.getUserId().equals(getLocalUserId())){
             	for (IUserStatusListener l : userStatusListeners)
                     l.voiceRevoked();
             }else
@@ -805,7 +799,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		else if(event instanceof MultiChatModeratorGrantedEvent){
 			MultiChatModeratorGrantedEvent mcmge = (MultiChatModeratorGrantedEvent)event;
             getModel().getParticipant(mcmge.getUserId()).setRole( Role.MODERATOR );
-            if(mcmge.getUserId().equals(getLocalUserJid())){
+            if(mcmge.getUserId().equals(getLocalUserId())){
 	            for (IUserStatusListener l : userStatusListeners)
 	                l.moderatorGranted();
             }
@@ -814,7 +808,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		else if(event instanceof MultiChatModeratorRevokedEvent){
 			MultiChatModeratorRevokedEvent mcmre = (MultiChatModeratorRevokedEvent)event;
             getModel().getParticipant(mcmre.getUserId()).setRole( Role.VISITOR );
-            if(mcmre.getUserId().equals(getLocalUserJid())){
+            if(mcmre.getUserId().equals(getLocalUserId())){
 	            for (IUserStatusListener l : userStatusListeners)
 	                l.moderatorRevoked();
             }
@@ -822,7 +816,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		
 		else if(event instanceof MultiChatOwnershipGrantedEvent){
 			MultiChatOwnershipGrantedEvent mcoge = (MultiChatOwnershipGrantedEvent)event;
-			if(mcoge.getUserId().equals(getLocalUserJid())){
+			if(mcoge.getUserId().equals(getLocalUserId())){
 	            for (IUserStatusListener l : userStatusListeners)
 	            	l.ownershipGranted();
 			}
@@ -830,15 +824,16 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		
 		else if(event instanceof MultiChatOwnershipRevokedEvent){
 			MultiChatOwnershipRevokedEvent mcore = (MultiChatOwnershipRevokedEvent)event;
-			if(mcore.getUserId().equals(getLocalUserJid())){
+			if(mcore.getUserId().equals(getLocalUserId())){
 	            for (IUserStatusListener l : userStatusListeners)
 	                l.ownershipRevoked();
 			}
 		}
 		
-		else if(event instanceof MultiChatTypingEvent){
-			MultiChatTypingEvent mcte = (MultiChatTypingEvent)event;
-            TypingEvent typingEvent = new TypingEvent( mcte.getFrom() );
+		else if(event instanceof MultiChatComposingEvent){
+			MultiChatComposingEvent mcte = (MultiChatComposingEvent) event;
+			IParticipant p = getLocalUserOrParticipant(mcte.getFrom());
+            TypingEvent typingEvent = new TypingEvent( p==null? mcte.getFrom() : p.getNickName() );
             for (ITypingEventListener l : typingListeners)
                 l.onTyping( typingEvent );
 		}
@@ -847,7 +842,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 			MultiChatExtensionProtocolEvent mcepe = (MultiChatExtensionProtocolEvent)event;
 			
 			if(mcepe.getExtensionName().equals(PRIVATE_MESSAGE)){
-				if(mcepe.getExtensionParameter(TO).equals(getLocalUserJid())){
+				if(mcepe.getExtensionParameter(TO).equals(getLocalUserId())){
 					final String from = (String) mcepe.getExtensionParameter(FROM);
 					final String text = (String) mcepe.getExtensionParameter(MESSAGE);
 	                final IParticipant p = getLocalUserOrParticipant( from );
