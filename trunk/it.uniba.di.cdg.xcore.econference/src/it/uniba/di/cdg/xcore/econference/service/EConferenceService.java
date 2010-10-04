@@ -164,7 +164,7 @@ public class EConferenceService extends MultiChatService implements IEConference
         HashMap<String, String> param = new HashMap<String, String>();
         
         param.put(WHITE_BOARD_TEXT, text);
-        param.put(FROM, getLocalUserJid());
+        param.put(FROM, getLocalUserId());
         
         getMultiChatServiceActions().SendExtensionProtocolMessage(WHITE_BOARD_CHANGED, param);
 
