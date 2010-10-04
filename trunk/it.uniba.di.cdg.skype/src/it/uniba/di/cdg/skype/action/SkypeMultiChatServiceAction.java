@@ -179,8 +179,9 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void sendTyping(String userName) {
-		// TODO Auto-generated method stub
-
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put(ExtensionConstants.USER, userName);
+		SendExtensionProtocolMessage(ExtensionConstants.CHAT_COMPOSING, param);
 	}
 	
 	public void putWaitingRoom(String roomId, String inviter){
