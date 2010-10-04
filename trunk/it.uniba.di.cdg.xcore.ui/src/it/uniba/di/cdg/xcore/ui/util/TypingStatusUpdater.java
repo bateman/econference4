@@ -260,8 +260,8 @@ public class TypingStatusUpdater extends Thread {
         try {
 //            System.out.println( String.format( "UPD: [BEFORE] entries = %s", timings ) );
             boolean needUpdate = false;
-            for (Iterator it = timings.iterator(); it.hasNext();) {
-                final TimingEntry entry = (TimingEntry) it.next();
+            for (Iterator<TimingEntry> it = timings.iterator(); it.hasNext();) {
+                final TimingEntry entry = it.next();
                 entry.decreaseTime();
                 
                 if (entry.isTimedOut()) {
