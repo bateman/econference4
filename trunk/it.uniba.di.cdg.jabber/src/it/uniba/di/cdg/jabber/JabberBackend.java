@@ -42,7 +42,7 @@ import it.uniba.di.cdg.xcore.network.action.IMultiCallAction;
 import it.uniba.di.cdg.xcore.network.action.IMultiChatServiceActions;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
-import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingtEvent;
+import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;
@@ -321,7 +321,7 @@ public class JabberBackend implements IBackend, PacketListener,
 			// ricevuta notifica di composizione
 			if (mess.getExtension(TypingNotificationPacket.ELEMENT_NAME,
 					TypingNotificationPacket.ELEMENT_NS) != null) {
-				event = new ChatComposingtEvent(mess.getFrom(), ID);
+				event = new ChatComposingEvent(mess.getFrom(), ID);
 				notifyEventListeners(event);
 				return;
 			}
