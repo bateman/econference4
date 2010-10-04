@@ -31,7 +31,6 @@ import org.jivesoftware.smack.packet.PacketExtension;
 /**
  * Packet which notifies the typing notification. 
  */
-@Deprecated
 public class TypingNotificationPacket implements PacketExtension {
     /**
      * The root element name of this extension.
