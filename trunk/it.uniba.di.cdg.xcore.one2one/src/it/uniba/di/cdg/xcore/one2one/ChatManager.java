@@ -33,7 +33,7 @@ import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 import it.uniba.di.cdg.xcore.network.events.ITypingEvent;
 import it.uniba.di.cdg.xcore.network.events.ITypingListener;
 import it.uniba.di.cdg.xcore.network.events.TypingEvent;
-import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingtEvent;
+import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
 import it.uniba.di.cdg.xcore.network.model.tv.TalkModel;
@@ -284,8 +284,8 @@ public class ChatManager implements IServiceManager, ISendMessagelListener, ITyp
 	@Override
 	public void onBackendEvent(IBackendEvent event) {
 		
-		if (event instanceof ChatComposingtEvent){
-			ChatComposingtEvent chatComposingtEvent = (ChatComposingtEvent)event; 
+		if (event instanceof ChatComposingEvent){
+			ChatComposingEvent chatComposingtEvent = (ChatComposingEvent)event; 
 			if (chatComposingtEvent.getFrom().equals(chatContext.getBuddyId())){
 				ITypingEvent typingEvent = new TypingEvent(backendHelper.getRoster().getBuddy(getBuddyId()).getName());
 				talkView.onTyping(typingEvent);
