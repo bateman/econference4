@@ -2,12 +2,12 @@ package it.uniba.di.cdg.xcore.network.events.chat;
 
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 
-public class ChatComposingtEvent implements IBackendEvent {
+public class ChatComposingEvent implements IBackendEvent {
 	
 	private String from;
 	private String backendId;
 
-	public ChatComposingtEvent(String from, String backendId) {
+	public ChatComposingEvent(String from, String backendId) {
 		super();
 		this.from = from;
 		this.backendId = backendId;
