@@ -2,7 +2,7 @@ package it.uniba.di.cdg.xcore.network.events.multichat;
 
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 
-public class MultiChatTypingEvent implements IBackendEvent {
+public class MultiChatComposingEvent implements IBackendEvent {
 	
 	private String backendId;
 	private String from;
@@ -16,7 +16,7 @@ public class MultiChatTypingEvent implements IBackendEvent {
 		return from;
 	}
 
-	public MultiChatTypingEvent(String backendId, String from) {
+	public MultiChatComposingEvent(String from, String backendId) {
 		super();
 		this.backendId = backendId;
 		this.from = from;
