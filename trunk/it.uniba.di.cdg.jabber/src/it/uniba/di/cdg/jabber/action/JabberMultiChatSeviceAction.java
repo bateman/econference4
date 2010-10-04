@@ -16,7 +16,7 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatNameChangedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipRevokedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatSubjectUpdatedEvent;
-import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatTypingEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
@@ -223,7 +223,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions{
 			final TypingNotificationPacket typingPacket = (TypingNotificationPacket) packet
             .getExtension( TypingNotificationPacket.ELEMENT_NAME,
             		TypingNotificationPacket.ELEMENT_NS );
-			IBackendEvent event = new MultiChatTypingEvent(JabberBackend.ID, typingPacket.getWho());
+			IBackendEvent event = new MultiChatComposingEvent(typingPacket.getWho(), JabberBackend.ID);
 			backend.getHelper().notifyBackendEvent(event);
 		}
 	};
