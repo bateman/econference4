@@ -19,12 +19,13 @@ import it.uniba.di.cdg.xcore.network.action.IMultiChatServiceActions;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.call.CallEvent;
-import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingtEvent;
+import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatInvitationDeclinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
@@ -104,7 +105,7 @@ public class SkypeBackend implements IBackend {
 																					// one2one
 			{
 				if (extensionName.equals(ExtensionConstants.CHAT_COMPOSING)) {
-					IBackendEvent event = new ChatComposingtEvent(senderId,
+					IBackendEvent event = new ChatComposingEvent(senderId,
 							getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
@@ -167,6 +168,10 @@ public class SkypeBackend implements IBackend {
 
 				if (extensionName.equals(ExtensionConstants.CHAT_ROOM)) {
 					skypeMultiChatServiceAction.updateChatRoom(chat);
+				}
+				else if (extensionName.equals(ExtensionConstants.CHAT_COMPOSING)) {
+					IBackendEvent event = new MultiChatComposingEvent(senderId, getBackendId());
+					getHelper().notifyBackendEvent(event);
 				}
 
 				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
