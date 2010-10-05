@@ -46,7 +46,8 @@ public class WhiteBoardViewUI extends ViewPart {
     public void createPartControl( Composite parent ) {
         top = new Composite( parent, SWT.NONE );
         top.setLayout(new FillLayout());
-        whiteBoardText = new StyledText(top, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+        whiteBoardText = new StyledText(top, SWT.BORDER | SWT.V_SCROLL);
+        whiteBoardText.setWordWrap(true);
     }
 
     /* (non-Javadoc)
