@@ -95,7 +95,8 @@ public class OnlineStatusIndicator extends ContributionItem implements IBackendE
 
     private void createLabelForBackend( Composite parent, String id ) {
         StatusLineLayoutData data = new StatusLineLayoutData();
-
+        
+        CLabel statusLabel = new CLabel( parent, SWT.NONE );
         CLabel bulb = new CLabel( parent, SWT.NONE );
         bulb.setData( data );
 
@@ -108,10 +109,16 @@ public class OnlineStatusIndicator extends ContributionItem implements IBackendE
             
             bulb.setToolTipText( descriptor.getName() + " connected to " + serverContext );
             bulb.setImage( onlineImg );
+            
+            String userID = NetworkPlugin.getDefault().getRegistry().getBackend( id ).getUserId();
+            statusLabel.setText("Connected as " + userID);
+            
         } else { // no, 
             final Image offlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_OFFLINE );
             bulb.setToolTipText( descriptor.getName() + " not connected" );
             bulb.setImage( offlineImg );
+            
+            statusLabel.setText("Not connected");
         }
     }
     
