@@ -160,12 +160,16 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void leave() {
-		// TODO serve 
-		/*
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put(ExtensionConstants.PRESENCE_TYPE, ExtensionConstants.PRESENCE_UNAVAILABLE);
 		SendExtensionProtocolMessage(ExtensionConstants.PRESENCE_MESSAGE, param);
-		*/
+		// TODO can we do it using skyperoom object only?
+		try {
+			skypeRoom.leave();
+		} catch (SkypeException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
