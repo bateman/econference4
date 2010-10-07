@@ -22,10 +22,11 @@ import it.uniba.di.cdg.xcore.network.events.call.CallEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatInvitationDeclinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
-import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
@@ -173,7 +174,15 @@ public class SkypeBackend implements IBackend {
 					IBackendEvent event = new MultiChatComposingEvent(senderId, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
-
+				else if (extensionName.equals(ExtensionConstants.PRESENCE_MESSAGE)) {
+					HashMap<String, String> param = XmlUtil
+					.readXmlExtension(content);
+					String type = param.get(ExtensionConstants.PRESENCE_TYPE);
+					if (ExtensionConstants.PRESENCE_UNAVAILABLE.equals(type)) {
+						IBackendEvent event = new MultiChatUserLeftEvent(getBackendId(), senderId, senderName);
+						getHelper().notifyBackendEvent(event);
+					}
+				}
 				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
@@ -222,6 +231,8 @@ public class SkypeBackend implements IBackend {
 
 		// it's just a regular skype text-based msg
 		else {
+			// FIXME causes a javax.xml.stream.XMLStreamException: ParseError
+			// when a regular chat skype msg (non xml) is received
 			String chatMsg = XmlUtil.chatType(content);
 			// we assume it's always a one2one chat in case we get a regular msg
 			if (null == chatMsg // null means a regular message has no extensions

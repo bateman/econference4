@@ -747,7 +747,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		else if(event instanceof MultiChatUserLeftEvent){
 			MultiChatUserLeftEvent mcule = (MultiChatUserLeftEvent)event;
 			// TODO see if it works with skype backend too
-			String nick = mcule.getUserId();
+			String nick = mcule.getNickname();
 			IParticipant p = getModel().getParticipantByNickName(nick);
             //IParticipant p = getModel().getParticipant( mcule.getUserId() );
             if (p == null)
