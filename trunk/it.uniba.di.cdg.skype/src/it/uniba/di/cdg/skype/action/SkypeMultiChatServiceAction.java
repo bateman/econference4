@@ -160,16 +160,20 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void leave() {
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put(ExtensionConstants.PRESENCE_TYPE, ExtensionConstants.PRESENCE_UNAVAILABLE);
-		SendExtensionProtocolMessage(ExtensionConstants.PRESENCE_MESSAGE, param);
-		// we cannot leave the chat yet.
-		// when can we do it?
-//		try {
-//			skypeRoom.leave();
-//		} catch (SkypeException e) {
-//			e.printStackTrace();
-//		}
+		if (null != skypeRoom) {
+			System.out.println("Sending precence unavailable update");
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put(ExtensionConstants.PRESENCE_TYPE,
+					ExtensionConstants.PRESENCE_UNAVAILABLE);
+			SendExtensionProtocolMessage(ExtensionConstants.PRESENCE_MESSAGE,
+					param);
+			try {
+				skypeRoom.leave();
+				skypeRoom = null;
+			} catch (SkypeException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
