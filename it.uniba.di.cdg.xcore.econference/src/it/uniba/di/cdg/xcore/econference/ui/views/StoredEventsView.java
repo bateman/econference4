@@ -31,11 +31,8 @@ import it.uniba.di.cdg.xcore.econference.internal.EConferenceHelper;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModel;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModelListener;
-import it.uniba.di.cdg.xcore.m2m.MultiChatPlugin;
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
-import it.uniba.di.cdg.xcore.m2m.service.Invitee;
-import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
@@ -114,12 +111,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 	private IStoredEventsModel storedEventsModel;
 
 	private final IStoredEventsModelListener storedEventModelListener = new IStoredEventsModelListener() {
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see it.uniba.di.cdg.xcore.econference.model.storedevents.
-		 * IStoredEventsModelListener#notifyUpdate()
-		 */
+		@Override
 		@SwtAsyncExec
 		public void notifyUpdate() {
 			refreshView();
@@ -436,7 +428,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 											.getDefault().getHelper()));
 							defaultPlugin.getHelper().openFromFile(
 									DEFAULT_FILE_PATH
-											+ invitation.getInvitationEvent()
+											+ invitation.getRoom()
 											+ ".ecx");
 
 							break;
@@ -459,13 +451,13 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 									}*/
 									EConferencePlugin.getDefault().getHelper()
 											.open(context);
-								} else {
+								} /*else {
 									MultiChatContext mcContext = new MultiChatContext(
 											null, null,
 											invitation.getInvitationEvent());
 									MultiChatPlugin.getDefault().getHelper()
 											.open(mcContext);
-								}
+								}*/
 							} catch (NullPointerException e) {
 								// User pressed no
 								e.printStackTrace();
