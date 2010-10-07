@@ -67,7 +67,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void changeSubject(String room, String subject) {
-		// TODO Auto-generated method stub
+		// do nothing
 	}
 
 	@Override
@@ -163,12 +163,13 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put(ExtensionConstants.PRESENCE_TYPE, ExtensionConstants.PRESENCE_UNAVAILABLE);
 		SendExtensionProtocolMessage(ExtensionConstants.PRESENCE_MESSAGE, param);
-		// TODO can we do it using skyperoom object only?
-		try {
-			skypeRoom.leave();
-		} catch (SkypeException e) {
-			e.printStackTrace();
-		}
+		// we cannot leave the chat yet.
+		// when can we do it?
+//		try {
+//			skypeRoom.leave();
+//		} catch (SkypeException e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 
