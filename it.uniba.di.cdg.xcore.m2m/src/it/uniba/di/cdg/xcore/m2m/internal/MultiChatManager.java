@@ -82,7 +82,7 @@ public class MultiChatManager implements IMultiChatManager {
     /**
      * The workbench window this manager is working into.
      */
-    private IWorkbenchWindow workbenchWindow;
+    protected IWorkbenchWindow workbenchWindow;
     
     /**
      * Provides access to the UI interaction, without bothering about the implementation.
@@ -102,7 +102,7 @@ public class MultiChatManager implements IMultiChatManager {
     /**
      * The network service give us access to the remote clients.
      */
-    private IMultiChatService service;
+    protected IMultiChatService service;
     
     /**
      * Listeners for multichat events.
@@ -120,15 +120,16 @@ public class MultiChatManager implements IMultiChatManager {
             System.out.println( String.format( "perspectiveOpened( %s )", perspective.getId() ) );
         }
 
-        public void perspectiveClosed( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {
-            System.out.println( String.format( "perspectiveClosed( %s )", perspective.getId() ) );
+        public void perspectiveClosed( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {           
             // The user has requested the perspective to be closed ... so let's clean-up all
-            if (page == getWorkbenchWindow().getActivePage() && MultiChatPerspective.ID.equals( perspective.getId() )) {
+            if (page == getWorkbenchWindow().getActivePage() && MultiChatPerspective.ID.equals( perspective.getId() )) {            	
                 // Ask the user to save views even when the perspective is closed (by default the
                 // eclipse framework asks only when closing the whole app, see BR #43).
                 page.saveAllEditors( true );
-                
+                // close perspective means leave the room
+                service.leave();
                 close();
+                System.out.println( String.format( "perspectiveClosed( %s )", perspective.getId() ) );
             }
         }
 

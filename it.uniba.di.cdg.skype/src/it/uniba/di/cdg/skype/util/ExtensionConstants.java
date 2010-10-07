@@ -21,5 +21,8 @@ public class ExtensionConstants {
 	public final static String REVOKE_VOICE = "revokeVoice";
 	public final static String GRANT_VOICE = "grantVoice";
 	public final static String MODERATOR = "moderator";
+	public static final String PRESENCE_MESSAGE = "presence";
+	public static final String PRESENCE_UNAVAILABLE = "unavailable";
+	public static final String PRESENCE_TYPE = "type";
 
 }

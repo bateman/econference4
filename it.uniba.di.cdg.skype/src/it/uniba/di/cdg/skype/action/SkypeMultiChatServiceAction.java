@@ -26,12 +26,12 @@ import com.skype.User;
 
 public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
-	Chat skypeRoom;
-	IBackend backend;
-	Map<String, String> roomsId;
-	String userRule;
-	Vector<String> partecipants;
-	String moderator;
+	private Chat skypeRoom;
+	private IBackend backend;
+	private Map<String, String> roomsId;
+	private String userRole;
+	private Vector<String> partecipants;
+	private String moderator;
 
 	public String getModerator() {
 		return moderator;
@@ -85,7 +85,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public String getUserRole(String userId) {
-		return userRule;
+		return userRole;
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 				
 				//setto i privilegi da moderatore
 				if(moderator){
-					userRule = "moderator";
+					userRole = "moderator";
 					setModerator(userId);
 				}
 				
@@ -160,7 +160,12 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void leave() {
-		
+		// TODO serve 
+		/*
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put(ExtensionConstants.PRESENCE_TYPE, ExtensionConstants.PRESENCE_UNAVAILABLE);
+		SendExtensionProtocolMessage(ExtensionConstants.PRESENCE_MESSAGE, param);
+		*/
 	}
 
 	@Override
@@ -204,7 +209,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		
 		for(String s: partecipants){
 			backend.getHelper().notifyBackendEvent(new MultiChatUserLeftEvent(
-					backend.getBackendId(), s));
+					backend.getBackendId(), s, s));
 		}
 		partecipants.clear();
 		
