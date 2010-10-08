@@ -167,12 +167,12 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 					ExtensionConstants.PRESENCE_UNAVAILABLE);
 			SendExtensionProtocolMessage(ExtensionConstants.PRESENCE_MESSAGE,
 					param);
-			try {
-				skypeRoom.leave();
-				//skypeRoom = null;
-			} catch (SkypeException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				skypeRoom.leave();
+//				//skypeRoom = null;
+//			} catch (SkypeException e) {
+//				e.printStackTrace();
+//			}
 		}
 		
 	}
