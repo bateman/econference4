@@ -169,7 +169,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 					param);
 			try {
 				skypeRoom.leave();
-				skypeRoom = null;
+				//skypeRoom = null;
 			} catch (SkypeException e) {
 				e.printStackTrace();
 			}
