@@ -2,7 +2,6 @@ package it.uniba.di.cdg.skype.action;
 
 import it.uniba.di.cdg.skype.SkypeBackend;
 import it.uniba.di.cdg.skype.SkypeRoomInfo;
-import it.uniba.di.cdg.skype.ui.SkypeJoinChatRoomDialog;
 import it.uniba.di.cdg.skype.util.ExtensionConstants;
 import it.uniba.di.cdg.skype.util.XmlUtil;
 import it.uniba.di.cdg.xcore.network.IBackend;
@@ -14,10 +13,6 @@ import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
-import org.eclipse.jface.window.Window;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 
 import com.skype.Chat;
 import com.skype.Skype;
@@ -97,6 +92,9 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void invite(String room, String to, String reason) {
+		// prevent self messaging
+		if (to.equals(backend.getUserId()))
+			return;
 		HashMap<String, String> param = new HashMap<String, String>();
 		
 		param.put(ExtensionConstants.REASON, reason);
@@ -108,37 +106,46 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	public void join(String roomName, String password, String nickName,
 			String userId, boolean moderator) {
 
-		String[] partecipant = null;
+		String[] participant = null;
 		String inviter = roomsId.get(roomName);
+		// this wont be null if we put it in as a waiting room after receiving an online invitation
 		if (inviter != null){
-			HashMap<String, String> param = new HashMap<String, String>();
-			backend.getChatServiceAction().SendExtensionProtocolMessage(
-					inviter, ExtensionConstants.ROOM_INVITE_ACCEPT, param);
+			roomInviteAccepted(inviter);
 		}else{
-			if(roomName.equals("")){
+			/*if(roomName.equals("")){
 				final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 				SkypeJoinChatRoomDialog dlg = new SkypeJoinChatRoomDialog(window);
 				if(dlg.open()==Window.OK){
-					partecipant = dlg.getUsersSelected();
+					participant = dlg.getUsersSelected();
 				}
 			}
-			else{
-				partecipant = new String[1];
-				partecipant[0] = "";
-			}
+			else{*/
+				
+			//}
 			try {
-				skypeRoom = Skype.chat(new String[0]);
+				
 				
 				//setto i privilegi da moderatore
 				if(moderator){
 					userRole = "moderator";
 					setModerator(userId);
-				}
+					participant = new String[1];
+					participant[0] = "";
+					skypeRoom = Skype.chat(new String[0]);
 				
-				//invito gli utenti coinvolti
-				for(String s: partecipant){
-					invite(skypeRoom.getId(), s, "");
+				
+					//invito gli utenti coinvolti
+					for(String s: participant){
+						if(s != null && !s.equals(""))
+							invite(skypeRoom.getId(), s, "");
+					}
 				}
+				else {
+					//inviter dal room name
+					inviter = roomName.substring(roomName.indexOf('$') + 1);
+					roomInviteAccepted(inviter);
+				}
+					
 				
 				//inserisco l'utente locale nella lista dei partecipanti alla stanza
 				/*backend.getHelper().notifyBackendEvent(new MultiChatUserJoinedEvent(
@@ -156,6 +163,12 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 			}
 		}
 		
+	}
+
+	protected void roomInviteAccepted(String inviter) {
+		HashMap<String, String> param = new HashMap<String, String>();
+		backend.getChatServiceAction().SendExtensionProtocolMessage(
+				inviter, ExtensionConstants.ROOM_INVITE_ACCEPT, param);	
 	}
 
 	@Override
@@ -196,6 +209,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put(ExtensionConstants.USER, userName);
 		SendExtensionProtocolMessage(ExtensionConstants.CHAT_COMPOSING, param);
+		System.out.println("Skype room id "+skypeRoom.getId());
 	}
 	
 	public void putWaitingRoom(String roomId, String inviter){
