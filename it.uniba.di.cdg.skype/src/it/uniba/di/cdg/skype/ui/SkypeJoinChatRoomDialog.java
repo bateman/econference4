@@ -10,7 +10,6 @@ import org.eclipse.swt.widgets.Shell;
 
 public class SkypeJoinChatRoomDialog extends Dialog {
 
-	private Shell dialogShell;
 	private SkypeJoinChatRoomComposite ui;
 	private String[] users;
 
