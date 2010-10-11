@@ -99,13 +99,7 @@ public class InvitePage extends WizardPage implements Listener {
 		addMember = new Button(group, SWT.PUSH);
 		addMember.setLocation(8, 33);
 		addMember.setText(">>");
-		addMember.addMouseListener(new org.eclipse.swt.events.MouseListener() {
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-			}
-
+		addMember.addMouseListener(new org.eclipse.swt.events.MouseAdapter() {	
 			@Override
 			public void mouseUp(MouseEvent e) {
 				TableItem[] items = fromBuddy.getSelection();

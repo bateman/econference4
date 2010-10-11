@@ -6,12 +6,12 @@
 
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
+import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.model.ConferenceContextWriter;
+
 import java.io.FileNotFoundException;
 
 import javax.xml.parsers.ParserConfigurationException;
-
-import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-import it.uniba.di.cdg.xcore.econference.model.ConferenceContextWriter;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -26,21 +26,21 @@ import org.eclipse.ui.IWorkbenchWizard;
 
 public class InviteWizard extends Wizard implements INewWizard {
 
-	private static final String DEFAULT_FILE_PATH = System
+	protected static final String DEFAULT_FILE_PATH = System
 			.getProperty("user.home")
 			+ System.getProperty("file.separator")
 			+ ".econference" + System.getProperty("file.separator");
 
 	// wizard pages
-	GenInfoPage genInfoPage;
-	InvitePage invitePage;
-	LastPage lastOnePage;
-	EConferenceContext context;
-	// skypeBackend or jabber's one
-	private String media;
+	protected GenInfoPage genInfoPage;
+	protected InvitePage invitePage;
+	protected LastPage lastOnePage;
+	protected EConferenceContext context;
 
 	// the workbench instance
 	protected IWorkbench workbench;
+
+	private String organizer = "";
 
 	public InviteWizard() {
 		super();
@@ -53,14 +53,6 @@ public class InviteWizard extends Wizard implements INewWizard {
 		addPage(invitePage);
 		lastOnePage = new LastPage("");
 		addPage(lastOnePage);
-	}
-
-	public void setMedia(String media) {
-		this.media = media;
-	}
-
-	public String getMedia() {
-		return this.media;
 	}
 
 	/**
@@ -94,7 +86,7 @@ public class InviteWizard extends Wizard implements INewWizard {
 			writer.serialize();
 			// if we save the ecx file not in the default location
 			// we store a copy there
-			if (!filepath.equals(DEFAULT_FILE_PATH)) {
+			if (!filepath.startsWith(DEFAULT_FILE_PATH)) {
 				String filename = genInfoPage.getConferenceName();
 				filename += ".ecx";
 				writer = new ConferenceContextWriter(
@@ -117,5 +109,13 @@ public class InviteWizard extends Wizard implements INewWizard {
 
 	public EConferenceContext getContext() {
 		return this.context;
+	}
+	
+	public void setOrganizer(String organizer) {
+		this.organizer  = organizer;		
+	}
+	
+	public String getOrganizer() {
+		return organizer;
 	}
 }

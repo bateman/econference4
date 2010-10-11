@@ -39,19 +39,19 @@ import org.w3c.dom.NodeList;
 
 public class GenInfoPage extends WizardPage {
 	private static final String CUSTOM_MUC_SERVICE = "Other...";
-	private static final String AUDIO_SKYPE = "Audio (Skype)";
-	private static final String TEXT_ONLY_XMPP = "Text only (XMPP/GTalk)";
-	private static final String[] mediaTypes = { TEXT_ONLY_XMPP, AUDIO_SKYPE };
+	private static final int SKYPE_BACKEND = 1;
+	private static final int XMPP_BACKEND = 0;
+	private static final String[] BACKENDS = { "Text only (XMPP/GTalk)", "Audio (Skype)" };
 	private static final String DEFAULT_FILE_PATH = System
 			.getProperty("user.home")
 			+ System.getProperty("file.separator")
 			+ ".econference" + System.getProperty("file.separator");
 
-	Composite composite;
-	EConferenceContext context;
+	private Composite composite;
+	private EConferenceContext context;
 	private Combo backendIdCombo = null;
 	private Text nameConferenceText = null;
-	GridData gd;
+	private GridData gd;
 	// private String nick;
 	// private String password;
 	private Text topicText = null;
@@ -85,22 +85,14 @@ public class GenInfoPage extends WizardPage {
 		new CLabel(composite, SWT.NONE).setText("Conference chair: *");
 		nickNameText = new Text(composite, SWT.BORDER);
 		nickNameText.setLayoutData(new GridData(143, 15));
-		try {
-			nickNameText.setText(NetworkPlugin.getDefault().getRegistry()
-					.getBackend("it.uniba.di.cdg.jabber.jabberBackend")
-					.getUserAccount().getId());
-			media = "it.uniba.di.cdg.jabber.jabberBackend";
-		} catch (NullPointerException e) {
-			media = "it.uniba.di.cdg.skype.skypeBackend";
-		}
-		nickNameText.setText(NetworkPlugin.getDefault().getRegistry()
-				.getBackend(media).getUserAccount().getId());
-		((InviteWizard) this.getWizard()).setMedia(media);
+		media = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+		nickNameText.setText(NetworkPlugin.getDefault().getRegistry().getDefaultBackend().getUserId());
+	
 		new CLabel(composite, SWT.NONE).setText("");
 		new CLabel(composite, SWT.NONE).setText("Media: * ");
 		backendIdCombo = new Combo(composite, SWT.READ_ONLY);
 		backendIdCombo.setLayoutData(new GridData(129, 15));
-		backendIdCombo.setItems(mediaTypes);
+		backendIdCombo.setItems(BACKENDS);
 
 		backendIdCombo
 				.addSelectionListener(new org.eclipse.swt.events.SelectionListener() {
@@ -112,13 +104,15 @@ public class GenInfoPage extends WizardPage {
 					public void widgetSelected(SelectionEvent e) {
 						if (!backendIdCombo.getText().equals(""))
 							serviceCombo.setEnabled(true);
-						if (backendIdCombo.getText().equals(TEXT_ONLY_XMPP)) {
+						if (backendIdCombo.getText().equals(BACKENDS[XMPP_BACKEND])) {
 							media = "it.uniba.di.cdg.jabber.jabberBackend";
 							serviceCombo.setEnabled(true);
-						} else if (backendIdCombo.getText().equals(AUDIO_SKYPE)) {
-							media = "it.uniba.di.cdg.skype.skypeBackend";
+						} else if (backendIdCombo.getText().equals(BACKENDS[SKYPE_BACKEND])) {
+							media = "it.uniba.di.cdg.skype.skypeBackend";							
+							serviceCombo.select(-1);
 							serviceCombo.setEnabled(false);
-							nameConferenceText.setText("econference");
+							serviceText.setText("");
+							nameConferenceText.setText("econference$" + nickNameText.getText());
 						}
 					}
 				});
@@ -166,10 +160,9 @@ public class GenInfoPage extends WizardPage {
 								.getMucService(serviceCombo.getSelectionIndex()));
 						if (nameConferenceText.getText().equals(""))
 							nameConferenceText.setText("econference");
-						filePathText.setText(DEFAULT_FILE_PATH
-								+ nameConferenceText.getText() + ".ecx");
+						filePathText.setText(computeFilepaht());
 
-					}
+					}					
 				});
 		serviceCombo.setEnabled(false);
 		serviceCombo.setItems(items);
@@ -190,8 +183,7 @@ public class GenInfoPage extends WizardPage {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				filePathText.setText(DEFAULT_FILE_PATH
-							+ nameConferenceText.getText() + ".ecx");			
+				filePathText.setText(computeFilepaht());			
 			}
 
 			@Override
@@ -243,52 +235,44 @@ public class GenInfoPage extends WizardPage {
 		// auto select current backend on display
 		if (NetworkPlugin.getDefault().getRegistry().getDefaultBackendId()
 				.equals("it.uniba.di.cdg.jabber.jabberBackend")) {
-			backendIdCombo.select(0);
+			backendIdCombo.select(XMPP_BACKEND);
 			serviceCombo.setEnabled(true);
 		} else if (NetworkPlugin.getDefault().getRegistry()
 				.getDefaultBackendId()
-				.equals("it.uniba.di.cdg.skype.skypeBackend"))
-			backendIdCombo.select(1);
+				.equals("it.uniba.di.cdg.skype.skypeBackend")){
+			backendIdCombo.select(SKYPE_BACKEND);
+			nameConferenceText.setText(nameConferenceText.getText() + "$" + nickNameText.getText());
+		}
 
 		setPageComplete(true);
 		// set the composite as the control for this page
 		setControl(composite);
 	}
 
-	/*
-	 * private String checkConnection(String cases) throws BackendException {
-	 * XMPPConnection connection; boolean disconnected = false; // return
-	 * "conference."+cases; try { if
-	 * (cases.equals(NetworkPlugin.getDefault().getRegistry()
-	 * .getBackend(media).getServerContext().getServerHost())) connection =
-	 * ((JabberBackend) NetworkPlugin.getDefault()
-	 * .getRegistry().getBackend(media).getBackendFromProxy()) .getConnection();
-	 * else { connection = new XMPPConnection(cases); ServersCredential
-	 * credenziali = new ServersCredential( this.getShell(), this);
-	 * credenziali.open(); disconnected = true; connection.connect();
-	 * connection.login(this.nick, this.password); //
-	 * NetworkPlugin.getDefault().getRegistry().getBackend(media).connect(new //
-	 * ServerContext(cases), new UserContext(nick, password)); }
-	 * ServiceDiscoveryManager discoManager = ServiceDiscoveryManager
-	 * .getInstanceFor(connection); DiscoverItems discoItems =
-	 * discoManager.discoverItems(cases); Iterator<DiscoverItems.Item> it =
-	 * discoItems.getItems(); while (it.hasNext()) { DiscoverItems.Item item =
-	 * it.next(); String current = item.toXML(); if (current.contains("name")) {
-	 * if (current.contains("Public Chatrooms") ||
-	 * current.contains("Multi-User Chat")) { if (disconnected)
-	 * connection.disconnect(); return
-	 * current.split("jid=\"")[1].split("\"")[0]; } } else if
-	 * (current.contains("conf")) { if (disconnected) connection.disconnect();
-	 * return current.split("jid=\"")[1].split("\"")[0]; } } } catch
-	 * (XMPPException exe) { MessageDialog.openWarning(getShell(), "Error",
-	 * "Unable to connect to " + cases +
-	 * "; please select a different service."); } return ""; }
-	 */
-
-	private String setRoom() {
-		return this.serviceText.getText().equals("") ? this.nameConferenceText
-				.getText() : this.nameConferenceText.getText() + "@"
-				+ this.serviceText.getText();
+	private String computeRoom() {
+		String room = null;
+		switch (backendIdCombo.getSelectionIndex()) {
+		case XMPP_BACKEND:
+			room =  nameConferenceText.getText().equals("") || serviceText.getText().equals("") ? 
+					"econference" : nameConferenceText.getText() + "@" + serviceText.getText();
+			break;
+		case SKYPE_BACKEND:			
+			room = nameConferenceText.getText().equals("") ? 
+					"econference$" + nickNameText.getText() : nameConferenceText.getText();
+			break;	
+		default:
+			break;
+		}
+		return room; 
+	}
+	
+	private String computeFilepaht() {
+		StringBuffer filepath = new StringBuffer( DEFAULT_FILE_PATH + nameConferenceText.getText() );
+		if(backendIdCombo.getSelectionIndex() == XMPP_BACKEND)
+			filepath.append("@").append(serviceText.getText());
+		
+		filepath.append(".ecx");
+		return filepath.toString();
 	}
 
 	public IWizardPage getNextPage() {
@@ -297,6 +281,7 @@ public class GenInfoPage extends WizardPage {
 			this.saveData();
 			InvitePage page = ((InviteWizard) getWizard()).invitePage;
 			page.setContext(this.getContext());
+			((InviteWizard) getWizard()).setOrganizer(nickNameText.getText());
 			return page;
 		} else
 			MessageDialog.openWarning(getShell(), "",
@@ -320,8 +305,8 @@ public class GenInfoPage extends WizardPage {
 
 	private void saveData() {
 		this.context.setBackendId(media);
-		this.context.setName(this.nameConferenceText.getText());
-		this.context.setRoom(this.setRoom());
+		this.context.setName(computeName());
+		this.context.setRoom(computeRoom());
 		this.context.setTopic(this.topicText.getText());
 		String[] items = this.itemText.getText().split(
 				System.getProperty("line.separator"));
@@ -337,6 +322,23 @@ public class GenInfoPage extends WizardPage {
 		String dateStr = this.time.getHours() + ":"
 				+ (min <= 9 ? "0" + min : min);
 		this.context.setSchedule(scheduleStr + ", h. " + dateStr);
+	}
+
+	private String computeName() {
+		String s = nameConferenceText.getText();
+		int n = -1;
+		switch (backendIdCombo.getSelectionIndex()) {
+		case XMPP_BACKEND:
+			n = s.indexOf('@');
+			break;
+		case SKYPE_BACKEND:
+			n = s.indexOf('$');
+			break;	
+		default:
+			break;
+		}
+		
+		return n == -1? s: s.substring(0, n);
 	}
 
 	private boolean checkData() {
