@@ -88,15 +88,7 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 	      }
     }
     
-    public void updateRoster(){
-    	
-    	refreshBuddies();
-    	for(IBuddyRosterListener l: listeners){
-    		l.rosterChanged();
-    	}
-    	
-    }
-    
+     
     public void disconnectRoster(){
     	clear();
     	for(IBuddyRosterListener l: listeners){
@@ -156,9 +148,10 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 
 	@Override
 	public void reload() {
-		// emtpy stub for compatibility with group management features
-    	// in Jabber backend
-    	// CHECK do these apply to skype too?
+	  	refreshBuddies();
+    	for(IBuddyRosterListener l: listeners){
+    		l.rosterChanged();
+    	}
 	}
 	
 }
