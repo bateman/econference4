@@ -308,20 +308,19 @@ public class SkypeBackend implements IBackend {
 		if (status != Connector.Status.ATTACHED)
 			throw new BackendException(
 					new Exception(
-							"E' necessario installare ed avviare Skype\nE' possibile scaricarlo da www.skype.com"));
+							"E' necessario installare e avviare Skype\nE' possibile scaricarlo da www.skype.com"));
 
 		// notifico l'avvenuta connessione
 		helper.notifyBackendEvent(new BackendStatusChangeEvent(ID, true));
 
 		// notifico l'aggiornamento del roster
-		skypeBuddyRoster.updateRoster();
+		skypeBuddyRoster.reload();
 
 		// aggiungo i listeners di Skype4Java
 		try {
 			Skype.addChatMessageListener(chatMessageListener);
 			Skype.addCallListener(callListener);
 		} catch (SkypeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -331,7 +330,6 @@ public class SkypeBackend implements IBackend {
 	@Override
 	public INetworkService createService(ICapability service,
 			INetworkServiceContext context) throws BackendException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
