@@ -88,7 +88,7 @@ public class ConferenceContextLoader {
 
 			// Get the fields, one by one
 			String name = xPath.evaluate("/meeting/name", doc).trim();
-			context.setName(name); // XXX Either of these two ...
+			context.setName(name); // Either of these two ...
 
 			String topic = xPath.evaluate("/meeting/topic", doc).trim();
 			context.setTopic(topic);
