@@ -71,10 +71,15 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 				case ONLINE:
 					status = IBuddy.Status.AVAILABLE;
 					break;
+				case NA:
 				case AWAY:
 					status = IBuddy.Status.AWAY;
 					break;
+				case DND:
+					status = IBuddy.Status.BUSY;
+					break;
 				case OFFLINE:
+				default:
 					status = IBuddy.Status.OFFLINE;
 					break;
 				}
