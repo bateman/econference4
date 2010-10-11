@@ -126,8 +126,6 @@ public class InvitationEvent extends AbstractBackendEvent {
     
     @Override
     public String toString() {
-    	// if it's jabber room we remove the @
-    	// skype does not need a @
-    	return getRoom().split("@")[0];
+     	return getRoom();
     }
 }
