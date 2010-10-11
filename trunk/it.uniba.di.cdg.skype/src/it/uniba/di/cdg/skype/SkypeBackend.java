@@ -231,9 +231,9 @@ public class SkypeBackend implements IBackend {
 
 		// it's just a regular skype text-based msg
 		else {
-			// FIXME causes a javax.xml.stream.XMLStreamException: ParseError
-			// when a regular chat skype msg (non xml) is received
-			String chatMsg = XmlUtil.chatType(content);
+			String chatMsg = null;
+			if(XmlUtil.isSkypeXmlMessage(content))
+				chatMsg = XmlUtil.chatType(content);
 			// we assume it's always a one2one chat in case we get a regular msg
 			if (null == chatMsg // null means a regular message has no extensions
 					|| chatMsg.equals(ExtensionConstants.ONE_TO_ONE)) {
