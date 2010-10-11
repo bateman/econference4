@@ -12,8 +12,8 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.TableEditor;
+import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -153,15 +153,9 @@ public class LastPage extends WizardPage implements Listener {
 		editor.setEditor(currentUserRoles, item, 0);
 		final Text id = new Text(table, SWT.NONE);
 		id.setText(NetworkPlugin.getDefault().getRegistry()
-				.getBackend(((InviteWizard) this.getWizard()).getMedia())
-				.getUserAccount().getId());
+				.getDefaultBackend().getUserId());
 		item.setText(1, id.getText());
-		id.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-			}
-
+		id.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				item.setText(1, id.getText());
@@ -173,15 +167,9 @@ public class LastPage extends WizardPage implements Listener {
 		editor = new TableEditor(table);
 		final Text fullname = new Text(table, SWT.NONE);
 		fullname.setText(NetworkPlugin.getDefault().getRegistry()
-				.getBackend(((InviteWizard) this.getWizard()).getMedia())
-				.getUserAccount().getName());
+				.getDefaultBackend().getUserAccount().getName());
 		item.setText(2, fullname.getText());
-		fullname.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-			}
-
+		fullname.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				item.setText(2, fullname.getText());
@@ -192,15 +180,9 @@ public class LastPage extends WizardPage implements Listener {
 		editor = new TableEditor(table);
 		final Text email = new Text(table, SWT.NONE);
 		email.setText(NetworkPlugin.getDefault().getRegistry()
-				.getBackend(((InviteWizard) this.getWizard()).getMedia())
-				.getUserAccount().getEmail());
+				.getDefaultBackend().getUserAccount().getEmail());
 		item.setText(3, email.getText());
-		email.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-			}
-
+		email.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				item.setText(3, email.getText());
@@ -212,12 +194,7 @@ public class LastPage extends WizardPage implements Listener {
 		final Text organization = new Text(table, SWT.NONE);
 		organization.setText("");
 		item.setText(4, organization.getText());
-		organization.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-			}
-
+		organization.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				item.setText(4, organization.getText());
@@ -286,12 +263,7 @@ public class LastPage extends WizardPage implements Listener {
 		final Text id = new Text(table, SWT.NONE);
 		id.setText(idP);
 		newRow.setText(1, idP);
-		id.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-			}
-
+		id.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				newRow.setText(1, id.getText());
@@ -303,13 +275,7 @@ public class LastPage extends WizardPage implements Listener {
 		final Text fullname = new Text(table, SWT.NONE);
 		fullname.setText(name);
 		newRow.setText(2, fullname.getText());
-		fullname.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-
+		fullname.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				newRow.setText(2, fullname.getText());
@@ -321,13 +287,7 @@ public class LastPage extends WizardPage implements Listener {
 		final Text email = new Text(table, SWT.NONE);
 		email.setText("");
 		newRow.setText(3, email.getText());
-		email.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-
+		email.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				newRow.setText(3, email.getText());
@@ -339,13 +299,7 @@ public class LastPage extends WizardPage implements Listener {
 		final Text organization = new Text(table, SWT.NONE);
 		organization.setText("");
 		newRow.setText(4, organization.getText());
-		organization.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-
+		organization.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				newRow.setText(4, organization.getText());
