@@ -12,7 +12,7 @@ import com.skype.SkypeException;
 
 public class SkypeCallAction implements ICallAction {
 	
-	Map<String, Call> calls;
+	private Map<String, Call> calls;
 
 	@Override
 	public void acceptCall(String from) {
