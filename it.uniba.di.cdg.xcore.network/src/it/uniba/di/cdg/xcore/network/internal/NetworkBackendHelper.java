@@ -154,9 +154,11 @@ public class NetworkBackendHelper implements IBackendEventListener, INetworkBack
         // Skip unknown backends ...
         if (listeners == null)
             return;
-        // Notify listeners for this backend.
-        for (IBackendEventListener l : listeners)
-            l.onBackendEvent( event );
+        synchronized (listeners) {		
+	        // Notify listeners for this backend.
+	        for (IBackendEventListener l : listeners)
+	            l.onBackendEvent( event );
+        }
     }
 
     /* (non-Javadoc)
