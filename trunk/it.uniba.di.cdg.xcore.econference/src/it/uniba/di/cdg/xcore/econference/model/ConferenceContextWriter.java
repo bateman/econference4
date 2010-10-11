@@ -131,9 +131,9 @@ public class ConferenceContextWriter {
 
 			roleSupportTeam.appendChild(roleScribe);
 		}
-
-		Node roleParticipants = doc.createElement("role:participants");
-		roleSupportTeam.appendChild(roleParticipants);
+		doc.getDocumentElement().appendChild(roleSupportTeam);
+		
+		Node roleParticipants = doc.createElement("role:participants");		
 
 		while (invitees.hasNext()) {
 			Invitee participant = (Invitee) invitees.next();
@@ -162,8 +162,7 @@ public class ConferenceContextWriter {
 				roleParticipants.appendChild(participantNode);
 			}
 		}
-
-		doc.getDocumentElement().appendChild(roleSupportTeam);
+		doc.getDocumentElement().appendChild(roleParticipants);
 	}
 
 	public void serialize() throws ParserConfigurationException,
