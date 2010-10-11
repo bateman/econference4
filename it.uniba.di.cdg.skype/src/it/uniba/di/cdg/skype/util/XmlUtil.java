@@ -116,7 +116,7 @@ public class XmlUtil {
 				}
 		    }   
 		} catch (XMLStreamException e) {
-			e.printStackTrace();
+			System.err.println("Non xml skype msg received");
 			//non è presente l'elemento
 		}
 		
