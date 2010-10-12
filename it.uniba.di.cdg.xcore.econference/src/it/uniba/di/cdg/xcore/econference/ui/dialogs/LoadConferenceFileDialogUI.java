@@ -179,13 +179,12 @@ public class LoadConferenceFileDialogUI extends Composite {
 	protected boolean checkUserCanSendInvitations() {
 		String moderatorId = getContext().getModerator().getId();
 
-		// XXX We should let the user to choice its own backend
 		IBackend b = NetworkPlugin.getDefault().getRegistry()
 				.getDefaultBackend();
 		String currentUserId = b.getUserAccount().getId();
 
-		boolean eq = moderatorId.indexOf(currentUserId) > -1;
-		// XXX Avoid sending an invitation to ourselves if we are moderators!!
+		boolean eq = moderatorId.equals(currentUserId);
+		// Avoid sending an invitation to ourselves if we are moderators!!
 		if (eq) {
 			for (Iterator<Invitee> it = getContext().getInvitees().iterator(); it
 					.hasNext();) {
@@ -213,7 +212,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 		for (Iterator<Invitee> it = getContext().getInvitees().iterator(); it
 				.hasNext();) {
 			Invitee i = (Invitee) it.next();
-			if (i.getId().indexOf(myId) > -1) {
+			if (i.getId().equals(myId)) {
 				myNickName = i.getFullName();
 				break;
 			}
