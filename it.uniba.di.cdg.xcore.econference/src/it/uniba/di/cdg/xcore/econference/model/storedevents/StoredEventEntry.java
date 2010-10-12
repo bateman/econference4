@@ -24,17 +24,17 @@
  */
 package it.uniba.di.cdg.xcore.econference.model.storedevents;
 
-import java.io.UnsupportedEncodingException;
-
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * 
  */
 public class StoredEventEntry implements IStoredEventEntry {
 
-	private InvitationEvent event;
+	private InvitationEvent invitationEvent;
 
 	/**
      * 
@@ -62,7 +62,7 @@ public class StoredEventEntry implements IStoredEventEntry {
 	 */
 	public StoredEventEntry(String accountId, String backendId, String room,
 			String inviter, String schedule, String reason, String password, String time) {
-		event = new InvitationEvent(backendId, room, inviter, schedule, reason,
+		invitationEvent = new InvitationEvent(backendId, room, inviter, schedule, reason,
 				password);
 		this.accountId = accountId;
 		this.setReceivedOn(time);
@@ -73,7 +73,7 @@ public class StoredEventEntry implements IStoredEventEntry {
 	 * @param event
 	 */
 	public StoredEventEntry(InvitationEvent event) {
-		this.event = event;
+		this.invitationEvent = event;
 		this.accountId = "";
 		this.receivedOn = "";
 	}
@@ -81,14 +81,10 @@ public class StoredEventEntry implements IStoredEventEntry {
 	public StoredEventEntry(String accountid, String backendid, String room,
 			String inviter, String schedule, String reason, String passwd,
 			String[] invitees, String[] items, String time) {
-		event = new ConferenceOrganizationEvent(backendid, room, inviter,
+		invitationEvent = new ConferenceOrganizationEvent(backendid, room, inviter,
 				schedule, reason, passwd, invitees, items);
 		this.accountId = accountid;
 		this.setReceivedOn(time);
-	}
-
-	public InvitationEvent getEvent() {
-		return event;
 	}
 
 	/*
@@ -113,8 +109,30 @@ public class StoredEventEntry implements IStoredEventEntry {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Invitation to eConference %s",
-				getRoom().split("@")[0]);
+		String room = getRoom();
+		if (room.contains("@")) {
+			room = room.substring(0, room.indexOf("@"));
+		}
+		String type = null;
+		switch (invitationEvent.getEventType()) {
+		case InvitationEvent.INVITATION_EVENT_TYPE:
+			type = "Invitation to event";
+			if (room.contains("$") && room.startsWith("#")) {
+				room = "from " + invitationEvent.getInviter();
+			}
+			break;
+		case ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE:
+			type = "Organization of event";
+			if (room.contains("$")) {
+				room = room.substring(0, room.indexOf("$"));
+			}
+			break;
+		default:
+			type = "Error: ";
+			break;
+		} 
+		  
+		return String.format("%s %s", type, room);
 	}
 
 	/*
@@ -169,37 +187,37 @@ public class StoredEventEntry implements IStoredEventEntry {
 
 	@Override
 	public String getBackendId() {		
-		return event.getBackendId();
+		return invitationEvent.getBackendId();
 	}
 
 	@Override
 	public String getInviter() {		
-		return event.getInviter();
+		return invitationEvent.getInviter();
 	}
 
 	@Override
 	public String getPassword() {
-		return event.getPassword();
+		return invitationEvent.getPassword();
 	}
 
 	@Override
 	public String getReason() {
-		return event.getReason();
+		return invitationEvent.getReason();
 	}
 
 	@Override
 	public String getRoom() {
-		return event.getRoom();
+		return invitationEvent.getRoom();
 	}
 
 	@Override
 	public String getSchedule() {
-		return event.getSchedule();
+		return invitationEvent.getSchedule();
 	}
 
 	@Override
 	public InvitationEvent getInvitationEvent() {		
-		return event;
+		return invitationEvent;
 	}
 
 	public void setReceivedOn(String receivedOn) {
