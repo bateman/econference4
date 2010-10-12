@@ -148,18 +148,27 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 					// you cant say who the inviter is upfront
 					// if your id matches A, then inviter is B
 					// and viceversa
-					if(roomName.contains(";"))
-						// trims the leading "#" and the trailing ";key"
-						roomName = roomName.substring(1, roomName.indexOf(";"));
-					String[] splits = roomName.split("/");
-					Assert.isTrue(splits.length == 2);
-					for (String s : splits) {
-						if(s.startsWith("$"))
-							s = s.substring(1);
-						if(!s.equals(userId)) {
-							inviter = s;
-							break;
+					if (roomName.contains(";")) {
+						if (roomName.startsWith("#")) { // it's an online
+														// invitation
+							// trims the leading "#" and the trailing ";key"
+							roomName = roomName.substring(1,
+									roomName.indexOf(";"));
+							String[] splits = roomName.split("/");
+							Assert.isTrue(splits.length == 2);
+							for (String s : splits) {
+								if (s.startsWith("$"))
+									s = s.substring(1);
+								if (!s.equals(userId)) {
+									inviter = s;
+									break;
+								}
+							}
 						}
+					} else { // it's a load from file
+						String[] splits = roomName.split("\\$");
+						Assert.isTrue(splits.length == 2);
+						inviter = splits[1];
 					}
 					
 					roomInviteAccepted(inviter);
