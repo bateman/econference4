@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.Assert;
+
 import com.skype.Chat;
 import com.skype.Skype;
 import com.skype.SkypeException;
@@ -141,8 +143,25 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 					}
 				}
 				else {
-					//inviter dal room name
-					inviter = roomName.substring(roomName.indexOf('$') + 1);
+					//inviter dal room name			
+					// room name is #A/$B;key
+					// you cant say who the inviter is upfront
+					// if your id matches A, then inviter is B
+					// and viceversa
+					if(roomName.contains(";"))
+						// trims the leading "#" and the trailing ";key"
+						roomName = roomName.substring(1, roomName.indexOf(";"));
+					String[] splits = roomName.split("/");
+					Assert.isTrue(splits.length == 2);
+					for (String s : splits) {
+						if(s.startsWith("$"))
+							s = s.substring(1);
+						if(!s.equals(userId)) {
+							inviter = s;
+							break;
+						}
+					}
+					
 					roomInviteAccepted(inviter);
 				}
 					
