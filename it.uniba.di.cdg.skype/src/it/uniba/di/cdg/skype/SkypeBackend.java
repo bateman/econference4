@@ -179,6 +179,7 @@ public class SkypeBackend implements IBackend {
 					.readXmlExtension(content);
 					String type = param.get(ExtensionConstants.PRESENCE_TYPE);
 					if (ExtensionConstants.PRESENCE_UNAVAILABLE.equals(type)) {
+						System.out.println("Received presence unvailable update");
 						IBackendEvent event = new MultiChatUserLeftEvent(getBackendId(), senderId, senderName);
 						getHelper().notifyBackendEvent(event);
 					}
