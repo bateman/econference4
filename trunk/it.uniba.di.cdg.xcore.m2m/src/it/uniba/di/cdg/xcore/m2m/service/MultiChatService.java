@@ -40,6 +40,7 @@ import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 import it.uniba.di.cdg.xcore.network.events.ITypingEventListener;
 import it.uniba.di.cdg.xcore.network.events.TypingEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatInvitationDeclinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
@@ -49,7 +50,6 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatNameChangedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipRevokedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatSubjectUpdatedEvent;
-import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
@@ -746,12 +746,13 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		
 		else if(event instanceof MultiChatUserLeftEvent){
 			MultiChatUserLeftEvent mcule = (MultiChatUserLeftEvent)event;
-			// TODO see if it works with skype backend too
 			String nick = mcule.getNickname();
 			IParticipant p = getModel().getParticipantByNickName(nick);
-            //IParticipant p = getModel().getParticipant( mcule.getUserId() );
-            if (p == null)
-                return;
+            if (p == null) {
+            	p = getModel().getParticipant(mcule.getUserId());
+            	if (p == null)
+            		return;
+            }
             getModel().removeParticipant( p );
 		}
 		
