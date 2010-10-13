@@ -193,7 +193,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
                         l.typing();
                 }
                 timeout++;
-                if (timeout > 5)
+                if (timeout > 10)
                     timeout = 0;
             }
         } );
