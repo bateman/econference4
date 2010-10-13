@@ -45,7 +45,6 @@ import it.uniba.di.cdg.xcore.ui.views.ITalkView;
 import it.uniba.di.cdg.xcore.ui.views.TalkView;
 import it.uniba.di.cdg.xcore.ui.views.ITalkView.ISendMessagelListener;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -285,8 +284,17 @@ public class ChatManager implements IServiceManager, ISendMessagelListener, ITyp
 	public void onBackendEvent(IBackendEvent event) {
 		
 		if (event instanceof ChatComposingEvent){
-			ChatComposingEvent chatComposingtEvent = (ChatComposingEvent)event; 
-			if (chatComposingtEvent.getFrom().equals(chatContext.getBuddyId())){
+			ChatComposingEvent chatComposingtEvent = (ChatComposingEvent)event;
+			
+			String eventFrom = chatComposingtEvent.getFrom();
+			if (eventFrom.contains("/"))
+				eventFrom = eventFrom.split("/")[0];
+			
+			String contextFrom = chatComposingtEvent.getFrom();
+			if (contextFrom.contains("/"))
+				contextFrom = contextFrom.split("/")[0];
+			
+			if (eventFrom.equals(contextFrom)){
 				ITypingEvent typingEvent = new TypingEvent(backendHelper.getRoster().getBuddy(getBuddyId()).getName());
 				talkView.onTyping(typingEvent);
 			}
