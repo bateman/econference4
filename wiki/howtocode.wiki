@@ -1,20 +1,21 @@
-#summary A list of dos and donts to respect when contributing to the project.
+#summary A list of do's and dont's to respect when contributing to the project.
 #labels Featured,howto
 
 = Introduction =
 
-Add your content here.
+This page lists all the *good practices* _(to respect at any cost)_ and *bad practices* _(to avoid at any cost)_ that must be observed by any developer contributing to the eConference 4 project.
 
 
 = Details =
 
-=== Don'ts ===
+=== Dont's ===
   # commit broken files
   # commit unformatted files, use Eclipse built-in style
   # commit files with warnings (e.g. unused vars or imports)
   # commit files with non organized imports
-  # commit any resource without a description or changelog
+  # commit any resource without a description or changelog in the comment field
 
-=== Dos ===
+=== Do's ===
   # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
   # respect java style code conventions, see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more
+  # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix and commit channges
