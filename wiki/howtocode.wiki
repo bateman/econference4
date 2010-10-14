@@ -13,7 +13,7 @@ This page lists all the *good practices* _(to respect at any cost)_ and *bad pra
   # commit unformatted files, use Eclipse built-in style
   # commit files with warnings (e.g. unused vars or imports)
   # commit files with non organized imports
-  # commit files with '*//XXX*', '*//TODO*', and '*//FIXME*' annotations
+  # commit files with {{{// XXX}}}, {{{// TODO}}}, and {{{// FIXME}}} annotations
   # commit any resource without a description or changelog in the comment field
 
 === Do's ===
