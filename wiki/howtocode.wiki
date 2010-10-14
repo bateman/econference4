@@ -10,13 +10,16 @@ This page lists all the *good practices* _(to respect at any cost)_ and *bad pra
 
 === Dont's ===
   # commit broken files
+  # commit untested files
   # commit unformatted files, use Eclipse built-in style
   # commit files with warnings (e.g. unused vars or imports)
   # commit files with non organized imports
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations
   # commit any resource without a description or changelog in the comment field
+  # commit any change without a related JUnit/Jmock (if possible) test case proving it works fine
 
 === Do's ===
   # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
   # respect java style code conventions for vars, files, packages, classes, interfaces, methods and so on; see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more
   # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix and commit changes
+  # write JUnit/JMock (if possible) test cases for new features added
