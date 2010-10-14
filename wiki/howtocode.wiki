@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary A list of dos and donts to respect when contributing to the project.
 #labels Featured,howto
 
 = Introduction =
@@ -8,7 +8,13 @@ Add your content here.
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+=== Don'ts ===
+  # commit broken files
+  # commit unformatted files, use Eclipse built-in style
+  # commit files with warnings (e.g. unused vars or imports)
+  # commit files with non organized imports
+  # commit any resource without a description or changelog
+
+=== Dos ===
+  # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
+  # respect java style code conventions, see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more
