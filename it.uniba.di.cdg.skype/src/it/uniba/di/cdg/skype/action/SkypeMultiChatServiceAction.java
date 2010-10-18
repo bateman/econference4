@@ -174,12 +174,14 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 					roomInviteAccepted(inviter);
 					// we have to wait until the moderator
 					// notifies the room
+					/*
 					while(skypeRoom == null)
 						try {
 							Thread.sleep(50);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
+						*/
 				}
 					
 				
