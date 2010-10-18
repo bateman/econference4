@@ -42,8 +42,8 @@ import it.uniba.di.cdg.xcore.one2one.ui.ChatPerspective;
 import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import it.uniba.di.cdg.xcore.ui.util.PartListenerAdapter;
 import it.uniba.di.cdg.xcore.ui.views.ITalkView;
-import it.uniba.di.cdg.xcore.ui.views.TalkView;
 import it.uniba.di.cdg.xcore.ui.views.ITalkView.ISendMessagelListener;
+import it.uniba.di.cdg.xcore.ui.views.TalkView;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -309,6 +309,7 @@ public class ChatManager implements IServiceManager, ISendMessagelListener, ITyp
 		if (event instanceof ChatExtensionProtocolEvent){
 			ChatExtensionProtocolEvent chatExtensionProtocolEvent =
 				(ChatExtensionProtocolEvent)event;
+			// FIXME why is there this empty if block?
 		}
 			
 		
