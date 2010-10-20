@@ -402,6 +402,8 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 
     @Override
     public void leave() {
+    	getBackend().getHelper().unregisterBackendListener(this);
+    	
     	multiChatServiceActions.leave();
         // Notify listeners that we have left the chatroom ...
         for (IMultiChatServiceListener l : multiChatListeners)
