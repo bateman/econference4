@@ -16,5 +16,10 @@ public class SkypeBuddy extends AbstractBuddy {
 		this.status = buddyStatus;
 		this.online = buddyOnline;
 	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
 }
