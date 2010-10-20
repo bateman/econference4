@@ -309,7 +309,7 @@ public class ChatManager implements IServiceManager, ISendMessagelListener, ITyp
 		if (event instanceof ChatExtensionProtocolEvent){
 			ChatExtensionProtocolEvent chatExtensionProtocolEvent =
 				(ChatExtensionProtocolEvent)event;
-			// FIXME why is there this empty if block?
+			// In this section is possible intercept the extension message of one2one chat
 		}
 			
 		
