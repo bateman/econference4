@@ -64,7 +64,7 @@ public class EConferenceManager extends MultiChatManager implements IEConference
 	
 	public String FREE_TALK_NOW_MESSAGE = "Free talk now ..."; 
 	
-    protected String conferenceStarteMessage = "The conference has been STARTED";
+    protected String conferenceStartedMessage = "The conference has been STARTED";
     
     public String conferenceStoppedMessage = "The conference has been STOPPED";
 	
@@ -97,7 +97,7 @@ public class EConferenceManager extends MultiChatManager implements IEConference
                 getTalkView().appendMessage( new SystemMessage( conferenceStoppedMessage ));
                 getTalkView().setTitleText( FREE_TALK_NOW_MESSAGE );
             } else {
-                getTalkView().appendMessage( new SystemMessage( conferenceStarteMessage));
+                getTalkView().appendMessage( new SystemMessage( conferenceStartedMessage));
                 
                 int currItem = getService().getModel().getItemList().getCurrentItemIndex();
                 // This case tipically occurs when the conference is started for the first time: no
