@@ -162,7 +162,7 @@ public class WhiteBoardView extends WhiteBoardViewUI implements IWhiteBoard {
      * Scroll to the bottom of the board
      */
     // TODO Bug 53: https://cde.di.uniba.it/tracker/index.php?func=detail&aid=53&group_id=9&atid=138
-    @SwtSyncExec
+    @SwtAsyncExec
     protected void scrollToEnd() {
         //ScrollBar scrollBar = whiteBoardText.getVerticalBar();
         int n = whiteBoardText.getCharCount();
