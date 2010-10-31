@@ -83,8 +83,11 @@ public class ExtensionProcessor implements IExtensionProcessor {
 //        SelectBackendDialog dlg = new SelectBackendDialog( new Shell() , defaultBackend, backends.keySet());
 //        dlg.open();
         
-        //String selectedBackend = CommandlineArgs.parse(Platform.getApplicationArgs(), backends.keySet());
-        String selectedBackend = getSelectedBackend();
+        String selectedBackend = CommandlineArgs.parse(Platform.getApplicationArgs(), backends.keySet());
+        if (selectedBackend == null)
+        	selectedBackend = getSelectedBackend();
+        
+        System.setProperty("econference.currentbackend", selectedBackend);
                 
         IConfigurationElement member = backends.get(selectedBackend); //(defaultBackend.get(0));
         
@@ -107,7 +110,6 @@ public class ExtensionProcessor implements IExtensionProcessor {
 			.getNode(CONFIGURATION_NODE_QUALIFIER);
 		Preferences sub1 = preferences.node("defaultBackend");
 		String proto = sub1.get("backend", "Jabber");
-		System.setProperty("econference.currentbackend", proto);
 		return proto;
 	}
 
