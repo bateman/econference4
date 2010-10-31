@@ -31,6 +31,8 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.osgi.service.prefs.Preferences;
 
 /**
  * Abstracts the common idiom for visiting the extenders of specific
@@ -40,6 +42,9 @@ import org.eclipse.core.runtime.Platform;
  * @see it.uniba.di.cdg.xcore.util.IExtensionVisitor
  */
 public class ExtensionProcessor implements IExtensionProcessor {
+	
+	private static final String CONFIGURATION_NODE_QUALIFIER = "BackendInformation";
+	
     /** 
      * The singleton instance. 
      */
@@ -78,8 +83,9 @@ public class ExtensionProcessor implements IExtensionProcessor {
 //        SelectBackendDialog dlg = new SelectBackendDialog( new Shell() , defaultBackend, backends.keySet());
 //        dlg.open();
         
-        String selectedBackend = CommandlineArgs.parse(Platform.getApplicationArgs(), backends.keySet());
-        
+        //String selectedBackend = CommandlineArgs.parse(Platform.getApplicationArgs(), backends.keySet());
+        String selectedBackend = getSelectedBackend();
+                
         IConfigurationElement member = backends.get(selectedBackend); //(defaultBackend.get(0));
         
         IExtension extension = member.getDeclaringExtension();
@@ -96,7 +102,16 @@ public class ExtensionProcessor implements IExtensionProcessor {
         }*/
     }
 
-    /**
+    private String getSelectedBackend() {
+		Preferences preferences = new ConfigurationScope()
+			.getNode(CONFIGURATION_NODE_QUALIFIER);
+		Preferences sub1 = preferences.node("defaultBackend");
+		String proto = sub1.get("backend", "Jabber");
+		System.setProperty("econference.currentbackend", proto);
+		return proto;
+	}
+
+	/**
      * Avoid direct instantiation.
      */
     private ExtensionProcessor() {
