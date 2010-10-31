@@ -10,7 +10,7 @@ public class CommandlineArgs {
 	private static final Object HELP_ARG = "-h";
 
 	public static String parse(String[] args, Set<String> set) {
-		String proto = XMPP_PROTOCOL; // default
+		String proto = null;
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals(PROTOCOL_ARG)) {
 				i++;
@@ -19,6 +19,9 @@ public class CommandlineArgs {
 			if(args[i].equals(HELP_ARG))
 				printHelp();
 		}
+		
+		if(proto == null)
+			return proto;
 
 		System.out.println("Loading selected backend: " + proto);
 		boolean found = false;
@@ -34,9 +37,8 @@ public class CommandlineArgs {
 							+ XMPP_PROTOCOL);
 			proto = XMPP_PROTOCOL;
 		}
-		System.setProperty("econference.currentbackend", proto);
+		
 		return proto;
-
 	}
 
 	private static void printHelp() {
