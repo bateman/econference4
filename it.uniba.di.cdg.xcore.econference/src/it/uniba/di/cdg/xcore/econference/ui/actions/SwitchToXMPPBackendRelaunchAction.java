@@ -2,11 +2,11 @@ package it.uniba.di.cdg.xcore.econference.ui.actions;
 
 import it.uniba.di.cdg.xcore.econference.EConferencePlugin;
 
-import org.eclipse.equinox.app.IApplication;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-public class SwitchToXMPPBackendRelaunchAction extends AbstractSwitchBackendRelaunchAction {
+public class SwitchToXMPPBackendRelaunchAction extends
+		AbstractSwitchBackendRelaunchAction {
 
 	/**
 	 * The unique id of this action.
@@ -27,17 +27,8 @@ public class SwitchToXMPPBackendRelaunchAction extends AbstractSwitchBackendRela
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action) {
-		//System.setProperty(PROP_EXIT_CODE,
-			//	IApplication.EXIT_RELAUNCH.toString());
-		/*String cmdline = buildCommandLine("Jabber", "Skype");
-		System.out.println(cmdline);
-		 System.setProperty(PROP_EXIT_CODE, Integer.toString(24));
-		System.setProperty(PROP_EXIT_DATA, cmdline);
-		System.out.println(System.getProperty(PROP_EXIT_DATA));*/
 		saveNextBackend("Jabber");
 		window.getWorkbench().restart();
 	}
-
-	
 
 }
