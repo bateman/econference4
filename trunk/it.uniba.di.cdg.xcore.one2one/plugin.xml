@@ -110,14 +110,21 @@
                id="it.uniba.di.cdg.xcore.one2one.action1"
                label="Call / End Call"
                menubarPath="callGroup"
-               tooltip="Answer / Finish a call withl this user">
+               tooltip="Answer / Finish a call with this user">
             <enablement>
-               <not>
+            <and>
+             <not>
                   <objectState
                         name="status"
                         value="OFFLINE">
                   </objectState>
                </not>
+              <systemProperty
+                    name="econference.currentbackend"
+                    value="Skype">
+              </systemProperty>
+            </and>            
+        
             </enablement>
          </action>
       </objectContribution>
