@@ -280,7 +280,7 @@
             sequence="M1+M3+L">
       </key>
       <key
-            commandId="org.eclipse.ui.file.exit"
+            commandId="it.uniba.di.cdg.xcore.econference.ui.commands.exit"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+M3+X">
@@ -300,6 +300,29 @@
             id="it.uniba.di.cdg.xcore.econference.ui.actions.load"
             name="load">
       </command>
+      <command
+            categoryId="org.eclipse.ui.category.window"
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.actions.ExitCommand"
+            description="Exits the application"
+            id="it.uniba.di.cdg.xcore.econference.ui.commands.exit"
+            name="exit">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="file"
+               label="File">
+            <command
+                  commandId="it.uniba.di.cdg.xcore.econference.ui.commands.exit"
+                  label="Exit eConference"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
    </extension>
 
 
