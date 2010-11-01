@@ -49,7 +49,6 @@ import org.eclipse.ui.application.IActionBarConfigurer;
  * a workbench window. Each window will be populated with new actions.
  */
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
-    private IWorkbenchAction exitAction;
 
     private IWorkbenchAction connectAction;
     
@@ -76,8 +75,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
      * @see org.eclipse.ui.application.ActionBarAdvisor#makeActions(org.eclipse.ui.IWorkbenchWindow)
      */
     protected void makeActions( final IWorkbenchWindow window ) {
-        exitAction = ActionFactory.QUIT.create( window );
-        register( exitAction );
 
         showViewsMenu = ContributionItemFactory.VIEWS_SHORTLIST.create( window );
         switchPerspectivesMenu = ContributionItemFactory.PERSPECTIVES_SHORTLIST.create( window );
@@ -106,7 +103,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         fileMenu.add( saveAction );
         fileMenu.add( new GroupMarker( IWorkbenchActionConstants.MB_ADDITIONS ) );
         fileMenu.add( new Separator() );
-        fileMenu.add( exitAction );
+        //fileMenu.add( exitAction );
 
         // Workbench menu
         MenuManager workbenchMenu = new MenuManager( "Workbench", UiConstants.M_WORKBENCH );
@@ -166,10 +163,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         // Display the status line indicator by default ...
         onlineIndicator.setVisible( true );
         statusLine.add( onlineIndicator );
-    }
-    
-    protected void fillTrayItem( IMenuManager trayItem ) {
-        trayItem.add( aboutAction );
-        trayItem.add( exitAction );
-    }
+    }    
+
 }
