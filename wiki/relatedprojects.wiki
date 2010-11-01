@@ -2,12 +2,14 @@
 #labels Featured
 
 === eConference3P ===
+---- 
 [http://code.google.com/p/econference-planning-poker-plugin/ eConference: Planning Poker Plugin] is an eConference extension created for distributed agile development teams that want to adopt the Planning Poker methodology for collaborative user-stories estimation.
 
-
 === eConference MT ===
+---- 
 [http://code.google.com/p/econference-mt-plugin/ eConference: Machine Translation] is a plugin that enables real-time machine translation of text messages exchanged during 1-1 or 1-M communication. It supports [http://translate.google.com/# Google Translate] and [http://www.apertium.org/ apertium] services.
 
 
 === eConference AP ===
+---- 
 [http://code.google.com/p/agileplanner-for-econference/ eConference: Agileplanner] is a patched version of [http://ase.cpsc.ucalgary.ca/ase/index.php/AgilePlanning/AgilePlanner AgilePlanner], a card-Based planning tool for co-located & distributed agile teams. It is best used together with [http://code.google.com/p/econference-planning-poker-plugin/ eConference3P (PlanningPoker Plugin)], in order to visually edit user stories to be estimated.
