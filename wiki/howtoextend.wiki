@@ -247,10 +247,10 @@ public class InfoDeamon implements IBackendEventListener {
    if(cepe.getExtensionName().equals("USER_INFO")){
 	String osName = (String) cepe.getExtensionParameter("OS_NAME");
 	String osVer = (String) cepe.getExtensionParameter("OS_VER");
-	JOptionPane.showMessageDialog(null, osName + " " + osVer);
+	showMessage("One2OneInfo plugin", "OS: " + osName + " ver: " + osVer);
 	chat.CloseChat(cepe.getFrom());
-	}
    }
+  }
  }
 }
 }}}
