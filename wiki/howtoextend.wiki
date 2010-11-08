@@ -82,7 +82,9 @@ Ora non ci rimane che realizzare tutti i metodi esposti nell'interfaccia IBacken
   * ICallAction
   * IMultiCallAction
 
-Figura 10. Metodi di IBackend da implementare
+http://econference4.googlecode.com/svn/wiki/img/extend10.png <br />
+*Figura 10. Metodi di IBackend da implementare*
+
 Esempio: stralci di codice del plugin per Skype
 Per comprendere meglio il corretto modo di implementare un nuovo protocollo analizziamo in seguito alcuni metodi implementati per il protocollo Skype.
 1. Metodo Connect presente in IBackend:
@@ -119,7 +121,8 @@ Per comprendere meglio il corretto modo di implementare un nuovo protocollo anal
 
 Il metodo appena presentato ha la funzione di effettuare una connessione. Analizziamo in dettaglio cosa fa.
 La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo è quello del client Skype che deve essere avviato e connesso correttamente. Per approfondimenti Capitolo 3. Se lo stato è diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
-2. Metodo SendExtensionProtocolMessage presente in IChatAction
+
+=Metodo SendExtensionProtocolMessage presente in IChatAction=
 
 {{{
 @Override
@@ -135,7 +138,7 @@ public void SendExtensionProtocolMessage(String to, String extensionName,HashMap
 }
 }}}
 
-Il metodo appena presentato si occupa dell'invio di un'estensione al protocollo. Viene aggiunto in parametro "CHAT_TYPE" con valore "ONE_TO_ONE" per denotare che il messaggio che si sta inviando � un'estensione per la chat uno ad uno. Poi vengono trasformati in una stringa XML il nome dell'estensione e l'elenco dei parametri. In seguito viene inviata la stringa generata al destinatario.
+Il metodo appena presentato si occupa dell'invio di un'estensione al protocollo. Viene aggiunto in parametro "CHAT_TYPE" con valore "ONE_TO_ONE" per denotare che il messaggio che si sta inviando è un'estensione per la chat uno ad uno. Poi vengono trasformati in una stringa XML il nome dell'estensione e l'elenco dei parametri. In seguito viene inviata la stringa generata al destinatario.
 3. In seguito viene mostrata la gestione dei messaggi in ingresso ed in particolare quella di un messaggio che estende il protocollo presente nel metodo processMessageReceived di SkypeBackend:
 
 {{{
@@ -151,23 +154,29 @@ if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
 }}}
 
 Viene controllato se si tratta di un messaggio di chat uno ad uno ed in particolare di un'estensione, se si verificano entrambe le condizioni si solleva un evento di ChatMessageReceivedEvent. Tale evento sarà intercettato e gestito da uno o più servizi come one2one, m2m, eConerence o one2oneinfo (che creeremo nel prossimo paragrafo).
-4. Come estendere eConference 4.0 con un nuovo servizio
+
+=Come estendere eConference 4.0 con un nuovo servizio=
 Per creare un nuovo servizio bisogna prima di tutto creare un nuovo plugin (come spiegato nel paragrafo 4.2). In seguito è possibile aggiungere nuovi elementi grafici tramite i meccanismi di estensione messi a disposizione da Eclipse. In Figura 11 abbiamo un esempio di una tale estensione, si può notare la View "Card Deck" che è stata aggiunta al modello di base di MultiChat strutturata.
 Per quanto riguarda l'aspetto della comunicazione, è possibile accedere ai vari meccanismi messi a disposizione tramite un'istanza di IBackend. Possiamo avere accesso a tale istanza tramite la seguente chiamata:
 NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 
-Figura 11. eConference planning poker plugin
+http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
+*Figura 11. eConference planning poker plugin*
 
-=Creazione di un nuovo servizio=
+==Creazione del nuovo servizio==
 Creiamo ora un piccolo servizio che estende eConference 4.0. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
 Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
 
-Figura 12. Aggiunta di un estensione ad un popupMenu
+http://econference4.googlecode.com/svn/wiki/img/extend12.png <br />
+*Figura 12. Aggiunta di un estensione ad un popupMenu*
+
 Clicchiamo col pulsante destro del mouse su "org.eclipse.ui.popupMenu" e poi su "New > objectContribution". Riempiamo in campo objectClass con "it.uniba.di.cdg.xcore.network.model.Ibuddy" che rappresenta l'utente all'interno del roster. 
 Clicchiamo ora col pulsate destro del mouse sull' objectContribution appena creato e selezioniamo "New > Action". Inseriamo in label "Get Info" e su class "it.uniba.di.cdg.xcore.one2oneinfo.GetUserInfo". Infine clicchiamo sulla voce "class" per creare la classe. Se tutto è andato a buon fine avremo un pannello simile a quello in Figura 13.
 
-Figura 13. Estensione del popupMenu
+http://econference4.googlecode.com/svn/wiki/img/extend13.png <br />
+*Figura 13. Estensione del popupMenu*
+
 Adesso estendiamo, con lo stesso procedimento, il plugin "org.eclipse.ui.startup", aggiungiamo una voce "startup" e nel campo class inseriamo "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine facciamo in modo che la classe One2OneInfoPlugin implementi l'interfaccia IStartup. 
 Con quest'ultima operazione abbiamo fatto in modo che il plugin venga avviato insieme ad eConference e non solo quado richiamata, questo serve ad avviare il demone di cui parleremo dopo.
 All'interno di One2OneInfoPlugin inseriamo il seguente codice:
@@ -280,7 +289,8 @@ Abbiamo terminato il nostro servizio!
 Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
 Se abbiamo eseguito tutti i passi correttamente, dopo aver richiesto le informazioni di un utente, visualizzeremo una schermata simile a quella in Figura 14.
 
-Figura 14. Test del plugin it.uniba.di.cdg.xcore.one2oneinfo
+http://econference4.googlecode.com/svn/wiki/img/extend14.png <br />
+*Figura 14. Test del plugin it.uniba.di.cdg.xcore.one2oneinfo*
 
 In questo esempio è stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend è possibile avere accesso anche a: 
   * IMultichatActions che espone metodi per le chat di gruppo; 
