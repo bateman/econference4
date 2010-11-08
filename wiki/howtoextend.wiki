@@ -3,56 +3,38 @@
 
 = Introduction =
 
-1. Come estendere eConference 4.0
-eConference 4.0 presenta una struttura modulare molto organizzata e non permette che un servizio
-possa accedere alle funzionalità specifiche presenti nell’implementazione di un determinato
-protocollo.
+eConference 4.0 presenta una struttura modulare molto organizzata e non permette che un servizio possa accedere alle funzionalità specifiche presenti nell’implementazione di un determinato protocollo.
 Figura 1. Interazione tra i plugin in eConference 3.0
-Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del
-protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle
-dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che
-dovrebbe essere visibile solo a Jabber.
+
+Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 Figura 2. Interazione tra i plugin in eConference 4.0
-La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti
-accorgimenti:
- Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere
-utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype,
-Jabber..)
- Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network
-, il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi
-di rete, invio e recezione di messaggi, chiamate VoIP..)
- I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema
-ma semplicemente fornendo un’implementazione all’interfaccia IBackend e tutte le
+
+La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
+* Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
+* Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network, il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..).
+* I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un’implementazione all’interfaccia IBackend e tutte le
 interfacce ad essa collegate.
-Nella versione 4.0 è stata introdotta un’ulteriore novità: i plugin Chat e MultiChat sono stati
-rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto
-testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la
-comunicazione avviene tra due o un gruppo di utenti.
-2. Meccanismi di astrazione
-Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L’idea
-che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
-1. Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata,
+Nella versione 4.0 è stata introdotta un’ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da _one2one_ e _m2m_. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
+
+=Meccanismi di astrazione=
+Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L’idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
+# Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata,
 comunicare in cambiamento del proprio nickname..)
-2. Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il
-cambiamento del roster)
-In virtù di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a
-disposizione e tutti gli eventi che un protocollo dovrebbe intercettare.
+# Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
+In virtù di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a disposizione e tutti gli eventi che un protocollo dovrebbe intercettare.
 Action
 Nella Figura 3 sono mostrate che quattro classi che forniscono le Action.
 Figura 3. Implementazione delle action con il protocollo Skype
+
 Le Action sono state suddivise in quattro interfacce, ICallAction, IMultiCallAction,
-IChatServiceActions e ImultiChatServiceActions. Questa divisione è stata fatta perché si può
-presentare il caso in cui un protocollo offra supporto ad una sola categoria di Action. Ad esempio
-Smack non fornisce supporto al VoIP, Msn non fornisce supporto al VoIP di gruppo e così via.
-In Figura 3 sono mostrate le implementazioni a queste quattro interfacce. È possibile avere accesso
-alle istanze di queste quattro classi solo tramite l’interfaccia IBackend che ci restituirà
-l’implementazione fornita dal protocollo utilizzato in quello specifico momento.
-In Figura 4 è mostrato come i vari servizi abbiamo no accesso alle action. Con questo sistema si ha
-un’astrazione dal protocollo solida ed infatti è possibile aggiungere in qualsiasi momento un nuovo
-servizio in quanto esso utilizzerà solo le Action generiche e non quelle specifiche di un protocollo.
+IChatServiceActions e ImultiChatServiceActions. Questa divisione è stata fatta perché si può presentare il caso in cui un protocollo offra supporto ad una sola categoria di Action. Ad esempio Smack non fornisce supporto al VoIP, Msn non fornisce supporto al VoIP di gruppo e così via.
+In Figura 3 sono mostrate le implementazioni a queste quattro interfacce. È possibile avere accesso alle istanze di queste quattro classi solo tramite l’interfaccia IBackend che ci restituirà l’implementazione fornita dal protocollo utilizzato in quello specifico momento.
+In Figura 4 è mostrato come i vari servizi abbiamo no accesso alle action. Con questo sistema si ha un’astrazione dal protocollo solida ed infatti è possibile aggiungere in qualsiasi momento un nuovo servizio in quanto esso utilizzerà solo le Action generiche e non quelle specifiche di un protocollo.
 Figura 4. Uso delle Action da parte dei servizi
+
 È inoltre possibile aggiunge con estrema semplicità nuove Action (Es. Il supporto al video).
-Event
+
+==Event==
 Sono stati i individuati gli eventi comuni tra i vari protocolli ed è stato creato uno strato di
 astrazione che li supportasse. Come si può notare dalla Figura 5, i protocolli (in questo caso, Skype)
 sollevano un evento e i servizi (in questo caso, one2one) lo intercettano e lo gestiscono in modo
