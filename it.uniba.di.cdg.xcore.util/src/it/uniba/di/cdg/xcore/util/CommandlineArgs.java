@@ -16,11 +16,11 @@ public class CommandlineArgs {
 				i++;
 				proto = args[i];
 			}
-			if(args[i].equals(HELP_ARG))
+			if (args[i].equals(HELP_ARG))
 				printHelp();
 		}
-		
-		if(proto == null)
+
+		if (proto == null)
 			return proto;
 
 		System.out.println("Loading selected backend: " + proto);
@@ -37,11 +37,12 @@ public class CommandlineArgs {
 							+ XMPP_PROTOCOL);
 			proto = XMPP_PROTOCOL;
 		}
-		
+
 		return proto;
 	}
 
 	private static void printHelp() {
-		System.out.println("Mandatory argument(s):\n-p {Jabber|Skype}\t- selects the network backend");		
+		System.out.println("Argument(s):\n-p {" + XMPP_PROTOCOL + "|"
+				+ SKYPE_PROTOCOL + "}\t- selects the network backend");
 	}
 }
