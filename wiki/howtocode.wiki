@@ -3,12 +3,18 @@
 
 = Introduction =
 
-This page lists all the *good practices* _(to respect at any cost)_ and *bad practices* _(to avoid at any cost)_ that must be observed by any developer contributing to the eConference 4 project.
+This page lists all the *good practices* _(to be respected at any cost)_ and *bad practices* _(to be avoided at any cost)_ that must be observed by any developer contributing to the eConference 4 project.
 
 Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-mylyn-with-google-code-u guide] to configure Eclipse to display and manage the issue from the IDE.
 
 
 = Details =
+
+=== Do's ===
+  # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
+  # respect java style code conventions for vars, files, packages, classes, interfaces, methods and so on; see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more
+  # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix and commit changes
+  # write JUnit/JMock (if possible) test cases for new features added
 
 === Dont's ===
   # commit broken files
@@ -19,9 +25,3 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations that do not have a related issue open in the issue tracker
   # commit any resource without a description or changelog in the comment field
   # commit changes without any related JUnit/Jmock test cases (if possible), to prove that everything works fine
-
-=== Do's ===
-  # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
-  # respect java style code conventions for vars, files, packages, classes, interfaces, methods and so on; see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more
-  # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix and commit changes
-  # write JUnit/JMock (if possible) test cases for new features added
