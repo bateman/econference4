@@ -14,7 +14,7 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 
 	// The shared instance
 	private static One2OneInfoPlugin plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -35,7 +35,7 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static One2OneInfoPlugin getDefault() {
@@ -44,8 +44,6 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
