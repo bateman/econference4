@@ -252,6 +252,10 @@ public class InfoDeamon implements IBackendEventListener {
    }
   }
  }
+ 
+ private void showMessage(String windowTitle, String message) {
+	UiPlugin.getUIHelper().showMessage(windowTitle, message);
+ }
 }
 }}}
 
