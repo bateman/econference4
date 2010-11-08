@@ -17,13 +17,14 @@ La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo
   * Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..).
   * I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
 
-Nella versione 4.0 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
+Nella versione 4 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
 
 ==Meccanismi di astrazione==
 Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
-  # Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
-  # Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
+  # Permettono di eseguire delle azioni (es. Inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
+  # Intercettano degli eventi di rete (es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
 In virtù di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a disposizione e tutti gli eventi che un protocollo dovrebbe intercettare. 
+
 
 ===Action===
 Nella Figura 3 sono mostrate che quattro classi che forniscono le Action.
@@ -38,7 +39,7 @@ In Figura 4 è mostrato come i vari servizi abbiamo no accesso alle action. Con 
 http://econference4.googlecode.com/svn/wiki/img/extend4.jpg <br />
 *Figura 4. Uso delle Action da parte dei servizi*
 
-E' inoltre possibile aggiunge con estrema semplicità nuove Action (Es. Il supporto al video).
+E' inoltre possibile aggiunge con estrema semplicità nuove Action (es. Il supporto al video).
 
 ===Event===
 Sono stati i individuati gli eventi comuni tra i vari protocolli ed è stato creato uno strato di astrazione che li supportasse. Come si può notare dalla Figura 5, i protocolli (in questo caso, Skype) sollevano un evento e i servizi (in questo caso, one2one) lo intercettano e lo gestiscono in modo opportuno.
@@ -83,9 +84,9 @@ Ora non ci rimane che realizzare tutti i metodi esposti nell'interfaccia IBacken
 http://econference4.googlecode.com/svn/wiki/img/extend10.png <br />
 *Figura 10. Metodi di IBackend da implementare*
 
-Esempio: stralci di codice del plugin per Skype
+==Stralci di codice del plugin per Skype==
 Per comprendere meglio il corretto modo di implementare un nuovo protocollo analizziamo in seguito alcuni metodi implementati per il protocollo Skype.
-1. Metodo Connect presente in IBackend:
+Diamo uno sguardo al metodo IBackend.Connect().
 
 {{{
 @Override
@@ -118,9 +119,8 @@ Per comprendere meglio il corretto modo di implementare un nuovo protocollo anal
 }}}
 
 Il metodo appena presentato ha la funzione di effettuare una connessione. Analizziamo in dettaglio cosa fa.
-La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo è quello del client Skype che deve essere avviato e connesso correttamente. Per approfondimenti Capitolo 3. Se lo stato è diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
-
-Diamo uno sguardo al metodo SendExtensionProtocolMessage presente in IChatAction.
+La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo è quello del client Skype che deve essere avviato e connesso correttamente. Se lo stato è diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
+Diamo uno sguardo al metodo IChatAction.SendExtensionProtocolMessage().
 
 {{{
 @Override
@@ -162,7 +162,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
 *Figura 11. eConference planning poker plugin*
 
 ===Creazione del nuovo servizio===
-Creiamo ora un piccolo servizio che estende eConference 4.0. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
+Creiamo ora un piccolo servizio che estende eConference 4. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
 Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
 
