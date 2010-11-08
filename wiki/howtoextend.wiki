@@ -161,7 +161,7 @@ NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
 *Figura 11. eConference planning poker plugin*
 
-==Creazione del nuovo servizio==
+===Creazione del nuovo servizio===
 Creiamo ora un piccolo servizio che estende eConference 4.0. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
 Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
