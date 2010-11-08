@@ -2,45 +2,45 @@
 #labels Featured,howto,Phase-Implementation
 
 = Introduction =
-eConference 4.0 presenta una struttura modulare molto organizzata e non permette che un servizio possa accedere alle funzionalità specifiche presenti nell'implementazione di un determinato protocollo.
+eConference 4.0 presenta una struttura modulare molto organizzata e non permette che un servizio possa accedere alle funzionalitÃ  specifiche presenti nell'implementazione di un determinato protocollo.
 
 Figura 1. Interazione tra i plugin in eConference 3.0
-Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
+Come si puÃ² notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
 Figura 2. Interazione tra i plugin in eConference 4.0
-La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
+La struttura attuale, come si evince dalla Figura 2, Ã¨ stata sviluppata tenendo conto dei seguenti accorgimenti:
 * Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..)
-* Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..)
+* Ogni servizio puÃ² creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..)
 * I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
-Nella versione 4.0 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
+Nella versione 4.0 Ã¨ stata introdotta un'ulteriore novitÃ : i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione Ã¨ stata presa in virtÃ¹ del fatto che ora al supporto testuale Ã¨ stato affiancato quello del VoIP e quindi Ã¨ di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
 2. Meccanismi di astrazione
-Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
+Per creare un livello di astrazione solido Ã¨ stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione Ã¨ che tutti protocolli hanno in comune due cose:
 1. Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
 2. Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
-In virtù di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a disposizione e tutti gli eventi che un protocollo dovrebbe intercettare. 
+In virtÃ¹ di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a disposizione e tutti gli eventi che un protocollo dovrebbe intercettare. 
 Action
 Nella Figura 3 sono mostrate che quattro classi che forniscono le Action.
 
 Figura 3. Implementazione delle action con il protocollo Skype
-Le Action sono state suddivise in quattro interfacce, ICallAction, IMultiCallAction, IChatServiceActions e ImultiChatServiceActions. Questa divisione è stata fatta perché si può presentare il caso in cui un protocollo offra supporto ad una sola categoria di Action. Ad esempio Smack non fornisce supporto al VoIP, Msn non fornisce supporto al VoIP di gruppo e così via.
-In Figura 3 sono mostrate le implementazioni a queste quattro interfacce. È possibile avere accesso alle istanze di queste quattro classi solo tramite l'interfaccia IBackend che ci restituirà l'implementazione fornita dal protocollo utilizzato in quello specifico momento.
-In Figura 4 è mostrato come i vari servizi abbiamo no accesso alle action. Con questo sistema si ha un'astrazione dal protocollo solida ed infatti è possibile aggiungere in qualsiasi momento un nuovo servizio in quanto esso utilizzerà solo le Action generiche e non quelle specifiche di un protocollo.
+Le Action sono state suddivise in quattro interfacce, ICallAction, IMultiCallAction, IChatServiceActions e ImultiChatServiceActions. Questa divisione ï¿½ stata fatta perchï¿½ si puï¿½ presentare il caso in cui un protocollo offra supporto ad una sola categoria di Action. Ad esempio Smack non fornisce supporto al VoIP, Msn non fornisce supporto al VoIP di gruppo e cosï¿½ via.
+In Figura 3 sono mostrate le implementazioni a queste quattro interfacce. ï¿½ possibile avere accesso alle istanze di queste quattro classi solo tramite l'interfaccia IBackend che ci restituirï¿½ l'implementazione fornita dal protocollo utilizzato in quello specifico momento.
+In Figura 4 ï¿½ mostrato come i vari servizi abbiamo no accesso alle action. Con questo sistema si ha un'astrazione dal protocollo solida ed infatti ï¿½ possibile aggiungere in qualsiasi momento un nuovo servizio in quanto esso utilizzerï¿½ solo le Action generiche e non quelle specifiche di un protocollo.
 
 Figura 4. Uso delle Action da parte dei servizi
-È inoltre possibile aggiunge con estrema semplicità nuove Action (Es. Il supporto al video).
+ï¿½ inoltre possibile aggiunge con estrema semplicitï¿½ nuove Action (Es. Il supporto al video).
 Event
-Sono stati i individuati gli eventi comuni tra i vari protocolli ed è stato creato uno strato di astrazione che li supportasse. Come si può notare dalla Figura 5, i protocolli (in questo caso, Skype) sollevano un evento e i servizi (in questo caso, one2one) lo intercettano e lo gestiscono in modo opportuno.
+Sono stati i individuati gli eventi comuni tra i vari protocolli ed ï¿½ stato creato uno strato di astrazione che li supportasse. Come si puï¿½ notare dalla Figura 5, i protocolli (in questo caso, Skype) sollevano un evento e i servizi (in questo caso, one2one) lo intercettano e lo gestiscono in modo opportuno.
 
 Figura 5. Astrazione degli eventi
-In Figura 6 è mostrato come funziona concretamente il sistema ad eventi. Il servizio si registra un proprio IBackendListener tramite il metodo registerBackendListener() esposto da INetworkBackendHelper e in seguito il plugin che implementa il protocollo solleva i vari eventi richiamando il metodo notifyBackendEvent() esposto sempre da INetworkBackendHelper.
+In Figura 6 ï¿½ mostrato come funziona concretamente il sistema ad eventi. Il servizio si registra un proprio IBackendListener tramite il metodo registerBackendListener() esposto da INetworkBackendHelper e in seguito il plugin che implementa il protocollo solleva i vari eventi richiamando il metodo notifyBackendEvent() esposto sempre da INetworkBackendHelper.
 
 
 Figura 6. Esempio di uso degli eventi
 
 Extension
-Dopo aver creato lo strato di astrazione, si è presentato un grosso ostacolo. I servizi di MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessità di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
-Si può ben immaginare che nessun protocollo metta a disposizione tali funzionalità. La soluzione adottata è stata quella di creare un meccanismo per estendere il protocollo di base. Ciò è permesso tramite una Action chiamata SendExtensionProtocolMessage() che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo e l'Event ChatExtensionProtocolEvent che viene sollevato quando si riceve un messaggio speciale.
-Tramite questo meccanismo è possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
+Dopo aver creato lo strato di astrazione, si ï¿½ presentato un grosso ostacolo. I servizi di MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessitï¿½ di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
+Si puï¿½ ben immaginare che nessun protocollo metta a disposizione tali funzionalitï¿½. La soluzione adottata ï¿½ stata quella di creare un meccanismo per estendere il protocollo di base. Ciï¿½ ï¿½ permesso tramite una Action chiamata SendExtensionProtocolMessage() che invia un messaggio speciale che puï¿½ contenere informazioni formattate in qualsiasi modo e l'Event ChatExtensionProtocolEvent che viene sollevato quando si riceve un messaggio speciale.
+Tramite questo meccanismo ï¿½ possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
 3. Come inserire un nuovo protocollo di comunicazione
 Per inserire un nuovo protocollo bisogna creare un nuovo plugin, estendere il plugin Network tramite l'interfaccia IBackend e fornire l'implementazione di alcune interfacce. Vediamo ora come eseguire queste operazioni.
 Come primo passo scarichiamo il codice sorgente di eConference 4.0 in Eclipse tramite SVN dall'indirizzo [ECONF4CHECKOUTWWW] (come mostrato in Figura 7).
@@ -49,7 +49,7 @@ Figura 7. Checkout di eConference 4.0
 Come secondo passo creiamo un nuovo plugin da "File > New > Other" e selezioniamo "Plug-In Project" come mostrato in Figura 8.
 
 Figura 8. Creazione di un nuovo plugin
-A questo punto apriamo il file "plugin.xml" e dal pannello extension clicchiamo su "add", nel wizard che compare selezioniamo l'estensione di nome "it.uniba.di.cdg.xcore.network.backends". Se tutto è andato a buon fine, dovrebbe comparire un pannello simile a quello in Figura 9.
+A questo punto apriamo il file "plugin.xml" e dal pannello extension clicchiamo su "add", nel wizard che compare selezioniamo l'estensione di nome "it.uniba.di.cdg.xcore.network.backends". Se tutto ï¿½ andato a buon fine, dovrebbe comparire un pannello simile a quello in Figura 9.
 
 Figura 9. Punto di estensione di IBackend
 Possiamo notare come in figura 32 sia associata all'estensione la classe "SkypeBackend", quindi se stiamo implementando il protocollo X assoceremo all'estensione una classe chiamata XBackend.
@@ -96,7 +96,7 @@ Per comprendere meglio il corretto modo di implementare un nuovo protocollo anal
 }}}
 
 Il metodo appena presentato ha la funzione di effettuare una connessione. Analizziamo in dettaglio cosa fa.
-La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo è quello del client Skype che deve essere avviato e connesso correttamente. Per approfondimenti Capitolo 3. Se lo stato è diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
+La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo ï¿½ quello del client Skype che deve essere avviato e connesso correttamente. Per approfondimenti Capitolo 3. Se lo stato ï¿½ diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
 2. Metodo SendExtensionProtocolMessage presente in IChatAction
 
 {{{
@@ -113,7 +113,7 @@ public void SendExtensionProtocolMessage(String to, String extensionName,HashMap
 }
 }}}
 
-Il metodo appena presentato si occupa dell'invio di un'estensione al protocollo. Viene aggiunto in parametro "CHAT_TYPE" con valore "ONE_TO_ONE" per denotare che il messaggio che si sta inviando è un'estensione per la chat uno ad uno. Poi vengono trasformati in una stringa XML il nome dell'estensione e l'elenco dei parametri. In seguito viene inviata la stringa generata al destinatario.
+Il metodo appena presentato si occupa dell'invio di un'estensione al protocollo. Viene aggiunto in parametro "CHAT_TYPE" con valore "ONE_TO_ONE" per denotare che il messaggio che si sta inviando ï¿½ un'estensione per la chat uno ad uno. Poi vengono trasformati in una stringa XML il nome dell'estensione e l'elenco dei parametri. In seguito viene inviata la stringa generata al destinatario.
 3. In seguito viene mostrata la gestione dei messaggi in ingresso ed in particolare quella di un messaggio che estende il protocollo presente nel metodo processMessageReceived di SkypeBackend:
 
 {{{
@@ -128,21 +128,21 @@ if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
 }
 }}}
 
-Viene controllato se si tratta di un messaggio di chat uno ad uno ed in particolare di un'estensione, se si verificano entrambe le condizioni si solleva un evento di ChatMessageReceivedEvent. Tale evento sarà intercettato e gestito da uno o più servizi come one2one, m2m, eConerence o one2oneinfo (che creeremo nel prossimo paragrafo).
+Viene controllato se si tratta di un messaggio di chat uno ad uno ed in particolare di un'estensione, se si verificano entrambe le condizioni si solleva un evento di ChatMessageReceivedEvent. Tale evento sarï¿½ intercettato e gestito da uno o piï¿½ servizi come one2one, m2m, eConerence o one2oneinfo (che creeremo nel prossimo paragrafo).
 4. Come estendere eConference 4.0 con un nuovo servizio
-Per creare un nuovo servizio bisogna prima di tutto creare un nuovo plugin (come spiegato nel paragrafo 4.2). In seguito è possibile aggiungere nuovi elementi grafici tramite i meccanismi di estensione messi a disposizione da Eclipse. In Figura 11 abbiamo un esempio di una tale estensione, si può notare la View "Card Deck" che è stata aggiunta al modello di base di MultiChat strutturata.
-Per quanto riguarda l'aspetto della comunicazione, è possibile accedere ai vari meccanismi messi a disposizione tramite un'istanza di IBackend. Possiamo avere accesso a tale istanza tramite la seguente chiamata:
+Per creare un nuovo servizio bisogna prima di tutto creare un nuovo plugin (come spiegato nel paragrafo 4.2). In seguito ï¿½ possibile aggiungere nuovi elementi grafici tramite i meccanismi di estensione messi a disposizione da Eclipse. In Figura 11 abbiamo un esempio di una tale estensione, si puï¿½ notare la View "Card Deck" che ï¿½ stata aggiunta al modello di base di MultiChat strutturata.
+Per quanto riguarda l'aspetto della comunicazione, ï¿½ possibile accedere ai vari meccanismi messi a disposizione tramite un'istanza di IBackend. Possiamo avere accesso a tale istanza tramite la seguente chiamata:
 NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 
 Figura 11. eConference planning poker plugin
 Esempio: creazione di un servizio
-Creiamo ora un piccolo servizio che estende eConference 4.0. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
+Creiamo ora un piccolo servizio che estende eConference 4.0. Tramite tale servizio ogni utente avrï¿½ la possibilitï¿½ di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
 Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
 
 Figura 12. Aggiunta di un estensione ad un popupMenu
 Clicchiamo col pulsante destro del mouse su "org.eclipse.ui.popupMenu" e poi su "New > objectContribution". Riempiamo in campo objectClass con "it.uniba.di.cdg.xcore.network.model.Ibuddy" che rappresenta l'utente all'interno del roster. 
-Clicchiamo ora col pulsate destro del mouse sull' objectContribution appena creato e selezioniamo "New > Action". Inseriamo in label "Get Info" e su class "it.uniba.di.cdg.xcore.one2oneinfo.GetUserInfo". Infine clicchiamo sulla voce "class" per creare la classe. Se tutto è andato a buon fine avremo un pannello simile a quello in Figura 13.
+Clicchiamo ora col pulsate destro del mouse sull' objectContribution appena creato e selezioniamo "New > Action". Inseriamo in label "Get Info" e su class "it.uniba.di.cdg.xcore.one2oneinfo.GetUserInfo". Infine clicchiamo sulla voce "class" per creare la classe. Se tutto ï¿½ andato a buon fine avremo un pannello simile a quello in Figura 13.
 
 Figura 13. Estensione del popupMenu
 Adesso estendiamo, con lo stesso procedimento, il plugin "org.eclipse.ui.startup", aggiungiamo una voce "startup" e nel campo class inseriamo "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine facciamo in modo che la classe One2OneInfoPlugin implementi l'interfaccia IStartup. 
@@ -188,7 +188,7 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 }
 }}}
 
-Come si può notare all'avvio del plugin viene creata un'istanza della classe InfoDeamon e viene chiamato il metodo start(). Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
+Come si puï¿½ notare all'avvio del plugin viene creata un'istanza della classe InfoDeamon e viene chiamato il metodo start(). Quest'ultima classe si occuperï¿½ di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
 Creiamo quindi una classe chiamata InfoDeamon e riempiamola con il seguente codice:
 
 {{{
@@ -228,7 +228,7 @@ public class InfoDeamon implements IBackendEventListener {
 Questa classe estende l'interfaccia "IBackendEventListener" e nel metodo onBackendEvent intercetta due tipi di estensioni al protocollo:
 * GET_USER_INFO: un utente ha richiesto le nostre informazioni e noi le inviamo
 * USER_INFO: un utente ci ha inviato le sue informazioni che noi abbiamo precedentemente richiesto
-Il protocollo utilizzato è il seguente:
+Il protocollo utilizzato ï¿½ il seguente:
 
 {{{
 Utente1 > > > > > > > > > > [GET_USER_INFO, null] > > > > > > > > > Utente2
@@ -252,12 +252,11 @@ public class GetUserInfo extends AbstractBuddyActionDelegate{
 }
 }}}
 
-Questo codice verrà eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
+Questo codice verrï¿½ eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
 Abbiamo terminato il nostro servizio!
-Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
+Ora che ï¿½ tutto pronto possiamo testare ciï¿½ che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
 Se abbiamo eseguito tutti i passi correttamente, dopo aver richiesto le informazioni di un utente, visualizzeremo una schermata simile a quella in Figura 14.
 
 Figura 14. Test del plugin it.uniba.di.cdg.xcore.one2oneinfo
-Come si può notare nella versione 4.0 è diventato quasi banale definire un protocollo che estende quello di base. Quello appena presentato è un esempio molto semplice ma con lo stesso meccanismo è possibile implementare servizi molto più complessi come una chat strutturata a supporto dello sviluppo oppure un gioco tra due utenti. I possibili servizi che si possono creare sono limitati solo dalla fantasia del programmatore.
-In questo esempio è stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend è possibile avere accesso anche a: IMultichatActions che espone metodi per le chat di gruppo; ICallAction che mette a disposizione metodi per la chiamata uno ad uno; IMultiCallAction che mette a disposizione metodi per le chiamate di gruppo.
-
+Come si puï¿½ notare nella versione 4.0 ï¿½ diventato quasi banale definire un protocollo che estende quello di base. Quello appena presentato ï¿½ un esempio molto semplice ma con lo stesso meccanismo ï¿½ possibile implementare servizi molto piï¿½ complessi come una chat strutturata a supporto dello sviluppo oppure un gioco tra due utenti. I possibili servizi che si possono creare sono limitati solo dalla fantasia del programmatore.
+In questo esempio ï¿½ stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend ï¿½ possibile avere accesso anche a: IMultichatActions che espone metodi per le chat di gruppo; ICallAction che mette a disposizione metodi per la chiamata uno ad uno; IMultiCallAction che mette a disposizione metodi per le chiamate di gruppo.
