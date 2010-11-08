@@ -10,15 +10,15 @@ Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (impleme
 Figura 2. Interazione tra i plugin in eConference 4.0
 
 La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
-* Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
-* Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..).
-* I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
+  * Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
+  * Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..).
+  * I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
 
 Nella versione 4.0 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
 2. Meccanismi di astrazione
 Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
-1. Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
-2. Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
+  # Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
+  # Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
 In virtù di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a disposizione e tutti gli eventi che un protocollo dovrebbe intercettare. 
 Action
 Nella Figura 3 sono mostrate che quattro classi che forniscono le Action.
