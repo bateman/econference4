@@ -41,26 +41,26 @@ Figura 6. Esempio di uso degli eventi
 
 Extension
 Dopo aver creato lo strato di astrazione, si � presentato un grosso ostacolo. I servizi di MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessit� di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
-Si pu� ben immaginare che nessun protocollo metta a disposizione tali funzionalit�. La soluzione adottata � stata quella di creare un meccanismo per estendere il protocollo di base. Ci� � permesso tramite una Action chiamata SendExtensionProtocolMessage() che invia un messaggio speciale che pu� contenere informazioni formattate in qualsiasi modo e l'Event ChatExtensionProtocolEvent che viene sollevato quando si riceve un messaggio speciale.
-Tramite questo meccanismo � possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
+Si può ben immaginare che nessun protocollo metta a disposizione tali funzionalità. La soluzione adottata è stata quella di creare un meccanismo per estendere il protocollo di base. Ciò è permesso tramite una Action chiamata SendExtensionProtocolMessage() che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo e l'Event ChatExtensionProtocolEvent che viene sollevato quando si riceve un messaggio speciale.
+Tramite questo meccanismo è possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
 3. Come inserire un nuovo protocollo di comunicazione
 Per inserire un nuovo protocollo bisogna creare un nuovo plugin, estendere il plugin Network tramite l'interfaccia IBackend e fornire l'implementazione di alcune interfacce. Vediamo ora come eseguire queste operazioni.
-Come primo passo scarichiamo il codice sorgente di eConference 4.0 in Eclipse tramite SVN dall'indirizzo [ECONF4CHECKOUTWWW] (come mostrato in Figura 7).
+Come primo passo scarichiamo il codice sorgente di eConference 4.0 in Eclipse tramite SVN dall'indirizzo (come mostrato in Figura 7).
 
 Figura 7. Checkout di eConference 4.0
 Come secondo passo creiamo un nuovo plugin da "File > New > Other" e selezioniamo "Plug-In Project" come mostrato in Figura 8.
 
 Figura 8. Creazione di un nuovo plugin
-A questo punto apriamo il file "plugin.xml" e dal pannello extension clicchiamo su "add", nel wizard che compare selezioniamo l'estensione di nome "it.uniba.di.cdg.xcore.network.backends". Se tutto � andato a buon fine, dovrebbe comparire un pannello simile a quello in Figura 9.
+A questo punto apriamo il file "plugin.xml" e dal pannello extension clicchiamo su "add", nel wizard che compare selezioniamo l'estensione di nome "it.uniba.di.cdg.xcore.network.backends". Se tutto è andato a buon fine, dovrebbe comparire un pannello simile a quello in Figura 9.
 
 Figura 9. Punto di estensione di IBackend
-Possiamo notare come in figura 32 sia associata all'estensione la classe "SkypeBackend", quindi se stiamo implementando il protocollo X assoceremo all'estensione una classe chiamata XBackend.
+Possiamo notare come in Figura 9 sia associata all'estensione la classe "SkypeBackend", quindi se stiamo implementando il protocollo X assoceremo all'estensione una classe chiamata XBackend.
 Ora non ci rimane che realizzare tutti i metodi esposti nell'interfaccia IBackend con la nostra classe XBackend elencati in Figura 10. Bisogna, naturalmente, fornire anche un'implementazione per tutte le interfacce correlate ad IBackend (dove possibile):
-* IBuddyRoster 
-* IChatServiceActions
-* IMultiChatServiceActions
-* ICallAction
-* IMultiCallAction
+  * IBuddyRoster 
+  * IChatServiceActions
+  * IMultiChatServiceActions
+  * ICallAction
+  * IMultiCallAction
 
 Figura 10. Metodi di IBackend da implementare
 Esempio: stralci di codice del plugin per Skype
