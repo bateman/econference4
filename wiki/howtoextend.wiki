@@ -289,7 +289,8 @@ Abbiamo terminato il nostro servizio!
 Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
 Se abbiamo eseguito tutti i passi correttamente, dopo aver richiesto le informazioni di un utente, visualizzeremo una schermata simile a quella in Figura 14.
 
-http://econference4.googlecode.com/svn/wiki/img/extend14.png <br />
+http://econference4.googlecode.com/svn/wiki/img/extend14a.png &nbsp;
+http://econference4.googlecode.com/svn/wiki/img/extend14b.png<br />
 *Figura 14. Test del plugin it.uniba.di.cdg.xcore.one2oneinfo*
 
 In questo esempio è stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend è possibile avere accesso anche a: 
