@@ -213,7 +213,6 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 	}
 	@Override
 	public void earlyStartup() {
-		// TODO Auto-generated method stub
 	}
 }
 }}}
@@ -223,12 +222,14 @@ Creiamo quindi una classe chiamata InfoDeamon e riempiamola con il seguente codi
 
 {{{
 public class InfoDeamon implements IBackendEventListener {
+
  public void start(){
   for (IBackendDescriptor d : NetworkPlugin.getDefault()
 		  .getRegistry().getDescriptors())
    NetworkPlugin.getDefault().getHelper().registerBackendListener(
 		   d.getId(), this);
  }
+
  @Override
  public void onBackendEvent(IBackendEvent event) {
   if (event instanceof ChatExtensionProtocolEvent) {
