@@ -18,7 +18,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # commit files with non organized imports
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations that do not have a related issue open in the issue tracker
   # commit any resource without a description or changelog in the comment field
-  # commit any change without a related JUnit/Jmock (if possible) test case proving it works fine
+  # commit changes without any related JUnit/Jmock test cases (if possible), to prove that everything works fine
 
 === Do's ===
   # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
