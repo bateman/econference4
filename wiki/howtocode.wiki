@@ -1,4 +1,4 @@
-#summary A list of do's and dont's to respect when contributing to the project.
+#summary A list of do's and dont's to respect when contributing to eConference and its related projects.
 #labels Featured,howto
 
 = Introduction =
