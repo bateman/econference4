@@ -229,9 +229,9 @@ public class InfoDeamon implements IBackendEventListener {
 }}}
 
 Questa classe estende l'interfaccia "IBackendEventListener" e nel metodo onBackendEvent intercetta due tipi di estensioni al protocollo:
-* GET_USER_INFO: un utente ha richiesto le nostre informazioni e noi le inviamo
-* USER_INFO: un utente ci ha inviato le sue informazioni che noi abbiamo precedentemente richiesto
-Il protocollo utilizzato � il seguente:
+  * GET_USER_INFO: un utente ha richiesto le nostre informazioni e noi le inviamo.
+  * USER_INFO: un utente ci ha inviato le sue informazioni che noi abbiamo precedentemente richiesto.
+Il protocollo utilizzato è il seguente:
 
 {{{
 Utente1 > > > > > > > > > > [GET_USER_INFO, null] > > > > > > > > > Utente2
@@ -255,11 +255,14 @@ public class GetUserInfo extends AbstractBuddyActionDelegate{
 }
 }}}
 
-Questo codice verr� eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
+Questo codice verrà eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
 Abbiamo terminato il nostro servizio!
-Ora che � tutto pronto possiamo testare ci� che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
+Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
 Se abbiamo eseguito tutti i passi correttamente, dopo aver richiesto le informazioni di un utente, visualizzeremo una schermata simile a quella in Figura 14.
 
 Figura 14. Test del plugin it.uniba.di.cdg.xcore.one2oneinfo
-Come si pu� notare nella versione 4.0 � diventato quasi banale definire un protocollo che estende quello di base. Quello appena presentato � un esempio molto semplice ma con lo stesso meccanismo � possibile implementare servizi molto pi� complessi come una chat strutturata a supporto dello sviluppo oppure un gioco tra due utenti. I possibili servizi che si possono creare sono limitati solo dalla fantasia del programmatore.
-In questo esempio � stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend � possibile avere accesso anche a: IMultichatActions che espone metodi per le chat di gruppo; ICallAction che mette a disposizione metodi per la chiamata uno ad uno; IMultiCallAction che mette a disposizione metodi per le chiamate di gruppo.
+
+In questo esempio è stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend è possibile avere accesso anche a: 
+  * IMultichatActions che espone metodi per le chat di gruppo; 
+  * ICallAction che mette a disposizione metodi per la chiamata uno ad uno;  
+  * IMultiCallAction che mette a disposizione metodi per le chiamate di gruppo.
