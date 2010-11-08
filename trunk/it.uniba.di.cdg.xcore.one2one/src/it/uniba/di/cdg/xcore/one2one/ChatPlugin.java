@@ -146,7 +146,8 @@ public class ChatPlugin extends Plugin implements IBackendEventListener {
 			final ChatMessageReceivedEvent chatMessageReceivedEvent = (ChatMessageReceivedEvent) event;
 
 			final ChatContext chatContext = new ChatContext(
-					// TODO sometimes generates a NPE
+					// FIXME sometimes generates a NPE, see issue 48
+					// http://code.google.com/p/econference4/issues/detail?id=48
 					chatMessageReceivedEvent.getBuddy().getId(),
 					new ChatMessage(chatMessageReceivedEvent.getBuddy().getId(), chatMessageReceivedEvent.getMessage()));
 			openChatWindow(chatContext);
