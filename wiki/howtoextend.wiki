@@ -8,10 +8,12 @@ Figura 1. Interazione tra i plugin in eConference 3.0
 Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
 Figura 2. Interazione tra i plugin in eConference 4.0
+
 La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
-* Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..)
-* Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..)
+* Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
+* Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..).
 * I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
+
 Nella versione 4.0 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
 2. Meccanismi di astrazione
 Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
