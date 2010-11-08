@@ -7,8 +7,6 @@ eConference 4.0 presenta una struttura modulare molto organizzata e non permette
 http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
 *Figura 1. Interazione tra i plugin in eConference 3.0.*
 
-issue 32
-
 Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
 http://econference4.googlecode.com/svn/wiki/img/extend2.jpg <br />
@@ -49,7 +47,6 @@ http://econference4.googlecode.com/svn/wiki/img/extend5.jpg <br />
 *Figura 5. Astrazione degli eventi*
 
 In Figura 6 è mostrato come funziona concretamente il sistema ad eventi. Il servizio si registra un proprio IBackendListener tramite il metodo registerBackendListener() esposto da INetworkBackendHelper e in seguito il plugin che implementa il protocollo solleva i vari eventi richiamando il metodo notifyBackendEvent() esposto sempre da INetworkBackendHelper.
-
 
 http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 *Figura 6. Esempio di uso degli eventi*
