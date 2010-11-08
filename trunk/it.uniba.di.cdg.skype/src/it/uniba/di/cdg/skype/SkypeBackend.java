@@ -309,7 +309,7 @@ public class SkypeBackend implements IBackend {
 		if (status != Connector.Status.ATTACHED)
 			throw new BackendException(
 					new Exception(
-							"E' necessario installare e avviare Skype\nE' possibile scaricarlo da www.skype.com"));
+							"You have to install and run Skype before running eConference.\nPlease download  Skype from www.skype.com"));
 
 		// notifico l'avvenuta connessione
 		helper.notifyBackendEvent(new BackendStatusChangeEvent(ID, true));
