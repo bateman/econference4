@@ -4,10 +4,14 @@
 = Introduction =
 eConference 4.0 presenta una struttura modulare molto organizzata e non permette che un servizio possa accedere alle funzionalità specifiche presenti nell'implementazione di un determinato protocollo.
 
-Figura 1. Interazione tra i plugin in eConference 3.0
+http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
+*Figura 1. Interazione tra i plugin in eConference 3.0.*
+
+
 Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
-Figura 2. Interazione tra i plugin in eConference 4.0
+http://econference4.googlecode.com/svn/wiki/img/extend2.jpg <br />
+*Figura 2. Interazione tra i plugin in eConference 4.0*
 
 La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
   * Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
@@ -15,12 +19,14 @@ La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo
   * I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
 
 Nella versione 4.0 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
-2. Meccanismi di astrazione
+
+==Meccanismi di astrazione==
 Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
   # Permettono di eseguire delle azioni (Es. Inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
   # Intercettano degli eventi di rete (Es. Un messaggio ricevuto, una chiamata in entrata, il cambiamento del roster)
 In virtù di questo sono state definite tutte le azioni di base che un protocollo dovrebbe mettere a disposizione e tutti gli eventi che un protocollo dovrebbe intercettare. 
-Action
+
+===Action===
 Nella Figura 3 sono mostrate che quattro classi che forniscono le Action.
 
 Figura 3. Implementazione delle action con il protocollo Skype
@@ -31,7 +37,7 @@ In Figura 4 è mostrato come i vari servizi abbiamo no accesso alle action. Con 
 Figura 4. Uso delle Action da parte dei servizi
 E' inoltre possibile aggiunge con estrema semplicità nuove Action (Es. Il supporto al video).
 
-==Event==
+===Event===
 Sono stati i individuati gli eventi comuni tra i vari protocolli ed è stato creato uno strato di astrazione che li supportasse. Come si può notare dalla Figura 5, i protocolli (in questo caso, Skype) sollevano un evento e i servizi (in questo caso, one2one) lo intercettano e lo gestiscono in modo opportuno.
 
 Figura 5. Astrazione degli eventi
@@ -40,7 +46,7 @@ In Figura 6 è mostrato come funziona concretamente il sistema ad eventi. Il ser
 
 Figura 6. Esempio di uso degli eventi
 
-==Extension==
+===Extension===
 Dopo aver creato lo strato di astrazione, si è presentato un grosso ostacolo. I servizi di MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessità di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
 Si può ben immaginare che nessun protocollo metta a disposizione tali funzionalità. La soluzione adottata è stata quella di creare un meccanismo per estendere il protocollo di base. Ciò è permesso tramite una Action chiamata SendExtensionProtocolMessage() che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo e l'Event ChatExtensionProtocolEvent che viene sollevato quando si riceve un messaggio speciale.
 Tramite questo meccanismo è possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
@@ -138,7 +144,8 @@ Per quanto riguarda l'aspetto della comunicazione, è possibile accedere ai vari
 NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 
 Figura 11. eConference planning poker plugin
-Esempio: creazione di un servizio
+
+=Creazione di un nuovo servizio=
 Creiamo ora un piccolo servizio che estende eConference 4.0. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
 Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
