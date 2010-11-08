@@ -87,8 +87,8 @@ public abstract class AbstractQuestionActionDelegate implements IObjectActionDel
         IStructuredSelection items = (IStructuredSelection) getSelection();
         
         List<IQuestion> selected = new ArrayList<IQuestion>();
-        for (Iterator it = items.iterator(); it.hasNext(); ) {
-            IQuestion q = (IQuestion) it.next();
+        for (Iterator<IQuestion> it = items.iterator(); it.hasNext(); ) {
+            IQuestion q = it.next();
             selected.add( q );
         }
         return selected;
