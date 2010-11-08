@@ -1,16 +1,16 @@
 #summary A detailed guide to learn eConference architecture and how to extend it.
 #labels Featured,howto,Phase-Implementation
 
-= Introduction =
-eConference 4.0 presenta una struttura modulare molto organizzata e non permette che un servizio possa accedere alle funzionalità specifiche presenti nell'implementazione di un determinato protocollo.
+== Come estendere eConference 4==
+eConference 4 presenta una struttura modulare molto organizzata e non permette che un servizio possa accedere alle funzionalità specifiche presenti nell'implementazione di un determinato protocollo.
 
 http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
-*Figura 1. Interazione tra i plugin in eConference 3.0.*
+*Figura 1. Interazione tra i plugin in eConference 3.*
 
 Come si può notare dalla Figura 1, in eConference 3.0 il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
 http://econference4.googlecode.com/svn/wiki/img/extend2.jpg <br />
-*Figura 2. Interazione tra i plugin in eConference 4.0*
+*Figura 2. Interazione tra i plugin in eConference 4*
 
 La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
   * Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
@@ -120,7 +120,7 @@ Per comprendere meglio il corretto modo di implementare un nuovo protocollo anal
 Il metodo appena presentato ha la funzione di effettuare una connessione. Analizziamo in dettaglio cosa fa.
 La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo è quello del client Skype che deve essere avviato e connesso correttamente. Per approfondimenti Capitolo 3. Se lo stato è diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
 
-=Metodo SendExtensionProtocolMessage presente in IChatAction=
+Diamo uno sguardo al metodo SendExtensionProtocolMessage presente in IChatAction.
 
 {{{
 @Override
@@ -153,7 +153,7 @@ if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
 
 Viene controllato se si tratta di un messaggio di chat uno ad uno ed in particolare di un'estensione, se si verificano entrambe le condizioni si solleva un evento di ChatMessageReceivedEvent. Tale evento sarà intercettato e gestito da uno o più servizi come one2one, m2m, eConerence o one2oneinfo (che creeremo nel prossimo paragrafo).
 
-=Come estendere eConference 4.0 con un nuovo servizio=
+==Come creare un nuovo servizio in eConference 4==
 Per creare un nuovo servizio bisogna prima di tutto creare un nuovo plugin (come spiegato nel paragrafo 4.2). In seguito è possibile aggiungere nuovi elementi grafici tramite i meccanismi di estensione messi a disposizione da Eclipse. In Figura 11 abbiamo un esempio di una tale estensione, si può notare la View "Card Deck" che è stata aggiunta al modello di base di MultiChat strutturata.
 Per quanto riguarda l'aspetto della comunicazione, è possibile accedere ai vari meccanismi messi a disposizione tramite un'istanza di IBackend. Possiamo avere accesso a tale istanza tramite la seguente chiamata:
 NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
