@@ -312,6 +312,7 @@ public interface One2OneInfoConstants {
 }
 }}}
 
+===Esecuzione del nuovo servizio===
 Questo codice verrà eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
 Abbiamo terminato il nostro servizio!
 Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
