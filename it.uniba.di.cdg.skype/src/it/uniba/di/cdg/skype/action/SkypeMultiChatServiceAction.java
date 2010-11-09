@@ -111,13 +111,8 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		String[] participant = null;
 		String inviter = roomsId.get(roomName);
 		// this wont be null if we put it in as a waiting room after receiving an online invitation
-		if (inviter != null){
-			roomInviteAccepted(inviter);
-		}else{
-
+		if (inviter == null){
 			try {
-				
-				
 				//setto i privilegi da moderatore
 				if(moderator){
 					userRole = "moderator";
@@ -161,35 +156,23 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 						Assert.isTrue(splits.length == 2);
 						inviter = splits[1];
 					}
-					
-					roomInviteAccepted(inviter);
-					// we have to wait until the moderator
-					// notifies the room
-					while(skypeRoom == null)
-						try {
-							Thread.sleep(50);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						
-				}
-					
 				
-				//inserisco l'utente locale nella lista dei partecipanti alla stanza
-				/*backend.getHelper().notifyBackendEvent(new MultiChatUserJoinedEvent(
-						backend.getBackendId(), backend.getUserId(), 
-						backend.getUserAccount().getName(), ""));
-				*/
-				//notifico l'aggiunta di tutti gli altri utenti della stanza
-				//for(String s: partecipant){
-					//addPartecipant(s, Skype.getUser(s).getFullName());
-				//}
-			
-			
+						
+				}			
 			} catch (SkypeException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		roomInviteAccepted(inviter);
+		// we have to wait until the moderator
+		// notifies the room
+		while(skypeRoom == null)
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		
 	}
 
