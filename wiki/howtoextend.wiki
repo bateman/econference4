@@ -17,7 +17,7 @@ La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo
 http://econference4.googlecode.com/svn/wiki/img/extend2.jpg <br />
 *Figura 2. Interazione tra i plugin in eConference 4*
 
-Nella versione 4 è stata introdotta un'ulteriore novità: i plugin Chat e MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
+Nella versione 4 è stata introdotta un'ulteriore novità: i plugin Chat e !MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
 
 ==Meccanismi di astrazione==
 Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
@@ -70,7 +70,8 @@ Tramite questo meccanismo è possibile ridefinire infiniti protocolli su quello 
 
 ==Come inserire un nuovo protocollo di comunicazione==
 Per inserire un nuovo protocollo bisogna creare un nuovo plugin, estendere il plugin Network tramite l'interfaccia IBackend e fornire l'implementazione di alcune interfacce. Vediamo ora come eseguire queste operazioni.
-Come primo passo scarichiamo il codice sorgente di eConference 4 in Eclipse tramite SVN dall'indirizzo (come mostrato in Figura 7). 
+Come primo passo scarichiamo il codice sorgente di eConference 4 in Eclipse tramite SVN dall'indirizzo (come mostrato in Figura 7).
+
 *N.B. per maggiori dettagli su come compilare ed eseguire eConference 4, consultate la seguente [howtobuild pagina] wiki.*
 
 http://econference4.googlecode.com/svn/wiki/img/extend7.png <br />
