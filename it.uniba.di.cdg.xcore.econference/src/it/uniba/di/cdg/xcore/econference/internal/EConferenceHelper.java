@@ -58,12 +58,12 @@ public class EConferenceHelper implements IEConferenceHelper {
 	 * The User interface helper provides function for accessing user interface
 	 * without caring on how it is implemented.
 	 */
-	private final IUIHelper uihelper;
+	protected IUIHelper uihelper;
 
 	/**
 	 * The backend helper provides dependency object for handling backends.
 	 */
-	private final INetworkBackendHelper backendHelper;
+	protected INetworkBackendHelper backendHelper;
 
 	/**
 	 * Construct a new helper for econferences. This constructor acts as
@@ -75,6 +75,19 @@ public class EConferenceHelper implements IEConferenceHelper {
 			INetworkBackendHelper backendHelper) {
 		this.uihelper = uihelper;
 		this.backendHelper = backendHelper;
+	}
+	
+	public EConferenceHelper() {
+	}
+	
+	public void setUIHelper(IUIHelper uihelper) {
+		if (this.uihelper == null)
+			this.uihelper = uihelper;
+	}
+	
+	public void setBackendHelper(INetworkBackendHelper backendHelper) {
+		if (this.backendHelper == null)
+			this.backendHelper = backendHelper;
 	}
 
 	// nn credo sia + necessario che sia un backend listener

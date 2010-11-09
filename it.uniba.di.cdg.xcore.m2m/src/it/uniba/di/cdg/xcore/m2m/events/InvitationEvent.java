@@ -34,6 +34,9 @@ public class InvitationEvent extends AbstractBackendEvent {
 	
 	public static final int INVITATION_EVENT_TYPE = 0x01;
 	
+	public static final String DEFAULT_REASON = "e-conference";
+	
+	
     /**
      * The room name (id) to join to.
      */
@@ -73,9 +76,13 @@ public class InvitationEvent extends AbstractBackendEvent {
         super( backendId );
         this.room = room;
         this.inviter = inviter;
-        this.reason = reason;
         this.password = (password == null ? "" : password);
         this.schedule = schedule;
+        
+        if (reason.isEmpty())
+        	this.reason = DEFAULT_REASON;
+        else
+        	this.reason = reason;
     }
 
     /**

@@ -29,6 +29,8 @@ import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 
 import java.io.UnsupportedEncodingException;
 
+import org.eclipse.swt.graphics.Image;
+
 /**
  * 
  */
@@ -105,5 +107,7 @@ public interface IStoredEventEntry extends IBackendEvent {
     public String getReceivedOn();
     
     public void setReceivedOn(String receivedOn);
+
+	public Image getImage();
 
 }

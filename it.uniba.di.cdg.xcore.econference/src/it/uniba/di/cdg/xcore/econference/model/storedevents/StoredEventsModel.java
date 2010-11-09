@@ -24,10 +24,10 @@
  */
 package it.uniba.di.cdg.xcore.econference.model.storedevents;
 
-import it.uniba.di.cdg.xcore.econference.EConferenceContext;
-import it.uniba.di.cdg.xcore.econference.model.ConferenceContextLoader;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.InvalidContextException;
+import it.uniba.di.cdg.xcore.econference.model.definition.IServiceContext;
+import it.uniba.di.cdg.xcore.econference.model.definition.IServiceContextLoader;
 import it.uniba.di.cdg.xcore.econference.util.FolderMonitor;
 import it.uniba.di.cdg.xcore.econference.util.IFolderMonitorListener;
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
@@ -42,6 +42,7 @@ import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -56,9 +57,20 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.ISafeRunnable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
+import org.w3c.dom.Document;
 
 /**
  * Provides implementation of the <code>{@link IStoredEventsModel}</code>
@@ -106,6 +118,8 @@ public class StoredEventsModel implements IStoredEventsModel,
 	public static final String ITEM_LIST = "items";
 
 	public static final String INVITEES_LIST = "invitees";
+	
+	public static final String DEFAULT_SERVICE = "e-conference";
 
 	private List<IStoredEventsModelListener> listeners;
 
@@ -156,49 +170,112 @@ public class StoredEventsModel implements IStoredEventsModel,
 					// for each file generate an creation event to be stored
 					for (int i = 0; i < ecxFiles.length; i++) {
 						File f = ecxFiles[i];
-						EConferenceContext context = new EConferenceContext();
-						context.setBackendId(NetworkPlugin.getDefault()
-								.getHelper().getRegistry()
-								.getDefaultBackendId());
-						ConferenceContextLoader loader = new ConferenceContextLoader(
-								context);
-						try {
-							loader.load(new FileInputStream(f));
-							Iterator<Invitee> inviteeList = context
-									.getInvitees().iterator();
-							String[] invitees = new String[context
-									.getInvitees().size()];
-							for (int i1 = 0; inviteeList.hasNext(); i1++) {
-								Invitee invitee = (Invitee) inviteeList.next();
-								invitees[i1] = invitee.toString();
-							}
-
-							IItemList itemList = context.getItemList();
-							String[] items = new String[itemList.size()];
-							itemList.toArray(items);
-							InvitationEvent event = new ConferenceOrganizationEvent(
-									context.getBackendId(), context.getRoom(),
-									context.getModerator().getId(),
-									context.getSchedule(), "",
-									context.getPassword(), invitees, items);
-							String time = dateFormat.format(new Date(f
-									.lastModified()));
-							addStoredEventEntry(event, time);
-						} catch (InvalidContextException e) {
-							Logger.getLogger(
-									"it.uniba.di.cdg.xcore.econference.model.storedevents")
-									.log(Level.INFO, e.getMessage());
-							continue;
-						} catch (Exception e) {
-							System.err
-									.println("Failed to load eConference context file: "
-											+ f.getAbsolutePath());
-							e.printStackTrace();
-							continue;
-						}
+						
+						selectContextLoader(f);
 					}
 				}
 			}
+		}
+	}
+
+	private void selectContextLoader(File file) {
+		try {
+			InputStream is = new FileInputStream(file);
+			
+			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = documentFactory.newDocumentBuilder();
+			Document doc = builder.parse(is);
+	
+			XPathFactory xPathFactory = XPathFactory.newInstance();
+			XPath xPath = xPathFactory.newXPath();
+	
+			// Get the service
+			String service = xPath.evaluate("/meeting/service", doc);
+			if (service.isEmpty())
+				service = DEFAULT_SERVICE;
+
+			runContextLoader(service, file);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void runContextLoader(String service, File file) {
+		String EVENT_LOADER_ID = "it.uniba.di.cdg.xcore.econference.eventloader";
+		final File finalFile = file;
+		IServiceContext context;
+		
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EVENT_LOADER_ID);
+		try {
+			for (IConfigurationElement e : config) {
+				final String loaderService = e.getAttribute("service");
+				if (service.equals(loaderService)) {
+					Object contextObject = e.createExecutableExtension("context");
+					Object contextLoaderObject = e.createExecutableExtension("contextLoader");
+					
+					context = (IServiceContext)contextObject;
+					context.setBackendId(NetworkPlugin.getDefault()
+								.getHelper().getRegistry()
+								.getDefaultBackendId());
+					
+					if (contextLoaderObject instanceof IServiceContextLoader) {
+						final IServiceContext finalContext = context;
+						final IServiceContextLoader loader = (IServiceContextLoader)contextLoaderObject;
+
+						ISafeRunnable runnable = new ISafeRunnable() {
+							@Override
+							public void handleException(Throwable exception) {
+								System.out.println("Exception in client");
+							}
+
+							@Override
+							public void run() throws Exception {
+								loader.setContext(finalContext);
+
+								try {
+									loader.load(new FileInputStream(finalFile));
+									
+									Iterator<Invitee> inviteeList = finalContext
+											.getInvitees().iterator();
+									String[] invitees = new String[finalContext
+											.getInvitees().size()];
+									for (int i1 = 0; inviteeList.hasNext(); i1++) {
+										Invitee invitee = (Invitee) inviteeList.next();
+										invitees[i1] = invitee.toString();
+									}
+	
+									IItemList itemList = finalContext.getItemList();
+									String[] items = new String[itemList.size()];
+									itemList.toArray(items);
+									InvitationEvent event = new ConferenceOrganizationEvent(
+											finalContext.getBackendId(), finalContext.getRoom(),
+											finalContext.getModerator().getId(),
+											finalContext.getSchedule(), loaderService,
+											finalContext.getPassword(), invitees, items);
+									String time = dateFormat.format(new Date(finalFile
+											.lastModified()));
+									addStoredEventEntry(event, time);
+								}
+								catch (InvalidContextException e) {
+									Logger.getLogger(
+											"it.uniba.di.cdg.xcore.econference.model.storedevents")
+											.log(Level.INFO, e.getMessage());
+								} catch (Exception e) {
+									System.err
+											.println("Failed to load context file: "
+													+ finalFile.getAbsolutePath());
+									e.printStackTrace();
+								}
+							}
+						};
+						SafeRunner.run(runnable);
+					}
+				}
+			}
+		}
+		catch (CoreException ex) {
+			System.out.println(ex.getMessage());
 		}
 	}
 

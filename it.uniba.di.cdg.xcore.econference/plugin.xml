@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 
 <plugin>
+   <extension-point id="eventloader" name="EventLoader" schema="schema/eventloader.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -323,6 +324,19 @@
             </command>
          </menu>
       </menuContribution>
+   </extension>
+   <extension
+         point="it.uniba.di.cdg.xcore.econference.eventloader">
+      <loader
+            context="it.uniba.di.cdg.xcore.econference.EConferenceContext"
+            contextLoader="it.uniba.di.cdg.xcore.econference.model.ConferenceContextLoader"
+            helper="it.uniba.di.cdg.xcore.econference.internal.EConferenceHelper"
+            invitationIcon="icons/view_stored_events_join_action_enabled.png"
+            organizationIcon="icons/view_stored_events_join_from_file.png"
+            plugin="it.uniba.di.cdg.xcore.econference.EConferencePlugin"
+            pluginID="it.uniba.di.cdg.xcore.econference"
+            service="e-conference">
+      </loader>
    </extension>
 
 

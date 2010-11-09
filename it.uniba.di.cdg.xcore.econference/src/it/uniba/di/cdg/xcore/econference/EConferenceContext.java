@@ -26,6 +26,7 @@ package it.uniba.di.cdg.xcore.econference;
 
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.ItemList;
+import it.uniba.di.cdg.xcore.econference.model.definition.IServiceContext;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
@@ -36,7 +37,7 @@ import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
  * <p>
  * Clients are responsible to inject collaborators.
  */
-public class EConferenceContext extends MultiChatContext {
+public class EConferenceContext extends MultiChatContext implements IServiceContext {
     public static final String ROLE_MODERATOR = "moderator";
     public static final String ROLE_SCRIBE = "scribe";
     public static final String ROLE_PARTICIPANT = "participant";
