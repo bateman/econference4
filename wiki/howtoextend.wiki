@@ -211,7 +211,7 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 		super.start(context);
 		System.out.println("One2OneInfoPlugin start..");
 		plugin = this;
-		new InfoDeamon().start();
+		new InfoDaemon ().start();
 	}
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -231,11 +231,11 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 }
 }}}
 
-Come si può notare all'avvio del plugin viene creata un'istanza della classe !InfoDeamon e viene chiamato il metodo start(). Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
-Creiamo quindi una classe chiamata !InfoDeamon e riempiamola con il seguente codice:
+Come si può notare all'avvio del plugin viene creata un'istanza della classe !InfoDaemon  e viene chiamato il metodo start(). Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
+Creiamo quindi una classe chiamata !InfoDaemon  e riempiamola con il seguente codice:
 
 {{{
-public class InfoDeamon implements IBackendEventListener {
+public class InfoDaemon  implements IBackendEventListener {
 
  public void start(){
   for (IBackendDescriptor d : NetworkPlugin.getDefault()
