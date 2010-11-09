@@ -10,7 +10,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
 Come si può notare dalla Figura 1, in eConference 3, invece, il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
 La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
-  * Le librerie utilizzate per il supporto ai vari protocolli (Skype4Java!, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
+  * Le librerie utilizzate per il supporto ai vari protocolli (!Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (Skype, Jabber..).
   * Ogni servizio può creare delle dipendenze solo con un altro servizio e con il plugin Network , il quale fornisce una serie di strumenti che tutti i protocolli mettono a disposizione (eventi di rete, invio e recezione di messaggi, chiamate VoIP..).
   * I vari protocolli devono essere sviluppati senza tener conto dei servizi presenti nel sistema ma semplicemente fornendo un'implementazione all'interfaccia IBackend e tutte le interfacce ad essa collegate.
 
