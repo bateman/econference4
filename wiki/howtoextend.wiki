@@ -301,6 +301,17 @@ public class GetUserInfo extends AbstractBuddyActionDelegate{
 }
 }}}
 
+Infine, poiché è di importanza critica che le stringhe rapprensentanti l'estensione del protocollo siano scritte correttamente, è utile rifattorizzare il codice, in modo da raccogliere le stringhe costanti in un unica interfaccia. Così facendo, si eviterà di incorrere in errori e lunghe sessioni di debug a causa di banali errori di battitura.
+
+{{{
+public interface One2OneInfoConstants {
+	public static final String GET_USER_INFO = "GET_USER_INFO";
+	public static final String USER_INFO =  "USER_INFO";
+	public static final String OS_NAME = "OS_NAME";
+	public static final String OS_VER = "OS_VER";	
+}
+}}}
+
 Questo codice verrà eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
 Abbiamo terminato il nostro servizio!
 Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
