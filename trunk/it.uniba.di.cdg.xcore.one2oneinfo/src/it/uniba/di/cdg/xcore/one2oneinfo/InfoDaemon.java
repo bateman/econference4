@@ -26,20 +26,23 @@ public class InfoDaemon implements IBackendEventListener {
 			IBackend b = NetworkPlugin.getDefault().getRegistry()
 					.getDefaultBackend();
 			IChatServiceActions chat = b.getChatServiceAction();
+
 			ChatExtensionProtocolEvent cepe = (ChatExtensionProtocolEvent) event;
-			if (cepe.getExtensionName().equals("GET_USER_INFO")) {
+
+			if (cepe.getExtensionName().equals(One2OneInfoConstants.GET_USER_INFO)) {
 				HashMap<String, String> param = new HashMap<String, String>();
-				param.put("OS_NAME", System.getProperty("os.name"));
-				param.put("OS_VER", System.getProperty("os.version"));
+				param.put(One2OneInfoConstants.OS_NAME, System.getProperty("os.name"));
+				param.put(One2OneInfoConstants.OS_VER, System.getProperty("os.version"));
 				chat.OpenChat(cepe.getFrom());
 				chat.SendExtensionProtocolMessage(cepe.getFrom(), "USER_INFO",
 						param);
 				chat.CloseChat(cepe.getFrom());
 			}
-			if (cepe.getExtensionName().equals("USER_INFO")) {
-				String osName = (String) cepe.getExtensionParameter("OS_NAME");
-				String osVer = (String) cepe.getExtensionParameter("OS_VER");
-				showMessage("One2OneInfo plugin", "OS: " + osName + " ver: " + osVer);
+			if (cepe.getExtensionName().equals(One2OneInfoConstants.USER_INFO)) {
+				String osName = (String) cepe.getExtensionParameter(One2OneInfoConstants.OS_NAME);
+				String osVer = (String) cepe.getExtensionParameter(One2OneInfoConstants.OS_VER);
+				showMessage("Extension Demo plugin", "OS: " + osName + " ver: "
+						+ osVer);
 				chat.CloseChat(cepe.getFrom());
 			}
 		}

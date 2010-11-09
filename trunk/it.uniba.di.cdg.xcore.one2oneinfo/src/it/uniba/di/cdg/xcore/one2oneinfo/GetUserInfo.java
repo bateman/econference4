@@ -18,7 +18,7 @@ public class GetUserInfo extends AbstractBuddyActionDelegate {
 				.getDefaultBackend();
 		IChatServiceActions chat = b.getChatServiceAction();
 		chat.OpenChat(buddy.getId());
-		chat.SendExtensionProtocolMessage(buddy.getId(), "GET_USER_INFO",
+		chat.SendExtensionProtocolMessage(buddy.getId(), One2OneInfoConstants.GET_USER_INFO,
 				new HashMap<String, String>());
 	}
 }
