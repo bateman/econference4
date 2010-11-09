@@ -1,8 +1,9 @@
 #summary A detailed guide to learn eConference architecture and how to extend it.
 #labels Featured,howto,Phase-Implementation
+==Indice==
 <wiki:toc max_depth="3" />
 
-== Come estendere eConference 4==
+==Come estendere eConference 4==
 Al contrario della versione precendente, eConference 4 presenta una struttura modulare, molto organizzata, e non permette che un servizio possa accedere alle funzionalità specifiche presenti nell'implementazione di un determinato protocollo.
 
 http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
