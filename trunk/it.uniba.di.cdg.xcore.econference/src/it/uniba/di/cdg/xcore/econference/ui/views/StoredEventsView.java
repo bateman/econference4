@@ -27,7 +27,7 @@ package it.uniba.di.cdg.xcore.econference.ui.views;
 import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 import it.uniba.di.cdg.xcore.econference.EConferencePlugin;
-import it.uniba.di.cdg.xcore.econference.internal.EConferenceHelper;
+import it.uniba.di.cdg.xcore.econference.IEConferenceHelper;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModel;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModelListener;
@@ -40,6 +40,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -147,31 +149,10 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 		}
 	}
 
-	class ViewLabelProvider extends LabelProvider implements
-			ITableLabelProvider {
-		private Image joinImg;
-		private Image joinfromFileImg;
-
+	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
+		
 		public ViewLabelProvider() {
 			super();
-			joinImg = EConferencePlugin.imageDescriptorFromPlugin(
-					EConferencePlugin.ID,
-					"icons/view_stored_events_join_action_enabled.png")
-					.createImage(true);
-			joinfromFileImg = EConferencePlugin.imageDescriptorFromPlugin(
-					EConferencePlugin.ID,
-					"icons/view_stored_events_join_from_file.png").createImage(
-					true);
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-		 */
-		@Override
-		public void dispose() {
-			joinImg.dispose();
 		}
 
 		public String getColumnText(Object obj, int index) {
@@ -183,18 +164,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 		}
 
 		public Image getImage(Object obj) {
-			Image img;
-			switch (((IStoredEventEntry) obj).getInvitationEvent()
-					.getEventType()) {
-			case InvitationEvent.INVITATION_EVENT_TYPE:
-				img = joinImg;
-				break;
-			case ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE:
-				img = joinfromFileImg;
-				break;
-			default:
-				img = joinImg;
-			}
+			Image img = ((IStoredEventEntry) obj).getImage();
 			return img;
 		}
 	}
@@ -418,50 +388,66 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 								"Please, connect first!");
 						return;
 					} else {
+						String EVENT_LOADER_ID = "it.uniba.di.cdg.xcore.econference.eventloader";
+						IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EVENT_LOADER_ID);
+						
+						EConferencePlugin defaultPlugin = EConferencePlugin.getDefault();
+						
 						switch (invitation.getInvitationEvent().getEventType()) {
 						case ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE:
 
-							EConferencePlugin defaultPlugin = EConferencePlugin
-									.getDefault();
-							defaultPlugin.setHelper(new EConferenceHelper(
-									UiPlugin.getUIHelper(), NetworkPlugin
-											.getDefault().getHelper()));
-							defaultPlugin.getHelper().openFromFile(
-									DEFAULT_FILE_PATH
-											+ invitation.getRoom()
-											+ ".ecx");
+							try {
+								for (IConfigurationElement e : config) {
+									String loaderService = e.getAttribute("service");
+									if (invitation.getReason().equals(loaderService)) {
+										Object helperObject = e.createExecutableExtension("helper");
+										
+										IEConferenceHelper helper = (IEConferenceHelper)helperObject;
+										helper.setUIHelper(UiPlugin.getUIHelper());
+										helper.setBackendHelper(NetworkPlugin.getDefault().getHelper());
+
+										defaultPlugin.setHelper(helper);
+										
+										defaultPlugin.getHelper().openFromFile(
+												DEFAULT_FILE_PATH
+														+ invitation.getRoom()
+														+ ".ecx");
+									}
+								}
+							}
+							catch (Exception ex) {
+								ex.printStackTrace();
+							}
 
 							break;
 
 						case InvitationEvent.INVITATION_EVENT_TYPE:
 						default:
-							try {// User pressed yes
-								EConferenceContext context = EConferencePlugin
-										.getDefault()
+							try {
+								for (IConfigurationElement e : config) {
+									String loaderService = e.getAttribute("service");
+									if (invitation.getReason().equals(loaderService)) {
+										Object helperObject = e.createExecutableExtension("helper");
+
+										IEConferenceHelper helper = (IEConferenceHelper)helperObject;
+										helper.setUIHelper(UiPlugin.getUIHelper());
+										helper.setBackendHelper(NetworkPlugin.getDefault().getHelper());
+
+										defaultPlugin.setHelper(helper);
+
+										EConferenceContext context = defaultPlugin
 										.getHelper()
-										.askUserAcceptInvitation(
-												invitation.getInvitationEvent());
-								if (context != null) {
-									//TODO possibile soluzione al problema: Viene rilevato il moderatore della stanza 
-									//     solo se è il localUser
-									/*if(context.getModerator() == null){
-										context.setModerator(new Invitee(context.getInvitation().getInviter(),
-																	context.getInvitation().getInviter(),
-																	"","",EConferenceContext.ROLE_MODERATOR));
-									}*/
-									EConferencePlugin.getDefault().getHelper()
-											.open(context);
-								} /*else {
-									MultiChatContext mcContext = new MultiChatContext(
-											null, null,
-											invitation.getInvitationEvent());
-									MultiChatPlugin.getDefault().getHelper()
-											.open(mcContext);
-								}*/
-							} catch (NullPointerException e) {
-								// User pressed no
-								e.printStackTrace();
+										.askUserAcceptInvitation(invitation.getInvitationEvent());
+
+										if (context != null)
+											defaultPlugin.getHelper().open(context);
+									}
+								}
 							}
+							catch (Exception ex) {
+								ex.printStackTrace();
+							}
+								
 							break;
 						}
 					}

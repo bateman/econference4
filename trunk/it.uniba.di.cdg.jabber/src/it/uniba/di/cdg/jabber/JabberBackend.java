@@ -27,10 +27,10 @@ package it.uniba.di.cdg.jabber;
 import it.uniba.di.cdg.jabber.action.JabberChatServiceAction;
 import it.uniba.di.cdg.jabber.action.JabberMultiChatSeviceAction;
 import it.uniba.di.cdg.jabber.internal.BuddyRoster;
-import it.uniba.di.cdg.jabber.internal.CustomInvitationEvent;
 import it.uniba.di.cdg.jabber.internal.XMPPUtils;
 import it.uniba.di.cdg.jabber.ui.ConnectionDialog;
 import it.uniba.di.cdg.smackproviders.TypingNotificationPacket;
+import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
@@ -84,10 +84,6 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
  * Jabber/XMPP backend implementation. A backend may be extended by providing
  * additional services through the use of the
  * <code>it.uniba.di.cdg.jabber.services</code> extension point.
- * 
- * FIXME ConnectionEstablishedListener doesn't work. Check this again with SMACK
- * 2.1.0. FIXED: ConnectionEstablishedListener class is not present in the 3.1.0
- * version of Smack, so it has removed
  */
 public class JabberBackend implements IBackend, PacketListener,
 		ConnectionListener {
@@ -132,10 +128,9 @@ public class JabberBackend implements IBackend, PacketListener,
 		public void invitationReceived(XMPPConnection connection, String room,
 				String inviter, String reason, String password, Message message) {
 			if (JabberBackend.this.connection == connection) {
-				final IMessage m = convertFromSmack(message);
-				notifyEventListeners(new CustomInvitationEvent(
-						JabberBackend.this, ID, room, "schedule n/a", inviter, reason,
-						password, m));
+				//final IMessage m = convertFromSmack(message);
+				notifyEventListeners(new InvitationEvent(ID, room, inviter, "schedule n/a", reason,
+						password));
 			}
 		}
 	};

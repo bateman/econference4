@@ -24,10 +24,15 @@
  */
 package it.uniba.di.cdg.xcore.econference.model.storedevents;
 
+import it.uniba.di.cdg.xcore.econference.EConferencePlugin;
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 
 import java.io.UnsupportedEncodingException;
+
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * 
@@ -133,6 +138,64 @@ public class StoredEventEntry implements IStoredEventEntry {
 		} 
 		  
 		return String.format("%s %s", type, room);
+	}
+	
+	public Image getImage() {
+		Image image = null;
+		String imagePath = "";
+		String EVENT_LOADER_ID = "it.uniba.di.cdg.xcore.econference.eventloader";
+		
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EVENT_LOADER_ID);
+		try {
+			for (IConfigurationElement e : config) {
+				String loaderService = e.getAttribute("service");
+				if (invitationEvent.getReason().equals(loaderService)) {
+					
+					switch (invitationEvent.getEventType()) {
+					case InvitationEvent.INVITATION_EVENT_TYPE:
+						imagePath = e.getAttribute("invitationIcon");
+						break;
+						
+					case ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE:
+						imagePath = e.getAttribute("organizationIcon");
+						break;
+						
+					default:
+						break;
+					} 
+					
+					if (!imagePath.isEmpty())
+						image = EConferencePlugin.imageDescriptorFromPlugin(e.getAttribute("pluginID"), imagePath).createImage(false);
+				}
+			}
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			if (image == null) {
+				switch (invitationEvent.getEventType()) {
+				case InvitationEvent.INVITATION_EVENT_TYPE:
+					imagePath = "icons/view_stored_events_join_action_enabled.png";
+					break;
+					
+				case ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE:
+					imagePath = "icons/view_stored_events_join_from_file.png";
+					break;
+					
+				default:
+					imagePath = "icons/view_stored_events_join_action_enabled.png";
+					break;
+				}
+				
+				image = EConferencePlugin.imageDescriptorFromPlugin(
+						EConferencePlugin.ID,
+						imagePath).createImage(
+						true);
+			} 
+		}
+		
+		return image;
 	}
 
 	/*

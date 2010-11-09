@@ -25,6 +25,8 @@
 package it.uniba.di.cdg.xcore.econference;
 
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
+import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
+import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import it.uniba.di.cdg.xcore.ui.preferences.EConferencePreferencePage;
 
 /**
@@ -93,4 +95,9 @@ public interface IEConferenceHelper {
       * @return
       */
      String getStringPreference( final String prefName );
+     
+     
+ 	 public void setUIHelper(IUIHelper uihelper);
+	
+	 public void setBackendHelper(INetworkBackendHelper backendHelper);
 }

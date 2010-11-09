@@ -114,16 +114,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		if (inviter != null){
 			roomInviteAccepted(inviter);
 		}else{
-			/*if(roomName.equals("")){
-				final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-				SkypeJoinChatRoomDialog dlg = new SkypeJoinChatRoomDialog(window);
-				if(dlg.open()==Window.OK){
-					participant = dlg.getUsersSelected();
-				}
-			}
-			else{*/
-				
-			//}
+
 			try {
 				
 				

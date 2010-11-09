@@ -25,6 +25,8 @@
 package it.uniba.di.cdg.xcore.econference.model;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.model.definition.IServiceContext;
+import it.uniba.di.cdg.xcore.econference.model.definition.IServiceContextLoader;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 
 import java.io.FileInputStream;
@@ -49,7 +51,7 @@ import org.w3c.dom.NodeList;
  * it.uniba.di.cdg.xcore.econference.model.ConferenceModel} objects with
  * external data, like XML files.
  */
-public class ConferenceContextLoader {
+public class ConferenceContextLoader implements IServiceContextLoader {
 	protected static final String XMPP_BACKENDID_VAL = "it.uniba.di.cdg.jabber.jabberBackend";
 	protected static final String SKYPE_BACKENDID_VAL = "it.uniba.di.cdg.skype.skypeBackend";
 	protected static final String BACKENDID_KEY = "backendId";
@@ -65,8 +67,18 @@ public class ConferenceContextLoader {
 	public ConferenceContextLoader(EConferenceContext context) {
 		this.context = context;
 	}
+	
+	public ConferenceContextLoader() {
+	}
+	
+	public void setContext(IServiceContext context) {
+		this.context = (EConferenceContext)context;
+	}
 
 	public void load(InputStream is) throws InvalidContextException {
+		if (this.context == null)
+			throw new InvalidContextException("Skipping file due to null context");
+		
 		try {
 			doc = loadDocument(is);
 
