@@ -9,7 +9,7 @@ Al contrario della versione precendente, eConference 4 presenta una struttura mo
 http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
 *Figura 1. Interazione tra i plugin in eConference 3.*
 
-Come si può notare dalla Figura 1, in eConference 3, invece, il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio Multichat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
+Come si può notare dalla Figura 1, in eConference 3, invece, il plugin Jabber (implementazione del protocollo XMPP) ha delle dipendenze con il servizio Chat. Inoltre, il servizio !MultiChat ha delle dipendenze con Jabber ed addirittura con Smack (libreria usata per il supporto ad XMPP) che dovrebbe essere visibile solo a Jabber.
 
 La struttura attuale, come si evince dalla Figura 2, è stata sviluppata tenendo conto dei seguenti accorgimenti:
   * Le librerie utilizzate per il supporto ai vari protocolli (!Skype4Java, Smack..) possono essere utilizzate solo e unicamente dal plugin che implementa quel protocollo stesso (es. Skype, Jabber...).
@@ -63,7 +63,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 *Figura 6. Esempio di uso degli eventi*
 
 ===Extension===
-Dopo aver creato lo strato di astrazione, si è presentato un grosso ostacolo. I servizi di MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessità di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
+Dopo aver creato lo strato di astrazione, si è presentato un grosso ostacolo. I servizi di !MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessità di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
 Si può ben immaginare che nessun protocollo metta a disposizione tali funzionalità. La soluzione adottata è stata quella di creare un meccanismo per estendere il protocollo di base. Ciò è permesso tramite:
   * una Action chiamata !SendExtensionProtocolMessage, che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo. 
   * un Event chiamato !ChatExtensionProtocolEvent, che viene sollevato quando si riceve un messaggio speciale.
@@ -171,7 +171,7 @@ if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
 Viene controllato se si tratta di un messaggio di chat uno ad uno ed in particolare di un'estensione, se si verificano entrambe le condizioni si solleva un evento di ChatMessageReceivedEvent. Tale evento sarà intercettato e gestito da uno o più servizi come one2one, m2m, eConerence o one2oneinfo (che creeremo nel prossimo paragrafo).
 
 ==Come creare un nuovo servizio in eConference 4==
-Per creare un nuovo servizio bisogna prima di tutto creare un nuovo plugin (come spiegato nel paragrafo 4.2). In seguito è possibile aggiungere nuovi elementi grafici tramite i meccanismi di estensione messi a disposizione da Eclipse. In Figura 11 abbiamo un esempio di una tale estensione, si può notare la View "Card Deck" che è stata aggiunta al modello di base di MultiChat strutturata.
+Per creare un nuovo servizio bisogna prima di tutto creare un nuovo plugin (come spiegato nel paragrafo 4.2). In seguito è possibile aggiungere nuovi elementi grafici tramite i meccanismi di estensione messi a disposizione da Eclipse. In Figura 11 abbiamo un esempio di una tale estensione, si può notare la View "Card Deck" che è stata aggiunta al modello di base di !MultiChat strutturata.
 Per quanto riguarda l'aspetto della comunicazione, è possibile accedere ai vari meccanismi messi a disposizione tramite un'istanza di IBackend. Possiamo avere accesso a tale istanza tramite la seguente chiamata:
 NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 
@@ -180,7 +180,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
 
 ===Creazione del nuovo servizio===
 Creiamo ora un piccolo servizio che estende eConference 4. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
-Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator _it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin_. Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
+Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator _it.uniba.di.cdg.xcore.one2oneinfo.!One2OneInfoPlugin_. Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
 
 http://econference4.googlecode.com/svn/wiki/img/extend12.png <br />
@@ -192,9 +192,9 @@ Clicchiamo ora col pulsate destro del mouse sull' objectContribution appena crea
 http://econference4.googlecode.com/svn/wiki/img/extend13.png <br />
 *Figura 13. Estensione del popupMenu*
 
-Adesso estendiamo, con lo stesso procedimento, il plugin _org.eclipse.ui.startup_, aggiungiamo una voce "startup" e nel campo class inseriamo _it.uniba.di.cdg.xcore.one2oneinfo.!One2OneInfoPlugin_. Infine facciamo in modo che la classe One2OneInfoPlugin implementi l'interfaccia IStartup. 
+Adesso estendiamo, con lo stesso procedimento, il plugin _org.eclipse.ui.startup_, aggiungiamo una voce "startup" e nel campo class inseriamo _it.uniba.di.cdg.xcore.one2oneinfo.!One2OneInfoPlugin_. Infine facciamo in modo che la classe _!One2OneInfoPlugin_ implementi l'interfaccia _IStartup_. 
 Con quest'ultima operazione abbiamo fatto in modo che il plugin venga avviato insieme ad eConference e non solo quado richiamata, questo serve ad avviare il demone di cui parleremo dopo.
-All'interno di One2OneInfoPlugin inseriamo il seguente codice:
+All'interno di _!One2OneInfoPlugin_ inseriamo il seguente codice:
 
 {{{
 /**
