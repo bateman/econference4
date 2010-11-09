@@ -25,7 +25,7 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 		super.start(context);
 		System.out.println("One2OneInfoPlugin start..");
 		plugin = this;
-		new InfoDeamon().start();
+		new InfoDaemon().start();
 	}
 
 	public void stop(BundleContext context) throws Exception {

@@ -11,7 +11,7 @@ import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
 import java.util.HashMap;
 
-public class InfoDeamon implements IBackendEventListener {
+public class InfoDaemon implements IBackendEventListener {
 
 	public void start() {
 		for (IBackendDescriptor d : NetworkPlugin.getDefault().getRegistry()
