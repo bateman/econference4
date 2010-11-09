@@ -38,14 +38,16 @@ Le Action sono state suddivise in quattro interfacce:
   * IChatServiceActions
   * IMultiChatServiceActions
 
-Questa divisione è stata fatta perché si può presentare il caso in cui un protocollo offra supporto ad una sola categoria di Action. Ad esempio Smack non fornisce supporto al VoIP, Msn non fornisce supporto al VoIP di gruppo e così via.
+Questa divisione è stata fatta perché si può presentare il caso in cui un protocollo offra supporto a una sola categoria di Action. Per esempio Smack non fornisce supporto al VoIP, MSN non fornisce supporto al VoIP di gruppo e così via.
+
 In Figura 3 sono mostrate le implementazioni a queste quattro interfacce. E' possibile avere accesso alle istanze di queste quattro classi solo tramite l'interfaccia IBackend che ci restituirà l'implementazione fornita dal protocollo utilizzato in quello specifico momento.
-In Figura 4 è mostrato come i vari servizi abbiamo no accesso alle action. Con questo sistema si ha un'astrazione dal protocollo solida e infatti è possibile aggiungere in qualsiasi momento un nuovo servizio in quanto esso utilizzerà solo le Action generiche e non quelle specifiche di un protocollo.
+
+In Figura 4 è mostrato come i vari servizi abbiano accesso alle action. Con questo sistema si ha un'astrazione dal protocollo solida e infatti è possibile aggiungere in qualsiasi momento un nuovo servizio in quanto esso utilizzerà solo le Action generiche e non quelle specifiche di un protocollo.
 
 http://econference4.googlecode.com/svn/wiki/img/extend4.jpg <br />
 *Figura 4. Uso delle Action da parte dei servizi*
 
-E' inoltre possibile aggiunge con estrema semplicità nuove Action (es. Il supporto al video).
+E' inoltre possibile aggiungere nuove Action (es. il supporto alla videochiamata 1-a-1 e/o di gruppo).
 
 ===Event===
 Sono stati i individuati gli eventi comuni tra i vari protocolli ed è stato creato uno strato di astrazione che li supportasse. Come si può notare dalla Figura 5, i protocolli (in questo caso, Skype) sollevano un evento e i servizi (in questo caso, one2one) lo intercettano e lo gestiscono in modo opportuno.
