@@ -180,19 +180,19 @@ http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
 
 ===Creazione del nuovo servizio===
 Creiamo ora un piccolo servizio che estende eConference 4. Tramite tale servizio ogni utente avrà la possibilità di avere informazioni sul sistema usato da un altro utente. Faremo in modo che cliccando col pulsante destro del mouse su un utente presente nel roster compaia una voce chiamata "Get Info" e selezionando tale voce riceveremo informaizioni su quell'utente.
-Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
+Come primo passo creiamo un nuovo plugin Project selezionando "File > New > Other", poi "Plug-in Project" e poi chiamiamo il progetto "it.uniba.di.cdg.xcore.one2oneinfo" e il suo Activator _it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin_. Infine clicchiamo sulla voce "activator" per creare la classe referenziata.
 Apriamo il file "plugin.xml" creato in automatico all'interno del progetto ed entriamo nel pannello Extension. Clicchiamo su "add" e selezioniamo "popupMenu" come mostrato in Figura 12.
 
 http://econference4.googlecode.com/svn/wiki/img/extend12.png <br />
 *Figura 12. Aggiunta di un estensione ad un popupMenu*
 
-Clicchiamo col pulsante destro del mouse su "org.eclipse.ui.popupMenu" e poi su "New > objectContribution". Riempiamo in campo objectClass con "it.uniba.di.cdg.xcore.network.model.Ibuddy" che rappresenta l'utente all'interno del roster. 
-Clicchiamo ora col pulsate destro del mouse sull' objectContribution appena creato e selezioniamo "New > Action". Inseriamo in label "Get Info" e su class "it.uniba.di.cdg.xcore.one2oneinfo.GetUserInfo". Infine clicchiamo sulla voce "class" per creare la classe. Se tutto è andato a buon fine avremo un pannello simile a quello in Figura 13.
+Clicchiamo col pulsante destro del mouse su _org.eclipse.ui.popupMenu_ e poi su "New > objectContribution". Riempiamo in campo objectClass con _it.uniba.di.cdg.xcore.network.model.IBuddy_ che rappresenta l'utente all'interno del roster. 
+Clicchiamo ora col pulsate destro del mouse sull' objectContribution appena creato e selezioniamo "New > Action". Inseriamo in label "Get Info" e su class _it.uniba.di.cdg.xcore.one2oneinfo.!GetUserInfo_. Infine clicchiamo sulla voce "class" per creare la classe. Se tutto è andato a buon fine avremo un pannello simile a quello in Figura 13.
 
 http://econference4.googlecode.com/svn/wiki/img/extend13.png <br />
 *Figura 13. Estensione del popupMenu*
 
-Adesso estendiamo, con lo stesso procedimento, il plugin "org.eclipse.ui.startup", aggiungiamo una voce "startup" e nel campo class inseriamo "it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin". Infine facciamo in modo che la classe One2OneInfoPlugin implementi l'interfaccia IStartup. 
+Adesso estendiamo, con lo stesso procedimento, il plugin _org.eclipse.ui.startup_, aggiungiamo una voce "startup" e nel campo class inseriamo _it.uniba.di.cdg.xcore.one2oneinfo.!One2OneInfoPlugin_. Infine facciamo in modo che la classe One2OneInfoPlugin implementi l'interfaccia IStartup. 
 Con quest'ultima operazione abbiamo fatto in modo che il plugin venga avviato insieme ad eConference e non solo quado richiamata, questo serve ad avviare il demone di cui parleremo dopo.
 All'interno di One2OneInfoPlugin inseriamo il seguente codice:
 
@@ -234,8 +234,8 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 }
 }}}
 
-Come si può notare all'avvio del plugin viene creata un'istanza della classe !InfoDaemon  e viene chiamato il metodo start(). Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
-Creiamo quindi una classe chiamata !InfoDaemon  e riempiamola con il seguente codice:
+Come si può notare all'avvio del plugin viene creata un'istanza della classe _!InfoDaemon_  e viene chiamato il metodo _start()_. Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
+Creiamo quindi una classe chiamata _!InfoDaemon_  e riempiamola con il seguente codice:
 
 {{{
 public class InfoDaemon  implements IBackendEventListener {
@@ -277,7 +277,7 @@ public class InfoDaemon  implements IBackendEventListener {
 }
 }}}
 
-Questa classe estende l'interfaccia IBackendEventListener e nell'implementazione del metodo onBackendEvent() intercetta due tipi di estensioni al protocollo:
+Questa classe estende l'interfaccia _IBackendEventListener_ e nell'implementazione del metodo _onBackendEvent()_ intercetta due tipi di estensioni al protocollo:
   * GET_USER_INFO: un utente ha richiesto le nostre informazioni e noi le inviamo.
   * USER_INFO: un utente ci ha inviato le sue informazioni che noi abbiamo precedentemente richiesto.
 Il protocollo utilizzato è il seguente:
@@ -288,7 +288,7 @@ Utente1 < < < < < < < < < < < < [USER_INFO, info] < < < < < < < < < < Utente2
 }}}
 
 Abbiamo creato il plugin, abbiamo gestito i messaggi in ingresso ed ora non ci rimane che gestire l'invio della richiesta dall'Action creata all'inizio.
-Apriamo la classe GetUserInfo ed inseriamo il seguente codice:
+Apriamo la classe _GetUserInfo_ ed inseriamo il seguente codice:
 
 {{{
 public class GetUserInfo extends AbstractBuddyActionDelegate{
@@ -316,16 +316,16 @@ public interface One2OneInfoConstants {
 }}}
 
 ===Esecuzione del nuovo servizio===
-Questo codice verrà eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di IChatServiceActions ed inviare all'utente selezionato una richiesta di informazioni. 
+Questo codice verrà eseguito ogni volta che selezioneremo la voce "Get Info" dal popupMenu del roster. Esso non fa altro che ricevere un'istanza di _IChatServiceActions_ ed inviare all'utente selezionato una richiesta di informazioni. 
 Abbiamo terminato il nostro servizio!
-Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin "it.uniba.di.cdg.xcore.one2oneinfo" tramite il pannello "Run Configurations" e poi avviare l'applicazione.
+Ora che è tutto pronto possiamo testare ciò che abbiamo creato. Per fare questo dobbiamo aggiungere il plugin _it.uniba.di.cdg.xcore.one2oneinfo_ tramite il pannello "Run Configurations" e poi avviare l'applicazione.
 Se abbiamo eseguito tutti i passi correttamente, dopo aver richiesto le informazioni di un utente, visualizzeremo una schermata simile a quella in Figura 14.
 
 http://econference4.googlecode.com/svn/wiki/img/extend14a.png 
 http://econference4.googlecode.com/svn/wiki/img/extend14b.png<br />
 *Figura 14. Test del plugin it.uniba.di.cdg.xcore.one2oneinfo*
 
-In questo esempio è stata utilizzata solo l'interfaccia IChatServiceActions, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite IBackend è possibile avere accesso anche a: 
-  * IMultichatActions che espone metodi per le chat di gruppo; 
-  * ICallAction che mette a disposizione metodi per la chiamata uno ad uno;  
-  * IMultiCallAction che mette a disposizione metodi per le chiamate di gruppo.
+In questo esempio è stata utilizzata solo l'interfaccia _IChatServiceActions_, la quale mette a disposizione le funzioni di base di una chat uno ad uno. Tramite _IBackend_ è possibile avere accesso anche a: 
+  * _IMultichatActions_ che espone metodi per le chat di gruppo; 
+  * _ICallAction_ che mette a disposizione metodi per la chiamata uno ad uno;  
+  * _IMultiCallAction_ che mette a disposizione metodi per le chiamate di gruppo.
