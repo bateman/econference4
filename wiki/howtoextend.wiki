@@ -63,8 +63,8 @@ http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 ===Extension===
 Dopo aver creato lo strato di astrazione, si è presentato un grosso ostacolo. I servizi di MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessità di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
 Si può ben immaginare che nessun protocollo metta a disposizione tali funzionalità. La soluzione adottata è stata quella di creare un meccanismo per estendere il protocollo di base. Ciò è permesso tramite:
-  * una Action chiamata SendExtensionProtocolMessage(), che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo. 
-  * un Event chiamato ChatExtensionProtocolEvent, che viene sollevato quando si riceve un messaggio speciale.
+  * una Action chiamata !SendExtensionProtocolMessage, che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo. 
+  * un Event chiamato !ChatExtensionProtocolEvent, che viene sollevato quando si riceve un messaggio speciale.
 
 Tramite questo meccanismo è possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
 
