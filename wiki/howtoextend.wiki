@@ -231,8 +231,8 @@ public class One2OneInfoPlugin extends AbstractUIPlugin implements IStartup {
 }
 }}}
 
-Come si può notare all'avvio del plugin viene creata un'istanza della classe InfoDeamon e viene chiamato il metodo start(). Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
-Creiamo quindi una classe chiamata InfoDeamon e riempiamola con il seguente codice:
+Come si può notare all'avvio del plugin viene creata un'istanza della classe !InfoDeamon e viene chiamato il metodo start(). Quest'ultima classe si occuperà di gestire le richieste in entrata di informazioni sul nostro sistema e di inviare tali informazioni al richiedente.
+Creiamo quindi una classe chiamata !InfoDeamon e riempiamola con il seguente codice:
 
 {{{
 public class InfoDeamon implements IBackendEventListener {
@@ -274,7 +274,7 @@ public class InfoDeamon implements IBackendEventListener {
 }
 }}}
 
-Questa classe estende l'interfaccia "IBackendEventListener" e nel metodo onBackendEvent intercetta due tipi di estensioni al protocollo:
+Questa classe estende l'interfaccia IBackendEventListener e nell'implementazione del metodo onBackendEvent() intercetta due tipi di estensioni al protocollo:
   * GET_USER_INFO: un utente ha richiesto le nostre informazioni e noi le inviamo.
   * USER_INFO: un utente ci ha inviato le sue informazioni che noi abbiamo precedentemente richiesto.
 Il protocollo utilizzato è il seguente:
