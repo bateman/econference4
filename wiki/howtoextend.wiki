@@ -117,7 +117,8 @@ Diamo uno sguardo al metodo IBackend.Connect().
 			throw new BackendException(e1.getMessage());
 		}
 		if(status != Connector.Status.ATTACHED)
-			throw new BackendException(new Exception("You have to install and run Skype before running eConference.\nPlease download  Skype from www.skype.com"));
+			throw new BackendException(new Exception("You have to install and run Skype before running eConference.\n
+Please download  Skype from www.skype.com"));
 		//notifico l'avvenuta connessione
 		helper.notifyBackendEvent(new BackendStatusChangeEvent( ID, true ));
 		//notifico l'aggiornamento del roster
@@ -127,7 +128,6 @@ Diamo uno sguardo al metodo IBackend.Connect().
 			Skype.addChatMessageListener(chatMessageListener);
 			Skype.addCallListener(callListener);
 		} catch (SkypeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		connected = true;
