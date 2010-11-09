@@ -140,7 +140,7 @@ Diamo uno sguardo al metodo IChatAction.SendExtensionProtocolMessage().
 
 {{{
 @Override
-public void SendExtensionProtocolMessage(String to, String extensionName,HashMap<String, String> param) {
+public void sendExtensionProtocolMessage(String to, String extensionName,HashMap<String, String> param) {
  param.put(ExtensionConstants.CHAT_TYPE,
      ExtensionConstants.ONE_TO_ONE);
  String message = XmlUtil.writeXmlExtension(extensionName, param);
@@ -152,8 +152,9 @@ public void SendExtensionProtocolMessage(String to, String extensionName,HashMap
 }
 }}}
 
-Il metodo appena presentato si occupa dell'invio di un'estensione al protocollo. Viene aggiunto in parametro "CHAT_TYPE" con valore "ONE_TO_ONE" per denotare che il messaggio che si sta inviando è un'estensione per la chat uno ad uno. Poi vengono trasformati in una stringa XML il nome dell'estensione e l'elenco dei parametri. In seguito viene inviata la stringa generata al destinatario.
-3. In seguito viene mostrata la gestione dei messaggi in ingresso ed in particolare quella di un messaggio che estende il protocollo presente nel metodo processMessageReceived di SkypeBackend:
+Il metodo appena presentato si occupa dell'invio di un'estensione al protocollo. Viene aggiunto in parametro "CHAT_TYPE" con valore "ONE_TO_ONE" per denotare che il messaggio che si sta inviando è un'estensione per la chat uno ad uno. Poi vengono trasformati in una stringa XML il nome dell'estensione e l'elenco dei parametri. Quindi, è inviata la stringa generata al destinatario.
+
+Di seguito è mostrata la gestione dei messaggi in ingresso ed in particolare quella di un messaggio che estende il protocollo presente nel metodo processMessageReceived di SkypeBackend:
 
 {{{
 if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
