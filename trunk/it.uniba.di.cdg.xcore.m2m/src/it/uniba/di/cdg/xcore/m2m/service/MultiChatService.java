@@ -61,6 +61,7 @@ import it.uniba.di.cdg.xcore.network.model.tv.TalkModel;
 import it.uniba.di.cdg.xcore.network.services.INetworkServiceContext;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
 import it.uniba.di.cdg.xcore.network.services.NetworkServiceException;
+import it.uniba.di.cdg.xcore.ui.dialogs.UserInputsProviderDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -413,14 +414,20 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     @Override
     public void sendPrivateMessage( IParticipant p , String message ) {
     	String userId = p.getId();
-        HashMap<String, String> param = new HashMap<String, String>();
-        param.put(MESSAGE, message);
-        param.put(TO, userId);
-        param.put(FROM, getLocalUserId());
-        
-        multiChatServiceActions.SendExtensionProtocolMessage(PRIVATE_MESSAGE, param);
-        
-       notifyLocalSystemMessage( String.format( "[PM sent to %s] %s", p.getNickName(), message ) );
+    	
+    	if(userId.equals(getLocalUserId()))
+    			notifyLocalSystemMessage( "Is not possible to send a private message to yourself" );
+    	else
+    	{
+	        HashMap<String, String> param = new HashMap<String, String>();
+	        param.put(MESSAGE, message);
+	        param.put(TO, userId);
+	        param.put(FROM, getLocalUserId());
+	        
+	        multiChatServiceActions.SendExtensionProtocolMessage(PRIVATE_MESSAGE, param);
+	        
+	       notifyLocalSystemMessage( String.format( "[PM sent to %s] %s", p.getNickName(), message ) );
+    	}
     }
 
     /* (non-Javadoc)
