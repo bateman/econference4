@@ -181,7 +181,7 @@ public class LoadConferenceFileDialogUI extends Composite {
 
 		IBackend b = NetworkPlugin.getDefault().getRegistry()
 				.getDefaultBackend();
-		String currentUserId = b.getUserAccount().getId();
+		String currentUserId = b.getUserId();
 
 		boolean eq = moderatorId.equals(currentUserId);
 		// Avoid sending an invitation to ourselves if we are moderators!!
