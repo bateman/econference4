@@ -88,7 +88,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	@Override
 	public void grantVoice(String room, String to) {
 		HashMap<String, String> param = new HashMap<String, String>();
-		param.put(ExtensionConstants.USER, getIdFromNick(to));
+		param.put(ExtensionConstants.USER, to);
 		SendExtensionProtocolMessage(ExtensionConstants.GRANT_VOICE, param);
 	}
 
@@ -204,7 +204,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	@Override
 	public void revokeVoice(String room, String to) {
 		HashMap<String, String> param = new HashMap<String, String>();
-		param.put(ExtensionConstants.USER, getIdFromNick(to));
+		param.put(ExtensionConstants.USER, to);
 		SendExtensionProtocolMessage(ExtensionConstants.REVOKE_VOICE, param);
 	}
 
