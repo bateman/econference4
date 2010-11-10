@@ -114,7 +114,7 @@ public class MultiChatManager implements IMultiChatManager {
      */
     private MultiChatContext context;
 
-    private IPerspectiveListener3 perspectiveListener = new IPerspectiveListener3() {
+    protected IPerspectiveListener3 perspectiveListener = new IPerspectiveListener3() {
 
         public void perspectiveOpened( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {
             System.out.println( String.format( "perspectiveOpened( %s )", perspective.getId() ) );
@@ -125,9 +125,11 @@ public class MultiChatManager implements IMultiChatManager {
             if (page == getWorkbenchWindow().getActivePage() && MultiChatPerspective.ID.equals( perspective.getId() )) {            	
                 // Ask the user to save views even when the perspective is closed (by default the
                 // eclipse framework asks only when closing the whole app, see BR #43).
-                page.saveAllEditors( true );
+                
+            	//page.saveAllEditors( true );
+                
                 // close perspective means leave the room
-                service.leave();
+                //service.leave(); It's called in close()
                 close();
                 System.out.println( String.format( "perspectiveClosed( %s )", perspective.getId() ) );
             }
