@@ -443,7 +443,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#grantVoice(java.util.List)
      */
-    public void grantVoice( List<String> nickNames ) {
+	public void grantVoice( List<String> nickNames ) {
         
     	for(int i=0; i<nickNames.size(); i++)
     		grantVoice(nickNames.get(i));
@@ -452,8 +452,11 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#grantVoice(java.lang.String)
      */
-    public void grantVoice( String nickName ) {    
-    	multiChatServiceActions.grantVoice(getRoomJid(), nickName);
+    public void grantVoice( String nickName ) {   
+    	if(nickName.equals(getLocalUserId()))
+			notifyLocalSystemMessage( "Is not possible to allow back in conversation to yourself" );
+		else
+			multiChatServiceActions.grantVoice(getRoomJid(), nickName);
     }
 
     /* (non-Javadoc)
@@ -468,7 +471,10 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
      * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#revokeVoice(java.lang.String)
      */
     public void revokeVoice( String nickName ) {  
-    	multiChatServiceActions.revokeVoice(getRoomJid(), nickName);
+    	if(nickName.equals(getLocalUserId()))
+			notifyLocalSystemMessage( "Is not possible to block back in conversation to yourself" );
+		else
+			multiChatServiceActions.revokeVoice(getRoomJid(), nickName);
     }
 
     /**
