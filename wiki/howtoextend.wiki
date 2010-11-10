@@ -65,7 +65,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 ===Extension===
 Dopo aver creato lo strato di astrazione, si è presentato un grosso ostacolo. I servizi di !MultiChat strutturate comunicano tra loro tramite un particolare protocollo che estende il protocollo di base. Ad esempio il servizio eConference ha la necessità di comunicare a tutti i partecipanti quando la conferenza ha inizio e quando ha fine.
 Si può ben immaginare che nessun protocollo metta a disposizione tali funzionalità. La soluzione adottata è stata quella di creare un meccanismo per estendere il protocollo di base. Ciò è permesso tramite:
-  * una Action chiamata !SendExtensionProtocolMessage, che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo. 
+  * una Action chiamata !sendExtensionProtocolMessage(), che invia un messaggio speciale che può contenere informazioni formattate in qualsiasi modo. 
   * un Event chiamato !ChatExtensionProtocolEvent, che viene sollevato quando si riceve un messaggio speciale.
 
 Tramite questo meccanismo è possibile ridefinire infiniti protocolli su quello di base sviluppati ad hoc per ogni singolo servizio.
@@ -136,7 +136,7 @@ Please download  Skype from www.skype.com"));
 
 Il metodo appena presentato ha la funzione di effettuare una connessione. Analizziamo in dettaglio cosa fa.
 La chiamata al metodo connect() di Connector restituisce lo stato di connessione di Skype. Lo stato cui ci riferiamo è quello del client Skype che deve essere avviato e connesso correttamente. Se lo stato è diverso da "ATTACHED" viene sollevata un'eccezione, in alternativa si procede. In seguito viene aggiornato il roster, vengono registrati i listener nella libreria skype4java e viene settata a true la variabile connected che mantiene l'informazione sullo stato della connessione.
-Diamo uno sguardo al metodo IChatAction.SendExtensionProtocolMessage().
+Diamo uno sguardo al metodo IChatAction.!sendExtensionProtocolMessage().
 
 {{{
 @Override
@@ -257,16 +257,16 @@ public class InfoDaemon  implements IBackendEventListener {
     HashMap<String, String> param = new HashMap<String, String>();
 	param.put("OS_NAME", System.getProperty("os.name"));
 	param.put("OS_VER", System.getProperty("os.version"));
-	chat.OpenChat(cepe.getFrom());
-	chat.SendExtensionProtocolMessage(cepe.getFrom(),
+	chat.openChat(cepe.getFrom());
+	chat.sendExtensionProtocolMessage(cepe.getFrom(),
 			"USER_INFO", param);
-	chat.CloseChat(cepe.getFrom());
+	chat.closeChat(cepe.getFrom());
    }
    if(cepe.getExtensionName().equals("USER_INFO")){
 	String osName = (String) cepe.getExtensionParameter("OS_NAME");
 	String osVer = (String) cepe.getExtensionParameter("OS_VER");
 	showMessage("One2OneInfo plugin", "OS: " + osName + " ver: " + osVer);
-	chat.CloseChat(cepe.getFrom());
+	chat.closeChat(cepe.getFrom());
    }
   }
  }
@@ -297,8 +297,8 @@ public class GetUserInfo extends AbstractBuddyActionDelegate{
   final IBuddy buddy = getSelected();
   IBackend b = NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
   IChatServiceActions chat = b.getChatServiceAction();
-  chat.OpenChat(buddy.getId());
-  chat.SendExtensionProtocolMessage(buddy.getId(),
+  chat.openChat(buddy.getId());
+  chat.sendExtensionProtocolMessage(buddy.getId(),
 		"GET_USER_INFO", new HashMap<String, String>());
  }
 }
