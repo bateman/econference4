@@ -20,7 +20,7 @@ import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 
 public class ConferenceContextWriter {
-	private Document doc;
+	protected Document doc;
 	private String filepath;
 	private EConferenceContext context;
 
@@ -172,7 +172,7 @@ public class ConferenceContextWriter {
 		prettyPrintWithDOM3LS(doc, out);
 	}
 
-	private void buildDocument() {
+	protected void buildDocument() {
 		createRootMeetingNode();
 		createTargetPlatformNode(context.getBackendId(), context.getRoom());
 		createConferenceNameNode(context.getName());

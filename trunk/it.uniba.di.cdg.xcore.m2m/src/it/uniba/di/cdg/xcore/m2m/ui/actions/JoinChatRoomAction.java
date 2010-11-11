@@ -35,30 +35,36 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
- * Join to an already existing chat room. 
+ * Join to an already existing chat room.
  */
 public class JoinChatRoomAction implements IWorkbenchWindowActionDelegate {
     /**
      * The unique id of this action.
      */
     public static final String ID = MultiChatPlugin.ID + "ui.actions.joinChatRoomAction";
-    
+
     private IWorkbenchWindow window;
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
      */
     public void dispose() {
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
      */
     public void init( IWorkbenchWindow window ) {
         this.window = window;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
      */
     public void run( IAction action ) {
@@ -66,15 +72,20 @@ public class JoinChatRoomAction implements IWorkbenchWindowActionDelegate {
             UiPlugin.getUIHelper().showErrorMessage( "Please, connect first!" );
             return;
         }
-        
-        MultiChatPlugin.getDefault().getHelper().open( new MultiChatContext(
-        		NetworkPlugin.getDefault().getRegistry().getDefaultBackendId(),
-        		"", NetworkPlugin.getDefault().getRegistry().getDefaultBackend()
-        			.getUserAccount().getName(),""));
+        Boolean autojoin = true;
+        MultiChatPlugin
+                .getDefault()
+                .getHelper()
+                .open( new MultiChatContext( NetworkPlugin.getDefault().getRegistry()
+                        .getDefaultBackendId(), "", NetworkPlugin.getDefault().getRegistry()
+                        .getDefaultBackend().getUserAccount().getName(), "" ), autojoin );
     }
 
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction,
+     * org.eclipse.jface.viewers.ISelection)
      */
     public void selectionChanged( IAction action, ISelection selection ) {
     }

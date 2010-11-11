@@ -439,8 +439,10 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 										.getHelper()
 										.askUserAcceptInvitation(invitation.getInvitationEvent());
 
-										if (context != null)
-											defaultPlugin.getHelper().open(context);
+										if (context != null) {
+										    boolean autojoin = true;
+											defaultPlugin.getHelper().open(context, autojoin );
+										}
 									}
 								}
 							}

@@ -117,15 +117,14 @@ public class EConferenceHelper implements IEConferenceHelper {
 		// }
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#open(it.uniba.di
-	 * .cdg.xcore.econference.EConferenceContext)
-	 */
-	public IEConferenceManager open(EConferenceContext context) {
-		IEConferenceManager manager = null;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see it.uniba.di.cdg.xcore.econference.IEConferenceHelper#open(it.uniba.di
+     * .cdg.xcore.econference.EConferenceContext)
+     */
+    public IEConferenceManager open( EConferenceContext context, boolean autojoin ) {
+        IEConferenceManager manager = null;
 
 		try {
 			final IWorkbenchWindow window = PlatformUI.getWorkbench()
@@ -152,11 +151,10 @@ public class EConferenceHelper implements IEConferenceHelper {
 				}
 			});
 
-			manager.open(context);
-		} catch (Exception e) {
-			e.printStackTrace();
-			uihelper.showErrorMessage("Could not start eConference: "
-					+ e.getMessage());
+            manager.open( context, autojoin );
+        } catch (Exception e) {
+            e.printStackTrace();
+            uihelper.showErrorMessage( "Could not start eConference: " + e.getMessage() );
 
 			// Close this perspective since it is unuseful ...
 			uihelper.closeCurrentPerspective();
@@ -181,7 +179,8 @@ public class EConferenceHelper implements IEConferenceHelper {
 		dlg.setFileName(filepath);
 		if (Dialog.OK == dlg.open()) {
 			// 1. Open a file dialog, asking the conference file name
-			IEConferenceManager manager = open(dlg.getContext());
+		    boolean autojoin = true;
+			IEConferenceManager manager = open( dlg.getContext(), autojoin );
 
 			if (dlg.isSendInvitations()) {
 				for (Invitee i : dlg.getContext().getInvitees())
@@ -208,7 +207,8 @@ public class EConferenceHelper implements IEConferenceHelper {
 		dialog.create();
 		dialog.open();
 		if (wizard.canSendInvitation()) {
-			IEConferenceManager manager = open(wizard.getContext());
+		    boolean autojoin = false;
+			IEConferenceManager manager = open( wizard.getContext(), autojoin );
 			for (Invitee i : wizard.getContext().getInvitees())
 				manager.inviteNewParticipant(i.getId());
 		}

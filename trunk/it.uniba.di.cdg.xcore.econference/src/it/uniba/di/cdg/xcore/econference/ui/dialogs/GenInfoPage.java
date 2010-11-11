@@ -1,6 +1,6 @@
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
-import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.IEConferenceContext;
 import it.uniba.di.cdg.xcore.econference.model.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.ItemList;
@@ -48,7 +48,7 @@ public class GenInfoPage extends WizardPage {
 			+ ".econference" + System.getProperty("file.separator");
 
 	private Composite composite;
-	private EConferenceContext context;
+	private IEConferenceContext context;
 	private Combo backendIdCombo = null;
 	private Text nameConferenceText = null;
 	private GridData gd;
@@ -58,19 +58,20 @@ public class GenInfoPage extends WizardPage {
 	private Text itemText = null;
 	private Text nickNameText = null;
 	private Combo serviceCombo = null;
+	//private Combo serviceEconference = null;
 	private Text serviceText = null;
 	String media = "";
 	private DateTime schedule;
 	private Text filePathText;
 	private DateTime time;
 
-	protected GenInfoPage(String arg0) {
+	public GenInfoPage(String arg0, IEConferenceContext context) {
 		super(arg0);
 		setTitle("General conference info");
 		setDescription("Step 1: Enter conference information.\nFields marked with * are required. "
 				+ "You should avoid using reserved chars (e.g. <, >, &) as they will be escaped.");
-		context = new EConferenceContext();
 		new File(DEFAULT_FILE_PATH).mkdirs();
+		this.context = context;
 	}
 
 	/**
@@ -243,7 +244,33 @@ public class GenInfoPage extends WizardPage {
 			backendIdCombo.select(SKYPE_BACKEND);
 			nameConferenceText.setText(nameConferenceText.getText() + "$" + nickNameText.getText());
 		}
+/*		
+ *     ComboBox che verifica il servizio attivo: es. PlanningPoker
+ * 
+ * 
+        new CLabel(composite, SWT.NONE).setText("e-conference Service:");
+		serviceEconference = new Combo(composite, SWT.READ_ONLY);
+		String bundleService = EconferenceBundleManager.getEconferenceExtention();
+		serviceEconference.setItems(new String[] {"none", bundleService});
+		
+		serviceEconference.addSelectionListener(new SelectionListener() {
 
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				int index = serviceCombo.getSelectionIndex();
+				if ( index == -1 )
+					return;
+				String item = serviceCombo.getItem(index);
+				if (!item.equals("none")) {
+					EconferenceBundleManager.setService(item);
+				}
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+			
+		});*/
 		setPageComplete(true);
 		// set the composite as the control for this page
 		setControl(composite);
@@ -289,7 +316,7 @@ public class GenInfoPage extends WizardPage {
 		return this;
 	}
 
-	private EConferenceContext getContext() {
+	private IEConferenceContext getContext() {
 		return this.context;
 	}
 
@@ -346,7 +373,7 @@ public class GenInfoPage extends WizardPage {
 			return false;
 		if (backendIdCombo.getSelectionIndex() == -1)
 			return false;
-		if (media == "it.uniba.di.cdg.jabber.jabberBackend") {
+		if (media.equals("it.uniba.di.cdg.jabber.jabberBackend")) {
 			if (serviceCombo.getText().equals(""))
 				return false;
 			if (serviceCombo.getText().equals(CUSTOM_MUC_SERVICE)

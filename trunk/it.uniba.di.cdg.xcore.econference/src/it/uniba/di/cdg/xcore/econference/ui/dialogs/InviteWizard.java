@@ -7,9 +7,13 @@
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.IEConferenceContext;
 import it.uniba.di.cdg.xcore.econference.model.ConferenceContextWriter;
+import it.uniba.di.cdg.xcore.econference.util.MailFactory;
+import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 
 import java.io.FileNotFoundException;
+import java.util.Vector;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -20,46 +24,49 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
+import com.google.gdata.GoogleDocManager;
+
 /**
  * Wizard class
  */
 
 public class InviteWizard extends Wizard implements INewWizard {
 
-	protected static final String DEFAULT_FILE_PATH = System
-			.getProperty("user.home")
-			+ System.getProperty("file.separator")
-			+ ".econference" + System.getProperty("file.separator");
+    protected static final String DEFAULT_FILE_PATH = System.getProperty( "user.home" )
+            + System.getProperty( "file.separator" ) + ".econference"
+            + System.getProperty( "file.separator" );
 
-	// wizard pages
-	protected GenInfoPage genInfoPage;
-	protected InvitePage invitePage;
-	protected LastPage lastOnePage;
-	protected EConferenceContext context;
+    // wizard pages
+    protected GenInfoPage genInfoPage;
+    protected InvitePage invitePage;
+    protected LastPage lastOnePage;
+    protected IEConferenceContext context;
 
-	// the workbench instance
-	protected IWorkbench workbench;
+    // the workbench instance
+    protected IWorkbench workbench;
 
-	private String organizer = "";
+    private String organizer = "";
 
-	public InviteWizard() {
-		super();
-	}
+    public InviteWizard() {
+        super();
+        
+    }
 
-	public void addPages() {
-		genInfoPage = new GenInfoPage("");
-		addPage(genInfoPage);
-		invitePage = new InvitePage("");
-		addPage(invitePage);
-		lastOnePage = new LastPage("");
-		addPage(lastOnePage);
-	}
+    public void addPages() {
+        context = new EConferenceContext();
+        genInfoPage = new GenInfoPage( "", context);
+        invitePage = new InvitePage( "" , context);
+        lastOnePage = new LastPage( "", context );
+        addPage( genInfoPage );
+        addPage( invitePage );
+        addPage( lastOnePage );
+     }
 
-	/**
-	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-	}
+    /**
+     * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
+     */
+    public void init( IWorkbench workbench, IStructuredSelection selection ) {
+    }
 
 	public boolean canFinish() {
 		IWizardPage current = this.getContainer().getCurrentPage();
@@ -68,32 +75,54 @@ public class InviteWizard extends Wizard implements INewWizard {
 		if (current == invitePage)
 			return false;
 
-		return true;
-	}
+        return true;
+    }
 
 	public boolean performCancel() {
 		lastOnePage.setCanSendInvitations(false);
 		return true;
 	}
 
-	public boolean performFinish() {
-		lastOnePage.saveData();
-		this.context = lastOnePage.getContext();
-		String filepath = genInfoPage.getFilePath();
-		try {
-			ConferenceContextWriter writer = new ConferenceContextWriter(
-					filepath, context);
-			writer.serialize();
-			// if we save the ecx file not in the default location
-			// we store a copy there
-			if (!filepath.startsWith(DEFAULT_FILE_PATH)) {
-				String filename = genInfoPage.getConferenceName();
-				filename += ".ecx";
-				writer = new ConferenceContextWriter(
-						DEFAULT_FILE_PATH + filename, context);
-				writer.serialize();
-			}
-			
+    public boolean performFinish() {
+        lastOnePage.saveData();
+        this.context = ((EConferenceContext) lastOnePage.getContext());
+        String filepath = genInfoPage.getFilePath();
+        try {
+
+            ConferenceContextWriter writer = new ConferenceContextWriter(filepath, (EConferenceContext) context);
+
+            writer.serialize();
+            // if we save the ecx file not in the default location
+            // we store a copy there
+            if (!filepath.startsWith( DEFAULT_FILE_PATH )) {
+                String filename = genInfoPage.getConferenceName();
+                filename += ".ecx";
+                writer = new ConferenceContextWriter( DEFAULT_FILE_PATH + filename, (EConferenceContext) context );
+                writer.serialize();
+            }
+            
+            String backendID = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+            
+            if (canSendInvitation() && !backendID.equals( "it.uniba.di.cdg.skype.skypeBackend" ) ) {
+
+                String user = NetworkPlugin.getDefault().getRegistry().getDefaultBackend()
+                        .getUserId();
+                String passwd = NetworkPlugin.getDefault().getRegistry().getDefaultBackend()
+                        .getUserAccount().getPassword();
+                String title = genInfoPage.getConferenceName() + ".ecx";
+                String subject = context.getRoom().split( "@" )[0];
+                Vector<String> toRecipients = lastOnePage.recipients();
+                String mailBody;
+
+                if (!toRecipients.isEmpty()) {
+                    GoogleDocManager manager = new GoogleDocManager( user, passwd );
+                    String googleDocLink = manager.uploadFile( filepath, title, toRecipients );
+                    mailBody = MailFactory.createMailBody( context, googleDocLink );
+
+                    manager.sendMail( subject, toRecipients, mailBody, filepath );
+                }
+            }
+
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -108,7 +137,7 @@ public class InviteWizard extends Wizard implements INewWizard {
 	}
 
 	public EConferenceContext getContext() {
-		return this.context;
+		return (EConferenceContext) this.context;
 	}
 	
 	public void setOrganizer(String organizer) {

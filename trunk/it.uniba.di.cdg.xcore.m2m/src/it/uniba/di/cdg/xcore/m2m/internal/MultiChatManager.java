@@ -197,17 +197,19 @@ public class MultiChatManager implements IMultiChatManager {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#open(it.uniba.di.cdg.xcore.m2m.service.IMultiChatService.MultiChatContext)
      */
-    public void open( MultiChatContext context ) throws Exception {
+    public void open( MultiChatContext context, boolean autojoin ) throws Exception {
         this.context = context;
         service = setupChatService();
         service.join();
-        setupUI();
+        if (autojoin) {
+            setupUI();
 
-        setupListeners();
-        
-        // Notify chat listeners that the chat is 
-        for (IMultiChatListener l : chatlisteners) 
-            l.open();
+            setupListeners();
+
+            // Notify chat listeners that the chat is
+            for (IMultiChatListener l : chatlisteners)
+                l.open();
+        }
     }
 
     /* (non-Javadoc)

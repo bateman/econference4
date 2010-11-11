@@ -37,7 +37,7 @@ import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
  * <p>
  * Clients are responsible to inject collaborators.
  */
-public class EConferenceContext extends MultiChatContext implements IServiceContext {
+public class EConferenceContext extends MultiChatContext implements IEConferenceContext, IServiceContext {
     public static final String ROLE_MODERATOR = "moderator";
     public static final String ROLE_SCRIBE = "scribe";
     public static final String ROLE_PARTICIPANT = "participant";
