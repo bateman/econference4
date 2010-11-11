@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 
@@ -157,7 +158,11 @@ public class UIHelper implements IUIHelper {
             return;
         }
             
-        IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+        IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        if (activeWorkbenchWindow == null)
+        	return;
+        
+        IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
         if (activePage == null)
             return;
         
