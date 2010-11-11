@@ -1,0 +1,3 @@
+# GData Kind Adaptors for http://schemas.google.com/docs/2007#metadata
+com.google.gdata.data.docs.MetadataFeed
+com.google.gdata.data.docs.MetadataEntry
