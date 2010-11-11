@@ -13,6 +13,7 @@
 			<xs:element ref="target:platform"/>
 			<xs:element name="name" type="xs:string"/>
 			<xs:element name="topic" type="xs:string"/>
+			<xs:element name="service" type="xs:string"/>
 			<xs:element name="schedule" type="xs:dateTime"/>
 			<xs:element name="items">
 				<xs:complexType>

@@ -65,6 +65,9 @@ public class EConferencePlugin extends AbstractUIPlugin {
      * Returns the shared instance.
      */
     public static EConferencePlugin getDefault() {
+        if ( plugin == null ) {
+            plugin = new EConferencePlugin();
+        }
         return plugin;
     }
 

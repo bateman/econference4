@@ -22,37 +22,92 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package it.uniba.di.cdg.xcore.m2m;
+package it.uniba.di.cdg.xcore.econference;
 
-import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
-import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
+import it.uniba.di.cdg.xcore.econference.model.IItemList;
+import it.uniba.di.cdg.xcore.m2m.service.Invitee;
+import it.uniba.di.cdg.xcore.network.services.INetworkServiceContext;
+
+import java.util.List;
 
 /**
  * 
  */
-public interface IMultiChatHelper extends IBackendEventListener {
-    /**
-     * To respond to the right invitations we use discriminating upong the reason filed associated
-     * to each invitation. In case of the multi-chats, the coded reason is <b>e-conference</b>.
-     */
-    public static final String MULTICHAT_REASON = "multi-chat";
+public interface IEConferenceContext extends INetworkServiceContext {
 
     /**
-     * Perform helper initialization.
+     * @param p
      */
-    void init();
+    void setScribe( Invitee p );
 
     /**
-     * Release all resources and listeners.
+     * @param p
      */
-    void dispose();
-    
+    void setModerator( Invitee p );
+
     /**
-     * Open a new multichat: a new view will be created and the focus shifted.
-     * 
-     * @param context
-     *        the context needed to create this new multichat
-     * @return the created multi chat object
+     * @return
      */
-    IMultiChatManager open( MultiChatContext context, boolean autojoin );
+    String getRoom();
+
+    /**
+     * @return
+     */
+    String getPassword();
+
+    /**
+     * @return
+     */
+    String getSchedule();
+
+    /**
+     * @return
+     */
+    Invitee getModerator();
+
+    /**
+     * @return
+     */
+    IItemList getItemList();
+
+    /**
+     * @return
+     */
+    Object getInvitees();
+
+    /**
+     * @param participants
+     */
+    void setInvitees( List<Invitee> participants );
+
+    /**
+     * @param media
+     */
+    void setBackendId( String media );
+
+    /**
+     * @param computeName
+     */
+    void setName( String computeName );
+
+    /**
+     * @param computeRoom
+     */
+    void setRoom( String computeRoom );
+
+    /**
+     * @param text
+     */
+    void setTopic( String text );
+
+    /**
+     * @param il
+     */
+    void setItemList( IItemList il );
+
+    /**
+     * @param string
+     */
+    void setSchedule( String string );
+
 }

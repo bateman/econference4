@@ -62,7 +62,7 @@ public interface IEConferenceHelper {
      * @param context
      * @return the create econference.
      */
-    IEConferenceManager open( EConferenceContext context );
+    IEConferenceManager open( EConferenceContext context, boolean autojoin );
 
     /**
      * Open an e-conference loading its configuration from a file. The helper will show the dialog

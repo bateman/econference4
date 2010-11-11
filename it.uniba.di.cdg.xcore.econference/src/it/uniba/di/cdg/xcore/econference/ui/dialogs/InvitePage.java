@@ -1,6 +1,6 @@
 package it.uniba.di.cdg.xcore.econference.ui.dialogs;
 
-import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.IEConferenceContext;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
@@ -38,17 +38,17 @@ public class InvitePage extends WizardPage implements Listener {
 	Composite composite;
 	GridData gd;
 	private Button addMember = null;
-	private EConferenceContext context = null;
+	private IEConferenceContext context = null;
 	private Table fromBuddy = null;
 	private ImageRegistry imageRegistry;
 	private Table toConference = null;
 	private Button removeMember = null;
 
-	protected InvitePage(String arg0) {
+	public InvitePage(String arg0, IEConferenceContext context ) {
 		super(arg0);
 		setTitle("Invite people");
 		setDescription("Step 2: Select participants from your buddy list\n You can add participants who are not in your buddy list in the next step");
-		context = new EConferenceContext();
+		setContext( context );
 	}
 
 	/**
@@ -162,11 +162,11 @@ public class InvitePage extends WizardPage implements Listener {
 		return imageRegistry.get("offline");
 	}
 
-	public void setContext(EConferenceContext ctx) {
+	public void setContext(IEConferenceContext ctx) {
 		this.context = ctx;
 	};
 
-	private EConferenceContext getContext() {
+	private IEConferenceContext getContext() {
 		return this.context;
 	};
 

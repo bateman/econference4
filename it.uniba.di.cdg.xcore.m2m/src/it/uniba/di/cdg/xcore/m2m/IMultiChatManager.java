@@ -38,9 +38,9 @@ import java.util.List;
 import org.eclipse.ui.IWorkbenchWindow;
 
 /**
- * A multichat represents the controller of a multi user chat: it provides access to the views, models
- * and network service. In addition it implements a set of functionalities that are called by the 
- * defined actions. 
+ * A multichat represents the controller of a multi user chat: it provides access to the views,
+ * models and network service. In addition it implements a set of functionalities that are called by
+ * the defined actions.
  */
 public interface IMultiChatManager extends IServiceManager, IRoleProvider {
     /**
@@ -48,20 +48,22 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
      */
     public static interface IMultiChatListener {
         void open();
-        
+
         void closed();
     }
 
     /**
-     * Open the multichat: views are created, connection established, listeners registered and
-     * the perspective is switched as needed. Ultimately <code>IMultiChatService.join()</code> 
-     * will be called if nothing bad happens.
+     * Open the multichat: views are created, connection established, listeners registered and the
+     * perspective is switched as needed. Ultimately <code>IMultiChatService.join()</code> will be
+     * called if nothing bad happens.
      * 
-     * @param context the context for initializing the chat room
+     * @param context
+     *        the context for initializing the chat room
      * @return <code>true</code> if the chat was successfully open, <code>false</code> otherwise
-     * @throws Exception if something bad happens
+     * @throws Exception
+     *         if something bad happens
      */
-    public void open( MultiChatContext context ) throws Exception;
+    public void open( MultiChatContext context, boolean autojoin ) throws Exception;
 
     /**
      * Close the multichat.
@@ -70,7 +72,7 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
 
     /**
      * Returns the view displaying the ongoing chat.
-     *  
+     * 
      * @return the view
      */
     IChatRoomView getChatRoomView();
@@ -81,7 +83,7 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
      * @return the talk view or <code>null</code> if none is set
      */
     ITalkView getTalkView();
-    
+
     /**
      * The network service that implement communication with the remote clients.
      * 
@@ -94,28 +96,29 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
      * needed.
      */
     void changeSubject( String subject );
-    
+
     /**
      * Switch a participant to frozen state if it wasn't and unfreezes frozen participants.
      */
     void toggleFreezeUnfreeze( List<IParticipant> participants );
-    
+
     /**
      * Send a single-shot message to the specified participants.
      * 
      * @param text
      */
-    void sendPrivateMessage( List<IParticipant> participants,  String text );
-    
+    void sendPrivateMessage( List<IParticipant> participants, String text );
+
     /**
      * Send an invitatation to the specified user. If the invitation is accepted the recipient user
-     * will log on the chat room otherwise all {@see it.uniba.di.cdg.xcore.m2m.service.IInvitationRejectedListener}s
-     * will be notified about rejection.
-     *  
+     * will log on the chat room otherwise all {@see
+     * it.uniba.di.cdg.xcore.m2m.service.IInvitationRejectedListener}s will be notified about
+     * rejection.
+     * 
      * @param participantId
      */
     void inviteNewParticipant( String participantId );
-    
+
     /**
      * Notify remote clients that the a view must be set as read-only.
      * 
@@ -123,21 +126,21 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
      * @param readOnly
      */
     void notifyViewReadOnly( String viewId, boolean readOnly );
-    
+
     /**
      * Add a new listener for multichat events.
      * 
      * @param listener
      */
     void addListener( IMultiChatListener listener );
-    
+
     /**
      * Remove a listener for multichat events.
      * 
      * @param listener
      */
     void removeListener( IMultiChatListener listener );
-    
+
     /**
      * Returns the helper for manipulating backends.
      * 
@@ -148,7 +151,8 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
     /**
      * Set the backend helper to use.
      * 
-     * @param backendHelper The backendHelper to set.
+     * @param backendHelper
+     *        The backendHelper to set.
      */
     void setBackendHelper( INetworkBackendHelper backendHelper );
 
@@ -162,22 +166,24 @@ public interface IMultiChatManager extends IServiceManager, IRoleProvider {
     /**
      * Changes the UI helper to use for interaction with the user.
      * 
-     * @param uihelper The uihelper to set.
+     * @param uihelper
+     *        The uihelper to set.
      */
     void setUihelper( IUIHelper uihelper );
-    
+
     /**
      * Returns the workbench windows this manager is using.
      * 
      * @return Returns the workbenchWindow.
      */
     IWorkbenchWindow getWorkbenchWindow();
-    
+
     /**
-     * Changes the workbench window. Clients are not expected to use this method: it is 
-     * used by the helper to initialize the manager.
+     * Changes the workbench window. Clients are not expected to use this method: it is used by the
+     * helper to initialize the manager.
      * 
-     * @param workbenchWindow The workbenchWindow to set.
+     * @param workbenchWindow
+     *        The workbenchWindow to set.
      */
     void setWorkbenchWindow( IWorkbenchWindow workbenchWindow );
 }
