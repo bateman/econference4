@@ -1,4 +1,5 @@
 #labels Phase-Implementation,MITLicense
+{{{
 /**
  * This file is part of the eConference project and it is distributed under the 
 
@@ -24,3 +25,4 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+}}}
