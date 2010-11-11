@@ -17,7 +17,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench"
-            name="eConference + Planning Poker Plugin">
+            name="eConference">
          <property
                name="windowImages"
                value="cw_16x16.gif,cw_32x32.gif"/>
@@ -29,10 +29,10 @@
                value="about_logo.gif"/>
          <property
                name="aboutText"
-               value="eConference 3.5 with Planning Poker Plugin&#x0A;&#x0A;eConference has been developed by the Collaborative Development Group,&#x0A;Dipartimento di Informatica, University of Bari and it is distributed under the &#x0A;terms of the MIT license. &#x0A;More details on the project homepage at http://cdg.di.uniba.it/projects/econference/ ."/>
+               value="eConference 4.0.3&#x0A;&#x0A;eConference has been developed by the Collaborative Development Group,&#x0A;Dipartimento di Informatica, University of Bari and it is distributed under the &#x0A;terms of the MIT license. &#x0A;More details on the project homepage at http://cdg.di.uniba.it/projects/econference/ &#x0A;&#x0A;This software is based upon the Eclipse Rich Client Platform, http://eclipse.org/rcp/&#x0A;&#x0A;The Jabber plug-in uses the SMACK library, http://www.jivesoftware.org/smack/ &#x0A;&#x0A;Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation, Inc."/>
          <property
                name="appName"
-               value="eConference + Planning Poker Plugin">
+               value="eConference">
          </property>
          <property
                name="startupProgressRect"
