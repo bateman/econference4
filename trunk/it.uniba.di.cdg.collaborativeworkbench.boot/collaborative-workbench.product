@@ -72,6 +72,7 @@ THE SOFTWARE.
    </license>
 
    <plugins>
+      <plugin id="com.google.services"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="it.uniba.di.cdg.collaborativeworkbench.boot"/>
       <plugin id="it.uniba.di.cdg.jabber"/>
