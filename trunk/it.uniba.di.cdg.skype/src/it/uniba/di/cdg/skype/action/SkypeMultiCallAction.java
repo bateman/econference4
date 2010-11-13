@@ -1,6 +1,9 @@
 package it.uniba.di.cdg.skype.action;
 
+import java.util.HashMap;
+
 import it.uniba.di.cdg.skype.ui.SkypeJoinChatRoomDialog;
+import it.uniba.di.cdg.skype.util.ExtensionConstants;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.action.IMultiCallAction;
 
@@ -17,6 +20,7 @@ public class SkypeMultiCallAction implements IMultiCallAction {
 	private Call call = null;
 	private String conferenceId = "";
 	private IBackend backend;
+	private String[] participants = null;
 	
 	public SkypeMultiCallAction(IBackend backend){
 		super();
@@ -30,7 +34,6 @@ public class SkypeMultiCallAction implements IMultiCallAction {
 
 	@Override
 	public void call() {
-		String[] participants;
 		final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		SkypeJoinChatRoomDialog dlg = new SkypeJoinChatRoomDialog(window);
 		if(dlg.open()==Window.OK){
@@ -51,6 +54,15 @@ public class SkypeMultiCallAction implements IMultiCallAction {
 
 	@Override
 	public void finishCall() {
+		if(participants != null)
+		{
+			for(String s: participants)
+			{
+				HashMap<String, String> param = new HashMap<String, String>();
+				backend.getChatServiceAction().SendExtensionProtocolMessage(s,
+						ExtensionConstants.CALL_FINISHED, param);
+			}
+		}
 		backend.getCallAction().finishCall(conferenceId);
 	}
 

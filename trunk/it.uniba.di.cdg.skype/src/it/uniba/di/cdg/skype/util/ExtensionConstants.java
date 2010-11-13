@@ -24,5 +24,6 @@ public class ExtensionConstants {
 	public static final String PRESENCE_MESSAGE = "presence";
 	public static final String PRESENCE_UNAVAILABLE = "unavailable";
 	public static final String PRESENCE_TYPE = "type";
+	public static final String CALL_FINISHED = "call_finished";
 
 }
