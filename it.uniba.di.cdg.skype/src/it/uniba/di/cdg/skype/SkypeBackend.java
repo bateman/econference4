@@ -156,6 +156,11 @@ public class SkypeBackend implements IBackend {
 							getRoster().getBuddy(senderId), msg, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
+		
+				else if (extensionName.equals(ExtensionConstants.CALL_FINISHED)) {
+			     	if(getMultiCallAction().isCalling())
+			     		getMultiCallAction().finishCall();
+				}
 
 				// è un estensione gestita dal core
 				else {
