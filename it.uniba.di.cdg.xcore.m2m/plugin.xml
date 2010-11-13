@@ -118,19 +118,6 @@
          </command>
       </menuContribution>
    </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="it.uniba.di.cdg.xcore.m2m.ui.views.commands.MultiCallChatCommandHandler"
-            commandId="it.uniba.di.cdg.xcore.m2m.multiCallChatCommand">
-         <enabledWhen>
-            <systemTest
-                  property="econference.currentbackend"
-                  value="Skype">
-            </systemTest>
-         </enabledWhen>
-      </handler>
-   </extension>
    
 <!--  
 	THIS STUFF DOESN'T WORK: DECLARED ACTIONS IN THE VIEW CODE ITSELF ...

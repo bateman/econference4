@@ -28,8 +28,10 @@ import it.uniba.di.cdg.xcore.m2m.IMultiChatManager;
 import it.uniba.di.cdg.xcore.m2m.MultiChatPlugin;
 import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
+import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
+import it.uniba.di.cdg.xcore.m2m.ui.views.commands.MultiCallChatCommandHandler;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;
 import it.uniba.di.cdg.xcore.ui.views.TalkView;
 
@@ -40,6 +42,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.handlers.IHandlerService;
 
 /**
  * Implementation of the talk view with some custom UI functions, useful when dealing with
@@ -126,7 +129,30 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
         super();
     }
 
-    /* (non-Javadoc)
+    private void chekHandlersAndActionAuthorization() {
+		
+    	// get the handler service from the view site
+		IHandlerService handlerService = (IHandlerService) getSite()
+				.getService(IHandlerService.class);
+
+		// if it's MODERATOR activate this handler instance for the count command
+		IMultiChatManager manager = getManager();
+		if (manager != null && manager.getRole() == Role.MODERATOR)
+		{
+			if(System.getProperty("econference.currentbackend").equals("Skype"))
+				handlerService.activateHandler("it.uniba.di.cdg.xcore.m2m.multiCallChatCommand",
+						new MultiCallChatCommandHandler(getManager()));
+			
+			inviteUserAction.setEnabled(true);	
+		}
+		else
+		{
+			inviteUserAction.setEnabled(false);
+		}
+		
+	}
+
+	/* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.ui.views.TalkView#createPartControl(org.eclipse.swt.widgets.Composite)
      */
     @Override
@@ -136,6 +162,7 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
         makeActions();
 
         contributeToActionBars( getViewSite().getActionBars() );
+        
     }
 
     /**
@@ -164,7 +191,9 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
         inviteUserAction.setText( "Invite user" );
         inviteUserAction.setToolTipText( "Invite another user to join this chat" );
         inviteUserAction.setImageDescriptor( MultiChatPlugin.imageDescriptorFromPlugin(
-                MultiChatPlugin.ID, "icons/action_invite_user.png" ) );        
+                MultiChatPlugin.ID, "icons/action_invite_user.png" ) ); 
+        inviteUserAction.setEnabled(false);
+				
     }
 
     /**
@@ -178,6 +207,7 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
 
         //        bars.getMenuManager().add( changeSubjectAction );
         bars.getMenuManager().add( inviteUserAction );
+        
     }
 
     /* (non-Javadoc)
@@ -219,6 +249,8 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
             return;
 
         //        getModel().addListener( talkListener );
+        
+        chekHandlersAndActionAuthorization();
     }
 
     /* (non-Javadoc)
