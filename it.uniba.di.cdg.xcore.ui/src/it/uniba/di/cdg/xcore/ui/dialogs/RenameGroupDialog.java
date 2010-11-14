@@ -1,12 +1,11 @@
 package it.uniba.di.cdg.xcore.ui.dialogs;
 
-import java.util.Iterator;
-
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
-import it.uniba.di.cdg.xcore.ui.UiPlugin;
+
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;

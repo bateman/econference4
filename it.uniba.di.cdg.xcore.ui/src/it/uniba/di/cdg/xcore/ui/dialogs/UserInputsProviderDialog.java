@@ -1,13 +1,8 @@
 package it.uniba.di.cdg.xcore.ui.dialogs;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
-
-import org.eclipse.jface.dialogs.IDialogConstants;
-
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
