@@ -25,9 +25,9 @@
 package it.uniba.di.cdg.xcore.ui.adapters;
 
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
+import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
-import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;
 import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
@@ -145,9 +145,7 @@ public class BuddyAdapterFactory implements IAdapterFactory {
         }
     };
     
-    /* (non-Javadoc)
-     * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
-     */
+    @Override
     public Object getAdapter( Object adaptableObject, Class adapterType ) {
 //        System.out.println( String.format( "BuddyAdapterFactory.getAdapter( %s, %s )", adaptableObject, adapterType ) );
         if (adapterType == IWorkbenchAdapter.class 
@@ -166,9 +164,7 @@ public class BuddyAdapterFactory implements IAdapterFactory {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
-     */
+    @Override
     public Class[] getAdapterList() {
         return new Class[] { IWorkbenchAdapter.class, IActionFilter.class };
     } 
