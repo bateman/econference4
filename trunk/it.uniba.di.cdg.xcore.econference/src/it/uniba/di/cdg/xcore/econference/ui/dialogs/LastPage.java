@@ -132,7 +132,7 @@ public class LastPage extends WizardPage implements Listener {
         gridData.widthHint = 85;
         gridData.heightHint = 25;
         sendInvitationsCheckBox = new Button( composite, SWT.CHECK );
-        sendInvitationsCheckBox.setText( "Send message and email invitations" );
+        sendInvitationsCheckBox.setText( "Send invitations via IM and email (email notification only works with Google account)" );
         sendInvitationsCheckBox.setSelection( true );
         sendInvitationsCheckBox.setToolTipText( "send message and email to notify the invitation" );
         sendInvitationsCheckBox.addSelectionListener( new SelectionListener() {
