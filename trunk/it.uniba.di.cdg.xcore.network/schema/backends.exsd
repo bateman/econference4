@@ -13,12 +13,12 @@
    <element name="extension">
       <annotation>
          <documentation>
-            All the pluggable network backends (Jabber, ...) should extend this extension point and implement &lt;code&gt;IBackend&lt;/code&gt;.
+            All the pluggable network backends (e.g., Jabber, Skype...) should extend this extension point and implement &lt;code&gt;IBackend&lt;/code&gt;.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
-            <element ref="backend" minOccurs="20" maxOccurs="1"/>
+            <element ref="backend" minOccurs="0" maxOccurs="unbounded" />
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
