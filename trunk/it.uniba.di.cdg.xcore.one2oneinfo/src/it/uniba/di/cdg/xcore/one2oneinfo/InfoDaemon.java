@@ -34,7 +34,7 @@ public class InfoDaemon implements IBackendEventListener {
 				param.put(One2OneInfoConstants.OS_NAME, System.getProperty("os.name"));
 				param.put(One2OneInfoConstants.OS_VER, System.getProperty("os.version"));
 				chat.OpenChat(cepe.getFrom());
-				chat.SendExtensionProtocolMessage(cepe.getFrom(), "USER_INFO",
+				chat.SendExtensionProtocolMessage(cepe.getFrom(), One2OneInfoConstants.USER_INFO,
 						param);
 				chat.CloseChat(cepe.getFrom());
 			}
