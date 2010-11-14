@@ -24,9 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.one2one.ui.actions.popup;
 
-import it.uniba.di.cdg.xcore.one2one.ChatPlugin;
-import it.uniba.di.cdg.xcore.one2one.IChatService.ChatContext;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
+import it.uniba.di.cdg.xcore.one2one.ChatPlugin;
 import it.uniba.di.cdg.xcore.ui.actions.AbstractBuddyActionDelegate;
 import it.uniba.di.cdg.xcore.ui.dialogs.MoveContactDialog;
 
@@ -44,9 +43,7 @@ public class MoveBuddyAction extends AbstractBuddyActionDelegate {
      */
     public static final String ID = ChatPlugin.ID + ".ui.actions.popup.moveBuddyAction";
 
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-     */
+    @Override
     public void run( IAction action ) {
         final IBuddy buddy = getSelected();
         Display display = Display.getDefault();
