@@ -42,9 +42,6 @@ public class SkypeJoinChatRoomDialog extends Dialog {
         return ui;
 	}
 	
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.dialogs.Dialog#okPressed()
-     */
     @Override
     protected void okPressed() {    
     	int[] userSelected = ui.tableUsers.getSelectionIndices();
