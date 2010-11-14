@@ -333,7 +333,6 @@
             helper="it.uniba.di.cdg.xcore.econference.internal.EConferenceHelper"
             invitationIcon="icons/view_stored_events_join_action_enabled.png"
             organizationIcon="icons/view_stored_events_join_from_file.png"
-            plugin="it.uniba.di.cdg.xcore.econference.EConferencePlugin"
             pluginID="it.uniba.di.cdg.xcore.econference"
             service="e-conference">
       </loader>
