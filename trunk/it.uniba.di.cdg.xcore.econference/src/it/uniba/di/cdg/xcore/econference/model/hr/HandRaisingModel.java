@@ -146,18 +146,13 @@ public class HandRaisingModel implements IHandRaisingModel {
      */
     @Aspect
     public static class OwnThreadSafety extends ThreadSafetyAspect {
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
-         */
+
         @Override
         @Pointcut( "execution( public * HandRaisingModel.get*(..) )" +
                 "|| execution( public int HandRaisingModel.numberOfQuestions(..) )" +
                 "|| execution( public Iterator HandRaisingModel.iterator() )")
         protected void readOperations() {}
 
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
-         */
         @Override
         @Pointcut( "execution( public void HandRaisingModel.set*(..) )" +
                 "|| execution( public void HandRaisingModel.add*(..) )" +
