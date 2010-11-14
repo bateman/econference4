@@ -42,31 +42,20 @@ public class JoinChatRoomAction implements IWorkbenchWindowActionDelegate {
      * The unique id of this action.
      */
     public static final String ID = MultiChatPlugin.ID + "ui.actions.joinChatRoomAction";
-
+    
+    @SuppressWarnings("unused")
     private IWorkbenchWindow window;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
-     */
+    @Override
     public void dispose() {
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
-     */
+    @Override
     public void init( IWorkbenchWindow window ) {
         this.window = window;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-     */
+    @Override
     public void run( IAction action ) {
         if (NetworkPlugin.getDefault().getHelper().getOnlineBackends().size() == 0) {
             UiPlugin.getUIHelper().showErrorMessage( "Please, connect first!" );
@@ -81,12 +70,7 @@ public class JoinChatRoomAction implements IWorkbenchWindowActionDelegate {
                         .getDefaultBackend().getUserAccount().getName(), "" ), autojoin );
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction,
-     * org.eclipse.jface.viewers.ISelection)
-     */
+    @Override
     public void selectionChanged( IAction action, ISelection selection ) {
     }
 }
