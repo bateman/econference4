@@ -9,3 +9,4 @@ Require-Bundle: it.uniba.di.cdg.xcore.ui,
  org.eclipse.ui,
  it.uniba.di.cdg.xcore.network
 Bundle-Activator: it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

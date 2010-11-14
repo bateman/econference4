@@ -29,3 +29,4 @@ Export-Package: it.uniba.di.cdg.xcore.network;
  it.uniba.di.cdg.xcore.network.model;uses:="org.eclipse.core.runtime,it.uniba.di.cdg.xcore.network",
  it.uniba.di.cdg.xcore.network.model.tv;uses:="it.uniba.di.cdg.xcore.aspects",
  it.uniba.di.cdg.xcore.network.services;uses:="it.uniba.di.cdg.xcore.network"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

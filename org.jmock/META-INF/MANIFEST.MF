@@ -31,3 +31,4 @@ Export-Package: .,
  org.jmock.util,
  org.objectweb.asm
 Require-Bundle: org.junit;bundle-version="3.8.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
