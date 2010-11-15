@@ -216,7 +216,7 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
      */
     public void setManager( IMultiChatManager newManager ) {
         // Deregister from previous chat, if there was any
-        if (manager != null && manager.getService().getModel()!=null)
+        if (manager != null && manager.getService() != null && manager.getService().getModel()!=null)
             manager.getService().getModel().removeListener( chatRoomListener );
         
         this.manager = newManager;
