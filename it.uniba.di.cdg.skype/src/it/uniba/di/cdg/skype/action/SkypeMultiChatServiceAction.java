@@ -10,6 +10,8 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -229,7 +231,10 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 	
 	public void sendChatRoom(String userId){
 		try {
-			skypeRoom.addUser(Skype.getUser(userId));
+			ArrayList<User> users = new ArrayList<User>(Arrays.asList(skypeRoom.getAllMembers()));
+			if (!users.contains(Skype.getUser(userId)))
+				skypeRoom.addUser(Skype.getUser(userId));
+			
 			String name = Skype.getUser(userId).getFullName();
 			addParticipant(userId, (name.equals("")) ? userId : name, ""); 
 			SendExtensionProtocolMessage(ExtensionConstants.CHAT_ROOM, new HashMap<String, String>());
