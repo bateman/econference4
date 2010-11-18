@@ -21,6 +21,9 @@ http://econference4.googlecode.com/svn/wiki/img/extend2.jpg <br />
 
 Nella versione 4 è stata introdotta un'ulteriore novità: i plugin Chat e !MultiChat sono stati rimpiazzati da one2one e m2m. Questa decisione è stata presa in virtù del fatto che ora al supporto testuale è stato affiancato quello del VoIP e quindi è di nostro interesse distinguere solamente se la comunicazione avviene tra due o un gruppo di utenti.
 
+=== Struttura dei package ===
+Le classi facenti parte del core di eConference si trovano nei package _it.uniba.di.cdg.xcore.*_. Tutte le classi esterne al core di eConference, per es. it.uniba.di.cdg.skype, it.uniba.di.cdg.jabber, org.apertium.api.translate, it.uniba.di.cdg.econference.planningpoker possono riferirsi alle risorse del core, cioé _importare_ classi _core_, ma non il viceversa.
+
 ==Meccanismi di astrazione==
 Per creare un livello di astrazione solido è stato necessario usare dei particolari meccanismi. L'idea che sta alla base di questa soluzione è che tutti protocolli hanno in comune due cose:
   # Permettono di eseguire delle azioni (es. inviare un messaggio, inoltrare una chiamata, comunicare in cambiamento del proprio nickname..)
