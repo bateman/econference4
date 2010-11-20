@@ -67,18 +67,19 @@ public class ConferenceContextLoader implements IServiceContextLoader {
 	public ConferenceContextLoader(EConferenceContext context) {
 		this.context = context;
 	}
-	
+
 	public ConferenceContextLoader() {
 	}
-	
+
 	public void setContext(IServiceContext context) {
-		this.context = (EConferenceContext)context;
+		this.context = (EConferenceContext) context;
 	}
 
 	public void load(InputStream is) throws InvalidContextException {
 		if (this.context == null)
-			throw new InvalidContextException("Skipping file due to null context");
-		
+			throw new InvalidContextException(
+					"Skipping file due to null context");
+
 		try {
 			doc = loadDocument(is);
 
@@ -89,9 +90,9 @@ public class ConferenceContextLoader implements IServiceContextLoader {
 			String backendid = xPath.evaluate("/meeting/platform/backendid",
 					doc).trim();
 			if (!backendid.equals(context.getBackendId())) {
-				final String msg = "Skipping file due to backend mismatch:\n" + "\nYour current backend: "
-						+ context.getBackendId()
-						+ "\nFound: " + backendid;				
+				final String msg = "Skipping file due to backend mismatch:\n"
+						+ "\nYour current backend: " + context.getBackendId()
+						+ "\nFound: " + backendid;
 				throw new InvalidContextException(msg);
 			}
 			// get the schedule
@@ -106,10 +107,10 @@ public class ConferenceContextLoader implements IServiceContextLoader {
 			context.setTopic(topic);
 
 			String room = xPath.evaluate("/meeting/platform/room", doc).trim();
-			// FIXME toppa momentanea per evitare di aprire il pannello per
-			// la sclenta della stanza
+
 			if (room.equals(""))
-				room = "testroom";
+				throw new InvalidContextException(
+						"Invalid configuration file: empty roon name");
 			// ////////////////////////////////////////////////////////////
 			context.setRoom(room);
 
@@ -187,7 +188,8 @@ public class ConferenceContextLoader implements IServiceContextLoader {
 		// String passwd = xPath.evaluate( "passwd", participantNode );
 		String fullName = xPath.evaluate("fullname", participantNode).trim();
 		String email = xPath.evaluate("email", participantNode).trim();
-		String organization = xPath.evaluate("organization", participantNode).trim();
+		String organization = xPath.evaluate("organization", participantNode)
+				.trim();
 
 		if (id == null || id.length() == 0)
 			throw new InvalidContextException(
