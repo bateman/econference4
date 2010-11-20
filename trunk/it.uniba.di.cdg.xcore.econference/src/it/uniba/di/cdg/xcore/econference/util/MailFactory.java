@@ -58,10 +58,10 @@ public class MailFactory {
         partecipants = partecipants.replace( "[", "" );
         partecipants = partecipants.replace( "]", "" );
         StringTokenizer tokens = new StringTokenizer( partecipants, "," );
-        for (; tokens.hasMoreTokens();) {
+        while(tokens.hasMoreTokens()) {
             body.append( tokens.nextToken() + "\n\n" );
         }
-        body.append( "link: " + googleDocLink );
+        //body.append( "link: " + googleDocLink );
         System.out.println( body.toString() );
         return body.toString();
     }
