@@ -114,7 +114,7 @@
                icon="icons/call-group-enabled20x20.png"
                label="Call group / End call"
                style="push"
-               tooltip="Call group / End call">
+               tooltip="Press to make a group call / Press again to hang up the call">
          </command>
       </menuContribution>
    </extension>
