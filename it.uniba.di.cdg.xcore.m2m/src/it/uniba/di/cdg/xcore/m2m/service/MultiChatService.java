@@ -61,7 +61,6 @@ import it.uniba.di.cdg.xcore.network.model.tv.TalkModel;
 import it.uniba.di.cdg.xcore.network.services.INetworkServiceContext;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
 import it.uniba.di.cdg.xcore.network.services.NetworkServiceException;
-import it.uniba.di.cdg.xcore.ui.dialogs.UserInputsProviderDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -293,7 +292,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
      */
     /*private void createRoom() throws XMPPException{
     	boolean created = false;
-    	//XXX actually the only way to know if the room already exists is the exception
+    	// actually the only way to know if the room already exists is the exception
     	try {    		
     		smackMultiChat.create(context.getNickName());
     		created = true;
@@ -613,56 +612,6 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     public void removeUserStatusListener( IUserStatusListener listener ) {
         userStatusListeners.add( listener );
     }
-
-    /**
-     * Send a  packet though the current connection. Note that the packet must already be constructed
-     * and all fields initialized.
-     * 
-     * @param packet
-     */
-    //protected void sendPacket( Packet packet ) {
-        //TODO da sistemare!!!! backend.getConnection().sendPacket( packet );
-    //}
-
-    
-    //TODO da eliminare questi 2 metodi commentati!!
-    /**
-     * Shortcut for sending custom extension packets: they will be wrapped in the a SMACK
-     * message.
-     * 
-     * @param ext
-     */
-    /*protected void sendCustomExtension( PacketExtension ext ) {
-        Message message = getSmackMultiChat().createMessage();
-        message.addExtension( ext );
-        // FIXME escape reserved xml chars
-        sendPacket( message );
-    }*/
-
-    //TODO da eliminare questi 2 metodi commentati!!
-    /*protected void sendCustomExtension( PacketExtension ext, String to ) {
-        Message message = getSmackMultiChat().createMessage();
-        message.setTo( to );
-        message.addExtension( ext );
-
-        sendPacket( message );
-    }*/
-    
-    /*protected void sendCustomExtension(IPacketExtension ext){
-    	sendCustomExtension(PacketExtensionAdapter.adaptToTargetPacketExtension(ext));
-    }*/
-
-    /**
-     * Shortcut for sending a custom packet (typically IQs).
-     * 
-     * @param packet the custom packet
-     * @param to the id of the paticipant (something like "room@conference.server.net/Pippo").
-     */
-    /*protected void sendCustomPacket( Packet packet, String to ) {
-        packet.setTo( to );
-
-        sendPacket( packet );
-    }*/
 
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#notifyViewReadOnly(java.lang.String, boolean)
