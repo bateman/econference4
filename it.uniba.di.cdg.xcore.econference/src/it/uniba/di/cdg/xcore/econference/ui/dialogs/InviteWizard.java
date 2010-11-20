@@ -117,8 +117,8 @@ public class InviteWizard extends Wizard implements INewWizard {
 
                 if (!toRecipients.isEmpty()) {
                     GoogleDocManager manager = new GoogleDocManager( user, passwd );
-                    String googleDocLink = manager.uploadFile( filepath, title, toRecipients );
-                    mailBody = MailFactory.createMailBody( context, googleDocLink );
+                    //String googleDocLink = manager.uploadFile( filepath, title, toRecipients );
+                    mailBody = MailFactory.createMailBody( context, null /*googleDocLink*/ );
 
                     manager.sendMail( subject, toRecipients, mailBody, filepath );
                 }
