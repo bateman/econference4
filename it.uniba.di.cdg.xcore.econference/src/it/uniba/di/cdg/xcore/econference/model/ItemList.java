@@ -107,6 +107,7 @@ public class ItemList implements IItemList {
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#getItem(int)
      */
     public IDiscussionItem getItem( int itemIndex ) {
+    	// FIXME -1 AIOoBE
         return items.get( itemIndex );
     }
 
