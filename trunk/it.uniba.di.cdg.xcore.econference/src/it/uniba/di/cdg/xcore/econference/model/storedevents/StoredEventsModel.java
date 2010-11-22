@@ -135,6 +135,10 @@ public class StoredEventsModel implements IStoredEventsModel,
 	public StoredEventsModel() {
 		storedEvents = new Hashtable<String, IStoredEventEntry>();
 		listeners = new Vector<IStoredEventsModelListener>();
+		// ensure the folder to monitor exists before monitoring it
+		File f = new File(DEFAULT_FILE_PATH);
+		f.mkdirs();
+		
 		folderMonitorThread = new Thread(new FolderMonitor(this,
 				DEFAULT_FILE_PATH));
 		dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT,
