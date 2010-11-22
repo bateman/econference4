@@ -65,12 +65,17 @@ public class FolderMonitor implements Runnable {
 
 		    // we'll simply print what has happened; real applications
 		    // will do something more sensible here
-		    for(WatchEvent e : list){
+		    for(WatchEvent<?> e : list){
 		        String message = "";
 		        if(e.kind() == StandardWatchEventKind.ENTRY_CREATE || e.kind() == StandardWatchEventKind.ENTRY_DELETE || e.kind() == StandardWatchEventKind.ENTRY_MODIFY){
 		            Path context = (Path)e.context();
 		            message = context.toString() + " change occurred.";
-		            System.out.println(message);			        
+		            System.out.println(message);	
+		            // hold on a sec before notifying
+		            try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {						
+					}
 			        listener.notifyFolderChange();
 		        } else if(e.kind() == StandardWatchEventKind.OVERFLOW){
 		            message = "OVERFLOW: more changes happened than we could retreive";
