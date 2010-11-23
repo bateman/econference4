@@ -11,6 +11,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
 = Details =
 
 === Do's ===
+  # report issue description in English (not Italian!)
   # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue.
   # respect java style code conventions for vars, files, packages, classes, interfaces, methods and so on; see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more
   # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix it and commit changes
@@ -18,6 +19,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # add the MIT FOSS License prologue when adding new files to the repository. Grab a copy of the MIT License [MitLicense here].
 
 === Dont's ===
+  # add code comments in Italian! Use English, instead.
   # commit broken files
   # commit untested files
   # commit unformatted files, use Eclipse built-in style
