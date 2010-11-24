@@ -77,7 +77,7 @@ public class EConferenceManager extends MultiChatManager implements IEConference
     /**
      * The whiteboard gives 
      */
-    private IWhiteBoard whiteBoardView;
+    protected IWhiteBoard whiteBoardView;
     
     /**
      * Hand raising view.
@@ -139,6 +139,11 @@ public class EConferenceManager extends MultiChatManager implements IEConference
      * @see it.uniba.di.cdg.xcore.econference.IEConference#setStatus(it.uniba.di.cdg.xcore.econference.IEConferenceService.ConferenceStatus)
      */
     public void setStatus( ConferenceStatus status ) {
+    	if (status.equals(ConferenceStatus.STOPPED))
+    		whiteBoardView.setReadOnly(true);
+    	else
+    		whiteBoardView.setReadOnly(false);
+    	
         getService().notifyStatusChange( status );
     }
 
