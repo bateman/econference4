@@ -22,6 +22,7 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
+import it.uniba.di.cdg.xcore.network.services.JoinException;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -461,7 +462,7 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void join(String roomName, String password, String nickName,
-			String userId, boolean moderator) {
+			String userId, boolean moderator) throws JoinException {
 
 		if (!roomName.equals("")) {
 			this.userId = userId;
@@ -495,6 +496,11 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions {
 
 		try {
 			smackMultiChat.create(nickName);
+			
+			if (!moderator) {
+				throw new JoinException("The moderator is not in the room. Try again later.");
+			}
+			
 			// see
 			// http://xmpp.org/registrar/formtypes.html#http:--jabber.org-protocol-mucroomconfig
 			// for more info

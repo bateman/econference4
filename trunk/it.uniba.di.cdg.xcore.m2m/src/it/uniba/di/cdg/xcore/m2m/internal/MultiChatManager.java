@@ -49,6 +49,7 @@ import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
+import it.uniba.di.cdg.xcore.network.services.JoinException;
 import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 import it.uniba.di.cdg.xcore.ui.views.IActivatableView;
@@ -200,15 +201,22 @@ public class MultiChatManager implements IMultiChatManager {
     public void open( MultiChatContext context, boolean autojoin ) throws Exception {
         this.context = context;
         service = setupChatService();
-        service.join();
-        if (autojoin) {
-            setupUI();
+        
+        try {
+            service.join();
+            if (autojoin) {
+                setupUI();
 
-            setupListeners();
+                setupListeners();
 
-            // Notify chat listeners that the chat is
-            for (IMultiChatListener l : chatlisteners)
-                l.open();
+                // Notify chat listeners that the chat is
+                for (IMultiChatListener l : chatlisteners)
+                    l.open();
+            }
+        }
+        catch (JoinException ex) {
+        	service.leave();
+        	uihelper.showErrorMessage(ex.getMessage());
         }
     }
 
