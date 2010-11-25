@@ -60,6 +60,7 @@ import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
 import it.uniba.di.cdg.xcore.network.model.tv.TalkModel;
 import it.uniba.di.cdg.xcore.network.services.INetworkServiceContext;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
+import it.uniba.di.cdg.xcore.network.services.JoinException;
 import it.uniba.di.cdg.xcore.network.services.NetworkServiceException;
 
 import java.util.ArrayList;
@@ -263,7 +264,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.service.IMultiChatService#join()
      */
-    public void join() throws NetworkServiceException {
+    public void join() throws NetworkServiceException, JoinException {
     	
     	// credo che il casino dipenda dal fatto che bisogna istanziare un altro backend con il server corretto.....
     	multiChatServiceActions = backend.getMultiChatServiceAction();

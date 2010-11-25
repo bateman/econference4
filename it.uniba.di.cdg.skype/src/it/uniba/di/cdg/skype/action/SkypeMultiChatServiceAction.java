@@ -9,6 +9,7 @@ import it.uniba.di.cdg.xcore.network.action.IMultiChatServiceActions;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
+import it.uniba.di.cdg.xcore.network.services.JoinException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,7 +109,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 
 	@Override
 	public void join(String roomName, String password, String nickName,
-			String userId, boolean moderator) {
+			String userId, boolean moderator) throws JoinException {
 
 		String[] participant = null;
 		String inviter = roomsId.get(roomName);
@@ -167,15 +168,21 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		}
 		
 		roomInviteAccepted(inviter);
+		
 		// we have to wait until the moderator
 		// notifies the room
-		while(skypeRoom == null)
+		int millis = 0;
+		while(skypeRoom == null && (moderator || millis < 20000))
 			try {
+				millis += 50;
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		
+			
+		if (skypeRoom == null) {
+			throw new JoinException("The moderator is not in the room. Try again later.");
+		}
 	}
 
 	protected void roomInviteAccepted(String inviter) {

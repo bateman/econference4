@@ -1,6 +1,7 @@
 package it.uniba.di.cdg.xcore.network.action;
 
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
+import it.uniba.di.cdg.xcore.network.services.JoinException;
 
 import java.util.HashMap;
 
@@ -18,7 +19,7 @@ public interface IMultiChatServiceActions {
 	
 	public void declineInvitation(String room, String inviter, String reason);
 	
-	public void join(String roomName, String password, String nickName, String userId, boolean moderator);
+	public void join(String roomName, String password, String nickName, String userId, boolean moderator) throws JoinException;
 	
     public void leave();
     

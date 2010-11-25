@@ -35,6 +35,7 @@ import it.uniba.di.cdg.xcore.network.services.Capability;
 import it.uniba.di.cdg.xcore.network.services.ICapability;
 import it.uniba.di.cdg.xcore.network.services.INetworkService;
 import it.uniba.di.cdg.xcore.network.services.IRoomInfo;
+import it.uniba.di.cdg.xcore.network.services.JoinException;
 import it.uniba.di.cdg.xcore.network.services.NetworkServiceException;
 
 import java.util.List;
@@ -131,7 +132,7 @@ public interface IMultiChatService extends INetworkService, ITypingListener {
      * Join the chat room. After successfull join, all {@see IMultiChatServiceListener}s will be 
      * notified about the <code>joined()</code> event.
      */
-    void join() throws NetworkServiceException;
+    void join() throws NetworkServiceException, JoinException;
     
     /**
      * Leave the chat room. Before leaving is performed, all {@see IMultiChatServiceListener}s will be 
