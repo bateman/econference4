@@ -68,9 +68,7 @@ public class ChatRoomModel implements IChatRoomModel {
         this.subject = "";
     }
     
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#getParticipant(java.lang.String)
-     */
+    @Override
     public IParticipant getParticipant( String participantId ) {
         return participants.get( participantId );
     }
@@ -89,9 +87,7 @@ public class ChatRoomModel implements IChatRoomModel {
     	return found == true ? p : null;
     }
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#addParticipant(it.uniba.di.cdg.xcore.m2m.model.IParticipant)
-     */
+    @Override
     public void addParticipant( IParticipant participant ) {
         participants.put( participant.getId(), participant );
         participant.setChatRoom( this );
@@ -100,9 +96,7 @@ public class ChatRoomModel implements IChatRoomModel {
             l.added( participant );
     }
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#removeParticipant(it.uniba.di.cdg.xcore.m2m.model.IParticipant)
-     */
+    @Override
     public void removeParticipant( IParticipant participant ) {
         participants.remove( participant.getId() );
         participant.setChatRoom( null );
@@ -111,9 +105,7 @@ public class ChatRoomModel implements IChatRoomModel {
             l.removed( participant );
     }
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#addListeners(it.uniba.di.cdg.xcore.m2m.model.IChatRoom.IChatRoomListener)
-     */
+    @Override
     public void addListener( IChatRoomModelListener listener ) {
         listeners.add( listener );
     }
