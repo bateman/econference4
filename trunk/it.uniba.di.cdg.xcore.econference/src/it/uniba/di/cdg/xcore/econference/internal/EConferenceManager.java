@@ -72,7 +72,7 @@ public class EConferenceManager extends MultiChatManager implements IEConference
      * The agenda view give the moderator the ability to start / stop the conference. This 
      * is <code>null</code> if the current local user's role is not "moderator".
      */
-    private IAgendaView agendaView;
+    protected IAgendaView agendaView;
 
     /**
      * The whiteboard gives 
@@ -82,11 +82,11 @@ public class EConferenceManager extends MultiChatManager implements IEConference
     /**
      * Hand raising view.
      */
-    private IHandRaisingView handRaisingView;
+    protected IHandRaisingView handRaisingView;
 
     // We just put the talk view read-only when the conference is stopped, and reenable it 
     // when it is started.
-    private ConferenceModelListenerAdapter conferenceModelListener = new ConferenceModelListenerAdapter() {
+    protected ConferenceModelListenerAdapter conferenceModelListener = new ConferenceModelListenerAdapter() {
         @Override
         public void statusChanged() {
             final IConferenceModel model = getService().getModel();
@@ -116,7 +116,7 @@ public class EConferenceManager extends MultiChatManager implements IEConference
     /**
      * Keep the subject in sync with the agenda selections made by moderators.
      */
-    private IItemListListener itemListListener = new ItemListListenerAdapter() {
+    protected IItemListListener itemListListener = new ItemListListenerAdapter() {
         @Override
         public void currentSelectionChanged( int currItemIndex ) {
             // Commented out upon request from fc on 20.01.2006.
