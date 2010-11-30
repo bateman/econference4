@@ -81,18 +81,18 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 public class MultiChatService implements IMultiChatService, IBackendEventListener {
     
-	private final static String PRIVATE_MESSAGE = "PrivateMessage";
-	private final static String MESSAGE = "Message";
-	private final static String TO = "To";
-	private final static String FROM = "From";
+	protected final static String PRIVATE_MESSAGE = "PrivateMessage";
+	protected final static String MESSAGE = "Message";
+	protected final static String TO = "To";
+	protected final static String FROM = "From";
 	
-	private final static String VIEW_READ_ONLY = "ViewReadOnly";
-	private final static String VIEW_ID = "viewId";
-	private final static String READ_ONLY = "readOnly";
+	protected final static String VIEW_READ_ONLY = "ViewReadOnly";
+	protected final static String VIEW_ID = "viewId";
+	protected final static String READ_ONLY = "readOnly";
 	
 	
     
-    private IMultiChatServiceActions multiChatServiceActions;
+    protected IMultiChatServiceActions multiChatServiceActions;
 
     /**
      * Listeners for notifying the service status.
@@ -102,32 +102,32 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
     /**
      * Listeners for invitation refusal.
      */
-    private final List<IInvitationRejectedListener> invitationRejectedListeners;
+    protected final List<IInvitationRejectedListener> invitationRejectedListeners;
 
     /**
      * Listeners for changes in the local user status.
      */
-    private final List<IUserStatusListener> userStatusListeners;
+    protected final List<IUserStatusListener> userStatusListeners;
 
     /**
      * Clients for getting back the messages ...
      */
-    private final List<IMessageReceivedListener> messageReceivedListeners;
+    protected final List<IMessageReceivedListener> messageReceivedListeners;
 
     /**
      * Typing event listeners for this chat.
      */
-    private final List<ITypingEventListener> typingListeners;
+    protected final List<ITypingEventListener> typingListeners;
 
     /**
      * Listener for manager events.
      */
-    private final List<IManagerEventListener> managerEventListeners;
+    protected final List<IManagerEventListener> managerEventListeners;
 
     /**
      * The chat room: clients may want to register as listeners to this.
      */
-    private IChatRoomModel chatRoomModel;
+    protected IChatRoomModel chatRoomModel;
 
     /**
      * The talk model tracks the message entries.
@@ -500,14 +500,23 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
         entry.setText( incoming.getText() );
 
         IParticipant p = getLocalUserOrParticipant( incoming.getFrom() );
-        if (p != null)
+        if (p != null) {
+    
             entry.setWho( p.getNickName() );
-        else
-            entry.setWho( incoming.getFrom() );
-
+        } else {
+            entry.setWho( removeRoomAddress(incoming.getFrom()) );
+            
+        }
         return entry;
     }
-
+    protected String removeRoomAddress(String sender) {
+		String nick = sender;
+		String room = getContext().getRoom().concat("/");
+		if (sender.startsWith(room)) {
+			nick = sender.substring(room.length());
+		}
+		return nick;
+	}
     /**
      * Notify a message to the manager: this is usually meant for displaying some system
      * status to the user (i.e. another user frozen).
@@ -678,6 +687,7 @@ public class MultiChatService implements IMultiChatService, IBackendEventListene
 		if(event instanceof MultiChatMessageEvent){
 			MultiChatMessageEvent mcme = (MultiChatMessageEvent)event;
             // Normal message then ...
+			
             IMessage incoming = new MultiChatMessage( getModel(), mcme.getFrom(),
             		mcme.getMessage() );
 
