@@ -51,24 +51,24 @@ import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
  */
 public class EConferenceService extends MultiChatService implements IEConferenceService {
 	
-	private static final String STATUS = "Status";
-	private static final String STATUS_CHANGE = "StatusChange";
-	private static final String ITEM_LIST = "ItemList";
-	private static final String ITEMS = "Items";
-	private static final String CURRENT_AGENDA_ITEM = "CurrentAgendaItem";
-	private static final String ITEM_ID = "ItemId";
-	private final static String FROM = "From";
-	private final static String QUESTION = "Question";
-	private final static String RISE_HAND = "RiseHand";
-	private final static String QUESTION_UPDATE = "QuestionUpdate";
-	private final static String QUESTION_ID = "QuestionId";
-	private final static String QUESTION_STATUS = "QuestionStatus";
-	private final static String CHANGE_SPECIAL_PRIVILEGE = "ChangedSpecialPrivilege";
-	private final static String SPECIAL_ROLE = "SpecialRole";
-	private final static String ROLE_ACTION = "RoleAction";
-	private final static String USER_ID = "UserId";
-	private final static String WHITE_BOARD_CHANGED = "WhiteBoardChanged";
-	private final static String WHITE_BOARD_TEXT = "WhiteBoardText";
+	protected static final String STATUS = "Status";
+	protected static final String STATUS_CHANGE = "StatusChange";
+	protected static final String ITEM_LIST = "ItemList";
+	protected static final String ITEMS = "Items";
+	protected static final String CURRENT_AGENDA_ITEM = "CurrentAgendaItem";
+	protected static final String ITEM_ID = "ItemId";
+	protected final static String FROM = "From";
+	protected final static String QUESTION = "Question";
+	protected final static String RISE_HAND = "RiseHand";
+	protected final static String QUESTION_UPDATE = "QuestionUpdate";
+	protected final static String QUESTION_ID = "QuestionId";
+	protected final static String QUESTION_STATUS = "QuestionStatus";
+	protected final static String CHANGE_SPECIAL_PRIVILEGE = "ChangedSpecialPrivilege";
+	protected final static String SPECIAL_ROLE = "SpecialRole";
+	protected final static String ROLE_ACTION = "RoleAction";
+	protected final static String USER_ID = "UserId";
+	protected final static String WHITE_BOARD_CHANGED = "WhiteBoardChanged";
+	protected final static String WHITE_BOARD_TEXT = "WhiteBoardText";
 
     /**
      * Moderators receive hand raises: when creating an answer they need to assign a unique ID to
@@ -81,7 +81,7 @@ public class EConferenceService extends MultiChatService implements IEConference
      * 
      * @return a new unique question id
      */
-    private synchronized int nextQuestionId() {
+    protected synchronized int nextQuestionId() {
         return ++s_questionId;
     }
 
