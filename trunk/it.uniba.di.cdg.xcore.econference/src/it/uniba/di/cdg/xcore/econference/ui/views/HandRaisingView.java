@@ -252,17 +252,17 @@ public class HandRaisingView extends ViewPart implements IHandRaisingView {
     /** 
      * The tree view presenting the buddies. 
      */
-    private TableViewer questionViewer;
+    protected TableViewer questionViewer;
 
     /**
      * Action for inviting a user.
      */
-    private IAction enableDisableHRAction;
+    protected IAction enableDisableHRAction;
 
     /**
      * Action for signaling the hand raising to a moderator.
      */
-    private IAction raiseHandAction;
+    protected IAction raiseHandAction;
     
     /**
      * The adapter factory.
@@ -396,7 +396,7 @@ public class HandRaisingView extends ViewPart implements IHandRaisingView {
      * 
      * @return the moderator or <code>null</code> if no moderator is present
      */
-    private IParticipant findModerator() {
+    public IParticipant findModerator() {
         IParticipant[] all = getChatRoomModel().getParticipants();
         
         for (int i = 0; i < all.length; i++) {
@@ -411,7 +411,7 @@ public class HandRaisingView extends ViewPart implements IHandRaisingView {
     /**
      * Change action text accordingly to current view status. 
      */
-    private void updateActionStatusAccordingToStatus() {
+    public void updateActionStatusAccordingToStatus() {
         if (isReadOnly()) {
             enableDisableHRAction.setText( "Enable hand raising" );
             enableDisableHRAction
