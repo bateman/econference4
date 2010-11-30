@@ -81,9 +81,9 @@ public class TalkView extends TalkViewUI implements ITalkView {
      */
     private final List<ISendMessagelListener> listeners;
 
-    private ITalkModel model;
+    protected ITalkModel model;
 
-    private Map<String, StringBuffer> cachedTalks;
+    protected Map<String, StringBuffer> cachedTalks;
 
     protected IAction increaseFontSize;
 
@@ -93,7 +93,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
      * The model listener will append text messages addded to the model and replace the currently
      * displayed text with the one belonging to the newly selected thread id.
      */
-    private ITalkModelListener modelListener = new ITalkModelListener() {
+    protected ITalkModelListener modelListener = new ITalkModelListener() {
         public void entryAdded( String threadId, Entry entry ) {
             appendMessage( formatEntry( entry ) );
         }
@@ -262,7 +262,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
         getViewSite().getActionBars().getMenuManager().add( decreaseFontSize );
     }
 
-    private String formatEntry( Entry entry ) {
+    protected String formatEntry( Entry entry ) {
         if (entry.isSystemEntry())
             return entry.getText();
         return String.format( "%s > %s", entry.getWho(), entry.getText() );
@@ -545,12 +545,12 @@ public class TalkView extends TalkViewUI implements ITalkView {
         return model;
     }
 
-    private void cacheMessage( String threadId, String text ) {
+    protected void cacheMessage( String threadId, String text ) {
         StringBuffer sb = getOrCreateCachedText( threadId );
         sb.append( text );
     }
 
-    private StringBuffer getOrCreateCachedText( String threadId ) {
+    protected StringBuffer getOrCreateCachedText( String threadId ) {
         StringBuffer sb = cachedTalks.get( threadId );
         if (sb == null) {
             sb = new StringBuffer();
