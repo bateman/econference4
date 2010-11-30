@@ -88,7 +88,7 @@ public class MultiChatManager implements IMultiChatManager {
     /**
      * Provides access to the UI interaction, without bothering about the implementation.
      */
-    private IUIHelper uihelper;
+    protected IUIHelper uihelper;
 
     /**
      * The view containing the ongoing talks.
@@ -108,12 +108,12 @@ public class MultiChatManager implements IMultiChatManager {
     /**
      * Listeners for multichat events.
      */
-    private List<IMultiChatListener> chatlisteners;
+    protected List<IMultiChatListener> chatlisteners;
 
     /**
      * The context for this multichat. This is set by <code>open()</code>.
      */
-    private MultiChatContext context;
+    protected MultiChatContext context;
 
     protected IPerspectiveListener3 perspectiveListener = new IPerspectiveListener3() {
 
@@ -160,7 +160,7 @@ public class MultiChatManager implements IMultiChatManager {
     /**
      * 
      */
-    private IManagerEventListener managerEventListener = new IManagerEventListener() {
+    protected IManagerEventListener managerEventListener = new IManagerEventListener() {
         public void onManagerEvent( IManagerEvent event ) {
             if (event instanceof ViewReadOnlyEvent) {
                 final ViewReadOnlyEvent ee = (ViewReadOnlyEvent) event;
@@ -177,7 +177,7 @@ public class MultiChatManager implements IMultiChatManager {
     /**
      * Close the perspective when disconnected.
      */
-    private IBackendEventListener backendListener = new IBackendEventListener() {
+    protected IBackendEventListener backendListener = new IBackendEventListener() {
         public void onBackendEvent( IBackendEvent event ) {
             if (event instanceof BackendStatusChangeEvent) {
                 BackendStatusChangeEvent changeEvent = (BackendStatusChangeEvent) event;
