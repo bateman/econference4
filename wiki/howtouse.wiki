@@ -9,7 +9,7 @@ This tutorial will show you how to use the eConference tool, according to the ro
 
 
 == Download ==
-You can get the latest build of eConference from the [https://code.google.com/p/econference4/downloads/list SVN Download] page.
+You can get the latest build of eConference from the [https://code.google.com/p/econference4/downloads/list Download] page.
 
 
 <p align="center">
