@@ -172,7 +172,7 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 		// we have to wait until the moderator
 		// notifies the room
 		int millis = 0;
-		while(skypeRoom == null && (moderator || millis < 20000))
+		while(skypeRoom == null && (moderator || millis < 50000))
 			try {
 				millis += 50;
 				Thread.sleep(50);
@@ -285,22 +285,23 @@ public class SkypeMultiChatServiceAction implements IMultiChatServiceActions {
 						backend.getBackendId(), participantId, participantName, role));
 	}
 	
-	private String getIdFromNick(String nick){
-		String id = null;
-		try {
-			User[] users = skypeRoom.getAllMembers();
-			for(User u: users){
-				if(u.getFullName().equals(nick)){
-					id = u.getId();
-					break;
-				}
-			}
-					
-		} catch (SkypeException e) {
-			e.printStackTrace();
-		}
-		
-		return id;		
-	}
+// XXX Why was it created first?	
+//	private String getIdFromNick(String nick){
+//		String id = null;
+//		try {
+//			User[] users = skypeRoom.getAllMembers();
+//			for(User u: users){
+//				if(u.getFullName().equals(nick)){
+//					id = u.getId();
+//					break;
+//				}
+//			}
+//					
+//		} catch (SkypeException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return id;		
+//	}
 
 }
