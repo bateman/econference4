@@ -169,7 +169,7 @@ http://econference4.googlecode.com/svn/wiki/img/decisions_place.png
 
 
 === The Structured Conversation ===
-As soon as you enter the event the eConference is still stopped, but you can freely chat with the participants who are currently online while you wait for the others to join. When everyone is online, the moderator decides that it is time to start to work and presses the start button in the Agenda=  =
+As soon as you enter the event the eConference is still stopped, but you can freely chat with the participants who are currently online while you wait for the others to join. When everyone is online, the moderator decides that it is time to start to work and presses the start button in the Agenda.
 
 This view basically shows the list of the items that the stakeholders have to discuss about (see Figure  12). This view is read only for all of the participants. Instead the moderator uses it to:
 
@@ -212,7 +212,7 @@ http://econference4.googlecode.com/svn/wiki/img/threaded2.png
 </p>
 
 
-Yeah, but suppose that someone reads what the scribe has written is in the Decisions Place and realizes he/she is not agree? Can we move back??? Sure, you can=== Furthermore, as soon as you move back to an item that has been previously discussed, all the messages already sent will appear in the talk view again= The dashes indicates the beginning of a new session in the conversation about the Item 1 (see Figure  16).  === =
+Yeah, but suppose that someone reads what the scribe has written is in the Decisions Place and realizes he/she is not agree? Can we move back??? Sure, you can=== Furthermore, as soon as you move back to an item that has been previously discussed, all the messages already sent will appear in the talk view again= The dashes indicates the beginning of a new session in the conversation about the Item 1 (see Figure  16). 
 
 
 <p align="center">
@@ -220,12 +220,12 @@ http://econference4.googlecode.com/svn/wiki/img/threaded1_1.png
 <br />*Figure  16.  Sessions in the conversation about "Item 1"*  
 </p>
 
-The discussion goes on for each single item, until all have been discussed and consensus on them reached. Then the Moderator presses the Stop button and you are back in the free talk view to say Ciao to the stakeholders=  =
+The discussion goes on for each single item, until all have been discussed and consensus on them reached. Then the Moderator presses the Stop button and you are back in the free talk view to say Ciao to the stakeholders.
 
 === Hand raising: a social protocol ===
 The hand raising feature is not fundamental, but it can be useful if you see that too many stakeholders are talking simultaneously and things are getting a bit messy.
 
-Thus the moderator can press this icon   in the Hand Raising View, and tells the stakeholders to raise hand to start a turn-taking conversation. Thus, as in real life, you raise your hand to ask someone a question or simply asking the right to speak. This is a social protocol however, as you are always allowed to jump in whenever you want. Interrupt people, but do it at your own risk�
+Thus the moderator can press this icon   in the Hand Raising View, and tells the stakeholders to raise hand to start a turn-taking conversation. Thus, as in real life, you raise your hand to ask someone a question or simply asking the right to speak. This is a social protocol however, as you are always allowed to jump in whenever you want. Interrupt people, but do it at your own risk.
 
 Participants request the right to speak by pressing the following icon   in the view. Note that it is disabled until the moderator decides to enable the use of this protocol.
 
@@ -252,7 +252,7 @@ http://econference4.googlecode.com/svn/wiki/img/approve_reject_q.png
 
 
 === Save your logs ===
-The event is over. As soon as you try to disconnect, close the perspective or even shut down the application you will be prompted to save both the conversation logs and the Decisions place content (see Figure  19). Each log will be store in a flat text file. Be sure to say yes, as you will need them to complete your project RFP=  =
+The event is over. As soon as you try to disconnect, close the perspective or even shut down the application you will be prompted to save both the conversation logs and the Decisions place content (see Figure  19). Each log will be store in a flat text file. Be sure to say yes, as you will need them to complete your task later.
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/savelog.png 
