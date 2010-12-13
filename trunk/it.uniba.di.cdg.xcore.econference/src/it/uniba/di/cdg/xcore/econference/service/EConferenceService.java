@@ -39,10 +39,12 @@ import it.uniba.di.cdg.xcore.econference.model.hr.Question;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
 import it.uniba.di.cdg.xcore.m2m.model.SpecialPrivilegesAction;
+import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatService;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
 
 
@@ -154,6 +156,8 @@ public class EConferenceService extends MultiChatService implements IEConference
         getMultiChatServiceActions().SendExtensionProtocolMessage(
         		STATUS_CHANGE, param);  
         
+        // We notify privileges for each user
+		sendUsersPrivileges();
     }
 
     /* (non-Javadoc)
@@ -253,7 +257,12 @@ public class EConferenceService extends MultiChatService implements IEConference
 	public void onBackendEvent(IBackendEvent event) {
 		super.onBackendEvent(event);
 		
-		if(event instanceof MultiChatExtensionProtocolEvent){
+		if(event instanceof MultiChatUserJoinedEvent){
+			// We notify privileges for each user
+			sendUsersPrivileges();
+		}
+		
+		else if(event instanceof MultiChatExtensionProtocolEvent){
 			MultiChatExtensionProtocolEvent mcepe = (MultiChatExtensionProtocolEvent)event;
 			
 			if(mcepe.getExtensionName().equals(STATUS_CHANGE)){
@@ -387,4 +396,15 @@ public class EConferenceService extends MultiChatService implements IEConference
 	}
     
     
+	private void sendUsersPrivileges() {
+        if (getModel().getLocalUser() != null && getModel().getLocalUser().getRole().equals(Role.MODERATOR)) {
+        	for (IParticipant participant : getModel().getParticipants()) {
+        		if (participant.getSpecialPrivileges() != null) {
+            		for (String privilege : participant.getSpecialPrivileges()) {
+            			notifyChangedSpecialPrivilege(participant, privilege, SpecialPrivilegesAction.GRANT);
+            		}
+        		}
+        	}
+        }
+	}
 }
