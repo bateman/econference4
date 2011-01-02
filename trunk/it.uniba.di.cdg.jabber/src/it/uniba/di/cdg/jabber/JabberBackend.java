@@ -77,6 +77,7 @@ import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smackx.muc.InvitationListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
@@ -93,6 +94,9 @@ public class JabberBackend implements IBackend, PacketListener,
 	public static final String ID = JabberPlugin.ID + ".jabberBackend";
 
 	public static final String EXTENSION_NAME = "ExtensionName";
+
+	// valid range is [-128, 128]
+	private static final int PRESENCE_PRIORITY_MAX = 128;
 	
 	private JabberChatServiceAction jabberChatServiceAction;
 	private JabberMultiChatSeviceAction jabberMultiChatSeviceAction;
@@ -262,7 +266,12 @@ public class JabberBackend implements IBackend, PacketListener,
 			System.out.println("secure: " + connection.isSecureConnection() + " TLS:" + connection.isUsingTLS());
 
 			connection.addConnectionListener(this);
-			connection.login(userAccount.getId(), userAccount.getPassword());
+			// added resource name here 
+			// see bug report 69 - https://code.google.com/p/econference4/issues/detail?id=69
+			connection.login(userAccount.getId(), userAccount.getPassword() , "eConf.");
+			// sets priority to max to make sure eC always gets message
+			setResourcePriority(PRESENCE_PRIORITY_MAX);
+			
 			buddies.setJabberRoster(connection.getRoster());
 		} catch (XMPPException e) {
 			// TODO: inserire il metodo per avviare la finestra di riconnessione
@@ -279,6 +288,16 @@ public class JabberBackend implements IBackend, PacketListener,
 		// FIXME XMPPConnection.addConnectionListener(
 		// (ConnectionEstablishedListener) this ) does nothing :S
 		connectionEstablished(connection);
+	}
+
+	/**
+	 * Sets priority level for current resource
+	 * @param prio the priority between -128, 128
+	 */
+	private void setResourcePriority(final int prio) {
+		Presence presence = new Presence(Presence.Type.available);
+        presence.setPriority(prio);
+        connection.sendPacket(presence);		
 	}
 
 	/*
