@@ -83,7 +83,8 @@ public class InviteWizard extends Wizard implements INewWizard {
 		return true;
 	}
 
-    public boolean performFinish() {
+    @SuppressWarnings("unused")
+	public boolean performFinish() {
         lastOnePage.saveData();
         this.context = ((EConferenceContext) lastOnePage.getContext());
         String filepath = genInfoPage.getFilePath();
@@ -117,8 +118,8 @@ public class InviteWizard extends Wizard implements INewWizard {
 
                 if (!toRecipients.isEmpty()) {
                     GoogleDocManager manager = new GoogleDocManager( user, passwd );
-                    //String googleDocLink = manager.uploadFile( filepath, title, toRecipients );
-                    mailBody = MailFactory.createMailBody( context, null /*googleDocLink*/ );
+                    String googleDocLink = manager.uploadFile( filepath, title, toRecipients );
+                    mailBody = MailFactory.createMailBody( context, googleDocLink );
 
                     manager.sendMail( subject, toRecipients, mailBody, filepath );
                 }
