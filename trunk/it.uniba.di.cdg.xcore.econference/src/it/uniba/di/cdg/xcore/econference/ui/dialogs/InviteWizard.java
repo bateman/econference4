@@ -105,7 +105,7 @@ public class InviteWizard extends Wizard implements INewWizard {
             String backendID = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
             
             //the following code work only with Jabber/Xmpp protocol
-            if (canSendInvitation() && backendID.equals( "it.uniba.di.cdg.skype.jabberBackend" ) ) {
+            if (canSendInvitation() && backendID.equals( "it.uniba.di.cdg.jabber.jabberBackend" ) ) {
 
                 String user = NetworkPlugin.getDefault().getRegistry().getDefaultBackend()
                         .getUserId();
