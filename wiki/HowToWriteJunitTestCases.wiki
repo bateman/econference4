@@ -111,7 +111,7 @@ Apart from simple benchmarking, timed tests are also useful for the testing of n
 
 = Ignored Tests =
 @Ignore annotation allows to mark the test methods that you want skip
-Suppose that we have a test method that need more time to be executed: not necessary we must to speed up it, simply it's work could be more complex. For example same test that trying to connect to remote server are in this case test. To not slowing other methods, it's possible to annotate this test to ignore it.
+Suppose that we have a test method that need more time to be executed: not necessary we must to speed up it, simply it's work could be more complex. For example, same test that trying to connect to remote server are in this case test category. To not slowing other methods, it's possible to annotate this test to ignore it.
 
 	@Ignore public void testUTF32BE()
 	      throws ParsingException, IOException, XIncludeException {
