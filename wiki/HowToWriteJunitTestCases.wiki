@@ -32,22 +32,22 @@ import static org.junit.Assert.*;
 
 = Test class =
 Now we are ready to write the test class. Per indicare a JUnit quali sono i metodi che effettuano i test è necessario contraddistinguerli con l’annotazione @Test. In questo modo JUnit riconoscerà i metodi che contengono le asserzioni e li tratterà di conseguenza.
-1.	import org.junit.*;
-2.	import static org.junit.Assert.*;
-3.	 
-4.	public class MathOpTest {
-5.	    @Test
-6.	    public void testAdd(){
-7.	        MathOp a = new MathOp();
-8.	        assertEquals(4, a.add(3, 1));
-9.	    }
-10.	 
-11.	    @Test
-12.	    public void testSub(){
-13.	        MathOp a = new MathOp();
-14.	        assertEquals(-4, a.add(-3, 1));
-15.	    }
-16.	}
+
+	import org.junit.*;
+	import static org.junit.Assert.*;
+	 
+	public class MathOpTest {
+	    @Test
+	    public void testAdd(){
+	        MathOp a = new MathOp();
+	        assertEquals(4, a.add(3, 1));	    }
+	 
+	    @Test
+	    public void testSub(){
+	        MathOp a = new MathOp();
+	        assertEquals(-4, a.add(-3, 1));
+	    }
+	}
 
 
 = Details =
