@@ -24,6 +24,11 @@ First, we must create another class that we call, by convention,
 Come accennato prima, è necessario creare un’altra classe, che deve essere chiamata MathOpTest.
 To use JUnit library is necessary to add it to the build path of the project. (you can do it adding library from the preference of the Eclipse project).
 
+= Import JUnit class =
+To use the constructs of JUnit to do asserction on method' result, it's necessary to import, first of all, the library and to import statically the class of package org.junit.Assert:
+
+import org.junit.*;
+import static org.junit.Assert.*;
 
 = Details =
 
