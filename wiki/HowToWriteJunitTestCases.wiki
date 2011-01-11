@@ -1,22 +1,15 @@
 #summary One-sentence summary of this page.
 #labels Phase-Support
-
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-
 = How to write a test using JUnit =
 JUnit framework is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version relased is 4.8.2.
 
 = Why use JUnit? =
 When a developer need to test functioning of a class, he must write another class that, by convention, it's called with the same name of the class followed by suffix “Test”.
 Suppose that we have a class named MathOp that carry out operation of addition and subtraction; suppose that we want write a unit test for this class.
+= Details =
+
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
