@@ -12,3 +12,10 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+
+= How to write a test using JUnit =
+La libreria
+JUnit è un progetto open source gestito da Kent Beck e scaricabile all’indirizzo http://github.com/KentBeck/junit/downloads. Attualmente l’ultima versione stabile rilasciata è la 4.8.2.
+
+= A cosa serve usare JUnit? =
