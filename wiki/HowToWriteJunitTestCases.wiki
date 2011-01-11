@@ -135,7 +135,7 @@ In Econference4 project, to write a test case you must respect the classic sinta
 In the actual version of econference4 you can find different sintax in more test cases because the version uf JUnit used until recently is the JUnit3. But econference4 now implement JUnit4 that support old(JUnit3) and new sintax. Whereas the sintax of JUnit more simply than sintax of JUnit 3, you have to use only JUnit4 sintax
 
 = Test's methods =
-Tutte le versioni precedenti di JUnit utilizzano convenzioni di codifica e riflessione per individuare i test. Per esempio, il codice seguente test verifica che 1 + 1 sia uguale a 2:
+All previous versions of JUnit used coding conventions and reflection to mark a method how tests. For example, the following test verifies that 1 + 1 equals 2:
 
 	import junit.framework.TestCase;
 	 
@@ -150,7 +150,7 @@ Tutte le versioni precedenti di JUnit utilizzano convenzioni di codifica e rifle
 	  }
 	}
 
-Al contrario in JUnit 4 i test sono indicati da una annotazione @Test, come illustrato di seguito:
+Conversely, in JUnit4 the tests are marked by @Test annotation, as follows:
 
 	import org.junit.Test;
 	import junit.framework.TestCase;
@@ -166,8 +166,9 @@ Al contrario in JUnit 4 i test sono indicati da una annotazione @Test, come illu
 	  }
 	}
 
-Questo permette di seguire la convenzione di codifica che meglio si adatta alle proprie applicazioni e al proprio stile di programmazione. Per esempio, alcuni programmatori adottano una convenzione in cui la classe di test usa gli stessi nomi dei metodi della classe da testare: List.contains() viene testato da ListTest.contains(), List.addAll() viene testato da ListTest.addAll(), e così via.
-La classe TestCase è ancora presente, ma non è più necessario estenderla. Finché si annotano i metodi di test con @Test, si possono inserire metodi di test in qualsiasi classe. È però necessario importare la classe junit.Assert per accedere ai vari metodi assert, come nel codice seguente:
+In general, in this way you can use your preferred name that are properly related to your application and your programming style.
+The TestCase classe is presente but is no longerly necessary to extend them. Simply you have to mark the test methods using @Test annotation, inserting them in any class. 
+To use assert method is necessary to import the class junit.Assert, as follow:
 
 	import org.junit.Assert;
 	 
