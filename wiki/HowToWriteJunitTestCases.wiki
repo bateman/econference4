@@ -167,7 +167,7 @@ Conversely, in JUnit4 the tests are marked by @Test annotation, as follows:
 	}
 
 In general, in this way you can use your preferred name that are properly related to your application and your programming style.
-The TestCase classe is presente but is no longerly necessary to extend them. Simply you have to mark the test methods using @Test annotation, inserting them in any class. 
+The TestCase classe is present but is no longerly necessary to extend them. Simply you have to mark the test methods using @Test annotation and you can insert them in any class. 
 To use assert method is necessary to import the class junit.Assert, as follow:
 
 	import org.junit.Assert;
@@ -183,7 +183,7 @@ To use assert method is necessary to import the class junit.Assert, as follow:
 	  }
 	}
 
-È anche possibile usare la nuova funzionalità di importazione static del JDK 5 per rendere tutto ciò più semplice rispetto alla vecchia versione di JUnit:
+You can also use the new static import feature of JDK 5 to make this easier than the old version of JUnit:
 
 	import static org.junit.Assert.assertEquals;
 	 
@@ -198,9 +198,11 @@ To use assert method is necessary to import the class junit.Assert, as follow:
 	  }
 	}
 
-Questo approccio rende il testing di metodi protetti assai più facile, perché la classe di test può ora estendere la classe che contiene i metodi protetti.
-I metodi SetUp e TearDown
-Gli strumenti di esecuzione dei test di JUnit 3 eseguono automaticamente il metodo setUp() prima di eseguire ciascun metodo di test. Di norma, si usa setUp() per inizializzare i dati necessari per l’esecuzione dei test, reimpostare eventuali variabili d’ambiente, e così via. Per esempio, ecco un metodo setUp():
+This approach makes the testing of protected methods much easier, because the test class can now extend the class containing the protected methods.
+
+=The setup and teardown methods=
+The run tools of JUnit 3 tests automatically run the method setUp () before each test method. Normally, we use setUp () to initialize the data needed to run the tests, reset any environment variables, and so on. For example, here is a setup () method:
+
 
 	protected void setUp() {
 	 
@@ -212,7 +214,8 @@ Gli strumenti di esecuzione dei test di JUnit 3 eseguono automaticamente il meto
 	 
 	}
 
-Anche in JUnit 4 è possibile inizializzare i dati e configurare l’ambiente prima dell’esecuzione di ogni metodo di test: però il metodo che esegue tali operazioni non deve necessariamente chiamarsi setUp(). Deve solo essere marcato con l’annotazione @Before:
+Also in JUnit 4 it's possible to initialize the data and configure the environment before each test method: however, the method that performs these operations do not need to be named setUp (). He just needs to marked this method with the @Before annotation:
+ l’annotazione @Before:
 
 	@Before protected void initialize() {
 	 
@@ -223,25 +226,29 @@ Anche in JUnit 4 è possibile inizializzare i dati e configurare l’ambiente pr
 	    inputDir = new File(inputDir, "input");
 	}
 
-È altresì possibile avere diversi metodi di test annotati con @Before: in tal caso, ciascuno di essi sarà esguito prima di ogni test:
+It is also possible to have different test methods annotated with @Before: in this case, each of these will be running before test method:
+
 
 	@Before protected void findTestDataDirectory() {
 	    inputDir = new File("data");
 	    inputDir = new File(inputDir, "xslt");
 	    inputDir = new File(inputDir, "input");
 	}
+
 	@Before protected void redirectStderr() {
 	    System.setErr(new PrintStream(new ByteArrayOutputStream()));
 	}
 
-Anche le operazioni di cleanup operano in modo analogo. In JUnit 3, si usa il metodo tearDown(): si noti, in questo frammento di codice, la chiamata alla Garbage Collection per forzare il recupero di memoria.
+Operations of the cleanup work in a similar way. In JUnit 3, we use the method tearDown() : note, in this snippet, we call the garbage collection to force the recovery of memory.
+
 
 	protected void tearDown() {
 	  doc = null;
 	  System.gc();
 	}
 
-Con JUnit 4, è sufficiente annotare un metodo qualsiasi con @After:
+In JUnit4, you can mark any method with @After annotation:
+
 	@After protected void disposeDocument() {
 	  doc = null;
 	  System.gc();
