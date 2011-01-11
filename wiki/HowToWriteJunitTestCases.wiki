@@ -91,10 +91,12 @@ It's possible to use the command linee o the junit task and junit report of Apac
 Below there is a screenshot of the test results in Eclipse:
 
 INSERT IMAGE
-I due test hanno avuto entrambi esito positivo! Nel caso si verifichino errori verranno conteggiati alla voce Errors, mentre le condizioni non verificate saranno conteggiate alla voce Failures.
 
-= Impostazione di tempi limite = 
-La verifica delle prestazioni è una delle aree più spinose nel mondo dei test di unità. JUnit 4 non risolve completamente il problema, ma offre un utile supporto: infatti, i metodi di test possono essere annotati con il parametro timeout. Se il test viene eseguito in un tempo superiore a quello indicato, fallisce. Per esempio, nel codice seguente il test non riesce se il metodo richiede più di 500 millisecondi per essere eseguito:
+The two tests have positive end.If there are errori, this are showed in the section named Errors, while the condition not verified will be counted in the section named Failured.
+
+= Setting time limit =
+The performance verification is one of the most difficult issue in JUnit. JUnit 4 not competly solve the problem but offers an util help: infact the test method can be signed with a timeout parameter. If the test are running in a time over, it fails. For example, in the next code the test fails if it need more than 500 
+Se il test viene eseguito in un tempo superiore a quello indicato, fallisce. Per esempio, nel codice seguente il test non riesce se il metodo richiede più di 500 ms to be ended:
 
 	@Test(timeout=500) public void retrieveAllElementsInDocument() {
 	    doc.query("//*");
