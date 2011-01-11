@@ -16,6 +16,6 @@ Add your content here.  Format your content with:
 
 = How to write a test using JUnit =
 La libreria
-JUnit è un progetto open source gestito da Kent Beck e scaricabile all’indirizzo http://github.com/KentBeck/junit/downloads. Attualmente l’ultima versione stabile rilasciata è la 4.8.2.
+JUnit is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version relased is 4.8.2.
 
 = A cosa serve usare JUnit? =
