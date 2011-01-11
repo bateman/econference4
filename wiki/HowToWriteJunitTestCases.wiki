@@ -15,7 +15,8 @@ Add your content here.  Format your content with:
 
 
 = How to write a test using JUnit =
-La libreria
-JUnit is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version relased is 4.8.2.
+JUnit framework is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version relased is 4.8.2.
 
-= A cosa serve usare JUnit? =
+= Why use JUnit? =
+When a developer need to test functioning of a class, he must write another class that, by convention, it's called with the same name of the class followed by suffix “Test”.
+Suppose that we have a class named MathOp that carry out operation of addition and subtraction; suppose that we want write a unit test for this class.
