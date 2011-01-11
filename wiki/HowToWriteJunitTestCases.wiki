@@ -101,8 +101,7 @@ Se il test viene eseguito in un tempo superiore a quello indicato, fallisce. Per
 	@Test(timeout=500) public void retrieveAllElementsInDocument() {
 	    doc.query("//*");
 	}
-
-Oltre al semplice benchmarking, i test cronometrati sono utili anche per i test su operazioni di rete. Se un host remoto o un database di test a cui si sta tentando di connettersi sono lenti o irraggiungibili, è possibile bypassare il test in modo da non rallentare i test seguenti:
+Apart from simple benchmarking, timed tests are also useful for the testing of network operations. If you are trying to connect to a slow or unreachable database, you can bypass the test so as not to slow down the following tests:
 
 	@Test(timeout=2000)
 	  public void remoteBaseRelativeResolutionWithDirectory()
@@ -110,8 +109,9 @@ Oltre al semplice benchmarking, i test cronometrati sono utili anche per i test 
 	      builder.build("http://www.qualcosa.org/xml");
 	}
 
-= Test ignorati =
-L’annotazione @Ignore consente di marcare i metodi di test che per qualche ragione si desidera saltare. Si supponga di avere un metodo di test che richiede un tempo molto elevato per la sua esecuzione: non necessariamente si deve tentare di renderlo più veloce; può essere che il suo lavoro sia semplicemente assai complessa o naturalmente lento. I test che tentano di accedere a server remoti si trovano spesso in questa categoria. Per non rallentare gli altri metodi, è possibile annotare (anche temporaneamente) questo test in modo che sia ignorato.
+= Ignored Tests =
+@Ignore annotation allows to mark the test methods that you want skip
+Suppose that we have a test method that need more time to be executed: not necessary we must to speed up it, simply it's work could be more complex. For example same test that trying to connect to remote server are in this case test. To not slowing other methods, it's possible to annotate this test to ignore it.
 
 	@Ignore public void testUTF32BE()
 	      throws ParsingException, IOException, XIncludeException {
