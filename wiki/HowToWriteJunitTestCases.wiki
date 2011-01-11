@@ -4,6 +4,7 @@
 = How to write a test using JUnit =
 JUnit framework is an open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version released is 4.8.2.
 
+
 = Why use JUnit? =
 When a developer need to test functioning of a class, he must write another class that, by convention, it's called with the same name of the class followed by suffix “Test”.
 Suppose that we have a class named MathOp that carry out operation of addition and subtraction; suppose that we want write a unit test for this class.
@@ -24,11 +25,13 @@ public class MathOp {
 First, we must create another class that we call, by convention,  
 To use JUnit library is necessary to add it to the build path of the project. (you can do it adding library from the preference of the Eclipse project).
 
+
 = Import JUnit class =
 To use the constructs of JUnit to do assertion on method's result, it's necessary to import, first of all, the library and import statically the class of package org.junit.Assert:
 
 import org.junit.*;
 import static org.junit.Assert.*;
+
 
 = Test class =
 Now we are ready to write the test class. To indicate to JUnit which are methods that makes tests its necessary to mark them with annotation @Test. 
@@ -50,6 +53,7 @@ In this way, Junit will recognize methods that contains assertion.
 	    }
 	}
 
+
 = The assertion =
 With JUnit it’s possible to do many type of test with different assertion. At the execution moment, a test is passed if all conditions specified are true.
 
@@ -58,6 +62,7 @@ assertTrue(cond): required that ‘cond’ has value ‘true’
 assertFalse(cond): required that ‘cond’ has value ‘false’
 assertNull(obj): required that ‘obj’ is a null reference
 assertNotNull(obj): required that ‘obj’ isn't null reference
+
 
 = The assertion @Before e @After =
 In the previous example, in all test case is instanced an object MathOp. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objects and resources (for example a connection to a DBMS) is write  in one point of test case.
@@ -85,6 +90,7 @@ Similary to @Before, @After indicates to JUnit to execute the method after the e
 	    }
 	}
 
+
 = Launch the tests =
 The test can be launched from Eclipse selecting the test class and clicking on“Run as” -> “JUnit Test”.
 It's possible to use the command line o the junit task and junit report of Apache Ant.
@@ -94,6 +100,7 @@ Below there is a screenshot of the test results in Eclipse:
 INSERT IMAGE
 
 The two tests have positive end If there are errors, this are showed in the section named Errors, while the condition not verified will be counted in the section named Failured.
+
 
 = Setting time limit =
 The performance verification is one of the most difficult issue in JUnit. JUnit 4 not competly solve the problem but offers an utile help: in fact, the test method can be signed with a timeout parameter. If the test are running in a time over, it fails. For example, in the next code the test fails if it need more than 500 ms to be ended:
@@ -108,6 +115,7 @@ Apart from simple benchmarking, timed tests are also useful for the testing of n
 	   throws IOException, ParsingException {
 	      builder.build("http://www.qualcosa.org/xml");
 	}
+
 
 = Ignored Tests =
 @Ignore annotation allows to mark the test methods that you want skip
@@ -128,10 +136,11 @@ Suppose that we have a test method that need more time to be executed: not neces
 	}
 During the execution of all test case, this method will be ignored.
 
-= Sintax for test cases to use in econference4 =
 
+= Sintax for test cases to use in econference4 =
 In Econference4 project, to write a test case you must respect the classic syntax that we have reported in previous paragraph.
 In the actual version of econference4 you can find different syntax in more test cases because the version of JUnit used until recently is the JUnit3. But econference4 now implement JUnit4 that support old(JUnit3) and new syntax. Whereas the syntax of JUnit more simply than syntax of JUnit 3, you have to use only JUnit4 syntax
+
 
 = Test's methods =
 All previous versions of JUnit used coding conventions and reflection to mark a method how tests. For example, the following test verifies that 1 + 1 equals 2:
@@ -199,6 +208,7 @@ You can also use the new static import feature of JDK 5 to make this easier than
 
 This approach makes the testing of protected methods much easier, because the test class can now extend the class containing the protected methods.
 
+
 =The setup and teardown methods=
 The run tools of JUnit 3 tests automatically run the method setUp () before each test method. Normally, we use setUp () to initialize the data needed to run the tests, reset any environment variables, and so on. For example, here is a setup () method:
 
@@ -257,6 +267,7 @@ Similarly than the @Before annotation, you can create more clean-up methods mark
 In addition, it's not more necessary to call explicitly the methods of initialization and clean-up of super-class. 
 Until they are overwritten, the "test runner automatically call these methods, if necessary. @Before methods in super classes are invoked before the first @Before methods of subclasses (note that this behaviour reflects the order of appearance of Manufacturers). @After methods are executed in reverse order: first those of the subclasses and then those of the super classes.
 
+
 = Initialization of the test classes =
 JUnit 4 introduces a new feature that has no equivalent in JUnit 3: an initialization method, similar to setUp(), that operates at the class level. Any method annotated @BeforeClass will be executed once, after loading the test class, and before the execution of the test methods;  any method annotated with @AfterClass will be executed once, after all methods tests were performed.
 For example, assume that each test class uses a connection to a database, a network connection, a large data structure, or some other resource that is particularly costly to initialize or download. Rather than recreate these resources before each test, you can initialize and destroy once. This approach will make the execution of some test cases much faster.
@@ -273,6 +284,7 @@ For example, assume that each test class uses a connection to a database, a netw
 	    // restore the original value
 	    System.setErr(systemErr);
 	}
+
 
 = How to test the exception =
 The test mechanism of the exceptions is one of the major improvements made to JUnit 4. In older versions of JUnit was used a try block that contains the code that should throw the exception, and a call to fail() in the end of the try block. For example, the following code verifies that an ArithmeticException is thrown:
@@ -298,6 +310,7 @@ In JUnit 4, you can explicitly write the code that generates the exception: anno
 	}
 
 If the exception is not raised or if it's different from that expected, the test will fail. Note that it may still be useful to the try-catch old-style, for instance if you want to check the error message, any exception details or other properties.
+
 
 = New claims =
 JUnit 4 adds two new methods named assert() for comparisons of arrays; follow the definitions:
