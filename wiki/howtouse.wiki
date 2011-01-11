@@ -1,5 +1,5 @@
 #summary A short guide on how to use eConference.
-#labels Phase-Support,Featured,howto
+#labels Phase-Support,Featured,Howto,Phase-Deploy
 
 <wiki:toc max_depth="3" />
 
