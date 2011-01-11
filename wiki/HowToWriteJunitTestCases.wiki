@@ -50,6 +50,43 @@ In this way, Junit will recognize methods that contains assertion.
 	    }
 	}
 
+= The assertion =
+Con JUnit è possibile effettuare diversi tipo di test (con asserzioni diverse). Al momento dell’esecuzione, un test si considera superato se tutte le condizioni specificate risultano verificate.
+assertEquals(expected, actual), assertArrayEquals(expected, actual) : richiede che il valore ‘expected’ sia uguale a ‘actual’
+assertTrue(cond): richiede che ‘cond’ abbia come valore: ‘true’
+assertFalse(cond): richiede che ‘cond’ abbia come valore ‘false’
+assertNull(obj): richiede che ‘obj’ sia un riferimento nullo
+assertNotNull(obj): richiede che ‘obj’ sia un riferimento non nullo
+Le asserzioni @Before e @After
+Nell’esempio precedente, in ognuno dei due test case è stato istanziato un oggetto MathOp. JUnit mette a disposizione degli sviluppatori una funzionalità per eseguire delle istruzioni prima che vengano eseguiti i test. Il metodo setUp() ha un’annotazione @Before che serve ad indicare a JUnit che il metodo va eseguito prima dell’esecuzione dei test case. In questo modo, il codice per inizializzare oggetti o risorse (ad esempio una connessione al DBMS) è concentrato in un solo punto della classe di test.
+Analogamente a @Before, l’annotazione @After indica a JUnit di eseguire il metodo dopo l’esecuzione dei test case.
+
+	import org.junit.*;
+	import static org.junit.Assert.*;
+	 
+	public class MathOpTest {
+	    private MathOp a;
+	 
+	    @Before
+	    public void setUp(){
+	        a = new MathOp();
+	    }
+	 
+	    @Test
+	    public void testAdd(){
+	        assertEquals(4, a.add(3, 1));
+	    }
+	 
+	    @Test
+	    public void testSub(){
+	        assertEquals(-4, a.sub(-3, 1));
+	    }
+	}
+
+= Launch the tests =
+I test possono essere lanciati direttamente da Eclipse selezionando la classe di test e cliccando su “Run as” -> “JUnit Test”. 
+E’ possibile utilizzare anche la linea di comando o i task junit e junitreport diApache Ant.
+Di seguito uno screenshot dei risultati del test in Eclipse:
 
 
 = Details =
