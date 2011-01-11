@@ -1,5 +1,6 @@
-#summary One-sentence summary of this page.
+#summary In this wiki we show how to write a test case in JUnit using correct sintax respecting all needs of econference4.
 #labels Phase-Support
+
 = How to write a test using JUnit =
 JUnit framework is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version released is 4.8.2.
 
