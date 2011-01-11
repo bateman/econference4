@@ -126,10 +126,9 @@ Suppose that we have a test method that need more time to be executed: not neces
 	        );
 	        assertEquals(expectedResult, result);
 	}
+During the execution of all test case, this method will be ingnored.
 
-Durante l’esecuzione della classe di test, questo metodo sarà ignorato.
-
-= Sintassi dei casi di test per econference4 con JUnit =
+= Sintax for test cases to use in econference4 =
 
 Nel contesto del progetto di econference4, per scrivere un caso di test ci si deve attenere alla sintassi classica spiegata nel paragrafo precedente. 
 Quello che però si può notare esistere attualmente come sintassi in econference4 è diversa a quella spiegata in precedenza dal momento che è quella adottata dal framework JUnit fino alla versione 3. Dal momento che econference4 implementa la versione 4 di JUnit, si possono utilizzare entrambe le sintassi, ovviamente quella della versione 4 risulta più semplice sia per chi la scrive sia per chi la legge.
