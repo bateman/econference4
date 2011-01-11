@@ -1,5 +1,5 @@
 #summary A list of do's and dont's to respect when contributing to eConference and its related projects.
-#labels Featured,howto
+#labels Featured,Howto,Phase-Implementation
 
 = Introduction =
 
