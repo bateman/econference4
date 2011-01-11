@@ -255,11 +255,13 @@ In JUnit4, you can mark any method with @After annotation:
 	}
 
 Similary than the @Before annotation, you can create more clean-up methods annoted with @After, each of which will running before all test methods.
-Also, it's not more necessary to call explicitaly the methods of initialization and clean-up of super-class.
-Inoltre, non è più necessario chiamare esplicitamente i metodi di inizializzazione e di cleanup della superclasse. Fino a quando non vengono sovrascritti, il “test runner” chiamerà questi metodi automaticamente, se necessario. I metodi @Before presenti nelle superclassi sono invocati prima prima dei metodi @Before delle sottoclassi (si noti come questo comportamento rispecchi l’ordine di chiamata dei costruttori). I metodi @After sono eseguiti in senso inverso: prima quelli delle sottoclassi e poi quelli delle superclassi.
-Inizializzazione delle classi di test
-JUnit 4 introduce anche una nuova funzionalità che non ha equivalenti in JUnit 3: un metodo di inizializzazione, simile a setUp(), che opera a livello di classe. Ogni metodo annotato @BeforeClass sarà eseguito una volta, subito dopo il caricamento della classe di test, e prima che i metodi di test siano eseguiti; di contro, ogni metodo annotato con @AfterClass verrà eseguito una sola volta, dopo che tutti i metodi di test sono stati eseguiti.
-Per esempio, si supponga che ciascuna classe di test usi una connessione a un database, una connessione di rete, una grande struttura dati, o qualche altra risorsa che è particolarmente oneroso inizializzare o scaricare. Invece di ricreare queste risorse prima di ogni test, è possibile inizializzarle e deinizializzarle una sola volta. Questo approccio renderà l’esecuzione di alcuni casi di test assai più rapida.
+In addition, it's not more necessary to call explicitaly the methods of initialization and clean-up of super-class. 
+Until they are overwritten, the "test runner automatically call these methods, if necessary. @Before methods in superclasses are invoked before the first @Before methods of subclasses (note that this behavior reflects the order of appearance of Manufacturers). @After methods are executed in reverse order: first those of the subclasses and then those of the superclasses.
+
+= Initialization of the test classes =
+JUnit 4 introduces a new feature that has no equivalent in JUnit 3: an initialization method, similar to setUp(), that operates at the class level. Any method annotated @BeforeClass will be executed once, after loading the test class, and before the execution of the test methods;  any method annotated with @AfterClass will be executed once, after all methods tests were performed.
+For example, assume that each test class uses a connection to a database, a network connection, a large data structure, or some other resource that is particularly costly to initialize or download. Rather than recreate these resources before each test, you can initialize and destroy once. This approach will make the execution of some test cases much faster.
+
 
 	private PrintStream systemErr;
 	 
@@ -273,8 +275,9 @@ Per esempio, si supponga che ciascuna classe di test usi una connessione a un da
 	    System.setErr(systemErr);
 	}
 
-Come testare le eccezioni
-Il meccanismo di test delle eccezioni è uno dei principali miglioramenti apportato a JUnit 4. Nelle vecchie versioni di Junit si usava un blocco try contenente il codice che dovrebbe generare l’eccezione, e una chiamata a fail() dalla fine del blocco try. Per esempio, il codice seguente verifica che sia generata una ArithmeticException:
+= How to test the exception =
+The test mechanism of the exceptions is one of the major improvements made to JUnit 4. In older versions of JUnit was used a try block that contains the code that should throw the exception, and a call to fail() in the end of the try block. For example, the following code verifies that an ArithmeticException is thrown:
+
 
 	public void testDivisionByZero() {
 	 
@@ -287,7 +290,8 @@ Il meccanismo di test delle eccezioni è uno dei principali miglioramenti apport
 	    }
 	}
 
-In JUnit 4, è possibile scrivere esplicitamente il codice che genera l’eccezione: un’annotazione dichiara che è previsto che sia sollevata un’eccezione:
+In JUnit 4, you can explicitly write the code that generates the exception: annotation declares that it is expected that an exception is raised:
+
 
 	@Test(expected=ArithmeticException.class)
 	  public void divideByZero() {
