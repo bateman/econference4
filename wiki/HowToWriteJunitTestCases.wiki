@@ -130,10 +130,10 @@ During the execution of all test case, this method will be ingnored.
 
 = Sintax for test cases to use in econference4 =
 
-Nel contesto del progetto di econference4, per scrivere un caso di test ci si deve attenere alla sintassi classica spiegata nel paragrafo precedente. 
-Quello che però si può notare esistere attualmente come sintassi in econference4 è diversa a quella spiegata in precedenza dal momento che è quella adottata dal framework JUnit fino alla versione 3. Dal momento che econference4 implementa la versione 4 di JUnit, si possono utilizzare entrambe le sintassi, ovviamente quella della versione 4 risulta più semplice sia per chi la scrive sia per chi la legge.
-Differenze tra JUnit 3 e JUnit 4
-Metodi di test
+In Econference4 project, to write a test case you must respect the classic sintax that we have reported in previous paragraph.
+In the actual version of econference4 you can find different sintax in more test cases because the version uf JUnit used until recently is the JUnit3. But econference4 now implement JUnit4 that support old(JUnit3) and new sintax. Whereas the sintax of JUnit more simply than sintax of JUnit 3, you have to use only JUnit4 sintax
+
+= Test's methods =
 Tutte le versioni precedenti di JUnit utilizzano convenzioni di codifica e riflessione per individuare i test. Per esempio, il codice seguente test verifica che 1 + 1 sia uguale a 2:
 
 	import junit.framework.TestCase;
