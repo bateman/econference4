@@ -91,6 +91,227 @@ It's possible to use the command linee o the junit task and junit report of Apac
 Below there is a screenshot of the test results in Eclipse:
 
 INSERT IMAGE
+I due test hanno avuto entrambi esito positivo! Nel caso si verifichino errori verranno conteggiati alla voce Errors, mentre le condizioni non verificate saranno conteggiate alla voce Failures.
+
+= Impostazione di tempi limite = 
+La verifica delle prestazioni è una delle aree più spinose nel mondo dei test di unità. JUnit 4 non risolve completamente il problema, ma offre un utile supporto: infatti, i metodi di test possono essere annotati con il parametro timeout. Se il test viene eseguito in un tempo superiore a quello indicato, fallisce. Per esempio, nel codice seguente il test non riesce se il metodo richiede più di 500 millisecondi per essere eseguito:
+
+	@Test(timeout=500) public void retrieveAllElementsInDocument() {
+	    doc.query("//*");
+	}
+
+Oltre al semplice benchmarking, i test cronometrati sono utili anche per i test su operazioni di rete. Se un host remoto o un database di test a cui si sta tentando di connettersi sono lenti o irraggiungibili, è possibile bypassare il test in modo da non rallentare i test seguenti:
+
+	@Test(timeout=2000)
+	  public void remoteBaseRelativeResolutionWithDirectory()
+	   throws IOException, ParsingException {
+	      builder.build("http://www.qualcosa.org/xml");
+	}
+
+= Test ignorati =
+L’annotazione @Ignore consente di marcare i metodi di test che per qualche ragione si desidera saltare. Si supponga di avere un metodo di test che richiede un tempo molto elevato per la sua esecuzione: non necessariamente si deve tentare di renderlo più veloce; può essere che il suo lavoro sia semplicemente assai complessa o naturalmente lento. I test che tentano di accedere a server remoti si trovano spesso in questa categoria. Per non rallentare gli altri metodi, è possibile annotare (anche temporaneamente) questo test in modo che sia ignorato.
+
+	@Ignore public void testUTF32BE()
+	      throws ParsingException, IOException, XIncludeException {
+	 
+	        File input = new File(
+	          "data/xinclude/input/UTF32BE.xml"
+	        );
+	        Document doc = builder.build(input);
+	        Document result = XIncluder.resolve(doc);
+	        Document expectedResult = builder.build(
+	          new File(outputDir, "UTF32BE.xml")
+	        );
+	        assertEquals(expectedResult, result);
+	}
+
+Durante l’esecuzione della classe di test, questo metodo sarà ignorato.
+
+= Sintassi dei casi di test per econference4 con JUnit =
+
+Nel contesto del progetto di econference4, per scrivere un caso di test ci si deve attenere alla sintassi classica spiegata nel paragrafo precedente. 
+Quello che però si può notare esistere attualmente come sintassi in econference4 è diversa a quella spiegata in precedenza dal momento che è quella adottata dal framework JUnit fino alla versione 3. Dal momento che econference4 implementa la versione 4 di JUnit, si possono utilizzare entrambe le sintassi, ovviamente quella della versione 4 risulta più semplice sia per chi la scrive sia per chi la legge.
+Differenze tra JUnit 3 e JUnit 4
+Metodi di test
+Tutte le versioni precedenti di JUnit utilizzano convenzioni di codifica e riflessione per individuare i test. Per esempio, il codice seguente test verifica che 1 + 1 sia uguale a 2:
+
+	import junit.framework.TestCase;
+	 
+	public class AdditionTest extends TestCase {
+	 
+	  private int x = 1;
+	  private int y = 1;
+	 
+	  public void testAddition() {
+	    int z = x + y;
+	    assertEquals(2, z);
+	  }
+	}
+
+Al contrario in JUnit 4 i test sono indicati da una annotazione @Test, come illustrato di seguito:
+
+	import org.junit.Test;
+	import junit.framework.TestCase;
+	 
+	public class AdditionTest extends TestCase {
+	 
+	  private int x = 1;
+	  private int y = 1;
+	 
+	  @Test public void testAddition() {
+	    int z = x + y;
+	    assertEquals(2, z);
+	  }
+	}
+
+Questo permette di seguire la convenzione di codifica che meglio si adatta alle proprie applicazioni e al proprio stile di programmazione. Per esempio, alcuni programmatori adottano una convenzione in cui la classe di test usa gli stessi nomi dei metodi della classe da testare: List.contains() viene testato da ListTest.contains(), List.addAll() viene testato da ListTest.addAll(), e così via.
+La classe TestCase è ancora presente, ma non è più necessario estenderla. Finché si annotano i metodi di test con @Test, si possono inserire metodi di test in qualsiasi classe. È però necessario importare la classe junit.Assert per accedere ai vari metodi assert, come nel codice seguente:
+
+	import org.junit.Assert;
+	 
+	public class AdditionTest {
+	 
+	  private int x = 1;
+	  private int y = 1;
+	 
+	  @Test public void addition() {
+	    int z = x + y;
+	    Assert.assertEquals(2, z);
+	  }
+	}
+
+È anche possibile usare la nuova funzionalità di importazione static del JDK 5 per rendere tutto ciò più semplice rispetto alla vecchia versione di JUnit:
+
+	import static org.junit.Assert.assertEquals;
+	 
+	public class AdditionTest {
+	 
+	  private int x = 1;
+	  private int y = 1;
+	 
+	  @Test public void addition() {
+	    int z = x + y;
+	    assertEquals(2, z);
+	  }
+	}
+
+Questo approccio rende il testing di metodi protetti assai più facile, perché la classe di test può ora estendere la classe che contiene i metodi protetti.
+I metodi SetUp e TearDown
+Gli strumenti di esecuzione dei test di JUnit 3 eseguono automaticamente il metodo setUp() prima di eseguire ciascun metodo di test. Di norma, si usa setUp() per inizializzare i dati necessari per l’esecuzione dei test, reimpostare eventuali variabili d’ambiente, e così via. Per esempio, ecco un metodo setUp():
+
+	protected void setUp() {
+	 
+	    System.setErr(new PrintStream(new ByteArrayOutputStream()));
+	 
+	    inputDir = new File("data");
+	    inputDir = new File(inputDir, "xslt");
+	    inputDir = new File(inputDir, "input");
+	 
+	}
+
+Anche in JUnit 4 è possibile inizializzare i dati e configurare l’ambiente prima dell’esecuzione di ogni metodo di test: però il metodo che esegue tali operazioni non deve necessariamente chiamarsi setUp(). Deve solo essere marcato con l’annotazione @Before:
+
+	@Before protected void initialize() {
+	 
+	    System.setErr(new PrintStream(new ByteArrayOutputStream()));
+	 
+	    inputDir = new File("data");
+	    inputDir = new File(inputDir, "xslt");
+	    inputDir = new File(inputDir, "input");
+	}
+
+È altresì possibile avere diversi metodi di test annotati con @Before: in tal caso, ciascuno di essi sarà esguito prima di ogni test:
+
+	@Before protected void findTestDataDirectory() {
+	    inputDir = new File("data");
+	    inputDir = new File(inputDir, "xslt");
+	    inputDir = new File(inputDir, "input");
+	}
+	@Before protected void redirectStderr() {
+	    System.setErr(new PrintStream(new ByteArrayOutputStream()));
+	}
+
+Anche le operazioni di cleanup operano in modo analogo. In JUnit 3, si usa il metodo tearDown(): si noti, in questo frammento di codice, la chiamata alla Garbage Collection per forzare il recupero di memoria.
+
+	protected void tearDown() {
+	  doc = null;
+	  System.gc();
+	}
+
+Con JUnit 4, è sufficiente annotare un metodo qualsiasi con @After:
+	@After protected void disposeDocument() {
+	  doc = null;
+	  System.gc();
+	}
+
+Come con l’annotazione @Before, si possono creare diversi metodi di cleanup annotati con @After, ciascuno dei quali sarà eseguito dopo ogni test.
+Inoltre, non è più necessario chiamare esplicitamente i metodi di inizializzazione e di cleanup della superclasse. Fino a quando non vengono sovrascritti, il “test runner” chiamerà questi metodi automaticamente, se necessario. I metodi @Before presenti nelle superclassi sono invocati prima prima dei metodi @Before delle sottoclassi (si noti come questo comportamento rispecchi l’ordine di chiamata dei costruttori). I metodi @After sono eseguiti in senso inverso: prima quelli delle sottoclassi e poi quelli delle superclassi.
+Inizializzazione delle classi di test
+JUnit 4 introduce anche una nuova funzionalità che non ha equivalenti in JUnit 3: un metodo di inizializzazione, simile a setUp(), che opera a livello di classe. Ogni metodo annotato @BeforeClass sarà eseguito una volta, subito dopo il caricamento della classe di test, e prima che i metodi di test siano eseguiti; di contro, ogni metodo annotato con @AfterClass verrà eseguito una sola volta, dopo che tutti i metodi di test sono stati eseguiti.
+Per esempio, si supponga che ciascuna classe di test usi una connessione a un database, una connessione di rete, una grande struttura dati, o qualche altra risorsa che è particolarmente oneroso inizializzare o scaricare. Invece di ricreare queste risorse prima di ogni test, è possibile inizializzarle e deinizializzarle una sola volta. Questo approccio renderà l’esecuzione di alcuni casi di test assai più rapida.
+
+	private PrintStream systemErr;
+	 
+	@BeforeClass protected void redirectStderr() {
+	    systemErr = System.err; // Hold on to the original value
+	    System.setErr(new PrintStream(new ByteArrayOutputStream()));
+	}
+	 
+	@AfterClass protected void tearDown() {
+	    // restore the original value
+	    System.setErr(systemErr);
+	}
+
+Come testare le eccezioni
+Il meccanismo di test delle eccezioni è uno dei principali miglioramenti apportato a JUnit 4. Nelle vecchie versioni di Junit si usava un blocco try contenente il codice che dovrebbe generare l’eccezione, e una chiamata a fail() dalla fine del blocco try. Per esempio, il codice seguente verifica che sia generata una ArithmeticException:
+
+	public void testDivisionByZero() {
+	 
+	    try {
+	        int n = 2 / 0;
+	        fail("Divisione per zero.");
+	    }
+	    catch (ArithmeticException success) {
+	        assertNotNull(success.getMessage());
+	    }
+	}
+
+In JUnit 4, è possibile scrivere esplicitamente il codice che genera l’eccezione: un’annotazione dichiara che è previsto che sia sollevata un’eccezione:
+
+	@Test(expected=ArithmeticException.class)
+	  public void divideByZero() {
+	    int n = 2 / 0;
+	}
+
+Se l’eccezione non viene sollevata o se è diversa da quella prevista, il test avrà esito negativo. Si tenga presente che potrebbe ancora essere utile il blocco try-catch vecchio stile, per esempio se si desidera verificare il messaggio d’errore, eventuali dettagli dell’eccezione o altre proprietà.
+Nuove asserzioni
+JUnit 4 aggiunge due nuovi metodi assert() per il confronto di array; di seguito le definizioni:
+
+	public static void assertArrayEquals(Object[] expecteds, Object[] actuals)
+	public static void assertArrayEquals(String message, Object[] expecteds,
+	Object[] actuals)
+
+Questi due metodi confrontano gli array nel modo più ovvio: due array sono uguali se sono della stessa dimensione e se ciascun elemento è uguale a quello corrispondente nell’altro array.
+Scrivere un caso di test per econference4 con JUnit
+Per scrivere un caso di test per econference 4 ci si può dunque attenere sia alla vecchia sintassi della versione 3 di JUnit sia alla nuova sintassi del JUnit4. Ovviamente è preferibile per i programmatori utilizzare la più snella ed intuibile sintassi della versione 4.
+Di seguito sono riportati i passi da compiere ogni volta che bisogna scrivere un nuovo caso di test.
+Separare i casi di test dal codice di econference4. 
+Per fare ciò creare un progetto, se non è già presente, dentro cui inserire i casi di test relativi ad un progetto. Ad esempio, come si vede nell’immagine 4, in econference4 è presente un progetto chiamato it.uniba.di.cdg.jabber e di questo è stato creato il corrispettivo progetto it.uniba.di.cdg.jabber.test dentro cui inserire i casi di test. Questo progetto deve avere al suo interno i package con lo stesso nome del progetto cui fa riferimento; per esempio all’interno del package it.uniba.di.cdg.jabber sono presenti i package
+
+	it.uniba.di.cdg.jabber
+	it.uniba.di.cdg.jabber.action
+	it.uniba.di.cdg.jabber.internal
+	it.uniba.di.cdg.jabber.ui
+	it.uniba.di.cdg.smackproviders
+	it.uniba.di.cdg.xcore.aspects
+
+Essendo che ad oggi sono stati creati dei casi di test solo per i package 
+	it.uniba.di.cdg.jabber
+	it.uniba.di.cdg.jabber.internal
+gli stessi devono essere presenti nel progetto it.uniba.di.cdg.jabber.test.
+
+Dall’immagine 4 si può osservare quanto appena detto.
+
 
 
 = Details =
