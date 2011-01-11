@@ -254,7 +254,8 @@ In JUnit4, you can mark any method with @After annotation:
 	  System.gc();
 	}
 
-Come con l’annotazione @Before, si possono creare diversi metodi di cleanup annotati con @After, ciascuno dei quali sarà eseguito dopo ogni test.
+Similary than the @Before annotation, you can create more clean-up methods annoted with @After, each of which will running before all test methods.
+Also, it's not more necessary to call explicitaly the methods of initialization and clean-up of super-class.
 Inoltre, non è più necessario chiamare esplicitamente i metodi di inizializzazione e di cleanup della superclasse. Fino a quando non vengono sovrascritti, il “test runner” chiamerà questi metodi automaticamente, se necessario. I metodi @Before presenti nelle superclassi sono invocati prima prima dei metodi @Before delle sottoclassi (si noti come questo comportamento rispecchi l’ordine di chiamata dei costruttori). I metodi @After sono eseguiti in senso inverso: prima quelli delle sottoclassi e poi quelli delle superclassi.
 Inizializzazione delle classi di test
 JUnit 4 introduce anche una nuova funzionalità che non ha equivalenti in JUnit 3: un metodo di inizializzazione, simile a setUp(), che opera a livello di classe. Ogni metodo annotato @BeforeClass sarà eseguito una volta, subito dopo il caricamento della classe di test, e prima che i metodi di test siano eseguiti; di contro, ogni metodo annotato con @AfterClass verrà eseguito una sola volta, dopo che tutti i metodi di test sono stati eseguiti.
