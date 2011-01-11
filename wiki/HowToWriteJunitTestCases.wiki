@@ -31,7 +31,8 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 = Test class =
-Now we are ready to write the test class. Per indicare a JUnit quali sono i metodi che effettuano i test è necessario contraddistinguerli con l’annotazione @Test. In questo modo JUnit riconoscerà i metodi che contengono le asserzioni e li tratterà di conseguenza.
+Now we are ready to write the test class. To indicate to JUnit which are methods that makes tests its necessary to mark them with annotation @Test. 
+In this way, Junit will recognize methods that contains assertion.
 
 	import org.junit.*;
 	import static org.junit.Assert.*;
@@ -48,6 +49,7 @@ Now we are ready to write the test class. Per indicare a JUnit quali sono i meto
 	        assertEquals(-4, a.add(-3, 1));
 	    }
 	}
+
 
 
 = Details =
