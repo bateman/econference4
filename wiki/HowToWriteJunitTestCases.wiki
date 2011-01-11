@@ -327,7 +327,7 @@ Per scrivere un caso di test per econference 4 ci si può dunque attenere sia al
 Di seguito sono riportati i passi da compiere ogni volta che bisogna scrivere un nuovo caso di test.
 Separare i casi di test dal codice di econference4. 
 Per fare ciò creare un progetto, se non è già presente, dentro cui inserire i casi di test relativi ad un progetto. Ad esempio, come si vede nell’immagine 4, in econference4 è presente un progetto chiamato it.uniba.di.cdg.jabber e di questo è stato creato il corrispettivo progetto it.uniba.di.cdg.jabber.test dentro cui inserire i casi di test. Questo progetto deve avere al suo interno i package con lo stesso nome del progetto cui fa riferimento; per esempio all’interno del package it.uniba.di.cdg.jabber sono presenti i package
-=== ===
+===esempio ===
 
 #	it.uniba.di.cdg.jabber
 #	it.uniba.di.cdg.jabber.action
