@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 #labels Phase-Support
 = How to write a test using JUnit =
-JUnit framework is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version relased is 4.8.2.
+JUnit framework is a open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version released is 4.8.2.
 
 = Why use JUnit? =
 When a developer need to test functioning of a class, he must write another class that, by convention, it's called with the same name of the class followed by suffix “Test”.
@@ -21,7 +21,6 @@ public class MathOp {
 }
 
 First, we must create another class that we call, by convention,  
-Come accennato prima, è necessario creare un’altra classe, che deve essere chiamata MathOpTest.
 To use JUnit library is necessary to add it to the build path of the project. (you can do it adding library from the preference of the Eclipse project).
 
 = Import JUnit class =
@@ -51,7 +50,7 @@ In this way, Junit will recognize methods that contains assertion.
 	}
 
 = The assertion =
-With JUnit its possible to do many type of test with different assertion. At the execution moment, a test is passed if all conditions specified are true.
+With JUnit it’s possible to do many type of test with different assertion. At the execution moment, a test is passed if all conditions specified are true.
 
 assertEquals(expected, actual), assertArrayEquals(expected, actual) : requires that the value ‘expected’ is equal to ‘actual’.
 assertTrue(cond): required that ‘cond’ has value ‘true’
@@ -60,8 +59,8 @@ assertNull(obj): required that ‘obj’ is a null reference
 assertNotNull(obj): required that ‘obj’ isn't null reference
 
 = The assertion @Before e @After =
-In the previous example, in all test case is instanced an object MathOp. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objetcs and resources (for example a connection to a DBMS) is writed  in one point of test case.
-Similary to @Before, @After indicates to JUnit to execute the method afted the execution of all test cases.
+In the previous example, in all test case is instanced an object MathOp. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objects and resources (for example a connection to a DBMS) is write  in one point of test case.
+Similary to @Before, @After indicates to JUnit to execute the method after the execution of all test cases.
 
 	import org.junit.*;
 	import static org.junit.Assert.*;
