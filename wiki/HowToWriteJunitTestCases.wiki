@@ -85,9 +85,12 @@ Similary to @Before, @After indicates to JUnit to execute the method after the e
 	}
 
 = Launch the tests =
-I test possono essere lanciati direttamente da Eclipse selezionando la classe di test e cliccando su “Run as” -> “JUnit Test”. 
-E’ possibile utilizzare anche la linea di comando o i task junit e junitreport diApache Ant.
-Di seguito uno screenshot dei risultati del test in Eclipse:
+The test can be launched from Eclipse selecting the test class and clicking on“Run as” -> “JUnit Test”.
+It's possible to use the command linee o the junit task and junit report of Apache Ant.
+
+Below there is a screenshot of the test results in Eclipse:
+
+INSERT IMAGE
 
 
 = Details =
