@@ -6,6 +6,21 @@ JUnit framework is a open source project developed by Kent Beck; you can downloa
 = Why use JUnit? =
 When a developer need to test functioning of a class, he must write another class that, by convention, it's called with the same name of the class followed by suffix “Test”.
 Suppose that we have a class named MathOp that carry out operation of addition and subtraction; suppose that we want write a unit test for this class.
+public class MathOp {
+    public MathOp() {
+    }
+ 
+    public int add(int a, int b) {
+        return a + b;
+    }
+ 
+    public int sub(int a, int b) {
+        return a – b;
+    }
+}
+
+
+
 = Details =
 
 
