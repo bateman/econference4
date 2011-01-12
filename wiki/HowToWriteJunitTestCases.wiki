@@ -316,9 +316,8 @@ If the exception is not raised or if it's different from that expected, the test
 
 = New claims =
 JUnit 4 adds two new methods named assert() for comparisons of arrays; follow the definitions:
-
-	public static void assertArrayEquals(Object[] expecteds, Object[] actuals)
-	public static void assertArrayEquals(String message, Object[] expecteds, Object[] actuals)
+ * public static void assertArrayEquals(Object[] expecteds, Object[] actuals)
+ * public static void assertArrayEquals(String message, Object[] expecteds, Object[] actuals)
 
 These two methods compare arrays in the obvious way: two arrays are equal if they are the same size and if each element is the same as in the corresponding array.
 
