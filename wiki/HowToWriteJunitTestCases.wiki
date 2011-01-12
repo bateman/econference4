@@ -337,12 +337,12 @@ To do this, create a project, if not already present, in which to put the test c
  it.uniba.di.cdg.jabber.ui
  it.uniba.di.cdg.smackproviders
  it.uniba.di.cdg.xcore.aspects
-}}
+}}}
 Essendo che ad oggi sono stati creati dei casi di test solo per i package 
-{{
+{{{
 	it.uniba.di.cdg.jabber
 	it.uniba.di.cdg.jabber.internal
-}}
+}}}
 gli stessi devono essere presenti nel progetto it.uniba.di.cdg.jabber.test.
 
 Dall’immagine 4 si può osservare quanto appena detto.
