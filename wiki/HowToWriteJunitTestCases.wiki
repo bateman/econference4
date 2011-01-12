@@ -347,12 +347,3 @@ gli stessi devono essere presenti nel progetto it.uniba.di.cdg.jabber.test.
 
 Dall’immagine 4 si può osservare quanto appena detto.
 
-
-
-= Details =
-
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
