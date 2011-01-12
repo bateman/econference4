@@ -352,12 +352,12 @@ In this package you have to write the code of test cases to which they relate.
 == Add information on the new test case in the other classes for execution to various retail ==
 When you create a new test case, we must ensure that this can be executed by calling him at package-level or at the project level and at the global level.
 So, once you've created the class of the test case, you must add the following information:
-*AllTests.java this file in the same package
-*AllTests.java file contained in the package nomepackage.allpackagetests
-*AllTests.java file contained in the package in the draft it.uniba.di.cdg.alltestjunit.allpackagetests it.uniba.di.cdg.alltestjunit
+ * AllTests.java this file in the same package
+ * AllTests.java file contained in the package nomepackage.allpackagetests
+ * AllTests.java file contained in the package in the draft it.uniba.di.cdg.alltestjunit.allpackagetests it.uniba.di.cdg.alltestjunit
 
-To add this information in class, simply add to the body of the method *public static Testsuite()* the invocation to the new class *suite.addTestSuite*(NewTestClass.class);
-For example, if you're creating a test class called BotTest.java in the package   *it.uniba.di.cdg.jabber * in the project *it.uniba.di.cdg.jabber.test*, you have to add the new class:
+To add this information in class, simply add to the body of the method *public static Testsuite()* the invocation to the new class *suite.addTestSuite(NewTestClass.class)*;
+For example, if you're creating a test class called BotTest.java in the package *it.uniba.di.cdg.jabber * in the project *it.uniba.di.cdg.jabber.test*, you have to add the new class:
  * in AllTests.java content in the same package as shown 
  * in AllTests.java content in it.uniba.di.cdg.jabber.test.allpackagetests as shown
  * in AllTests.java content it.uniba.di.cdg.alltestjunit.allpackagetests content in it.uniba.di.cdg.alltestjunit content as shown
