@@ -332,12 +332,12 @@ Here are the steps every time you need to write a new test case.
 To practice it is preferable to separate the program code from the code that performs tests on it.
 To do this, create a project, if not already present, in which to put the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the package there are the packages:
 
-#it.uniba.di.cdg.jabber
-#it.uniba.di.cdg.jabber.action
-#it.uniba.di.cdg.jabber.internal
-#it.uniba.di.cdg.jabber.ui
-#it.uniba.di.cdg.smackproviders
-#it.uniba.di.cdg.xcore.aspects
+# it.uniba.di.cdg.jabber
+# it.uniba.di.cdg.jabber.action
+# it.uniba.di.cdg.jabber.internal
+# it.uniba.di.cdg.jabber.ui
+# it.uniba.di.cdg.smackproviders
+# it.uniba.di.cdg.xcore.aspects
 
 Essendo che ad oggi sono stati creati dei casi di test solo per i package 
 #	it.uniba.di.cdg.jabber
