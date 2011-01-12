@@ -329,7 +329,7 @@ Here are the steps every time you need to write a new test case.
 
 == Separate test cases from code econference4. ==
 To practice it is preferable to separate the program code from the code that performs tests on it.
-To do this, create a project, if not already present, in which to put the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the package there are the packages:
+To do this, create a project, if not already present, in which you have to write the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the package there are the packages:
 {{{
  it.uniba.di.cdg.jabber
  it.uniba.di.cdg.jabber.action
@@ -338,12 +338,26 @@ To do this, create a project, if not already present, in which to put the test c
  it.uniba.di.cdg.smackproviders
  it.uniba.di.cdg.xcore.aspects
 }}}
-Essendo che ad oggi sono stati creati dei casi di test solo per i package 
+Because until now we have been set up test cases only for packages: 
 {{{
 	it.uniba.di.cdg.jabber
 	it.uniba.di.cdg.jabber.internal
 }}}
-gli stessi devono essere presenti nel progetto it.uniba.di.cdg.jabber.test.
+they must be present in the project *it.uniba.di.cdg.jabber.test*.
 
-Dall’immagine 4 si può osservare quanto appena detto.
+On the image N can see it.
+IMAGE IMAGE
+In this package you have to write the code of test cases to which they relate.
 
+= Add information on the new test case in the other classes for execution to various retail =
+When you create a new test case, we must ensure that this can be executed by calling him at package-level or at the project level and at the global level.
+So, once you've created the class of the test case, you must add the following information:
+*AllTests.java this file in the same package
+*AllTests.java file contained in the package nomepackage.allpackagetests
+*AllTests.java file contained in the package in the draft it.uniba.di.cdg.alltestjunit.allpackagetests it.uniba.di.cdg.alltestjunit
+
+To add this information in class, simply add to the body of the method *public static Testsuite()* the invocation to the new class *suite.addTestSuite*(NewTestClass.class);
+For example, if you're creating a test class called BotTest.java in the package *it.uniba.di.cdg.jabber * in the project *it.uniba.di.cdg.jabber.test*, you have to add the new class:
+* in AllTests.java content in the same package as shown 
+* in AllTests.java content in it.uniba.di.cdg.jabber.test.allpackagetests as shown
+* in AllTests.java content it.uniba.di.cdg.alltestjunit.allpackagetests content in it.uniba.di.cdg.alltestjunit content as shown
