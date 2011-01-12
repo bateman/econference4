@@ -324,17 +324,14 @@ These two methods compare arrays in the obvious way: two arrays are equal if the
 = Write a test case for econference4 =
 To write a test case for econference 4, we could use old syntax of JUnit3 or new syntax of JUnit4. Obviously it is better for programmers to use easier syntax of version 4 for future test cases, for conform to the same syntax.
 Here are the steps every time you need to write a new test case.
+
 == Separate test cases from code econference4. ==
 To practice it is preferable to separate the program code from the code that performs tests on it.
-To do this, create a project, if not already present, in which to put the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber* and the consideration for this project was created in which to place it.uniba.di.cdg.jabber.test test cases. This project must be provided inside the package with the same name as the project referred to, for example in the package are the packages it.uniba.di.cdg.jabber
+To do this, create a project, if not already present, in which to put the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the package there are the packages:
 
- 
-Per fare ciò creare un progetto, se non è già presente, dentro cui inserire i casi di test relativi ad un progetto. Ad esempio, come si vede nell’immagine 4, in econference4 è presente un progetto chiamato it.uniba.di.cdg.jabber e di questo è stato creato il corrispettivo progetto it.uniba.di.cdg.jabber.test dentro cui inserire i casi di test. Questo progetto deve avere al suo interno i package con lo stesso nome del progetto cui fa riferimento; per esempio all’interno del package it.uniba.di.cdg.jabber sono presenti i package
-
-===PACK===
-it.uniba.di.cdg.jabber
-it.uniba.di.cdg.jabber.action
-it.uniba.di.cdg.jabber.internal
+#it.uniba.di.cdg.jabber
+#it.uniba.di.cdg.jabber.action
+#it.uniba.di.cdg.jabber.internal
 #it.uniba.di.cdg.jabber.ui
 #it.uniba.di.cdg.smackproviders
 #it.uniba.di.cdg.xcore.aspects
