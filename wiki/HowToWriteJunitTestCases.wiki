@@ -8,7 +8,7 @@
 JUnit framework is an open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. Today the last stable version released is 4.8.2.
 
 
-= Why use JUnit? =
+== Why use JUnit? ==
 When a developer need to test functioning of a class, he must write another class that, by convention, it's called with the same name of the class followed by suffix “Test”.
 Suppose that we have a class named MathOp that carry out operation of addition and subtraction; suppose that we want write a unit test for this class.
 
@@ -30,14 +30,14 @@ First, we must create another class that we call, by convention, MathOpTest.
 To use JUnit library is necessary to add it to the build path of the project. (you can do it adding library from the preference of the Eclipse project).
 
 
-= Import JUnit class =
+==Import JUnit class ==
 To use the constructs of JUnit to do assertion on method's result, it's necessary to import, first of all, the library and import statically the class of package org.junit.Assert:
 {{{
 import org.junit.*;
 import static org.junit.Assert.*;
 }}}
 
-= Test class =
+==Test class ==
 Now we are ready to write the test class. To indicate to JUnit which are methods that makes tests its necessary to mark them with annotation @Test. 
 In this way, Junit will recognize methods that contains assertion.
 {{{
@@ -58,7 +58,7 @@ In this way, Junit will recognize methods that contains assertion.
 	}
 }}}
 
-= The assertion =
+==The assertion ==
 With JUnit it’s possible to do many type of test with different assertion. At the execution moment, a test is passed if all conditions specified are true.
 
 {{{
@@ -69,7 +69,7 @@ assertNull(obj): required that ‘obj’ is a null reference
 assertNotNull(obj): required that ‘obj’ isn't null reference
 }}}
 
-= The assertion @Before e @After =
+==The assertion @Before e @After ==
 In the previous example, in all test case is instanced an object MathOp. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objects and resources (for example a connection to a DBMS) is write  in one point of test case.
 Similary to @Before, @After indicates to JUnit to execute the method after the execution of all test cases.
 {{{
@@ -96,7 +96,7 @@ Similary to @Before, @After indicates to JUnit to execute the method after the e
 	}
 }}}
 
-= Launch the tests =
+==Launch the tests ==
 The test can be launched from Eclipse selecting the test class and clicking on“Run as” -> “JUnit Test”.
 It's possible to use the command line o the junit task and junit report of Apache Ant.
 
@@ -108,7 +108,7 @@ The two tests have positive end.
 If there are errors, this are showed in the section named Errors, while the condition not verified will be counted in the section named Failured.
 
 
-= Setting time limit =
+==Setting time limit ==
 The performance verification is one of the most difficult issue in JUnit. JUnit 4 not competly solve the problem but offers an utile help: in fact, the test method can be signed with a timeout parameter. If the test are running in a time over, it fails. For example, in the next code the test fails if it need more than 500 ms to be ended:
 {{{
 	@Test(timeout=500) public void retrieveAllElementsInDocument() {
@@ -124,7 +124,7 @@ Apart from simple benchmarking, timed tests are also useful for the testing of n
 	}
 }}}
 
-= Ignored Tests =
+==Ignored Tests ==
 @Ignore annotation allows to mark the test methods that you want skip.
 Suppose that we have a test method that need more time to be executed: not necessary we must to speed up it, simply it's work could be more complex. For example, same test that trying to connect to remote server are in this case test category. To not slowing other methods, it's possible to annotate this test to ignore it.
 {{{
@@ -330,7 +330,7 @@ Here are the steps every time you need to write a new test case.
 
 == Separate test cases from code econference4. ==
 To practice it is preferable to separate the program code from the code that performs tests on it.
-To do this, create a project, if not already present, in which you have to write the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the package there are the packages:
+To do this, create a project, if not already present, in which you have to write the test cases related to a project. For example, as shown in the picture N, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the project there are the packages:
 {{{
  it.uniba.di.cdg.jabber
  it.uniba.di.cdg.jabber.action
@@ -355,10 +355,10 @@ When you create a new test case, we must ensure that this can be executed by cal
 So, once you've created the class of the test case, you must add the following information:
  * AllTests.java this file in the same package
  * AllTests.java file contained in the package nomepackage.allpackagetests
- * AllTests.java file contained in the package in the draft it.uniba.di.cdg.alltestjunit.allpackagetests it.uniba.di.cdg.alltestjunit
+ * AllTests.java file contained in the package it.uniba.di.cdg.alltestjunit.allpackagetests contained in the project it.uniba.di.cdg.alltestjunit
 
 To add this information in class, simply add to the body of the method *public static Testsuite()* the invocation to the new class *suite.addTestSuite(NewTestClass.class)*;
 For example, if you're creating a test class called BotTest.java in the package *it.uniba.di.cdg.jabber * in the project *it.uniba.di.cdg.jabber.test*, you have to add the new class:
  * in AllTests.java content in the same package as shown 
  * in AllTests.java content in it.uniba.di.cdg.jabber.test.allpackagetests as shown
- * in AllTests.java content it.uniba.di.cdg.alltestjunit.allpackagetests content in it.uniba.di.cdg.alltestjunit content as shown
+ * in AllTests.java content it.uniba.di.cdg.alltestjunit.allpackagetests content in it.uniba.di.cdg.alltestjunit as shown
