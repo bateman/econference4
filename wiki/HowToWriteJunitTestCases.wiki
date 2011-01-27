@@ -1,5 +1,5 @@
-#summary In this wiki we show how to write a test case in JUnit using correct syntax respecting all needs of econference4.
-#labels Phase-Support
+#summary In this wiki we show how to write a test case in JUnit using correct syntax respecting all the needs of eConference4.
+#labels Phase-Implementation,Howto
 
 *Index*
 <wiki:toc max_depth="3" />
