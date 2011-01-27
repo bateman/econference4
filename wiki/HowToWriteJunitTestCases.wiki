@@ -5,7 +5,7 @@
 <wiki:toc max_depth="3" />
 
 = How to write a test using JUnit =
-JUnit framework is an open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. As of this writing (Ja. 2011) the last stable version released is 4.8.2.
+JUnit framework is an open source project developed by Kent Beck; you can download the last version at http://github.com/KentBeck/junit/downloads. As of this writing (Jan. 2011) the last stable version released is 4.8.2.
 
 
 == Why use JUnit? ==
