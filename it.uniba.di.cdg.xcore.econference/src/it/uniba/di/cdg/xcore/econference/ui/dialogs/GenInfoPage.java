@@ -113,7 +113,7 @@ public class GenInfoPage extends WizardPage {
 							serviceCombo.select(-1);
 							serviceCombo.setEnabled(false);
 							serviceText.setText("");
-							nameConferenceText.setText("econference$" + nickNameText.getText());
+							nameConferenceText.setText("econference");
 						}
 					}
 				});
@@ -242,7 +242,6 @@ public class GenInfoPage extends WizardPage {
 				.getDefaultBackendId()
 				.equals("it.uniba.di.cdg.skype.skypeBackend")){
 			backendIdCombo.select(SKYPE_BACKEND);
-			nameConferenceText.setText(nameConferenceText.getText() + "$" + nickNameText.getText());
 		}
 /*		
  *     ComboBox che verifica il servizio attivo: es. PlanningPoker
@@ -285,9 +284,9 @@ public class GenInfoPage extends WizardPage {
 			room = room.toLowerCase();
 			
 			break;
-		case SKYPE_BACKEND:			
+		case SKYPE_BACKEND:
 			room = nameConferenceText.getText().equals("") ? 
-					"econference$" + nickNameText.getText() : nameConferenceText.getText();
+					"econference$" + nickNameText.getText() : nameConferenceText.getText() + "$" + nickNameText.getText();
 			break;	
 		default:
 			break;
