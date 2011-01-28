@@ -282,6 +282,8 @@ public class GenInfoPage extends WizardPage {
 		case XMPP_BACKEND:
 			room =  nameConferenceText.getText().equals("") || serviceText.getText().equals("") ? 
 					"econference" : nameConferenceText.getText() + "@" + serviceText.getText();
+			room = room.toLowerCase();
+			
 			break;
 		case SKYPE_BACKEND:			
 			room = nameConferenceText.getText().equals("") ? 
