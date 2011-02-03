@@ -27,7 +27,7 @@ public class MathOp {
 }
 }}}
 First, we must create another class that we call, by convention, MathOpTest.
-To use JUnit library is necessary to add it to the build path of the project. (you can do it adding library from the preference of the Eclipse project).
+To use JUnit library is necessary to add it to the build path of the project. (You can do it adding library from the preference of the Eclipse project).
 
 
 ==Import JUnit class ==
@@ -38,8 +38,8 @@ import static org.junit.Assert.*;
 }}}
 
 ==Test class ==
-Now we are ready to write the test class. To indicate to JUnit which are methods that makes tests its necessary to mark them with annotation @Test. 
-In this way, Junit will recognize methods that contains assertion.
+Now we are ready to write the test class. To indicate to JUnit which are methods that make tests it’s necessary to mark them with annotation @Test. 
+In this way, Junit will recognize methods that contain assertion.
 {{{
 	import org.junit.*;
 	import static org.junit.Assert.*;
@@ -70,7 +70,7 @@ assertNotNull(obj): required that ‘obj’ isn't null reference
 }}}
 
 ==The assertion @Before e @After ==
-In the previous example, in all test case is instanced an object MathOp. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objects and resources (for example a connection to a DBMS) is write  in one point of test case.
+In the previous example, in all test case is instanced an object MathOp. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objects and resources (for example a connection to a DBMS) is written in one point of test case.
 Similary to @Before, @After indicates to JUnit to execute the method after the execution of all test cases.
 {{{
 	import org.junit.*;
@@ -109,7 +109,7 @@ If there are errors, this are showed in the section named Errors, while the cond
 
 
 ==Setting time limit ==
-The performance verification is one of the most difficult issue in JUnit. JUnit 4 not competly solve the problem but offers an utile help: in fact, the test method can be signed with a timeout parameter. If the test are running in a time over, it fails. For example, in the next code the test fails if it need more than 500 ms to be ended:
+The performance verification is one of the most difficult issues in JUnit. JUnit 4 not completely solves the problem but offers an utile help: in fact, the test method can be signed with a timeout parameter. If the tests are running in a time over, it fails. For example, in the next code the test fails if it needs more than 500 ms to be ended:
 {{{
 	@Test(timeout=500) public void retrieveAllElementsInDocument() {
 	    doc.query("//*");
@@ -125,8 +125,8 @@ Apart from simple benchmarking, timed tests are also useful for the testing of n
 }}}
 
 ==Ignored Tests ==
-@Ignore annotation allows to mark the test methods that you want skip.
-Suppose that we have a test method that need more time to be executed: not necessary we must to speed up it, simply it's work could be more complex. For example, same test that trying to connect to remote server are in this case test category. To not slowing other methods, it's possible to annotate this test to ignore it.
+@Ignore annotation allows marking the test methods that you want skip.
+Suppose that we have a test method that need more time to be executed: not necessary we must to speed up it, simply its work could be more complex. For example, same test that trying to connect to remote server are in this case test category. To not slowing other methods, it's possible to annotate this test to ignore it.
 {{{
 	@Ignore public void testUTF32BE()
 	      throws ParsingException, IOException, XIncludeException {
@@ -142,12 +142,12 @@ Suppose that we have a test method that need more time to be executed: not neces
 	        assertEquals(expectedResult, result);
 	}
 }}}
-During the execution of all test case, this method will be ignored.
+During the execution of all test cases, this method will be ignored.
 
 
 = Sintax for test cases to use in econference4 =
 In Econference4 project, to write a test case you must respect the classic syntax that we have reported in previous paragraph.
-In the actual version of econference4 you can find different syntax in more test cases because the version of JUnit used until recently is the JUnit3. But econference4 now implement JUnit4 that support old(JUnit3) and new syntax. Whereas the syntax of JUnit4 is more simply than syntax of JUnit 3, you have to use only JUnit4 syntax.
+In the actual version of econference4 you can find different syntax in more test cases because the version of JUnit used until recently is the JUnit3. But econference4 now implement JUnit4 that support old (JUnit3) and new syntax. Whereas the syntax of JUnit4 is more simply than syntax of JUnit 3, you have to use only JUnit4 syntax.
 
 
 == Test's methods ==
@@ -182,7 +182,7 @@ Conversely, in JUnit4 the tests are marked by @Test annotation, as follows:
 	  }
 	}
 }}}
-In general, in this way you can use your preferred name that are properly related to your application and your programming style.
+In general, in this way you can use your preferred names that are properly related to your application and your programming style.
 The TestCase class is present but is no longer necessary to extend them. Simply you have to mark the test methods using @Test annotation and you can insert them in any class. 
 To use assert method is necessary to import the class junit.Assert, as follow:
 {{{
@@ -230,7 +230,7 @@ The run tools of JUnit 3 tests automatically run the method setUp() before each 
 	 
 	}
 }}}
-Also in JUnit 4 it's possible to initialize the data and configure the environment before each test method: however, the method that performs these operations do not need to be named setUp(). He just needs to marked this method with the @Before annotation:
+Also in JUnit 4 it's possible to initialize the data and configure the environment before each test method: however, the method that performs these operations do not need to be named setUp(). He just needs to mark this method with the @Before annotation:
 {{{
 	@Before protected void initialize() {
 	 
@@ -271,7 +271,7 @@ In JUnit4, you can mark any method with @After annotation:
 Similarly than the @Before annotation, you can create more clean-up methods marked with @After, each of which will running before all test methods.
 In addition, it's not more necessary to call explicitly the methods of initialization and clean-up of super-class. 
 Until they are overwritten, the "test runner automatically call these methods, if necessary. 
-@Before methods in super classes are invoked before the first @Before methods of subclasses (note that this behaviour reflects the order of appearance of Manufacturers). @After methods are executed in reverse order: first those of the subclasses and then those of the super classes.
+@Before methods in super classes are invoked before the first @Before methods of subclasses (note that this behavior reflects the order of appearance of Manufacturers). @After methods are executed in reverse order: first those of the subclasses and then those of the super classes.
 
 
 == Initialization of the test classes ==
