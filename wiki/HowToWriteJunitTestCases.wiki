@@ -102,7 +102,7 @@ It's possible to use the command line o the junit task and junit report of Apach
 
 Below there is a screenshot of the test results in Eclipse:
 
-<p align=center>http://econference4.googlecode.com/svn/wiki/junit/img/JunitResultTests.png<br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/JunitResultTests.png<br>
 <p align=center>*Figure 1. Result of Junit execution*</p>
 
 The two tests have positive end. 
