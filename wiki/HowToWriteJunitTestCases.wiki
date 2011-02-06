@@ -368,7 +368,7 @@ For example, if you're creating a test class called {{{BotTest.java}}} in the pa
 <p align=center>*Figure 2. Result of Junit execution*</p>
  * in {{{AllTests.java}}} content in it.uniba.di.cdg.jabber.test.allpackagetests as shown
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest2.png <br>
-<p align=center>*Figure 2. Result of Junit execution*</p>
+<p align=center>*Figure.*</p>
  * in {{{AllTests.java}}} content it.uniba.di.cdg.alltestjunit.allpackagetests content in it.uniba.di.cdg.alltestjunit as shown
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest3.png <br>
-<p align=center>*Figure 2. Result of Junit execution*</p>
+<p align=center>*Figure 2.*</p>
