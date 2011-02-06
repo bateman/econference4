@@ -102,7 +102,8 @@ It's possible to use the command line o the junit task and junit report of Apach
 
 Below there is a screenshot of the test results in Eclipse:
 
-INSERT IMAGE
+<p align=center>http://econference4.googlecode.com/svn/wiki/junit/img/JunitResultTests.png<br>
+<p align=center>*Figure 1. Result of Junit execution*</p>
 
 The two tests have positive end. 
 If there are errors, this are showed in the section named Errors, while the condition not verified will be counted in the section named Failured.
