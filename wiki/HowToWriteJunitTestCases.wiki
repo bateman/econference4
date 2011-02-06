@@ -349,8 +349,8 @@ they must be present in the project *it.uniba.di.cdg.jabber.test*.
 
 You can see it in Figure 2.
 
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest.png <br>
-<p align=center>*Figure 2. Result of Junit execution*</p>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/SeparateTestCase.png <br>
+<p align=center>*Figure 2. Test case separate to source code*</p>
 
 In this package you have to write the code of test cases to which they relate.
 
