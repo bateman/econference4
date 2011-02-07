@@ -362,9 +362,9 @@ So, once you've created the class of the test case, you must add the following i
  * {{{AllTests.java}}} file contained in the package it.uniba.di.cdg.alltestjunit.allpackagetests contained in the project it.uniba.di.cdg.alltestjunit
 
 To add this information in class, simply add to the list of the annotation @Suite.SuiteClasses() present in relative AllTest.java, the invocation to the new class. 
-{{{@Suite.SuiteClasses({
+{{{ @Suite.SuiteClasses({
 	it.uniba.di.cdg.collaborativeworkbench.boot.test.allpackagetests.AllTests.class,	
-})}}};
+}) }}}
 
 For example, if you're creating a test class called {{{XmppLoadTest.java}}} in the package *it.uniba.di.cdg.jabber * in the project *it.uniba.di.cdg.jabber.test*, you have to add the new class:
  * in {{{AllTests.java}}} content in the same package as shown 
@@ -372,7 +372,7 @@ For example, if you're creating a test class called {{{XmppLoadTest.java}}} in t
 <p align=center>*Figure 2. Result of Junit execution*</p>
  * in {{{AllTests.java}}} content in it.uniba.di.cdg.jabber.test.allpackagetests as shown
 
-Instead, if you have created a new package with some class for test case, you need to create a class named AllTest.java in this package how the similar class; after, you must add the file AllTest.class created in the {{{projectname.allpackagetest.AllTest.java}}}. For example, if you have created the package named it.uniba.di.cgd.jabber with AllTest.java, you must insert into it.uniba.di.cgd.jabber.test.allpackagetest.AllTest.java the new class as shown
+Instead, if you have created a new package with some class for test case, you need to create a class named AllTest.java in this package how the similar class; after, you must add the file {{{AllTest.class created in the {{{projectname.allpackagetest.AllTest.java}}}. For example, if you have created the package named {{{it.uniba.di.cgd.jabber}}} with AllTest.java, you must insert into {{{it.uniba.di.cgd.jabber.test.allpackagetest.AllTest.java}}} the new class as shown
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest2.png <br>
 <p align=center>*Figure 3.*</p>
  * in {{{AllTests.java}}} content it.uniba.di.cdg.alltestjunit.allpackagetests content in it.uniba.di.cdg.alltestjunit as shown
