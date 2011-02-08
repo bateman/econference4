@@ -31,9 +31,9 @@ import org.jmock.MockObjectTestCase;
 /**
  * jUnit test for {@see it.uniba.di.cdg.xcore.econference.EConferenceHelper}. 
  */
-public class EConferenceHelperTestCase extends MockObjectTestCase {
+public class EConferenceHelperTestCasep extends MockObjectTestCase {
     
-    private EConferenceHelper helper;
+	private EConferenceHelper helper;
 
     /* (non-Javadoc)
      * @see junit.framework.TestCase#setUp()
@@ -41,29 +41,27 @@ public class EConferenceHelperTestCase extends MockObjectTestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        
-//        this.helper = new EConferenceHelper( UiPlugin.getUIHelper(), NetworkPlugin.getDefault().getHelper() );
+        this.helper = new EConferenceHelper();
     }
 
     /**
      * Create the conference with an ad hoc context that must succeed. 
      */
     public void testOpenWithGoodContext() {
-        // TODO 
     }
 
     /**
      * Create the conference. 
      */
     public void testOpenWithBadContext() {
-        // TODO 
+     
     }
 
     public void testOpenFromFile() {
-        // TODO 
+     
     }
     
     public void testOpenFromUnexistingFile() {
-        // TODO 
+      
     }
 }
