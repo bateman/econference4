@@ -23,17 +23,12 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package it.uniba.di.cdg.xcore.m2m;
-
-import it.uniba.di.cdg.xcore.m2m.internal.MultiChatHelper;
-
 import org.jmock.MockObjectTestCase;
 
 /**
  * jUnit test for {@see it.uniba.di.cdg.xcore.m2m.IMultiChatHelper}. 
  */
 public class MultiChatHelperTestCase extends MockObjectTestCase {
-
-    private MultiChatHelper helper;
     
     /* (non-Javadoc)
      * @see junit.framework.TestCase#setUp()
@@ -47,21 +42,18 @@ public class MultiChatHelperTestCase extends MockObjectTestCase {
      * Create the conference with an ad hoc context that must succeed. 
      */
     public void testOpenWithGoodContext() {
-        // TODO 
+
     }
 
     /**
      * Create the conference. 
      */
     public void testOpenWithBadContext() {
-        // TODO 
     }
     
     public void testInvitationAccepted() {
-        // TODO 
     }
     
     public void testInvitationRejected() {
-        // TODO 
     }
 }

@@ -53,6 +53,9 @@ public class ParticipantTestCase extends MockObjectTestCase {
         p.setRole( Role.PARTICIPANT );
         p.setStatus( Status.FROZEN );
         p.addSpecialPriviliges( "New special" );
+        assertEquals( "Changed", p.getNickName() );
+        assertEquals( Role.PARTICIPANT, p.getRole() );
+        assertEquals( Status.FROZEN, p.getStatus() );
     }
     
     public void testToString() {
