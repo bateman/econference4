@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:meeting>
+    <target:platform>
+        <target:backendid>it.uniba.di.cdg.jabber.jabberBackend</target:backendid>
+        <target:room>econference@conference.codingteam.net</target:room>
+    </target:platform>
+    <conference:name>econference</conference:name>
+    <conference:topic>test</conference:topic>
+    <conference:schedule>9-12-2010, h. 19:06</conference:schedule>
+    <conference:items>
+        <conference:item>1</conference:item>
+        <conference:item>2</conference:item>
+        <conference:item>3</conference:item>
+    </conference:items>
+    
+    <role:supportTeam>
+      <role:moderator>
+            <role:fullname>Giuseppe</role:fullname>
+            <role:email>cdesold@gmail.com</role:email>
+            <role:organization/>
+            <role:id>cdesold@gmail.com</role:id>
+        </role:moderator>
+         <role:scribe>
+            <role:fullname>diavoletto</role:fullname>
+            <role:email>scribe@scriber.com</role:email>
+            <role:organization>United Scribes Ltd.</role:organization>
+            <role:id>diavoletto@ugres.di.uniba.it</role:id>
+        </role:scribe>
+    </role:supportTeam>
+    
+    <role:participants>
+         <role:expert>
+            <role:fullname>Tester 1</role:fullname>
+            <role:email>expert1@reallyexperts.com</role:email>
+            <role:organization>Global Experts Enterprise</role:organization>
+            <role:id>tester1@ugres.di.uniba.it</role:id>
+        </role:expert>
+        <role:expert>
+            <role:fullname>Tester 2</role:fullname>
+            <role:email>expert2@reallyexperts.com</role:email>
+            <role:organization>Global Experts Enterprise</role:organization>
+            <role:id>tester2@ugres.di.uniba.it</role:id>
+        </role:expert>    
+        <role:expert>
+            <role:fullname>mario scalas</role:fullname>
+            <role:email>expert1@reallyexperts.com</role:email>
+            <role:organization>Global Experts Enterprise</role:organization>
+            <role:id>mario.scalas@ugres.di.uniba.it</role:id>
+        </role:expert>   
+    </role:participants>
+</m:meeting>

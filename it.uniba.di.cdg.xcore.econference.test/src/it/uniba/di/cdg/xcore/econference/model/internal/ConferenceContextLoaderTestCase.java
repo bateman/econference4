@@ -41,15 +41,15 @@ import junit.framework.TestCase;
  * jUnit test for the {@see it.uniba.di.cdg.xcore.econference.model.internal.ConferenceLoader}. 
  */
 public class ConferenceContextLoaderTestCase extends TestCase {
-    private static final String VALID_CONFERENCE_FNAME = "conference_factory_test3.ecx";
-    private static final String INVALID_CONFERENCE_FNAME = "conference_factory_test2.ecx";
-    private static final String UNEXISTING_CONFERENCE_FNAME = "I_DO_NOT_EXIST.ecx";
+    private String VALID_CONFERENCE_FNAME = "conference.codingteam.net.ecx";
+    private String INVALID_CONFERENCE_FNAME = "conference_factory_test2.ecx";
+    private String UNEXISTING_CONFERENCE_FNAME = "I_DO_NOT_EXIST.ecx";
     
-    private static final String EXPECTED_TOPIC = "Test topic";
-    private static final String EXPECTED_NAME = "Test conference";
+    private String EXPECTED_TOPIC = "test";
+    private String EXPECTED_NAME = "econference";
     
-    private static final IDiscussionItem EXPECTED_ITEM1 = new DiscussionItem( "Item 1" );
-    private static final IDiscussionItem EXPECTED_ITEM2 = new DiscussionItem( "Item 2" );
+    private IDiscussionItem EXPECTED_ITEM1 = new DiscussionItem( "1" );
+    private IDiscussionItem EXPECTED_ITEM2 = new DiscussionItem( "2" );
     
 //    private static final String EXPECTED_DIRECTOR_ID = "director@jabber.organization.com";
 //    private static final String EXPECTED_DIRECTOR_PASSWORD = "secret";
@@ -57,11 +57,11 @@ public class ConferenceContextLoaderTestCase extends TestCase {
 //    private static final String EXPECTED_DIRECTOR_EMAIL = "director@organization.com";
 //    private static final String EXPECTED_DIRECTOR_ORGANIZATION = "Organization";
     
-    private static final String EXPECTED_MODERATOR_FULLNAME = "Fabio Calefato";
-    private static final String EXPECTED_SCRIBE_FULLNAME = "diavoletto";
+    private String EXPECTED_MODERATOR_FULLNAME = "Giuseppe";
+    private String EXPECTED_SCRIBE_FULLNAME = "diavoletto";
 
 //    private static final String EXPECTED_BACKEND_ID = "it.uniba.di.cdg.jabber.jabberBackend"; 
-    private static final String EXPECTED_ROOM_NAME = "myroom@conference.ugres.di.uniba.it"; 
+    private String EXPECTED_ROOM_NAME = "econference@conference.codingteam.net"; 
     
     private EConferenceContext context;
 
@@ -73,9 +73,10 @@ public class ConferenceContextLoaderTestCase extends TestCase {
         this.context = new EConferenceContext();
     }
     
-    public void testLoadFromGoodInputStream() {
+    public void testLoadFromGoodInputStream() throws Exception {
         // 1. Load the model
         ConferenceContextLoader loader = new ConferenceContextLoader( context );
+        context.setBackendId("it.uniba.di.cdg.jabber.jabberBackend");
         try {
             InputStream is = ConferenceContextLoaderTestCase.class.getResourceAsStream( VALID_CONFERENCE_FNAME );
             loader.load( is );
@@ -88,21 +89,12 @@ public class ConferenceContextLoaderTestCase extends TestCase {
         assertEquals( EXPECTED_NAME, context.getName() );
         
         IItemList itemList = context.getItemList();
-        assertEquals( 2, itemList.size() );
+        assertEquals( 3, itemList.size() );
         assertEquals( EXPECTED_ITEM1, itemList.getItem( 0 ) );
         assertEquals( EXPECTED_ITEM2, itemList.getItem( 1 ) );
         // Ensure that the first element in the discussion is selected
         assertEquals( IItemList.NO_ITEM_SELECTED, itemList.getCurrentItemIndex() );
-        
-        // Check the support team
-//        Invitee director = context.getDirector();
-//        assertEquals( EConferenceContext.ROLE_DIRECTOR, director.getRole() );
-//        assertEquals( EXPECTED_DIRECTOR_ID, director.getId() );
-////        assertEquals( EXPECTED_DIRECTOR_PASSWORD, director.getPassword() );
-//        assertEquals( EXPECTED_DIRECTOR_FULLNAME, director.getFullName() );
-//        assertEquals( EXPECTED_DIRECTOR_EMAIL, director.getEmail() );
-//        assertEquals( EXPECTED_DIRECTOR_ORGANIZATION, director.getOrganization() );
-        
+              
         Invitee moderator = context.getModerator();
         assertEquals( EConferenceContext.ROLE_MODERATOR, moderator.getRole() );
         assertEquals( EXPECTED_MODERATOR_FULLNAME, moderator.getFullName() );
@@ -112,18 +104,18 @@ public class ConferenceContextLoaderTestCase extends TestCase {
         assertEquals( EXPECTED_SCRIBE_FULLNAME, scribe.getFullName() );
         
         // Check the other participants (just ensure they the expected number of people)
-        // 3 for support team + 3 other expert
-        assertEquals( 3 + 3, context.getInvitees().size() );
+        // 2 for support team + 3 other expert
+        for (int i = 0 ; i < context.getInvitees().size() ; i++)
+        	System.out.println("\n" + context.getInvitees().get(i));
+        assertEquals( 2+3, context.getInvitees().size() );
         for (Invitee i : context.getInvitees()) {
             assertNotNull( i.getId() );
             final String r = i.getRole(); 
             assertTrue( r.equals( EConferenceContext.ROLE_PARTICIPANT ) 
-//                    || r.equals( EConferenceContext.ROLE_DIRECTOR )
                     || r.equals( EConferenceContext.ROLE_MODERATOR )
                     || r.equals( EConferenceContext.ROLE_SCRIBE ) );
         }
         
-        //assertEquals( EXPECTED_BACKEND_ID, context.getBackendId() );
         assertEquals( EXPECTED_ROOM_NAME, context.getRoom() );
     }
     
