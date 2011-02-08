@@ -43,7 +43,6 @@ public class BackendRegistryTestCase extends MockObjectTestCase {
     private static final String BACKEND_NAME = "ACME Service";
     private static final String BACKEND_CLASS = "com.acme.dummy.DummyBackend";
     private static final String BACKEND_SECURE = "false";
-    private static final String UNEXISTING_BACKEND_ID = "do.not.exist.backendId";
 
     private IBackendRegistry registry;
     
