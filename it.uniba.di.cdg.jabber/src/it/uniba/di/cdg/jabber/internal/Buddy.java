@@ -92,7 +92,7 @@ public class Buddy extends AbstractBuddy {
 	 * @param jid
 	 */
 	public Buddy(IBuddyRoster roster, String jid) {
-		this(roster, jid, null, false, "", "");
+		this(roster, jid, "", false, "", "");
 	}
 
 	public Buddy(IBuddyRoster roster, String jid, String name,
