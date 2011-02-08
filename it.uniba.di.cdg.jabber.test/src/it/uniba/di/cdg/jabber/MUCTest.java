@@ -28,170 +28,55 @@ import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
 import it.uniba.di.cdg.xcore.network.internal.NetworkBackendHelper;
-
-import java.util.Iterator;
-
 import junit.framework.TestCase;
-
-import org.jivesoftware.smackx.muc.MultiUserChat;
-import org.jivesoftware.smackx.muc.Occupant;
 
 /**
  * 
  */
 public class MUCTest extends TestCase {
-    static {
-        //ProviderManager.addIQProvider( TypingNotificationProvider.TYPING_ELEMENT_NAME, CDG_NAMESPACE, TypingNotificationPacket.class );
-        // ProviderManager.addIQProvider( SmackTypingNotificationProvider.TYPING_ELEMENT_NAME, CDG_NAMESPACE, new SmackTypingNotificationProvider() );
-    }
-    
-    private static final int MAX_RUNS = 3; 
-    
-    /**
-     * Our server ...
-     */
-    private static final ServerContext UGRES_SERVER = new ServerContext( "jabber.org", 5222 ,false );
-    
-    private JabberBackend harry;
-    
-    public static UserContext harryContext = new UserContext( "participant1", "participant1" );
-    
-    private static JabberBackend sammy;
-    
-    public static UserContext sammyContext = new UserContext( "alessandrob", "studente" );
+	
+	private static final ServerContext UGRES_SERVER = new ServerContext( "jabber.org", 5222 ,false );
 
-    private ServerContext server;
-    
-    /* (non-Javadoc)
-     * @see junit.framework.TestCase#setUp()
-     */
-    @Override
-    protected void setUp() throws Exception {   
-        harry = new JabberBackend();  
-        harry.setHelper(new NetworkBackendHelper());
-       
-        sammy = new JabberBackend(); 
-        sammy.setHelper(new NetworkBackendHelper());
-    }
+	private JabberBackend harry;
 
-    /* (non-Javadoc)
-     * @see junit.framework.TestCase#tearDown()
-     */
-    @Override
-    protected void tearDown() throws Exception {
-        sammy.disconnect();
-        harry.disconnect();
-    }
+	public static UserContext harryContext = new UserContext( "giuseppe83", "giuseppe83" );
 
-    public void testConnection() throws BackendException {
-        harry.connect( UGRES_SERVER, harryContext );
-        sammy.connect( UGRES_SERVER, sammyContext );
-    }
+	private static JabberBackend sammy;
 
-    public static class SammyBot extends JabberBot {
-    	
-    	
-    	private MultiUserChat muc;
-        /**
-         * @param context
-         * @param account
-         */
-        public SammyBot() {
-            super( UGRES_SERVER, MUCTest.sammyContext);
-        }
+	public static UserContext sammyContext = new UserContext( "giuseppe84", "giuseppe84" );
 
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.jabber.JabberBot#connect()
-         */
-        @Override
-        protected void connect() throws Exception {
-        	super.connect();
+	private ServerContext server;
 
-        	
-        	muc = new MultiUserChat(conn, "testppcollab@conference.jabber.org");
-        	//muc.create("sammy");
-        	muc.join("sammy");
-        	        	
-        	
-        }
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#setUp()
+	 */
+	@Override
+	protected void setUp() throws Exception {   
+		harry = new JabberBackend();  
+		harry.setHelper(new NetworkBackendHelper());
 
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.jabber.JabberBot#executeBot()
-         */
-        @Override
-        protected void executeBot() throws Exception {
-            for (int i = 0; i< MAX_RUNS; ++i) {
-                //System.out.println( "[Sammy] Running ..." );
-                sleep( 1000 );
-                int count = muc.getOccupantsCount();
-                System.out.println("[Sammy] Total: "+count);
-                String occupants = "[Sammy] Occupants:";
-                for (Iterator<String> iterator = muc.getOccupants(); iterator
-						.hasNext();) {
-                	occupants += " "+(String) iterator.next()+" ";
-				}
-                System.out.println(occupants);
-            }
-            quit();
-        }
-    }
+		sammy = new JabberBackend(); 
+		sammy.setHelper(new NetworkBackendHelper());
+	}
 
-    public static class HarryBot extends JabberBot {
-        
-        private MultiUserChat muc;
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		sammy.disconnect();
+		harry.disconnect();
+	}
 
-        /**
-         * @param context
-         * @param account
-         */
-        public HarryBot() {
-            super( UGRES_SERVER, MUCTest.harryContext );
-        }
-        
-        @Override
-        protected void connect() throws Exception {        	
-        	super.connect();
-        	
-        	muc = new MultiUserChat(conn, "testppcollab@conference.jabber.org");
-        	muc.join("harry");
-        	//muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
-        }
-
-
-        @Override
-        protected void executeBot() throws Exception {
-            for (int i = 0; i< MAX_RUNS; ++i) {
-                //System.out.println( "[Harry] Running ..." );
-                sleep( 1000 );
-                int count = muc.getOccupantsCount();
-                System.out.println("[Harry] Total: "+count);
-                String occupants = "[Harry] Occupants:";
-                for (Iterator<String> iterator = muc.getOccupants(); iterator
-						.hasNext();) {
-                	String current = (String) iterator.next();
-                	occupants += " "+current+" ";
-                	Occupant occupant = muc.getOccupant(current);
-                	occupants += " Role: "+occupant.getRole()+"\n ";
-				}
-                System.out.println(occupants);
-            }
-            quit();
-        }
-
-    }
-
-    public static void main( String[] args ) throws Exception {
-        SammyBot sammy = new SammyBot();
-        HarryBot harry = new HarryBot();              
-        
-        
-        harry.start();
-        
-        sammy.start();
-        
-        
-        harry.join();
-        
-        sammy.join();
-    }
+	public void testConnection() throws BackendException {
+		try {
+			harry.connect( UGRES_SERVER, harryContext );
+			assertEquals(harry.isConnected(), true);
+			sammy.connect( UGRES_SERVER, sammyContext );
+			assertEquals(sammy.isConnected(), true);
+		} catch (BackendException e) {
+			System.out.println("The problem could be the router port; you must open the 5222 port on your router");
+			e.printStackTrace();
+		}
+	}
 }

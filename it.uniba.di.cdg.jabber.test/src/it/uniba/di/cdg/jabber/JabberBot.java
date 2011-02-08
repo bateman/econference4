@@ -27,7 +27,6 @@ package it.uniba.di.cdg.jabber;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.uniba.di.cdg.jabber.ConnectionTest.SammyBot;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
 
@@ -36,7 +35,7 @@ import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Packet;
-import org.jivesoftware.smack.packet.PacketExtension;
+import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
  * A simple jabber bot ... 
@@ -61,14 +60,13 @@ public abstract class JabberBot extends Thread {
         this.packetListeners = new ArrayList<PacketListener>();
     }
 
-    /* (non-Javadoc)
+	/* (non-Javadoc)
      * @see java.lang.Thread#run()
      */
     @Override
     public final void run() {
-        try {
+    	try {
             connect();
-            
             while (!_quit) {
                 executeBot();
             }
@@ -104,7 +102,7 @@ public abstract class JabberBot extends Thread {
      */
     protected void connect() throws Exception {    	
         //XMPPConnection.DEBUG_ENABLED = true;
-    	ConnectionConfiguration config = new ConnectionConfiguration(context.getServerHost(),  context.getPort());
+    	ConnectionConfiguration config = new ConnectionConfiguration(context.getServerHost(), context.getPort());
     	config.setReconnectionAllowed(true);
     	conn = new XMPPConnection( config );
         conn.connect();
