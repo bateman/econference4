@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
-Bundle-SymbolicName: it.uniba.cdg.econference.tests
+Bundle-SymbolicName: it.uniba.di.cdg.econference.projecttests
 Bundle-Version: 1.0.0.20110802_v1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
