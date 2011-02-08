@@ -102,7 +102,7 @@ public class VirtualProxyTestCase extends MockObjectTestCase {
             proxy.costlyMethod1();
             fail( "Proxy doesn't fail with a bad interface" );
         } catch (ClassCastException e) {
-            // All right
+          
         }
     }
 }
