@@ -9,7 +9,7 @@ import it.uniba.di.cdg.xcore.util.IExtensionProcessor;
 
 public class TestBackendRegistry implements TestIBackendRegistry {
 	
-	ArrayList descriptors = new ArrayList();
+	ArrayList<IBackendDescriptor> descriptors = new ArrayList<IBackendDescriptor>();
 	
 	public TestBackendRegistry(TestINetworkBackendHelper testBackendHelper) {
 		// TODO Auto-generated constructor stub
