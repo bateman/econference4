@@ -24,24 +24,12 @@
  */
 package it.uniba.di.cdg.jabber.internal;
 
-import java.util.List;
 
 import it.uniba.di.cdg.jabber.JabberBackend;
-import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
-import it.uniba.di.cdg.xcore.network.IBackendRegistry;
-import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
-import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
-import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 import it.uniba.di.cdg.xcore.network.internal.NetworkBackendHelper;
-import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
-import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
-
-import org.jivesoftware.smack.Roster;
-import org.jivesoftware.smack.RosterEntry;
-import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
 /**
@@ -73,8 +61,8 @@ public class BuddyRosterTestCase extends MockObjectTestCase {
      */
     public void testAddContainsBuddy() {       
     	String[] gruppi = {"None"};
-        roster.addBuddy("alessandrob@jabber.org", "alessandrob", gruppi );        
-        assertTrue( roster.contains("alessandrob@jabber.org") );
+        roster.addBuddy("giuseppe83@jabber.org", "giuseppe83", gruppi );        
+        assertTrue( roster.contains("giuseppe83@jabber.org") );
 
     }
     
@@ -83,9 +71,8 @@ public class BuddyRosterTestCase extends MockObjectTestCase {
      */
     public void testEqualBuddy() {  
     	String[] gruppi = {"None"};
-    	roster.addBuddy("alessandrob@jabber.org", "alessandrob", gruppi);  
-        
-        assertEquals("alessandrob@jabber.org", roster.getBuddy("alessandrob@jabber.org").getId());
+    	roster.addBuddy("giuseppe83@jabber.org", "giuseppe83", gruppi);  
+        assertEquals("giuseppe83@jabber.org", roster.getBuddy("giuseppe83@jabber.org").getId());
     }
     
     /*
@@ -94,18 +81,18 @@ public class BuddyRosterTestCase extends MockObjectTestCase {
     public void testEqualNameBuddy() {  
     	roster.addGroup("prova");
     	String[] gruppi = {"prova"};
-    	roster.addBuddy("alessandrob@jabber.org", "alessandrob", gruppi);
-    	roster.renameBuddy("alessandrob@jabber.org", "ale");
+    	roster.addBuddy("giuseppe83@jabber.org", "giuseppe83", gruppi);
+    	roster.renameBuddy("giuseppe83@jabber.org", "ale");
     	roster.reload();
-        assertEquals("ale" , roster.getBuddy("alessandrob@jabber.org").getName());
+        assertEquals("ale" , roster.getBuddy("giuseppe83@jabber.org").getName());
     }
     /*
      * Test method for 'net.osslabs.jabber.client.model.BuddyRoster.removeBuddy(String id)'
      */
     public void testRemoveBuddy() {  
-    	roster.removeBuddy("alessandrob@jabber.org");
+    	roster.removeBuddy("giuseppe83@jabber.org");
         
-        assertFalse( roster.contains("alessandrob@jabber.org"));
+        assertFalse( roster.contains("giuseppe83@jabber.org"));
     }
     
     
@@ -115,10 +102,10 @@ public class BuddyRosterTestCase extends MockObjectTestCase {
      */
     public void testMoveBuddy() {  
     	String[] gruppi = {"None"};
-    	roster.addBuddy("alessandrob@jabber.org", "alessandrob", gruppi); 
+    	roster.addBuddy("giuseppe83@jabber.org", "giuseppe83", gruppi); 
     	roster.addGroup("prova");
-    	roster.moveToGroup("alessandrob@jabber.org", "prova");
-    	IBuddyGroup group = (IBuddyGroup) roster.getGroups(roster.getBuddy("alessandrob@jabber.org")).iterator().next();
+    	roster.moveToGroup("giuseppe83@jabber.org", "prova");
+    	IBuddyGroup group = (IBuddyGroup) roster.getGroups(roster.getBuddy("giuseppe83@jabber.org")).iterator().next();
         assertEquals("prova", group.getName());
     }
     
@@ -127,9 +114,9 @@ public class BuddyRosterTestCase extends MockObjectTestCase {
      */
     public void testMoveBuddyNoGroup() {  
     	String[] gruppi = {"prova"};
-    	roster.addBuddy("alessandrob@jabber.org", "alessandrob", gruppi); 
-    	roster.moveToGroup("alessandrob@jabber.org", "None");
-        assertTrue(roster.getGroups(roster.getBuddy("alessandrob@jabber.org")).isEmpty());
+    	roster.addBuddy("giuseppe83@jabber.org", "giuseppe83", gruppi); 
+    	roster.moveToGroup("giuseppe83@jabber.org", "None");
+        assertTrue(roster.getGroups(roster.getBuddy("giuseppe83@jabber.org")).isEmpty());
     }
 
     

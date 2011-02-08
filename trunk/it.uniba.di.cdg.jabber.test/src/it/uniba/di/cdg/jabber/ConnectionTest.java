@@ -24,28 +24,18 @@
  */
 package it.uniba.di.cdg.jabber;
 
-import it.uniba.di.cdg.smackproviders.TypingNotificationPacket;
 import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
 import it.uniba.di.cdg.xcore.network.internal.NetworkBackendHelper;
 import junit.framework.TestCase;
-
-import org.jivesoftware.smack.PacketListener;
-import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smack.packet.Packet;
-import org.jivesoftware.smack.provider.ProviderManager;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * 
  */
 public class ConnectionTest extends TestCase {
-    static {
-        //ProviderManager.addIQProvider( TypingNotificationProvider.TYPING_ELEMENT_NAME, CDG_NAMESPACE, TypingNotificationPacket.class );
-        // ProviderManager.addIQProvider( SmackTypingNotificationProvider.TYPING_ELEMENT_NAME, CDG_NAMESPACE, new SmackTypingNotificationProvider() );
-    }
-    
-    private static final int MAX_RUNS = 10; 
     
     /**
      * Our server ...
@@ -58,14 +48,13 @@ public class ConnectionTest extends TestCase {
     
     private JabberBackend sammy;
     
-    public static UserContext sammyContext = new UserContext( "aaaaa", "a" );
+    public static UserContext sammyContext = new UserContext( "tester1", "tester" );
 
-    private ServerContext server;
     
     /* (non-Javadoc)
      * @see junit.framework.TestCase#setUp()
      */
-    @Override
+    @Before
     protected void setUp() throws Exception {   
         harry = new JabberBackend();  
         harry.setHelper(new NetworkBackendHelper());
@@ -83,150 +72,16 @@ public class ConnectionTest extends TestCase {
         sammy.disconnect();
     }
 
+    @Test 
     public void testConnection() throws BackendException {
-        harry.connect( UGRES_SERVER, harryContext );
-        sammy.connect( UGRES_SERVER, sammyContext );
-    }
-
-    public static class SammyBot extends JabberBot {
-        /**
-         * @param context
-         * @param account
-         */
-        public SammyBot() {
-            super( UGRES_SERVER, ConnectionTest.sammyContext);
-        }
-
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.jabber.JabberBot#connect()
-         */
-        @Override
-        protected void connect() throws Exception {
-        	super.connect();
-
-        	PacketListener pl = new PacketListener() {
-        		public void processPacket( Packet packet ) {
-        			System.out.println( "[Sammy] " + packet.toXML() );
-        		}            
-        	};
-        	registerPacketListener( pl, TypingNotificationPacket.FILTER );
-
-
-//        	PacketListener ml = new PacketListener() {
-//        		public void processPacket( Packet packet ) {
-//        			System.out.println( "[Sammy] processing backlog...");
-//        			Message m = (Message) packet;
-//        			DefaultBacklogPacket ext = (DefaultBacklogPacket) m.getExtension(DefaultBacklogPacket.ELEMENT_NAME,
-//        					DefaultBacklogPacket.ELEMENT_NS);
-//
-//        			System.out.println( String.format( "[Harry] from %s : %s", m.getFrom(), ext.getBacklog().toString()) );
-//        		}
-//        	};
-//        	registerPacketListener( ml, DefaultBacklogPacket.FILTER );
-        }
-
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.jabber.JabberBot#executeBot()
-         */
-        @Override
-        protected void executeBot() throws Exception {
-            for (int i = 0; i< MAX_RUNS; ++i) {
-                System.out.println( "[Sammy] Running ..." );
-                sleep( 1000 );
-            }
-            quit();
-        }
-    }
-
-    public static class HarryBot extends JabberBot {
-        
-        private String target;
-
-        /**
-         * @param context
-         * @param account
-         */
-        public HarryBot() {
-            super( UGRES_SERVER, ConnectionTest.harryContext );
-        }
-
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.jabber.JabberBot#connect()
-         */
-      /*  @Override
-        protected void connect() throws Exception {
-            super.connect();
-            
-            PacketListener il = new PacketListener() {
-                public void processPacket( Packet packet ) {
-                    //System.out.println( "[Harry] " + packet.toXML() );
-                }
-            };
-            registerPacketListener( il, TypingNotificationPacket.FILTER  );
-        }*/
-
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.jabber.JabberBot#executeBot()
-         */
-        @Override
-        protected void executeBot() throws Exception {
-            for (int i = 0; i< MAX_RUNS; ++i) {
-                System.out.println( "[Harry] Running ..." );
-                sleep( 1000 );
-                
-                if (i % 2 == 0) {
-//                	Message message = new Message();
-//                    TypingNotificationPacket notification = new TypingNotificationPacket();
-//                    notification.setWho( "harry" ); 
-//                    message.addExtension(notification);
-//                    sendPacket( message );
-//               } else {
-//                	DefaultBacklogPacket backlogPacket = new DefaultBacklogPacket();
-//                	Backlog backlog = new Backlog();
-//                	backlog.addUserStory(new DefaultUserStory("id1","story1", "Closed", "description1", "8"));
-//                	backlog.addUserStory(new DefaultUserStory("id2","story2", "Open", "description2", "Unknown"));
-//                	backlogPacket.setBacklog(backlog);
-                    Message message = new Message();
-                    message.setFrom( getAccount().getId() );
-                    message.setTo( target );
-//                    message.setBody( "Hello, Sammy: this is Harry's attempt nr. " + i );
-                   // message.setType( Message.Type.groupchat );
-//                    message.addExtension(backlogPacket);
-                    sendPacket( message );
-//                    System.out.println("[Harry] Sending message to "+ message.getTo() +": "+ message.getExtension(DefaultBacklogPacket.ELEMENT_NS).toXML());
-               }
-            }
-            quit();
-        }
-
-        /**
-         * @return Returns the target.
-         */
-        protected String getTarget() {
-            return target;
-        }
-
-        /**
-         * @param target The target to set.
-         */
-        protected void setTarget( String target ) {
-            this.target = target;
-        }
-    }
-
-    public static void main( String[] args ) throws Exception {
-        SammyBot sammy = new SammyBot();
-        HarryBot harry = new HarryBot();
-        
-        ProviderManager manager = ProviderManager.getInstance();
-//        manager.addExtensionProvider(DefaultBacklogPacket.ELEMENT_NAME, DefaultBacklogPacket.ELEMENT_NS, new DefaultBacklogPacket.Provider());        
-        harry.setTarget( JabberBot.jid( sammy.getAccount(), sammy.getContext() ) );
-        //sammy.setTarget( JabberBot.jid( harry.getAccount(), harry.getContext() ) );
-        
-        sammy.start();
-        harry.start();
-        
-        sammy.join();
-        harry.join();
-    }
+		try {
+			harry.connect( UGRES_SERVER, harryContext );
+			assertEquals(harry.isConnected(), true);
+			sammy.connect( UGRES_SERVER, sammyContext );
+			assertEquals(sammy.isConnected(), true);
+		} catch (BackendException e) {
+			System.out.println("The problem could be the router port; you must open the 5222 port on your router");
+			e.printStackTrace();
+		}
+	}
 }

@@ -130,7 +130,7 @@ public class JabberBackendTestCase extends MockObjectTestCase {
      */
     public void testChatServiceCreationFailure() {
         // Even the "bad" backend will be good for this test ok ;)
-        final JabberBackend backend = createBackendWhichConnectsOk();
+        createBackendWhichConnectsOk();
 
         // TODO 
     }
@@ -168,18 +168,10 @@ public class JabberBackendTestCase extends MockObjectTestCase {
         };
     }
 
-    private JabberBackend createBackendWhichDoesNotConnect() {
-        // TODO Implement this method
-        return null;
-    }
 
     private Roster createMockRoster() {
         Mock mock = mock( Roster.class );
         // TODO Fill a list and return it ...
         return (Roster) mock.proxy();
-    }
-    
-    private Roster createEmptyRoster() {
-        return null;
     }
 }

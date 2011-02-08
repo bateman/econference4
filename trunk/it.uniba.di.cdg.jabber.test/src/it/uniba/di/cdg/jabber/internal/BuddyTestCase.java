@@ -36,58 +36,56 @@ import org.jmock.MockObjectTestCase;
  * jUnit test for <code>Buddy</code>.
  */
 public class BuddyTestCase extends MockObjectTestCase {
-    /**
-     * Check that two buddies are referring to the same event if they have a different resource field.
-     */
-    public void testEquals() {
-        Mock mock = mock( IBuddyRoster.class );
-        IBuddyRoster roster = (IBuddyRoster) mock.proxy();
-        
-        Buddy b1 = new Buddy( roster, "tester1@jabber.org","status tester1", "Smack" );
-        Buddy b2 = new Buddy( roster, "tester1@jabber.org","status tester1", "Kopete" );
+	/**
+	 * Check that two buddies are referring to the same event if they have a different resource field.
+	 */
+	public void testEquals() {
+		Mock mock = mock( IBuddyRoster.class );
+		IBuddyRoster roster = (IBuddyRoster) mock.proxy();
 
-        assertEquals( b1, b2 );
-    }
-    
-    /**
-     * Check that we can put and retrieve buddies from collections, without caring about the resource field.
-     */
-    public void testHash() {
-        Mock mock = mock( IBuddyRoster.class );
-        IBuddyRoster roster = (IBuddyRoster) mock.proxy();
+		Buddy b1 = new Buddy( roster, "tester1@jabber.org","status tester1", "Smack" );
+		Buddy b2 = new Buddy( roster, "tester1@jabber.org","status tester1", "Kopete" );
 
-        HashMap<String, IBuddy> buddies = new HashMap<String, IBuddy>();
-        
-        Buddy b1 = new Buddy( roster, "tester1@jabber.org","status tester1", "Smack" );
-        Buddy b2 = new Buddy( roster, "tester1@jabber.org","status tester1", "Kopete" );
-        
-        buddies.put( b1.getId(), b1 );
-        buddies.put( b2.getId(), b2 );
-        
-        // Ensure that b2 replaced b1
-        assertTrue( b2 == buddies.get( "tester1@jabber.org" ) );
-        assertTrue( b1 != buddies.get( "tester1@jabber.org" ) );
-    }
+		assertEquals( b1, b2 );
+	}
 
-    /**
-     * Check that the constructor properly separates id from resource.
-     */
-    public void testConstructor() {
-        Mock mock = mock( IBuddyRoster.class );
-        IBuddyRoster roster = (IBuddyRoster) mock.proxy();
+	/**
+	 * Check that we can put and retrieve buddies from collections, without caring about the resource field.
+	 */
+	public void testHash() {
+		Mock mock = mock( IBuddyRoster.class );
+		IBuddyRoster roster = (IBuddyRoster) mock.proxy();
 
-        Buddy b1 = new Buddy( roster, "tester1@jabber.org/Smack" );
-        Buddy b2 = new Buddy( roster, "tester1@jabber.org/Kopete" );
-        Buddy b3 = new Buddy( roster, "tester1@jabber.org" );
-        
-        assertEquals( "tester1@jabber.org/Smack", b1.getId()  );
-        assertEquals( "tester1@jabber.org", b1.getCleanJid()  );
-        assertEquals( "Smack", b1.getResource() );
-        assertEquals( "tester1@jabber.org/Kopete", b2.getId()  );
-        assertEquals( "tester1@jabber.org", b2.getCleanJid()  );
-        assertEquals( "Kopete", b2.getResource() );
-        assertEquals( "tester1@jabber.org", b3.getId()  );
-        assertEquals( "tester1@jabber.org", b3.getCleanJid()  );
-        assertEquals( "", b3.getResource() );
-    }
+		HashMap<String, IBuddy> buddies = new HashMap<String, IBuddy>();
+
+		Buddy b1 = new Buddy( roster, "tester1@jabber.org","status tester1", "Smack" );
+		Buddy b2 = new Buddy( roster, "tester1@jabber.org","status tester1", "Kopete" );
+
+		buddies.put( b1.getId(), b1 );
+		buddies.put( b2.getId(), b2 );
+
+		// Ensure that b2 replaced b1
+		assertTrue( b2 == buddies.get( "tester1@jabber.org" ) );
+		assertTrue( b1 != buddies.get( "tester1@jabber.org" ) );
+	}
+
+	/**
+	 * Check that the constructor properly separates id from resource.
+	 */
+	public void testConstructor() {
+			Mock mock = mock( IBuddyRoster.class );
+			IBuddyRoster roster = (IBuddyRoster) mock.proxy();
+			Buddy b1 = new Buddy( roster, "tester1@jabber.org/Smack" );
+			Buddy b2 = new Buddy( roster, "tester1@jabber.org/Kopete" );
+			Buddy b3 = new Buddy( roster, "tester1@jabber.org" );
+			assertEquals( "tester1@jabber.org/Smack", b1.getId()  );
+			assertEquals( "tester1@jabber.org", b1.getCleanJid()  );
+			assertEquals( "Smack", b1.getResource() );
+			assertEquals( "tester1@jabber.org/Kopete", b2.getId()  );
+			assertEquals( "tester1@jabber.org", b2.getCleanJid()  );
+			assertEquals( "Kopete", b2.getResource() );
+			assertEquals( "tester1@jabber.org", b3.getId()  );
+			assertEquals( "tester1@jabber.org", b3.getCleanJid()  );
+			assertEquals( "", b3.getResource() );
+	}
 }
