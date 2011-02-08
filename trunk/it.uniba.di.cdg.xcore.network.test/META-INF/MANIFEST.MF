@@ -4,8 +4,8 @@ Bundle-Name: Test Plug-in
 Bundle-SymbolicName: it.uniba.di.cdg.xcore.network.test; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
-Bundle-Localization: plugin
 Require-Bundle: org.jmock,
  org.junit,
  it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.xcore.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Test Plug-in
 Bundle-SymbolicName: it.uniba.di.cdg.xcore.ui.test
 Bundle-Version: 1.0.0
-Bundle-Localization: plugin
 Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
 Require-Bundle: it.uniba.di.cdg.xcore.ui,
  org.eclipse.core.runtime,
  org.jmock,
  org.junit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
