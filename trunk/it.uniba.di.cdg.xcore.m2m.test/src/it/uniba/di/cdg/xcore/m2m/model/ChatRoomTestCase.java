@@ -64,11 +64,16 @@ public class ChatRoomTestCase extends MockObjectTestCase {
         		"personal role tester2", Role.PARTICIPANT );
         chatRoom.addParticipant( p1 );
         chatRoom.addParticipant( p2 );
+        assertEquals( p1, chatRoom.getParticipant( "tester1@test.net" ) );
+        assertEquals( p2, chatRoom.getParticipant( "tester2@test.net" ) );
         
         chatRoom.removeParticipant( p1 );
         
         assertTrue( chatRoom.getParticipant( "tester1@test.net" ) == null );
         assertEquals( p2, chatRoom.getParticipant( "tester2@test.net" ) );
+        chatRoom.removeParticipant( p2 );
+        
+        assertTrue( chatRoom.getParticipant( "tester2@test.net" ) == null );
     }
     
     public void testGetParticipants() {
