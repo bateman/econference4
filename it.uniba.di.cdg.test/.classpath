@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.google.services"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.collaborativeworkbench.boot"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.collaborativeworkbench.boot.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.jabber"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.jabber.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.skype"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.skype.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.econference"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.econference.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.m2m"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.m2m.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.network"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.network.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.one2one"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.one2oneinfo"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.ui.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.util.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.jivesoftware.smack"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.jmock"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
