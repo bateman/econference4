@@ -60,7 +60,7 @@ public class MementoTestCase extends TestCase {
     }
     
     public void testStoreObjects() {
-        Set set = new HashSet();
+        Set<Object> set = new HashSet<Object>();
         Object obj = new Object();
         
         memento.putObject( "set", set );
