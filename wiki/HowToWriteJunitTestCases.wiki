@@ -59,7 +59,7 @@ In this way, Junit will recognize methods that contain assertion.
 }}}
 
 ==The assertion ==
-With JUnit it’s possible to do many type of test with different assertion. At the execution moment, a test is passed if all conditions specified are true.
+With JUnit it’s possible to do many type of test with different assertion (http://junit.sourceforge.net/javadoc_40/org/junit/Assert.html). At the execution moment, a test is passed if all conditions specified are true.
 
 {{{
 assertEquals(expected, actual), assertArrayEquals(expected, actual) : requires that the value ‘expected’ is equal to ‘actual’.
