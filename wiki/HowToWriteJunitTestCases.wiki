@@ -145,6 +145,37 @@ Suppose that we have a test method that need more time to be executed: not neces
 }}}
 During the execution of all test cases, this method will be ignored.
 
+==Example of a JUnit test for a procedure ==
+When we need to test procedure, the way you create a test case is always the same.
+For example, consider a class that has a method that connects to a server:
+{{{
+public class Client{
+	
+        public void connect(String host, integer port){
+	….
+        }
+        
+        private boolean isConnected(){
+	..............
+        }
+
+} 
+
+}}}
+
+If we want to test the connection, test class will look like this:
+{{{
+
+public class ConnectionTest{
+    @Test
+    public void testConnection(){
+		Client client = new Client();
+                client.connect(“host”,5566);
+                assertEquals(client.isConnected(), true);
+	}
+}
+
+}}}
 
 = Sintax for test cases to use in econference4 =
 In Econference4 project, to write a test case you must respect the classic syntax that we have reported in previous paragraph.
