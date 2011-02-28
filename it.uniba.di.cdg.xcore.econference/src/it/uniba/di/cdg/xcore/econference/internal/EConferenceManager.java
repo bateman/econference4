@@ -54,268 +54,371 @@ import it.uniba.di.cdg.xcore.network.messages.SystemMessage;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
 
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.WorkbenchException;
 
 /**
- * E-Conference controller. 
+ * E-Conference controller.
  */
-public class EConferenceManager extends MultiChatManager implements IEConferenceManager {
+public class EConferenceManager extends MultiChatManager implements
+		IEConferenceManager {
 
-	
-	public String FREE_TALK_NOW_MESSAGE = "Free talk now ..."; 
-	
-    protected String conferenceStartedMessage = "The conference has been STARTED";
-    
-    public String conferenceStoppedMessage = "The conference has been STOPPED";
-	
-    /**
-     * The agenda view give the moderator the ability to start / stop the conference. This 
-     * is <code>null</code> if the current local user's role is not "moderator".
-     */
-    protected IAgendaView agendaView;
+	public String FREE_TALK_NOW_MESSAGE = "Free talk now ...";
 
-    /**
-     * The whiteboard gives 
-     */
-    protected IWhiteBoard whiteBoardView;
-    
-    /**
-     * Hand raising view.
-     */
-    protected IHandRaisingView handRaisingView;
+	protected String conferenceStartedMessage = "The conference has been STARTED";
 
-    // We just put the talk view read-only when the conference is stopped, and reenable it 
-    // when it is started.
-    protected ConferenceModelListenerAdapter conferenceModelListener = new ConferenceModelListenerAdapter() {
-        @Override
-        public void statusChanged() {
-            final IConferenceModel model = getService().getModel();
-            boolean conferenceStopped = ConferenceStatus.STOPPED.equals( model.getStatus() );
+	public String conferenceStoppedMessage = "The conference has been STOPPED";
 
-            String threadId = ITalkModel.FREE_TALK_THREAD_ID; 
-            if (conferenceStopped) {
-                getTalkView().appendMessage( new SystemMessage( conferenceStoppedMessage ));
-                getTalkView().setTitleText( FREE_TALK_NOW_MESSAGE );
-            } else {
-                getTalkView().appendMessage( new SystemMessage( conferenceStartedMessage));
-                
-                int currItem = getService().getModel().getItemList().getCurrentItemIndex();
-                // This case tipically occurs when the conference is started for the first time: no
-                // item is still selected so we remain on the previous "free talk" thread ...
-                if (currItem == IItemList.NO_ITEM_SELECTED)
-                    return;
-                threadId = Integer.toString( currItem );
-            }    
-            // Notify to remote clients if we are moderators ...
-            if (Role.MODERATOR.equals( getService().getModel().getLocalUser().getRole() ))
-                notifyCurrentAgendaItemChanged( threadId );
-//            getTalkView().setReadOnly( conferenceStopped );
-        }
-    };
-    
-    /**
-     * Keep the subject in sync with the agenda selections made by moderators.
-     */
-    protected IItemListListener itemListListener = new ItemListListenerAdapter() {
-        @Override
-        public void currentSelectionChanged( int currItemIndex ) {
-            // Commented out upon request from fc on 20.01.2006.
-            // The change of the subject is performed in the econferenceservice ...
-//            if (currItemIndex > -1 ) {
-//                String newSubject = getService().getModel().getItemList().getItem( currItemIndex ).getText();
-//                getService().getModel().setSubject( newSubject, "" );
-//            }
-        }
-    };
-    
-    /**
-     * Construct a new conference manager.
-     */
-    public EConferenceManager() {
-        super();
-    }
-    
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConference#setStatus(it.uniba.di.cdg.xcore.econference.IEConferenceService.ConferenceStatus)
-     */
-    public void setStatus( ConferenceStatus status ) {
-    	if (status.equals(ConferenceStatus.STOPPED))
-    		whiteBoardView.setReadOnly(true);
-    	else
-    		whiteBoardView.setReadOnly(false);
-    	
-        getService().notifyStatusChange( status );
-    }
+	/**
+	 * The agenda view give the moderator the ability to start / stop the
+	 * conference. This is <code>null</code> if the current local user's role is
+	 * not "moderator".
+	 */
+	protected IAgendaView agendaView;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConference#getStatus()
-     */
-    public ConferenceStatus getStatus() {
-        return getService().getModel().getStatus();
-    }
+	/**
+	 * The whiteboard gives
+	 */
+	protected IWhiteBoard whiteBoardView;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.MultiChat#setupUI()
-     */
-    @Override
-    protected void setupUI() throws WorkbenchException {
-        super.setupUI();
-        
-        IViewPart viewPart;
-        // The agenda is visible to moderators only
-        // XXX This should be made dynamic to copy with runtime role changes. A model 
-        // listener for this local user should perform ok.
-        viewPart = getWorkbenchWindow().getActivePage().showView( AgendaView.ID );
-        agendaView = (IAgendaView) viewPart;
-        agendaView.setManager( this );
-        agendaView.setReadOnly( !Role.MODERATOR.equals( getRole() ) );
+	/**
+	 * Hand raising view.
+	 */
+	protected IHandRaisingView handRaisingView;
 
-        viewPart = getWorkbenchWindow().getActivePage().showView( WhiteBoardView.ID );
-        whiteBoardView = (IWhiteBoard) viewPart;
-        whiteBoardView.setManager( this );
-        // By default the whiteboard cannot be modified: when the user is given the SCRIBE 
-        // special role than it will be set read-write
-        whiteBoardView.setReadOnly( true );
-        
-        // Hand raising panel is for all: context menu actions will be disabled using the 
-        // actions' enablements provided by the plugin.xml and the adapter factory
-        viewPart = getWorkbenchWindow().getActivePage().showView( HandRaisingView.ID );
-        handRaisingView = (IHandRaisingView) viewPart;
-        handRaisingView.setManager( this );
-        //handRaisingView.setReadOnly( true );
-        
-        // By default user can chat freely before the conference is started
-        getTalkView().setReadOnly( false );
-        // Display that there is free talk ongoing
-        getTalkView().setTitleText( FREE_TALK_NOW_MESSAGE );
-        
-        // Ensure that the focus is switched to this new chat
-        ((IViewPart) getTalkView()).setFocus();
-    }
+	// We just put the talk view read-only when the conference is stopped, and
+	// reenable it
+	// when it is started.
+	protected ConferenceModelListenerAdapter conferenceModelListener = new ConferenceModelListenerAdapter() {
+		@Override
+		public void statusChanged() {
+			final IConferenceModel model = getService().getModel();
+			boolean conferenceStopped = ConferenceStatus.STOPPED.equals(model
+					.getStatus());
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.MultiChat#setupChatService()
-     */
-    @Override
-    protected IEConferenceService setupChatService() throws BackendException {
-        IBackend backend = getBackendHelper().getRegistry().getBackend( getContext().getBackendId() );
-        
-        return new EConferenceService(getContext(), backend);
-        /*return (IEConferenceService) backend.createService( 
-                IEConferenceService.ECONFERENCE_SERVICE, 
-                getContext() );*/
-    }
+			String threadId = ITalkModel.FREE_TALK_THREAD_ID;
+			if (conferenceStopped) {
+				getTalkView().appendMessage(
+						new SystemMessage(conferenceStoppedMessage));
+				getTalkView().setTitleText(FREE_TALK_NOW_MESSAGE);
+			} else {
+				getTalkView().appendMessage(
+						new SystemMessage(conferenceStartedMessage));
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.MultiChat#setupListeners()
-     */
-    @Override
-    protected void setupListeners() {
-        super.setupListeners();
-           
-        final IConferenceModel model = (IConferenceModel) getService().getModel();
-        model.addListener( conferenceModelListener);
-        
-        model.getItemList().addListener( itemListListener );
-                
-        // The multichat has already registered a listener for participant status changes: so
-        // we simply register a listener and notify the item list to users that joins: 
-        model.addListener( new ChatRoomModelAdapter() {
-            @Override
-            public void added( IParticipant participant ) {
-                // XXX Sigh!, we notify to _all_ since current XMPP server doesn't work 
-                // (returns error "400") with messages to single participants :S            	
-                getService().notifyItemListToRemote();                
-            }
-        });
-    }
+				int currItem = getService().getModel().getItemList()
+						.getCurrentItemIndex();
+				// This case tipically occurs when the conference is started for
+				// the first time: no
+				// item is still selected so we remain on the previous
+				// "free talk" thread ...
+				if (currItem == IItemList.NO_ITEM_SELECTED)
+					return;
+				threadId = Integer.toString(currItem);
+			}
+			// Notify to remote clients if we are moderators ...
+			if (Role.MODERATOR.equals(getService().getModel().getLocalUser()
+					.getRole()))
+				notifyCurrentAgendaItemChanged(threadId);
+			// getTalkView().setReadOnly( conferenceStopped );
+		}
+	};
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getService()
-     */
-    public IEConferenceService getService() {
-        return (IEConferenceService) super.getService();
-    }
+	/**
+	 * Keep the subject in sync with the agenda selections made by moderators.
+	 */
+	protected IItemListListener itemListListener = new ItemListListenerAdapter() {
+		@Override
+		public void currentSelectionChanged(int currItemIndex) {
+			// Commented out upon request from fc on 20.01.2006.
+			// The change of the subject is performed in the econferenceservice
+			// ...
+			// if (currItemIndex > -1 ) {
+			// String newSubject =
+			// getService().getModel().getItemList().getItem( currItemIndex
+			// ).getText();
+			// getService().getModel().setSubject( newSubject, "" );
+			// }
+		}
+	};
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.MultiChat#getContext()
-     */
-    @Override
-    protected EConferenceContext getContext() {
-        return (EConferenceContext) super.getContext();
-    }
+	/**
+	 * Construct a new conference manager.
+	 */
+	public EConferenceManager() {
+		super();
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.MultiChatManager#inviteNewParticipant(java.lang.String)
-     */
-    @Override
-    public void inviteNewParticipant( String participantId) {
-        getService().invite( participantId, IEConferenceHelper.ECONFERENCE_REASON );
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConference#setStatus(it.uniba.di.
+	 * cdg.xcore.econference.IEConferenceService.ConferenceStatus)
+	 */
+	public void setStatus(ConferenceStatus status) {
+		if (status.equals(ConferenceStatus.STOPPED))
+			whiteBoardView.setReadOnly(true);
+		else
+			whiteBoardView.setReadOnly(false);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyWhiteBoardChanged(java.lang.String)
-     */
-    public void notifyWhiteBoardChanged( String text ) {
-    	if(null != text)
-    		getService().notifyWhiteBoardChanged( text );
-    }
+		getService().notifyStatusChange(status);
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifySpecialRoleChanged(it.uniba.di.cdg.xcore.m2m.model.IParticipant, java.lang.String)
-     */
-    @Privileged( atleast = Role.MODERATOR )
-    public void notifySpecialPrivilegeChanged( IParticipant p, String newPrivilege, String action ) {
-        getService().notifyChangedSpecialPrivilege( p, newPrivilege, action );
-    }
-    
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifySpecialRoleChanged(it.uniba.di.cdg.xcore.m2m.model.IParticipant, java.lang.String)
-     */
-    public void notifyChangedMUCPersonalPrivilege( IParticipant participant, String personalStatus ){
-    	  getService().notifyChangedMUCPersonalPrivilege(participant, personalStatus);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.econference.IEConference#getStatus()
+	 */
+	public ConferenceStatus getStatus() {
+		return getService().getModel().getStatus();
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyRaiseHand(it.uniba.di.cdg.xcore.m2m.model.IParticipant, java.lang.String)
-     */
-    public void notifyRaiseHand( IParticipant moderator, String question ) {
-        getService().notifyRaiseHand( question, moderator.getId() );
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.MultiChat#setupUI()
+	 */
+	@Override
+	protected void setupUI() throws WorkbenchException {
+		super.setupUI();
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyQuestionUpdate(it.uniba.di.cdg.xcore.econference.model.hr.IQuestion)
-     */
-    public void notifyQuestionUpdate( IQuestion q ) {
-        final IParticipant p = getService().getModel().getParticipant( q.getWho() );
-        if (p == null) {
-            System.err.println( "Arghhh!!! Notifying question update for unknown participant " + q.getWho() );
-            return;
-        }
-        
-        System.out.println( String.format( "Notify update for question %d from %s (%s)", q.getId(), q.getWho(), q.getStatus() ) );
-        if (QuestionStatus.APPROVED.equals( q.getStatus() )) {
-            getService().grantVoice( p.getNickName() );
-        } else if (QuestionStatus.REJECTED.equals( q.getStatus() )) {
-            // Leave his status invariated for now ...
-//            getService().revokeVoice( p.getNickName() );
-        }  
-        getService().notifyQuestionUpdate( q );
-    }
+		IViewPart viewPart;
+		viewPart = setupUIAgendaView();
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyCurrentAgendaItemChanged(java.lang.String)
-     */
-    @Privileged( atleast = Role.MODERATOR )
-    public void notifyCurrentAgendaItemChanged( String itemId ) {
-        getService().notifyCurrentAgendaItemChanged( itemId );
-    }
+		viewPart = setupUIWhiteBoard();
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyItemListToRemote()
-     */
-    @Privileged( atleast = Role.MODERATOR )
-    public void notifyItemListToRemote() {
-        getService().notifyItemListToRemote();
-    }
+		viewPart = setupUIHandRaise();
+
+		setupUIInitializaTalkView();
+
+	}
+
+	protected void setupUIInitializaTalkView() {
+		// By default user can chat freely before the conference is started
+		getTalkView().setReadOnly(false);
+		// Display that there is free talk ongoing
+		getTalkView().setTitleText(FREE_TALK_NOW_MESSAGE);
+
+		// Ensure that the focus is switched to this new chat
+		((IViewPart) getTalkView()).setFocus();
+
+	}
+
+	protected IViewPart setupUIHandRaise() throws WorkbenchException {
+		// Hand raising panel is for all: context menu actions will be disabled
+		// using the
+		// actions' enablements provided by the plugin.xml and the adapter
+		// factory
+		IViewPart viewPart = getWorkbenchWindow().getActivePage().showView(
+				HandRaisingView.ID);
+		handRaisingView = (IHandRaisingView) viewPart;
+		handRaisingView.setManager(this);
+		// handRaisingView.setReadOnly( true );
+		return viewPart;
+	}
+
+	protected IViewPart setupUIWhiteBoard() throws WorkbenchException {
+		IViewPart viewPart = getWorkbenchWindow().getActivePage().showView(
+				WhiteBoardView.ID);
+		whiteBoardView = (IWhiteBoard) viewPart;
+		whiteBoardView.setManager(this);
+		// By default the whiteboard cannot be modified: when the user is given
+		// the SCRIBE
+		// special role than it will be set read-write
+		whiteBoardView.setReadOnly(true);
+		return viewPart;
+	}
+
+	protected IViewPart setupUIAgendaView() throws WorkbenchException {
+		// The agenda is visible to moderators only
+		// XXX This should be made dynamic to copy with runtime role changes. A
+		// model
+		// listener for this local user should perform ok.
+		IViewPart viewPart = getWorkbenchWindow().getActivePage().showView(
+				AgendaView.ID);
+		agendaView = (IAgendaView) viewPart;
+		agendaView.setManager(this);
+		agendaView.setReadOnly(!Role.MODERATOR.equals(getRole()));
+		return viewPart;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.MultiChat#setupChatService()
+	 */
+	@Override
+	protected IEConferenceService setupChatService() throws BackendException {
+		IBackend backend = getBackendHelper().getRegistry().getBackend(
+				getContext().getBackendId());
+
+		return new EConferenceService(getContext(), backend);
+		/*
+		 * return (IEConferenceService) backend.createService(
+		 * IEConferenceService.ECONFERENCE_SERVICE, getContext() );
+		 */
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.MultiChat#setupListeners()
+	 */
+	@Override
+	protected void setupListeners() {
+		super.setupListeners();
+
+		final IConferenceModel model = (IConferenceModel) getService()
+				.getModel();
+		model.addListener(conferenceModelListener);
+
+		model.getItemList().addListener(itemListListener);
+
+		// The multichat has already registered a listener for participant
+		// status changes: so
+		// we simply register a listener and notify the item list to users that
+		// joins:
+		model.addListener(new ChatRoomModelAdapter() {
+			@Override
+			public void added(IParticipant participant) {
+				// XXX Sigh!, we notify to _all_ since current XMPP server
+				// doesn't work
+				// (returns error "400") with messages to single participants :S
+				getService().notifyItemListToRemote();
+			}
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getService()
+	 */
+	public IEConferenceService getService() {
+		return (IEConferenceService) super.getService();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.MultiChat#getContext()
+	 */
+	@Override
+	protected EConferenceContext getContext() {
+		return (EConferenceContext) super.getContext();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.MultiChatManager#inviteNewParticipant(java.
+	 * lang.String)
+	 */
+	@Override
+	public void inviteNewParticipant(String participantId) {
+		getService().invite(participantId,
+				IEConferenceHelper.ECONFERENCE_REASON);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyWhiteBoardChanged
+	 * (java.lang.String)
+	 */
+	public void notifyWhiteBoardChanged(String text) {
+		if (null != text)
+			getService().notifyWhiteBoardChanged(text);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#
+	 * notifySpecialRoleChanged(it.uniba.di.cdg.xcore.m2m.model.IParticipant,
+	 * java.lang.String)
+	 */
+	@Privileged(atleast = Role.MODERATOR)
+	public void notifySpecialPrivilegeChanged(IParticipant p,
+			String newPrivilege, String action) {
+		getService().notifyChangedSpecialPrivilege(p, newPrivilege, action);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#
+	 * notifySpecialRoleChanged(it.uniba.di.cdg.xcore.m2m.model.IParticipant,
+	 * java.lang.String)
+	 */
+	public void notifyChangedMUCPersonalPrivilege(IParticipant participant,
+			String personalStatus) {
+		getService().notifyChangedMUCPersonalPrivilege(participant,
+				personalStatus);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyRaiseHand
+	 * (it.uniba.di.cdg.xcore.m2m.model.IParticipant, java.lang.String)
+	 */
+	public void notifyRaiseHand(IParticipant moderator, String question) {
+		getService().notifyRaiseHand(question, moderator.getId());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyQuestionUpdate
+	 * (it.uniba.di.cdg.xcore.econference.model.hr.IQuestion)
+	 */
+	public void notifyQuestionUpdate(IQuestion q) {
+		final IParticipant p = getService().getModel().getParticipant(
+				q.getWho());
+		if (p == null) {
+			System.err
+					.println("Arghhh!!! Notifying question update for unknown participant "
+							+ q.getWho());
+			return;
+		}
+
+		System.out.println(String.format(
+				"Notify update for question %d from %s (%s)", q.getId(),
+				q.getWho(), q.getStatus()));
+		if (QuestionStatus.APPROVED.equals(q.getStatus())) {
+			getService().grantVoice(p.getNickName());
+		} else if (QuestionStatus.REJECTED.equals(q.getStatus())) {
+			// Leave his status invariated for now ...
+			// getService().revokeVoice( p.getNickName() );
+		}
+		getService().notifyQuestionUpdate(q);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.econference.IEConferenceManager#
+	 * notifyCurrentAgendaItemChanged(java.lang.String)
+	 */
+	@Privileged(atleast = Role.MODERATOR)
+	public void notifyCurrentAgendaItemChanged(String itemId) {
+		getService().notifyCurrentAgendaItemChanged(itemId);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceManager#notifyItemListToRemote
+	 * ()
+	 */
+	@Privileged(atleast = Role.MODERATOR)
+	public void notifyItemListToRemote() {
+		getService().notifyItemListToRemote();
+	}
 }
