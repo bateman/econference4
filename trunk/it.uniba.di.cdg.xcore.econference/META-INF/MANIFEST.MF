@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Export-Package: it.uniba.di.cdg.xcore.aspects,
  it.uniba.di.cdg.xcore.econference,
- it.uniba.di.cdg.xcore.econference.internal;x-friends:="it.uniba.di.cdg.econference.planningpoker",
+ it.uniba.di.cdg.xcore.econference.internal;x-friends:="it.uniba.di.cdg.econference.planningpoker,org.apertium.api.translate",
  it.uniba.di.cdg.xcore.econference.model,
  it.uniba.di.cdg.xcore.econference.model.definition,
  it.uniba.di.cdg.xcore.econference.model.hr,
