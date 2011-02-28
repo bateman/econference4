@@ -68,414 +68,525 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.WorkbenchException;
 
 /**
- * The multichat controller. 
+ * The multichat controller.
  * <p>
- * Note that this controller is pretty static: we do not support more than one multichat at
- * one time so we just listen at perspective events. In a future redesign this and the according
- * views will be switched and sync'ed dynamically using part-listeners. 
+ * Note that this controller is pretty static: we do not support more than one
+ * multichat at one time so we just listen at perspective events. In a future
+ * redesign this and the according views will be switched and sync'ed
+ * dynamically using part-listeners.
  */
 public class MultiChatManager implements IMultiChatManager {
-    /**
-     * Provide access to the useful functionalities for manipulating / accessing backends.
-     */
-    private INetworkBackendHelper backendHelper;
+	/**
+	 * Provide access to the useful functionalities for manipulating / accessing
+	 * backends.
+	 */
+	private INetworkBackendHelper backendHelper;
 
-    /**
-     * The workbench window this manager is working into.
-     */
-    protected IWorkbenchWindow workbenchWindow;
-    
-    /**
-     * Provides access to the UI interaction, without bothering about the implementation.
-     */
-    protected IUIHelper uihelper;
+	/**
+	 * The workbench window this manager is working into.
+	 */
+	protected IWorkbenchWindow workbenchWindow;
 
-    /**
-     * The view containing the ongoing talks.
-     */
-    protected IMultiChatTalkView talkView;
-    
-    /**
-     * The view containing the room's participants.
-     */
-    protected IChatRoomView roomView;
-    
-    /**
-     * The network service give us access to the remote clients.
-     */
-    protected IMultiChatService service;
-    
-    /**
-     * Listeners for multichat events.
-     */
-    protected List<IMultiChatListener> chatlisteners;
+	/**
+	 * Provides access to the UI interaction, without bothering about the
+	 * implementation.
+	 */
+	protected IUIHelper uihelper;
 
-    /**
-     * The context for this multichat. This is set by <code>open()</code>.
-     */
-    protected MultiChatContext context;
+	/**
+	 * The view containing the ongoing talks.
+	 */
+	protected IMultiChatTalkView talkView;
 
-    protected IPerspectiveListener3 perspectiveListener = new IPerspectiveListener3() {
+	/**
+	 * The view containing the room's participants.
+	 */
+	protected IChatRoomView roomView;
 
-        public void perspectiveOpened( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {
-            System.out.println( String.format( "perspectiveOpened( %s )", perspective.getId() ) );
-        }
+	/**
+	 * The network service give us access to the remote clients.
+	 */
+	protected IMultiChatService service;
 
-        public void perspectiveClosed( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {           
-            // The user has requested the perspective to be closed ... so let's clean-up all
-            if (page == getWorkbenchWindow().getActivePage() && MultiChatPerspective.ID.equals( perspective.getId() )) {            	
-                // Ask the user to save views even when the perspective is closed (by default the
-                // eclipse framework asks only when closing the whole app, see BR #43).
-                
-            	//page.saveAllEditors( true );
-                
-                // close perspective means leave the room
-                //service.leave(); It's called in close()
-                close();
-                System.out.println( String.format( "perspectiveClosed( %s )", perspective.getId() ) );
-            }
-        }
+	/**
+	 * Listeners for multichat events.
+	 */
+	protected List<IMultiChatListener> chatlisteners;
 
-        public void perspectiveDeactivated( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {
-//            System.out.println( String.format( "perspectiveDeactivated( %s )", perspective.getId() ) );
-        }
+	/**
+	 * The context for this multichat. This is set by <code>open()</code>.
+	 */
+	protected MultiChatContext context;
 
-        public void perspectiveSavedAs( IWorkbenchPage page, IPerspectiveDescriptor oldPerspective, IPerspectiveDescriptor newPerspective ) {
-//            System.out.println( String.format( "perspectiveSaveAs()") );
-        }
+	protected IPerspectiveListener3 perspectiveListener = new IPerspectiveListener3() {
 
-        public void perspectiveChanged( IWorkbenchPage page, IPerspectiveDescriptor perspective, IWorkbenchPartReference partRef, String changeId ) {
-//            System.out.println( String.format( "perspectiveChanged( %s )", perspective.getId() ) );
-        }
+		public void perspectiveOpened(IWorkbenchPage page,
+				IPerspectiveDescriptor perspective) {
+			System.out.println(String.format("perspectiveOpened( %s )",
+					perspective.getId()));
+		}
 
-        public void perspectiveActivated( IWorkbenchPage page, IPerspectiveDescriptor perspective ) {
-//            System.out.println( String.format( "perspectiveActivated( %s )", perspective.getId() ) );
-        }
+		public void perspectiveClosed(IWorkbenchPage page,
+				IPerspectiveDescriptor perspective) {
+			// The user has requested the perspective to be closed ... so let's
+			// clean-up all
+			if (page == getWorkbenchWindow().getActivePage()
+					&& MultiChatPerspective.ID.equals(perspective.getId())) {
+				// Ask the user to save views even when the perspective is
+				// closed (by default the
+				// eclipse framework asks only when closing the whole app, see
+				// BR #43).
 
-        public void perspectiveChanged( IWorkbenchPage page, IPerspectiveDescriptor perspective, String changeId ) {
-//            System.out.println( String.format( "perspectiveChanged( %s )", perspective.getId() ) );
-        }
-    };
+				// page.saveAllEditors( true );
 
-    /**
+				// close perspective means leave the room
+				// service.leave(); It's called in close()
+				close();
+				System.out.println(String.format("perspectiveClosed( %s )",
+						perspective.getId()));
+			}
+		}
+
+		public void perspectiveDeactivated(IWorkbenchPage page,
+				IPerspectiveDescriptor perspective) {
+			// System.out.println( String.format(
+			// "perspectiveDeactivated( %s )", perspective.getId() ) );
+		}
+
+		public void perspectiveSavedAs(IWorkbenchPage page,
+				IPerspectiveDescriptor oldPerspective,
+				IPerspectiveDescriptor newPerspective) {
+			// System.out.println( String.format( "perspectiveSaveAs()") );
+		}
+
+		public void perspectiveChanged(IWorkbenchPage page,
+				IPerspectiveDescriptor perspective,
+				IWorkbenchPartReference partRef, String changeId) {
+			// System.out.println( String.format( "perspectiveChanged( %s )",
+			// perspective.getId() ) );
+		}
+
+		public void perspectiveActivated(IWorkbenchPage page,
+				IPerspectiveDescriptor perspective) {
+			// System.out.println( String.format( "perspectiveActivated( %s )",
+			// perspective.getId() ) );
+		}
+
+		public void perspectiveChanged(IWorkbenchPage page,
+				IPerspectiveDescriptor perspective, String changeId) {
+			// System.out.println( String.format( "perspectiveChanged( %s )",
+			// perspective.getId() ) );
+		}
+	};
+
+	/**
      * 
      */
-    protected IManagerEventListener managerEventListener = new IManagerEventListener() {
-        public void onManagerEvent( IManagerEvent event ) {
-            if (event instanceof ViewReadOnlyEvent) {
-                final ViewReadOnlyEvent ee = (ViewReadOnlyEvent) event;
-                
-                final IViewPart viewPart = getWorkbenchWindow().getActivePage().findView( ee.getViewId() );
-                if (viewPart instanceof IActivatableView) {
-                    ((IActivatableView) viewPart).setReadOnly( ee.isReadOnly() );
-                    ((IActivatableView) viewPart).refresh();
-                }
-            }
-        }
-    };
-    
-    /**
-     * Close the perspective when disconnected.
-     */
-    protected IBackendEventListener backendListener = new IBackendEventListener() {
-        public void onBackendEvent( IBackendEvent event ) {
-            if (event instanceof BackendStatusChangeEvent) {
-                BackendStatusChangeEvent changeEvent = (BackendStatusChangeEvent) event;
-                if (!changeEvent.isOnline())
-                    UiPlugin.getUIHelper().closePerspective( MultiChatPerspective.ID );
-            }
-        }
-    };
-    
-    /**
-     * Create a new multichat.
-     */
-    public MultiChatManager( ) {
-        super();
-        this.chatlisteners = new ArrayList<IMultiChatListener>();
-    }
+	protected IManagerEventListener managerEventListener = new IManagerEventListener() {
+		public void onManagerEvent(IManagerEvent event) {
+			if (event instanceof ViewReadOnlyEvent) {
+				final ViewReadOnlyEvent ee = (ViewReadOnlyEvent) event;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#open(it.uniba.di.cdg.xcore.m2m.service.IMultiChatService.MultiChatContext)
-     */
-    public void open( MultiChatContext context, boolean autojoin ) throws Exception {
-        this.context = context;
-        service = setupChatService();
-        
-        try {
-            service.join();
-            if (autojoin) {
-                setupUI();
+				final IViewPart viewPart = getWorkbenchWindow().getActivePage()
+						.findView(ee.getViewId());
+				if (viewPart instanceof IActivatableView) {
+					((IActivatableView) viewPart).setReadOnly(ee.isReadOnly());
+					((IActivatableView) viewPart).refresh();
+				}
+			}
+		}
+	};
 
-                setupListeners();
+	/**
+	 * Close the perspective when disconnected.
+	 */
+	protected IBackendEventListener backendListener = new IBackendEventListener() {
+		public void onBackendEvent(IBackendEvent event) {
+			if (event instanceof BackendStatusChangeEvent) {
+				BackendStatusChangeEvent changeEvent = (BackendStatusChangeEvent) event;
+				if (!changeEvent.isOnline())
+					UiPlugin.getUIHelper().closePerspective(
+							MultiChatPerspective.ID);
+			}
+		}
+	};
 
-                // Notify chat listeners that the chat is
-                for (IMultiChatListener l : chatlisteners)
-                    l.open();
-            }
-        }
-        catch (JoinException ex) {
-        	service.leave();
-        	uihelper.showErrorMessage(ex.getMessage());
-        }
-    }
+	/**
+	 * Create a new multichat.
+	 */
+	public MultiChatManager() {
+		super();
+		this.chatlisteners = new ArrayList<IMultiChatListener>();
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#close()
-     */
-    public void close() {
-        // Notify chat listeners that the chat is open
-        for (IMultiChatListener l : chatlisteners) 
-            l.closed();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#open(it.uniba.di.cdg.xcore.m2m.service
+	 * .IMultiChatService.MultiChatContext)
+	 */
+	public void open(MultiChatContext context, boolean autojoin)
+			throws Exception {
+		this.context = context;
+		service = setupChatService();
 
-        service.leave(); 
-        service = null;
+		try {
+			service.join();
+			if (autojoin) {
+				setupUI();
 
-        chatlisteners.clear();
-        chatlisteners = null;
+				setupListeners();
 
-        workbenchWindow.removePerspectiveListener( perspectiveListener );
-        getBackendHelper().registerBackendListener( backendListener );
-    }
-    
-    /**
-     * Setup the UI
-     * 
-     * @throws WorkbenchException
-     */
-    protected void setupUI() throws WorkbenchException {
-        // Switch to the multichat perspective too ...
-        getUihelper().switchPerspective( MultiChatPerspective.ID );
+				// Notify chat listeners that the chat is
+				for (IMultiChatListener l : chatlisteners)
+					l.open();
+			}
+		} catch (JoinException ex) {
+			service.leave();
+			uihelper.showErrorMessage(ex.getMessage());
+		}
+	}
 
-        // Create the view part for this user (we can have one for each user we are chatting with
-        // and the secondary id is what we give to the framework to distinguish about them).  
-        final IViewPart talkViewPart = workbenchWindow.getActivePage().showView( MultiChatTalkView.ID );
-        //final IViewPart chatRoomViewPart = workbenchWindow.getActivePage().showView( ChatRoomView.ID, secondaryId, IWorkbenchPage.VIEW_ACTIVATE );
-        final IViewPart chatRoomViewPart = (IViewPart) workbenchWindow.getActivePage().findView( ChatRoomView.ID );
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#close()
+	 */
+	public void close() {
+		// Notify chat listeners that the chat is open
+		for (IMultiChatListener l : chatlisteners)
+			l.closed();
 
-        // Setup the talk view: it must be able to display incoming messages (both local and from network service)
-        // and from 
-        talkView = (IMultiChatTalkView) talkViewPart;
-        talkView.setTitleText( context.getRoom() );
-        talkView.setModel( getService().getTalkModel() );
-        
-        roomView = (IChatRoomView) chatRoomViewPart;
-        roomView.setManager( this );
+		service.leave();
+		service = null;
 
-        // Ensure that the focus is switched to this new chat
-        talkViewPart.setFocus();
-    }
-   
-    /**
-     * Register all needed listeners.  
-     */
-    protected void setupListeners() {
-        workbenchWindow.addPerspectiveListener( perspectiveListener );
+		chatlisteners.clear();
+		chatlisteners = null;
 
-        // Send messages typed by the user to the remote peers
-        talkView.addListener( new ISendMessagelListener() {
-            public void notifySendMessage( String message ) {
-                service.sendMessage( message );
-            }
-        });
-        // ... and receives them too!
-        service.addMessageReceivedListener( talkView );
-        
-        // Typing notification to remote client ...
-        talkView.addTypingListener( service );
-        service.addTypingEventListener( talkView );
-        
-        service.addUserStatusListener( new UserStatusAdapter() {
-            /* (non-Javadoc)
-             * @see it.uniba.di.cdg.xcore.m2m.service.UserStatusAdapter#voiceGranted()
-             */
-            @Override
-            public void voiceGranted() {
-                talkView.appendMessage( "*** > Moderator has allowed you back in conversation!" );
-                talkView.setReadOnly( false );
-            }
+		workbenchWindow.removePerspectiveListener(perspectiveListener);
+		getBackendHelper().registerBackendListener(backendListener);
+	}
 
-            /* (non-Javadoc)
-             * @see it.uniba.di.cdg.xcore.m2m.service.UserStatusAdapter#voiceRevoked()
-             */
-            @Override
-            public void voiceRevoked() {
-                talkView.appendMessage( "*** > Moderator has stopped you from contributing to conversation!" );
-                talkView.setReadOnly( true );
-            }
-        });
-        
-        service.addInvitationRejectedListener( new IInvitationRejectedListener() {
-            public void declined( String invitee, String reason ) {
-                uihelper.showMessage( 
-                        String.format( "User %s rejected invitation with motivation\n \"%s\"",
-                                invitee, reason ) );
-            }
-        });
-        
-        // Make the view to react to model events
-        talkView.setManager( this );
-        
-        getService().addManagerEventListener( managerEventListener );
-        
-        getBackendHelper().registerBackendListener( backendListener );
-    }
-    
-    /**
-     * Create the chat service and registers the 
-     * @throws BackendException
-     */
-    protected IMultiChatService setupChatService( ) throws BackendException {
-        IBackend backend = backendHelper.getRegistry().getDefaultBackend();
-        return new MultiChatService(context, backend);
-    }
+	/**
+	 * Setup the UI
+	 * 
+	 * @throws WorkbenchException
+	 */
+	protected void setupUI() throws WorkbenchException {
+		// Switch to the multichat perspective too ...
+		setupUISwithPerspective();
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#toggleFreezeUnfreeze(it.uniba.di.cdg.xcore.m2m.model.IParticipant[])
-     */
-    @Privileged( atleast = Role.MODERATOR )
-    public void toggleFreezeUnfreeze( List<IParticipant> participants ) {
-        final List<String> frozen = new ArrayList<String>();
-        final List<String> unfrozen = new ArrayList<String>();
-  
-        // Discriminate among who must be frozen and who must be unfrozen: do not touch 
-        // the model: we rely on server for notification about participant's status change
-        for (IParticipant p : participants) {
-            if (Status.NOT_JOINED.equals( p.getStatus() ))
-                continue;
-            if (Status.FROZEN.equals( p.getStatus() ))
-                unfrozen.add( p.getNickName() );
-            else if (Status.JOINED.equals( p.getStatus() ))
-                frozen.add( p.getNickName() );
-        }
-        
-        if (!frozen.isEmpty())
-            service.revokeVoice( frozen );
-        if (!unfrozen.isEmpty())
-            service.grantVoice( unfrozen );
-    }   
+		IViewPart talkViewPart = setupUITalkView();
+		talkView = (IMultiChatTalkView) talkViewPart;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#sendPrivateMessage(it.uniba.di.cdg.xcore.m2m.model.IParticipant[], java.lang.String)
-     */
-    @Privileged( atleast = Role.PARTICIPANT )
-    public void sendPrivateMessage( List<IParticipant> participants, String text ) {
-        for (IParticipant p : participants) 
-            service.sendPrivateMessage( p, text );
-    }
+		roomView = (IChatRoomView) setupUIRoomView();
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#changeSubject(java.lang.String)
-     */
-    @Privileged( atleast = Role.MODERATOR )
-    public void changeSubject( String subject ) {
-        // The server will notify us back about the changed subject so there is no need to set it 
-        service.changeSubject( subject );
-    }
+		// Ensure that the focus is switched to this new chat
+		talkViewPart.setFocus();
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#inviteNewParticipant(java.lang.String, java.lang.String)
-     */
-    @Privileged( atleast = Role.MODERATOR )
-    public void inviteNewParticipant( String participantId ) {
-        service.invite( participantId, IMultiChatHelper.MULTICHAT_REASON );
-    }
-    
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getView()
-     */
-    public IChatRoomView getChatRoomView() {
-        return roomView;
-    }
+	protected IViewPart setupUIRoomView() {
+		final IViewPart chatRoomViewPart = (IViewPart) workbenchWindow
+				.getActivePage().findView(ChatRoomView.ID);
+		IChatRoomView currentRoomView = (IChatRoomView) chatRoomViewPart;
+		currentRoomView.setManager(this);
+		return chatRoomViewPart;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getTalkView()
-     */
-    public ITalkView getTalkView() {
-        return talkView;
-    }
+	protected IViewPart setupUITalkView() throws WorkbenchException {
+		// Create the view part for this user (we can have one for each user we
+		// are chatting with
+		// and the secondary id is what we give to the framework to distinguish
+		// about them).
+		final IViewPart talkViewPart = workbenchWindow.getActivePage()
+				.showView(MultiChatTalkView.ID);
+		IMultiChatTalkView currentTalkView = (IMultiChatTalkView) talkViewPart;
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getService()
-     */
-    public IMultiChatService getService() {
-        return service;
-    }
+		// Setup the talk view: it must be able to display incoming messages
+		// (both local and from network service)
+		// and from
 
-    /**
-     * @return Returns the context.
-     */
-    protected MultiChatContext getContext() {
-        return context;
-    }
+		currentTalkView.setTitleText(context.getRoom());
+		currentTalkView.setModel(getService().getTalkModel());
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#addListener(it.uniba.di.cdg.xcore.m2m.IMultiChat.IMultiChatListener)
-     */
-    public void addListener( IMultiChatListener listener ) {
-        chatlisteners.add( listener );
-    }
+		return talkViewPart;
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#removeListener(it.uniba.di.cdg.xcore.m2m.IMultiChat.IMultiChatListener)
-     */
-    public void removeListener( IMultiChatListener listener ) {
-        chatlisteners.remove( listener );
-    }
+	protected void setupUISwithPerspective() {
+		getUihelper().switchPerspective(MultiChatPerspective.ID);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getBackendHelper()
-     */
-    public INetworkBackendHelper getBackendHelper() {
-        return backendHelper;
-    }
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#setBackendHelper(it.uniba.di.cdg.xcore.network.INetworkBackendHelper)
-     */
-    public void setBackendHelper( INetworkBackendHelper backendHelper ) {
-        this.backendHelper = backendHelper;
-    }
+	/**
+	 * Register all needed listeners.
+	 */
+	protected void setupListeners() {
+		workbenchWindow.addPerspectiveListener(perspectiveListener);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getUihelper()
-     */
-    public IUIHelper getUihelper() {
-        return uihelper;
-    }
+		// Send messages typed by the user to the remote peers
+		talkView.addListener(new ISendMessagelListener() {
+			public void notifySendMessage(String message) {
+				service.sendMessage(message);
+			}
+		});
+		// ... and receives them too!
+		service.addMessageReceivedListener(talkView);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#setUihelper(it.uniba.di.cdg.xcore.ui.IUIHelper)
-     */
-    public void setUihelper( IUIHelper uihelper ) {
-        this.uihelper = uihelper;
-    }
+		// Typing notification to remote client ...
+		talkView.addTypingListener(service);
+		service.addTypingEventListener(talkView);
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IRoleProvider#getRole()
-     */
-    public Role getRole() {
-        return getService().getModel().getLocalUser().getRole();
-    }
+		service.addUserStatusListener(new UserStatusAdapter() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * it.uniba.di.cdg.xcore.m2m.service.UserStatusAdapter#voiceGranted
+			 * ()
+			 */
+			@Override
+			public void voiceGranted() {
+				talkView.appendMessage("*** > Moderator has allowed you back in conversation!");
+				talkView.setReadOnly(false);
+			}
 
-    /**
-     * @return Returns the workbenchWindow.
-     */
-    public IWorkbenchWindow getWorkbenchWindow() {
-        return workbenchWindow;
-    }
-    
-    /**
-     * @param workbenchWindow The workbenchWindow to set.
-     */
-    public void setWorkbenchWindow( IWorkbenchWindow workbenchWindow ) {
-        this.workbenchWindow = workbenchWindow;
-    }
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * it.uniba.di.cdg.xcore.m2m.service.UserStatusAdapter#voiceRevoked
+			 * ()
+			 */
+			@Override
+			public void voiceRevoked() {
+				talkView.appendMessage("*** > Moderator has stopped you from contributing to conversation!");
+				talkView.setReadOnly(true);
+			}
+		});
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.m2m.IMultiChatManager#notifyViewReadOnly(java.lang.String, boolean)
-     */
-    public void notifyViewReadOnly( String viewId, boolean readOnly ) {
-        getService().notifyViewReadOnly( viewId, readOnly );
-    }
+		service.addInvitationRejectedListener(new IInvitationRejectedListener() {
+			public void declined(String invitee, String reason) {
+				uihelper.showMessage(String.format(
+						"User %s rejected invitation with motivation\n \"%s\"",
+						invitee, reason));
+			}
+		});
+
+		// Make the view to react to model events
+		talkView.setManager(this);
+
+		getService().addManagerEventListener(managerEventListener);
+
+		getBackendHelper().registerBackendListener(backendListener);
+	}
+
+	/**
+	 * Create the chat service and registers the
+	 * 
+	 * @throws BackendException
+	 */
+	protected IMultiChatService setupChatService() throws BackendException {
+		IBackend backend = backendHelper.getRegistry().getDefaultBackend();
+		return new MultiChatService(context, backend);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#toggleFreezeUnfreeze(it.uniba.di
+	 * .cdg.xcore.m2m.model.IParticipant[])
+	 */
+	@Privileged(atleast = Role.MODERATOR)
+	public void toggleFreezeUnfreeze(List<IParticipant> participants) {
+		final List<String> frozen = new ArrayList<String>();
+		final List<String> unfrozen = new ArrayList<String>();
+
+		// Discriminate among who must be frozen and who must be unfrozen: do
+		// not touch
+		// the model: we rely on server for notification about participant's
+		// status change
+		for (IParticipant p : participants) {
+			if (Status.NOT_JOINED.equals(p.getStatus()))
+				continue;
+			if (Status.FROZEN.equals(p.getStatus()))
+				unfrozen.add(p.getNickName());
+			else if (Status.JOINED.equals(p.getStatus()))
+				frozen.add(p.getNickName());
+		}
+
+		if (!frozen.isEmpty())
+			service.revokeVoice(frozen);
+		if (!unfrozen.isEmpty())
+			service.grantVoice(unfrozen);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#sendPrivateMessage(it.uniba.di.cdg
+	 * .xcore.m2m.model.IParticipant[], java.lang.String)
+	 */
+	@Privileged(atleast = Role.PARTICIPANT)
+	public void sendPrivateMessage(List<IParticipant> participants, String text) {
+		for (IParticipant p : participants)
+			service.sendPrivateMessage(p, text);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#changeSubject(java.lang.String)
+	 */
+	@Privileged(atleast = Role.MODERATOR)
+	public void changeSubject(String subject) {
+		// The server will notify us back about the changed subject so there is
+		// no need to set it
+		service.changeSubject(subject);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#inviteNewParticipant(java.lang.String
+	 * , java.lang.String)
+	 */
+	@Privileged(atleast = Role.MODERATOR)
+	public void inviteNewParticipant(String participantId) {
+		service.invite(participantId, IMultiChatHelper.MULTICHAT_REASON);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getView()
+	 */
+	public IChatRoomView getChatRoomView() {
+		return roomView;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getTalkView()
+	 */
+	public ITalkView getTalkView() {
+		return talkView;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getService()
+	 */
+	public IMultiChatService getService() {
+		return service;
+	}
+
+	/**
+	 * @return Returns the context.
+	 */
+	protected MultiChatContext getContext() {
+		return context;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#addListener(it.uniba.di.cdg.xcore
+	 * .m2m.IMultiChat.IMultiChatListener)
+	 */
+	public void addListener(IMultiChatListener listener) {
+		chatlisteners.add(listener);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#removeListener(it.uniba.di.cdg.xcore
+	 * .m2m.IMultiChat.IMultiChatListener)
+	 */
+	public void removeListener(IMultiChatListener listener) {
+		chatlisteners.remove(listener);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getBackendHelper()
+	 */
+	public INetworkBackendHelper getBackendHelper() {
+		return backendHelper;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#setBackendHelper(it.uniba.di.cdg
+	 * .xcore.network.INetworkBackendHelper)
+	 */
+	public void setBackendHelper(INetworkBackendHelper backendHelper) {
+		this.backendHelper = backendHelper;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IMultiChat#getUihelper()
+	 */
+	public IUIHelper getUihelper() {
+		return uihelper;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChat#setUihelper(it.uniba.di.cdg.xcore
+	 * .ui.IUIHelper)
+	 */
+	public void setUihelper(IUIHelper uihelper) {
+		this.uihelper = uihelper;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.uniba.di.cdg.xcore.m2m.IRoleProvider#getRole()
+	 */
+	public Role getRole() {
+		return getService().getModel().getLocalUser().getRole();
+	}
+
+	/**
+	 * @return Returns the workbenchWindow.
+	 */
+	public IWorkbenchWindow getWorkbenchWindow() {
+		return workbenchWindow;
+	}
+
+	/**
+	 * @param workbenchWindow
+	 *            The workbenchWindow to set.
+	 */
+	public void setWorkbenchWindow(IWorkbenchWindow workbenchWindow) {
+		this.workbenchWindow = workbenchWindow;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.m2m.IMultiChatManager#notifyViewReadOnly(java.lang
+	 * .String, boolean)
+	 */
+	public void notifyViewReadOnly(String viewId, boolean readOnly) {
+		getService().notifyViewReadOnly(viewId, readOnly);
+	}
 }
