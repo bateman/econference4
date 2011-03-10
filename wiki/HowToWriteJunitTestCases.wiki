@@ -53,7 +53,7 @@ In this way, Junit will recognize methods that contain assertion.
 	    @Test
 	    public void testSub(){
 	        MathOp a = new MathOp();
-	        assertEquals(-4, a.add(-3, 1));
+	        assertEquals(-4, a.sub(-3, 1));
 	    }
 	}
 }}}
