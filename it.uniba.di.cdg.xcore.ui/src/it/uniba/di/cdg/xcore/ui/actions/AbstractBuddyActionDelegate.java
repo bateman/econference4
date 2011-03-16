@@ -89,6 +89,7 @@ public abstract class AbstractBuddyActionDelegate implements
 	 * 
 	 * @param selection
 	 */
+	@SuppressWarnings("unchecked")
 	protected Collection<IBuddy> getSelectedBuddies() {
 		IStructuredSelection selected = (IStructuredSelection) getSelection();
 
