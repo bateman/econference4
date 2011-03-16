@@ -398,7 +398,7 @@ Instead, if you have created a new package with some class for test case, you ne
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest2.png <br>
 <p align=center>*Figure 3. AllTest for the it.uniba.di.cgd.jabber test  package*</p>
 
-Then, if you add a new package with a new AllTest at package level, make sure you remember to add it to the AllTest at project level. The project AllTest file is `it.uniba.di.cdg.econference.tests.AllTest` and belongs to the project named `it.uniba.di.cdg.econference-tests`. Look at the code snippet below as a clarification.
+Then, if you add a new package with a new !AllTest at package level, make sure you remember to add it to the !AllTest at project level. The project AllTest file is `it.uniba.di.cdg.econference.tests.AllTest` and belongs to the project named `it.uniba.di.cdg.econference-tests`. Look at the code snippet below as a clarification.
 
 {{{
 package it.uniba.di.cdg.econference.tests;
