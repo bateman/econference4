@@ -392,8 +392,29 @@ So, once you've created the class of the test case, you must insert the link to 
 To add this information in class, simply add to the list of the annotation {{{@Suite.SuiteClasses()}}} present in relative {{{AllTest.java}}}, the invocation to the new class. 
 For example, if you're creating a test class called {{{XmppLoadTest.java}}} in the package *it.uniba.di.cdg.jabber * in the project *it.uniba.di.cdg.jabber.test*, you have to add the new class in {{{AllTests.java}}} content in the same package as shown .
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest.png <br>
-<p align=center>*Figure 2. Result of Junit execution*</p>
+<p align=center>*Figure 2. Result of JUnit execution*</p>
 
-Instead, if you have created a new package with some class for test case, you need to create a class named {{{AllTest.java}}} into this package how the similar package; after, you must add the file {{{AllTest.class}}} created in the {{{projectname.allpackagetest.AllTest.java}}}. For example, if you have created the package named {{{it.uniba.di.cgd.jabber}}} with {{{AllTest.java}}}, you must insert into {{{it.uniba.di.cgd.jabber.test.allpackagetest.AllTest.java}}} the new class as shown
+Instead, if you have created a new package with some class for test case, you need to create a class named {{{AllTest.java}}} into this package how the similar package; after, you must add the file {{{AllTest.class}}} created in the {{{projectname.allpackagetest.AllTest.java}}}. For example, if you have created the package named {{{it.uniba.di.cgd.jabber}}} with {{{AllTest.java}}}, you must insert into {{{it.uniba.di.cgd.jabber.test.allpackagetest.AllTest.java}}} the new class as shown in the figure below.
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest2.png <br>
-<p align=center>*Figure 3.*</p>
+<p align=center>*Figure 3. AllTest for the it.uniba.di.cgd.jabber test  package*</p>
+
+Then, if you add a new package with a new AllTest at package level, make sure you remember to add it to the AllTest at project level. The project AllTest file is `it.uniba.di.cdg.econference.tests.AllTest` and belongs to the project named `it.uniba.di.cdg.econference-tests`. Look at the code snippet below as a clarification.
+
+{{{
+package it.uniba.di.cdg.econference.tests;
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+		it.uniba.di.cdg.collaborativeworkbench.boot.test.allpackagetests.AllTests.class,		it.uniba.di.cdg.jabber.test.allpackagetests.AllTests.class,		it.uniba.di.cdg.skype.test.allpackagetests.AllTests.class,		it.uniba.di.cdg.xcore.econference.test.allpackagetests.AllTests.class,	it.uniba.di.cdg.xcore.m2m.test.allpackagetests.AllTests.class,		it.uniba.di.cdg.xcore.network.test.allpackagetests.AllTests.class,	it.uniba.di.cdg.xcore.ui.test.allpackagetests.AllTests.class,		it.uniba.di.cdg.xcore.util.test.allpackagetests.AllTests.class })
+		
+public class AllTests {
+	public static void main(String[] args) {
+		JUnitCore.runClasses(new Class[] { AllTests.class });
+	}
+}
+
+}}}
