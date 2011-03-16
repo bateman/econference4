@@ -26,9 +26,14 @@ package it.uniba.di.cdg.skype.test;
 
 import it.uniba.di.cdg.skype.SkypeBackend;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
+import it.uniba.di.cdg.xcore.network.IUserStatus;
 
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
+import org.junit.Test;
+
+import com.skype.Skype;
+import com.skype.SkypeException;
 
 public class SkypeBackendTest extends MockObjectTestCase {
 
@@ -70,5 +75,26 @@ public class SkypeBackendTest extends MockObjectTestCase {
 		assertEquals(backend.getUserId(),
 				backend.getUserAccount().getId());
 		
+	}
+	
+	/**
+	 * Tests the Skype user status changes
+	 */
+	@Test
+	public void testSetUserStatus() throws SkypeException{
+		SkypeBackend backend = new SkypeBackend();
+
+		//case1 if we set the user status in Available
+		backend.setUserStatus(IUserStatus.AVAILABLE);
+		assertEquals(Skype.getProfile().getStatus().toString(),"ONLINE");
+		
+		//case2 if we set the user status in Away
+		backend.setUserStatus(IUserStatus.AWAY);
+		assertEquals(Skype.getProfile().getStatus().toString(),"AWAY");
+		
+		//case3 if we set the user status in Busy
+		backend.setUserStatus(IUserStatus.BUSY);
+		assertEquals(Skype.getProfile().getStatus().toString(),"DND");
+
 	}
 }
