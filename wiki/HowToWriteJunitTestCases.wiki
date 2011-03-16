@@ -1,5 +1,5 @@
 #summary In this wiki we show how to write a test case in JUnit using correct syntax respecting all the needs of eConference4.
-#labels Phase-Implementation,Howto
+#labels Phase-Implementation,Howto,Featured
 
 *Index*
 <wiki:toc max_depth="3" />
@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
 
 ==Test class ==
 Now we are ready to write the test class. To indicate to JUnit which are methods that make tests it’s necessary to mark them with annotation @Test. 
-In this way, Junit will recognize methods that contain assertion.
+In this way, JUnit will recognize methods that contain assertion.
 {{{
 	import org.junit.*;
 	import static org.junit.Assert.*;
@@ -103,7 +103,7 @@ It's possible to use the command line o the junit task and junit report of Apach
 Figure 1 show a screenshot of the test results in Eclipse:
 
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/JunitResultTests.png <br>
-<p align=center>*Figure 1. Result of Junit execution*</p>
+<p align=center>*Figure 1. Result of JUnit execution*</p>
 
 The two tests have positive end. 
 If there are errors, this are showed in the section named Errors, while the condition not verified will be counted in the section named Failured.
@@ -177,9 +177,9 @@ public class ConnectionTest{
 
 }}}
 
-= Sintax for test cases to use in econference4 =
+= Sintax for test cases to use in eConference4 =
 In Econference4 project, to write a test case you must respect the classic syntax that we have reported in previous paragraph.
-In the actual version of econference4 you can find different syntax in more test cases because the version of JUnit used until recently is the JUnit3. But econference4 now implement JUnit4 that support old (JUnit3) and new syntax. Whereas the syntax of JUnit4 is more simply than syntax of JUnit 3, you have to use only JUnit4 syntax.
+In the actual version of eConference4 you can find different syntax in more test cases because the version of JUnit used until recently is the JUnit3. But eConference4 now implement JUnit4 that support old (JUnit3) and new syntax. Whereas the syntax of JUnit4 is more simply than syntax of JUnit 3, you have to use only JUnit4 syntax.
 
 
 == Test's methods ==
@@ -356,11 +356,11 @@ JUnit 4 adds two new methods named assert() for comparisons of arrays; follow th
 These two methods compare arrays in the obvious way: two arrays are equal if they are the same size and if each element is the same as in the corresponding array.
 
 
-= Write a test case for econference4 =
-To write a test case for econference 4, we could use old syntax of JUnit3 or new syntax of JUnit4. Obviously it is better for programmers to use easier syntax of version 4 for future test cases, for conform to the same syntax.
+= Write a test case for eConference4 =
+To write a test case for eConference4, we could use old syntax of JUnit3 or new syntax of JUnit4. Obviously it is better for programmers to use easier syntax of version 4 for future test cases, for conform to the same syntax.
 Here are the steps every time you need to write a new test case.
 
-== Separate test cases from code econference4. ==
+== Separate test cases from code eConference4. ==
 To practice it is preferable to separate the program code from the code that performs tests on it.
 To do this, create a project, if not already present, in which you have to write the test cases related to a project. For example, as shown in the figure 2, there is a project called *it.uniba.di.cdg.jabber*; for this project was created another project called *it.uniba.di.cdg.jabber.test* in which we have write the test cases. This project must be provided inside the package with the same name as the project referred to, for example in the project there are the packages:
 {{{
