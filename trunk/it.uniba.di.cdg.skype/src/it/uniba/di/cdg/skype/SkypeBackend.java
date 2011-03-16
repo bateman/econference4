@@ -1,3 +1,27 @@
+/**
+ * This file is part of the eConference project and it is distributed under the 
+ * terms of the MIT Open Source license.
+ * 
+ * The MIT License
+ * Copyright (c) 2005 Collaborative Development Group - Dipartimento di Informatica, 
+ *                    University of Bari, http://cdg.di.uniba.it
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+ * software and associated documentation files (the "Software"), to deal in the Software 
+ * without restriction, including without limitation the rights to use, copy, modify, 
+ * merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
+ * permit persons to whom the Software is furnished to do so, subject to the following 
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies 
+ * or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package it.uniba.di.cdg.skype;
 
 import it.uniba.di.cdg.skype.action.SkypeCallAction;
@@ -10,6 +34,7 @@ import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
+import it.uniba.di.cdg.xcore.network.IUserStatus;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
 import it.uniba.di.cdg.xcore.network.action.ICallAction;
@@ -54,7 +79,7 @@ import com.skype.connector.Connector;
 import com.skype.connector.ConnectorException;
 
 public class SkypeBackend implements IBackend {
-	
+
 	/**
 	 * This backend's unique id.
 	 */
@@ -82,7 +107,7 @@ public class SkypeBackend implements IBackend {
 
 		@Override
 		public void chatMessageReceived(ChatMessage chatMessage)
-				throws SkypeException {
+		throws SkypeException {
 			processMessageReceived(chatMessage.getContent(),
 					chatMessage.getSenderId(),
 					chatMessage.getSenderDisplayName(), chatMessage.getChat());
@@ -103,7 +128,7 @@ public class SkypeBackend implements IBackend {
 		// è presente un estensione al protocollo
 		if (extensionName != null) {
 			if (XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE)) // chat
-																					// one2one
+				// one2one
 			{
 				if (extensionName.equals(ExtensionConstants.CHAT_COMPOSING)) {
 					IBackendEvent event = new ChatComposingEvent(senderId,
@@ -113,7 +138,7 @@ public class SkypeBackend implements IBackend {
 
 				else if (extensionName.equals(ExtensionConstants.ROOM_INVITE)) {					
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String reason = param.get(ExtensionConstants.REASON);
 					if (reason == null)
 						reason = "";
@@ -139,7 +164,7 @@ public class SkypeBackend implements IBackend {
 				else if (extensionName
 						.equals(ExtensionConstants.ROOM_INVITE_DECLINE)) {
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String reason = param.get(ExtensionConstants.REASON);
 					if (reason == null)
 						reason = "";
@@ -150,16 +175,16 @@ public class SkypeBackend implements IBackend {
 
 				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
 					IBackendEvent event = new ChatMessageReceivedEvent(
 							getRoster().getBuddy(senderId), msg, getBackendId());
 					getHelper().notifyBackendEvent(event);
 				}
-		
+
 				else if (extensionName.equals(ExtensionConstants.CALL_FINISHED)) {
-			     	if(getMultiCallAction().isCalling())
-			     		getMultiCallAction().finishCall();
+					if(getMultiCallAction().isCalling())
+						getMultiCallAction().finishCall();
 				}
 
 				// è un estensione gestita dal core
@@ -191,7 +216,7 @@ public class SkypeBackend implements IBackend {
 				}
 				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
 					IBackendEvent event = new MultiChatMessageEvent(
 							getBackendId(), msg, senderId);
@@ -200,7 +225,7 @@ public class SkypeBackend implements IBackend {
 
 				else if (extensionName.equals(ExtensionConstants.REVOKE_VOICE)){
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String userId = param.get(ExtensionConstants.USER);
 					IBackendEvent event = new MultiChatVoiceRevokedEvent(
 							getBackendId(), userId);
@@ -209,21 +234,21 @@ public class SkypeBackend implements IBackend {
 
 				else if (extensionName.equals(ExtensionConstants.GRANT_VOICE)){
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String userId = param.get(ExtensionConstants.USER);
 					IBackendEvent event = new MultiChatVoiceGrantedEvent(
 							getBackendId(), userId);
 					getHelper().notifyBackendEvent(event);
 				}
-				
+
 				else if (extensionName.equals(ExtensionConstants.MODERATOR)){
 					HashMap<String, String> param = XmlUtil
-							.readXmlExtension(content);
+					.readXmlExtension(content);
 					String user = param.get(ExtensionConstants.USER);
 					skypeMultiChatServiceAction.setModerator(user);
 					skypeMultiChatServiceAction.updateChatRoom(chat);
 				}
-				
+
 				// è un estensione gestita dal core
 				else {
 					HashMap<String, String> param;
@@ -282,7 +307,7 @@ public class SkypeBackend implements IBackend {
 	public SkypeBackend getBackendFromProxy() {
 		return this;
 	}
-	
+
 	public SkypeBackend() {
 		super();
 		skypeBuddyRoster = new SkypeBuddyRoster(this);
@@ -298,7 +323,7 @@ public class SkypeBackend implements IBackend {
 
 	@Override
 	public void connect(ServerContext ctx, UserContext userAccount)
-			throws BackendException {
+	throws BackendException {
 
 		Connector.Status status = null;
 
@@ -314,21 +339,23 @@ public class SkypeBackend implements IBackend {
 		if (status != Connector.Status.ATTACHED)
 			throw new BackendException(
 					new Exception(
-							"You have to install and run Skype before running eConference.\nPlease download  Skype from www.skype.com"));
+					"You have to install and run Skype before running eConference.\nPlease download  Skype from www.skype.com"));
+
+		// aggiungo i listeners di Skype4Java
+		try {
+			Skype.addChatMessageListener(chatMessageListener);
+			Skype.addCallListener(callListener);
+
+			Skype.getProfile().setStatus(com.skype.Profile.Status.ONLINE);
+		} catch (SkypeException e) {
+			e.printStackTrace();
+		}
 
 		// notifico l'avvenuta connessione
 		helper.notifyBackendEvent(new BackendStatusChangeEvent(ID, true));
 
 		// notifico l'aggiornamento del roster
 		skypeBuddyRoster.reload();
-
-		// aggiungo i listeners di Skype4Java
-		try {
-			Skype.addChatMessageListener(chatMessageListener);
-			Skype.addCallListener(callListener);
-		} catch (SkypeException e) {
-			e.printStackTrace();
-		}
 
 		connected = true;
 	}
@@ -396,13 +423,17 @@ public class SkypeBackend implements IBackend {
 	public UserContext getUserAccount() {
 		// da sistemare
 		UserContext userContect = new UserContext(getUserId(), "");
+
 		try {
 			userContect.setName(Skype.getProfile().getFullName());
+
 		} catch (SkypeException e) {
 			e.printStackTrace();
 		}
+
 		return userContect;
 	}
+
 
 	@Override
 	public boolean isConnected() {
@@ -452,7 +483,53 @@ public class SkypeBackend implements IBackend {
 	@Override
 	public void registerNewAccount(String userId, String password,
 			ServerContext server, Map<String, String> attributes)
-			throws Exception {
+	throws Exception {
+	}
+
+	@Override
+	public void setUserStatus(int status) {
+
+		switch (status){
+		case IUserStatus.AVAILABLE:
+			try {
+				Skype.getProfile().setStatus(com.skype.Profile.Status.ONLINE);
+			} catch (SkypeException e) {
+
+				e.printStackTrace();
+			}
+			break;
+
+		case IUserStatus.AWAY:
+			try {
+				Skype.getProfile().setStatus(com.skype.Profile.Status.AWAY);
+			} catch (SkypeException e) {
+
+				e.printStackTrace();
+			}
+			break;
+
+		case IUserStatus.BUSY:
+			try {
+				Skype.getProfile().setStatus(com.skype.Profile.Status.DND);
+			} catch (SkypeException e) {
+
+				e.printStackTrace();
+			}
+			break;
+
+		case IUserStatus.OFFLINE:
+			try {
+				Skype.getProfile().setStatus(com.skype.Profile.Status.OFFLINE);
+
+				disconnect();
+			} catch (SkypeException e) {
+
+				e.printStackTrace();
+			}
+			break;
+		}
+
+
 	}
 
 }

@@ -34,6 +34,7 @@ import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
+import it.uniba.di.cdg.xcore.network.IUserStatus;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
 import it.uniba.di.cdg.xcore.network.action.ICallAction;
@@ -67,6 +68,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.jivesoftware.smack.AccountManager;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.PacketListener;
@@ -77,9 +79,10 @@ import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
-import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smack.packet.Presence.Mode;
 import org.jivesoftware.smackx.muc.InvitationListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
+
 
 /**
  * Jabber/XMPP backend implementation. A backend may be extended by providing
@@ -87,7 +90,8 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
  * <code>it.uniba.di.cdg.jabber.services</code> extension point.
  */
 public class JabberBackend implements IBackend, PacketListener,
-		ConnectionListener {
+ConnectionListener {
+
 	/**
 	 * This backend's unique id.
 	 */
@@ -97,7 +101,7 @@ public class JabberBackend implements IBackend, PacketListener,
 
 	// valid range is [-128, 128]
 	private static final int PRESENCE_PRIORITY_MAX = 128;
-	
+
 	private JabberChatServiceAction jabberChatServiceAction;
 	private JabberMultiChatSeviceAction jabberMultiChatSeviceAction;
 
@@ -112,6 +116,12 @@ public class JabberBackend implements IBackend, PacketListener,
 	 * adding filters, callbacks, ...
 	 */
 	private XMPPConnection connection;
+
+	/**
+	 * Presence packet of the connection: it is used to change the user status
+	 */
+	private Presence presence;
+
 
 	public JabberBackend getBackendFromProxy() {
 		return this;
@@ -167,6 +177,10 @@ public class JabberBackend implements IBackend, PacketListener,
 		capabilities.add(IChatService.CHAT_SERVICE);
 		// capabilities.add( IMultiChatService.MULTI_CHAT_SERVICE );
 		// capabilities.add( IEConferenceService.ECONFERENCE_SERVICE );
+
+		//new instance of presence packet
+		this.presence= new Presence(Presence.Type.available,"Avaiable",0,Presence.Mode.available);
+
 	}
 
 	/**
@@ -226,7 +240,7 @@ public class JabberBackend implements IBackend, PacketListener,
 	 * network.ServerContext, it.uniba.di.cdg.xcore.network.UserAccount)
 	 */
 	public void connect(final ServerContext ctx, final UserContext userAccount)
-			throws BackendException {
+	throws BackendException {
 		disconnect();
 		this.serverContext = ctx;
 		this.userAccount = userAccount;
@@ -253,11 +267,11 @@ public class JabberBackend implements IBackend, PacketListener,
 			else
 				connection = createConnection(serverContext.getServerHost(),
 						ctx.getPort(), serverContext.getServiceName());// serverContext.getServiceName()
-																		// );
+			// );
 
 			// increase the response timeout to 10 secs. for slow connections and muc servers
 			SmackConfiguration.setPacketReplyTimeout(10000);
-			
+
 			// This doesn't work ...
 			// XMPPConnection.addConnectionListener(
 			// (ConnectionEstablishedListener) this );
@@ -271,8 +285,10 @@ public class JabberBackend implements IBackend, PacketListener,
 			connection.login(userAccount.getId(), userAccount.getPassword() , "eConf.");
 			// sets priority to max to make sure eC always gets message
 			setResourcePriority(PRESENCE_PRIORITY_MAX);
-			
+
 			buddies.setJabberRoster(connection.getRoster());
+
+
 		} catch (XMPPException e) {
 			// TODO: inserire il metodo per avviare la finestra di riconnessione
 			// automatica
@@ -295,9 +311,11 @@ public class JabberBackend implements IBackend, PacketListener,
 	 * @param prio the priority between -128, 128
 	 */
 	private void setResourcePriority(final int prio) {
-		Presence presence = new Presence(Presence.Type.available);
-        presence.setPriority(prio);
-        connection.sendPacket(presence);		
+		presence.setType(Presence.Type.available);
+		presence.setStatus("Avaiable");
+		presence.setMode(Presence.Mode.available);
+		presence.setPriority(prio);
+		connection.sendPacket(presence);	
 	}
 
 	/*
@@ -466,9 +484,9 @@ public class JabberBackend implements IBackend, PacketListener,
 		int result = dlg.open();
 		if (result == Dialog.OK) {
 			final ServerContext serverCtx = dlg.getProfileContext()
-					.getServerContext();
+			.getServerContext();
 			final UserContext userCtx = dlg.getProfileContext()
-					.getUserContext();
+			.getUserContext();
 			final Job connectJob = new Job("Connecting ...") {
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
@@ -600,9 +618,9 @@ public class JabberBackend implements IBackend, PacketListener,
 		 * ChatMessage( smackMessage.getThread(), smackMessage.getFrom(),
 		 * smackMessage.getBody(), smackMessage.getSubject() ); } else
 		 */if (Message.Type.error.equals(smackMessage.getType())) {
-			message = new SystemMessage(smackMessage.getBody());
-		}
-		return message;
+			 message = new SystemMessage(smackMessage.getBody());
+		 }
+		 return message;
 	}
 
 	/**
@@ -637,12 +655,12 @@ public class JabberBackend implements IBackend, PacketListener,
 
 	@Override
 	public void reconnectingIn(int arg0) {
-		
+
 	}
 
 	@Override
 	public void reconnectionFailed(Exception arg0) {
-		
+
 	}
 
 	@Override
@@ -688,6 +706,46 @@ public class JabberBackend implements IBackend, PacketListener,
 	@Override
 	public IMultiCallAction getMultiCallAction() {		
 		return null;
+	}
+
+	@Override
+	public void setUserStatus(int status) {
+
+		switch (status){
+		case IUserStatus.AVAILABLE:
+			presence.setMode(Presence.Mode.available);
+			presence.setStatus("Available");
+			connection.sendPacket(presence);
+			break;
+
+		case IUserStatus.AWAY:
+			presence.setMode(Presence.Mode.away);
+			presence.setStatus("Away");
+			connection.sendPacket(presence);	
+			break;
+
+		case IUserStatus.BUSY:
+			presence.setMode(Presence.Mode.dnd);
+			presence.setStatus("Busy");
+			connection.sendPacket(presence);
+			break;
+
+		case IUserStatus.OFFLINE:
+			presence.setStatus("Offline");
+			connection.sendPacket(presence);	
+			disconnect();
+			break;
+
+		}
+
+	}
+
+	/**
+	 * The method return us the current presence mode of the user
+	 * @return Presence.Mode
+	 */
+	public Mode getPresence(){
+		return presence.getMode();
 	}
 
 }

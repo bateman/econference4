@@ -24,6 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.network;
 
+
 /**
  * A user account contains the information needed for authenticating the user. TODO Clean up the
  * names: they seems too much jabber-ish ;)
@@ -41,7 +42,7 @@ public class UserContext {
     private String name = "";
     
     private String email = "";
-    
+
    
     public UserContext( String id, String password ) {
         super();

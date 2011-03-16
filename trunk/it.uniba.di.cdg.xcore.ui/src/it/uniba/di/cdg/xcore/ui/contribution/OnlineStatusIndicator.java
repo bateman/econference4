@@ -25,7 +25,9 @@
 package it.uniba.di.cdg.xcore.ui.contribution;
 
 import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
+import it.uniba.di.cdg.xcore.network.IUserStatus;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
@@ -44,6 +46,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+
 
 /**
  * Track the connection status. The graphics layout is pretty simple: we add a light bulb for 
@@ -55,106 +62,179 @@ import org.eclipse.swt.widgets.Composite;
  * guerentee that we are called _after_ the helper has handled the event).  
  */
 public class OnlineStatusIndicator extends ContributionItem implements IBackendEventListener {
-    /**
-     * This contribution item's id.
-     */
-    public static final String ID = UiPlugin.ID + ".contribution.onlineIndicator";
+	/**
+	 * This contribution item's id.
+	 */
+	public static final String ID = UiPlugin.ID + ".contribution.onlineIndicator";
 
-    /**
-     * Track backend's ids to their online / offline status.
-     */
-    private final Map<String, Boolean> backendStatus;
-    
-    /**
-     * Create a new status line.
-     */
-    public OnlineStatusIndicator() {
-        super( ID );
-        setVisible( false ); 
+	/**
+	 * Track backend's ids to their online / offline status.
+	 */
+	private final Map<String, Boolean> backendStatus;
 
-        this.backendStatus = new HashMap<String, Boolean>(); 
-        // Register this indicator to listen to all backends' events
-        for (IBackendDescriptor d : NetworkPlugin.getDefault().getRegistry().getDescriptors()) {
-            NetworkPlugin.getDefault().getHelper().registerBackendListener( d.getId(), this );
-            backendStatus.put( d.getId(), false ); // Offline by default
-        }
-    }
+	/**
+	 * Create a new status line.
+	 */
+	public OnlineStatusIndicator() {
+		super( ID );
+		setVisible( false ); 
 
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.IContributionItem#fill(org.eclipse.swt.widgets.Composite)
-     */
-    @Override
-    public void fill( Composite parent ) {
-        CLabel sep = new CLabel( parent, SWT.SEPARATOR );
-        StatusLineLayoutData data = new StatusLineLayoutData();
-        sep.setLayoutData( data );
+		this.backendStatus = new HashMap<String, Boolean>(); 
+		// Register this indicator to listen to all backends' events
+		for (IBackendDescriptor d : NetworkPlugin.getDefault().getRegistry().getDescriptors()) {
+			NetworkPlugin.getDefault().getHelper().registerBackendListener( d.getId(), this );
+			backendStatus.put( d.getId(), false ); // Offline by default
 
-        for (String id: backendStatus.keySet())
-            createLabelForBackend( parent, id );
-    }
+		}
+	}
 
-    private void createLabelForBackend( Composite parent, String id ) {
-        StatusLineLayoutData data = new StatusLineLayoutData();
-        
-        CLabel statusLabel = new CLabel( parent, SWT.NONE );
-        CLabel bulb = new CLabel( parent, SWT.NONE );
-        bulb.setData( data );
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.action.IContributionItem#fill(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	public void fill( Composite parent ) {
+		CLabel sep = new CLabel( parent, SWT.SEPARATOR );
+		StatusLineLayoutData data = new StatusLineLayoutData();
+		sep.setLayoutData( data );
 
-        final IBackendDescriptor descriptor = NetworkPlugin.getDefault().getRegistry().getDescriptor( id );
-        // is the backend online?
-        if (backendStatus.get( id )) { // yes,  
-            final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_ONLINE );
-            final ServerContext serverContext = 
-                NetworkPlugin.getDefault().getRegistry().getBackend( id ).getServerContext();
-            
-            bulb.setToolTipText( descriptor.getName() + " connected to " + serverContext );
-            bulb.setImage( onlineImg );
-            
-            String userID = NetworkPlugin.getDefault().getRegistry().getBackend( id ).getUserId();
-            statusLabel.setText("Connected as " + userID);
-            
-        } else { // no, 
-            final Image offlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_OFFLINE );
-            bulb.setToolTipText( descriptor.getName() + " not connected" );
-            bulb.setImage( offlineImg );
-            
-            statusLabel.setText("Not connected");
-        }
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.IContributionItem#update()
-     */
-    @Override
-    @SwtAsyncExec
-    public void update() {
-        if (!isVisible()) {
-            setVisible( true );
-        }
+		for (String id: backendStatus.keySet())
+			createLabelForBackend( parent, id );
 
-        IContributionManager contributionManager = getParent();
-        
-        if (contributionManager != null)
-            contributionManager.update( true );
-    }
+	}
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.network.IBackendEventListener#onBackendEvent(it.uniba.di.cdg.xcore.network.IBackendEvent)
-     */
-    public void onBackendEvent( IBackendEvent event ) {
-        if (event instanceof BackendStatusChangeEvent) {
-            BackendStatusChangeEvent changeEvent = (BackendStatusChangeEvent) event;
-            
-            backendStatus.put( changeEvent.getBackendId(), changeEvent.isOnline() );
-            updateBackendsStatus();
-        }
-    }
-    
-    /**
-     * Update all bulbs on/off.
-     */
-    @SwtAsyncExec
-    private void updateBackendsStatus() {
-        update();
-    }
+	private void createLabelForBackend( Composite parent, String id ) {
+		StatusLineLayoutData data = new StatusLineLayoutData();
+
+		CLabel statusLabel = new CLabel( parent, SWT.NONE );
+		CLabel bulb = new CLabel( parent, SWT.NONE );
+
+		bulb.setData( data );
+
+		final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
+
+		final IBackendDescriptor descriptor = NetworkPlugin.getDefault().getRegistry().getDescriptor( id );
+
+		// is the backend online?
+				if (backendStatus.get( id )) { // yes,  
+					final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_ONLINE );
+					final ServerContext serverContext = 
+						NetworkPlugin.getDefault().getRegistry().getBackend( id ).getServerContext();
+
+					bulb.setToolTipText( descriptor.getName() + " connected to " + serverContext );
+					bulb.setImage( onlineImg );
+
+					String userID = NetworkPlugin.getDefault().getRegistry().getBackend( id ).getUserId();
+					statusLabel.setText("Connected as " + userID);
+
+					createPopupMenu(menu);
+
+				} else { // no, 
+					final Image offlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_OFFLINE );
+					bulb.setToolTipText( descriptor.getName() + " not connected" );
+					bulb.setImage( offlineImg );
+
+					statusLabel.setText("Not connected");
+				}
+				//listener for popup menu
+				bulb.addListener(SWT.MenuDetect, new Listener() {
+					public void handleEvent(Event event) {			
+						// We need to make the menu visible
+						menu.setVisible(true);
+					}
+				});
+
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.action.IContributionItem#update()
+	 */
+	@Override
+	@SwtAsyncExec
+	public void update() {
+		if (!isVisible()) {
+			setVisible( true );
+		}
+
+		IContributionManager contributionManager = getParent();
+
+		if (contributionManager != null)
+			contributionManager.update( true );
+	}
+
+	/* (non-Javadoc)
+	 * @see it.uniba.di.cdg.xcore.network.IBackendEventListener#onBackendEvent(it.uniba.di.cdg.xcore.network.IBackendEvent)
+	 */
+	public void onBackendEvent( IBackendEvent event ) {
+		if (event instanceof BackendStatusChangeEvent) {
+			BackendStatusChangeEvent changeEvent = (BackendStatusChangeEvent) event;
+
+			backendStatus.put( changeEvent.getBackendId(), changeEvent.isOnline() );
+			updateBackendsStatus();
+		}
+	}
+
+	/**
+	 * Update all bulbs on/off.
+	 */
+	@SwtAsyncExec
+	private void updateBackendsStatus() {
+		update();
+	}
+
+	public void createPopupMenu(Menu menu) {
+
+		final String id= NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+		final IBackend backend=NetworkPlugin.getDefault().getRegistry().getBackend(id);
+		UiPlugin ui=UiPlugin.getDefault();
+
+		//online
+		final MenuItem online = new MenuItem(menu, SWT.NONE);
+		online.setText("Available");
+		online.setImage(ui.getImage( IImageResources.ICON_USER_ACTIVE));
+		online.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.AVAILABLE);
+			}
+		});
+
+		//away
+		final MenuItem away = new MenuItem(menu, SWT.NONE);
+		away.setText("Away");
+		away.setImage(ui.getImage( IImageResources.ICON_USER_AWAY));
+		away.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.AWAY);
+			}
+		});
+
+		//busy
+		final MenuItem busy = new MenuItem(menu, SWT.NONE);
+		busy.setText("Busy");
+		busy.setImage(ui.getImage( IImageResources.ICON_USER_BUSY));
+		busy.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.BUSY);
+			}
+		});
+
+		//offline
+		final MenuItem offline = new MenuItem(menu, SWT.NONE);
+		offline.setText("Offline");
+		offline.setImage(ui.getImage( IImageResources.ICON_USER_OFFLINE));
+		offline.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.OFFLINE);				
+			}
+		}); 
+
+	}
+
 }

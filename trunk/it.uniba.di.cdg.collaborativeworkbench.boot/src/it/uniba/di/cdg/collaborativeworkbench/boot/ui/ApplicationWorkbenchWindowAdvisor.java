@@ -25,6 +25,11 @@
 package it.uniba.di.cdg.collaborativeworkbench.boot.ui;
 
 import it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin;
+import it.uniba.di.cdg.xcore.network.IBackend;
+import it.uniba.di.cdg.xcore.network.IUserStatus;
+import it.uniba.di.cdg.xcore.network.NetworkPlugin;
+import it.uniba.di.cdg.xcore.ui.IImageResources;
+import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ShellAdapter;
@@ -65,6 +70,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	private boolean trayIconImage;
 
 	private Image trayNoImage;
+
+	private boolean activeMenu;
+
+	private MenuItem status;
 
 	public ApplicationWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {
@@ -149,6 +158,11 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 					}
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
+
+							//enable or disable popup menu status when the backend is online/offline
+							activeMenu=daemon.getActiveMenu();
+							status.setEnabled(activeMenu);
+
 							// ... do any work that updates the screen ...
 							if (daemon.getMessageIncoming()) {
 								// if (!window.getShell().isVisible()) {
@@ -216,7 +230,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			public void handleEvent(Event event) {
 				// Lets call our command
 				IHandlerService handlerService = (IHandlerService) window
-						.getService(IHandlerService.class);
+				.getService(IHandlerService.class);
 				try {
 					handlerService.executeCommand(COMMAND_ID, null);
 				} catch (Exception ex) {
@@ -234,19 +248,83 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			public void handleEvent(Event event) {
 				// Lets call our command
 				IHandlerService handlerService = (IHandlerService) window
-						.getService(IHandlerService.class);
+				.getService(IHandlerService.class);
 				try {
 					handlerService
-							.executeCommand(
-									IWorkbenchCommandConstants.HELP_ABOUT,
-									null);
+					.executeCommand(
+							IWorkbenchCommandConstants.HELP_ABOUT,
+							null);
 				} catch (Exception ex) {
 					throw new RuntimeException(
 							IWorkbenchCommandConstants.HELP_ABOUT);
 				}
 			}
 		});
-		
+
+		final String id= NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+		final IBackend backend=NetworkPlugin.getDefault().getRegistry().getBackend(id);
+		UiPlugin ui=UiPlugin.getDefault();
+
+		//status cascade-menu
+		status = new MenuItem(menu, SWT.CASCADE);
+		status.setText("Change Status");
+
+		status.setEnabled(activeMenu);
+
+		//sub menu
+		final Menu menu1 = new Menu(status);
+
+		//online
+		final MenuItem online = new MenuItem(menu1, SWT.NONE);
+		online.setText("Available");
+		online.setImage(ui.getImage( IImageResources.ICON_USER_ACTIVE));
+		online.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.AVAILABLE);
+			}
+		});
+
+		//away
+		final MenuItem away = new MenuItem(menu1, SWT.NONE);
+		away.setText("Away");
+		away.setImage(ui.getImage( IImageResources.ICON_USER_AWAY));
+		away.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.AWAY);
+			}
+		});
+
+		//busy
+		final MenuItem busy = new MenuItem(menu1, SWT.NONE);
+		busy.setText("Busy");
+		busy.setImage(ui.getImage( IImageResources.ICON_USER_BUSY));
+		busy.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.BUSY);
+			}
+		});
+
+		//offline
+		final MenuItem offline = new MenuItem(menu1, SWT.NONE);
+		offline.setText("Offline");
+		offline.setImage(ui.getImage( IImageResources.ICON_USER_OFFLINE));
+		offline.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+
+				backend.setUserStatus(IUserStatus.OFFLINE);			
+			}
+		}); 
+
+		status.setMenu(menu1);
+		menu1.setVisible(true);
+
 		trayItem.addListener(SWT.MenuDetect, new Listener() {
 			public void handleEvent(Event event) {			
 				// We need to make the menu visible
@@ -255,15 +333,16 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		});
 	}
 
+
 	private TrayItem initTaskItem(IWorkbenchWindow window) {
 		final Tray tray = window.getShell().getDisplay().getSystemTray();
 		if (tray == null)
 			return null;
 		TrayItem trayItem = new TrayItem(tray, SWT.NONE);
 		trayImage = BootPlugin.getImageDescriptor("icons/collab_tray.gif")
-				.createImage();
+		.createImage();
 		trayNoImage = BootPlugin.getImageDescriptor(
-				"icons/collab_tray_NewMessage.gif").createImage();
+		"icons/collab_tray_NewMessage.gif").createImage();
 
 		trayItem.setImage(trayImage);
 		trayIconImage = true;

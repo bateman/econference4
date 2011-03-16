@@ -178,4 +178,9 @@ public class TestBackend1 implements IBackend {
 		// TODO Auto-generated method stub
 		return this;
 	}
+
+	@Override
+	public void setUserStatus(int status) {
+		
+	}
 }

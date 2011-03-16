@@ -53,103 +53,103 @@ import org.eclipse.core.runtime.jobs.Job;
  * clients may use {@see #getCapabilities()} method to ease the task of querying the backend for supported tasks. 
  */
 public interface IBackend {
-    /**
-     * Perform connection to a remote server using some account info for login.
-     * 
-     * @param ctx the server context with information about the remote host
-     * @param userAccount the user account to use for login
-     * @throws BackendException if an error occurs (tipically if the login fails)
-     */
-    void connect( final ServerContext ctx, final UserContext userAccount ) throws BackendException;
+	/**
+	 * Perform connection to a remote server using some account info for login.
+	 * 
+	 * @param ctx the server context with information about the remote host
+	 * @param userAccount the user account to use for login
+	 * @throws BackendException if an error occurs (tipically if the login fails)
+	 */
+	void connect( final ServerContext ctx, final UserContext userAccount ) throws BackendException;
 
-    /**
-     * Disconnect from the backend. Nothing will happen if the backend in not connected yet.
-     */
-    void disconnect();
+	/**
+	 * Disconnect from the backend. Nothing will happen if the backend in not connected yet.
+	 */
+	void disconnect();
 
-    /**
-     * Check wether or not this backend is connected to a remote host.
-     * 
-     * @return <code>true</code> if it is currently connected, <code>false</code> otherwise
-     */
-    boolean isConnected();
+	/**
+	 * Check wether or not this backend is connected to a remote host.
+	 * 
+	 * @return <code>true</code> if it is currently connected, <code>false</code> otherwise
+	 */
+	boolean isConnected();
 
-    /**
-     * Returns the capabilities supported by this backend. Clients may use them for querying the
-     * backend supported facilities.
-     * 
-     * @return the supported capabilities.
-     */
-    ICapabilities getCapabilities();
-    
-//    /**
-//     * Returns the services registry for this backend.
-//     * 
-//     * @return the network services
-//     */
-//    INetworkServiceRegistry getServiceRegistry();
-    
-    /**
-     * @return Returns the user account or <code>null</code> if not connected
-     */
-    UserContext getUserAccount();
+	/**
+	 * Returns the capabilities supported by this backend. Clients may use them for querying the
+	 * backend supported facilities.
+	 * 
+	 * @return the supported capabilities.
+	 */
+	ICapabilities getCapabilities();
 
-    /**
-     * Returns the server context associated to this backend.
-     * 
-     * @return the server context or <code>null</code> if not connected
-     */
-    ServerContext getServerContext();
-    
-    /**
-     * Returns the current buddy roster .
-     * 
-     * @return the buddy roster.
-     */
-    IBuddyRoster getRoster();
+	//    /**
+	//     * Returns the services registry for this backend.
+	//     * 
+	//     * @return the network services
+	//     */
+	//    INetworkServiceRegistry getServiceRegistry();
 
-    /**
-     * Returns the network service implementation provided by this backend. 
-     * 
-     * @param service the required service's capability
-     * @param context additional informations required by the service
-     * @return a network service ready to be upcasted or <code>null</code> if the backend doesn't support such a capability
-     * @throws BackendException if the backend was offline or some other error occurred 
-     * @deprecated
-     */
-    INetworkService createService( ICapability service, INetworkServiceContext context ) throws BackendException;
+	/**
+	 * @return Returns the user account or <code>null</code> if not connected
+	 */
+	UserContext getUserAccount();
 
-    /**
-     * Create new connection job, ready to be executed by clients.
-     * 
-     * @return the connection job
-     */
-    Job getConnectJob();
+	/**
+	 * Returns the server context associated to this backend.
+	 * 
+	 * @return the server context or <code>null</code> if not connected
+	 */
+	ServerContext getServerContext();
 
-    
-    IBackend getBackendFromProxy();
-    
-    /**
-     * Set the helper to use when accessing to common functions.
-     * 
-     * @param helper
-     */
-    void setHelper( INetworkBackendHelper helper );
-    
-    /**
-     * Returns the helper in use. When created this is gueranteed to be not <code>null</code>.
-     * 
-     * @return the helper
-     */
-    INetworkBackendHelper getHelper();
-    
-    /**
-     * Changes the passwords credentials for the account connected at this moment
-     * @param newpasswd
-     * @throws Exception 
-     */
+	/**
+	 * Returns the current buddy roster .
+	 * 
+	 * @return the buddy roster.
+	 */
+	IBuddyRoster getRoster();
+
+	/**
+	 * Returns the network service implementation provided by this backend. 
+	 * 
+	 * @param service the required service's capability
+	 * @param context additional informations required by the service
+	 * @return a network service ready to be upcasted or <code>null</code> if the backend doesn't support such a capability
+	 * @throws BackendException if the backend was offline or some other error occurred 
+	 * @deprecated
+	 */
+	INetworkService createService( ICapability service, INetworkServiceContext context ) throws BackendException;
+
+	/**
+	 * Create new connection job, ready to be executed by clients.
+	 * 
+	 * @return the connection job
+	 */
+	Job getConnectJob();
+
+
+	IBackend getBackendFromProxy();
+
+	/**
+	 * Set the helper to use when accessing to common functions.
+	 * 
+	 * @param helper
+	 */
+	void setHelper( INetworkBackendHelper helper );
+
+	/**
+	 * Returns the helper in use. When created this is gueranteed to be not <code>null</code>.
+	 * 
+	 * @return the helper
+	 */
+	INetworkBackendHelper getHelper();
+
+	/**
+	 * Changes the passwords credentials for the account connected at this moment
+	 * @param newpasswd
+	 * @throws Exception 
+	 */
 	void changePassword(String newpasswd) throws Exception;
-	
+
 	/**
 	 * Register a new account on the server
 	 * @param userId the new jabber id 
@@ -157,20 +157,34 @@ public interface IBackend {
 	 * @param server the server context
 	 * @param attributes the account attributes 
 	 * (the user's first name, the user's last name, the user's email address, the user's city, ...) 
-     * @throws Exception if an error occurs creating the account. 
+	 * @throws Exception if an error occurs creating the account. 
 	 */
 	public void registerNewAccount(String userId, String password, ServerContext server, Map<String, String> attributes) throws Exception;
-	
+
 	IChatServiceActions getChatServiceAction();
-	
+
 	IMultiChatServiceActions getMultiChatServiceAction();
-	
+
 	ICallAction getCallAction();
-	
+
 	IMultiCallAction getMultiCallAction();
-	
+
 	public String getUserId();
-	
+
 	public String getBackendId();
-	
+
+
+	/**
+	 * Allows to change user availability.
+	 * So the user can notify to contacts that he is in one of these possible chat modes: 
+	 * available, 
+	 * busy, 
+	 * away, 
+	 * offline.
+	 * 
+	 * @param status
+	 */
+	public void setUserStatus(int status);
+
+
 }
