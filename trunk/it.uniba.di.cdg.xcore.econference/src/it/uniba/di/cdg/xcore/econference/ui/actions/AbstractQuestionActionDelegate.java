@@ -83,7 +83,8 @@ public abstract class AbstractQuestionActionDelegate implements IObjectActionDel
      * 
      * @param selection
      */
-    protected List<IQuestion> getSelectedParticipants() {
+    @SuppressWarnings("unchecked")
+	protected List<IQuestion> getSelectedParticipants() {
         IStructuredSelection items = (IStructuredSelection) getSelection();
         
         List<IQuestion> selected = new ArrayList<IQuestion>();
