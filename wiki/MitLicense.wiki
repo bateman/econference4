@@ -1,4 +1,6 @@
+#summary This page contains the MIT terms of the MIT Open Source license, which must be copied at the beginning of any source file belonging to the eConference project.
 #labels Phase-Implementation,MITLicense
+
 {{{
 /**
  * This file is part of the eConference project and it is distributed under the 
