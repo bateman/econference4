@@ -1,4 +1,4 @@
-#summary In this wiki we show how to write a test case in JUnit using correct syntax respecting all the needs of eConference4.
+#summary In this wiki we show how to write a unit test cases in JUnit, using correct syntax as needed in eConference 4.
 #labels Phase-Implementation,Howto,Featured
 
 *Index*
@@ -396,7 +396,7 @@ For example, if you're creating a test class called {{{XmppLoadTest.java}}} in t
 
 Instead, if you have created a new package with some class for test case, you need to create a class named {{{AllTest.java}}} into this package how the similar package; after, you must add the file {{{AllTest.class}}} created in the {{{projectname.allpackagetest.AllTest.java}}}. For example, if you have created the package named {{{it.uniba.di.cgd.jabber}}} with {{{AllTest.java}}}, you must insert into {{{it.uniba.di.cgd.jabber.test.allpackagetest.AllTest.java}}} the new class as shown in the figure below.
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/junit/AddTestCaseToAllTest2.png <br>
-<p align=center>*Figure 3. AllTest for the it.uniba.di.cgd.jabber test  package*</p>
+<p align=center>*Figure 3. !AllTest for the it.uniba.di.cgd.jabber test  package*</p>
 
 Then, if you add a new package with a new !AllTest at package level, make sure you remember to add it to the !AllTest at project level. The project AllTest file is `it.uniba.di.cdg.econference.tests.AllTest` and belongs to the project named `it.uniba.di.cdg.econference-tests`. Look at the code snippet below as a clarification.
 
