@@ -19,5 +19,6 @@ Export-Package: it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.ui.perspectives,
  it.uniba.di.cdg.xcore.ui.preferences,
  it.uniba.di.cdg.xcore.ui.util,
- it.uniba.di.cdg.xcore.ui.views
+ it.uniba.di.cdg.xcore.ui.views,
+ it.uniba.di.cdg.xcore.ui.wizards
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

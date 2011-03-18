@@ -38,8 +38,10 @@ import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
@@ -47,6 +49,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Hashtable;
@@ -80,18 +83,15 @@ import org.w3c.dom.Document;
  */
 public class StoredEventsModel implements IStoredEventsModel,
 		IFolderMonitorListener {
+	public static final String CONFIGURATION_NODE_QUALIFIER = "it.uniba.di.cdg.xcore.econference.storage";
+	
+	public static final String FILE = "file";
+	
 	private static final String SEPARATOR = ",";
-
-	private static final String DEFAULT_FILE_PATH = System
-			.getProperty("user.home")
-			+ System.getProperty("file.separator")
-			+ ".econference" + System.getProperty("file.separator");
 
 	private static final String ALGORITHM = "MD5";
 
 	private static final String EVENT_HASH = "event_";
-
-	private static final String CONFIGURATION_NODE_QUALIFIER = "it.uniba.di.cdg.xcore.econference.storage";
 
 	private static final String RCVD_EVENT_PATH_NODE = "rcvd_events_for_";
 
@@ -124,6 +124,10 @@ public class StoredEventsModel implements IStoredEventsModel,
 	private List<IStoredEventsModelListener> listeners;
 
 	private Map<String, IStoredEventEntry> storedEvents;
+	
+	private Preferences preferredFile;
+	
+	private String preferredFilePath;
 
 	private Thread folderMonitorThread;
 
@@ -135,12 +139,21 @@ public class StoredEventsModel implements IStoredEventsModel,
 	public StoredEventsModel() {
 		storedEvents = new Hashtable<String, IStoredEventEntry>();
 		listeners = new Vector<IStoredEventsModelListener>();
+		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
+		preferredFilePath = pathPref.get(IConfigurationConstant.DIR, "");
+		try {
+			new ConfigurationScope().getNode(CONFIGURATION_NODE_QUALIFIER).node(FILE).removeNode();
+		} catch (BackingStoreException e) {
+			System.out.println("No file stored");
+		}
+		preferredFile = new ConfigurationScope().getNode(CONFIGURATION_NODE_QUALIFIER).node(FILE);
 		// ensure the folder to monitor exists before monitoring it
-		File f = new File(DEFAULT_FILE_PATH);
+		File f = new File(preferredFilePath);
 		f.mkdirs();
 		
 		folderMonitorThread = new Thread(new FolderMonitor(this,
-				DEFAULT_FILE_PATH));
+				preferredFilePath));
 		dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT,
 				DateFormat.SHORT);
 	}
@@ -161,25 +174,47 @@ public class StoredEventsModel implements IStoredEventsModel,
 
 	public void reloadContextFiles() {
 		// get a list of the ecx files
-		File dir = new File(DEFAULT_FILE_PATH);
+		File dir = new File(preferredFilePath);
+		dir.mkdirs();
 		if (dir != null) {
-			File[] ecxFiles = dir.listFiles(new FilenameFilter() {
-				@Override
-				public boolean accept(File f, String name) {
-					return name.endsWith(".ecx") ? true : false;
-				}
-			});
-			if (ecxFiles != null) {
+			ArrayList<File> ecxFiles = subdirControl(dir);
+			if (!ecxFiles.isEmpty()) {
 				synchronized (this) {
-					// for each file generate an creation event to be stored
-					for (int i = 0; i < ecxFiles.length; i++) {
-						File f = ecxFiles[i];
-						
-						selectContextLoader(f);
+					// for each file generate a creation event to be stored
+					for (int i = 0; i < ecxFiles.size(); i++) {
+						selectContextLoader(ecxFiles.get(i));
 					}
 				}
 			}
 		}
+	}
+	
+	private ArrayList<File> subdirControl(File dir){
+		
+		ArrayList<File> result = new ArrayList<File>();
+		
+		File[] ecxFiles = dir.listFiles(new FilenameFilter() {
+			@Override
+			public boolean accept(File f, String name) {
+				return name.endsWith(".ecx") ? true : false;
+			}
+		});
+		
+		for(int i=0; i<ecxFiles.length; i++){
+			result.add(ecxFiles[i]);
+		}
+		
+		File[] subdir = dir.listFiles(new FileFilter(){
+			@Override
+			public boolean accept(File f) {
+				return f.isDirectory();
+			}
+			
+		});
+		for (int i=0; i<subdir.length; i++){
+			result.addAll(subdirControl(subdir[i]));
+		}
+		return result;
 	}
 
 	private void selectContextLoader(File file) {
@@ -260,6 +295,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 									String time = dateFormat.format(new Date(finalFile
 											.lastModified()));
 									addStoredEventEntry(event, time);
+									addEventFile(event, finalFile);
 								}
 								catch (InvalidContextException e) {
 									Logger.getLogger(
@@ -322,6 +358,17 @@ public class StoredEventsModel implements IStoredEventsModel,
 		storeEventsPreferences();
 		notifyUpdateToListeners();
 	}
+	
+
+
+	private void addEventFile(InvitationEvent event,
+			File file) {
+		IStoredEventEntry se = new StoredEventEntry(event);
+		String accId = getUserAccountId(event.getBackendId());
+		se.setAccountId(accId);
+		String hash = hexEncode(hash(se));
+		preferredFile.put(hash, file.getAbsolutePath());
+	}
 
 	/**
 	 * The byte[] returned by MessageDigest does not have a nice textual
@@ -378,10 +425,11 @@ public class StoredEventsModel implements IStoredEventsModel,
 			storedEvents.remove(event.getHash());
 			removeStoredEventPreference(event);
 			if (event.getInvitationEvent().getEventType() == ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE) {
-				String filename = event.getInvitationEvent().toString();
-				File toRemove = new File(DEFAULT_FILE_PATH + filename + ".ecx");
-				if (toRemove.exists())
+				File toRemove = new File(preferredFile.get(event.getHash(), null));
+				if (toRemove.exists()){
 					toRemove.delete();
+					preferredFile.remove(event.getHash());
+				}
 			}
 
 			notifyUpdateToListeners();
@@ -427,10 +475,11 @@ public class StoredEventsModel implements IStoredEventsModel,
 				.hasNext();) {
 			IStoredEventEntry event = i.next();
 			if (event.getInvitationEvent().getEventType() == ConferenceOrganizationEvent.ORGANIZATION_EVENT_TYPE) {
-				String filename = event.getInvitationEvent().toString();
-				File toRemove = new File(DEFAULT_FILE_PATH + filename + ".ecx");
-				if (toRemove.exists())
+				File toRemove = new File(preferredFile.get(event.getHash(), null));
+				if (toRemove.exists()){
 					toRemove.delete();
+					preferredFile.remove(event.getHash());
+				}
 			}
 		}
 		storedEvents.clear();

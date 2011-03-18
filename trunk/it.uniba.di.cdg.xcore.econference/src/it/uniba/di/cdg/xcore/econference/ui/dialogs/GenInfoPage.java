@@ -5,8 +5,8 @@ import it.uniba.di.cdg.xcore.econference.model.DiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
 import it.uniba.di.cdg.xcore.econference.model.ItemList;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,6 +16,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -34,6 +35,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.service.prefs.Preferences;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -42,11 +44,8 @@ public class GenInfoPage extends WizardPage {
 	private static final int SKYPE_BACKEND = 1;
 	private static final int XMPP_BACKEND = 0;
 	private static final String[] BACKENDS = { "Text only (XMPP/GTalk)", "Audio (Skype)" };
-	private static final String DEFAULT_FILE_PATH = System
-			.getProperty("user.home")
-			+ System.getProperty("file.separator")
-			+ ".econference" + System.getProperty("file.separator");
 
+	private String preferredFilePath;
 	private Composite composite;
 	private IEConferenceContext context;
 	private Combo backendIdCombo = null;
@@ -70,7 +69,11 @@ public class GenInfoPage extends WizardPage {
 		setTitle("General conference info");
 		setDescription("Step 1: Enter conference information.\nFields marked with * are required. "
 				+ "You should avoid using reserved chars (e.g. <, >, &) as they will be escaped.");
-		new File(DEFAULT_FILE_PATH).mkdirs();
+
+		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
+		preferredFilePath = pathPref.get(IConfigurationConstant.DIR, "");
+		
 		this.context = context;
 	}
 
@@ -115,6 +118,7 @@ public class GenInfoPage extends WizardPage {
 							serviceText.setText("");
 							nameConferenceText.setText("econference");
 						}
+						filePathText.setText(computeFilepaht());
 					}
 				});
 
@@ -216,7 +220,7 @@ public class GenInfoPage extends WizardPage {
 		// gd.grabExcessHorizontalSpace = true;
 		filePathText = new Text(composite, SWT.BORDER);
 		filePathText.setLayoutData(gd);
-		filePathText.setText(DEFAULT_FILE_PATH + "econference.ecx");
+		filePathText.setText(computeFilepaht());
 		Button browseButton = new Button(composite, SWT.PUSH);
 		browseButton.setText("Browse");
 		browseButton.setLayoutData(new GridData(50, 22));
@@ -229,6 +233,7 @@ public class GenInfoPage extends WizardPage {
 				String path = dialog.open();
 				if (path != null) {
 					filePathText.setText(path);
+						
 				}
 			}
 		});
@@ -294,8 +299,11 @@ public class GenInfoPage extends WizardPage {
 		return room; 
 	}
 	
-	private String computeFilepaht() {
-		StringBuffer filepath = new StringBuffer( DEFAULT_FILE_PATH + nameConferenceText.getText() );
+	protected String computeFilepaht() {
+		StringBuffer filepath = new StringBuffer( preferredFilePath
+				 								 + media
+				 								 + System.getProperty("file.separator")
+				 								 + nameConferenceText.getText());
 		if(backendIdCombo.getSelectionIndex() == XMPP_BACKEND)
 			filepath.append("@").append(serviceText.getText());
 		

@@ -61,7 +61,9 @@ public class MailFactory {
         while(tokens.hasMoreTokens()) {
             body.append( tokens.nextToken() + "\n\n" );
         }
-        body.append( "link: " + googleDocLink );
+        if(!googleDocLink.isEmpty()){
+        	body.append( "link: " + googleDocLink );
+        }
         System.out.println( body.toString() );
         return body.toString();
     }

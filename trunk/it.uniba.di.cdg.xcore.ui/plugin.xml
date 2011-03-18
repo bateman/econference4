@@ -46,4 +46,29 @@
          point="org.eclipse.core.runtime.preferences">
       <initializer class="it.uniba.di.cdg.xcore.ui.preferences.PreferenceInitializer"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.ui.actions.WizardCommand"
+            id="it.uniba.di.cdg.xcore.ui.wizard.command"
+            name="%wizard.name">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="Options"
+               label="Options">
+            <command
+                  commandId="it.uniba.di.cdg.xcore.ui.wizard.command"
+                  label="%wizard.name"
+                  style="push"
+                  tooltip="Start configuration wizard">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
 </plugin>

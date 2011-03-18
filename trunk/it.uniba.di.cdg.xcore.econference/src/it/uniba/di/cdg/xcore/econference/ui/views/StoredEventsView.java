@@ -31,10 +31,12 @@ import it.uniba.di.cdg.xcore.econference.IEConferenceHelper;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventEntry;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModel;
 import it.uniba.di.cdg.xcore.econference.model.storedevents.IStoredEventsModelListener;
+import it.uniba.di.cdg.xcore.econference.model.storedevents.StoredEventsModel;
 import it.uniba.di.cdg.xcore.m2m.events.ConferenceOrganizationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -42,6 +44,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -77,6 +80,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
+import org.osgi.service.prefs.Preferences;
 
 import ch.fhnw.filecopier.CopyJob;
 import ch.fhnw.filecopier.FileCopier;
@@ -91,10 +95,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 	public static final String ID = EConferencePlugin.ID
 			+ ".ui.views.storedEventsView";
 
-	private static final String DEFAULT_FILE_PATH = System
-			.getProperty("user.home")
-			+ System.getProperty("file.separator")
-			+ ".econference" + System.getProperty("file.separator");
+	private String preferredFilePath;
 
 	private Composite top = null;
 
@@ -111,6 +112,8 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 	private Action doubleClickAction;
 
 	private IStoredEventsModel storedEventsModel;
+	
+	private Preferences filepref;
 
 	private final IStoredEventsModelListener storedEventModelListener = new IStoredEventsModelListener() {
 		@Override
@@ -177,6 +180,10 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 	 * The constructor.
 	 */
 	public StoredEventsView() {
+		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
+		preferredFilePath = pathPref.get(IConfigurationConstant.DIR, "");
+		filepref = new ConfigurationScope().getNode(StoredEventsModel.CONFIGURATION_NODE_QUALIFIER).node(StoredEventsModel.FILE);
 		storedEventsModel = EConferencePlugin.getDefault()
 				.getStoredEventsModel();
 		storedEventsModel
@@ -246,7 +253,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 							System.out.println(filename);
 							Source[] sources = new Source[] { new Source(
 									fileList[i]) };
-							String[] destinations = new String[] { DEFAULT_FILE_PATH
+							String[] destinations = new String[] { preferredFilePath
 									+ filename };
 							CopyJob copyJob = new CopyJob(sources, destinations);
 							FileCopier fileCopier = new FileCopier();
@@ -408,10 +415,7 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
 
 										defaultPlugin.setHelper(helper);
 										
-										defaultPlugin.getHelper().openFromFile(
-												DEFAULT_FILE_PATH
-														+ invitation.getRoom()
-														+ ".ecx");
+										defaultPlugin.getHelper().openFromFile(filepref.get(invitation.getHash(), ""));
 									}
 								}
 							}

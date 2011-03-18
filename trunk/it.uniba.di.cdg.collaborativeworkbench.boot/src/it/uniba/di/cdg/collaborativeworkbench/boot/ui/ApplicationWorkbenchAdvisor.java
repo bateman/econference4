@@ -25,16 +25,28 @@
 package it.uniba.di.cdg.collaborativeworkbench.boot.ui;
 
 import it.uniba.di.cdg.xcore.ui.perspectives.InstantMessengerPerspective;
+import it.uniba.di.cdg.xcore.ui.wizards.ConfigurationWizard;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+import org.osgi.service.prefs.BackingStoreException;
+import org.osgi.service.prefs.Preferences;
 
 /**
  * Provides workbench configuration like the initial perspective.
  */
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
+	
+	private boolean startWizard = false;
+	
     /* (non-Javadoc)
      * @see org.eclipse.ui.application.WorkbenchAdvisor#initialize(org.eclipse.ui.application.IWorkbenchConfigurer)
      */
@@ -43,6 +55,45 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
         super.initialize( configurer );
 
         getWorkbenchConfigurer().setSaveAndRestore( true );
+    }
+
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.ui.application.WorkbenchAdvisor#preStartup()
+     */
+    @Override
+    public void preStartup(){
+    	Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
+
+		if (pathPref.get(IConfigurationConstant.DIR, "").isEmpty()) {
+			/* If there isn't preferences, create set default path */
+			startWizard = true;
+			pathPref.put(IConfigurationConstant.DIR,
+				     System.getProperty("user.home")
+			         + System.getProperty("file.separator")
+			         + ".econference"
+			         + System.getProperty("file.separator"));		
+			try {
+				preferences.flush();
+			} catch (BackingStoreException e) {
+				e.printStackTrace();
+			}
+		}
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.ui.application.WorkbenchAdvisor#postStartup()
+     */
+    @Override
+    public void postStartup(){
+		if (startWizard) {
+			/* If there isn't preferences, run configuration wizard */
+			Display display = Display.getDefault();
+			Shell shell = new Shell(display, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+			WizardDialog wizard = new WizardDialog(shell, new ConfigurationWizard(true));
+			wizard.open();
+		}
     }
 
     /* (non-Javadoc)
