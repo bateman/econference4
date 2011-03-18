@@ -4,11 +4,13 @@ import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 import it.uniba.di.cdg.xcore.econference.IEConferenceContext;
 import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -29,6 +31,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.service.prefs.Preferences;
 
 /**
  * Wizard page shown when the user has chosen plane as means of transport
@@ -42,7 +45,13 @@ public class LastPage extends WizardPage implements Listener {
 
     GridData gridData;
 
-    private Button sendInvitationsCheckBox = null;
+    private String gmailUsername;
+    
+    private String smtpServer;
+
+    private Button sendInvitationsCheckBox;
+    
+    private Button createGoogleDocCheckBox;
 
     protected IEConferenceContext context = null;
 
@@ -53,6 +62,8 @@ public class LastPage extends WizardPage implements Listener {
     private Button removeRow;
 
     private boolean canSendInvitations = true;
+    
+    private boolean canCreateGoogleDoc = false;
 
     final static String MODERATOR = "Moderator";
 
@@ -74,6 +85,11 @@ public class LastPage extends WizardPage implements Listener {
         super( arg0 );
         setTitle( "Invite people" );
         setDescription( "Step 3: Complete the information of participants\n Click \"Add Row\" to add participants to the conference" );
+		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences gmailPref = preferences.node(IConfigurationConstant.GMAIL);
+		gmailUsername = gmailPref.get(IConfigurationConstant.USERNAME, "");
+		Preferences smtpPref = preferences.node(IConfigurationConstant.SMTP);
+		smtpServer = smtpPref.get(IConfigurationConstant.SERVER, "");
         this.setContext( context );
     }
 
@@ -128,13 +144,19 @@ public class LastPage extends WizardPage implements Listener {
             }
         } );
 
-        gridData = new GridData();
-        gridData.widthHint = 85;
-        gridData.heightHint = 25;
+        gridData = new GridData(SWT.FILL);
+        gridData.horizontalSpan = 5;
         sendInvitationsCheckBox = new Button( composite, SWT.CHECK );
-        sendInvitationsCheckBox.setText( "Send invitations via email (only works with a Google account)" );
-        sendInvitationsCheckBox.setSelection( true );
+        sendInvitationsCheckBox.setText( "Send invitations via email" );
+        if(smtpServer.isEmpty()){
+            sendInvitationsCheckBox.setSelection( false );
+            sendInvitationsCheckBox.setEnabled( false );
+        } else {
+            sendInvitationsCheckBox.setSelection( true );
+            sendInvitationsCheckBox.setEnabled( true );
+        }
         sendInvitationsCheckBox.setToolTipText( "sends an email to notify message the invitation" );
+        sendInvitationsCheckBox.setLayoutData(gridData);
         sendInvitationsCheckBox.addSelectionListener( new SelectionListener() {
             @Override
             public void widgetDefaultSelected( SelectionEvent e ) {
@@ -142,10 +164,42 @@ public class LastPage extends WizardPage implements Listener {
 
             @Override
             public void widgetSelected( SelectionEvent e ) {
-                if (sendInvitationsCheckBox.getSelection())
-                    canSendInvitations = true;
-                else
+                if (!sendInvitationsCheckBox.getSelection() || gmailUsername.isEmpty()){
                     canSendInvitations = false;
+                	createGoogleDocCheckBox.setSelection( false );
+                	createGoogleDocCheckBox.setEnabled( false );
+                }
+                else{
+                    canSendInvitations = true;
+                	createGoogleDocCheckBox.setSelection( false );
+                	createGoogleDocCheckBox.setEnabled( true );
+                }
+            }
+
+        } );
+
+        createGoogleDocCheckBox = new Button( composite, SWT.CHECK );
+        createGoogleDocCheckBox.setText( "Create Google document and send link via mail" );
+        if(!sendInvitationsCheckBox.getSelection() || gmailUsername.isEmpty()){
+        	createGoogleDocCheckBox.setSelection( false );
+        	createGoogleDocCheckBox.setEnabled( false );
+        } else {
+        	createGoogleDocCheckBox.setSelection( false );
+        	createGoogleDocCheckBox.setEnabled( true );
+        }
+        createGoogleDocCheckBox.setToolTipText( "create a google document of event and send link with mail" );
+        createGoogleDocCheckBox.setLayoutData(gridData);
+        createGoogleDocCheckBox.addSelectionListener( new SelectionListener() {
+            @Override
+            public void widgetDefaultSelected( SelectionEvent e ) {
+            }
+
+            @Override
+            public void widgetSelected( SelectionEvent e ) {
+                if (createGoogleDocCheckBox.getSelection())
+                	canCreateGoogleDoc = true;
+                else
+                	canCreateGoogleDoc = false;
             }
 
         } );
@@ -297,6 +351,10 @@ public class LastPage extends WizardPage implements Listener {
         return this.canSendInvitations;
     }
 
+    public boolean getCanCreateGoogleDoc() {
+        return this.canCreateGoogleDoc;
+    }
+    
     public void setCanSendInvitations( boolean canSendInvitations ) {
         this.canSendInvitations = canSendInvitations;
     }
