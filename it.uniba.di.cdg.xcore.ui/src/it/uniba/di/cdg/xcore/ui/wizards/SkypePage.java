@@ -140,6 +140,7 @@ public class SkypePage extends WizardPage {
 	 */
 	private void dataControl() {
 		setPageComplete(false);
+		setMessage(null);
 
 		if (username.getText().length() != 0
 				&& password.getText().length() == 0) {
@@ -155,6 +156,7 @@ public class SkypePage extends WizardPage {
 			return;
 		}
 
+		setMessage(null);
 		setPageComplete(true);
 	}
 
