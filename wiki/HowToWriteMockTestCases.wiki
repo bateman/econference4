@@ -1,0 +1,14 @@
+#summary This wiki page shows how to write a behavioral test cases for eConference, using the Mockito test framework.
+#labels Phase-Implementation,Howto
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
