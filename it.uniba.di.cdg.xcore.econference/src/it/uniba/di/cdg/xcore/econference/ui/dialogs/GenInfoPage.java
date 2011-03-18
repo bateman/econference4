@@ -118,7 +118,7 @@ public class GenInfoPage extends WizardPage {
 							serviceText.setText("");
 							nameConferenceText.setText("econference");
 						}
-						filePathText.setText(computeFilepaht());
+						filePathText.setText(computeFilePath());
 					}
 				});
 
@@ -165,7 +165,7 @@ public class GenInfoPage extends WizardPage {
 								.getMucService(serviceCombo.getSelectionIndex()));
 						if (nameConferenceText.getText().equals(""))
 							nameConferenceText.setText("econference");
-						filePathText.setText(computeFilepaht());
+						filePathText.setText(computeFilePath());
 
 					}					
 				});
@@ -188,7 +188,7 @@ public class GenInfoPage extends WizardPage {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				filePathText.setText(computeFilepaht());			
+				filePathText.setText(computeFilePath());			
 			}
 
 			@Override
@@ -220,7 +220,7 @@ public class GenInfoPage extends WizardPage {
 		// gd.grabExcessHorizontalSpace = true;
 		filePathText = new Text(composite, SWT.BORDER);
 		filePathText.setLayoutData(gd);
-		filePathText.setText(computeFilepaht());
+		filePathText.setText(computeFilePath());
 		Button browseButton = new Button(composite, SWT.PUSH);
 		browseButton.setText("Browse");
 		browseButton.setLayoutData(new GridData(50, 22));
@@ -299,7 +299,7 @@ public class GenInfoPage extends WizardPage {
 		return room; 
 	}
 	
-	protected String computeFilepaht() {
+	public String computeFilePath() {
 		StringBuffer filepath = new StringBuffer( preferredFilePath
 				 								 + media
 				 								 + System.getProperty("file.separator")
