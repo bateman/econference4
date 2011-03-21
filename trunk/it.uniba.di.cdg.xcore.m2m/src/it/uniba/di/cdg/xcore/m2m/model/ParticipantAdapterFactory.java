@@ -96,7 +96,7 @@ public class ParticipantAdapterFactory implements IAdapterFactory {
 
         public String getLabel( Object o ) {
             IParticipant p = (IParticipant) o;
-            if (p.getPersonalStatus()!=null && p.getPersonalStatus()!="")
+            if (p.getPersonalStatus()!=null && !p.getPersonalStatus().equals(""))
                 return String.format( "%s (%s)", p.getNickName(), p.getPersonalStatus() );
             else
                 return p.getNickName();
@@ -128,7 +128,7 @@ public class ParticipantAdapterFactory implements IAdapterFactory {
                 ICapabilities capabilities = NetworkPlugin.getDefault().getHelper().getRoster().getBackend().getCapabilities();
                 for (Iterator<ICapability> iterator = capabilities.iterator(); iterator
 						.hasNext();) {
-					ICapability capability = (ICapability) iterator.next();
+					ICapability capability = iterator.next();
 					if(capability.getName().equals(value))
 						return true;				
 				}
