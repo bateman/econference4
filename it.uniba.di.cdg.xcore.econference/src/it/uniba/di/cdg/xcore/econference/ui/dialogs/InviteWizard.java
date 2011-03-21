@@ -116,7 +116,7 @@ public class InviteWizard extends Wizard implements INewWizard {
             // if we save the ecx file not in the default location
             // we store a copy there
             if (!filepath.startsWith( preferredFilePath )) {
-                String filecopy = genInfoPage.computeFilepaht();
+                String filecopy = genInfoPage.computeFilePath();
                 writer = new ConferenceContextWriter( filecopy, (EConferenceContext) context );
                 writer.serialize();
             }
