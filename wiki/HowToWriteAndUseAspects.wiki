@@ -10,7 +10,7 @@ AspectJ is the Java implementation of the Aspect-oriented programming paradigm. 
 
 == Cross-cutting concerns ==
 
-  Cross-cutting concerns are parts of a program which rely on or must affect many other parts of the system. They form the basis for the development of aspects. Such cross-cutting concerns do not fit cleanly into object-oriented programming or procedural programming.
+Cross-cutting concerns are parts of a program which rely on or must affect many other parts of the system. They form the basis for the development of aspects. Such cross-cutting concerns do not fit cleanly into object-oriented programming or procedural programming.
 
 Cross-cutting concerns can be directly responsible for tangling, or system interdependencies, within a program. Because procedural and functional languages' constructs consist entirely of procedure calling, there is no semantic through which two goals (the capability to be implemented and the related cross-cutting concern) can be addressed simultaneously. As a result, the code addressing the cross-cutting concern must be scattered, or duplicated, across the various related locations, resulting in a loss of modularity. 
 
