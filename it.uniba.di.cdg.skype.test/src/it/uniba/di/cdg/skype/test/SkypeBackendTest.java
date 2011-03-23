@@ -81,19 +81,22 @@ public class SkypeBackendTest extends MockObjectTestCase {
 	 * Tests the Skype user status changes
 	 */
 	@Test
-	public void testSetUserStatus() throws SkypeException{
+	public void testSetUserStatus() throws SkypeException, InterruptedException{
 		SkypeBackend backend = new SkypeBackend();
 
 		//case1 if we set the user status in Available
 		backend.setUserStatus(IUserStatus.AVAILABLE);
+		Thread.sleep(2000);
 		assertEquals(Skype.getProfile().getStatus().toString(),"ONLINE");
-		
+	
 		//case2 if we set the user status in Away
 		backend.setUserStatus(IUserStatus.AWAY);
+		Thread.sleep(2000);
 		assertEquals(Skype.getProfile().getStatus().toString(),"AWAY");
-		
+			
 		//case3 if we set the user status in Busy
 		backend.setUserStatus(IUserStatus.BUSY);
+		Thread.sleep(2000);
 		assertEquals(Skype.getProfile().getStatus().toString(),"DND");
 
 	}
