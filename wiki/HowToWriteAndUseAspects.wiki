@@ -88,6 +88,59 @@ public aspect Tracing {
 
 By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with @SwtAsyncExec. 
 
+== Annotations and aspects in Econference  ==
+
+All the aspects implemented in Econference use annotations to individuate the methods in the pointcut expressions. Those are used especially for applying multi-threading execution for graphics.
+
+The SwtThreadSafety aspect deals with multi-threading in Econference:
+
+{{{
+public aspect SwtThreadSafety {
+    /**
+     * Captures synchronous methods: typically those that do not return anything.
+     */
+    public pointcut uiSyncCalls() : execution( @SwtSyncExec * *.*(..));
+
+    /**
+     * Captures asynchronous methods: methods that just update the UI and do not return 
+     * any values are good candidates.
+     */
+    public pointcut uiAsyncCalls() : execution( @SwtAsyncExec * *.*(..) );
+
+    Object around() : uiSyncCalls() {
+    	RunnableWithReturn r = new RunnableWithReturn() {
+            @Override
+			public void run() {
+                try {
+                    _returnValue = proceed();
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                    throw new RuntimeException( e ); // Soft the exception ...
+                }
+            }
+        };
+        
+        getDisplay().syncExec( r ); 
+        return r.getReturnValue(); 
+    }
+
+    void around() : uiAsyncCalls() {
+        Runnable r = new Runnable() {
+            @Override
+			public void run() {
+                try {
+                    proceed();
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                    throw new RuntimeException( e ); // Soft the exception ...
+                }
+            }
+        };
+        
+        getDisplay().asyncExec( r ); 
+    }
+
+}}}
 = Build-Time versus Load-Time weaving =
 
 The weaving is the process that links cross-cutting concerns defined in the aspects with the classes involved in the aspects' definition.
