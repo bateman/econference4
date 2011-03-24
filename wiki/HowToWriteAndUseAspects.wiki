@@ -14,7 +14,7 @@ First of all, it's necessary to download and install in eclipse the AJDT plugin.
 
 = Aspects in Econference =
 
-All the aspects relative to the entire project are sited in the it.uniba.di.cdg.aspects bundle. Then you have to edit this bundle if you want to expand the aspects' possibilities of Econference.
+All the aspects relative to the entire project are sited in the it.uniba.di.cdg.aspects bundle. Then you have to edit this bundle if you want to expand the aspects possibilities of Econference.
 
 == Creating a new Aspect ==
 
@@ -22,7 +22,7 @@ Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. Yo
 
 [image here]
 
-As for example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
+For example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
 
 A pointcut is a program element that picks out join points and exposes data from the execution context of those join points. Pointcuts are used primarily by advice. They can be composed with boolean operators to build up other pointcuts. The complete list of pointcuts and combinators is available [http://www.eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html here]
 
@@ -38,7 +38,7 @@ public aspect Tracing {
 }
 }}}
 
-As you can see, in the inner brackets of the execution primitive pointcut, we have a method pattern. The pattern defined in the example covers all the method of all the classes of the entire project; for this reason, it is useful to exclude  the aspects methods (we don't want to trace them) then the execution primitive is combined with a "!within" for this task. The inner pattern of the "!within" primitive matches the aspects' package.
+As you can see, in the inner brackets of the execution primitive pointcut, we have a method pattern. The pattern defined in the example covers all the methods of all the classes of the entire project; for this reason, it is useful to exclude  the aspects methods (we don't want to trace them) then the execution primitive is combined with a "!within" for this task. The inner pattern of the "!within" primitive matches the aspects' package.
 
 == Defining the behaviour ==
 
@@ -48,7 +48,7 @@ At the same time we may use other keywords as "after()" or "around()", depending
 
 == Markers ==
 
-After defining the aspect and saving the file we were editing, the jdt weaving process take place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in differente ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of Econference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
+After defining the aspect and saving the file we were editing, the jdt weaving process takes place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in different ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of Econference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
 
 You can edit the marker symbol to identify immediately different kind of aspects, or you can use the cross references tab to backtrack the aspects reference tree.
 
@@ -56,11 +56,11 @@ You can edit the marker symbol to identify immediately different kind of aspects
 
 = Aspects and annotations =
 
-In the previous example, we defined a very simple aspect using a poincut defined for all the methods of the entire project, but it is also possible to use the java @annotations to trigger the aspects only for the methods annotated in a certain way.
+In the previous example, we defined a very simple aspect using a poincut defined for all the methods of the entire project, but it is also possible to use the java @annotations to trigger the aspects only for the methods annotated in a certain way, rather than using regular expressions.
 
 == Creating an annotation ==
 
-First of all, we must create an annotation. Looking at the Econference project, it's possible to find this kind of annotation (created in the aspect package) :
+First of all, we must create an annotation. Looking at the Econference project, it's possible to find this kind of annotations (created in the aspect package) :
 {{{
 
 @Target( ElementType.METHOD )
@@ -86,7 +86,7 @@ public aspect Tracing {
 
 }}}
 
-By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with @SwtAsyncExec. 
+By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with SwtAsyncExec. 
 
 == Annotations and aspects in Econference  ==
 
@@ -173,9 +173,51 @@ An example of methods using the aspect described above is this:
 
 Those methods belong to the TalkView class of the it.uniba.di.cdg.xcore.ui.views package: the first has an asynchronous nature because it deals with the action of appending messages on the chat board, the latter has a synchronous nature because it deals with the capturing of the entire chat board, then it must be executed consequently with the thread running ui.
 
+== Locking aspects ==
+
+In the previous content we defined the multi-threading solution adopted in econference, but multi-threading carries synchronism problems. 
+The solution for this kind of problems is the definition of another aspect that locks and unlocks threads in the right moment.
+
+In Econference this aspect is named "ThreadSafetyAspect" and uses two annotations to do its work:
+
+  * GetSafety
+
+  * SetSafety
+
+{{{
+public aspect ThreadSafetyAspect perthis(readOperations() || writeOperations()) {
+
+	protected pointcut writeOperations() : execution( @SetSafety * *.*(..) );
+	protected pointcut readOperations() : execution(@GetSafety * *.*(..));
+
+	private ReadWriteLock _lock = new ReentrantReadWriteLock();
+
+    before() : readOperations(){
+        _lock.readLock().lock();
+    }
+    
+    after() : readOperations() {
+    	_lock.readLock().unlock();
+    }
+    
+    before() : writeOperations() {
+    	_lock.writeLock().lock();
+    }
+    
+    after() : writeOperations() {
+    	_lock.writeLock().unlock();
+    }
+}
+}}}
+
+As it's possible to see in the previous code, the aspect simply locks thread execution for reading for all the methods marked with the "GetSafety" annotation, and for writing for those marked with "SetSafety". The thread resources are released after the execution of the methods.
+
+Usually those annotation are used when modifying and using resources (i.e. getters and setters). We can take a look of methods using them in the model packages of it.uniba.di.cdg.xcore.econference bundle.
+
+
 = Build-Time versus Load-Time weaving =
 
-The weaving is the process that links cross-cutting concerns defined in the aspects with the classes involved in the aspects' definition.
+The weaving is the process that links cross-cutting concerns defined in the aspects with the classes involved in the aspects definition.
 Because of the particular bundle architecture of Econference, the build time weaving works only into the Eclipse enviroment, then it's necessary to define a aop.xml file to let Econference using aspects when exported.
 This aop.xml file contains the definition of the aspects used in the project and sites in the META-INF directory of the it.uniba.di.cdg.aspects bundle.
 
