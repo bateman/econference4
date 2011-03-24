@@ -92,12 +92,12 @@ For example, before adding the aspect for tracing, we had this aop.xml definitio
 
 {{{
 <aspectj>
-<aspects>
-<aspect name="it.uniba.di.cdg.aspects.AsynchronousExecution"/>
-<aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety"/>
-<aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect"/>
-<aspect name="it.uniba.di.cdg.aspects.AnnotatedAsynchronousExecution"/>
-</aspects>
+     <aspects>
+         <aspect name="it.uniba.di.cdg.aspects.AsynchronousExecution"/>
+         <aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety"/>
+         <aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect"/>
+         <aspect name="it.uniba.di.cdg.aspects.AnnotatedAsynchronousExecution"/>
+     </aspects>
 </aspectj>
 }}}
 
@@ -108,13 +108,13 @@ Once defined the aspect into the project, we have to add this line:
 to the preexisting aop.xml :
 {{{
 <aspectj>
-<aspects>
-<aspect name="it.uniba.di.cdg.aspects.AsynchronousExecution"/>
-<aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety"/>
-<aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect"/>
-<aspect name="it.uniba.di.cdg.aspects.AnnotatedAsynchronousExecution"/>
-<aspect name="it.uniba.di.cdg.aspects.Tracing"/>
-</aspects>
+	<aspects>
+		<aspect name="it.uniba.di.cdg.aspects.AsynchronousExecution" />
+		<aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety" />
+		<aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect" />
+		<aspect name="it.uniba.di.cdg.aspects.AnnotatedAsynchronousExecution" />
+		<aspect name="it.uniba.di.cdg.aspects.Tracing" />
+	</aspects>
 </aspectj>
 }}}
 Now we can export our product being sure that aspects are weaved in the project.
