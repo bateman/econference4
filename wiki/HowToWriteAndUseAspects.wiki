@@ -147,7 +147,31 @@ If you want to use multi-threading in a plugin extension of Econference you must
   * \@SwtAsyncExec: it suits for those methods that use SWT, but don't return anything
   * \@SwtSyncExec: is suits for those methods that use SWT returning objects
 
-The application in Econference of this aspect is still experimental, because a little change of the annotations on the methods may break the normale execution of the graphic interface
+The application in Econference of this aspect is still experimental, because a little change of the annotations on the methods may break the normal execution of the graphic interface.
+
+An example of methods using the aspect described above is this:
+
+{{{
+
+    @SwtAsyncExec
+    public void appendMessage( String text ) {
+        String textToAppend = text + "\n";
+        messageBoardText.append( textToAppend );
+        cacheMessage( getModel().getCurrentThread(), textToAppend );
+        scrollToEnd();
+    }
+
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.views.ITalkView#getChatLogText()
+     */
+    @SwtSyncExec
+    public String getChatLogText() {
+        return messageBoardText.getText();
+    }
+
+}}}
+
+Those methods belong to the TalkView class of the it.uniba.di.cdg.xcore.ui.views package: the first has an asynchronous nature because it deals with the action of appending messages on the chat board, the latter has a synchronous nature because it deals with the capturing of the entire chat board, then it must be executed consequently with the thread running ui.
 
 = Build-Time versus Load-Time weaving =
 
