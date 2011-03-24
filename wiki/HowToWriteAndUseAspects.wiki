@@ -173,7 +173,7 @@ An example of methods using the aspect described above is this:
 
 Those methods belong to the TalkView class of the it.uniba.di.cdg.xcore.ui.views package: the first has an asynchronous nature because it deals with the action of appending messages on the chat board, the latter has a synchronous nature because it deals with the capturing of the entire chat board, then it must be executed consequently with the thread running ui.
 
-== Locking aspects ==
+== Locking threads through aspects ==
 
 In the previous content we defined the multi-threading solution adopted in econference, but multi-threading carries synchronism problems. 
 The solution for this kind of problems is the definition of another aspect that locks and unlocks threads in the right moment.
