@@ -10,7 +10,7 @@ AspectJ is the Java implementation of the Aspect-oriented programming paradigm. 
 
 == How to install AspectJ in Eclipse ==
 
-First of all, it's necessary to download and install in eclipse the AJDT plugin. You can do this using the apposite function available in eclipse (Help -> Install New Software). Search for update site here (http://www.eclipse.org/ajdt/downloads/) and take care to install all the plugins available.
+First of all, it's necessary to download and install in eclipse the AJDT plugin. You can do this using the apposite function available in eclipse (Help -> Install New Software). Search for update site [http://www.eclipse.org/ajdt/downloads/ here] http://www.eclipse.org/ajdt/downloads/ and take care to install all the plugins available.
 
 = Aspects in Econference =
 
@@ -119,4 +119,3 @@ to the preexisting aop.xml :
 }}}
 Now we can export our product being sure that aspects are weaved in the project.
  
-
