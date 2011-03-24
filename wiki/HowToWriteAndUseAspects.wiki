@@ -46,6 +46,14 @@ Once defined the pointcut, we have to define the behaviour of the aspect itself.
 
 At the same time we may use other keywords as "after()" or "around()", depending on the use to do of our aspects.
 
+== Markers ==
+
+After defining the aspect and saving the file we were editing, the jdt weaving process take place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in differente ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of Econference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
+
+You can edit the marker symbol to identify immediately different kind of aspects, or you can use the cross references tab to backtrack the aspects reference tree.
+
+
+
 = Aspects and annotations =
 
 In the previous example, we defined a very simple aspect using a poincut defined for all the methods of the entire project, but it is also possible to use the java @annotations to trigger the aspects only for the methods annotated in a certain way.
