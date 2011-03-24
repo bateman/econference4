@@ -10,7 +10,7 @@ AspectJ is the Java implementation of the Aspect-oriented programming paradigm. 
 
 == How to install AspectJ in Eclipse ==
 
-First of all, it's necessary to download and install in eclipse the AJDT plugin. You can do this using the apposite function available in eclipse (Help -> Install New Software). Search for update site [http://www.eclipse.org/ajdt/downloads/ here] http://www.eclipse.org/ajdt/downloads/ and take care to install all the plugins available.
+First of all, it's necessary to download and install in eclipse the AJDT plugin. You can do this using the apposite function available in eclipse (Help -> Install New Software). Search for update site [http://www.eclipse.org/ajdt/downloads/ here] and take care to install all the plugins available.
 
 = Aspects in Econference =
 
@@ -18,13 +18,13 @@ All the aspects relative to the entire project are sited in the it.uniba.di.cdg.
 
 == Creating a new Aspect ==
 
-Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. You'll have a new *.aj file that will contain the aspect you want to develop.
+Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. You'll have a new file with aj extension that will contain the aspect you want to develop.
 
 [image here]
 
 As for example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
 
-A pointcut is a program element that picks out join points and exposes data from the execution context of those join points. Pointcuts are used primarily by advice. They can be composed with boolean operators to build up other pointcuts. The complete list of pointcuts and combinators is available here (http://www.eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html)
+A pointcut is a program element that picks out join points and exposes data from the execution context of those join points. Pointcuts are used primarily by advice. They can be composed with boolean operators to build up other pointcuts. The complete list of pointcuts and combinators is available [http://www.eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html here]
 
 For this example we want to track all the method executions, then we have to use the "execution" primitive pointcut: i'll call this pointcut "traceThis()".
 {{{
