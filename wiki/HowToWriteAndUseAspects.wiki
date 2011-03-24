@@ -8,14 +8,115 @@
 
 AspectJ is the Java implementation of the Aspect-oriented programming paradigm. Using aspects it is possible to define cross-cutting concerns useful in developing large-scale software.
 
-== How to use ==
+== How to install AspectJ in Eclipse ==
 
 First of all, it's necessary to download and install in eclipse the AJDT plugin. You can do this using the apposite function available in eclipse (Help -> Install New Software). Search for update site here (http://www.eclipse.org/ajdt/downloads/) and take care to install all the plugins available.
 
+= Aspects in Econference =
 
-= Details =
+All the aspects relative to the entire project are sited in the it.uniba.di.cdg.aspects bundle. Then you have to edit this bundle if you want to expand the aspects' possibilities of Econference.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Creating a new Aspect ==
+
+Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. You'll have a new *.aj file that will contain the aspect you want to develop.
+
+[image here]
+
+As for example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
+
+A pointcut is a program element that picks out join points and exposes data from the execution context of those join points. Pointcuts are used primarily by advice. They can be composed with boolean operators to build up other pointcuts. The complete list of pointcuts and combinators is available here (http://www.eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html)
+
+For this example we want to track all the method executions, then we have to use the "execution" primitive pointcut: i'll call this pointcut "traceThis()".
+{{{
+public aspect Tracing {
+
+	public pointcut traceThis() : execution( * *.*(..) ) && !within( it.uniba.di.cdg.aspects..*) ;
+	
+	before() : traceThis() {
+		System.out.println("Entering :" + thisJoinPoint);
+	}
+}
+}}}
+
+As you can see, in the inner brackets of the execution primitive pointcut, we have a method pattern. The pattern defined in the example covers all the method of all the classes of the entire project; for this reason, it is useful to exclude  the aspects methods (we don't want to trace them) then the execution primitive is combined with a "!within" for this task. The inner pattern of the "!within" primitive matches the aspects' package.
+
+== Defining the behaviour ==
+
+Once defined the pointcut, we have to define the behaviour of the aspect itself. In this case, using the "before()" keyword, we want the aspect to trigger before the execution of the methods defined in the "traceThis()" pointcut pattern expression, printing the method name the system is going to enter.
+
+At the same time we may use other keywords as "after()" or "around()", depending on the use to do of our aspects.
+
+= Aspects and annotations =
+
+In the previous example, we defined a very simple aspect using a poincut defined for all the methods of the entire project, but it is also possible to use the java @annotations to trigger the aspects only for the methods annotated in a certain way.
+
+== Creating an annotation ==
+
+First of all, we must create an annotation. Looking at the Econference project, it's possible to find this kind of annotation (created in the aspect package) :
+{{{
+
+@Target( ElementType.METHOD )
+@Retention( RetentionPolicy.RUNTIME )
+@Inherited
+public @interface SwtAsyncExec {
+    // Nothing
+}
+ 
+}}}
+Once defined this annotation, we can go into the aspect definition, and use the annotation just created in the method pattern definition.
+For example we want to track all the methods using this kind of annotation (@SwtAsyncExec). All we have to do is this:
+
+{{{
+public aspect Tracing {
+
+	public pointcut traceThis() : execution(@SwtAsyncExec * *.*(..) ) ;
+	
+	before() : traceThis() {
+		System.out.println("Entering :" + thisJoinPoint);
+	}
+}
+
+}}}
+
+By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with @SwtAsyncExec. 
+
+= Build-Time versus Load-Time weaving =
+
+The weaving is the process that links cross-cutting concerns defined in the aspects with the classes involved in the aspects' definition.
+Because of the particular bundle architecture of Econference, the build time weaving works only into the Eclipse enviroment, then it's necessary to define a aop.xml file to let Econference using aspects when exported.
+This aop.xml file contains the definition of the aspects used in the project and sites in the META-INF directory of the it.uniba.di.cdg.aspects bundle.
+
+When adding an aspect, then, we have to augment the aop.xml including the aspect definition we want to add.
+
+For example, before adding the aspect for tracing, we had this aop.xml definition:
+
+{{{
+<aspectj>
+<aspects>
+<aspect name="it.uniba.di.cdg.aspects.AsynchronousExecution"/>
+<aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety"/>
+<aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect"/>
+<aspect name="it.uniba.di.cdg.aspects.AnnotatedAsynchronousExecution"/>
+</aspects>
+</aspectj>
+}}}
+
+Once defined the aspect into the project, we have to add this line:
+{{{
+<aspect name="it.uniba.di.cdg.aspects.Tracing"/>
+}}}
+to the preexisting aop.xml :
+{{{
+<aspectj>
+<aspects>
+<aspect name="it.uniba.di.cdg.aspects.AsynchronousExecution"/>
+<aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety"/>
+<aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect"/>
+<aspect name="it.uniba.di.cdg.aspects.AnnotatedAsynchronousExecution"/>
+<aspect name="it.uniba.di.cdg.aspects.Tracing"/>
+</aspects>
+</aspectj>
+}}}
+Now we can export our product being sure that aspects are weaved in the project.
+ 
+
