@@ -51,7 +51,7 @@ At the same time we may use other keywords as "after()" or "around()", depending
 
 After defining the aspect and saving the file we were editing, the jdt weaving process takes place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in different ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of eConference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
 
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/beforeAfterMarkers.png </p> <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/createAspect.png </p><br>
 <p align=center>*Figure 2. Markers on the method side.*</p>
 
 You can edit the marker symbol to identify immediately different kind of aspects, or you can use the cross references tab to backtrack the aspects reference tree.
