@@ -16,12 +16,16 @@ First of all, it's necessary to download and install in eclipse the AJDT plugin.
 
 All the aspects relative to the entire project are sited in the it.uniba.di.cdg.aspects bundle. Then you have to edit this bundle if you want to expand the aspects possibilities of eConference .
 
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/aspectspackage.png] </p>
+<p align=center>*Figure 1. Creating a new aspect*</p>
+
 == Creating a new Aspect ==
 
 Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. You'll have a new file with aj extension that will contain the aspect you want to develop.
 
 <p align=center>
-[http://econference4.googlecode.com/svn/wiki/img/aspectj/createAspect.png] </p>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/createaspect.png] </p>
 <p align=center>*Figure 1. Creating a new aspect*</p>
 
 For example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
