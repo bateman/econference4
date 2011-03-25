@@ -20,7 +20,7 @@ All the aspects relative to the entire project are sited in the it.uniba.di.cdg.
 
 Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. You'll have a new file with aj extension that will contain the aspect you want to develop.
 
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/createAspect.png <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/createAspect.png </p><br>
 <p align=center>*Figure 1. Creating a new aspect*</p>
 
 For example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
@@ -51,7 +51,7 @@ At the same time we may use other keywords as "after()" or "around()", depending
 
 After defining the aspect and saving the file we were editing, the jdt weaving process takes place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in different ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of eConference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
 
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/beforeAfterMarkers.png <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/beforeAfterMarkers.png </p> <br>
 <p align=center>*Figure 2. Markers on the method side.*</p>
 
 You can edit the marker symbol to identify immediately different kind of aspects, or you can use the cross references tab to backtrack the aspects reference tree.
