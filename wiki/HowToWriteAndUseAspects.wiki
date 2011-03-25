@@ -12,9 +12,9 @@ AspectJ is the Java implementation of the Aspect-oriented programming paradigm. 
 
 First of all, it's necessary to download and install in eclipse the AJDT plugin. You can do this using the apposite function available in eclipse (Help -> Install New Software). Search for update site [http://www.eclipse.org/ajdt/downloads/ here] and take care to install all the plugins available.
 
-= Aspects in Econference =
+= Aspects in eConference =
 
-All the aspects relative to the entire project are sited in the it.uniba.di.cdg.aspects bundle. Then you have to edit this bundle if you want to expand the aspects possibilities of Econference.
+All the aspects relative to the entire project are sited in the it.uniba.di.cdg.aspects bundle. Then you have to edit this bundle if you want to expand the aspects possibilities of eConference .
 
 == Creating a new Aspect ==
 
@@ -49,7 +49,7 @@ At the same time we may use other keywords as "after()" or "around()", depending
 
 == Markers ==
 
-After defining the aspect and saving the file we were editing, the jdt weaving process takes place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in different ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of Econference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
+After defining the aspect and saving the file we were editing, the jdt weaving process takes place and all the methods involved by the aspects are marked with special marker assigned by AJDT. It is representend in different ways according to the type of keyword defined in the behaviour part of the aspect (before, after, around). Unfortunately, due to the bundle architecture of eConference, the markers are only visible on the methods afflicted, but not on the aspects (where is present a warning advice instead).
 
 You can edit the marker symbol to identify immediately different kind of aspects, or you can use the cross references tab to backtrack the aspects reference tree.
 
@@ -61,7 +61,7 @@ In the previous example, we defined a very simple aspect using a poincut defined
 
 == Creating an annotation ==
 
-First of all, we must create an annotation. Looking at the Econference project, it's possible to find this kind of annotations (created in the aspect package) :
+First of all, we must create an annotation. Looking at the eConference project, it's possible to find this kind of annotations (created in the aspect package) :
 {{{
 
 @Target( ElementType.METHOD )
@@ -89,11 +89,11 @@ public aspect Tracing {
 
 By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with SwtAsyncExec. 
 
-== Annotations and aspects in Econference  ==
+== Annotations and aspects in eConference ==
 
-All the aspects implemented in Econference use annotations to individuate the methods in the pointcut expressions. Those are used especially for applying multi-threading execution for graphics.
+All the aspects implemented in eConference use annotations to individuate the methods in the pointcut expressions. Those are used especially for applying multi-threading execution for graphics.
 
-The SwtThreadSafety aspect deals with multi-threading in Econference:
+The SwtThreadSafety aspect deals with multi-threading in eConference:
 
 {{{
 public aspect SwtThreadSafety {
@@ -143,12 +143,12 @@ public aspect SwtThreadSafety {
 
 }}}
 
-If you want to use multi-threading in a plugin extension of Econference you must consider the different nature of the pointcuts described above:
+If you want to use multi-threading in a plugin extension of eConference you must consider the different nature of the pointcuts described above:
 
   * \@SwtAsyncExec: it suits for those methods that use SWT, but don't return anything
   * \@SwtSyncExec: is suits for those methods that use SWT returning objects
 
-The application in Econference of this aspect is still experimental, because a little change of the annotations on the methods may break the normal execution of the graphic interface.
+The application in eConference of this aspect is still experimental, because a little change of the annotations on the methods may break the normal execution of the graphic interface.
 
 An example of methods using the aspect described above is this:
 
@@ -176,10 +176,10 @@ Those methods belong to the TalkView class of the it.uniba.di.cdg.xcore.ui.views
 
 == Locking threads through aspects ==
 
-In the previous content we defined the multi-threading solution adopted in econference, but multi-threading carries synchronism problems. 
+In the previous content we defined the multi-threading solution adopted in eConference, but multi-threading carries synchronism problems. 
 The solution for this kind of problems is the definition of another aspect that locks and unlocks threads in the right moment.
 
-In Econference this aspect is named "ThreadSafetyAspect" and uses two annotations to do its work:
+In eConference this aspect is named "ThreadSafetyAspect" and uses two annotations to do its work:
 
   * GetSafety
 
@@ -219,7 +219,7 @@ Usually those annotation are used when modifying and using resources (i.e. gette
 = Build-Time versus Load-Time weaving =
 
 The weaving is the process that links cross-cutting concerns defined in the aspects with the classes involved in the aspects definition.
-Because of the particular bundle architecture of Econference, the build time weaving works only into the Eclipse enviroment, then it's necessary to define a aop.xml file to let Econference using aspects when exported.
+Because of the particular bundle architecture of eConference, the build time weaving works only into the Eclipse enviroment, then it's necessary to define a aop.xml file to let eConference using aspects when exported.
 This aop.xml file contains the definition of the aspects used in the project and sites in the META-INF directory of the it.uniba.di.cdg.aspects bundle.
 
 When adding an aspect, then, we have to augment the aop.xml including the aspect definition we want to add.
