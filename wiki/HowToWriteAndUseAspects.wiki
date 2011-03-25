@@ -20,7 +20,7 @@ All the aspects relative to the entire project are sited in the it.uniba.di.cdg.
 
 Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. You'll have a new file with aj extension that will contain the aspect you want to develop.
 
-http://econference4.googlecode.com/svn/wiki/img/aspectj/createAspect.png 
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/createAspect.png] 
 <p align=center>*Figure 1. Creating a new aspect*</p>
 
 For example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
