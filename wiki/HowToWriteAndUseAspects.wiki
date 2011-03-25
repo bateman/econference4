@@ -18,7 +18,7 @@ All the aspects relative to the entire project are sited in the it.uniba.di.cdg.
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/aspectj/aspectspackage.png] </p>
-<p align=center>*Figure 1. Creating a new aspect*</p>
+<p align=center>*Figure 1. Package of the plugin containing aspects*</p>
 
 == Creating a new Aspect ==
 
@@ -26,7 +26,7 @@ Go into it.di.uniba.cdg.aspects plugin source folder and create a new aspect. Yo
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/aspectj/createaspect.png] </p>
-<p align=center>*Figure 1. Creating a new aspect*</p>
+<p align=center>*Figure 2. Creating a new aspect*</p>
 
 For example, we want to create a tracing aspect for all the methods of the project. Then it's necessary to define a pointcut that, through a regular expression, involves the methods we want to track.
 
