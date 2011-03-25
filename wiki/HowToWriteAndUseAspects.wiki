@@ -56,7 +56,7 @@ After defining the aspect and saving the file we were editing, the jdt weaving p
 
 You can edit the marker symbol to identify immediately different kind of aspects, or you can use the cross references tab to backtrack the aspects reference tree.
 
-<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/crossReference.png <br>
+<p align=center>http://econference4.googlecode.com/svn/wiki/img/aspectj/tracingAspect.png <br>
 <p align=center>*Figure 3. Cross references.*</p>
 
 = Aspects and annotations =
