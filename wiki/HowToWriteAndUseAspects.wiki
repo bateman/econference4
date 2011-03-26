@@ -156,8 +156,8 @@ public aspect SwtThreadSafety {
 
 If you want to use multi-threading in a plugin extension of eConference you must consider the different nature of the pointcuts described above:
 
-  * \@SwtAsyncExec: it suits for those methods that use SWT, but don't return anything
-  * \@SwtSyncExec: is suits for those methods that use SWT returning objects
+  * SwtAsyncExec: it suits for those methods that use SWT, but don't return anything
+  * SwtSyncExec: is suits for those methods that use SWT returning objects
 
 The application in eConference of this aspect is still experimental, because a little change of the annotations on the methods may break the normal execution of the graphic interface.
 
