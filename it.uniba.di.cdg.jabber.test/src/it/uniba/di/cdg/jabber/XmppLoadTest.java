@@ -1,9 +1,5 @@
 package it.uniba.di.cdg.jabber;
-import java.lang.*;
-import org.junit.Assert;
 import java.util.Date;
-
-import junit.framework.TestCase;
 
 import org.jivesoftware.smack.*;
 import org.jivesoftware.smack.packet.*;

@@ -24,16 +24,10 @@
  */
 package it.uniba.di.cdg.jabber;
 
-import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
-import it.uniba.di.cdg.xcore.network.internal.NetworkBackendHelper;
-
 import java.util.Iterator;
 
-import junit.framework.TestCase;
-
-import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.jivesoftware.smackx.muc.Occupant;
 import org.junit.Test;

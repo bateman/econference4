@@ -24,8 +24,6 @@
  */
 package it.uniba.di.cdg.jabber.internal;
 
-import it.uniba.di.cdg.jabber.XmppLoadTest;
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

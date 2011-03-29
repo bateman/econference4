@@ -35,7 +35,6 @@ import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Packet;
-import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
  * A simple jabber bot ... 
