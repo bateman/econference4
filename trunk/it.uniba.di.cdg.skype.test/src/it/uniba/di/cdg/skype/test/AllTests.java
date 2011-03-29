@@ -24,7 +24,6 @@
  */
 package it.uniba.di.cdg.skype.test;
 
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
