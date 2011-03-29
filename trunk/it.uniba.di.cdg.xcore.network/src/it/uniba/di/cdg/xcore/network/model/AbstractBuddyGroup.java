@@ -30,6 +30,5 @@ import org.eclipse.core.runtime.PlatformObject;
  * Just add <code>PlatformObject</code> to the hierarchy.
  */
 public abstract class AbstractBuddyGroup extends PlatformObject implements IBuddyGroup {
-    
-	
+    // Nothing
 }
