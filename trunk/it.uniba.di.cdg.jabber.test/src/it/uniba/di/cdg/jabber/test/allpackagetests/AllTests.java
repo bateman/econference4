@@ -1,11 +1,5 @@
 package it.uniba.di.cdg.jabber.test.allpackagetests;
 
-import it.uniba.di.cdg.jabber.*;
-import it.uniba.di.cdg.jabber.internal.BuddyGroupTestCase;
-import it.uniba.di.cdg.jabber.internal.BuddyRosterTestCase;
-import it.uniba.di.cdg.jabber.internal.BuddyTestCase;
-import it.uniba.di.cdg.jabber.internal.XMPPUtilsTestCase;
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
