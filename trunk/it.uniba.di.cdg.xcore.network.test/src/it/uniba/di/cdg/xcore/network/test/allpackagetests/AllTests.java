@@ -23,19 +23,6 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package it.uniba.di.cdg.xcore.network.test.allpackagetests;
-import it.uniba.di.cdg.xcore.network.JabberAccountTestCase;
-import it.uniba.di.cdg.xcore.network.internal.BackendRegistryTestCase;
-import it.uniba.di.cdg.xcore.network.internal.NetworkServiceRegistryTestCase;
-import it.uniba.di.cdg.xcore.network.model.tv.EntryTestCase;
-import it.uniba.di.cdg.xcore.network.model.tv.TalkModelTestCase;
-import it.uniba.di.cdg.xcore.network.services.CapabilitiesTestCase;
-import it.uniba.di.cdg.xcore.network.services.CapabilityTestCase;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
