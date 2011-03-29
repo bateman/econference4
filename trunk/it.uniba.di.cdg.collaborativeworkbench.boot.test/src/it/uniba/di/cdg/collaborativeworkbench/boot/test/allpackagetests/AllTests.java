@@ -1,11 +1,5 @@
 package it.uniba.di.cdg.collaborativeworkbench.boot.test.allpackagetests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
