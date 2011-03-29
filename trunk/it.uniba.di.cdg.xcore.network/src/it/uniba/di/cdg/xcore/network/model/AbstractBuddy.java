@@ -50,6 +50,8 @@ public abstract class AbstractBuddy extends PlatformObject implements IBuddy {
 	 * The online status.
 	 */
 	protected boolean online;
+	
+	
 
 	/**
 	 * The message the buddy's current activity (away, do not disturb, ...)
@@ -106,6 +108,8 @@ public abstract class AbstractBuddy extends PlatformObject implements IBuddy {
 	public boolean isOnline() {
 		return online;
 	}
+	
+	
 
 	/*
 	 * (non-Javadoc)

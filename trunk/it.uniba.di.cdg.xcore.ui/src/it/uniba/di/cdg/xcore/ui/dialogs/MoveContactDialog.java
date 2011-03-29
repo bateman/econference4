@@ -39,13 +39,17 @@ public class MoveContactDialog extends Dialog {
 			final String buddyName = buddyNome.split("/")[0];
 			final IBuddyRoster roster = buddy.getRoster();
 			Shell parent = getParent();
+
 			dialogShell = new Shell(parent, SWT.DIALOG_TRIM
 					| SWT.APPLICATION_MODAL);
+			
 			dialogShell.setText("ChangeGroup");
+			
 			{
 				usernameLabel = new Label(dialogShell, SWT.NONE);
 				usernameLabel.setText("Choose group");
 				usernameLabel.setBounds(12, 69, 96, 15);
+				
 			}
 			{
 				sendButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
@@ -81,6 +85,7 @@ public class MoveContactDialog extends Dialog {
 			{
 				groupCombo = new CCombo(dialogShell, SWT.NONE);
 				groupCombo.setBounds(120, 69, 176, 18);
+				
 				Iterator<IBuddyGroup> iter = roster.getAllGroups().iterator();
 				IBuddyGroup buddygroup = null;
 				if (!roster.getGroups(buddy).isEmpty()) {
@@ -96,10 +101,11 @@ public class MoveContactDialog extends Dialog {
 				}
 				groupCombo.setEditable(false);
 				groupCombo.select(0);
+				
 			}
 			{
 				labelBuddy = new Label(dialogShell, SWT.NONE);
-				labelBuddy.setText("Buddy");
+				labelBuddy.setText("Contact");
 				labelBuddy.setBounds(12, 22, 96, 17);
 			}
 			{

@@ -41,6 +41,7 @@ public class NewContactDialog extends Dialog {
     public void open(final IBuddyRoster roster) {
         try {
             Shell parent = getParent();
+           
             dialogShell = new Shell(parent, SWT.DIALOG_TRIM
                     | SWT.APPLICATION_MODAL);
             dialogShell.setText("NewContact");
@@ -89,14 +90,24 @@ public class NewContactDialog extends Dialog {
                     aliasLabel.setText("Nickname");
                     aliasLabel.setBounds(7, 47, 60, 21);
                 }
+               
                 {
                     usernameLabel = new Label(newContactGroup, SWT.NONE);
                     usernameLabel.setText("Username*");
                     usernameLabel.setBounds(7, 20, 79, 15);
                 }
+                
                 {
-                	groupCombo = new CCombo(dialogShell, SWT.NONE);
-                    groupCombo.setBounds(119, 75, 161, 18);
+                    aliasText = new Text(newContactGroup, SWT.NONE);
+                    aliasText.setBounds(121, 47, 158, 19);
+                }
+                {
+                    usernameText = new Text(newContactGroup, SWT.NONE);
+                    usernameText.setBounds(121, 20, 158, 19);
+                }
+                {
+                	groupCombo = new CCombo(newContactGroup, SWT.NONE);
+                    groupCombo.setBounds(120, 75, 160, 18);
                     groupCombo.add( "None" );
                     Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
                     for(int i=0; i<roster.getAllGroups().size();i++){
@@ -105,14 +116,6 @@ public class NewContactDialog extends Dialog {
                     }
                     groupCombo.setEditable( false );
                     groupCombo.select( 0 );
-                }
-                {
-                    aliasText = new Text(newContactGroup, SWT.NONE);
-                    aliasText.setBounds(121, 47, 158, 19);
-                }
-                {
-                    usernameText = new Text(newContactGroup, SWT.NONE);
-                    usernameText.setBounds(121, 20, 158, 19);
                 }
                 {
                 	labelerror = new Label(newContactGroup, SWT.NONE);

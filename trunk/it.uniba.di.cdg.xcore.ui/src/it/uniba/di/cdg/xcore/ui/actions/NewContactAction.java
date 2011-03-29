@@ -11,29 +11,41 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.actions.ActionFactory;
 
-public class NewContactAction extends Action implements ActionFactory.IWorkbenchAction {
+public class NewContactAction extends Action implements
+		ActionFactory.IWorkbenchAction {
 
-	public static final String ID = UiPlugin.ID + ".actions.ChangePasswordAction";
-	
+	public static final String ID = UiPlugin.ID
+			+ ".actions.ChangePasswordAction";
+
 	public NewContactAction() {
 		super();
-    }
-	
+	}
+
 	public void run(IBuddyRoster roster) {
-	    //setEnabled( false ); // Will be re-enabled in done()
-	    Display display = Display.getDefault();
+		// setEnabled( false ); // Will be re-enabled in done()
+		Display display = Display.getDefault();
 		Shell shell = new Shell(display);
+
+		String backend = "it.uniba.di.cdg.skype.skypeBackend";
 		NewContactDialog contact = new NewContactDialog(shell, SWT.NULL);
-		if (NetworkPlugin.getDefault().getRegistry().getDefaultBackend().isConnected() == false){
-			UiPlugin.getUIHelper().showMessage("You must to be connected to the server in order to do this!");
-		}else {
-		    contact.open(roster);
+		if (NetworkPlugin.getDefault().getRegistry().getDefaultBackend()
+				.isConnected() == false) {
+			UiPlugin.getUIHelper()
+					.showMessage(
+							"You must to be connected to the server in order to do this!");
+		} else if (roster.getBackend().getBackendId().equals(backend)) {
+			UiPlugin.getUIHelper().showMessage(
+					"This function is unimplemented on Skype!");
+
+		} else {
+			contact.open(roster);
 		}
-	    }
-	public void Enable (boolean valore) {
+	}
+
+	public void Enable(boolean valore) {
 		setEnabled(valore);
 	}
-	
+
 	@Override
 	public void dispose() {
 	}

@@ -89,8 +89,9 @@ public class RenameGroupDialog extends Dialog {
                         public void widgetSelected(SelectionEvent evt) {
                            try{
                         	   if (empty){
-                        		   roster.reload();
+                        		  
                         		   roster.addGroup(newNameText.getText());
+                        		   roster.renameGroup( current, newNameText.getText());
                         	   }
                         	   else{
                         		   roster.renameGroup( current, newNameText.getText());

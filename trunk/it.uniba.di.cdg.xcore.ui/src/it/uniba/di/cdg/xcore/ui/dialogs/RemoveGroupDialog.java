@@ -18,123 +18,112 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class RemoveGroupDialog extends Dialog {
-    private Shell dialogShell;
-    private Button undoButton;
-    private Label whereLabel;
-    private Button sendButton;
-    private Label usernameLabel;
-    private CCombo groupCombo;
+	private Shell dialogShell;
+	private Button undoButton;
+	private Label whereLabel;
+	private Button sendButton;
+	private Label usernameLabel;
+	private CCombo groupCombo;
 
-    public RemoveGroupDialog( Shell parent, int style ) {
-        super( parent, style );
-        // TODO Auto-generated constructor stub
-        
-    }
-    
-    public void open(IBuddyGroup buddyGroup) {
-        try {
-            Shell parent = getParent();
-            final String gruppo = buddyGroup.getName();
-            Iterator<IBuddy> buddies = buddyGroup.getBuddies().iterator();
-            Boolean emptygroup = false;
-            IBuddyRoster roster_ap = null;
-            if(!buddies.hasNext()){
-            	roster_ap = NetworkPlugin.getDefault().getHelper().getRoster();
-            	emptygroup = true;
-			}
-            else {
-				roster_ap = buddies.next().getRoster();
-				emptygroup = false;
-			}
-            final Boolean empty= emptygroup;
-            final IBuddyRoster roster = roster_ap;
-            dialogShell = new Shell(parent, SWT.DIALOG_TRIM
-                    | SWT.APPLICATION_MODAL);
-            dialogShell.setText("RemoveGroup");
-            {
-                usernameLabel = new Label(dialogShell, SWT.NONE);
-                usernameLabel.setText("Want to remove the group " + buddyGroup.getName() + " ?");
-                usernameLabel.setBounds(12, 24, 366, 15);
-            }
-            {
-                sendButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
-                sendButton.setText("OK");
-                sendButton.setBounds(331, 97, 60, 30);
-                sendButton.addSelectionListener(new SelectionAdapter() {
-                    public void widgetSelected(SelectionEvent evt) {
-                       try{
-                    	   if(empty){
-                    		   roster.reload();
-                    	   }
-                    	   else{
-                    		   roster.removeGroup( gruppo,groupCombo.getItem(groupCombo.getSelectionIndex()).toString() );
-                        }
-                        }
-                       catch(Exception e){
-                           e.getMessage();
-                       }
-                       finally{
-                           dialogShell.dispose();
-                       }
-                    }
-                });
-            }
-            {
-                undoButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
-                dialogShell.setDefaultButton(undoButton);
-                undoButton.setText("Cancel");
-                undoButton.setBounds(397, 97, 60, 30);
-                undoButton.addSelectionListener(new SelectionAdapter() {
-                    public void widgetSelected(SelectionEvent evt) {
-                            dialogShell.dispose();
-                       }
-                });
-            }
-            {
-            	whereLabel = new Label(dialogShell, SWT.NONE);
-            	whereLabel.setText("Where you want to move the buddies items?");
-            	whereLabel.setBounds(12, 51, 276, 19);
-            }
-            {
-                groupCombo = new CCombo(dialogShell, SWT.NONE);
-                groupCombo.setBounds(294, 51, 176, 18);
-                groupCombo.add( "None" );
-                Iterator<IBuddyGroup> iter= roster.getAllGroups().iterator();
-                for(int i=0; i<roster.getAllGroups().size();i++){
-                	IBuddyGroup group = iter.next();
-                	if(!(group.getName().equals(buddyGroup.getName()))){
-                    groupCombo.add( group.getName() );
-                	}
-                }
-                groupCombo.setEditable( false );
-                groupCombo.select( 0 );
-            }
+	public RemoveGroupDialog(Shell parent, int style) {
+		super(parent, style);
+	}
 
-            dialogShell.layout();
-            dialogShell.pack();
-            dialogShell.setLocation(getParent().toDisplay(100, 100));
-            dialogShell.open();
-            Display display = dialogShell.getDisplay();
-            while (!dialogShell.isDisposed()) {
-                if (!display.readAndDispatch())
-                    display.sleep();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-       
-       
-    }
+	public void open(IBuddyGroup buddyGroup) {
+		try {
+			Shell parent = getParent();
+			final String gruppo = buddyGroup.getName();
+			Iterator<IBuddy> buddies = buddyGroup.getBuddies().iterator();
+			IBuddyRoster rosterAp = null;
+			if (!buddies.hasNext()) {
+				rosterAp = NetworkPlugin.getDefault().getHelper().getRoster();
+			} else {
+				rosterAp = buddies.next().getRoster();
+			}
+
+			final IBuddyRoster roster = rosterAp;
+			dialogShell = new Shell(parent, SWT.DIALOG_TRIM
+					| SWT.APPLICATION_MODAL);
+			dialogShell.setText("RemoveGroup");
+			{
+				usernameLabel = new Label(dialogShell, SWT.NONE);
+				usernameLabel.setText("Want to remove the group "
+						+ buddyGroup.getName() + " ?");
+				usernameLabel.setBounds(12, 24, 366, 15);
+			}
+			{
+				sendButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
+				sendButton.setText("OK");
+				sendButton.setBounds(331, 97, 60, 30);
+				sendButton.addSelectionListener(new SelectionAdapter() {
+					public void widgetSelected(SelectionEvent evt) {
+						try {
+							roster.removeGroup(
+									gruppo,
+									groupCombo.getItem(
+											groupCombo.getSelectionIndex())
+											.toString());
+						} catch (Exception e) {
+							e.getMessage();
+						} finally {
+							dialogShell.dispose();
+						}
+					}
+				});
+			}
+			{
+				undoButton = new Button(dialogShell, SWT.PUSH | SWT.CENTER);
+				dialogShell.setDefaultButton(undoButton);
+				undoButton.setText("Cancel");
+				undoButton.setBounds(397, 97, 60, 30);
+				undoButton.addSelectionListener(new SelectionAdapter() {
+					public void widgetSelected(SelectionEvent evt) {
+						dialogShell.dispose();
+					}
+				});
+			}
+			{
+				whereLabel = new Label(dialogShell, SWT.NONE);
+				whereLabel.setText("Where you want to move the buddies items?");
+				whereLabel.setBounds(12, 51, 276, 19);
+			}
+			{
+				groupCombo = new CCombo(dialogShell, SWT.NONE);
+				groupCombo.setBounds(294, 51, 176, 18);
+				groupCombo.add("None");
+				Iterator<IBuddyGroup> iter = roster.getAllGroups().iterator();
+				for (int i = 0; i < roster.getAllGroups().size(); i++) {
+					IBuddyGroup group = iter.next();
+					if (!(group.getName().equals(buddyGroup.getName()))) {
+						groupCombo.add(group.getName());
+					}
+				}
+				groupCombo.setEditable( false );
+				groupCombo.select(0);
+			}
+
+			dialogShell.layout();
+			dialogShell.pack();
+			dialogShell.setLocation(getParent().toDisplay(100, 100));
+			dialogShell.open();
+			Display display = dialogShell.getDisplay();
+			while (!dialogShell.isDisposed()) {
+				if (!display.readAndDispatch())
+					display.sleep();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }

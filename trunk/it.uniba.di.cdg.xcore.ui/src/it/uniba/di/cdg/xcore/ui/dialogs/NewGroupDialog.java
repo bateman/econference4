@@ -1,7 +1,6 @@
 package it.uniba.di.cdg.xcore.ui.dialogs;
 
 import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -32,11 +31,10 @@ public class NewGroupDialog extends Dialog {
     private Button undoButton;
     private Button sendButton;
     private Label usernameLabel;
-
+    
+   
     public NewGroupDialog( Shell parent, int style ) {
         super( parent, style );
-        // TODO Auto-generated constructor stub
-        
     }
     
     public void open(final IBuddyRoster roster) {
@@ -78,6 +76,9 @@ public class NewGroupDialog extends Dialog {
                         }
                     });
                 }
+                
+              
+                
                 {
                     usernameLabel = new Label(newContactGroup, SWT.NONE);
                     usernameLabel.setText("Group name");
@@ -104,4 +105,6 @@ public class NewGroupDialog extends Dialog {
        
        
     }
+    
+    
 }
