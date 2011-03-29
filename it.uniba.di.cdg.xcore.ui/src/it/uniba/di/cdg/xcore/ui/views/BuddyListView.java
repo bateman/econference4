@@ -78,40 +78,47 @@ public class BuddyListView extends ViewPart {
 	public static final String ID = UiPlugin.ID + ".views.buddyListView";
 
 	/**
-	 * Sort the groups and buddies lexicographically. 
+	 * Sort the groups and buddies lexicographically.
 	 */
 	private class BuddySorter extends ViewerSorter {
 		@Override
 		public int compare(Viewer viewer, Object o1, Object o2) {
-			int res;
+			int res = 0;
 
 			if (o1 instanceof IBuddy && o2 instanceof IBuddy) {
-
 				IBuddy b1 = (IBuddy) o1;
 				IBuddy b2 = (IBuddy) o2;
+
 				if (b1.isNotOffline() && b2.isOffline())
 					res = -1;
 				else if (b1.isOffline() && b2.isNotOffline())
 					res = 1;
-				else { // both not offline
+				else if (b1.isOnline() && b2.isOnline()) {
+					String s1 = o1.toString();
+					String s2 = o2.toString();
+					res = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
+				} else if (b1.isOffline() && b2.isOffline()) {
 					String s1 = o1.toString();
 					String s2 = o2.toString();
 					res = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
 				}
-			} else { // at least one is a buddygroup
+
+			} else {
 				if (o1 instanceof IBuddyGroup && o2 instanceof IBuddy) {
 					res = -1;
 				} else if (o2 instanceof IBuddyGroup && o1 instanceof IBuddy) {
 					res = 1;
-				} else { // both are groups
-					String s1 = o1.toString();
-					String s2 = o2.toString();
-					res = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);					
+				} else {
+					IBuddyGroup b1 = (IBuddyGroup) o1;
+					IBuddyGroup b2 = (IBuddyGroup) o2;
+					String s1 = b1.getName();
+					String s2 = b2.getName();
+					res = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
+
 				}
 			}
 			return res;
 		}
-
 	}
 
 	/**
@@ -139,7 +146,7 @@ public class BuddyListView extends ViewPart {
 		@SwtAsyncExec
 		public void presenceChanged(final IBuddy buddy) {
 			if (!treeViewer.getControl().isDisposed())
-				//treeViewer.refresh(buddy);
+				// treeViewer.refresh(buddy);
 				// refresh the whole tree because, if buddy goes offline
 				// it'll be moved down, below those online
 				treeViewer.refresh();
@@ -304,8 +311,8 @@ public class BuddyListView extends ViewPart {
 						.getHelper().getRoster();
 				NewContactAction action = new NewContactAction();
 				action.run(roster);
-
 			}
+
 		};
 		addBuddyAction.setText("Add Contact");
 		addBuddyAction.setToolTipText("Add new contact");

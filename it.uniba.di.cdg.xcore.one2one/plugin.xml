@@ -3,6 +3,7 @@
 <plugin>
    <extension
          point="org.eclipse.ui.popupMenus">
+         
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
@@ -18,6 +19,7 @@
                tooltip="Remove this group!">
          </action> 
       </objectContribution>
+      
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
@@ -33,6 +35,7 @@
                tooltip="Rename this group!">
          </action> 
       </objectContribution>
+      
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
@@ -46,8 +49,25 @@
                label="Remove contact"
                menubarPath="chatGroup"
                tooltip="Remove this user!">
+               <enablement>
+            <and>
+             <not>
+                  <objectState
+                        name="status"
+                        value="OFFLINE">
+                  </objectState>
+               </not>
+              <systemProperty
+                    name="econference.currentbackend"
+                    value="Jabber">
+              </systemProperty>
+            </and>            
+        
+            </enablement>
          </action> 
+         
       </objectContribution>
+     
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
@@ -63,6 +83,7 @@
                tooltip="Move this user!">
          </action> 
       </objectContribution>
+     
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
@@ -78,6 +99,7 @@
                tooltip="Rename this user!">           
          </action> 
       </objectContribution>
+     
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.chatContribution"
@@ -99,6 +121,7 @@
             </enablement>
          </action>
       </objectContribution>
+     
       <objectContribution
             adaptable="true"
             id="it.uniba.di.cdg.xcore.one2one.ui.callContribution"

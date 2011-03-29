@@ -127,5 +127,9 @@ public abstract class AbstractBuddyRoster extends PlatformObject implements
     public boolean contains( String buddyId ) {
         return buddies.containsKey( buddyId );
     }
+    
+    public boolean containsGroup(String groupId){
+    	return groups.containsKey(groupId);
+    }
 
 }

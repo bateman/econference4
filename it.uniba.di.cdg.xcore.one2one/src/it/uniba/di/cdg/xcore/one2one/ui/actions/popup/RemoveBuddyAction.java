@@ -43,16 +43,13 @@ public class RemoveBuddyAction extends AbstractBuddyActionDelegate {
      */
     public static final String ID = ChatPlugin.ID + ".ui.actions.popup.removeBuddyAction";
 
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-     */
+    @Override
     public void run( IAction action ) {
         final IBuddy buddy = getSelected();
         Display display = Display.getDefault();
         Shell shell = new Shell(display);
         RemoveContactDialog remove = new RemoveContactDialog(shell, SWT.NULL);
         remove.open( buddy );
-               
         
     }
 }
