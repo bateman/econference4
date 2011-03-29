@@ -23,9 +23,6 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package it.uniba.di.cdg.xcore.m2m.test.allpackagetests;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
