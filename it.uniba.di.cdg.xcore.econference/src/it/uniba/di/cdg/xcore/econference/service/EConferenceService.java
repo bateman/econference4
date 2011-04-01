@@ -38,6 +38,7 @@ import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion;
 import it.uniba.di.cdg.xcore.econference.model.hr.Question;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
+import it.uniba.di.cdg.xcore.m2m.model.ParticipantSpecialPrivileges;
 import it.uniba.di.cdg.xcore.m2m.model.SpecialPrivilegesAction;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatService;
@@ -354,7 +355,16 @@ public class EConferenceService extends MultiChatService implements
 
 	protected boolean manageUserJoinedEvent(IBackendEvent event) {
 		if (event instanceof MultiChatUserJoinedEvent) {
-			sendUsersPrivileges();
+			/*
+			 * Users privileges are now notified
+			 * when the session is started by the moderator
+			 * due that they can't be notified to other users on join.
+			 * 
+			 * http://code.google.com/p/econference4/issues/detail?id=41#c3
+			 * http://code.google.com/p/econference-planning-poker-plugin/issues/detail?id=49
+			 * */
+			//sendUsersPrivileges();
+			
 			return true;
 		}
 		return false;
@@ -545,6 +555,12 @@ public class EConferenceService extends MultiChatService implements
 						notifyChangedSpecialPrivilege(participant, privilege,
 								SpecialPrivilegesAction.GRANT);
 					}
+				}
+				
+				if (!participant.getRole().equals(Role.MODERATOR)) {
+					notifyChangedSpecialPrivilege(participant,
+							ParticipantSpecialPrivileges.VOTER,
+							SpecialPrivilegesAction.GRANT);
 				}
 			}
 		}
