@@ -27,9 +27,11 @@ package it.uniba.di.cdg.jabber.ui;
 import it.uniba.di.cdg.xcore.network.ProfileContext;
 import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.FocusAdapter;
@@ -45,6 +47,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.service.prefs.Preferences;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -99,12 +102,17 @@ public class ConnectionDialogUI extends Composite {
 	private Map<String, ProfileContext> savedProfileContexts;
 
 	private Button checkSaveProfile;
+	
+    private Preferences gmailPref;
 
 	public ConnectionDialogUI(Composite parent, int style,
 			Map<String, ProfileContext> savedProfileContexts,
 			String lastLoadedProfile) {
 		super(parent, style);
 		this.savedProfileContexts = savedProfileContexts;
+        gmailPref = new ConfigurationScope()
+        	.getNode( IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER )
+        	.node(IConfigurationConstant.GMAIL);
 		initialize(lastLoadedProfile);
 	}
 
@@ -313,7 +321,24 @@ public class ConnectionDialogUI extends Composite {
         			checkSaveProfile.setSelection(true);
         			passwordField.setText( ua.getPassword() );
 
-        			sc = profile.getServerContext();                                    
+        			sc = profile.getServerContext();
+        			if(jabberIdCombo.getText().compareTo(gmailPref.get(IConfigurationConstant.USERNAME, ""))==0){
+        				passwordField.setEnabled(false);
+        				checkSaveProfile.setEnabled(false);
+        				checkNewAccount.setEnabled(false);
+        				serverHostField.setEnabled(false);
+        				useDefaultPortCheck.setEnabled(false);
+        				secureCheck.setEnabled(false);
+        				portNumberField.setEnabled(false);	
+	        		}else{
+        				passwordField.setEnabled(true);
+        				checkSaveProfile.setEnabled(true);
+        				checkNewAccount.setEnabled(true);
+        				serverHostField.setEnabled(true);
+        				useDefaultPortCheck.setEnabled(true);
+        				secureCheck.setEnabled(true);
+        				portNumberField.setEnabled(true);	
+	        		}
         		}else{
         			checkSaveProfile.setSelection(false);
         			passwordField.setText("");
@@ -324,7 +349,7 @@ public class ConnectionDialogUI extends Composite {
         				serverHostField.setEnabled(false);
         				useDefaultPortCheck.setEnabled(false);
         				secureCheck.setEnabled(false);
-        				portNumberField.setEnabled(false);        				
+	        			portNumberField.setEnabled(false);			
         			} else {
         				serverHostField.setEnabled(true);
         				useDefaultPortCheck.setEnabled(true);

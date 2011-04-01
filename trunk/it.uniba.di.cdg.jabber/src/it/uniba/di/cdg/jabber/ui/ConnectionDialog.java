@@ -29,6 +29,7 @@ import it.uniba.di.cdg.xcore.network.ServerContext;
 import it.uniba.di.cdg.xcore.network.UserContext;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 import it.uniba.di.cdg.xcore.ui.dialogs.DialogAccount;
+import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,11 +78,16 @@ public class ConnectionDialog extends Dialog {
     public ProfileContext profileContext;
 
     public Map<String, ProfileContext> savedProfileContexts;
+    
+    private Preferences gmailPref;
 
     public ConnectionDialog( Shell parentShell ) {
         super( parentShell );
         shell = parentShell;
         savedProfileContexts = new HashMap<String, ProfileContext>();
+        gmailPref = new ConfigurationScope()
+        	.getNode( IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER )
+        	.node(IConfigurationConstant.GMAIL);
     }
 
     /*
@@ -172,6 +178,18 @@ public class ConnectionDialog extends Dialog {
                 savedProfileContexts.put(userName, new ProfileContext( userName, ua, sc,false ) );
             }
             profileContext = savedProfileContexts.get( preferences.get( LAST_USER, "" ) );
+
+    		String usernamePref = gmailPref.get(IConfigurationConstant.USERNAME, "");
+    		String passwordPref = gmailPref.get(IConfigurationConstant.PASSWORD, "");
+    		if(!usernamePref.isEmpty()){
+    			UserContext user = new UserContext( usernamePref, passwordPref, usernamePref, usernamePref );
+                ServerContext server = ServerContext.GOOGLE_TALK;
+                ProfileContext gmailContext = new ProfileContext( usernamePref, user, server, false );
+                savedProfileContexts.put(usernamePref, gmailContext );
+                if(profileContext == null){
+                	profileContext=gmailContext;
+                }
+    		}
             System.out.println( "Last profile:" + profileContext );
         } catch (BackingStoreException e) {
             e.printStackTrace();
@@ -219,7 +237,11 @@ public class ConnectionDialog extends Dialog {
         Preferences preferences = new ConfigurationScope().getNode( CONFIGURATION_NODE_QUALIFIER );
         preferences.put( LAST_USER, profileContext.getProfileName() );
         Preferences connections = preferences.node( SAVED_PROFILES );
+		String usernamePref = gmailPref.get(IConfigurationConstant.USERNAME, "");
         for (String profileId : savedProfileContexts.keySet()) {
+    		if(usernamePref.compareTo(profileId)==0){
+    			continue;
+    		}
             ProfileContext profile = savedProfileContexts.get( profileId );
             Preferences connection = connections.node( profileId );
             connection.put( SERVER, profile.getServerContext().getServerHost() );
