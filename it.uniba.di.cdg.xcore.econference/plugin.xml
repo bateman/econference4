@@ -220,6 +220,12 @@
                            name="viewIsReadOnly"
                            value="it.uniba.di.cdg.xcore.econference.ui.views.handRaisingView"/>
                   </not>
+                  <not>
+                     <objectState
+                           name="activePerspective"
+                           value="it.uniba.di.cdg.econference.planningpoker.PPPerspective">
+                     </objectState>
+                  </not>
                </and>
             </enablement>
          </action>

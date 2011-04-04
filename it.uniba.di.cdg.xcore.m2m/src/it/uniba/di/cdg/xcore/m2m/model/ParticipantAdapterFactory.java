@@ -38,7 +38,10 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IActionFilter;
+import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
 
@@ -54,6 +57,7 @@ import org.eclipse.ui.model.IWorkbenchAdapter;
  * <li><b>myStatus</b>, for testing the status of the current local user ({@see it.uniba.di.cdg.xcore.m2m.model.IParticipant.Status})</li>
  * <li><b>specialRole</b>, for testing the special role of the user (this is a String implementation-dependent, non an enum)</li>
  * <li><b>viewIsReadOnly</b>, for testing if a specific view is read-only</li>
+ * <li><b>activePerspective</b>, for testing the active perspective ID</li>
  * </ul>   
  */
 public class ParticipantAdapterFactory implements IAdapterFactory {
@@ -148,6 +152,20 @@ public class ParticipantAdapterFactory implements IAdapterFactory {
                     result = ((IActivatableView) view).isReadOnly();
                 }
                 return result;
+            } else if ("activePerspective".equals( name )) {
+            	IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+                if (activeWorkbenchWindow == null)
+                	return false;
+                
+                IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+                if (activePage == null)
+                    return false;
+                
+                IPerspectiveDescriptor activePerspective = activePage.getPerspective();
+                if (activePerspective == null)
+                	return false;
+                
+            	return activePerspective.getId().equals(value);
             }
 
 //            try {
