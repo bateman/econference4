@@ -46,7 +46,7 @@ public class CollaborativeWorkbenchApplication implements IApplication {
 			// exit the application with an appropriate return code
 			return code == PlatformUI.RETURN_RESTART ? EXIT_RESTART : EXIT_OK;
 		} finally {
-			if (display != null)
+			if (display != null && !display.isDisposed())
 				display.dispose();
 		}
 	}
