@@ -206,12 +206,18 @@ public class EConferenceHelper implements IEConferenceHelper {
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
 		dialog.open();
+		
+		/*
+         * Invitations disabled at the end of the wizard
+         * http://code.google.com/p/econference-planning-poker-plugin/issues/detail?id=51
+         * 
 		if (wizard.canSendInvitation()) {
 		    boolean autojoin = false;
 			IEConferenceManager manager = open( wizard.getContext(), autojoin );
 			for (Invitee i : wizard.getContext().getInvitees())
 				manager.inviteNewParticipant(i.getId());
 		}
+		*/
 	}
 
 	public EConferenceContext askUserAcceptInvitation(InvitationEvent invitation) {
