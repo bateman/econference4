@@ -224,8 +224,53 @@ public aspect ThreadSafetyAspect perthis(readOperations() || writeOperations()) 
 
 As it's possible to see in the previous code, the aspect simply locks thread execution for reading for all the methods marked with the "GetSafety" annotation, and for writing for those marked with "SetSafety". The thread resources are released after the execution of the methods.
 
-Usually those annotation are used when modifying and using resources (i.e. getters and setters). We can take a look of methods using them in the model packages of it.uniba.di.cdg.xcore.econference bundle.
+Usually those annotations are used when modifying and using resources (i.e. getters and setters). We can take a look at methods using them in the model packages of it.uniba.di.cdg.xcore.econference bundle.
 
+== Logging exceptions through aspects ==
+
+In eConference the aspects are used not only for synchronization and multithreading, but also for logging of the exception. Simply by using one aspect, system catches all the exceptions thrown during execution logging them to a file, sited in the root folder of eConference, called "exceptionTrace.log". The aspect doing this work is this:
+
+{{{
+
+public aspect ExceptionLoggingAspect {
+
+	private Logger logger;
+	private ThreadLocal<Throwable> lastLoggedException = new ThreadLocal<Throwable>();
+	private FileHandler handler;
+
+	pointcut exceptionTraced()
+		: execution(* *.*(..)) && !within( it.uniba.di.cdg.aspects..*);
+
+	after() throwing(Throwable ex) : exceptionTraced() {
+		String property = System.getProperty("eclipse.commands");
+		if (property.contains("tracing")) {
+			this.logger = Logger.getLogger(thisJoinPoint.getThis().getClass()
+					.getName());
+			try {
+				handler = new FileHandler("exceptionTrace.log", true);
+				handler.setFormatter(new SimpleFormatter());
+				this.logger.addHandler(handler);
+			} catch (IOException e) {
+				System.out.println("Cannot write log file");
+			}
+
+			if (lastLoggedException.get() != ex) {
+				lastLoggedException.set(ex);
+				Signature sig = thisJoinPointStaticPart.getSignature();
+				logger.log(Level.INFO,
+						"Exception trace aspect [" + sig.toShortString() + "]",
+						ex);
+			}
+		}
+	}
+}
+
+
+}}}
+
+As you can see, the pointcut defined in the aspect covers all the methods of the entire project, then if you are going to create a new class or method in the existent bundles, you don't need to link references with the "ExceptionLoggingAspect", it does automatically this work for you.
+
+= Adding aspects to a new bundle =
 
 = Build-Time versus Load-Time weaving =
 
