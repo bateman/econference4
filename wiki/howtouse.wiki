@@ -9,7 +9,8 @@ This tutorial will show you how to use the eConference tool, according to the ro
 
 
 == Download ==
-You can get the latest build of eConference from the [https://code.google.com/p/econference4/downloads/list Download] page (make sure to pick the righ OS version). Please note that eConference need a Java 6 32bit JVM; 64bit JVM are not currently supported.
+You can get the latest build of eConference from the [https://code.google.com/p/econference4/downloads/list Download] page (make sure to pick the righ OS version). 
+Please note that eConference needs a Java 6 32bit JVM; 64bit JVM are not currently supported.
 
 
 <p align="center">
