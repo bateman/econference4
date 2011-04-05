@@ -268,9 +268,36 @@ public aspect ExceptionLoggingAspect {
 
 }}}
 
-As you can see, the pointcut defined in the aspect covers all the methods of the entire project, then if you are going to create a new class or method in the existent bundles, you don't need to link references with the "ExceptionLoggingAspect", it does automatically this work for you.
+As you can see, the pointcut defined in the aspect covers all the methods of the entire project(except aspects bundle), then if you are going to create a new class or method in the existent bundles, you don't need to link references with the "ExceptionLoggingAspect", it does automatically this work for you.
 
 = Adding aspects to a new bundle =
+
+What if you are adding a new bundle to eConference and you need to use the aspect bundle? There are some easy steps to do this.
+
+First of all, convert your bundle to a Aspectj project by clicking the right-mouse button and selecting the "Configure"->"Convert to Aspectj project".
+
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/converttoaspectj.png] </p>
+<p align=center>*Figure 5. Convert bundle to AspectJ project.*</p>
+
+Now it's time to add the aspect path to your project; you can do this simply clicking the right-mouse button on your bundle, selecting "AspectJ tools" -> "Configure AspectJ build-path..."
+
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/includeaspectpath.png] </p>
+<p align=center>*Figure 6. Adding the aspect path to your bundle.*</p>
+ 
+Then, you have to add the aspect bundle project by clicking on the "Add Project..." button in the "Aspect path" tab.
+
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/converttoaspectj2.png] </p>
+<p align=center>*Figure 7. Adding the aspect project bundle to your bundle aspect path.*</p>
+
+The last step to make aspects affecting your bundle is to augment your manifest adding the "it.uniba.di.cdg.aspects" bundle to the dependencies.
+
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/augmentmanifest.png] </p>
+<p align=center>*Figure 8. Augmenting the manifest adding the right dependency.*</p>
+
 
 = Build-Time versus Load-Time weaving =
 
