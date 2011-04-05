@@ -289,7 +289,7 @@ Now it's time to add the aspect path to your project; you can do this simply cli
 Then, you have to add the aspect bundle project by clicking on the "Add Project..." button in the "Aspect path" tab.
 
 <p align=center>
-[http://econference4.googlecode.com/svn/wiki/img/aspectj/converttoaspectj2.png] </p>
+[http://econference4.googlecode.com/svn/wiki/img/aspectj/includeaspectpath2.png] </p>
 <p align=center>*Figure 7. Adding the aspect project bundle to your bundle aspect path.*</p>
 
 The last step to make aspects affecting your bundle is to augment your manifest adding the "it.uniba.di.cdg.aspects" bundle to the dependencies.
