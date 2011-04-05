@@ -30,9 +30,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	ConferenceContextLoaderTestCase.class,
-	ConferenceModelTestCase.class,
-	ItemListTestCase.class
+	ConferenceContextLoaderTest.class,
+	ConferenceModelStateTest.class,
+	ItemListStateTest.class
 })
 public class AllTests {
 

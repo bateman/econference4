@@ -150,7 +150,7 @@ public class UIHelper implements IUIHelper {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.ui.IUIHelper#closePerspective(java.lang.String)
      */
-    @SwtAsyncExec
+    @SwtSyncExec
     public void closePerspective( String perspectiveId ) {
         IPerspectiveDescriptor pd = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId( perspectiveId );
         if (pd == null) {

@@ -24,8 +24,8 @@
  */
 package it.uniba.di.cdg.jabber.internal;
 
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.NoOp;
+import org.mockito.cglib.proxy.Enhancer;
+import org.mockito.cglib.proxy.NoOp;
 
 /**
  * 

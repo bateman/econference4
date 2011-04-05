@@ -30,8 +30,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	CapabilitiesTestCase.class,
-	CapabilityTestCase.class
+	CapabilitiesTest.class,
+	CapabilityTest.class
 })
 public class AllTests {
 

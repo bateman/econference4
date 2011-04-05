@@ -4,7 +4,13 @@ Bundle-Name: Test
 Bundle-SymbolicName: it.uniba.di.cdg.skype.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.jmock;bundle-version="1.0.0",
- org.junit,
+Require-Bundle: org.junit,
  it.uniba.di.cdg.xcore.network,
- it.uniba.di.cdg.skype;bundle-version="1.0.0"
+ it.uniba.di.cdg.xcore.m2m;bundle-version="1.0.0",
+ it.uniba.di.cdg.skype;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.one2one;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.econference;bundle-version="1.0.0",
+ org.junit4;bundle-version="4.8.1",
+ org.mockito;bundle-version="1.0.0"
+Import-Package: it.uniba.di.cdg.xcore.ui
+Export-Package: it.uniba.di.cdg.skype.test.allpackagetests

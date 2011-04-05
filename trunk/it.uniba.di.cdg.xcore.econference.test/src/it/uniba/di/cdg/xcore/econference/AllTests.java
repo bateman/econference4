@@ -30,7 +30,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	EConferenceHelperTestCase.class,
+	EConferenceHelperTest.class,
 })
 public class AllTests {
 

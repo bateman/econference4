@@ -6,8 +6,20 @@ Bundle-Version: 1.0.0
 Bundle-Localization: plugin
 Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
 Require-Bundle: it.uniba.di.cdg.xcore.econference,
- org.jmock,
  org.junit,
  it.uniba.di.cdg.xcore.m2m,
  it.uniba.di.cdg.xcore.util,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.mockito;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.network
+Import-Package: it.uniba.di.cdg.jabber,
+ it.uniba.di.cdg.xcore.network,
+ it.uniba.di.cdg.xcore.network.action,
+ it.uniba.di.cdg.xcore.network.events,
+ it.uniba.di.cdg.xcore.ui,
+ it.uniba.di.cdg.xcore.ui.views,
+ org.eclipse.core.commands.common,
+ org.eclipse.swt.widgets,
+ org.eclipse.ui,
+ org.eclipse.ui.part
+Export-Package: it.uniba.di.cdg.xcore.econference.test.allpackagetests

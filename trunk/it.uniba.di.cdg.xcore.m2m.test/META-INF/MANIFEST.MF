@@ -7,6 +7,19 @@ Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, Un
 Bundle-Localization: plugin
 Require-Bundle: it.uniba.di.cdg.xcore.m2m,
  org.eclipse.core.runtime,
- org.jmock,
  org.junit,
- it.uniba.di.cdg.xcore.util
+ it.uniba.di.cdg.xcore.util,
+ org.mockito;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.network
+Import-Package: it.uniba.di.cdg.xcore.econference,
+ it.uniba.di.cdg.xcore.econference.internal,
+ it.uniba.di.cdg.xcore.econference.ui.views,
+ it.uniba.di.cdg.xcore.network.action,
+ it.uniba.di.cdg.xcore.network.events,
+ it.uniba.di.cdg.xcore.network.model.tv,
+ it.uniba.di.cdg.xcore.ui,
+ it.uniba.di.cdg.xcore.ui.views,
+ org.eclipse.core.commands.common,
+ org.eclipse.jface.operation,
+ org.eclipse.ui
+Export-Package: it.uniba.di.cdg.xcore.m2m.test.allpackagetests

@@ -30,7 +30,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	MultiChatHelperTestCase.class
+	MultiChatHelperTest.class
 })
 public class AllTests {
 

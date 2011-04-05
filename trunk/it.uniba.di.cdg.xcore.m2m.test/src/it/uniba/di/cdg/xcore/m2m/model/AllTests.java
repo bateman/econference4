@@ -30,9 +30,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	ChatRoomTestCase.class,
-	ParticipantTestCase.class,
-	RoleTestCase.class
+	ChatRoomStateTest.class,
+	ParticipantStateTest.class,
+	RoleTest.class
 })
 public class AllTests {
 
