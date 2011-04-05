@@ -30,10 +30,10 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	BuddyGroupTestCase.class,
-	BuddyRosterTestCase.class,
-	BuddyTestCase.class,
-	XMPPUtilsTestCase.class
+	BuddyGroupStateTest.class,
+	BuddyRosterStateTest.class,
+	BuddyStateTest.class,
+	XMPPUtilsTest.class
 })
 public class AllTests {
 

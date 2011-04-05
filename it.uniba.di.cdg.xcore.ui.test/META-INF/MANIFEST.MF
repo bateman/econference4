@@ -4,8 +4,11 @@ Bundle-Name: Test Plug-in
 Bundle-SymbolicName: it.uniba.di.cdg.xcore.ui.test
 Bundle-Version: 1.0.0
 Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, University of Bari
-Require-Bundle: it.uniba.di.cdg.xcore.ui,
+Require-Bundle: org.mockito;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.ui,
  org.eclipse.core.runtime,
- org.jmock,
- org.junit
+ org.junit,
+ org.eclipse.ui;bundle-version="3.6.2",
+ it.uniba.di.cdg.xcore.network;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: it.uniba.di.cdg.xcore.ui.test.allpackagetests

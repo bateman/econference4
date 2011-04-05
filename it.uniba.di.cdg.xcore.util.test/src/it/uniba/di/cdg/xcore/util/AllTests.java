@@ -30,9 +30,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	MementoTestCase.class,
-	MiscTestCase.class,
-	VirtualProxyTestCase.class
+	MementoTest.class,
+	MiscTest.class,
+	VirtualProxyStateTest.class
 })
 public class AllTests {
 

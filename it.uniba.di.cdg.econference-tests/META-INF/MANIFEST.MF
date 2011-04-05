@@ -4,5 +4,15 @@ Bundle-Name: Tests
 Bundle-SymbolicName: it.uniba.di.cdg.econference-tests
 Bundle-Version: 1.0.0.20110802_v1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.core.runtime,
- org.junit;bundle-version="4.8.1"
+Require-Bundle: org.eclipse.jdt.junit4.runtime;bundle-version="1.1.100",
+ org.eclipse.ui;bundle-version="3.6.1",
+ org.junit;bundle-version="4.8.1",
+ org.eclipse.core.runtime,
+ it.uniba.di.cdg.xcore.econference.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.m2m.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.network.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.one2one.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.ui.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.xcore.util.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.jabber.test;bundle-version="1.0.0",
+ it.uniba.di.cdg.skype.test;bundle-version="1.0.0"

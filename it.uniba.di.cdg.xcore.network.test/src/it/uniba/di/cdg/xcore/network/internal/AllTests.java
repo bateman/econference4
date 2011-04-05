@@ -6,8 +6,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	BackendRegistryTestCase.class,
-	NetworkServiceRegistryTestCase.class
+	BackendRegistryStateTest.class,
+	NetworkServiceRegistryStateTest.class
 })
 public class AllTests {
 

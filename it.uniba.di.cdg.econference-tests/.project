@@ -3,6 +3,16 @@
 	<name>it.uniba.di.cdg.econference-tests</name>
 	<comment></comment>
 	<projects>
+		<project>it.uniba.di.cdg.collaborativeworkbench.boot.test</project>
+		<project>it.uniba.di.cdg.jabber.test</project>
+		<project>it.uniba.di.cdg.skype.test</project>
+		<project>it.uniba.di.cdg.xcore.econference</project>
+		<project>it.uniba.di.cdg.xcore.econference.test</project>
+		<project>it.uniba.di.cdg.xcore.m2m.test</project>
+		<project>it.uniba.di.cdg.xcore.network.test</project>
+		<project>it.uniba.di.cdg.xcore.one2one.test</project>
+		<project>it.uniba.di.cdg.xcore.ui.test</project>
+		<project>it.uniba.di.cdg.xcore.util.test</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

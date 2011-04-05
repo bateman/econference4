@@ -33,7 +33,7 @@ import org.junit.runners.Suite;
 	XmppLoadTest.class,
 	MUCTest.class,
 	InvitationEventTest.class,
-	JabberBackendTestCase.class,
+	JabberBackendStateTest.class,
 	ConnectionTest.class,
 	ChatTest.class
 })

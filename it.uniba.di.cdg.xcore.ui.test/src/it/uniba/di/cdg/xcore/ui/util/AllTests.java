@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TypingStatusUpdaterTestCase.class, })
+@Suite.SuiteClasses({ TypingStatusUpdaterStateTest.class, })
 public class AllTests {
 
 	/**

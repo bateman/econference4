@@ -30,8 +30,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	SkypeBackendTest.class,
-	SkypeBuddyRosterTestCase.class,
+	SkypeBackendStateTest.class,
+	SkypeBuddyRosterTest.class,
 	
 })
 public class AllTests {

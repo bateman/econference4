@@ -30,7 +30,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	JabberAccountTestCase.class,
+	JabberAccountTest.class,
 })
 public class AllTests {
 
