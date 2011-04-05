@@ -298,6 +298,7 @@ The last step to make aspects affecting your bundle is to augment your manifest 
 [http://econference4.googlecode.com/svn/wiki/img/aspectj/augmentmanifest.png] </p>
 <p align=center>*Figure 8. Augmenting the manifest adding the right dependency.*</p>
 
+If you followed all those steps, then your bundle will be able to use aspects implemented in the "it.uniba.di.cdg.aspects" plugin project.
 
 = Build-Time versus Load-Time weaving =
 
