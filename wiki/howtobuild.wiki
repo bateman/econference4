@@ -6,7 +6,7 @@
 This guide has been tested on Windows and Ubuntu boxes.
 
 == Plugins Needed ==
-eConference is built on the Eclipse RCP 3.6.x (_NOTE: we don't ensure that the build process is going to work with any other earlier versions_), so you will need to download and install [http://www.eclipse.org/downloads/   Eclipse] and, of course, [http://java.sun.com/javase/downloads/index.jsp Java 6]. eConference also uses AOP, so you will need to install the [http://www.eclipse.org/ajdt/ AJDT] plugin for Eclispe as well. You had better install it from the Eclipse Update Manager.
+eConference is built on the Eclipse RCP 3.6.x (_NOTE: we don't ensure that the build process is going to work with any other earlier versions_), so you will need to download and install [http://www.eclipse.org/downloads/   Eclipse] and 32bit [http://java.sun.com/javase/downloads/index.jsp Java 6+] virtual machine. eConference also uses AOP, so you will need to install the [http://www.eclipse.org/ajdt/ AJDT] plugin for Eclispe as well. You had better install it from the Eclipse Update Manager.
 For further info, please refer to the project [http://code.google.com/p/econference/ homepage].
 
 Now run Eclipse and make sure you start using an empty workspace (see Fig. 1). If you are already running Eclipse, instead, go to the _File | Switch workspace" menu.
