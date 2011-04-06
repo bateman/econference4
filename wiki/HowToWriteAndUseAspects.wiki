@@ -84,7 +84,7 @@ public @interface SwtAsyncExec {
  
 }}}
 Once defined this annotation, we can go into the aspect definition, and use the annotation just created in the method pattern definition.
-For example we want to track all the methods using this kind of annotation (@SwtAsyncExec). All we have to do is this:
+For example we want to track all the methods using this kind of annotation (!@SwtAsyncExec). All we have to do is this:
 
 {{{
 public aspect Tracing {
@@ -98,13 +98,13 @@ public aspect Tracing {
 
 }}}
 
-By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with SwtAsyncExec. 
+By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with !@SwtAsyncExec. 
 
 == Annotations and aspects in eConference ==
 
 All the aspects implemented in eConference use annotations to individuate the methods in the pointcut expressions. Those are used especially for applying multi-threading execution for graphics.
 
-The SwtThreadSafety aspect deals with multi-threading in eConference:
+The !SwtThreadSafety aspect deals with multi-threading in eConference:
 
 {{{
 public aspect SwtThreadSafety {
@@ -156,8 +156,8 @@ public aspect SwtThreadSafety {
 
 If you want to use multi-threading in a plugin extension of eConference you must consider the different nature of the pointcuts described above:
 
-  * SwtAsyncExec: it suits for those methods that use SWT, but don't return anything
-  * SwtSyncExec: is suits for those methods that use SWT returning objects
+  * !SwtAsyncExec: it suits for those methods that use SWT, but don't return anything
+  * !SwtSyncExec: is suits for those methods that use SWT returning objects
 
 The application in eConference of this aspect is still experimental, because a little change of the annotations on the methods may break the normal execution of the graphic interface.
 
@@ -183,18 +183,18 @@ An example of methods using the aspect described above is this:
 
 }}}
 
-Those methods belong to the TalkView class of the it.uniba.di.cdg.xcore.ui.views package: the first has an asynchronous nature because it deals with the action of appending messages on the chat board, the latter has a synchronous nature because it deals with the capturing of the entire chat board, then it must be executed consequently with the thread running ui.
+Those methods belong to the !TalkView class of the it.uniba.di.cdg.xcore.ui.views package: the first has an asynchronous nature because it deals with the action of appending messages on the chat board, the latter has a synchronous nature because it deals with the capturing of the entire chat board, then it must be executed consequently with the thread running ui.
 
 == Locking threads through aspects ==
 
 In the previous content we defined the multi-threading solution adopted in eConference, but multi-threading carries synchronism problems. 
 The solution for this kind of problems is the definition of another aspect that locks and unlocks threads in the right moment.
 
-In eConference this aspect is named "ThreadSafetyAspect" and uses two annotations to do its work:
+In eConference this aspect is named "!ThreadSafetyAspect" and uses two annotations to do its work:
 
-  * GetSafety
+  * !GetSafety
 
-  * SetSafety
+  * !SetSafety
 
 {{{
 public aspect ThreadSafetyAspect perthis(readOperations() || writeOperations()) {
@@ -222,13 +222,13 @@ public aspect ThreadSafetyAspect perthis(readOperations() || writeOperations()) 
 }
 }}}
 
-As it's possible to see in the previous code, the aspect simply locks thread execution for reading for all the methods marked with the "GetSafety" annotation, and for writing for those marked with "SetSafety". The thread resources are released after the execution of the methods.
+As it's possible to see in the previous code, the aspect simply locks thread execution for reading for all the methods marked with the "!GetSafety" annotation, and for writing for those marked with "!SetSafety". The thread resources are released after the execution of the methods.
 
 Usually those annotations are used when modifying and using resources (i.e. getters and setters). We can take a look at methods using them in the model packages of it.uniba.di.cdg.xcore.econference bundle.
 
 == Logging exceptions through aspects ==
 
-In eConference the aspects are used not only for synchronization and multithreading, but also for logging of the exception. Simply by using one aspect, system catches all the exceptions thrown during execution logging them to a file, sited in the root folder of eConference, called "exceptionTrace.log". The aspect doing this work is this:
+In eConference the aspects are used not only for synchronization and multithreading, but also for logging of the exception. Simply by using one aspect, system catches all the exceptions thrown during execution logging them to a file, sited in the "logs" folder of eConference, named with the package name plus "exceptionTrace.log" string. The aspect doing this work is this:
 
 {{{
 
@@ -242,33 +242,37 @@ public aspect ExceptionLoggingAspect {
 		: execution(* *.*(..)) && !within( it.uniba.di.cdg.aspects..*);
 
 	after() throwing(Throwable ex) : exceptionTraced() {
-		String property = System.getProperty("eclipse.commands");
-		if (property.contains("tracing")) {
-			this.logger = Logger.getLogger(thisJoinPoint.getThis().getClass()
-					.getName());
-			try {
-				handler = new FileHandler("exceptionTrace.log", true);
-				handler.setFormatter(new SimpleFormatter());
-				this.logger.addHandler(handler);
-			} catch (IOException e) {
-				System.out.println("Cannot write log file");
+		this.logger = Logger.getLogger(thisJoinPoint.getThis().getClass()
+				.getName());
+		try {
+			File f = new File("logs");
+			if (!f.exists()) {
+				f.mkdir();
 			}
+			handler = new FileHandler("logs/"
+					+ thisJoinPoint.getThis().getClass().getPackage().getName()
+					+ ".exceptionTrace.log", true);
 
-			if (lastLoggedException.get() != ex) {
-				lastLoggedException.set(ex);
-				Signature sig = thisJoinPointStaticPart.getSignature();
-				logger.log(Level.INFO,
-						"Exception trace aspect [" + sig.toShortString() + "]",
-						ex);
-			}
+			handler.setFormatter(new SimpleFormatter());
+			this.logger.addHandler(handler);
+		} catch (IOException e) {
+			System.out.println("Cannot write log file");
 		}
+
+		if (lastLoggedException.get() != ex) {
+			lastLoggedException.set(ex);
+			Signature sig = thisJoinPointStaticPart.getSignature();
+			logger.log(Level.INFO,
+					"Exception trace aspect [" + sig.toShortString() + "]", ex);
+		}
+
 	}
 }
 
 
 }}}
 
-As you can see, the pointcut defined in the aspect covers all the methods of the entire project(except aspects bundle), then if you are going to create a new class or method in the existent bundles, you don't need to link references with the "ExceptionLoggingAspect", it does automatically this work for you.
+As you can see, the pointcut defined in the aspect covers all the methods of the entire project(except aspects bundle), then if you are going to create a new class or method in the existent bundles, you don't need to link references with the "!ExceptionLoggingAspect", it does automatically this work for you.
 
 = Adding aspects to a new bundle =
 
