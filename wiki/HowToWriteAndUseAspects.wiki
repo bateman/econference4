@@ -84,7 +84,7 @@ public @interface SwtAsyncExec {
  
 }}}
 Once defined this annotation, we can go into the aspect definition, and use the annotation just created in the method pattern definition.
-For example we want to track all the methods using this kind of annotation (!@SwtAsyncExec). All we have to do is this:
+For example we want to track all the methods using this kind of annotation (!SwtAsyncExec). All we have to do is this:
 
 {{{
 public aspect Tracing {
@@ -98,7 +98,7 @@ public aspect Tracing {
 
 }}}
 
-By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with !@SwtAsyncExec. 
+By using this aspect, the console log will show up the message defined in the behavior of the traceThis() pointcut only for those methods annotated with !SwtAsyncExec. 
 
 == Annotations and aspects in eConference ==
 
