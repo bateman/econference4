@@ -7,6 +7,7 @@ Bundle-Vendor: Collaborative Development Group - Dipartimento di Informatica, Un
 Require-Bundle: org.junit,
  it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.xcore.util,
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0",
  org.mockito;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: it.uniba.di.cdg.xcore.network.test.allpackagetests

@@ -11,10 +11,10 @@ Require-Bundle: org.eclipse.ui,
  it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.util,
- org.aspectj.runtime
+ org.aspectj.runtime,
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: it.uniba.di.cdg.xcore.aspects,
- it.uniba.di.cdg.xcore.m2m;
+Export-Package: it.uniba.di.cdg.xcore.m2m;
   uses:="org.eclipse.jface.resource,
    it.uniba.di.cdg.xcore.m2m.service,
    org.eclipse.ui,

@@ -24,8 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.ui.views;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
-import it.uniba.di.cdg.xcore.aspects.SwtSyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.network.events.ITypingEvent;
 import it.uniba.di.cdg.xcore.network.events.ITypingListener;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;

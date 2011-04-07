@@ -1,5 +1,6 @@
 package it.uniba.di.cdg.skype;
 
+import it.uniba.di.cdg.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.model.AbstractBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
@@ -41,7 +42,8 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 	public IBuddy getBuddy(String buddyId) {
 		return buddies.get(buddyId);
 	}
-
+	
+	
 	@Override
 	public IEntry[] getChilds() {
 		// Collect all groups and buddies without a group

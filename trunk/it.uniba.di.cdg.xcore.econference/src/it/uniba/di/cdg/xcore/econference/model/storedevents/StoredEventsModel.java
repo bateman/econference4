@@ -298,9 +298,9 @@ public class StoredEventsModel implements IStoredEventsModel,
 									addEventFile(event, finalFile);
 								}
 								catch (InvalidContextException e) {
-									Logger.getLogger(
-											"it.uniba.di.cdg.xcore.econference.model.storedevents")
-											.log(Level.INFO, e.getMessage());
+//									Logger.getLogger(
+//											"it.uniba.di.cdg.xcore.econference.model.storedevents")
+//											.log(Level.INFO, e.getMessage());
 								} catch (Exception e) {
 									System.err
 											.println("Failed to load context file: "

@@ -24,7 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.econference.model;
 
-import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
+import it.uniba.di.cdg.aspects.GetSafety;
+import it.uniba.di.cdg.aspects.SetSafety;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,8 +33,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Implementation of {@see it.uniba.di.cdg.econference.core.conference.IItemList}. 
@@ -76,6 +75,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#addItem(java.lang.String)
      */
+    @SetSafety
     public void addItem( Object item ) {
         items.add( (IDiscussionItem) item );
         
@@ -86,6 +86,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IItemList#addItem(java.lang.String)
      */
+    @SetSafety
     public void addItem( String itemText ) {
         addItem( new DiscussionItem( itemText ) );
     }
@@ -93,6 +94,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#removeItem(int)
      */
+    @SetSafety
     public void removeItem( int itemIndex ) {
         IDiscussionItem item = items.get( itemIndex );
         
@@ -106,6 +108,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#getItem(int)
      */
+    @GetSafety
     public IDiscussionItem getItem( int itemIndex ) {
     	// FIXME -1 AIOoBE
         return items.get( itemIndex );
@@ -114,6 +117,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#size()
      */
+    @GetSafety
     public int size() {
         return items.size();
     }
@@ -121,6 +125,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#setCurrentItemIndex(int)
      */
+    @SetSafety
     public void setCurrentItemIndex( int itemIndex ) {
         if (itemIndex >= size() || itemIndex < -1)
             throw new IllegalArgumentException( "itemIndex out of range" );
@@ -133,6 +138,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.econference.core.mvc.IItemList#getCurrentItemIndex()
      */
+    @GetSafety
     public int getCurrentItemIndex() {
         return current;
     }
@@ -148,6 +154,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IItemList#encode()
      */
+    @GetSafety
     public String encode() {
         if (size() == 0)
             return "";
@@ -163,6 +170,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IItemList#decode(java.lang.String)
      */
+    @SetSafety
     public void decode( String encodedItems ) {
         if (encodedItems == null || encodedItems.length() == 0)
             return;
@@ -184,6 +192,7 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IItemList#addListener(it.uniba.di.cdg.xcore.econference.model.IItemList.IItemListener)
      */
+    @SetSafety
     public void addListener( IItemListListener listener ) {
         listeners.add( listener );
     }
@@ -191,30 +200,12 @@ public class ItemList implements IItemList {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IItemList#removeListener(it.uniba.di.cdg.xcore.econference.model.IItemList.IItemListener)
      */
+    @SetSafety
     public void removeListener( IItemListListener listener ) {
         listeners.remove( listener );
     }
     
-    @Aspect
-    public static class OwnThreadSafety extends ThreadSafetyAspect {
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
-         */
-        @Pointcut( "execution( public * ItemList+.get*(..) )" + 
-                "|| execution( public * ItemList+.size() )"  +
-                "|| execution( public String ItemList+.encode() )" )
-        protected void readOperations() {}
-
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
-         */
-        @Pointcut( "execution( public void ItemList+.set*(..) )" + 
-                "|| execution( public * ItemList+.decode(String) )" +
-                "|| execution( public void ItemList+.remove*(..) )"  +
-                "|| execution( public void ItemList+.add*(..) ) " )
-        protected void writeOperations() {}
-    }
-
+ 
 	@Override
 	public Iterator<IDiscussionItem> iterator() {		
 		return items.iterator();

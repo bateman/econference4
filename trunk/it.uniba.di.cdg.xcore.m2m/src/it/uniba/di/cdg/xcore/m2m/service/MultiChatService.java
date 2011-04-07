@@ -24,7 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.m2m.service;
 
-import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
+import it.uniba.di.cdg.aspects.ThreadSafetyAspect;
 import it.uniba.di.cdg.xcore.m2m.events.IManagerEventListener;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.ViewReadOnlyEvent;
@@ -69,8 +69,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Jabber/XMPP implementation of the multi-chat service.
@@ -786,28 +784,28 @@ public class MultiChatService implements IMultiChatService,
 	/**
 	 * Provides internal thread synchronization.
 	 */
-	@Aspect
-	public static class OwnThreadSafety extends ThreadSafetyAspect {
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
-		 */
-		@Pointcut("execution( public void org.jivesoftware.smackx.muc.DefaultUserStatusListener+.*(..) )")
-		protected void readOperations() {
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
-		 */
-		@Pointcut("execution( private void JabberMultiChatService.updateFirstTime() )"
-				+ "|| execution( public void org.jivesoftware.smackx.muc.DefaultParticipantStatusListener+.*(..) )"
-				+ "|| execution( public void org.jivesoftware.smackx.muc.SubjectUpdatedListener+.*(..) )")
-		protected void writeOperations() {
-		}
-	}
+//	@Aspect
+//	public static class OwnThreadSafety extends ThreadSafetyAspect {
+//		/*
+//		 * (non-Javadoc)
+//		 * 
+//		 * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
+//		 */
+//		@Pointcut("execution( public void org.jivesoftware.smackx.muc.DefaultUserStatusListener+.*(..) )")
+//		protected void readOperations() {
+//		}
+//
+//		/*
+//		 * (non-Javadoc)
+//		 * 
+//		 * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
+//		 */
+//		@Pointcut("execution( private void JabberMultiChatService.updateFirstTime() )"
+//				+ "|| execution( public void org.jivesoftware.smackx.muc.DefaultParticipantStatusListener+.*(..) )"
+//				+ "|| execution( public void org.jivesoftware.smackx.muc.SubjectUpdatedListener+.*(..) )")
+//		protected void writeOperations() {
+//		}
+//	}
 
 	@Override
 	public void onBackendEvent(IBackendEvent event) {
