@@ -1,0 +1,8 @@
+<aspectj>
+<aspects>
+<aspect name="it.uniba.di.cdg.aspects.SwtThreadSafety"/>
+<aspect name="it.uniba.di.cdg.aspects.ThreadSafetyAspect"/>
+<aspect name="it.uniba.di.cdg.aspects.ExceptionLoggingAspect"/>
+</aspects>
+</aspectj>
+
