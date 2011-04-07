@@ -24,6 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.network.internal;
 
+import it.uniba.di.cdg.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
 import it.uniba.di.cdg.xcore.network.IBackendRegistry;

@@ -8,7 +8,8 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  it.uniba.di.cdg.xcore.util;visibility:=reexport,
- org.aspectj.runtime
+ org.aspectj.runtime,
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: it.uniba.di.cdg.xcore.network;
   uses:="org.eclipse.core.runtime,

@@ -11,7 +11,8 @@ Require-Bundle: it.uniba.di.cdg.xcore.econference,
  it.uniba.di.cdg.xcore.util,
  org.eclipse.core.runtime,
  org.mockito;bundle-version="1.0.0",
- it.uniba.di.cdg.xcore.network
+ it.uniba.di.cdg.xcore.network,
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Import-Package: it.uniba.di.cdg.jabber,
  it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.xcore.network.action,

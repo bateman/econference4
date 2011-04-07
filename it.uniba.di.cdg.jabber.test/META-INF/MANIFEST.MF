@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.core.runtime,
  it.uniba.di.cdg.xcore.m2m;bundle-version="1.0.0",
  org.jivesoftware.smack;bundle-version="3.1.0",
  org.junit4,
- org.mockito;bundle-version="1.0.0"
+ org.mockito;bundle-version="1.0.0",
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Import-Package: it.uniba.di.cdg.xcore.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: it.uniba.di.cdg.jabber.test.allpackagetests

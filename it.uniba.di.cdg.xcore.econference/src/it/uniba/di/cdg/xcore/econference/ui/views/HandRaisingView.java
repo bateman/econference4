@@ -24,7 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.econference.ui.views;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.xcore.econference.EConferencePlugin;
 import it.uniba.di.cdg.xcore.econference.IEConferenceManager;
 import it.uniba.di.cdg.xcore.econference.model.ConferenceModelListenerAdapter;

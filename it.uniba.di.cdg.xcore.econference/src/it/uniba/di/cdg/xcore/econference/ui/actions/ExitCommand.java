@@ -24,7 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.econference.ui.actions;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;

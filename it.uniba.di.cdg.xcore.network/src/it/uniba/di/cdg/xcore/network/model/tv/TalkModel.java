@@ -24,7 +24,9 @@
  */
 package it.uniba.di.cdg.xcore.network.model.tv;
 
-import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
+import it.uniba.di.cdg.aspects.GetSafety;
+import it.uniba.di.cdg.aspects.SetSafety;
+import it.uniba.di.cdg.aspects.ThreadSafetyAspect;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,8 +37,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Implementation of {@see it.uniba.di.cdg.xcore.network.model.tv.ITalkModel}.
@@ -61,10 +61,12 @@ public class TalkModel implements ITalkModel {
         this.listeners = new HashSet<ITalkModelListener>();
     }
     
+    @SetSafety
     public void addEntry( Entry entry ) {
         addEntry( getCurrentThread(), entry );
     }
 
+    @SetSafety
     public void addEntry( String threadId, Entry entry ) {
         List<Entry> entries = getOrCreateEntryList( threadId );
         entries.add( entry );
@@ -72,7 +74,7 @@ public class TalkModel implements ITalkModel {
         for (ITalkModelListener l : listeners)
             l.entryAdded( threadId, entry );
     }
-
+    @GetSafety
     private List<Entry> getOrCreateEntryList( String threadId ) {
         List<Entry> entries = entriesByThread.get( threadId );
         if (entries == null) { // unknown thread id
@@ -82,16 +84,19 @@ public class TalkModel implements ITalkModel {
         return entries;
     }
 
+    @GetSafety
     public List<Entry> getCurrentThreadEntries() {
         return getEntries( getCurrentThread() );
     }
 
+    @GetSafety
     public List<Entry> getEntries( String threadId ) {
         List<Entry> entries = getOrCreateEntryList( threadId );
         
         return Collections.unmodifiableList(  entries );
     }
 
+    @GetSafety
     public List<Entry> getAllEntries() {
         final List<Entry> allEntries = new ArrayList<Entry>();
 
@@ -104,6 +109,7 @@ public class TalkModel implements ITalkModel {
         return allEntries;
     }
 
+    @SetSafety
     public void setCurrentThread( String threadId ) {
         for (ITalkModelListener l : listeners)
             l.currentThreadChanged( getCurrentThread(), threadId );
@@ -111,14 +117,17 @@ public class TalkModel implements ITalkModel {
         this.currentThreadId = threadId;
     }
 
+    @GetSafety
     public String getCurrentThread() {
         return currentThreadId;
     }
-
+    
+    @SetSafety
     public void addListener( ITalkModelListener l ) {
         listeners.add( l );
     }
 
+    @SetSafety
     public void removeListener( ITalkModelListener l ) {
         listeners.remove( l );
     }
@@ -126,22 +135,5 @@ public class TalkModel implements ITalkModel {
     /**
      * Provides internal thread synchronization.
      */
-    @Aspect
-    public static class OwnThreadSafety extends ThreadSafetyAspect {
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
-         */
-        @Override
-        @Pointcut( "execution( public * TalkModel.get*(..) )" )
-        protected void readOperations() {}
 
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
-         */
-        @Override
-        @Pointcut( "execution( public void TalkModel.set*(..) )" +
-                "|| execution( public void TalkModel.add*(..) )" +
-                "|| execution( public void TalkModel.remove*(..) )" )
-        protected void writeOperations() {}
-    }
 }

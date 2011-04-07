@@ -24,16 +24,15 @@
  */
 package it.uniba.di.cdg.xcore.econference.model.hr;
 
-import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
+
+import it.uniba.di.cdg.aspects.GetSafety;
+import it.uniba.di.cdg.aspects.SetSafety;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Implementation of the hand raising model.
@@ -52,6 +51,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#addQuestion(java.lang.String, java.lang.String)
      */
+    @SetSafety
     public void addQuestion( IQuestion q ) {
         int p = questions.indexOf( q );
         // Remove the old question if already present.
@@ -67,6 +67,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#removeQuestion(int)
      */
+    @SetSafety
     public void removeQuestion( IQuestion q ) {
         questions.remove( q );
 
@@ -77,6 +78,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#getQuestion(int)
      */
+    @GetSafety
     public IQuestion getQuestion( int id ) {
         for (IQuestion q : questions)
             if (q.getId() == id)
@@ -87,6 +89,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#getQuestions()
      */
+    @GetSafety
     public IQuestion[] getQuestions() {
         IQuestion[] array = new IQuestion[questions.size()];
         return questions.toArray( array );
@@ -95,6 +98,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#addListener(it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModelListener)
      */
+    @SetSafety
     public void addListener( IHandRaisingModelListener l ) {
         listeners.add( l );
     }
@@ -102,6 +106,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#removeListener(it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel)
      */
+    @SetSafety
     public void removeListener( IHandRaisingModelListener l ) {
         listeners.remove( l );
     }
@@ -121,6 +126,7 @@ public class HandRaisingModel implements IHandRaisingModel {
      * 
      * @param q the changed question
      */
+    @GetSafety
     public void notifyQuestionChanged( Question q ) {
         for (IHandRaisingModelListener l : listeners)
             l.questionModified( q );
@@ -129,6 +135,7 @@ public class HandRaisingModel implements IHandRaisingModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel#numberOfQuestions()
      */
+    @GetSafety
     public int numberOfQuestions() {
         return questions.size();
     }
@@ -141,22 +148,5 @@ public class HandRaisingModel implements IHandRaisingModel {
         questions.clear();
     }
     
-    /**
-     * Provides internal thread synchronization.
-     */
-    @Aspect
-    public static class OwnThreadSafety extends ThreadSafetyAspect {
 
-        @Override
-        @Pointcut( "execution( public * HandRaisingModel.get*(..) )" +
-                "|| execution( public int HandRaisingModel.numberOfQuestions(..) )" +
-                "|| execution( public Iterator HandRaisingModel.iterator() )")
-        protected void readOperations() {}
-
-        @Override
-        @Pointcut( "execution( public void HandRaisingModel.set*(..) )" +
-                "|| execution( public void HandRaisingModel.add*(..) )" +
-                "|| execution( public void HandRaisingModel.remove*(..) )" )
-        protected void writeOperations() {}
-    }
 }

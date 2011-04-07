@@ -24,16 +24,14 @@
  */
 package it.uniba.di.cdg.xcore.m2m.model;
 
-import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
+import it.uniba.di.cdg.aspects.GetSafety;
+import it.uniba.di.cdg.aspects.SetSafety;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Implementation of {@see it.uniba.di.cdg.xcore.m2m.model.IChatRoom}.
@@ -69,11 +67,13 @@ public class ChatRoomModel implements IChatRoomModel {
     }
     
     @Override
+    @GetSafety
     public IParticipant getParticipant( String participantId ) {
         return participants.get( participantId );
     }
     
     @Override
+    @GetSafety
     public IParticipant getParticipantByNickName(String nick) {
     	Iterator<String> pIDs = participants.keySet().iterator();
     	boolean found = false;
@@ -88,6 +88,7 @@ public class ChatRoomModel implements IChatRoomModel {
     }
 
     @Override
+    @SetSafety
     public void addParticipant( IParticipant participant ) {
         participants.put( participant.getId(), participant );
         participant.setChatRoom( this );
@@ -97,6 +98,7 @@ public class ChatRoomModel implements IChatRoomModel {
     }
 
     @Override
+    @SetSafety
     public void removeParticipant( IParticipant participant ) {
         participants.remove( participant.getId() );
         participant.setChatRoom( null );
@@ -106,6 +108,7 @@ public class ChatRoomModel implements IChatRoomModel {
     }
 
     @Override
+    @SetSafety
     public void addListener( IChatRoomModelListener listener ) {
         listeners.add( listener );
     }
@@ -113,6 +116,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#removeListeners(it.uniba.di.cdg.xcore.m2m.model.IChatRoom.IChatRoomListener)
      */
+    @SetSafety
     public void removeListener( IChatRoomModelListener listener ) {
         listeners.remove( listener );
     }
@@ -120,6 +124,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IParticipant.IParticipantListener#changed(it.uniba.di.cdg.xcore.m2m.model.IParticipant)
      */
+    @GetSafety
     public void changed( IParticipant participant ) {
         for (IChatRoomModelListener l : listeners)
             l.changed( participant );
@@ -128,6 +133,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#getParticipants()
      */
+    @GetSafety
     public IParticipant[] getParticipants() {
         return participants.values().toArray( new IParticipant[participants.size()] );
     }
@@ -135,6 +141,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#getSubject()
      */
+    @GetSafety
     public String getSubject() {
         return subject;
     }
@@ -142,6 +149,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel#setSubject(java.lang.String, java.lang.String)
      */
+    @SetSafety
     public void setSubject( String subject, String who ) {
         this.subject = subject;
 
@@ -152,6 +160,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#setLocalUser(it.uniba.di.cdg.xcore.m2m.model.IParticipant)
      */
+    @SetSafety
     public void setLocalUser( IParticipant p ) {
         this.localUser = p;
 
@@ -162,6 +171,8 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoom#getLocalUser()
      */
+   
+    @GetSafety
     public IParticipant getLocalUser() {
         return localUser;
     }
@@ -169,6 +180,7 @@ public class ChatRoomModel implements IChatRoomModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel#getLocalUserOrParticipant(java.lang.String)
      */
+    @GetSafety
     public IParticipant getLocalUserOrParticipant( String id ) {
         IParticipant p = getLocalUser();
         /*FIXME: controllare se l'ignore case va bene(c'è stato un caso in cui 
@@ -184,6 +196,7 @@ public class ChatRoomModel implements IChatRoomModel {
      * 
      * @return an iterator to listeners.
      */
+    @GetSafety
     protected List<IChatRoomModelListener> listeners() {
         return listeners;
     }
@@ -191,24 +204,6 @@ public class ChatRoomModel implements IChatRoomModel {
     /**
      * Provides internal thread synchronization.
      */
-    @Aspect
-    public static class OwnThreadSafety extends ThreadSafetyAspect {
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
-         */
-        @Pointcut( "execution( public * ChatRoomModel.get*(..) )" +
-                "|| execution( public void ChatRoomModel.changed(..) )" +
-                "|| execution( protected * ChatRoomModel.listeners() )" )
-        protected void readOperations() {}
-
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
-         */
-        @Pointcut( "execution( public void ChatRoomModel.set*(..) )" +
-                "|| execution( public void ChatRoomModel.add*(..) )" +
-                "|| execution( public void ChatRoomModel.remove*(..) )" )
-        protected void writeOperations() {}
-    }
 
     
 }

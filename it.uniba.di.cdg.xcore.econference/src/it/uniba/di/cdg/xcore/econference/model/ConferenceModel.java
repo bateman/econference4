@@ -24,10 +24,10 @@
  */
 package it.uniba.di.cdg.xcore.econference.model;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
-import it.uniba.di.cdg.xcore.aspects.ThreadSafetyAspect;
+
+import it.uniba.di.cdg.aspects.GetSafety;
+import it.uniba.di.cdg.aspects.SetSafety;
 import it.uniba.di.cdg.xcore.m2m.model.ChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModelListener;
 
@@ -63,6 +63,7 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IConferenceModel#getStatus()
      */
+    @GetSafety
     public ConferenceStatus getStatus() {
         return status;
     }
@@ -70,6 +71,7 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IConferenceModel#setStatus(it.uniba.di.cdg.xcore.econference.ConferenceStatus)
      */
+    @SetSafety
     public void setStatus( ConferenceStatus status ) {
         this.status = status;
         // Notify clients ...
@@ -83,6 +85,7 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IConferenceModel#getItemList()
      */
+    @GetSafety
     public IItemList getItemList() {
         return itemList;
     }
@@ -90,6 +93,7 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IConferenceModel#setItemList(it.uniba.di.cdg.xcore.econference.model.IItemList)
      */
+    @SetSafety
     public void setItemList( IItemList itemList ) {
         this.itemList = itemList;
         // Notify clients ...
@@ -103,6 +107,7 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IConferenceModel#getWhiteBoardText()
      */
+    @GetSafety
     public String getWhiteBoardText() {
         return whiteBoardText;
     }
@@ -110,6 +115,7 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.econference.model.IConferenceModel#setWhiteBoardText(java.lang.String)
      */
+    @SetSafety
     public void setWhiteBoardText( String text ) {
         this.whiteBoardText = text;
         
@@ -119,24 +125,6 @@ public class ConferenceModel extends ChatRoomModel implements IConferenceModel {
             }
         }
     }
-    
-    /**
-     * Provides internal thread synchronization.
-     */
-    @Aspect
-    public static class OwnThreadSafety extends ThreadSafetyAspect {
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#readOperations()
-         */
-        @Override
-        @Pointcut( "execution( public * ConferenceModel.get*(..) )" )
-        protected void readOperations() {}
 
-        /* (non-Javadoc)
-         * @see it.uniba.di.cdg.xcore.aspects.ThreadSafety#writeOperations()
-         */
-        @Override
-        @Pointcut( "execution( public void ConferenceModel.set*(..) )" )
-        protected void writeOperations() {}
-    }
+
 }

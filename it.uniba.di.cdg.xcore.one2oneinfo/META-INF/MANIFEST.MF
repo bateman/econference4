@@ -8,6 +8,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  it.uniba.di.cdg.xcore.network;bundle-version="1.0.0",
  it.uniba.di.cdg.xcore.ui;bundle-version="1.0.0",
- it.uniba.di.cdg.xcore.one2one;bundle-version="1.0.0"
+ it.uniba.di.cdg.xcore.one2one;bundle-version="1.0.0",
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

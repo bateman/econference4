@@ -24,7 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.m2m.internal;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.xcore.m2m.IMultiChatHelper;
 import it.uniba.di.cdg.xcore.m2m.IMultiChatManager;
 import it.uniba.di.cdg.xcore.m2m.IMultiChatManager.IMultiChatListener;

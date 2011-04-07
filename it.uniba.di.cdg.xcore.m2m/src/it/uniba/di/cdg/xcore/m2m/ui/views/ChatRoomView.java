@@ -24,7 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.m2m.ui.views;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
 
 import it.uniba.di.cdg.xcore.m2m.IMultiChatManager;
 import it.uniba.di.cdg.xcore.m2m.MultiChatPlugin;
@@ -242,6 +242,7 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
      */
     @SwtAsyncExec
     private void refreshView() {
+    	if (!participantViewer.getControl().isDisposed())
         participantViewer.refresh();
     }
 }

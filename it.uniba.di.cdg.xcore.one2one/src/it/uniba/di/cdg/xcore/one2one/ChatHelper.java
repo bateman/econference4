@@ -1,6 +1,6 @@
 package it.uniba.di.cdg.xcore.one2one;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;

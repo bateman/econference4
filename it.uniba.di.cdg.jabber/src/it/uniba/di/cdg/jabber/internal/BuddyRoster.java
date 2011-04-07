@@ -25,7 +25,7 @@
 package it.uniba.di.cdg.jabber.internal;
 
 import it.uniba.di.cdg.jabber.JabberBackend;
-import it.uniba.di.cdg.xcore.aspects.SwtSyncExec;
+import it.uniba.di.cdg.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.network.model.AbstractBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.network.model.IBuddy.Status;

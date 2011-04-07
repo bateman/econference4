@@ -10,8 +10,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.xcore.ui,
+ org.jivesoftware.smack;bundle-version="3.1.0",
  org.aspectj.runtime,
- org.jivesoftware.smack;bundle-version="3.1.0"
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Export-Package: it.uniba.di.cdg.xcore.one2one
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

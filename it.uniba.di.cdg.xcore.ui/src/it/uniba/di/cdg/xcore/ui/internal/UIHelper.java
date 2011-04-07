@@ -24,8 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.ui.internal;
 
-import it.uniba.di.cdg.xcore.aspects.SwtAsyncExec;
-import it.uniba.di.cdg.xcore.aspects.SwtSyncExec;
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
+import it.uniba.di.cdg.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import it.uniba.di.cdg.xcore.ui.dialogs.CompletableInputDialog;
 import it.uniba.di.cdg.xcore.ui.dialogs.UserInputsProviderDialog;
@@ -150,6 +150,9 @@ public class UIHelper implements IUIHelper {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.ui.IUIHelper#closePerspective(java.lang.String)
      */
+    
+    // "Graphic is disposed" error when closing a conference depends on this method
+    // and non closing prospective
     @SwtSyncExec
     public void closePerspective( String perspectiveId ) {
         IPerspectiveDescriptor pd = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId( perspectiveId );
