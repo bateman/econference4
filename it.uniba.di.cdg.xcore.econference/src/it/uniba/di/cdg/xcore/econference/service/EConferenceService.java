@@ -545,7 +545,7 @@ public class EConferenceService extends MultiChatService implements
 		return false;
 
 	}
-
+	
 	private void sendUsersPrivileges() {
 		if (getModel().getLocalUser() != null
 				&& getModel().getLocalUser().getRole().equals(Role.MODERATOR)) {
@@ -555,12 +555,6 @@ public class EConferenceService extends MultiChatService implements
 						notifyChangedSpecialPrivilege(participant, privilege,
 								SpecialPrivilegesAction.GRANT);
 					}
-				}
-				
-				if (!participant.getRole().equals(Role.MODERATOR)) {
-					notifyChangedSpecialPrivilege(participant,
-							ParticipantSpecialPrivileges.VOTER,
-							SpecialPrivilegesAction.GRANT);
 				}
 			}
 		}
