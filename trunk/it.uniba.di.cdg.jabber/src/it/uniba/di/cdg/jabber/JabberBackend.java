@@ -179,7 +179,7 @@ ConnectionListener {
 		// capabilities.add( IEConferenceService.ECONFERENCE_SERVICE );
 
 		//new instance of presence packet
-		this.presence= new Presence(Presence.Type.available,"Avaiable",0,Presence.Mode.available);
+		this.presence= new Presence(Presence.Type.available,"Available",0,Presence.Mode.available);
 
 	}
 
@@ -312,7 +312,7 @@ ConnectionListener {
 	 */
 	private void setResourcePriority(final int prio) {
 		presence.setType(Presence.Type.available);
-		presence.setStatus("Avaiable");
+		presence.setStatus("Available");
 		presence.setMode(Presence.Mode.available);
 		presence.setPriority(prio);
 		connection.sendPacket(presence);	
