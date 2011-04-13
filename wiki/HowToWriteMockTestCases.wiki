@@ -16,7 +16,7 @@ In the first phase (Setup) we setup everything is required by the SUT to be test
 
 In a State Verification we inspect the state of the System Under test after it has been exercised and compare it to the expected state.
 
-state-based-testing.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/state-based-testing.jpg
 
 To do this we usually interact with the SUT after the Exercise step to get his state back and use JUnit assertion methods.
 
