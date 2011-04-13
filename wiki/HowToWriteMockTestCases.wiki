@@ -21,7 +21,9 @@ In the fourth phase (Teardown) we put the world back into the state in which we 
 
 In a State Verification we inspect the state of the System Under test after it has been exercised and compare it to the expected state.
 
-http://econference4.googlecode.com/svn/wiki/img/mock/state-based-testing.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/state-based-testing.jpg] </p>
+<p align=center>*Figure 1. State based Testing*</p>
 
 To do this we usually interact with the SUT after the Exercise step to get his state back and use JUnit assertion methods.
 
@@ -29,7 +31,9 @@ To do this we usually interact with the SUT after the Exercise step to get his s
 
 In a Behavior Verification we capture the indirect outputs of the SUT as they occur and compare them to the expected behavior.
 
-http://econference4.googlecode.com/svn/wiki/img/mock/behavior-based-testing.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/behavior-based-testing.jpg] </p>
+<p align=center>*Figure 2. Behavior based Testing*</p>
 
 Verifying the indirect outputs means that we check the interactions between the SUT and his dependencies. This allows us to define his behavior without checking his state.
 Indirect outputs are checked interacting directly with the DOCs. To do this we use Test Doubles with the mocking framework called Mockito.
@@ -43,13 +47,18 @@ Every Test Double needs to be installed, we need a way to replace a real DOC and
 
 A Test Stub is a type of Test Double used to replace a real component on which the SUT depends so that the test has a control point for the indirect inputs of the SUT. Its inclusion allows the test to force the SUT down paths it might not otherwise execute. For this we can use this type of Test Double even in a state verification test to avoid untested code.
 
-http://econference4.googlecode.com/svn/wiki/img/mock/test-stub-testing.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/test-stub-testing.jpg] </p>
+<p align=center>*Figure 3. Testing with Test Stubs*</p>
+
 
 == Mock Object ==
 
 A Mock Object is a Test Double used to replace a real component on which the SUT depends on with a test-specific object that verifies it is being used correctly by the SUT.
 
-http://econference4.googlecode.com/svn/wiki/img/mock/mock-object-testing.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/mock-object-testing.jpg] </p>
+<p align=center>*Figure 4. Testing with Mock Objects*</p>
 
 This Test Double emulates the real DOC tracking all the invocations. It allows to verify these interactions by defining all the expected ones.
 
@@ -80,17 +89,25 @@ import static org.mockito.Mockito.*;
 
 It will use the same output panel of JUnit for test results:
 
-http://econference4.googlecode.com/svn/wiki/img/mock/junit-output-panel-for-mockito.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/junit-output-panel-for-mockito.jpg]</p>
+<p align=center>*Figure 5. JUnit output panel for Mockito*</p>
 
 If you are making a new test plugin, remember to add Mockito on the dependencies list:
 
-http://econference4.googlecode.com/svn/wiki/img/mock/plugin-dependencies.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/plugin-dependencies.jpg]</p>
+<p align=center>*Figure 6. Test Plugin dependencies*</p>
 
 You need also to export the {{{allpackagetests}}} package (Figure 7) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin {{{it.uniba.di.cdg.econference-tests}}} has your test plugin in the dependencies list (Figure 8).
 
-http://econference4.googlecode.com/svn/wiki/img/mock/package-exported.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/package-exported.jpg]</p>
+<p align=center>*Figure 7. Test Plugin exported package*</p>
 
-http://econference4.googlecode.com/svn/wiki/img/mock/package-imported.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/package-imported.jpg]</p>
+<p align=center>*Figure 8. General Test Plugin imported packages*</p>
 
 == Mockito API ==
 
@@ -274,6 +291,8 @@ public class ClassBehaviorTest {
 
 Usually tests are executed clicking on "Run as" -> "JUnit Test" run configuration. In Behavior tests you may need to use a different run configuration because your tested code will probably access directly to the other plugins. To do this click on "Run as" -> "JUnit Plugin Test". This makes JUnit start all the plugins when needed during the Exercise step of your test. For example, if your code uses the {{{PlatformUI}}} class directly to get back the Workbench object, JUnit will initialize a dummy workbench to make your code run correctly:
 
-http://econference4.googlecode.com/svn/wiki/img/mock/junit-plugin-test-execution.jpg
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/junit-plugin-test-execution.jpg]</p>
+<p align=center>*Figure 9. JUnit Plugin Test execution*</p>
 
 When test execution ends, all the plugin started will be disposed automatically.
