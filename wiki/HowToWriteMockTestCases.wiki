@@ -6,13 +6,13 @@
 
 = Result Verification Patterns =
 
-In a unit test there are two result verification patterns that can be used. When we make a standard JUnit test case using assertion methods, we are following a State Verification Strategy but when your class has no state to verify we need to follow a Behavior Verification Strategy.
-The class tested is called SUT (System Under Test), each dependency is called DOC (Depended-On Component).
-There are four basic steps to build a test regardless the strategy we need to follow. These steps are usually done in the same order.
+<p>In a unit test there are two result verification patterns that can be used. When we make a standard JUnit test case using assertion methods, we are following a State Verification Strategy but when your class has no state to verify we need to follow a Behavior Verification Strategy.</p>
+<p>The class tested is called SUT (System Under Test), each dependency is called DOC (Depended-On Component).</p>
+<p>There are four basic steps to build a test regardless the strategy we need to follow. These steps are usually done in the same order.
   # Setup
   # Exercise
   # Verify
-  # Teardown
+  # Teardown</p>
 <p>In the first phase (Setup) we setup everything is required by the SUT to be tested. In the second phase (Exercise) we define the interaction that will be tested. In the third phase (Verify) we do whatever is necessary to determine whether the expected outcome has been obtained. In the fourth phase (Teardown) we put the world back into the state in which we found it before the Setup phase.</p>
 
 == State Verification ==
