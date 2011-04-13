@@ -29,7 +29,7 @@ To do this we usually interact with the SUT after the Exercise step to get his s
 
 In a Behavior Verification we capture the indirect outputs of the SUT as they occur and compare them to the expected behavior.
 
-behavior-based-testing.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/behavior-based-testing.jpg
 
 Verifying the indirect outputs means that we check the interactions between the SUT and his dependencies. This allows us to define his behavior without checking his state.
 Indirect outputs are checked interacting directly with the DOCs. To do this we use Test Doubles with the mocking framework called Mockito.
@@ -43,13 +43,13 @@ Every Test Double needs to be installed, we need a way to replace a real DOC and
 
 A Test Stub is a type of Test Double used to replace a real component on which the SUT depends so that the test has a control point for the indirect inputs of the SUT. Its inclusion allows the test to force the SUT down paths it might not otherwise execute. For this we can use this type of Test Double even in a state verification test to avoid untested code.
 
-test-stub-testing.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/test-stub-testing.jpg
 
 == Mock Object ==
 
 A Mock Object is a Test Double used to replace a real component on which the SUT depends on with a test-specific object that verifies it is being used correctly by the SUT.
 
-mock-object-testing.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/mock-object-testing.jpg
 
 This Test Double emulates the real DOC tracking all the invocations. It allows to verify these interactions by defining all the expected ones.
 
@@ -63,11 +63,11 @@ Dependency Injection is pretty simple and it’s based on three basic options:
   * Constructor Injection: We tell the SUT which DOC to use when we construct it.
   * Setter Injection: We tell the SUT about the DOC sometime between when we construct it and when we exercise it using a setter method.
 
-Dependency Lookup is based on a “Component Broker” that builds the dependencies of the SUT for him. Basically the SUT asks this object to return the DOCs when he needs them.
+Dependency Lookup is based on a "Component Broker" that builds the dependencies of the SUT for him. Basically the SUT asks this object to return the DOCs when he needs them.
 
 = Mockito Framework =
 
-Mockito is a Mocking Framework written by Szczepan Faber that allows testing with Test Double and must be used to build new behavior test cases. Note that the word “mock” is used to define both Test Stubs and Mock Objects but they are two different types of Test Doubles. 
+Mockito is a Mocking Framework written by Szczepan Faber that allows testing with Test Double and must be used to build new behavior test cases. Note that the word "mock" is used to define both Test Stubs and Mock Objects but they are two different types of Test Doubles. 
 Mockito framework (ver. 1.8.5) is loaded in the eConference project as a new plugin and uses JUnit runners as in standard JUnit test cases.
 
 == JUnit Integration ==
@@ -80,17 +80,17 @@ import static org.mockito.Mockito.*;
 
 It will use the same output panel of JUnit for test results:
 
-JUnit-output-panel-for-Mockito.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/junit-output-panel-for-mockito.jpg
 
 If you are making a new test plugin, remember to add Mockito on the dependencies list:
 
-Plugin-dependencies.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/plugin-dependencies.jpg
 
-You need also to export the “allpackagetests” package (Figure 7) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin “it.uniba.di.cdg.econference-tests” has your test plugin in the dependencies list (Figure 8).
+You need also to export the "allpackagetests" package (Figure 7) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin "it.uniba.di.cdg.econference-tests" has your test plugin in the dependencies list (Figure 8).
 
-package-exported.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/package-exported.jpg
 
-package-imported.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/package-imported.jpg
 
 == Mockito API ==
 
@@ -115,27 +115,27 @@ In this case, the following invocation:
 System.out.println(mockedList.get(0));
 }}}
 
-will print out “first element”. This one instead:
+will print out "first element". This one instead:
 
 {{{
 System.out.println(mockedList.get(1));
 }}}
 
-will throw an exception of type “Exception”.
+will throw an exception of type "Exception".
 By default, Mockito makes a default stubbing for all methods that return value. The mock will returns null, an empty collection or appropriate primitive/primitive wrapper value (e.g.: 0 for int/Integer, false for boolean/Boolean and so on). For this, the following invocation for our example:
 
 {{{
 System.out.println(mockedList.get(2));
 }}}
 
-will print “null”.
-When we need to verify some behavior we need to use the “verify” method:
+will print "null".
+When we need to verify some behavior we need to use the "verify" method:
 
 {{{
 verify(mockedList).add("something");
 }}}
 
-this will check if the “add” method with the “something” argument has been called in the Exercise test phase. In fact, if we have the following invocation:
+this will check if the “add” method with the "something" argument has been called in the Exercise test phase. In fact, if we have the following invocation:
 
 {{{
 mockedList.add("something");
@@ -160,16 +160,16 @@ There are many matchers you can use: anyString(), anyList(), anyLong(), anyMap()
 When you use argument matchers, all arguments have to be provided by matchers. This means that the following verification can’t be done:
 
 {{{
-verify(mock).method(anyInt(), anyString(), ”argument 3”);
+verify(mock).method(anyInt(), anyString(), "argument 3");
 }}}
 
-In these cases you need to use the “eq()” argument matcher:
+In these cases you need to use the "eq()" argument matcher:
 
 {{{
-verify(mock).method(anyInt(), anyString(),eq(”argument 3”));
+verify(mock).method(anyInt(), anyString(),eq("argument 3"));
 }}}
 
-When you need to verify the exact number of invocations, you can use the “times(number)” argument in the “verify” method:
+When you need to verify the exact number of invocations, you can use the "times(number)" argument in the "verify" method:
 
 {{{
 mockedList.add("one time");
@@ -181,16 +181,16 @@ mockedList.add("three times");
 mockedList.add("three times");
 mockedList.add("three times");
 
-verify(mockedList, times(1)).add("una volta ");
+verify(mockedList, times(1)).add("one time");
 // it’s the same of the standard verify so times(1) can be omitted
 verify(mockedList).add("one time");
 
-verify(mockedList, times(2)).add("two times ");
+verify(mockedList, times(2)).add("two times");
 
 verify(mockedList, times(3)).add("three times ");
 }}}
 
-If you need more flexibility on the number of invocation check you can use “atLeastOnce()”, atLeast(number), atMost(number) as follows:
+If you need more flexibility on the number of invocation check you can use "atLeastOnce()", atLeast(number), atMost(number) as follows:
 
 {{{
 verifyZeroInteractions(mockedList);
@@ -198,7 +198,7 @@ verifyZeroInteractions(mockedList);
 verifyNoMoreInteractions(mockedList);
 }}}
 
-You can check if some invocations are done in a specific order using the “inOrder” object:
+You can check if some invocations are done in a specific order using the "inOrder" object:
 
 {{{
 mockedList1.add("first");
@@ -223,17 +223,17 @@ For further information on the Mockito API go [http://mockito.googlecode.com/svn
 
 Since Mockito library is used inside the JUnit framework, you can still use all the Annotations needed to define the steps before and after the real tests (@Before, @After, @Test).
 We decided to keep behavior tests separated from the state tests because if you need to mix them there are probably design smells on your class to test.
-This separation includes test suites that are called “AllBehaviorTests.java”. They are organized in the same way of the others JUnit state test suites.
+This separation includes test suites that are called "AllBehaviorTests.java". They are organized in the same way of the others JUnit state test suites.
 
 == Behavior Test Structure ==
 
 Usually you will need to initialize your System Under Test class in the setUp() method. The @Before annotation will make you sure that will be executed before the tests.
 In every test just follow the four steps described before:
 
-*Setup: create your Test Doubles, define your stubbed methods and install them into the SUT
-*Exercise: run the SUT method that will start the behavior.
-*Verify: check method invocations.
-*Teardown: teardown is done automatically by the garbage collector.
+  * Setup: create your Test Doubles, define your stubbed methods and install them into the SUT
+  * Exercise: run the SUT method that will start the behavior.
+  * Verify: check method invocations.
+  * Teardown: teardown is done automatically by the garbage collector.
 
 {{{
 import org.junit.*;
@@ -272,8 +272,8 @@ public class ClassBehaviorTest {
 
 == How to launch a Behavior Test ==
 
-Usually tests are executed clicking on “Run as” -> “JUnit Test” run configuration. In Behavior tests you may need to use a different run configuration because your tested code will probably access directly to the other plugins. To do this click on “Run as” -> “JUnit Plugin Test”. This makes JUnit start all the plugins when needed during the Exercise step of your test. For example, if your code uses the PlatformUI class directly to get back the Workbench object, JUnit will initialize a dummy workbench to make your code run correctly:
+Usually tests are executed clicking on "Run as" -> "JUnit Test" run configuration. In Behavior tests you may need to use a different run configuration because your tested code will probably access directly to the other plugins. To do this click on "Run as" -> "JUnit Plugin Test". This makes JUnit start all the plugins when needed during the Exercise step of your test. For example, if your code uses the PlatformUI class directly to get back the Workbench object, JUnit will initialize a dummy workbench to make your code run correctly:
 
-JUnit-plugin-test-execution.jpg
+http://econference4.googlecode.com/svn/wiki/img/mock/junit-plugin-test-execution.jpg
 
 When test execution ends, all the plugin started will be disposed automatically.
