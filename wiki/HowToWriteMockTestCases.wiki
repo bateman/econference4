@@ -102,7 +102,7 @@ LinkedList mockedList = mock(LinkedList.class);
 }}}
 
 Once created, this object will remember all the invocations done on his methods.
-The “stubbing” operation is done specifying the methods response of the simulated object but can also be used to throw exceptions:
+The "stubbing" operation is done specifying the methods response of the simulated object but can also be used to throw exceptions:
 
 {{{
 when(mockedList.get(0)).thenReturn("first element");
@@ -115,7 +115,7 @@ In this case, the following invocation:
 System.out.println(mockedList.get(0));
 }}}
 
-will print out "first element". This one instead:
+will print out {{{"first element"}}}. This one instead:
 
 {{{
 System.out.println(mockedList.get(1));
@@ -128,7 +128,7 @@ By default, Mockito makes a default stubbing for all methods that return value. 
 System.out.println(mockedList.get(2));
 }}}
 
-will print "null".
+will print {{{"null"}}}.
 When we need to verify some behavior we need to use the {{{verify}}} method:
 
 {{{
@@ -141,14 +141,14 @@ this will check if the {{{add}}} method with the {{{"something"}}} argument has 
 mockedList.add("something");
 }}}
 
-the test will success. This verification can fail if there is no call for the “add” method or there is an argument mismatch. The following invocation:
+the test will success. This verification can fail if there is no call for the {{{add}}} method or there is an argument mismatch. The following invocation:
 
 {{{
 mockedList.add("something else");
 }}}
 
 will make the test fail even if we had an invocation on the right method.
-Mockito verifies argument values in natural java style using the equals() method. When extra flexibility is required the you might use argument matchers:
+Mockito verifies argument values in natural java style using the {{{equals()}}} method. When extra flexibility is required the you might use argument matchers:
 
 {{{
 when(mockedList.get(anyInt()).thenReturn("same element");
@@ -221,7 +221,7 @@ For further information on the Mockito API go [http://mockito.googlecode.com/svn
 
 = How to write a Behavior Test =
 
-Since Mockito library is used inside the JUnit framework, you can still use all the Annotations needed to define the steps before and after the real tests (@Before, @After, @Test).
+Since Mockito library is used inside the JUnit framework, you can still use all the Annotations needed to define the steps before and after the real tests ({{{@Before}}}, {{{@After}}}, {{{@Test}}}).
 We decided to keep behavior tests separated from the state tests because if you need to mix them there are probably design smells on your class to test.
 This separation includes test suites that are called {{{AllBehaviorTests.java}}}. They are organized in the same way of the others JUnit state test suites.
 
@@ -253,14 +253,14 @@ public class ClassBehaviorTest {
     DependencyClass1 dep1 = mock(DependencyClass1.class);
     DependencyClass2 dep2 = mock(DependencyClass2.class);
     // Setup - Stubbing
-    when(dep1.someMethod(“arg”)).thenReturn(“some value”);
+    when(dep1.someMethod("arg")).thenReturn("some value");
     // Setup - Installation
     sut.setDependency1(dep1);
     sut.setDependency2(dep2);
     // Exercise
     sut.someMethod();
     // Verify
-    verify(dep2).someMethod(“some argument”); 
+    verify(dep2).someMethod("some argument"); 
   }
      
   @Test
