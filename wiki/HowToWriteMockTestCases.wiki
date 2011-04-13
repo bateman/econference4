@@ -227,7 +227,7 @@ This separation includes test suites that are called {{{AllBehaviorTests.java}}}
 
 == Behavior Test Structure ==
 
-Usually you will need to initialize your System Under Test class in the {{{setUp()}}} method. The @Before annotation will make you sure that will be executed before the tests.
+Usually you will need to initialize your System Under Test class in the {{{setUp()}}} method. The {{{@Before}}} annotation will make you sure that will be executed before the tests.
 In every test just follow the four steps described before:
 
   * Setup: create your Test Doubles, define your stubbed methods and install them into the SUT
@@ -272,7 +272,7 @@ public class ClassBehaviorTest {
 
 == How to launch a Behavior Test ==
 
-Usually tests are executed clicking on "Run as" -> "JUnit Test" run configuration. In Behavior tests you may need to use a different run configuration because your tested code will probably access directly to the other plugins. To do this click on "Run as" -> "JUnit Plugin Test". This makes JUnit start all the plugins when needed during the Exercise step of your test. For example, if your code uses the PlatformUI class directly to get back the Workbench object, JUnit will initialize a dummy workbench to make your code run correctly:
+Usually tests are executed clicking on "Run as" -> "JUnit Test" run configuration. In Behavior tests you may need to use a different run configuration because your tested code will probably access directly to the other plugins. To do this click on "Run as" -> "JUnit Plugin Test". This makes JUnit start all the plugins when needed during the Exercise step of your test. For example, if your code uses the {{{PlatformUI}}} class directly to get back the Workbench object, JUnit will initialize a dummy workbench to make your code run correctly:
 
 http://econference4.googlecode.com/svn/wiki/img/mock/junit-plugin-test-execution.jpg
 
