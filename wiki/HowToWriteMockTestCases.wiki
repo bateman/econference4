@@ -86,7 +86,7 @@ If you are making a new test plugin, remember to add Mockito on the dependencies
 
 http://econference4.googlecode.com/svn/wiki/img/mock/plugin-dependencies.jpg
 
-You need also to export the "allpackagetests" package (Figure 7) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin "it.uniba.di.cdg.econference-tests" has your test plugin in the dependencies list (Figure 8).
+You need also to export the {{{allpackagetests}}} package (Figure 7) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin {{{it.uniba.di.cdg.econference-tests}}} has your test plugin in the dependencies list (Figure 8).
 
 http://econference4.googlecode.com/svn/wiki/img/mock/package-exported.jpg
 
@@ -121,7 +121,7 @@ will print out "first element". This one instead:
 System.out.println(mockedList.get(1));
 }}}
 
-will throw an exception of type "Exception".
+will throw an exception of type {{{Exception}}}.
 By default, Mockito makes a default stubbing for all methods that return value. The mock will returns null, an empty collection or appropriate primitive/primitive wrapper value (e.g.: 0 for int/Integer, false for boolean/Boolean and so on). For this, the following invocation for our example:
 
 {{{
@@ -129,13 +129,13 @@ System.out.println(mockedList.get(2));
 }}}
 
 will print "null".
-When we need to verify some behavior we need to use the "verify" method:
+When we need to verify some behavior we need to use the {{{verify}}} method:
 
 {{{
 verify(mockedList).add("something");
 }}}
 
-this will check if the “add” method with the "something" argument has been called in the Exercise test phase. In fact, if we have the following invocation:
+this will check if the {{{add}}} method with the {{{"something"}}} argument has been called in the Exercise test phase. In fact, if we have the following invocation:
 
 {{{
 mockedList.add("something");
@@ -156,20 +156,20 @@ verify(mockedList).get(anyInt());
 }}}
 
 Note that it usually makes no sense verifying a stubbed method because it means you are using the Test Double as a Test Stub and as a Mock Object too. The example above, however, let you understand easily what an argument matcher is.
-There are many matchers you can use: anyString(), anyList(), anyLong(), anyMap(), anyShort(), anySet(), anyObject()and so on.
+There are many matchers you can use: {{{anyString()}}}, {{{anyList()}}}, {{{anyLong()}}}, {{{anyMap()}}}, {{{anyShort()}}}, {{{anySet()}}}, {{{anyObject()}}} and so on.
 When you use argument matchers, all arguments have to be provided by matchers. This means that the following verification can’t be done:
 
 {{{
 verify(mock).method(anyInt(), anyString(), "argument 3");
 }}}
 
-In these cases you need to use the "eq()" argument matcher:
+In these cases you need to use the {{{eq()}}} argument matcher:
 
 {{{
 verify(mock).method(anyInt(), anyString(),eq("argument 3"));
 }}}
 
-When you need to verify the exact number of invocations, you can use the "times(number)" argument in the "verify" method:
+When you need to verify the exact number of invocations, you can use the {{{times(number)}}} argument in the {{{verify}}} method:
 
 {{{
 mockedList.add("one time");
@@ -190,7 +190,7 @@ verify(mockedList, times(2)).add("two times");
 verify(mockedList, times(3)).add("three times ");
 }}}
 
-If you need more flexibility on the number of invocation check you can use "atLeastOnce()", atLeast(number), atMost(number) as follows:
+If you need more flexibility on the number of invocation check you can use {{{atLeastOnce()}}}, {{{atLeast(number)}}}, {{{atMost(number)}}} as follows:
 
 {{{
 verifyZeroInteractions(mockedList);
@@ -198,7 +198,7 @@ verifyZeroInteractions(mockedList);
 verifyNoMoreInteractions(mockedList);
 }}}
 
-You can check if some invocations are done in a specific order using the "inOrder" object:
+You can check if some invocations are done in a specific order using the {{{inOrder}}} object:
 
 {{{
 mockedList1.add("first");
@@ -210,7 +210,7 @@ inOrder.verify(mockedList1).add("first");
 inOrder.verify(mockedList2).add("second");
 }}}
 
-Stubbing voids requires different approach from “when(mock.method()).then” because method specification are actually real invocations and the compiler does not like void methods inside brackets.
+Stubbing voids requires different approach from {{{when(mock.method()).then}}} because method specification are actually real invocations and the compiler does not like void methods inside brackets.
 Since you will never stub a void method for specific outputs, this situation applies on the stubbing of exceptions. In these cases you need to follow this syntax:
 
 {{{
@@ -223,11 +223,11 @@ For further information on the Mockito API go [http://mockito.googlecode.com/svn
 
 Since Mockito library is used inside the JUnit framework, you can still use all the Annotations needed to define the steps before and after the real tests (@Before, @After, @Test).
 We decided to keep behavior tests separated from the state tests because if you need to mix them there are probably design smells on your class to test.
-This separation includes test suites that are called "AllBehaviorTests.java". They are organized in the same way of the others JUnit state test suites.
+This separation includes test suites that are called {{{AllBehaviorTests.java}}}. They are organized in the same way of the others JUnit state test suites.
 
 == Behavior Test Structure ==
 
-Usually you will need to initialize your System Under Test class in the setUp() method. The @Before annotation will make you sure that will be executed before the tests.
+Usually you will need to initialize your System Under Test class in the {{{setUp()}}} method. The @Before annotation will make you sure that will be executed before the tests.
 In every test just follow the four steps described before:
 
   * Setup: create your Test Doubles, define your stubbed methods and install them into the SUT
