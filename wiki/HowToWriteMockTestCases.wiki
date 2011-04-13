@@ -238,7 +238,7 @@ For further information on the Mockito API go [http://mockito.googlecode.com/svn
 
 <p>Since Mockito library is used inside the JUnit framework, you can still use all the Annotations needed to define the steps before and after the real tests ({{{@Before}}}, {{{@After}}}, {{{@Test}}}).</p>
 <p>We decided to keep behavior tests separated from the state tests because if you need to mix them there are probably design smells on your class to test.
-This separation includes test suites that are called {{{AllBehaviorTests.java}}}. They are organized in the same way of the others JUnit state test suites. For further details go to the [http://code.google.com/p/econference4/wiki/HowToWriteJunitTestCases JUnit Test Cases wiki page]</p>
+This separation includes test suites that are called {{{AllBehaviorTests.java}}}. They are organized in the same way of the others JUnit state test suites. For further details go to the [http://code.google.com/p/econference4/wiki/HowToWriteJunitTestCases JUnit Test Cases wiki page].</p>
 
 == Behavior Test Structure ==
 
