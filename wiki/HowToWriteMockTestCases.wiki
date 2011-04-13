@@ -59,7 +59,7 @@ A Mock Object is a Test Double used to replace a real component on which the SUT
 [http://econference4.googlecode.com/svn/wiki/img/mock/mock-object-testing.jpg] </p>
 <p align=center>*Figure 4. Testing with Mock Objects*</p>
 
-This Test Double emulates the real DOC tracking all the invocations. It allows to verify these interactions by defining all the expected ones.
+This Test Double emulates the real DOC tracking all the invocations. It allows to verify these interactions by defining all the expected ones. Note that it won't execute any real DOC code, allowing the test to put the SUT in an isolated state that will facilitate the addressing of future issues.
 
 == Design-for-Testability Patterns ==
 
