@@ -49,6 +49,7 @@ A Test Stub is a type of Test Double used to replace a real component on which t
 [http://econference4.googlecode.com/svn/wiki/img/mock/test-stub-testing.jpg] </p>
 <p align=center>*Figure 3. Testing with Test Stubs*</p>
 
+When you create the Test Stub you must specify all the return values it should return during the Exercise phase.
 
 == Mock Object ==
 
