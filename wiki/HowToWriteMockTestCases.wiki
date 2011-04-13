@@ -38,8 +38,8 @@ Indirect outputs are checked interacting directly with the DOCs. To do this we u
 
 = Test Doubles =
 
-Test Doubles are objects that are used to replace a component on which the SUT depends. We can do this for several reasons but the most important are: invocation tracking for behavior verification and indirect inputs control.
-Every Test Double needs to be installed, we need a way to replace a real DOC and make the SUT interact with it.
+<p>Test Doubles are objects that are used to replace a component on which the SUT depends. We can do this for several reasons but the most important are: invocation tracking for behavior verification and indirect inputs control.</p>
+<p>Every Test Double needs to be installed, we need a way to replace a real DOC and make the SUT interact with it. To make this possible there are Design-for-Testability Patterns that will be explained below.</p>
 
 == Test Stub ==
 
