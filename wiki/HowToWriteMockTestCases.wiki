@@ -1,6 +1,9 @@
 #summary This wiki page shows how to write a behavioral test cases for eConference, using the Mockito test framework.
 #labels Phase-Implementation,Howto
 
+*Index*
+<wiki:toc max_depth="3" />
+
 = Result Verification Patterns =
 
 In a unit test there are two result verification patterns that can be used. When we make a standard JUnit test case using assertion methods, we are following a State Verification Strategy but when your class has no state to verify we need to follow a Behavior Verification Strategy.
@@ -211,6 +214,9 @@ Since you will never stub a void method for specific outputs, this situation app
 {{{
 doThrow(new Exception).when(mock.voidMethod("arg0"));
 }}}
+
+For further information on the Mockito API go [http://mockito.googlecode.com/svn/tags/1.8.0/javadoc/org/mockito/Mockito.html here].
+
 = How to write a Behavior Test =
 
 Since Mockito library is used inside the JUnit framework, you can still use all the Annotations needed to define the steps before and after the real tests (@Before, @After, @Test).
