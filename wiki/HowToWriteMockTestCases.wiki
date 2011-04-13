@@ -170,9 +170,9 @@ when(mockedList.get(anyInt()).thenReturn("same element");
 verify(mockedList).get(anyInt());
 }}}
 
-Note that it usually makes no sense verifying a stubbed method because it means you are using the Test Double as a Test Stub and as a Mock Object too. The example above, however, let you understand easily what an argument matcher is.
-There are many matchers you can use: {{{anyString()}}}, {{{anyList()}}}, {{{anyLong()}}}, {{{anyMap()}}}, {{{anyShort()}}}, {{{anySet()}}}, {{{anyObject()}}} and so on.
-When you use argument matchers, all arguments have to be provided by matchers. This means that the following verification can’t be done:
+<p>Note that it usually makes no sense verifying a stubbed method because it means you are using the Test Double as a Test Stub and as a Mock Object too. The example above, however, let you understand easily what an argument matcher is.</p>
+<p>There are many matchers you can use: {{{anyString()}}}, {{{anyList()}}}, {{{anyLong()}}}, {{{anyMap()}}}, {{{anyShort()}}}, {{{anySet()}}}, {{{anyObject()}}} and so on.</p>
+<p>When you use argument matchers, all arguments have to be provided by matchers. This means that the following verification can’t be done:</p>
 
 {{{
 verify(mock).method(anyInt(), anyString(), "argument 3");
