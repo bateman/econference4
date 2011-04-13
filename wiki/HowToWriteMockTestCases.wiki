@@ -62,9 +62,9 @@ This Test Double emulates the real DOC tracking all the invocations. It allows t
 
 == Design-for-Testability Patterns ==
 
-When we use a Test Double we need to find a way to make the SUT use it instead of a real DOC. To do this there are many ways we can take but the SUT must be written to make this possible. Keep in mind this patterns when you write your code or its behavior may be hard to test.
-There are two design patterns that are specifically intended to design the SUT so that we can replace his dependencies at runtime: Dependency Injection and Dependency Lookup.
-Dependency Injection is pretty simple and it’s based on three basic options:
+<p>When we use a Test Double we need to find a way to make the SUT use it instead of a real DOC. To do this there are many ways we can take but the SUT must be written to make this possible. Keep in mind this patterns when you write your code or its behavior may be hard to test.</p>
+<p>There are two design patterns that are specifically intended to design the SUT so that we can replace his dependencies at runtime: Dependency Injection and Dependency Lookup.
+Dependency Injection is pretty simple and it’s based on three basic options:</p>
 
   * Parameter Injection: We pass the dependency directly to the SUT method as we exercise it.
   * Constructor Injection: We tell the SUT which DOC to use when we construct it.
