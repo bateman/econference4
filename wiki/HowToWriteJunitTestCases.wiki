@@ -69,7 +69,7 @@ assertNull(obj): required that ‘obj’ is a null reference
 assertNotNull(obj): required that ‘obj’ isn't null reference
 }}}
 
-==The @Before and @After assertions  ==
+==The @Before and @After annotations ==
 In the previous example, in all test case is instanced an object {{{MathOp}}}. JUnit provides developers a feature to execute instructions before they are carried out tests. setUp() method have the annotation @Before that is used to indicate to JUnit that the method is to run before the execution of other test case. In this way, the code to initialize objects and resources (for example a connection to a DBMS) is written in one point of test case.
 Similary to @Before, @After indicates to JUnit to execute the method after the execution of all test cases.
 {{{
