@@ -316,6 +316,7 @@ Gerard Meszaros, "xUnit Test Patterns Refactoring Test Code", The Addison-Wesley
 Jeff !McAffer, Jean-Michel Lemieux, Chris Aniszczyk, "Eclipse Rich Client Platform", The Addison Wesley, 2^nd^ ed., Indiana, USA, 2010.</p>
 
 <p>*Mockito framework:*
-Home page, last access: 14/04/2010, <http://code.google.com/p/mockito/>.</p>
+Mockito - simpler & better mocking, home page, last access: 14/04/2010, http://code.google.com/p/mockito/.</p>
 
-<p>*JUnit framework:* JUnit.org Resources for Test Driver Development, home page, last access: 14/04/2010, <http://www.junit.org/>.</p>
+<p>*JUnit framework:* JUnit.org Resources for Test Driver Development, home page, last access: 14/04/2010, http://www.junit.org/.
+</p>
