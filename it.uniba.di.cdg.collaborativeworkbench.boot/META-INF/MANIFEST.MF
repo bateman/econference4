@@ -11,3 +11,4 @@ Require-Bundle: it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Bundle-Activator: it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: it.uniba.di.cdg.collaborativeworkbench.boot.ui
