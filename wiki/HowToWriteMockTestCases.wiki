@@ -73,6 +73,16 @@ Dependency Injection is pretty simple and it’s based on three basic options:</
 
 Dependency Lookup is based on a "Component Broker" that builds the dependencies of the SUT for him. Basically the SUT asks this object to return the DOCs when he needs them.
 
+== Test-Specific Subclass ==
+
+If Dependency Injection and Dependency Lookup cannot be used there is another solution to force Test Doubles installation. You can extend the SUT defining a specific subclass for testing purpose. This is done to add methods that modify the behavior of the SUT just enough to make it testable by implementing control points (Test Stubs installation) and observation points (Mock Objects installation).
+
+<p align=center>
+[http://econference4.googlecode.com/svn/wiki/img/mock/test-specific-subclass.jpg] </p>
+<p align=center>*Figure 5. Test Specific Subclass application*</p>
+
+This effort typically involves exposing instance variables using setter and getters or overriding specific methods used to create new DOC instances. Since this subclass would be packaged together with the tests that use it, its use does not change how the SUT is seen by the rest of the application. Note that you must be careful to ensure that you do not replace any of the behavior you are actually trying to test. If you can’t install Test Double even with a test-specific subclass, think about refactoring your code.
+
 = Mockito Framework =
 
 Mockito is a Mocking Framework written by Szczepan Faber that allows testing with Test Double and must be used to build new behavior test cases. Note that the word "mock" is used to define both Test Stubs and Mock Objects but they are two different types of Test Doubles. 
@@ -90,23 +100,23 @@ It will use the same output panel of JUnit for test results:
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/mock/junit-output-panel-for-mockito.jpg]</p>
-<p align=center>*Figure 5. JUnit output panel for Mockito*</p>
+<p align=center>*Figure 6. JUnit output panel for Mockito*</p>
 
 If you are making a new test plugin, remember to add Mockito on the dependencies list:
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/mock/plugin-dependencies.jpg]</p>
-<p align=center>*Figure 6. Test Plugin dependencies*</p>
+<p align=center>*Figure 7. Test Plugin dependencies*</p>
 
-You need also to export the {{{allpackagetests}}} package (Figure 7) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin {{{it.uniba.di.cdg.econference-tests}}} has your test plugin in the dependencies list (Figure 8).
+You need also to export the {{{allpackagetests}}} package (Figure 8) to let JUnit run plugin tests from the project level suite and make sure that the general test plugin {{{it.uniba.di.cdg.econference-tests}}} has your test plugin in the dependencies list (Figure 9).
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/mock/package-exported.jpg]</p>
-<p align=center>*Figure 7. Test Plugin exported package*</p>
+<p align=center>*Figure 8. Test Plugin exported package*</p>
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/mock/package-imported.jpg]</p>
-<p align=center>*Figure 8. General Test Plugin imported packages*</p>
+<p align=center>*Figure 9. General Test Plugin imported packages*</p>
 
 == Mockito API ==
 
@@ -293,6 +303,6 @@ public class ClassBehaviorTest {
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/mock/junit-plugin-test-execution.jpg]</p>
-<p align=center>*Figure 9. JUnit Plugin Test execution*</p>
+<p align=center>*Figure 10. JUnit Plugin Test execution*</p>
 
 When test execution ends, all the plugin started will be disposed automatically.
