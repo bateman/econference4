@@ -174,7 +174,7 @@ mockedList.add("something else");
 }}}
 
 will make the test fail even if we had an invocation on the right method.
-Mockito verifies argument values in natural java style using the {{{equals()}}} method. When extra flexibility is required the you might use argument matchers:
+Mockito verifies argument values in natural java style using the {{{equals()}}} method. When extra flexibility is required then you might use argument matchers:
 
 {{{
 when(mockedList.get(anyInt()).thenReturn("same element");
