@@ -306,3 +306,14 @@ public class ClassBehaviorTest {
 <p align=center>*Figure 10. JUnit Plugin Test execution*</p>
 
 When test execution ends, all the plugin started will be disposed automatically.
+
+= References =
+
+Result Verification Patterns, Test Double Patterns, Design-for-Testability Patterns:
+Gerard Meszaros, "xUnit Test Patterns Refactoring Test Code", The Addison-Wesley, 1st ed., Massachusetts, USA, 2007.
+
+Eclipse RCP:
+Jeff McAffer, Jean-Michel Lemieux, Chris Aniszczyk, "Eclipse Rich Client Platform", The Addison Wesley, 2 nd ed., Indiana, USA, 2010.
+
+Mockito framework:
+Home page, last access: 14/04/2010, <http://code.google.com/p/mockito/>.
