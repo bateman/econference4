@@ -299,7 +299,7 @@ public class ClassBehaviorTest {
 == How to launch a Behavior Test ==
 
 <p>Usually tests are executed clicking on "Run as" -> "JUnit Test" run configuration. In Behavior tests you may need to use a different run configuration because your tested code will probably access directly to the other plugins. To do this click on "Run as" -> "JUnit Plugin Test". This makes JUnit start all the plugins when needed during the Exercise step of your test.</p>
-<p>For example, if your code uses the {{{PlatformUI}}} class directly to get back the Workbench object, JUnit will initialize a dummy workbench to make your code run correctly:</p>
+<p>For example, if your code uses the {{{PlatformUI}}} class directly to get back the {{{Workbench}}} component, JUnit will initialize a dummy workbench to make your code run correctly:</p>
 
 <p align=center>
 [http://econference4.googlecode.com/svn/wiki/img/mock/junit-plugin-test-execution.jpg]</p>
