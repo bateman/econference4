@@ -163,5 +163,11 @@
             id="it.uniba.di.cdg.xcore.one2one.ui.chatPerspective"
             name="%perspective.name"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="it.uniba.di.cdg.xcore.one2one.ChatPlugin">
+      </startup>
+   </extension>
 
 </plugin>
