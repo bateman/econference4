@@ -24,6 +24,8 @@
  */
 package it.uniba.di.cdg.collaborativeworkbench.boot.ui;
 
+import java.util.HashSet;
+
 import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
@@ -37,16 +39,23 @@ public class BackendEventListener implements IBackendEventListener {
 	private boolean messageIncoming = false; 
 
 	private boolean activeMenu = false;
+	
+	private HashSet<String> history = new HashSet<String>();
+
 
 	@Override
 	public void onBackendEvent(IBackendEvent event) {
 		// TODO Auto-generated method stub
 		if (event instanceof MultiChatMessageEvent) {
 			messageIncoming=true;
+			history.add(((MultiChatMessageEvent) event).getFrom());
+			
 		}
 
 		if (event instanceof ChatMessageReceivedEvent) {
 			messageIncoming=true;
+			history.add(((ChatMessageReceivedEvent) event).getBuddy().getId());
+			
 		}
 
 		if (event instanceof BackendStatusChangeEvent) {
@@ -54,7 +63,7 @@ public class BackendEventListener implements IBackendEventListener {
 			activeMenu=changeEvent.isOnline();
 		}
 	}
-	public boolean getMessageIncoming() {
+	public boolean getIncomingMessage() {
 		return messageIncoming;
 	}
 	public void setNewMessageIncoming(boolean value) {
@@ -63,6 +72,14 @@ public class BackendEventListener implements IBackendEventListener {
 	public boolean getActiveMenu(){
 		return activeMenu;
 	}
+	public int getNumberOfOngoingChats() {
+		return history.size();
+	}
+	public void emptyHistory() {
+		this.history.clear();
+
+	}
+	
 	public void start() {
 		// TODO Auto-generated method stub
 		for (IBackendDescriptor d : NetworkPlugin.getDefault().getRegistry().getDescriptors())

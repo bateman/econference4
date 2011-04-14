@@ -32,8 +32,12 @@ import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
@@ -42,6 +46,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TaskItem;
 import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
 import org.eclipse.ui.IWorkbenchCommandConstants;
@@ -74,6 +79,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	private boolean activeMenu;
 
 	private MenuItem status;
+
+	private Image Oval;
 
 	public ApplicationWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {
@@ -164,36 +171,37 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 							status.setEnabled(activeMenu);
 
 							// ... do any work that updates the screen ...
-							if (daemon.getMessageIncoming()) {
+							if (daemon.getIncomingMessage()) {
 								// if (!window.getShell().isVisible()) {
-								if (!window.getShell().isFocusControl()) {
-									if (trayIconImage) {
-										setTrayIconNoImage();
-									} else {
-										setTrayIconImage();
-									}
+								if (!getWindowConfigurer().getWindow().getShell().isFocusControl()) {
+
+									setTrayIconNumber(daemon.getNumberOfOngoingChats());
+
 
 								} else {
 									daemon.setNewMessageIncoming(false);
 									setTrayIconImage();
+									daemon.emptyHistory();
+									
 								}
+								//}
 							}
 						}
 					});
 				}
 			}
 		}).start();
-
 		window.getShell().addShellListener(new ShellAdapter() {
 
 			public void shellActivated(ShellEvent e) {
 
 				daemon.setNewMessageIncoming(false);
 				setTrayIconImage();
+				daemon.emptyHistory();
 			}
 		});
-
 	}
+		
 
 	/**
 	 * @param window
@@ -343,7 +351,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		.createImage();
 		trayNoImage = BootPlugin.getImageDescriptor(
 		"icons/collab_tray_NewMessage.gif").createImage();
-
+		Oval = BootPlugin.getImageDescriptor(
+		"icons/Oval.gif").createImage();
 		trayItem.setImage(trayImage);
 		trayIconImage = true;
 		// setTrayIconImage();
@@ -353,16 +362,44 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	}
 
 	private void setTrayIconImage() {
-		// trayImage = BootPlugin.getImageDescriptor( "icons/collab_tray.gif"
-		// ).createImage();
+		getWindowConfigurer().getWindow().getShell().getDisplay().getSystemTaskBar().getItem(0).setOverlayImage(null);
 		trayItem.setImage(trayImage);
-		trayIconImage = true;
 	}
 
-	public void setTrayIconNoImage() {
+	public void setTrayIconNumber(int n) {
+		String number;
+		Image i=  BootPlugin.getImageDescriptor(
+		"icons/collab_tray_NewMessage.gif").createImage();
+		Font font = new Font( getWindowConfigurer().getWindow().getShell().getDisplay(),"Times New Roman",18,SWT.BOLD ); 
+		GC gc = new GC(i);
+		gc.setForeground(getWindowConfigurer().getWindow().getShell().getDisplay().getSystemColor(SWT.COLOR_BLACK)); 
+		if(n>=10)
+		{
+			font= new Font( getWindowConfigurer().getWindow().getShell().getDisplay(),"Times New Roman",14,SWT.BOLD); 	
+			gc.setFont(font);
+			number="9+";
+			gc.drawString(number,10,8,true);
+		}
+		else{
+			gc.setFont(font);
+			number=Integer.toString(n);
+			gc.drawString(number,12,8,true);
+		}
+		gc.dispose();
+		getWindowConfigurer().getWindow().getShell().getDisplay().getSystemTaskBar().getItem(0).setOverlayImage(null);
 
-		trayItem.setImage(trayNoImage);
-		trayIconImage = false;
+	trayItem.setImage(i);
+	Image i1=BootPlugin.getImageDescriptor(
+	"icons/Oval.gif").createImage();
+	GC gc1=new GC(i1);
+	gc1.setFont(font);
+	gc1.setForeground(getWindowConfigurer().getWindow().getShell().getDisplay().getSystemColor(SWT.COLOR_BLACK));
+	if(n>=10)
+		gc1.drawString(number,10,9,true);
+	else
+		gc1.drawString(number,12,6,true);
+	gc1.dispose();
+	getWindowConfigurer().getWindow().getShell().getDisplay().getSystemTaskBar().getItem(0).setOverlayImage(i1);
 	}
 
 	// private void centerWorkbenchWindow() {
