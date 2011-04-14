@@ -29,34 +29,30 @@ import it.uniba.di.cdg.xcore.network.model.IBuddyRoster;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
 
 public class TestBuddy implements IBuddy {
+	private String id;
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getPrintableLabel() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public IBuddyRoster getRoster() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Status getStatus() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -75,7 +71,7 @@ public class TestBuddy implements IBuddy {
 	@Override
 	public void setId(String id) {
 		// TODO Auto-generated method stub
-
+		this.id = id;
 	}
 
 	@Override

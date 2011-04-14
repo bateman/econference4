@@ -4,7 +4,8 @@ Bundle-Name: Test
 Bundle-SymbolicName: it.uniba.di.cdg.collaborativeworkbench.boot.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: it.uniba.di.cdg.xcore.network,
+Import-Package: it.uniba.di.cdg.collaborativeworkbench.boot.ui,
+ it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.xcore.network.events,
  it.uniba.di.cdg.xcore.network.events.chat,
  it.uniba.di.cdg.xcore.network.events.multichat,
