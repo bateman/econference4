@@ -254,9 +254,9 @@ This separation includes test suites that are called {{{AllBehaviorTests.java}}}
 == Behavior Test Structure ==
 
 Usually you will need to initialize your System Under Test class in the {{{setUp()}}} method. The {{{@Before}}} annotation will make you sure that it will be executed before the tests.
-In every test just follow the four steps described before:
+In every test just follow the four steps described below:
 
-  * Setup: create your Test Doubles, define your stubbed methods and install them into the SUT
+  * Setup: create your Test Doubles, define your stubbed methods and install them into the SUT.
   * Exercise: run the SUT method that will start the behavior.
   * Verify: check method invocations.
   * Teardown: teardown is done automatically by the garbage collector.
