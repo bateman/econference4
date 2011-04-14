@@ -5,13 +5,13 @@ import it.uniba.di.cdg.xcore.one2one.IChatService.ChatContext;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.ui.IStartup;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class ChatPlugin extends Plugin // implements IBackendEventListener 
-{
+public class ChatPlugin extends Plugin implements IStartup {
 	/**
 	 * Plug-in id.
 	 */
@@ -24,28 +24,30 @@ public class ChatPlugin extends Plugin // implements IBackendEventListener
 
 	/**
 	 * Tracks the open chats (buddy id --> Chat object).
-	 *//*
-	private Map<String, ChatManager> openChats;*/
-
+	 */
+	/*
+	 * private Map<String, ChatManager> openChats;
+	 */
 
 	/**
 	 * The constructor.
 	 */
 	public ChatPlugin() {
-		//this.openChats = new HashMap<String, ChatManager>();
+		// this.openChats = new HashMap<String, ChatManager>();
 		plugin = this;
-		helper = new ChatHelper( NetworkPlugin.getDefault().getHelper(), UiPlugin.getUIHelper());
+		helper = new ChatHelper(NetworkPlugin.getDefault().getHelper(),
+				UiPlugin.getUIHelper());
 	}
 
 	/**
 	 * This method is called upon plug-in activation
 	 */
 	public void start(BundleContext context) throws Exception {
-		System.out.println( "ChatUiPlugin.start()" );
+		System.out.println("ChatUiPlugin.start()");
 		super.start(context);
-		//Code for cicle is moved in ChatHelper.init()
+		// Code for cicle is moved in ChatHelper.init()
 		helper.init();
-		
+
 	}
 
 	/**
@@ -54,9 +56,9 @@ public class ChatPlugin extends Plugin // implements IBackendEventListener
 	public void stop(BundleContext context) throws Exception {
 		// System.out.println( "ChatUiPlugin.stop()" );
 		super.stop(context);
-		//Code is moved in ChatHelper.dispose()
+		// Code is moved in ChatHelper.dispose()
 		helper.dispose();
-		
+
 		plugin = null;
 	}
 
@@ -75,30 +77,35 @@ public class ChatPlugin extends Plugin // implements IBackendEventListener
 	public void openChatWindow(ChatContext chatContext) {
 		helper.openChatWindow(chatContext);
 	}
-	
-	//Method moved in the class ChatHelper
-	//public void onBackendEvent(final IBackendEvent event) {
 
-	
+	// Method moved in the class ChatHelper
+	// public void onBackendEvent(final IBackendEvent event) {
+
 	/**
-     * Returns the helper for this plug-in.
-     * 
-     * @return
-     */
-    public IChatHelper getHelper() {
-        return helper;
-    }
-    
-    /**
-     * Set the helper for this plug-in.
-     * @param helper 
-     * 
-     */
-    public void setHelper(IChatHelper helper) {     
-    	
-    	if(this.helper!=null)
-    		this.helper.dispose();        
-    	this.helper = helper;
-        this.helper.init();
-    }
+	 * Returns the helper for this plug-in.
+	 * 
+	 * @return
+	 */
+	public IChatHelper getHelper() {
+		return helper;
+	}
+
+	/**
+	 * Set the helper for this plug-in.
+	 * 
+	 * @param helper
+	 * 
+	 */
+	public void setHelper(IChatHelper helper) {
+
+		if (this.helper != null)
+			this.helper.dispose();
+		this.helper = helper;
+		this.helper.init();
+	}
+
+	@Override
+	public void earlyStartup() {
+
+	}
 }
