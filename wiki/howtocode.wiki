@@ -17,6 +17,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix it and commit changes
   # write JUnit/Mockito (if possible) test cases for new features added (please, read these guides about [HowToWriteJunitTestCases unit] and [HowToWriteMockTestCases mock] testing for more)
   # add the MIT FOSS License prologue when adding new files to the repository. Grab a copy of the MIT License [MitLicense here]
+  # ensure that the changes applied don't break the export product procedure (see [http://code.google.com/p/econference4/wiki/howtobuild#Exporting_the_product here] for more on how to export the eConference product)
 
 === Dont's ===
   # add code comments in Italian! Use English, instead.
@@ -27,4 +28,4 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # commit files with non organized imports
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations that do not have a related issue open in the issue tracker
   # commit any resource without a description or changelog in the comment field
-  # commit changes without any related JUnit/Jmock test cases (if possible), to prove that everything works fine
+  # commit changes without any related JUnit/Mockito test cases (if possible), to prove that everything works fine
