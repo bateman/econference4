@@ -14,6 +14,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # report issue description in English (not Italian!)
   # report number and link to the issue tracker item when committing a bug fix, or enhancement, or whatever change made in response to an open issue
   # respect Java coding style and conventions for vars, files, packages, classes, interfaces, methods and so on (see [http://www.oracle.com/technetwork/java/codeconv-138413.html here] for more)
+  # use png images whenever possible, gif otherwise;
   # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix it and commit changes
   # write JUnit/Mockito (if possible) test cases for new features added (please, read these guides about [HowToWriteJunitTestCases unit] and [HowToWriteMockTestCases mock] testing for more)
   # add the MIT FOSS License prologue when adding new files to the repository. Grab a copy of the MIT License [MitLicense here]
@@ -29,3 +30,4 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations that do not have a related issue open in the issue tracker
   # commit any resource without a description or changelog in the comment field
   # commit changes without any related JUnit/Mockito test cases (if possible), to prove that everything works fine
+  # commit images whose file name contains capital letter (e.g. use agenda_item.png rather then agendaItem.PNG)
