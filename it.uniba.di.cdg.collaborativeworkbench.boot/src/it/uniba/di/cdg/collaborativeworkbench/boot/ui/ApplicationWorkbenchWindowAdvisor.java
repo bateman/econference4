@@ -32,8 +32,6 @@ import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.graphics.Font;
@@ -46,7 +44,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TaskItem;
 import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
 import org.eclipse.ui.IWorkbenchCommandConstants;
@@ -80,7 +77,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
 	private MenuItem status;
 
-	private Image Oval;
+	private Image oval;
 
 	public ApplicationWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {
@@ -133,14 +130,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	@Override
 	public void postWindowOpen() {
 		super.postWindowOpen();
-
-		// load chatPlugIn
-
-		// try {
-		// Platform.getBundle("it.uniba.di.cdg.xcore.one2one").start();
-		// } catch (BundleException e) {
-		// e.printStackTrace();
-		// }
 
 		// centerWorkbenchWindow();
 
@@ -351,11 +340,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		.createImage();
 		trayNoImage = BootPlugin.getImageDescriptor(
 		"icons/collab_tray_NewMessage.gif").createImage();
-		Oval = BootPlugin.getImageDescriptor(
-		"icons/Oval.gif").createImage();
+		oval = BootPlugin.getImageDescriptor(
+		"icons/oval.gif").createImage();
 		trayItem.setImage(trayImage);
 		trayIconImage = true;
-		// setTrayIconImage();
 		trayItem.setToolTipText("eConference");
 
 		return trayItem;
