@@ -30,4 +30,4 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations that do not have a related issue open in the issue tracker
   # commit any resource without a description or changelog in the comment field
   # commit changes without any related JUnit/Mockito test cases (if possible), to prove that everything works fine
-  # commit images whose file name contains capital letter (e.g. use agenda_item.png rather then agendaItem.PNG)
+  # commit images whose file name contains capital letter (e.g. use `agenda_item.png` rather than `agendaItem.PNG`)
