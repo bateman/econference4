@@ -100,4 +100,6 @@ public interface IEConferenceHelper {
  	 public void setUIHelper(IUIHelper uihelper);
 	
 	 public void setBackendHelper(INetworkBackendHelper backendHelper);
+	 
+	 public IEConferenceManager getManager();
 }

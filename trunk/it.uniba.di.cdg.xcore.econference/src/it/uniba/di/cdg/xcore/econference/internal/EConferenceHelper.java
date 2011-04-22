@@ -64,6 +64,11 @@ public class EConferenceHelper implements IEConferenceHelper {
 	 * The backend helper provides dependency object for handling backends.
 	 */
 	protected INetworkBackendHelper backendHelper;
+	
+	/**
+	 * E-conference controller
+	 */
+	protected IEConferenceManager manager;
 
 	/**
 	 * Construct a new helper for econferences. This constructor acts as
@@ -124,9 +129,7 @@ public class EConferenceHelper implements IEConferenceHelper {
      * .cdg.xcore.econference.EConferenceContext)
      */
     public IEConferenceManager open( EConferenceContext context, boolean autojoin ) {
-        IEConferenceManager manager = null;
-
-		try {
+        try {
 			final IWorkbenchWindow window = PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow();
 			manager = new EConferenceManager();
@@ -271,4 +274,13 @@ public class EConferenceHelper implements IEConferenceHelper {
 		return preferences.get(prefName, "");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * it.uniba.di.cdg.xcore.econference.IEConferenceHelper#getManager()
+	 */
+	public IEConferenceManager getManager(){
+		return this.manager;		
+	}
 }
