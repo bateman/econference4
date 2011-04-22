@@ -393,17 +393,20 @@ public class StoredEventsView extends ViewPart implements IStoredEventsView {
                                 .getActiveWorkbenchWindow().getActivePage().getOpenPerspectives();
 
                         for (IPerspectiveDescriptor perspective : perspectiveDescriptors) {
-                            if (MultiChatPerspective.ID.equals( perspective.getId() )) {
+                            if (MultiChatPerspective.ID.equals( perspective.getId() )) {                            	                            	
+                            	
+                            	if (defaultPlugin.getHelper().getManager()!=null) {
                                 boolean switchPerspective = UiPlugin
                                         .getUIHelper()
                                         .askYesNoQuestion(
-                                                "Switch perspective?",
-                                                "You are trying to enter an event that is currently running."
-                                                        + "\nDo you wish to switch to the event perspective?" );
+                                                "Warning",
+                                                "You are already participating in a conferencing event."
+                                              + "\nDo you wish to switch back to the conferencing perspective?" );
                                 if (switchPerspective)
                                     UiPlugin.getUIHelper().switchPerspective(
                                             MultiChatPerspective.ID );
                                 return;
+                            	}
                             }
                         }
 
