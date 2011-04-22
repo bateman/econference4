@@ -155,25 +155,27 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
 
-							//enable or disable popup menu status when the backend is online/offline
-							activeMenu=daemon.getActiveMenu();
+							// enable or disable popup menu status when the
+							// backend is online/offline
+							activeMenu = daemon.getActiveMenu();
 							status.setEnabled(activeMenu);
 
 							// ... do any work that updates the screen ...
 							if (daemon.getIncomingMessage()) {
 								// if (!window.getShell().isVisible()) {
-								if (!getWindowConfigurer().getWindow().getShell().isFocusControl()) {
+								if (!getWindowConfigurer().getWindow()
+										.getShell().isFocusControl()) {
 
-									setTrayIconNumber(daemon.getNumberOfOngoingChats());
-
+									setTrayIconNumber(daemon
+											.getNumberOfOngoingChats());
 
 								} else {
 									daemon.setNewMessageIncoming(false);
 									setTrayIconImage();
 									daemon.emptyHistory();
-									
+
 								}
-								//}
+								// }
 							}
 						}
 					});
@@ -190,7 +192,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			}
 		});
 	}
-		
 
 	/**
 	 * @param window
@@ -227,7 +228,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			public void handleEvent(Event event) {
 				// Lets call our command
 				IHandlerService handlerService = (IHandlerService) window
-				.getService(IHandlerService.class);
+						.getService(IHandlerService.class);
 				try {
 					handlerService.executeCommand(COMMAND_ID, null);
 				} catch (Exception ex) {
@@ -245,12 +246,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			public void handleEvent(Event event) {
 				// Lets call our command
 				IHandlerService handlerService = (IHandlerService) window
-				.getService(IHandlerService.class);
+						.getService(IHandlerService.class);
 				try {
-					handlerService
-					.executeCommand(
-							IWorkbenchCommandConstants.HELP_ABOUT,
-							null);
+					handlerService.executeCommand(
+							IWorkbenchCommandConstants.HELP_ABOUT, null);
 				} catch (Exception ex) {
 					throw new RuntimeException(
 							IWorkbenchCommandConstants.HELP_ABOUT);
@@ -258,23 +257,25 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			}
 		});
 
-		final String id= NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
-		final IBackend backend=NetworkPlugin.getDefault().getRegistry().getBackend(id);
-		UiPlugin ui=UiPlugin.getDefault();
+		final String id = NetworkPlugin.getDefault().getRegistry()
+				.getDefaultBackendId();
+		final IBackend backend = NetworkPlugin.getDefault().getRegistry()
+				.getBackend(id);
+		UiPlugin ui = UiPlugin.getDefault();
 
-		//status cascade-menu
+		// status cascade-menu
 		status = new MenuItem(menu, SWT.CASCADE);
 		status.setText("Change Status");
 
 		status.setEnabled(activeMenu);
 
-		//sub menu
+		// sub menu
 		final Menu menu1 = new Menu(status);
 
-		//online
+		// online
 		final MenuItem online = new MenuItem(menu1, SWT.NONE);
 		online.setText("Available");
-		online.setImage(ui.getImage( IImageResources.ICON_USER_ACTIVE));
+		online.setImage(ui.getImage(IImageResources.ICON_USER_ACTIVE));
 		online.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
@@ -283,10 +284,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			}
 		});
 
-		//away
+		// away
 		final MenuItem away = new MenuItem(menu1, SWT.NONE);
 		away.setText("Away");
-		away.setImage(ui.getImage( IImageResources.ICON_USER_AWAY));
+		away.setImage(ui.getImage(IImageResources.ICON_USER_AWAY));
 		away.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
@@ -295,10 +296,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			}
 		});
 
-		//busy
+		// busy
 		final MenuItem busy = new MenuItem(menu1, SWT.NONE);
 		busy.setText("Busy");
-		busy.setImage(ui.getImage( IImageResources.ICON_USER_BUSY));
+		busy.setImage(ui.getImage(IImageResources.ICON_USER_BUSY));
 		busy.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
@@ -307,29 +308,28 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			}
 		});
 
-		//offline
+		// offline
 		final MenuItem offline = new MenuItem(menu1, SWT.NONE);
 		offline.setText("Offline");
-		offline.setImage(ui.getImage( IImageResources.ICON_USER_OFFLINE));
+		offline.setImage(ui.getImage(IImageResources.ICON_USER_OFFLINE));
 		offline.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
 
-				backend.setUserStatus(IUserStatus.OFFLINE);			
+				backend.setUserStatus(IUserStatus.OFFLINE);
 			}
-		}); 
+		});
 
 		status.setMenu(menu1);
 		menu1.setVisible(true);
 
 		trayItem.addListener(SWT.MenuDetect, new Listener() {
-			public void handleEvent(Event event) {			
+			public void handleEvent(Event event) {
 				// We need to make the menu visible
 				menu.setVisible(true);
 			}
 		});
 	}
-
 
 	private TrayItem initTaskItem(IWorkbenchWindow window) {
 		final Tray tray = window.getShell().getDisplay().getSystemTray();
@@ -337,11 +337,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			return null;
 		TrayItem trayItem = new TrayItem(tray, SWT.NONE);
 		trayImage = BootPlugin.getImageDescriptor("icons/collab_tray.gif")
-		.createImage();
+				.createImage();
 		trayNoImage = BootPlugin.getImageDescriptor(
-		"icons/collab_tray_NewMessage.gif").createImage();
-		oval = BootPlugin.getImageDescriptor(
-		"icons/oval.gif").createImage();
+				"icons/collab_tray_NewMessage.gif").createImage();
+		oval = BootPlugin.getImageDescriptor("icons/oval.gif").createImage();
 		trayItem.setImage(trayImage);
 		trayIconImage = true;
 		trayItem.setToolTipText("eConference");
@@ -350,44 +349,49 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	}
 
 	private void setTrayIconImage() {
-		getWindowConfigurer().getWindow().getShell().getDisplay().getSystemTaskBar().getItem(0).setOverlayImage(null);
+		getWindowConfigurer().getWindow().getShell().getDisplay()
+				.getSystemTaskBar().getItem(0).setOverlayImage(null);
 		trayItem.setImage(trayImage);
 	}
 
 	public void setTrayIconNumber(int n) {
 		String number;
-		Image i=  BootPlugin.getImageDescriptor(
-		"icons/collab_tray_NewMessage.gif").createImage();
-		Font font = new Font( getWindowConfigurer().getWindow().getShell().getDisplay(),"Times New Roman",18,SWT.BOLD ); 
+		Image i = BootPlugin.getImageDescriptor(
+				"icons/collab_tray_NewMessage.gif").createImage();
+		Font font = new Font(getWindowConfigurer().getWindow().getShell()
+				.getDisplay(), "Times New Roman", 18, SWT.BOLD);
 		GC gc = new GC(i);
-		gc.setForeground(getWindowConfigurer().getWindow().getShell().getDisplay().getSystemColor(SWT.COLOR_BLACK)); 
-		if(n>=10)
-		{
-			font= new Font( getWindowConfigurer().getWindow().getShell().getDisplay(),"Times New Roman",14,SWT.BOLD); 	
+		gc.setForeground(getWindowConfigurer().getWindow().getShell()
+				.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+		if (n >= 10) {
+			font = new Font(getWindowConfigurer().getWindow().getShell()
+					.getDisplay(), "Times New Roman", 14, SWT.BOLD);
 			gc.setFont(font);
-			number="9+";
-			gc.drawString(number,10,8,true);
-		}
-		else{
+			number = "9+";
+			gc.drawString(number, 10, 8, true);
+		} else {
 			gc.setFont(font);
-			number=Integer.toString(n);
-			gc.drawString(number,12,8,true);
+			number = Integer.toString(n);
+			gc.drawString(number, 12, 8, true);
 		}
 		gc.dispose();
-		getWindowConfigurer().getWindow().getShell().getDisplay().getSystemTaskBar().getItem(0).setOverlayImage(null);
+		getWindowConfigurer().getWindow().getShell().getDisplay()
+				.getSystemTaskBar().getItem(0).setOverlayImage(null);
 
-	trayItem.setImage(i);
-	Image i1=BootPlugin.getImageDescriptor(
-	"icons/Oval.gif").createImage();
-	GC gc1=new GC(i1);
-	gc1.setFont(font);
-	gc1.setForeground(getWindowConfigurer().getWindow().getShell().getDisplay().getSystemColor(SWT.COLOR_BLACK));
-	if(n>=10)
-		gc1.drawString(number,10,9,true);
-	else
-		gc1.drawString(number,12,6,true);
-	gc1.dispose();
-	getWindowConfigurer().getWindow().getShell().getDisplay().getSystemTaskBar().getItem(0).setOverlayImage(i1);
+		trayItem.setImage(i);
+		Image i1 = BootPlugin.getImageDescriptor("icons/oval.gif")
+				.createImage();
+		GC gc1 = new GC(i1);
+		gc1.setFont(font);
+		gc1.setForeground(getWindowConfigurer().getWindow().getShell()
+				.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+		if (n >= 10)
+			gc1.drawString(number, 10, 9, true);
+		else
+			gc1.drawString(number, 12, 6, true);
+		gc1.dispose();
+		getWindowConfigurer().getWindow().getShell().getDisplay()
+				.getSystemTaskBar().getItem(0).setOverlayImage(i1);
 	}
 
 	// private void centerWorkbenchWindow() {
