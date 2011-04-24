@@ -1,8 +1,7 @@
 #summary This page shows the roadmap to the upcoming eConference releases, and the related issues to be fixed.
 #labels Featured,Phase-Implementation
 
-
-|| Milesto Release || Issues ||
+|| *Milestone Release* || *Issues* ||
 || 4.1.0 ||  ||
 || 4.1.1 ||  ||
 || 4.1.2 ||  ||
