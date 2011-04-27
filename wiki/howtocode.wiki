@@ -24,7 +24,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
     * `econference-win32-4.x.y-MMDDYYY.zip` (if the build is unstable)
     * `econference-osx-4.x.y.zip`
     * `econference-linux-4.x.y.tgz` 
-# whenever a new stable release is upload, its changes must be appropriately described in the [http://code.google.com/p/econference4/source/browse/trunk/it.uniba.di.cdg.collaborativeworkbench.boot/changelog.txt changelog.txt] file within the repository.
+  # whenever a new stable release is upload, its changes must be appropriately described in the [http://code.google.com/p/econference4/source/browse/trunk/it.uniba.di.cdg.collaborativeworkbench.boot/changelog.txt changelog.txt] file within the repository.
 
 === Dont's ===
   # add code comments in Italian! Use English, instead.
