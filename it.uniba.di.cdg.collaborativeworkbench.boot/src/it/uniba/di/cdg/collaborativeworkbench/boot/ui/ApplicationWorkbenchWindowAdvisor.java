@@ -60,6 +60,12 @@ import org.eclipse.ui.handlers.IHandlerService;
  */
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
+	private static final int FONT_SIZE_SMALL = 14;
+
+	private static final int FONT_SIZE_BIG = 18;
+
+	private static final String FONT_FAMILY = "Times New Roman";
+
 	// private static final String APP_TITLE = "Collaborative workbench";
 	private static final String APP_TITLE = "eConference";
 
@@ -68,8 +74,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	private Image trayImage;
 
 	private ApplicationActionBarAdvisor actionBarAdvisor;
-
-	private boolean trayIconImage;
 
 	private Image trayNoImage;
 
@@ -175,7 +179,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 									daemon.emptyHistory();
 
 								}
-								// }
 							}
 						}
 					});
@@ -342,30 +345,30 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 				"icons/collab_tray_NewMessage.gif").createImage();
 		oval = BootPlugin.getImageDescriptor("icons/oval.gif").createImage();
 		trayItem.setImage(trayImage);
-		trayIconImage = true;
 		trayItem.setToolTipText("eConference");
 
 		return trayItem;
 	}
 
 	private void setTrayIconImage() {
-		getWindowConfigurer().getWindow().getShell().getDisplay()
-				.getSystemTaskBar().getItem(0).setOverlayImage(null);
+		if (!System.getProperty("os.name").equals("Windows XP"))
+			getWindowConfigurer().getWindow().getShell().getDisplay()
+					.getSystemTaskBar().getItem(0).setOverlayImage(null);
+
 		trayItem.setImage(trayImage);
 	}
 
 	public void setTrayIconNumber(int n) {
 		String number;
-		Image i = BootPlugin.getImageDescriptor(
-				"icons/collab_tray_NewMessage.gif").createImage();
+
 		Font font = new Font(getWindowConfigurer().getWindow().getShell()
-				.getDisplay(), "Times New Roman", 18, SWT.BOLD);
-		GC gc = new GC(i);
+				.getDisplay(), FONT_FAMILY, FONT_SIZE_BIG, SWT.BOLD);
+		GC gc = new GC(trayNoImage);
 		gc.setForeground(getWindowConfigurer().getWindow().getShell()
 				.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		if (n >= 10) {
 			font = new Font(getWindowConfigurer().getWindow().getShell()
-					.getDisplay(), "Times New Roman", 14, SWT.BOLD);
+					.getDisplay(), FONT_FAMILY, FONT_SIZE_SMALL, SWT.BOLD);
 			gc.setFont(font);
 			number = "9+";
 			gc.drawString(number, 10, 8, true);
@@ -375,13 +378,13 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			gc.drawString(number, 12, 8, true);
 		}
 		gc.dispose();
-		getWindowConfigurer().getWindow().getShell().getDisplay()
-				.getSystemTaskBar().getItem(0).setOverlayImage(null);
+		if (!System.getProperty("os.name").equals("Windows XP"))
+			getWindowConfigurer().getWindow().getShell().getDisplay()
+					.getSystemTaskBar().getItem(0).setOverlayImage(null);
 
-		trayItem.setImage(i);
-		Image i1 = BootPlugin.getImageDescriptor("icons/oval.gif")
-				.createImage();
-		GC gc1 = new GC(i1);
+		trayItem.setImage(trayNoImage);
+
+		GC gc1 = new GC(oval);
 		gc1.setFont(font);
 		gc1.setForeground(getWindowConfigurer().getWindow().getShell()
 				.getDisplay().getSystemColor(SWT.COLOR_BLACK));
@@ -390,33 +393,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		else
 			gc1.drawString(number, 12, 6, true);
 		gc1.dispose();
-		getWindowConfigurer().getWindow().getShell().getDisplay()
-				.getSystemTaskBar().getItem(0).setOverlayImage(i1);
+		if (!System.getProperty("os.name").equals("Windows XP"))
+			getWindowConfigurer().getWindow().getShell().getDisplay()
+					.getSystemTaskBar().getItem(0).setOverlayImage(oval);
 	}
-
-	// private void centerWorkbenchWindow() {
-	// IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-	//
-	// Display display = configurer.getWindow().getWorkbench().getDisplay();
-	// Shell shell = configurer.getWindow().getShell();
-	//
-	// // Get the resolution
-	// Rectangle pDisplayBounds = display.getBounds();
-	//
-	// int nMinWidth = 260;
-	// int nMinHeight = 520;
-
-	// Set Width and Height(doesn't matter value)
-	// int nWidth = pDisplayBounds.width / 2;
-	// int nHeight = pDisplayBounds.height / 2;
-
-	// This formulae calculate the shell's Left ant Top
-	// int nLeft = (pDisplayBounds.width - nMinWidth) / 2;
-	// int nTop = (pDisplayBounds.height - nMinHeight) / 2;
-	//
-	// // Set shell bounds,
-	// shell.setBounds( nLeft, nTop, nMinWidth, nMinHeight );
-	// }
 
 	/*
 	 * (non-Javadoc)
