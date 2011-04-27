@@ -19,6 +19,12 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # write JUnit/Mockito (if possible) test cases for new features added (please, read these guides about [HowToWriteJunitTestCases unit] and [HowToWriteMockTestCases mock] testing for more)
   # add the MIT FOSS License prologue when adding new files to the repository. Grab a copy of the MIT License [MitLicense here]
   # ensure that the changes applied don't break the export product procedure (see [http://code.google.com/p/econference4/wiki/howtobuild#Exporting_the_product here] for more on how to export the eConference product)
+  # new builds uploaded to the [http://code.google.com/p/econference4/downloads/list Downloads] section must respect this naming conventions
+    * `econference-win32-4.x.y.zip` 
+    * `econference-win32-4.x.y-MMDDYYY.zip` (if the build is unstable)
+    * `econference-osx-4.x.y.zip`
+    * `econference-linux-4.x.y.tgz` 
+# whenever a new stable release is upload, its changes must be appropriately described in the [http://code.google.com/p/econference4/source/browse/trunk/it.uniba.di.cdg.collaborativeworkbench.boot/changelog.txt changelog.txt] file within the repository.
 
 === Dont's ===
   # add code comments in Italian! Use English, instead.
