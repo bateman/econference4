@@ -32,8 +32,9 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # commit untested files
   # commit unformatted files, use Eclipse built-in style
   # commit files with warnings (e.g. unused vars or imports)
-  # commit files with non organized imports
+  # commit files with unorganized imports
   # commit files with {{{//XXX}}}, {{{//TODO}}}, and {{{//FIXME}}} comment annotations that do not have a related issue open in the issue tracker
+  #  commit files with unused vars or code blocks
   # commit any resource without a description or changelog in the comment field
   # commit changes without any related JUnit/Mockito test cases (if possible), to prove that everything works fine
   # commit images whose file name contains capital letter (e.g. use `agenda_item.png` rather than `agendaItem.PNG`)
