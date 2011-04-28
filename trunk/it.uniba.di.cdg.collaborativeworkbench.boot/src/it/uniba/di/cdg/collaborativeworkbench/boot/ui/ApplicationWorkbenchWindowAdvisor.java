@@ -351,7 +351,9 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	}
 
 	private void setTrayIconImage() {
-		if (!System.getProperty("os.name").equals("Windows XP"))
+		if (!(System.getProperty("os.name").equals("Windows XP")
+				|| System.getProperty("os.name").equals("Linux") 
+				|| System.getProperty("os.name").equals("Windows Vista")))
 			getWindowConfigurer().getWindow().getShell().getDisplay()
 					.getSystemTaskBar().getItem(0).setOverlayImage(null);
 
@@ -378,7 +380,9 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			gc.drawString(number, 12, 8, true);
 		}
 		gc.dispose();
-		if (!System.getProperty("os.name").equals("Windows XP"))
+		if (!(System.getProperty("os.name").equals("Windows XP")
+				|| System.getProperty("os.name").equals("Linux") 
+				|| System.getProperty("os.name").equals("Windows Vista")))
 			getWindowConfigurer().getWindow().getShell().getDisplay()
 					.getSystemTaskBar().getItem(0).setOverlayImage(null);
 
@@ -393,7 +397,9 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		else
 			gc1.drawString(number, 12, 6, true);
 		gc1.dispose();
-		if (!System.getProperty("os.name").equals("Windows XP"))
+		if (!(System.getProperty("os.name").equals("Windows XP")
+				|| System.getProperty("os.name").equals("Linux") 
+				|| System.getProperty("os.name").equals("Windows Vista")))
 			getWindowConfigurer().getWindow().getShell().getDisplay()
 					.getSystemTaskBar().getItem(0).setOverlayImage(oval);
 	}
