@@ -79,15 +79,16 @@ public class ConnectionDialog extends Dialog {
 
     public Map<String, ProfileContext> savedProfileContexts;
     
+    private Preferences preferences;
+    
     private Preferences gmailPref;
 
     public ConnectionDialog( Shell parentShell ) {
         super( parentShell );
         shell = parentShell;
         savedProfileContexts = new HashMap<String, ProfileContext>();
-        gmailPref = new ConfigurationScope()
-        	.getNode( IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER )
-        	.node(IConfigurationConstant.GMAIL);
+        preferences = new ConfigurationScope().getNode( IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER );
+        gmailPref = preferences.node(IConfigurationConstant.GMAIL);
     }
 
     /*
@@ -214,11 +215,30 @@ public class ConnectionDialog extends Dialog {
     			DialogAccount inst = new DialogAccount(shell, SWT.NULL,profileContext);
     			inst.open();
     		} else {
+	        	String usernamePref = gmailPref.get(IConfigurationConstant.USERNAME, "");
+	        	String passwordPref = gmailPref.get(IConfigurationConstant.PASSWORD, "");
     			if(ui.isSaveProfileChecked()){
-	    			savedProfileContexts.put( profileContext.getProfileName(), profileContext );	    			
+	        		if((profileContext.getProfileName().compareTo(usernamePref) == 0)
+	        			&& (profileContext.getUserContext().getPassword().compareTo(passwordPref) != 0)){
+	        			gmailPref.put(IConfigurationConstant.PASSWORD, profileContext.getUserContext().getPassword());
+	        			try {
+	        				preferences.flush();
+	        			} catch (BackingStoreException e) {
+	        				e.printStackTrace();
+	        			}
+	        		}
+	        		savedProfileContexts.put( profileContext.getProfileName(), profileContext );
     			}else{
-    				String profileID = ui.getProfileContext().getProfileName();
-                    deleteProfile(profileID);
+    				if(profileContext.getProfileName().compareTo(usernamePref) == 0){
+    					try {
+							gmailPref.clear();
+	        				preferences.flush();
+    					} catch (BackingStoreException e) {
+    						System.out.println("No GMail data");
+    					}
+	        		}
+	    			String profileID = ui.getProfileContext().getProfileName();
+	                deleteProfile(profileID);
     			}
     			savePreferences();
     			super.okPressed();

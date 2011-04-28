@@ -322,23 +322,6 @@ public class ConnectionDialogUI extends Composite {
         			passwordField.setText( ua.getPassword() );
 
         			sc = profile.getServerContext();
-        			if(jabberIdCombo.getText().compareTo(gmailPref.get(IConfigurationConstant.USERNAME, ""))==0){
-        				passwordField.setEnabled(false);
-        				checkSaveProfile.setEnabled(false);
-        				checkNewAccount.setEnabled(false);
-        				serverHostField.setEnabled(false);
-        				useDefaultPortCheck.setEnabled(false);
-        				secureCheck.setEnabled(false);
-        				portNumberField.setEnabled(false);	
-	        		}else{
-        				passwordField.setEnabled(true);
-        				checkSaveProfile.setEnabled(true);
-        				checkNewAccount.setEnabled(true);
-        				serverHostField.setEnabled(true);
-        				useDefaultPortCheck.setEnabled(true);
-        				secureCheck.setEnabled(true);
-        				portNumberField.setEnabled(true);	
-	        		}
         		}else{
         			checkSaveProfile.setSelection(false);
         			passwordField.setText("");
