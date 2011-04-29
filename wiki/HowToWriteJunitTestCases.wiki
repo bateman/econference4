@@ -1,5 +1,5 @@
 #summary In this wiki we show how to write a unit test cases in JUnit, using correct syntax as needed in eConference 4.
-#labels Phase-Implementation,Howto,Featured
+#labels Phase-Implementation,Howto
 
 *Index*
 <wiki:toc max_depth="3" />
