@@ -1,5 +1,5 @@
 #summary A guide to update eConference using the auto update feature.
-#labels Phase-Deploy,Featured,howto
+#labels Phase-Deploy,Deprecated,howto
 
 <wiki:toc max_depth="4" />
 
