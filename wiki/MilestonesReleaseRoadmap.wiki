@@ -3,4 +3,4 @@
 
 || *Milestone Release* || *Issues* ||
 || 4.1.0 || issue 3, issue 5, issue 7, issue 8, issue 9, issue 10, issue 11, issue 18, issue 20, issue 22, issue 23, issue 25, issue 26, issue 27, issue29, issue 32, issue 35, issue 36, issue 38, issue 40, issue 41, issue 43, issue 44, issue 45, issue 55, issue 59, issue 66, issue 68, issue 72, issue 73, issue 76,  issue 86,  issue 87  ||
-|| 4.2.0 || issue 19, issue 24, issue 34, issue 39, issue 42, issue 47, issue 48, issue 50, issue 51, issue 52, issue 53, issue 54,  issue 57,  issue 58,  issue 60,  issue 62,  issue 63,  issue 64, issue 67||
+|| 4.2.0 || issue 19, issue 24, issue 34, issue 39, issue 42, issue 47, issue 48, issue 50, issue 51, issue 52, issue 53, issue 54, issue 57,  issue 58, issue 60, issue 62,  issue 63, issue 64, issue 67 issue 75, issue 78, issue 79, issue 82, issue 83, issue 84, issue 85||
