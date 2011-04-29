@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="eConference" id="it.uniba.di.cdg.collaborativeworkbench.boot.product" application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench" version="4.0.3" useFeatures="false" includeLaunchers="true">
+<product name="eConference" id="it.uniba.di.cdg.collaborativeworkbench.boot.product" application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench" version="4.0.4" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/it.uniba.di.cdg.collaborativeworkbench.boot/about_logo.gif"/>
       <text>
-         eConference 4.0.3
+         eConference 4
 
 eConference has been developed by the Collaborative Development Group,
 Dipartimento di Informatica, University of Bari and it is distributed under the 
@@ -35,17 +35,19 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
       location="it.uniba.di.cdg.collaborativeworkbench.boot"
       startupProgressRect="5,275,445,15" />
    <launcher name="econference">
+      <macosx icon="/it.uniba.di.cdg.collaborativeworkbench.boot/icons/econference_eclipse.icns"/>
       <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
 
+
    <vm>
    </vm>
 
    <license>
-        <url>http://cdg.di.uniba.it/</url>
+        <url>http://code.google.com/p/econference4/</url>
         <text>
    The MIT License
 
