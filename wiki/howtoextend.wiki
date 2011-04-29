@@ -1,5 +1,5 @@
 #summary A detailed guide to learn eConference architecture and how to extend it.
-#labels Featured,howto,Phase-Implementation
+#labels howto,Phase-Implementation
 *Indice*
 <wiki:toc max_depth="3" />
 
