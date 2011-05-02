@@ -1,4 +1,4 @@
-#summary This page shows the roadmap to the upcoming eConference releases, and the related issues to be fixed.
+#summary This page shows the roadmap of both past and upcoming eConference releases, and their related issues.
 #labels Featured,Phase-Implementation,Phase-Support
 
 || *Milestone Release* || *Issues* ||
