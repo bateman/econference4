@@ -22,7 +22,7 @@
   * AspectJ aspects refactoring _(by D. Aresta)_ 
 
 *Minor changes*
-  * eConference resource priority is now set to maximum, to be sure that no messages are lost in case on MPOP
-  * Double join issue is prevented by checking if there is a multichat conferencing session already going on
-  * App-wide exception logging via dedicated aspect
+  * eConference resource priority is now set to maximum, to be sure that no messages are lost in case on MPOP  _(by F. Calefato)_ 
+  * Double join issue is prevented by checking if there is a multichat conferencing session already going on  _(by G. Pentassuglia)_ 
+  * App-wide exception logging via dedicated aspect _(by D. Aresta)_ 
   * Various bug fixes and optimizations
