@@ -14,9 +14,9 @@
 
 *Major changes*
   * First run wizard _(by N. Sanitate)_
-  * Add/move/remove buddy list contacts (note: add and remove only work with Jabber/XMPP accounts) _(by A.M. Crespino)_
+  * Add/move/remove buddy list contacts (note: add and remove only work with Jabber/XMPP accounts) _(by A. Russo, A.M. Crespino)_
   * Change status _(by R.P. Mione)_
-  * Skype-like unread message notification (works only under Mac OSX/Windows 7) _(by T. Pinto)_
+  * Skype-like unread message notification (works only under Mac OSX/Windows 7) _(by D. Colletta, T. Pinto)_
   * JUnit test cases refactoring _(by G. Desolda)_
   * JMock to Mockito migration for behavior test case _(by G. Pentassuglia)_
   * AspectJ aspects refactoring _(by D. Aresta)_ 
@@ -24,5 +24,5 @@
 *Minor changes*
   * eConference resource priority is now set to maximum, to be sure that no messages are lost in case on MPOP
   * Double join issue is prevented by checking if there is a multichat conferencing session already going on
-  * Various bug fixes and optimizations
   * App-wide exception logging via dedicated aspect
+  * Various bug fixes and optimizations
