@@ -1,563 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html>
-
-<head>
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:10.0pt;
-	margin-left:0cm;
-	line-height:115%;
-	text-autospace:ideograph-other;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-p.Standard, li.Standard, div.Standard
-	{mso-style-name:Standard;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:10.0pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:200%;
-	text-autospace:ideograph-other;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.TableContents, li.TableContents, div.TableContents
-	{mso-style-name:"Table Contents";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:10.0pt;
-	margin-left:0cm;
-	text-align:justify;
-	line-height:200%;
-	text-autospace:ideograph-other;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.TableHeading, li.TableHeading, div.TableHeading
-	{mso-style-name:"Table Heading";
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:10.0pt;
-	margin-left:0cm;
-	text-align:center;
-	line-height:200%;
-	text-autospace:ideograph-other;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	font-weight:bold;}
-.MsoPapDefault
-	{margin-bottom:10.0pt;
-	line-height:115%;}
-@page WordSection1
-	{size:595.3pt 841.9pt;
-	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style>
-
-</head>
-
-<body lang=IT>
-
-<div class=WordSection1>
-
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=641
- style='width:480.75pt;margin-left:2.25pt;border-collapse:collapse'>
- <tr>
-  <td width=125 style='width:93.75pt;border:solid black 1.0pt;border-right:
-  none;background:#94476B;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableHeading><i><span style='line-height:200%;color:#E6E6E6'>Annotation</span></i></p>
-  </td>
-  <td width=195 style='width:146.6pt;border:solid black 1.0pt;border-right:
-  none;background:#94476B;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableHeading><i><span style='line-height:200%;color:#E6E6E6'>Package</span></i></p>
-  </td>
-  <td width=132 style='width:98.65pt;border:solid black 1.0pt;border-right:
-  none;background:#94476B;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableHeading><i><span style='line-height:200%;color:#E6E6E6'>Classe</span></i></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;background:#94476B;
-  padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableHeading><i><span style='line-height:200%;color:#E6E6E6'>Metodi</span></i></p>
-  </td>
- </tr>
- <tr>
-  <td width=125 rowspan=24 style='width:93.75pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:silver;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><b><span style='font-size:
-  10.0pt;font-family:"Courier New"'>@GetSafety</span></b></p>
-  </td>
-  <td width=195 rowspan=4 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.econference.model.hr</span></p>
-  </td>
-  <td width=132 rowspan=4 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>HandRaisingModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getQuestion()</span></p>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getQuestions()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>notifyQuestionChanged()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>NumberOfQuestions()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=195 rowspan=7 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.econference.model</span></p>
-  </td>
-  <td width=132 rowspan=3 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>ConferenceModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getStatus()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getItemList()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getWhiteBoardText()</span></p>
-  </td>
- </tr>
- <tr style='height:26.4pt'>
-  <td width=132 rowspan=4 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt;height:26.4pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>ItemList</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt;height:26.4pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getItem()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getSafety()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>getCurrentItemIndex()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>Encode()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=195 rowspan=8 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.m2m.model</span></p>
-  </td>
-  <td width=132 rowspan=8 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>ChatRoomModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetPartecipant()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetPartecipantByNickName()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>Changed()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetPartecipants()</span></p>
-  </td>
- </tr>
- <tr style='height:44.35pt'>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt;height:44.35pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetSubject()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetLocalUser()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetLocalUserOrPartecipant</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>Listeners()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=195 rowspan=5 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.network.model.tv</span></p>
-  </td>
-  <td width=132 rowspan=5 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>TalkModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetOrCreateEntryList()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetCurrentThreadEntries()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetEntries()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetAllEntries()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>GetCurrentThread()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=125 rowspan=23 style='width:93.75pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:silver;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=Standard style='line-height:normal'><b><span style='font-size:10.0pt;
-  font-family:"Courier New"'>@SetSafety</span></b></p>
-  </td>
-  <td width=195 rowspan=4 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.econference.model.hr</span></p>
-  </td>
-  <td width=132 rowspan=4 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>HandRaisingModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddQuestion()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>RemoveQuestion()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>RemoveListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=195 rowspan=9 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.econference.model</span></p>
-  </td>
-  <td width=132 rowspan=3 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>ConferenceModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetStatus()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetItemList()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetWhiteBoardText()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=132 rowspan=6 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>ItemList</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddItem()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>RemoveItem()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetCurrentItemIndex()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>Decode()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>RemoveListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=195 rowspan=6 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.m2m.model</span></p>
-  </td>
-  <td width=132 rowspan=6 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>ChatRoomModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddPartecipant()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>RemovePartecipant()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>RemoveListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetSubject()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetLocalUser()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=195 rowspan=4 style='width:146.6pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>it.uniba.di.cdg.xcore.network.model.tv</span></p>
-  </td>
-  <td width=132 rowspan=4 style='width:98.65pt;border-top:none;border-left:
-  solid black 1.0pt;border-bottom:solid black 1.0pt;border-right:none;
-  background:#E6E6E6;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>TalkModel</span></p>
-  </td>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddEntry()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>SetCurrentThread()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>AddListener()</span></p>
-  </td>
- </tr>
- <tr>
-  <td width=189 style='width:5.0cm;border:solid black 1.0pt;border-top:none;
-  background:#E6E6FF;padding:2.75pt 2.75pt 2.75pt 2.75pt'>
-  <p class=TableContents style='line-height:normal'><span style='font-size:
-  10.0pt;font-family:"Courier New"'>removeListener()</span></p>
-  </td>
- </tr>
+<table border="0" cellspacing="0" cellpadding="0" width="641">
+<tbody>
+<tr>
+<td width="125"><em>Annotation</em></td>
+<td width="195"><em>Package</em></td>
+<td width="132"><em>Classe</em></td>
+<td width="189"><em>Metodi</em></td>
+</tr>
+<tr>
+<td rowspan="24" width="125"><strong>@GetSafety</strong></td>
+<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr</td>
+<td rowspan="4" width="132">HandRaisingModel</td>
+<td width="189">getQuestion()</td>
+</tr>
+<tr>
+<td width="189">getQuestions()</td>
+</tr>
+<tr>
+<td width="189">notifyQuestionChanged()</td>
+</tr>
+<tr>
+<td width="189">NumberOfQuestions()</td>
+</tr>
+<tr>
+<td rowspan="7" width="195">it.uniba.di.cdg.xcore.econference.model</td>
+<td rowspan="3" width="132">ConferenceModel</td>
+<td width="189">getStatus()</td>
+</tr>
+<tr>
+<td width="189">getItemList()</td>
+</tr>
+<tr>
+<td width="189">getWhiteBoardText()</td>
+</tr>
+<tr>
+<td rowspan="4" width="132">ItemList</td>
+<td width="189">getItem()</td>
+</tr>
+<tr>
+<td width="189">getSafety()</td>
+</tr>
+<tr>
+<td width="189">getCurrentItemIndex()</td>
+</tr>
+<tr>
+<td width="189">Encode()</td>
+</tr>
+<tr>
+<td rowspan="8" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
+<td rowspan="8" width="132">ChatRoomModel</td>
+<td width="189">GetPartecipant()</td>
+</tr>
+<tr>
+<td width="189">GetPartecipantByNickName()</td>
+</tr>
+<tr>
+<td width="189">Changed()</td>
+</tr>
+<tr>
+<td width="189">GetPartecipants()</td>
+</tr>
+<tr>
+<td width="189">GetSubject()</td>
+</tr>
+<tr>
+<td width="189">GetLocalUser()</td>
+</tr>
+<tr>
+<td width="189">GetLocalUserOrPartecipant</td>
+</tr>
+<tr>
+<td width="189">Listeners()</td>
+</tr>
+<tr>
+<td rowspan="5" width="195">it.uniba.di.cdg.xcore.network.model.tv</td>
+<td rowspan="5" width="132">TalkModel</td>
+<td width="189">GetOrCreateEntryList()</td>
+</tr>
+<tr>
+<td width="189">GetCurrentThreadEntries()</td>
+</tr>
+<tr>
+<td width="189">GetEntries()</td>
+</tr>
+<tr>
+<td width="189">GetAllEntries()</td>
+</tr>
+<tr>
+<td width="189">GetCurrentThread()</td>
+</tr>
+<tr>
+<td rowspan="23" width="125"><strong>@SetSafety</strong></td>
+<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr</td>
+<td rowspan="4" width="132">HandRaisingModel</td>
+<td width="189">AddQuestion()</td>
+</tr>
+<tr>
+<td width="189">RemoveQuestion()</td>
+</tr>
+<tr>
+<td width="189">AddListener()</td>
+</tr>
+<tr>
+<td width="189">RemoveListener()</td>
+</tr>
+<tr>
+<td rowspan="9" width="195">it.uniba.di.cdg.xcore.econference.model</td>
+<td rowspan="3" width="132">ConferenceModel</td>
+<td width="189">SetStatus()</td>
+</tr>
+<tr>
+<td width="189">SetItemList()</td>
+</tr>
+<tr>
+<td width="189">SetWhiteBoardText()</td>
+</tr>
+<tr>
+<td rowspan="6" width="132">ItemList</td>
+<td width="189">AddItem()</td>
+</tr>
+<tr>
+<td width="189">RemoveItem()</td>
+</tr>
+<tr>
+<td width="189">SetCurrentItemIndex()</td>
+</tr>
+<tr>
+<td width="189">Decode()</td>
+</tr>
+<tr>
+<td width="189">AddListener()</td>
+</tr>
+<tr>
+<td width="189">RemoveListener()</td>
+</tr>
+<tr>
+<td rowspan="6" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
+<td rowspan="6" width="132">ChatRoomModel</td>
+<td width="189">AddPartecipant()</td>
+</tr>
+<tr>
+<td width="189">RemovePartecipant()</td>
+</tr>
+<tr>
+<td width="189">AddListener()</td>
+</tr>
+<tr>
+<td width="189">RemoveListener()</td>
+</tr>
+<tr>
+<td width="189">SetSubject()</td>
+</tr>
+<tr>
+<td width="189">SetLocalUser()</td>
+</tr>
+<tr>
+<td rowspan="4" width="195">it.uniba.di.cdg.xcore.network.model.tv</td>
+<td rowspan="4" width="132">TalkModel</td>
+<td width="189">AddEntry()</td>
+</tr>
+<tr>
+<td width="189">SetCurrentThread()</td>
+</tr>
+<tr>
+<td width="189">AddListener()</td>
+</tr>
+<tr>
+<td width="189">removeListener()</td>
+</tr>
+</tbody>
 </table>
-
-<p class=MsoNormal>&nbsp;</p>
-
-</div>
-
-</body>
-
-</html>
