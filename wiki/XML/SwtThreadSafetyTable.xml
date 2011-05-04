@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <HTML>
-<HEAD>
-	<TITLE></TITLE>
-
-	<STYLE TYPE="text/css">
-	<!--
-		@page { margin: 2cm }
-		P { margin-bottom: 0.21cm }
-		TD P { margin-bottom: 0cm }
-		TH P { margin-bottom: 0cm }
-	-->
-	</STYLE>
-</HEAD>
-<BODY LANG="it-IT" DIR="LTR">
+<BODY>
 
 <TABLE WIDTH="100%" BORDER="1" BORDERCOLOR="#000000" CELLPADDING="4" CELLSPACING="0">
 	<COL WIDTH="50*">
@@ -144,7 +132,6 @@
 		</TD>
 	</TR>
 </TABLE>
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
+
 </BODY>
 </HTML>
