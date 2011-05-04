@@ -197,7 +197,7 @@
 	</TR>
 	<TR>
 		<TD ROWSPAN=23 WIDTH=19% BGCOLOR="#c0c0c0">
-			<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>@SetSafety</B></FONT></FONT></P>
+			<P><FONT FACE="Courier New, monospace"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SetSafety</SPAN></B></FONT></FONT></P>
 		</TD>
 		<TD ROWSPAN=4 WIDTH=30% BGCOLOR="#e6e6e6">
 			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.model.hr</SPAN></FONT></FONT></P>
