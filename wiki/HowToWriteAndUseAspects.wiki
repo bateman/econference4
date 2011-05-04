@@ -191,6 +191,8 @@ Using Equinox Aspects and, conseguently, load-time weaving, it's impossibile to 
 
 <wiki:gadget url="http://econference4.googlecode.com/svn/wiki/XML/SwtThreadSafetyTable.xml" height="500" width="800" /> 
 
+<wiki:gadget url="http://econference4.googlecode.com/svn/wiki/XML/ThreadSafetyAspectTable.xml" height="1000" width="800" /> 
+
 == Locking threads through aspects ==
 
 In the previous content we defined the multi-threading solution adopted in eConference, but multi-threading carries synchronism problems. 
