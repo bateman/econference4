@@ -3,195 +3,161 @@
 	<ModulePrefs title="SwtThreadSafety Annotated Methods" />
 	<Content type="html">
 	<![CDATA[
-		<table border="0" cellspacing="0" cellpadding="0" width="641">
-			<tbody>
-				<tr>
-					<td width="125">
-						<em>Annotation</em>
-					</td>
-					<td width="195">
-						<em>Package</em>
-					</td>
-					<td width="132">
-						<em>Classe</em>
-					</td>
-					<td width="189">
-						<em>Metodi</em>
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="24" width="125">
-						<strong>@GetSafety</strong>
-					</td>
-					<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr
-					</td>
-					<td rowspan="4" width="132">HandRaisingModel</td>
-					<td width="189">getQuestion()</td>
-				</tr>
-				<tr>
-					<td width="189">getQuestions()</td>
-				</tr>
-				<tr>
-					<td width="189">notifyQuestionChanged()</td>
-				</tr>
-				<tr>
-					<td width="189">NumberOfQuestions()</td>
-				</tr>
-				<tr>
-					<td rowspan="7" width="195">it.uniba.di.cdg.xcore.econference.model
-					</td>
-					<td rowspan="3" width="132">ConferenceModel</td>
-					<td width="189">getStatus()</td>
-				</tr>
-				<tr>
-					<td width="189">getItemList()</td>
-				</tr>
-				<tr>
-					<td width="189">getWhiteBoardText()</td>
-				</tr>
-				<tr>
-					<td rowspan="4" width="132">ItemList</td>
-					<td width="189">getItem()</td>
-				</tr>
-				<tr>
-					<td width="189">getSafety()</td>
-				</tr>
-				<tr>
-					<td width="189">getCurrentItemIndex()</td>
-				</tr>
-				<tr>
-					<td width="189">Encode()</td>
-				</tr>
-				<tr>
-					<td rowspan="8" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
-					<td rowspan="8" width="132">ChatRoomModel</td>
-					<td width="189">GetPartecipant()</td>
-				</tr>
-				<tr>
-					<td width="189">GetPartecipantByNickName()</td>
-				</tr>
-				<tr>
-					<td width="189">Changed()</td>
-				</tr>
-				<tr>
-					<td width="189">GetPartecipants()</td>
-				</tr>
-				<tr>
-					<td width="189">GetSubject()</td>
-				</tr>
-				<tr>
-					<td width="189">GetLocalUser()</td>
-				</tr>
-				<tr>
-					<td width="189">GetLocalUserOrPartecipant</td>
-				</tr>
-				<tr>
-					<td width="189">Listeners()</td>
-				</tr>
-				<tr>
-					<td rowspan="5" width="195">it.uniba.di.cdg.xcore.network.model.tv
-					</td>
-					<td rowspan="5" width="132">TalkModel</td>
-					<td width="189">GetOrCreateEntryList()</td>
-				</tr>
-				<tr>
-					<td width="189">GetCurrentThreadEntries()</td>
-				</tr>
-				<tr>
-					<td width="189">GetEntries()</td>
-				</tr>
-				<tr>
-					<td width="189">GetAllEntries()</td>
-				</tr>
-				<tr>
-					<td width="189">GetCurrentThread()</td>
-				</tr>
-				<tr>
-					<td rowspan="23" width="125">
-						<strong>@SetSafety</strong>
-					</td>
-					<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr
-					</td>
-					<td rowspan="4" width="132">HandRaisingModel</td>
-					<td width="189">AddQuestion()</td>
-				</tr>
-				<tr>
-					<td width="189">RemoveQuestion()</td>
-				</tr>
-				<tr>
-					<td width="189">AddListener()</td>
-				</tr>
-				<tr>
-					<td width="189">RemoveListener()</td>
-				</tr>
-				<tr>
-					<td rowspan="9" width="195">it.uniba.di.cdg.xcore.econference.model
-					</td>
-					<td rowspan="3" width="132">ConferenceModel</td>
-					<td width="189">SetStatus()</td>
-				</tr>
-				<tr>
-					<td width="189">SetItemList()</td>
-				</tr>
-				<tr>
-					<td width="189">SetWhiteBoardText()</td>
-				</tr>
-				<tr>
-					<td rowspan="6" width="132">ItemList</td>
-					<td width="189">AddItem()</td>
-				</tr>
-				<tr>
-					<td width="189">RemoveItem()</td>
-				</tr>
-				<tr>
-					<td width="189">SetCurrentItemIndex()</td>
-				</tr>
-				<tr>
-					<td width="189">Decode()</td>
-				</tr>
-				<tr>
-					<td width="189">AddListener()</td>
-				</tr>
-				<tr>
-					<td width="189">RemoveListener()</td>
-				</tr>
-				<tr>
-					<td rowspan="6" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
-					<td rowspan="6" width="132">ChatRoomModel</td>
-					<td width="189">AddPartecipant()</td>
-				</tr>
-				<tr>
-					<td width="189">RemovePartecipant()</td>
-				</tr>
-				<tr>
-					<td width="189">AddListener()</td>
-				</tr>
-				<tr>
-					<td width="189">RemoveListener()</td>
-				</tr>
-				<tr>
-					<td width="189">SetSubject()</td>
-				</tr>
-				<tr>
-					<td width="189">SetLocalUser()</td>
-				</tr>
-				<tr>
-					<td rowspan="4" width="195">it.uniba.di.cdg.xcore.network.model.tv
-					</td>
-					<td rowspan="4" width="132">TalkModel</td>
-					<td width="189">AddEntry()</td>
-				</tr>
-				<tr>
-					<td width="189">SetCurrentThread()</td>
-				</tr>
-				<tr>
-					<td width="189">AddListener()</td>
-				</tr>
-				<tr>
-					<td width="189">removeListener()</td>
-				</tr>
-			</tbody>
-		</table>
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Davide Aresta">
+	<META NAME="CREATED" CONTENT="20110504;9330700">
+	<META NAME="CHANGEDBY" CONTENT="Davide Aresta">
+	<META NAME="CHANGED" CONTENT="20110504;9333600">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		TD P { margin-bottom: 0cm }
+		TH P { margin-bottom: 0cm }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="it-IT" DIR="LTR">
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=50*>
+	<COL WIDTH=78*>
+	<COL WIDTH=53*>
+	<COL WIDTH=75*>
+	<TR>
+		<TH WIDTH=19% BGCOLOR="#94476b">
+			<P STYLE="background: #94476b; text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: #94476b"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
+		</TH>
+		<TH WIDTH=30% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="text-decoration: none">Package</SPAN></FONT></P>
+		</TH>
+		<TH WIDTH=21% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="text-decoration: none">Classe</SPAN></FONT></P>
+		</TH>
+		<TH WIDTH=29% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="text-decoration: none">Metodi</SPAN></FONT></P>
+		</TH>
+	</TR>
+	<TR>
+		<TD ROWSPAN=3 WIDTH=19% BGCOLOR="#c0c0c0">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SwtSyncExec</SPAN></B></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=14 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.views</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=2 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getText()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=12 WIDTH=19% BGCOLOR="#c0c0c0">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SwtAsyncExec</SPAN></B></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=5 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">changeButtonStatus()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">changeItemList()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">currentSelectionChanged()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">updateActionsAccordingToRole()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">StoredEventsView</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">notifyUpdate()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=2 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">HandRaisingView</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RefreshView()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">syncUIWithUserRole()</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=3 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ScrollToEnd()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">setText()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.actions</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ExitCommand</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Disconnect()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>
  ]]>
-  </Content>
+	</Content>
 </Module>
