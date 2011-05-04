@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <HTML>
 <HEAD>
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
 	<TITLE></TITLE>
-	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Win32)">
-	<META NAME="AUTHOR" CONTENT="Davide Aresta">
-	<META NAME="CREATED" CONTENT="20110504;9330700">
-	<META NAME="CHANGEDBY" CONTENT="Davide Aresta">
-	<META NAME="CHANGED" CONTENT="20110504;9333600">
+
 	<STYLE TYPE="text/css">
 	<!--
 		@page { margin: 2cm }
@@ -18,13 +13,12 @@
 	</STYLE>
 </HEAD>
 <BODY LANG="it-IT" DIR="LTR">
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
-	<COL WIDTH=50*>
-	<COL WIDTH=78*>
-	<COL WIDTH=53*>
-	<COL WIDTH=75*>
+
+<TABLE WIDTH="100%" BORDER="1" BORDERCOLOR="#000000" CELLPADDING="4" CELLSPACING="0">
+	<COL WIDTH="50*">
+	<COL WIDTH="78*">
+	<COL WIDTH="53*">
+	<COL WIDTH="75*">
 	<TR>
 		<TH WIDTH=19% BGCOLOR="#94476b">
 			<P STYLE="background: #94476b; text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: #94476b"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
