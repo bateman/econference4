@@ -31,16 +31,16 @@
 	<COL WIDTH=75*>
 	<TR>
 		<TH WIDTH=19% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Annotations</SPAN></SPAN></FONT></P>
 		</TH>
 		<TH WIDTH=30% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Package</SPAN></SPAN></FONT></P>
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Packages</SPAN></SPAN></FONT></P>
 		</TH>
 		<TH WIDTH=21% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Classe</SPAN></SPAN></FONT></P>
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Classes</SPAN></SPAN></FONT></P>
 		</TH>
 		<TH WIDTH=29% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Metodi</SPAN></SPAN></FONT></P>
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Methods</SPAN></SPAN></FONT></P>
 		</TH>
 	</TR>
 	<TR>
