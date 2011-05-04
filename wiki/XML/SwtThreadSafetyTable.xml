@@ -3,10 +3,7 @@
 <BODY>
 
 <TABLE WIDTH="100%" BORDER="1" BORDERCOLOR="#000000" CELLPADDING="4" CELLSPACING="0">
-	<COL WIDTH="50*">
-	<COL WIDTH="78*">
-	<COL WIDTH="53*">
-	<COL WIDTH="75*">
+
 	<TR>
 		<TH WIDTH="19%" BGCOLOR="#94476b">
 			<P STYLE="background: #94476b; text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: #94476b"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
@@ -23,112 +20,111 @@
 	</TR>
 	<TR>
 		<TD ROWSPAN="3" WIDTH="19%" BGCOLOR="#c0c0c0">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SwtSyncExec</SPAN></B></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><B><SPAN STYLE="text-decoration: none">@SwtSyncExec</SPAN></B></FONT></FONT></P>
 		</TD>
 		<TD ROWSPAN="14" WIDTH="30%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.views</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.views</SPAN></FONT></FONT></P>
 		</TD>
 		<TD ROWSPAN="2" WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getText()</SPAN></FONT></FONT></P>
-			<P STYLE="text-decoration: none"><BR>
-			</P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">getText()</SPAN></FONT></FONT></P>
+
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD ROWSPAN="12" WIDTH="19%" BGCOLOR="#c0c0c0">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SwtAsyncExec</SPAN></B></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><B><SPAN STYLE="text-decoration: none">@SwtAsyncExec</SPAN></B></FONT></FONT></P>
 		</TD>
 		<TD ROWSPAN="5" WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">changeButtonStatus()</SPAN></FONT></FONT></P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">changeItemList()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">changeButtonStatus()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">currentSelectionChanged()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">changeItemList()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">currentSelectionChanged()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">updateActionsAccordingToRole()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">updateActionsAccordingToRole()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">StoredEventsView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">StoredEventsView</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">notifyUpdate()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">notifyUpdate()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD ROWSPAN="2" WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">HandRaisingView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">HandRaisingView</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RefreshView()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">RefreshView()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">syncUIWithUserRole()</SPAN></FONT></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">syncUIWithUserRole()</SPAN></FONT></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD ROWSPAN="3" WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ScrollToEnd()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">setText()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">ScrollToEnd()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">setText()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH="30%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.actions</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.actions</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="21%" BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ExitCommand</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">ExitCommand</SPAN></FONT></FONT></P>
 		</TD>
 		<TD WIDTH="29%" BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Disconnect()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE="2"><SPAN STYLE="text-decoration: none">Disconnect()</SPAN></FONT></FONT></P>
 		</TD>
 	</TR>
 </TABLE>
