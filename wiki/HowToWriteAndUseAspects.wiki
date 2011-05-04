@@ -189,7 +189,7 @@ Those methods belong to the !TalkView class of the it.uniba.di.cdg.xcore.ui.view
 
 Using Equinox Aspects and, conseguently, load-time weaving, it's impossibile to trace from the aspect's view the methods covered by the aspects defined in the it.uniba.di.cdg.aspects plugin. Those tables may help tracing them.
 
-<wiki:gadget url="http://econference4.googlecode.com/svn/wiki/XML/SwtThreadSafetyTable.xml" height="600" width="2000" /> 
+<wiki:gadget url="http://econference4.googlecode.com/svn/wiki/XML/SwtThreadSafetyTable.xml" height="500" width="800" /> 
 
 == Locking threads through aspects ==
 
