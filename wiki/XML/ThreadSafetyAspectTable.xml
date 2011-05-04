@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs title="SwtThreadSafety Annotated Methods" />
+	<Content type="html">
+	<![CDATA[
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Davide Aresta">
+	<META NAME="CREATED" CONTENT="20110504;11025100">
+	<META NAME="CHANGEDBY" CONTENT="Davide Aresta">
+	<META NAME="CHANGED" CONTENT="20110504;11030400">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		TD P { margin-bottom: 0cm }
+		TH P { margin-bottom: 0cm }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="it-IT" DIR="LTR">
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 BGCOLOR="#c0c0c0">
+	<COL WIDTH=50*>
+	<COL WIDTH=78*>
+	<COL WIDTH=53*>
+	<COL WIDTH=75*>
+	<TR>
+		<TH WIDTH=19% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
+		</TH>
+		<TH WIDTH=30% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Package</SPAN></SPAN></FONT></P>
+		</TH>
+		<TH WIDTH=21% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Classe</SPAN></SPAN></FONT></P>
+		</TH>
+		<TH WIDTH=29% BGCOLOR="#94476b">
+			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none">Metodi</SPAN></SPAN></FONT></P>
+		</TH>
+	</TR>
+	<TR>
+		<TD ROWSPAN=24 WIDTH=19% BGCOLOR="#c0c0c0">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@GetSafety</SPAN></B></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=4 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.model.hr</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=4 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">HandRaisingModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getQuestion()</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none"><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getQuestions()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">notifyQuestionChanged()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">NumberOfQuestions()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=7 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.model</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=3 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ConferenceModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getStatus()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getItemList()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getWhiteBoardText()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=4 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ItemList</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getItem()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getSafety()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getCurrentItemIndex()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Encode()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=8 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.m2m.model</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=8 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ChatRoomModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetPartecipant()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetPartecipantByNickName()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Changed()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetPartecipants()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetSubject()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetLocalUser()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetLocalUserOrPartecipant</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Listeners()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=5 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.network.model.tv</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=5 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">TalkModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetOrCreateEntryList()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetCurrentThreadEntries()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetEntries()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetAllEntries()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">GetCurrentThread()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=23 WIDTH=19% BGCOLOR="#c0c0c0">
+			<P><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>@SetSafety</B></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=4 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.model.hr</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=4 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">HandRaisingModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddQuestion()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RemoveQuestion()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RemoveListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=9 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.model</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=3 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ConferenceModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetStatus()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetItemList()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetWhiteBoardText()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=6 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ItemList</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddItem()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RemoveItem()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetCurrentItemIndex()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Decode()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RemoveListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=6 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.m2m.model</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=6 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ChatRoomModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddPartecipant()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RemovePartecipant()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RemoveListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetSubject()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetLocalUser()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=4 WIDTH=30% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.network.model.tv</SPAN></FONT></FONT></P>
+		</TD>
+		<TD ROWSPAN=4 WIDTH=21% BGCOLOR="#e6e6e6">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">TalkModel</SPAN></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddEntry()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetCurrentThread()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AddListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">removeListener()</SPAN></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>
+ ]]>
+	</Content>
+</Module>
