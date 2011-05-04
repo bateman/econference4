@@ -193,126 +193,124 @@ Using Equinox Aspects and, conseguently, load-time weaving, it's impossibile to 
 	
 	<TR>
 		<td WIDTH=19% BGCOLOR="#94476b">
-			<P STYLE="background: #94476b; text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: #94476b"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
+			<P STYLE="background: #94476b; text-decoration: none">Annotation</P>
 		</td>
 		<td WIDTH=30% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="text-decoration: none">Package</SPAN></FONT></P>
+			<P STYLE="text-decoration: none">Package</P>
 		</td>
 		<td WIDTH=21% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="text-decoration: none">Classe</SPAN></FONT></P>
+			<P STYLE="text-decoration: none">Classe</P>
 		</td>
 		<td WIDTH=29% BGCOLOR="#94476b">
-			<P STYLE="text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="text-decoration: none">Metodi</SPAN></FONT></P>
+			<P STYLE="text-decoration: none">Metodi</P>
 		</td>
 	</TR>
 <TR>
 		<TD ROWSPAN=3 WIDTH=19% BGCOLOR="#c0c0c0">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SwtSyncExec</SPAN></B></FONT></FONT></P>
+			<P STYLE="text-decoration: none">@!SwtSyncExec</P>
 		</TD>
 		<TD ROWSPAN=14 WIDTH=30% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.views</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.views</P>
 		</TD>
 		<TD ROWSPAN=2 WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
+			<P STYLE="text-decoration: none">WhiteBoardView</P>
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">getText()</SPAN></FONT></FONT></P>
-			<P STYLE="text-decoration: none"><BR>
-			</P>
+			<P STYLE="text-decoration: none">getText()</P>
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
+			isReadOnly()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
+			AgendaView
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">isReadOnly()</SPAN></FONT></FONT></P>
+			isReadOnly()
 		</TD>
 	</TR>
 	<TR>
 		<TD ROWSPAN=12 WIDTH=19% BGCOLOR="#c0c0c0">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B><SPAN STYLE="text-decoration: none">@SwtAsyncExec</SPAN></B></FONT></FONT></P>
+			@!SwtAsyncExec
 		</TD>
 		<TD ROWSPAN=5 WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">AgendaView</SPAN></FONT></FONT></P>
+			!AgendaView
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">changeButtonStatus()</SPAN></FONT></FONT></P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">changeItemList()</SPAN></FONT></FONT></P>
+			changeButtonStatus()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">currentSelectionChanged()</SPAN></FONT></FONT></P>
+			changeItemList()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
+			currentSelectionChanged()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">updateActionsAccordingToRole()</SPAN></FONT></FONT></P>
+			setReadOnly()
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			updateActionsAccordingToRole()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">StoredEventsView</SPAN></FONT></FONT></P>
+			!StoredEventsView
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">notifyUpdate()</SPAN></FONT></FONT></P>
+			notifyUpdate()
 		</TD>
 	</TR>
 	<TR>
 		<TD ROWSPAN=2 WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">HandRaisingView</SPAN></FONT></FONT></P>
+			!HandRaisingView
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">RefreshView()</SPAN></FONT></FONT></P>
+			refreshView()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">syncUIWithUserRole()</SPAN></FONT></FONT></FONT></P>
+			syncUIWithUserRole()
 		</TD>
 	</TR>
 	<TR>
 		<TD ROWSPAN=3 WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">WhiteBoardView</SPAN></FONT></FONT></P>
+			!WhiteBoardView
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">SetReadOnly()</SPAN></FONT></FONT></P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ScrollToEnd()</SPAN></FONT></FONT></P>
+			setReadOnly()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">setText()</SPAN></FONT></FONT></P>
+			scrollToEnd()
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=29% BGCOLOR="#e6e6ff">
+			setText()
 		</TD>
 	</TR>
 	<TR>
 		<TD WIDTH=30% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">it.uniba.di.cdg.xcore.econference.ui.actions</SPAN></FONT></FONT></P>
+			it.uniba.di.cdg.xcore.econference.ui.actions
 		</TD>
 		<TD WIDTH=21% BGCOLOR="#e6e6e6">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">ExitCommand</SPAN></FONT></FONT></P>
+			!ExitCommand
 		</TD>
 		<TD WIDTH=29% BGCOLOR="#e6e6ff">
-			<P STYLE="text-decoration: none"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN STYLE="text-decoration: none">Disconnect()</SPAN></FONT></FONT></P>
+			disconnect()
 		</TD>
 	</TR>
 </table>
