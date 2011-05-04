@@ -1,174 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Content type="html">
-<table border="0" cellspacing="0" cellpadding="0" width="641">
-<tbody>
-<tr>
-<td width="125"><em>Annotation</em></td>
-<td width="195"><em>Package</em></td>
-<td width="132"><em>Classe</em></td>
-<td width="189"><em>Metodi</em></td>
-</tr>
-<tr>
-<td rowspan="24" width="125"><strong>@GetSafety</strong></td>
-<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr</td>
-<td rowspan="4" width="132">HandRaisingModel</td>
-<td width="189">getQuestion()</td>
-</tr>
-<tr>
-<td width="189">getQuestions()</td>
-</tr>
-<tr>
-<td width="189">notifyQuestionChanged()</td>
-</tr>
-<tr>
-<td width="189">NumberOfQuestions()</td>
-</tr>
-<tr>
-<td rowspan="7" width="195">it.uniba.di.cdg.xcore.econference.model</td>
-<td rowspan="3" width="132">ConferenceModel</td>
-<td width="189">getStatus()</td>
-</tr>
-<tr>
-<td width="189">getItemList()</td>
-</tr>
-<tr>
-<td width="189">getWhiteBoardText()</td>
-</tr>
-<tr>
-<td rowspan="4" width="132">ItemList</td>
-<td width="189">getItem()</td>
-</tr>
-<tr>
-<td width="189">getSafety()</td>
-</tr>
-<tr>
-<td width="189">getCurrentItemIndex()</td>
-</tr>
-<tr>
-<td width="189">Encode()</td>
-</tr>
-<tr>
-<td rowspan="8" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
-<td rowspan="8" width="132">ChatRoomModel</td>
-<td width="189">GetPartecipant()</td>
-</tr>
-<tr>
-<td width="189">GetPartecipantByNickName()</td>
-</tr>
-<tr>
-<td width="189">Changed()</td>
-</tr>
-<tr>
-<td width="189">GetPartecipants()</td>
-</tr>
-<tr>
-<td width="189">GetSubject()</td>
-</tr>
-<tr>
-<td width="189">GetLocalUser()</td>
-</tr>
-<tr>
-<td width="189">GetLocalUserOrPartecipant</td>
-</tr>
-<tr>
-<td width="189">Listeners()</td>
-</tr>
-<tr>
-<td rowspan="5" width="195">it.uniba.di.cdg.xcore.network.model.tv</td>
-<td rowspan="5" width="132">TalkModel</td>
-<td width="189">GetOrCreateEntryList()</td>
-</tr>
-<tr>
-<td width="189">GetCurrentThreadEntries()</td>
-</tr>
-<tr>
-<td width="189">GetEntries()</td>
-</tr>
-<tr>
-<td width="189">GetAllEntries()</td>
-</tr>
-<tr>
-<td width="189">GetCurrentThread()</td>
-</tr>
-<tr>
-<td rowspan="23" width="125"><strong>@SetSafety</strong></td>
-<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr</td>
-<td rowspan="4" width="132">HandRaisingModel</td>
-<td width="189">AddQuestion()</td>
-</tr>
-<tr>
-<td width="189">RemoveQuestion()</td>
-</tr>
-<tr>
-<td width="189">AddListener()</td>
-</tr>
-<tr>
-<td width="189">RemoveListener()</td>
-</tr>
-<tr>
-<td rowspan="9" width="195">it.uniba.di.cdg.xcore.econference.model</td>
-<td rowspan="3" width="132">ConferenceModel</td>
-<td width="189">SetStatus()</td>
-</tr>
-<tr>
-<td width="189">SetItemList()</td>
-</tr>
-<tr>
-<td width="189">SetWhiteBoardText()</td>
-</tr>
-<tr>
-<td rowspan="6" width="132">ItemList</td>
-<td width="189">AddItem()</td>
-</tr>
-<tr>
-<td width="189">RemoveItem()</td>
-</tr>
-<tr>
-<td width="189">SetCurrentItemIndex()</td>
-</tr>
-<tr>
-<td width="189">Decode()</td>
-</tr>
-<tr>
-<td width="189">AddListener()</td>
-</tr>
-<tr>
-<td width="189">RemoveListener()</td>
-</tr>
-<tr>
-<td rowspan="6" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
-<td rowspan="6" width="132">ChatRoomModel</td>
-<td width="189">AddPartecipant()</td>
-</tr>
-<tr>
-<td width="189">RemovePartecipant()</td>
-</tr>
-<tr>
-<td width="189">AddListener()</td>
-</tr>
-<tr>
-<td width="189">RemoveListener()</td>
-</tr>
-<tr>
-<td width="189">SetSubject()</td>
-</tr>
-<tr>
-<td width="189">SetLocalUser()</td>
-</tr>
-<tr>
-<td rowspan="4" width="195">it.uniba.di.cdg.xcore.network.model.tv</td>
-<td rowspan="4" width="132">TalkModel</td>
-<td width="189">AddEntry()</td>
-</tr>
-<tr>
-<td width="189">SetCurrentThread()</td>
-</tr>
-<tr>
-<td width="189">AddListener()</td>
-</tr>
-<tr>
-<td width="189">removeListener()</td>
-</tr>
-</tbody>
-</table>
-</Content>
+<Module>
+	<ModulePrefs title="SwtThreadSafety Annotated Methods" />
+	<Content type="html">
+	<![CDATA[
+		<table border="0" cellspacing="0" cellpadding="0" width="641">
+			<tbody>
+				<tr>
+					<td width="125">
+						<em>Annotation</em>
+					</td>
+					<td width="195">
+						<em>Package</em>
+					</td>
+					<td width="132">
+						<em>Classe</em>
+					</td>
+					<td width="189">
+						<em>Metodi</em>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="24" width="125">
+						<strong>@GetSafety</strong>
+					</td>
+					<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr
+					</td>
+					<td rowspan="4" width="132">HandRaisingModel</td>
+					<td width="189">getQuestion()</td>
+				</tr>
+				<tr>
+					<td width="189">getQuestions()</td>
+				</tr>
+				<tr>
+					<td width="189">notifyQuestionChanged()</td>
+				</tr>
+				<tr>
+					<td width="189">NumberOfQuestions()</td>
+				</tr>
+				<tr>
+					<td rowspan="7" width="195">it.uniba.di.cdg.xcore.econference.model
+					</td>
+					<td rowspan="3" width="132">ConferenceModel</td>
+					<td width="189">getStatus()</td>
+				</tr>
+				<tr>
+					<td width="189">getItemList()</td>
+				</tr>
+				<tr>
+					<td width="189">getWhiteBoardText()</td>
+				</tr>
+				<tr>
+					<td rowspan="4" width="132">ItemList</td>
+					<td width="189">getItem()</td>
+				</tr>
+				<tr>
+					<td width="189">getSafety()</td>
+				</tr>
+				<tr>
+					<td width="189">getCurrentItemIndex()</td>
+				</tr>
+				<tr>
+					<td width="189">Encode()</td>
+				</tr>
+				<tr>
+					<td rowspan="8" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
+					<td rowspan="8" width="132">ChatRoomModel</td>
+					<td width="189">GetPartecipant()</td>
+				</tr>
+				<tr>
+					<td width="189">GetPartecipantByNickName()</td>
+				</tr>
+				<tr>
+					<td width="189">Changed()</td>
+				</tr>
+				<tr>
+					<td width="189">GetPartecipants()</td>
+				</tr>
+				<tr>
+					<td width="189">GetSubject()</td>
+				</tr>
+				<tr>
+					<td width="189">GetLocalUser()</td>
+				</tr>
+				<tr>
+					<td width="189">GetLocalUserOrPartecipant</td>
+				</tr>
+				<tr>
+					<td width="189">Listeners()</td>
+				</tr>
+				<tr>
+					<td rowspan="5" width="195">it.uniba.di.cdg.xcore.network.model.tv
+					</td>
+					<td rowspan="5" width="132">TalkModel</td>
+					<td width="189">GetOrCreateEntryList()</td>
+				</tr>
+				<tr>
+					<td width="189">GetCurrentThreadEntries()</td>
+				</tr>
+				<tr>
+					<td width="189">GetEntries()</td>
+				</tr>
+				<tr>
+					<td width="189">GetAllEntries()</td>
+				</tr>
+				<tr>
+					<td width="189">GetCurrentThread()</td>
+				</tr>
+				<tr>
+					<td rowspan="23" width="125">
+						<strong>@SetSafety</strong>
+					</td>
+					<td rowspan="4" width="195">it.uniba.di.cdg.xcore.econference.model.hr
+					</td>
+					<td rowspan="4" width="132">HandRaisingModel</td>
+					<td width="189">AddQuestion()</td>
+				</tr>
+				<tr>
+					<td width="189">RemoveQuestion()</td>
+				</tr>
+				<tr>
+					<td width="189">AddListener()</td>
+				</tr>
+				<tr>
+					<td width="189">RemoveListener()</td>
+				</tr>
+				<tr>
+					<td rowspan="9" width="195">it.uniba.di.cdg.xcore.econference.model
+					</td>
+					<td rowspan="3" width="132">ConferenceModel</td>
+					<td width="189">SetStatus()</td>
+				</tr>
+				<tr>
+					<td width="189">SetItemList()</td>
+				</tr>
+				<tr>
+					<td width="189">SetWhiteBoardText()</td>
+				</tr>
+				<tr>
+					<td rowspan="6" width="132">ItemList</td>
+					<td width="189">AddItem()</td>
+				</tr>
+				<tr>
+					<td width="189">RemoveItem()</td>
+				</tr>
+				<tr>
+					<td width="189">SetCurrentItemIndex()</td>
+				</tr>
+				<tr>
+					<td width="189">Decode()</td>
+				</tr>
+				<tr>
+					<td width="189">AddListener()</td>
+				</tr>
+				<tr>
+					<td width="189">RemoveListener()</td>
+				</tr>
+				<tr>
+					<td rowspan="6" width="195">it.uniba.di.cdg.xcore.m2m.model</td>
+					<td rowspan="6" width="132">ChatRoomModel</td>
+					<td width="189">AddPartecipant()</td>
+				</tr>
+				<tr>
+					<td width="189">RemovePartecipant()</td>
+				</tr>
+				<tr>
+					<td width="189">AddListener()</td>
+				</tr>
+				<tr>
+					<td width="189">RemoveListener()</td>
+				</tr>
+				<tr>
+					<td width="189">SetSubject()</td>
+				</tr>
+				<tr>
+					<td width="189">SetLocalUser()</td>
+				</tr>
+				<tr>
+					<td rowspan="4" width="195">it.uniba.di.cdg.xcore.network.model.tv
+					</td>
+					<td rowspan="4" width="132">TalkModel</td>
+					<td width="189">AddEntry()</td>
+				</tr>
+				<tr>
+					<td width="189">SetCurrentThread()</td>
+				</tr>
+				<tr>
+					<td width="189">AddListener()</td>
+				</tr>
+				<tr>
+					<td width="189">removeListener()</td>
+				</tr>
+			</tbody>
+		</table>
+ ]]>
+  </Content>
+</Module>
