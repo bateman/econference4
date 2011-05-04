@@ -190,10 +190,6 @@ Those methods belong to the !TalkView class of the it.uniba.di.cdg.xcore.ui.view
 Using Equinox Aspects and, conseguently, load-time weaving, it's impossibile to trace from the aspect's view the methods covered by the aspects defined in the it.uniba.di.cdg.aspects plugin. Those tables may help tracing them.
 
  <TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
-	<COL WIDTH=50*>
-	<COL WIDTH=78*>
-	<COL WIDTH=53*>
-	<COL WIDTH=75*>
 	<TR>
 		<TH WIDTH=19% BGCOLOR="#94476b">
 			<P STYLE="background: #94476b; text-decoration: none"><FONT COLOR="#e6e6e6"><SPAN STYLE="background: #94476b"><SPAN STYLE="text-decoration: none">Annotation</SPAN></SPAN></FONT></P>
