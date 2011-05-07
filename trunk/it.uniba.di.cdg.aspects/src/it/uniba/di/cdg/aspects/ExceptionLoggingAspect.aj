@@ -43,7 +43,7 @@ public aspect ExceptionLoggingAspect {
 		: execution(* *.*(..)) && !within( it.uniba.di.cdg.aspects..*);
 
 	after() throwing(Throwable ex) : exceptionTraced() {
-		this.logger = Logger.getLogger(thisJoinPointStaticPart.getClass()
+		this.logger = Logger.getLogger(thisJoinPoint.getClass()
 				.getName());
 		try {
 			File f = new File("logs");
