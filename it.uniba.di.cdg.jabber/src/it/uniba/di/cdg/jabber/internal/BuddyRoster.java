@@ -33,6 +33,7 @@ import it.uniba.di.cdg.xcore.network.model.IBuddyGroup;
 import it.uniba.di.cdg.xcore.network.model.IBuddyRosterListener;
 import it.uniba.di.cdg.xcore.network.model.IEntry;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -149,6 +150,11 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
             buddy.setOnline( false );
             buddy.setStatus( Status.OFFLINE );
         }
+        
+     // check if we should add back the buddy because he has other presences online
+		Presence rpresence = jroster.getPresence(entry.getUser());
+        Buddy rbuddy = new Buddy( this, entry.getUser(), entry.getName(), rpresence,"", rpresence.getStatus());
+        buddies.put( rbuddy.getCleanJid(), rbuddy );
 
         for (IBuddyRosterListener l : listeners)
             l.presenceChanged( buddy );
@@ -397,4 +403,15 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
 		
 		
 	}
+	
+	@Override
+	public ArrayList<String> getPresencesStr (String user) {
+    	Iterator<Presence> presences = jroster.getPresences(user);
+    	ArrayList<String> presencesStr = new ArrayList<String>();
+    	while(presences.hasNext()) {
+    		Presence p = presences.next();
+    		presencesStr.add(p.getFrom());
+    	}
+    	return presencesStr;
+    }
 }
