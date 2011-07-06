@@ -26,6 +26,7 @@ package it.uniba.di.cdg.xcore.network.model;
 
 import it.uniba.di.cdg.xcore.network.IBackend;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -128,5 +129,7 @@ public interface IBuddyRoster extends IEntry, Iterable<IBuddy> {
     void moveToGroup(String user, String nameNewGroup);
     
     void reload();
+    
+    ArrayList<String> getPresencesStr (String user);
     
 }
