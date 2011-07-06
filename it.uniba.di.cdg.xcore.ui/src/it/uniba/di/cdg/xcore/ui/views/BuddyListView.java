@@ -57,8 +57,10 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
+//import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
+
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport; //mio
 
 /**
  * GUI for the buddy list: its shows an hierachical view of the buddies this
@@ -197,8 +199,10 @@ public class BuddyListView extends ViewPart {
 
 		Platform.getAdapterManager().registerAdapters(adapterFactory,
 				IEntry.class);
+		
+		ColumnViewerToolTipSupport.enableFor(treeViewer); 
+		treeViewer.setLabelProvider(new LabelProviderWithTooltips()); 
 
-		treeViewer.setLabelProvider(new WorkbenchLabelProvider());
 		treeViewer.setSorter(new BuddySorter());
 		treeViewer.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
 
