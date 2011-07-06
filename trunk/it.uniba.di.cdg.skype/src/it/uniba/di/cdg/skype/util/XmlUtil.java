@@ -129,7 +129,11 @@ public class XmlUtil {
 		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 		eventWriter.add(eventFactory.createDTD("\t"));
 		eventWriter.add(eventFactory.createStartElement("","", element));
-		eventWriter.add(eventFactory.createCharacters(value));
+		if (element.equals(ExtensionConstants.MESSAGE)) {
+			eventWriter.add(eventFactory.createCData(value));
+		} else {
+			eventWriter.add(eventFactory.createCharacters(value));
+		}
 		eventWriter.add(eventFactory.createEndElement("","", element));
 		eventWriter.add(eventFactory.createDTD("\n"));
 	}
