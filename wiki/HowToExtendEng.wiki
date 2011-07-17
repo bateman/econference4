@@ -68,7 +68,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 ===Extension===
 After the creation of the abstraction layer there was a great obstacle: the services of !Multichat communicate with each other with a particular protocol which extends the basic protocol. For example the eConference service has to communicate to all participants when the conference begins and ends: it's easy to imagine that no protocol offers this function. The solution involved the creation of a mechanism to extend the basic protocol. This is allowed by:
   * An Action called !sendExtensionProtocolMessage() which sends a special message that could include information formatted in any way. 
-  * An Event called ChatExtensionProtocolEvent which is raised when a special message is received
+  * An Event called !ChatExtensionProtocolEvent which is raised when a special message is received
 
 With this mechanism it's possible to redefine on the basic protocols infinite new protocols which are suitable to every distinct service.
 
@@ -76,7 +76,7 @@ With this mechanism it's possible to redefine on the basic protocols infinite ne
 To include a new protocol you have to create a new plugin, to extend the Network plugin by the IBackend interface and to implements some interfaces. Let's see how to perform this tasks.
 As first step download the source code of eConference 4 in Eclipse using the SVN address (as shown in picture 7).
 
-*Note: to see more details about the execution and the compilation of eConference 4, consult this [howtobuild pagina] wiki.*
+*Note: to see more details about the execution and the compilation of eConference 4, consult this [howtobuild page] wiki.*
 
 http://econference4.googlecode.com/svn/wiki/img/extend7.png <br />
 *Picture 7. Checkout of eConference 4.0*
