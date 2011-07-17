@@ -174,15 +174,15 @@ if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
 It's checked if it's a 1-a-1 chat message and particularly if it belongs to an extension; if both conditions are met an event of !ChatMessageReceivedEvent will be raised. This event will be intercepted and managed by one or more services like one2one, m2m, cConference or one2oneinfo (which will be created in the next section)
 
 ==How to create a new service into eConference==
-To create a new service you have to create a new plugin (like shown in section 4.2). After that it's possible to add new graphic elements with the extensional mechanisms provided by Eclipse. In picture 11 is shown an example of that extension, it's possible to note the “Card Deck View” which has been added to the basic model of the structured MultiChat.
-About the aspect of communication, it's possible to accede many mechanisms allowed by an instance of Ibackend: you can have this access with the following call: NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
+To create a new service you have to create a new plugin (like shown in section 4.2). After that it's possible to add new graphic elements with the extensional mechanisms provided by Eclipse. In picture 11 is shown an example of that extension, it's possible to note the “Card Deck View” which has been added to the basic model of the structured !MultiChat.
+About the aspect of communication, it's possible to accede many mechanisms allowed by an instance of Ibackend: you can have this access with the following call: !NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
 
 http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
 *Picture 11. the eConference planning poker plugin*
 
 ===Creation of the new service===
 Now will be created a small service which extends eConference 4; with this service every user will have the possibility to receive information about the system used by another user. A new voice called “Get Info” will appear after a mouse's right button click on an user listed in the roster and so we will receive information about that user.
-As first step create a new Project plugin selecting “File > New > Other” and “Plug-in Project”, then call the project "it.uniba.di.cdg.xcore.one2oneinfo" and its activator it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin. In the end click the voice “activator” to create the referenced class. Open the file “plugin.xml” automatically created in the project, enter in the panel “Extension”, click “add” and finally select “popupMenu” as shown in picture 12.
+As first step create a new Project plugin selecting “File > New > Other” and “Plug-in Project”, then call the project _"!it.uniba.di.cdg.xcore.one2oneinfo"_ and its activator it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin. In the end click the voice “activator” to create the referenced class. Open the file “plugin.xml” automatically created in the project, enter in the panel “Extension”, click “add” and finally select “popupMenu” as shown in picture 12.
 
 http://econference4.googlecode.com/svn/wiki/img/extend12.png <br />
 *Picture 12. Adding an extension to a popupMenu*
