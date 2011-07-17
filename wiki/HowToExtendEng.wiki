@@ -139,7 +139,7 @@ The method shown previously is responsible to make a connection. Let's analyze i
 The call to the connect() method of Connector returns the Skype's connection status. The status to which we refer is that of the Skype client which has to be correctly started and connected.
 If the status is different from “ATTACHED” is raised an exception otherwise everything proceed.
 After that, the roster is updated, listeners are registered in the skype4java package and the “connected” variable which keeps the information about the connection status, is set to true.
-Let's see the !IChatAction.!sendExtensionProtocolMessage() method:
+Let's see the IChatAction.!sendExtensionProtocolMessage() method:
 
 {{{
 @Override
