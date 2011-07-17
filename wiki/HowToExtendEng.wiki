@@ -4,7 +4,7 @@
 <wiki:toc max_depth="3" />
 
 ==How to extend eConference 4==
-Unlike the previous version, eConference 4 offers a modular structure very organized and it doesn't permits that a service could enter in specific functions which are included in a specific protocol..
+Unlike the previous version, eConference 4 offers a modular structure very organized and it doesn't permits that a service could enter in specific functions which are included in a specific protocol.
 
 http://econference4.googlecode.com/svn/wiki/img/extend1.jpg <br />
 *Picture 1. Interaction between plugins in eConference 3.*
@@ -22,7 +22,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend2.jpg <br />
 In version 4 has been introduced a further innovation: the Chat and !Multichat plugins are replaced by one2one and m2m; this decision is taken since currently to the text support is juxtapose the VoIP support and so we have to discriminate only if the communication is between two users or a group of users.
 
 === Structure of packages ===
-The classes which are part of the core of eConference are included in the it.uniba.di.cdg.xcore.`*` package. All the classes which are outside the core (for example it.uniba.di.cdg.skype, it.uniba.di.cdg.jabber, org.apertium.api.translate, it.uniba.di.cdg.econference.planningpoker) can refer to core resources, hence _import_ classes _core_ but not do the contrary..
+The classes which are part of the core of eConference are included in the _it.uniba.di.cdg.xcore.`*`_ package. All the classes which are outside the core (for example it.uniba.di.cdg.skype, it.uniba.di.cdg.jabber, org.apertium.api.translate, it.uniba.di.cdg.econference.planningpoker) can refer to core resources, hence _import_ classes _core_ but not do the contrary.
 
 ==Abstraction mechanisms==
 To make a stable abstraction layer it was necessary the use of specific mechanisms. The main idea for this solution is that all protocols have in common two things:
@@ -60,7 +60,7 @@ Since there are events in common between the protocols an abstraction layer has 
 http://econference4.googlecode.com/svn/wiki/img/extend5.jpg <br />
 *Picture 5. Abstraction of the events*
 
-Picture 6 shows how the event system properly works. The service registers an own IBackendListener using the method registerBackendListener() exposed by INetworkBackendHelper  and afterwards the plugin which implements the protocol raises many events calling the notifyBackendEvent() event which is exposed by InetworkBackendHelper.
+Picture 6 shows how the event system properly works. The service registers an own IBackendListener using the method registerBackendListener() exposed by !INetworkBackendHelper  and afterwards the plugin which implements the protocol raises many events calling the notifyBackendEvent() event which is exposed by InetworkBackendHelper.
 
 http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 *Picture 6. An example of the use of events*
