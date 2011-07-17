@@ -139,7 +139,7 @@ The method shown previously is responsible to make a connection. Let's analyze i
 The call to the connect() method of Connector returns the Skype's connection status. The status to which we refer is that of the Skype client which has to be correctly started and connected.
 If the status is different from “ATTACHED” is raised an exception otherwise everything proceed.
 After that, the roster is updated, listeners are registered in the skype4java package and the “connected” variable which keeps the information about the connection status, is set to true.
-Let's see the IchatAction.!sendExtensionProtocolMessage() method:
+Let's see the !IChatAction.!sendExtensionProtocolMessage() method:
 
 {{{
 @Override
@@ -157,7 +157,7 @@ public void sendExtensionProtocolMessage(String to, String extensionName,HashMap
 
 The method already seen takes care of sending an extension to the protocol. The “CHAT_TYPE” parameter is added, with the “ONE_TO_ONE” value, to denote that the message in sending is an extension for the 1-to-1 chat. The name and the parameter's list of the extension are transformed in an XML string; this string is sent to the receiver.
 
-Below is shown the management of input messages and particularly a message which extends the protocol in the SkypeBackend's processMessageReceived() method:
+Below is shown the management of input messages and particularly a message which extends the protocol in the !SkypeBackend's processMessageReceived() method:
 
 {{{
 if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
@@ -171,7 +171,7 @@ if(XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE))
 }
 }}}
 
-It's checked if it's a 1-a-1 chat message and particularly if it belongs to an extension; if both conditions are met an event of ChatMessageReceivedEvent will be raised. This event will be intercepted and managed by one or more services like one2one, m2m, cConference or one2oneinfo (which will be created in the next section)
+It's checked if it's a 1-a-1 chat message and particularly if it belongs to an extension; if both conditions are met an event of !ChatMessageReceivedEvent will be raised. This event will be intercepted and managed by one or more services like one2one, m2m, cConference or one2oneinfo (which will be created in the next section)
 
 ==How to create a new service into eConference==
 To create a new service you have to create a new plugin (like shown in section 4.2). After that it's possible to add new graphic elements with the extensional mechanisms provided by Eclipse. In picture 11 is shown an example of that extension, it's possible to note the “Card Deck View” which has been added to the basic model of the structured MultiChat.
