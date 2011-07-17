@@ -317,7 +317,7 @@ public interface One2OneInfoConstants {
 }}}
 
 ===Rendering of the new service===
-That code will be executed whenever you select the voice “Get Info” from the roster's popupMenu; it receives an instance of  _!IChatServiceActions_ and sends to the selected user a request for information.
+That code will be executed whenever you select the voice “Get Info” from the roster's popupMenu; it receives an instance of  _IChatServiceActions_ and sends to the selected user a request for information.
 The service is concluded!
 Now it's all ready to test what has been created. To do that you have to add by the “Run Configuration” panel the _it.uniba.di.cdg.xcore.one2oneinfo_ plugin then you can begin the application.
 If all steps have been executed rightly, after the request of an user's information there will be displayed a screen like that in picture 14:
