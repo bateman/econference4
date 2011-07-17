@@ -182,7 +182,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend11.png <br />
 
 ===Creation of the new service===
 Now will be created a small service which extends eConference 4; with this service every user will have the possibility to receive information about the system used by another user. A new voice called “Get Info” will appear after a mouse's right button click on an user listed in the roster and so we will receive information about that user.
-As first step create a new Project plugin selecting “File > New > Other” and “Plug-in Project”, then call the project _"!it.uniba.di.cdg.xcore.one2oneinfo"_ and its activator it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin. In the end click the voice “activator” to create the referenced class. Open the file “plugin.xml” automatically created in the project, enter in the panel “Extension”, click “add” and finally select “popupMenu” as shown in picture 12.
+As first step create a new Project plugin selecting “File > New > Other” and “Plug-in Project”, then call the project "it.uniba.di.cdg.xcore.one2oneinfo" and its activator _!it.uniba.di.cdg.xcore.one2oneinfo.One2OneInfoPlugin_. In the end click the voice “activator” to create the referenced class. Open the file “plugin.xml” automatically created in the project, enter in the panel “Extension”, click “add” and finally select “popupMenu” as shown in picture 12.
 
 http://econference4.googlecode.com/svn/wiki/img/extend12.png <br />
 *Picture 12. Adding an extension to a popupMenu*
