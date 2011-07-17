@@ -139,7 +139,7 @@ The method shown previously is responsible to make a connection. Let's analyze i
 The call to the connect() method of Connector returns the Skype's connection status. The status to which we refer is that of the Skype client which has to be correctly started and connected.
 If the status is different from “ATTACHED” is raised an exception otherwise everything proceed.
 After that, the roster is updated, listeners are registered in the skype4java package and the “connected” variable which keeps the information about the connection status, is set to true.
-Let's see the IChatAction.!sendExtensionProtocolMessage() method:
+Let's see the IChatAction.sendExtensionProtocolMessage() method:
 
 {{{
 @Override
@@ -326,7 +326,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend14a.png
 http://econference4.googlecode.com/svn/wiki/img/extend14b.png<br />
 *Picture 14. Test of the plugin it.uniba.di.cdg.xcore.one2oneinfo*
 
-In this example is used only the !_IChatServiceActions_ interface which exposes the basic functions for a 1-to-1 chat; with _IBackend_ it's even possible accessing to:  
+In this example is used only the _IChatServiceActions_ interface which exposes the basic functions for a 1-to-1 chat; with _IBackend_ it's even possible accessing to:  
   * _IMultichatActions_ which exposes methods for group chats; 
   * _ICallAction_ which provides methods for 1-to-1calls;
   * _IMultiCallAction_ which provides methods for group calls;
