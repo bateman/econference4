@@ -193,9 +193,9 @@ If everything went well there will be a panel like the one shown in picture 13.
 http://econference4.googlecode.com/svn/wiki/img/extend13.png <br />
 *Picture 13. The extension of popupMenu*
 
-Now with the same process we will extend the _org.eclipse.ui.startup_ plugin, add a new voice “startup” and insert the class field _it.uniba.di.cdg.xcore.one2oneinfo.!One2OneInfoPlugin_. Finally the class _One2OneInfoPlugin_ has to implement the interface _IStartup_.
+Now with the same process we will extend the _org.eclipse.ui.startup_ plugin, add a new voice “startup” and insert the class field _it.uniba.di.cdg.xcore.one2oneinfo.!One2OneInfoPlugin_. Finally the class !_One2OneInfoPlugin_ has to implement the interface _IStartup_.
 With this operation will be possible to start the plugin together eConference and not only when the plugin is called, this is necessary to start the demon which will be explained next.
-In _One2OneInfoPlugin_ insert the following code:
+In _!One2OneInfoPlugin_ insert the following code:
 
 {{{
 /**
