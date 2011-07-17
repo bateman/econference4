@@ -91,7 +91,7 @@ At this point open the “plugin.xml” file and from the extension panel click 
 http://econference4.googlecode.com/svn/wiki/img/extend9.png <br />
 *Picture 9. Extension point of IBackend*
 
-Note that in picture 9 the "SkypeBackend" class is associated to the extension, so if you implement the X protocol you have to associate a “XBackend “ class to the extension. After that remains to implement all the methods exposed by the IBackend interface using the Xbackend class shown in picture 10. It's also obviously necessary to provide an implementation to all the interfaces related to IBackend (where it's possible):
+Note that in picture 9 the "!SkypeBackend" class is associated to the extension, so if you implement the X protocol you have to associate a “XBackend “ class to the extension. After that remains to implement all the methods exposed by the IBackend interface using the Xbackend class shown in picture 10. It's also obviously necessary to provide an implementation to all the interfaces related to IBackend (where it's possible):
   * IBuddyRoster 
   * IChatServiceActions
   * IMultiChatServiceActions
