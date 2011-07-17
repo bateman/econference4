@@ -289,7 +289,7 @@ Utente1 < < < < < < < < < < < < [USER_INFO, info] < < < < < < < < < < Utente2
 }}}
 
 The plugin is created and incoming messages are managed, finally we have to manage the sending of the Action's request which we created at the beginning. 
-Open the !_GetUserInfo_ class and fill in the following code:
+Open the _!GetUserInfo_ class and fill in the following code:
 
 {{{
 public class GetUserInfo extends AbstractBuddyActionDelegate{
@@ -317,7 +317,7 @@ public interface One2OneInfoConstants {
 }}}
 
 ===Rendering of the new service===
-That code will be executed whenever you select the voice “Get Info” from the roster's popupMenu; it receives an instance of  !_IChatServiceActions_ and sends to the selected user a request for information.
+That code will be executed whenever you select the voice “Get Info” from the roster's popupMenu; it receives an instance of  _!IChatServiceActions_ and sends to the selected user a request for information.
 The service is concluded!
 Now it's all ready to test what has been created. To do that you have to add by the “Run Configuration” panel the _it.uniba.di.cdg.xcore.one2oneinfo_ plugin then you can begin the application.
 If all steps have been executed rightly, after the request of an user's information there will be displayed a screen like that in picture 14:
@@ -326,7 +326,7 @@ http://econference4.googlecode.com/svn/wiki/img/extend14a.png
 http://econference4.googlecode.com/svn/wiki/img/extend14b.png<br />
 *Picture 14. Test of the plugin it.uniba.di.cdg.xcore.one2oneinfo*
 
-In this example is used only the _IChatServiceActions_ interface which exposes the basic functions for a 1-to-1 chat; with _IBackend_ it's even possible accessing to:  
+In this example is used only the !_IChatServiceActions_ interface which exposes the basic functions for a 1-to-1 chat; with _IBackend_ it's even possible accessing to:  
   * _IMultichatActions_ which exposes methods for group chats; 
   * _ICallAction_ which provides methods for 1-to-1calls;
   * _IMultiCallAction_ which provides methods for group calls;
