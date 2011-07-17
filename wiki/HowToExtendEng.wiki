@@ -60,7 +60,7 @@ Since there are events in common between the protocols an abstraction layer has 
 http://econference4.googlecode.com/svn/wiki/img/extend5.jpg <br />
 *Picture 5. Abstraction of the events*
 
-Picture 6 shows how the event system properly works. The service registers an own IBackendListener using the method registerBackendListener() exposed by !INetworkBackendHelper  and afterwards the plugin which implements the protocol raises many events calling the notifyBackendEvent() event which is exposed by InetworkBackendHelper.
+Picture 6 shows how the event system properly works. The service registers an own IBackendListener using the method registerBackendListener() exposed by !INetworkBackendHelper  and afterwards the plugin which implements the protocol raises many events calling the notifyBackendEvent() event which is exposed by !InetworkBackendHelper.
 
 http://econference4.googlecode.com/svn/wiki/img/extend6.jpg <br />
 *Picture 6. An example of the use of events*
