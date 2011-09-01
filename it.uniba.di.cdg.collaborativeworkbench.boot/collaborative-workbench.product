@@ -42,7 +42,6 @@ Eclipse, Built on Eclipse and Eclipse Ready are trademarks of Eclipse Foundation
       </win>
    </launcher>
 
-
    <vm>
    </vm>
 
@@ -80,6 +79,7 @@ THE SOFTWARE.
       <plugin id="it.uniba.di.cdg.collaborativeworkbench.boot"/>
       <plugin id="it.uniba.di.cdg.jabber"/>
       <plugin id="it.uniba.di.cdg.skype"/>
+      <plugin id="it.uniba.di.cdg.skype.recorder.win32"/>
       <plugin id="it.uniba.di.cdg.xcore.econference"/>
       <plugin id="it.uniba.di.cdg.xcore.m2m"/>
       <plugin id="it.uniba.di.cdg.xcore.network"/>
