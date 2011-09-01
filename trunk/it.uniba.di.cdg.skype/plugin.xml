@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="it.uniba.di.cdg.skype.recorder" name="Recorder" schema="schema/recorder.exsd"/>
    <extension
          point="it.uniba.di.cdg.xcore.network.backends">
       <backend

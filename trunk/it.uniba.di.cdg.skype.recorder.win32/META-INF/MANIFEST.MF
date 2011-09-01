@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Win32
+Bundle-SymbolicName: it.uniba.di.cdg.skype.recorder.win32;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ it.uniba.di.cdg.xcore.ui;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: it.uniba.di.cdg.skype.recorder.win32
