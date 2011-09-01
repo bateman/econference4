@@ -10,7 +10,8 @@ Require-Bundle: it.uniba.di.cdg.xcore.network;bundle-version="1.0.0",
  org.eclipse.ui;bundle-version="3.5.1",
  it.uniba.di.cdg.xcore.m2m;bundle-version="1.0.0",
  it.uniba.di.cdg.aspects;bundle-version="1.0.0",
- org.aspectj.runtime
+ org.aspectj.runtime,
+ it.uniba.di.cdg.skype.recorder.win32;bundle-version="1.0.0"
 Bundle-ClassPath: .,
  skype.jar
 Export-Package: .,

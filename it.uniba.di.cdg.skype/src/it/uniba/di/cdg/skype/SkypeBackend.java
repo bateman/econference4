@@ -28,6 +28,7 @@ import it.uniba.di.cdg.skype.action.SkypeCallAction;
 import it.uniba.di.cdg.skype.action.SkypeChatServiceAction;
 import it.uniba.di.cdg.skype.action.SkypeMultiCallAction;
 import it.uniba.di.cdg.skype.action.SkypeMultiChatServiceAction;
+import it.uniba.di.cdg.skype.recorder.win32.FreeRecorder;
 import it.uniba.di.cdg.skype.util.ExtensionConstants;
 import it.uniba.di.cdg.skype.util.XmlUtil;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
@@ -84,6 +85,7 @@ public class SkypeBackend implements IBackend {
 	 * This backend's unique id.
 	 */
 	public static final String ID = "it.uniba.di.cdg.skype.skypeBackend";
+	//private static final String RECORDER_ID = "it.uniba.di.cdg.skype.recorder";
 
 
 	private INetworkBackendHelper helper;
@@ -358,8 +360,41 @@ public class SkypeBackend implements IBackend {
 		skypeBuddyRoster.reload();
 
 		connected = true;
+		
+		//runRecorderExtension();
+		FreeRecorder rec = new FreeRecorder();
+		rec.recorderStartConfirmDialog();
+		
 	}
 
+	/*
+	private void runRecorderExtension() {		
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(RECORDER_ID);
+		try {
+			for (IConfigurationElement e : config) {
+				System.out.println("Evaluating extension skype recorder");
+				final Object o = e.createExecutableExtension("class");
+				if (o instanceof ISkypeRecorder) {
+					ISafeRunnable runnable = new ISafeRunnable() {
+						@Override
+						public void handleException(Throwable exception) {
+							System.out.println("Exception in extension skype recorder");
+						}
+						@Override
+						public void run() throws Exception {
+							((ISkypeRecorder) o).recorderStartConfirmDialog();						
+						}
+					};
+					SafeRunner.run(runnable);
+				}
+			}
+		} catch (CoreException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+*/
+	
 	@Override
 	public INetworkService createService(ICapability service,
 			INetworkServiceContext context) throws BackendException {
