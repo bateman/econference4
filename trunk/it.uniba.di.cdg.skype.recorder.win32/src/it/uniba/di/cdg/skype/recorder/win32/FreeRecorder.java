@@ -35,10 +35,10 @@ import it.uniba.di.cdg.xcore.ui.UiPlugin;
 public class FreeRecorder /*implements ISkypeRecorder*/ {
 	private Process freeRecorder;
 	private String freeRecorderPath;
-	private ExtractFile extract;
+	private ExtractIrecorder extractIrec;
 	
 	public FreeRecorder() {
-		extract = new ExtractFile();
+		extractIrec = new ExtractIrecorder();
 	}
 
 	//@Override
@@ -52,12 +52,11 @@ public class FreeRecorder /*implements ISkypeRecorder*/ {
 	}
 	
 	//@Override
-	public void recorderStart(){
+	public void recorderStart(){						
 		try { 			
-			extract.extractInTempFolder("lame_enc.dll");
-			freeRecorderPath = extract.extractInTempFolder("irecorder.exe").toString(); 
-				
+			freeRecorderPath = extractIrec.extract().toString();		
 			freeRecorder = Runtime.getRuntime().exec(freeRecorderPath);
+			System.out.println("iFreeRecorder Started");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
