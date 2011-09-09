@@ -32,51 +32,57 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * ExtractFile can extract any type of files in  the current directory copying them 
- * in a temporary directory, necessary if you want to launch an exe file contained 
+ * ExtractIrecorder generate an irecorder folder and extract the program inside, 
+ * this operation is necessary because you want to launch an exe file contained 
  * in a jar
  * @author Savino Saponara
  *
  */
-public class ExtractFile {
+public class ExtractIrecorder {
 	private InputStream src;
 	private FileOutputStream out;
 	private File tempFile;
 	private byte[] buffer;
 	private int rc;
-	private String prefix;
-	private String suffix;
+	private String dirTemp;
 
-	public ExtractFile(){
+	public ExtractIrecorder(){
 		buffer = new byte[32768];
+		dirTemp = System.getProperty("user.dir") + "\\irecorder\\";
 	}
 	
-	public File extractInTempFolder(String file) throws IOException{				
-		src = ExtractFile.class.getResource(file).openStream(); 
+	public String extract(){		
+		File dir = new File(dirTemp);
+		if (dir.isDirectory()) 
+			return dirTemp + "irecorder.exe";
 		
-		prefix = getPrefix(file);
-		suffix = getSuffix(file);
-		
-		tempFile = File.createTempFile(prefix, suffix); 
+		System.out.println("iFreeRecorder extraction start...");
+		File exe = null;
+		new File(dirTemp).mkdir();
+		try {
+			extractFile("lame_enc.dll");
+			exe = extractFile("irecorder.exe");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return exe.toString();
+	}
+	
+	public File extractFile(String file) throws IOException{						
+		System.out.println("extraction file: " + file);
+		src = ExtractIrecorder.class.getResource(file).openStream(); 		
+		tempFile = new File(dirTemp + file);
 		out = new FileOutputStream(tempFile); 		 		 
 		
 		while((rc = src.read(buffer)) > 0) 
 		    out.write(buffer, 0, rc); 		
-		tempFile.renameTo(new File(prefix + suffix));
 		
 		src.close(); 
 		out.close(); 
-		tempFile.deleteOnExit();  	
-							
+		
+		System.out.println("file extracted: " + tempFile);  								
 		return tempFile;
 	}	
-	
-	private String getPrefix(String file){
-		return file.substring(file.indexOf("."));		
-	}
-	
-	private String getSuffix(String file){
-		return file.substring(file.indexOf("."),file.length());
-	}
-
+		
 }
