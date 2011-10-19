@@ -17,7 +17,7 @@ Now run Eclipse and make sure you start using an empty workspace (see Fig. 1). I
 <br>
 
 == Checkout the SVN repository ==
-Even if you don't have a Gmail account registered to Google Code, you can check out the source code from our SVN repository directly from within Eclipse. You will need the [http://subclipse.tigris.org/install.html Subclipse] plugin. Again, it is recommended to install it from the Update Manager.
+Even if you don't have a Gmail account registered to Google Code, you can check out the source code from our SVN repository directly from within Eclipse. You will need either [http://subclipse.tigris.org/install.html Subclipse] or [http://www.eclipse.org/subversive/downloads.php Subversive] installed. Again, it is recommended to install it from the Update Manager.
 
 Once you have installed it, go to the _Windows | Preferences..._ menu, then select _SVN_ under the _Team_ branch (see Fig 2).
 <p align=center>http://econference4.googlecode.com/svn/wiki/img/svn.JPG <br>
