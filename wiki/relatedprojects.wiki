@@ -11,5 +11,5 @@ want to adopt the Planning Poker methodology for collaborative user-stories esti
 ----
 
 === eConference AP ===
-[http://code.google.com/p/agileplanner-for-econference/ eConference: AgilePlanner] is a patched version of [http://ase.cpsc.ucalgary.ca/ase/index.php/AgilePlanning/AgilePlanner AgilePlanner], a card-Based planning tool for co-located & distributed agile teams. It is best used together with [http://code.google.com/p/econference-planning-poker-plugin/ eConference3P (PlanningPoker Plugin)], in order to visually edit user stories to be estimated.
+[http://code.google.com/p/agileplanner-for-econference/ eConference: AgilePlanner] is a patched version of [http://ase.cpsc.ucalgary.ca/ase/index.php/AgilePlanning/AgilePlanner AgilePlanner], a card-Based planning tool for co-located & distributed agile teams. It is best used together with [http://code.google.com/p/econference-planning-poker-plugin/ eConferenceP3 (PlanningPoker Plugin)], in order to visually edit user stories to be estimated.
 ----
