@@ -16,6 +16,7 @@ import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.Vector;
 
 import javax.mail.Message;
@@ -40,8 +41,6 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.osgi.service.prefs.Preferences;
-
-import java.util.Properties;
 
 import com.google.gdata.GoogleDocManager;
 

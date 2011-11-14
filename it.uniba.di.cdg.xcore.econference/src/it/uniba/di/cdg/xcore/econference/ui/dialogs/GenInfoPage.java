@@ -126,20 +126,7 @@ public class GenInfoPage extends WizardPage {
 		new CLabel(composite, SWT.NONE).setText("Conference service: *");
 		serviceCombo = new Combo(composite, SWT.READ_ONLY);
 		final MucServers confServices = loadConferenceServices();
-		/*
-		 * String items[] = { "ugres.di.uniba.it", "0nl1ne.at",
-		 * "codingteam.net", "jabber-br.org", "jabber-hispano.org",
-		 * "jabber-me.de", "jabber.ccc.de", "jabber.chaotic.de", "jabber.co.nz",
-		 * "jabber.cz", "jabber.fourecks.de", "jabber.fsinf.at",
-		 * "jabber.hot-chilli.net", "jabber.i-pobox.net", "jabber.iitsp.com",
-		 * "jabber.loudas.com", "jabber.minus273.org", "jabber.no",
-		 * "jabber.org", "jabber.rootbash.com", "jabber.scha.de",
-		 * "jabber.second-home.de", "jabber.sow.as", "jabber.yeahnah.co.nz",
-		 * "jabberbr.com", "jabberd.eu", "jabberes.org", "jabberim.de",
-		 * "jabbim.com", "jabbim.cz", "jabbim.pl", "jabbim.sk", "jabster.pl",
-		 * "jaim.at", "linuxlovers.at", "thiessen.it", "thiessen.org",
-		 * "ubuntu-jabber.de", "ubuntu-jabber.net", "Other..." };
-		 */
+
 		String items[] = confServices.getServerAddresses();
 		serviceCombo
 				.addSelectionListener(new org.eclipse.swt.events.SelectionListener() {
@@ -154,12 +141,6 @@ public class GenInfoPage extends WizardPage {
 							serviceText.setFocus();
 						} else {
 							serviceText.setEnabled(false);
-							/*
-							 * try { serviceText
-							 * .setText(checkConnection(serviceCombo
-							 * .getText())); } catch (BackendException e1) {
-							 * e1.printStackTrace(); }
-							 */
 						}
 						serviceText.setText(confServices
 								.getMucService(serviceCombo.getSelectionIndex()));
@@ -188,6 +169,8 @@ public class GenInfoPage extends WizardPage {
 
 			@Override
 			public void focusLost(FocusEvent e) {
+				String text = nameConferenceText.getText().replace(' ', '_');
+					nameConferenceText.setText(text);
 				filePathText.setText(computeFilePath());			
 			}
 
