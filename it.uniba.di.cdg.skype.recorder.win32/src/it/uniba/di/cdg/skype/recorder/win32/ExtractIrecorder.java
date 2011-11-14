@@ -63,7 +63,6 @@ public class ExtractIrecorder {
 			extractFile("lame_enc.dll");
 			exe = extractFile("irecorder.exe");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return exe.toString();
