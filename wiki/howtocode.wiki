@@ -17,6 +17,7 @@ Besides, you may want to follow this [http://eclipse.dzone.com/articles/using-my
   # use png images whenever possible, gif otherwise;
   # when a bug is encountered, first open an issue in the issue tracker and describe it; then fix it and commit changes
   # write JUnit/Mockito (if possible) test cases for new features added (please, read these guides about [HowToWriteJunitTestCases unit] and [HowToWriteMockTestCases mock] testing for more)
+ # After writing your own tests, make sure you re-run them with all the others (look at the classes within the package {{{it.uniba.di.cdg.econference-tests}}}) to check you did not add any regression to the code base 
   # add the MIT FOSS License prologue when adding new files to the repository. Grab a copy of the MIT License [MitLicense here]
   # ensure that the changes applied don't break the export product procedure (see [http://code.google.com/p/econference4/wiki/howtobuild#Exporting_the_product here] for more on how to export the eConference product)
   # new builds uploaded to the [http://code.google.com/p/econference4/downloads/list Downloads] section must respect this naming conventions
