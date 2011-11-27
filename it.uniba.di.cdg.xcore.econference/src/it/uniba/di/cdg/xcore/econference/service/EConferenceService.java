@@ -24,29 +24,28 @@
  */
 package it.uniba.di.cdg.xcore.econference.service;
 
-import java.util.HashMap;
-
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
 import it.uniba.di.cdg.xcore.econference.IEConferenceService;
 import it.uniba.di.cdg.xcore.econference.model.ConferenceModel;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel;
-import it.uniba.di.cdg.xcore.econference.model.IDiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel.ConferenceStatus;
+import it.uniba.di.cdg.xcore.econference.model.IDiscussionItem;
 import it.uniba.di.cdg.xcore.econference.model.hr.HandRaisingModel;
 import it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion;
-import it.uniba.di.cdg.xcore.econference.model.hr.Question;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
+import it.uniba.di.cdg.xcore.econference.model.hr.Question;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
-import it.uniba.di.cdg.xcore.m2m.model.ParticipantSpecialPrivileges;
-import it.uniba.di.cdg.xcore.m2m.model.SpecialPrivilegesAction;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
+import it.uniba.di.cdg.xcore.m2m.model.SpecialPrivilegesAction;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatService;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
+
+import java.util.HashMap;
 
 /**
  * Implementation of the E-Conference service.
@@ -457,14 +456,14 @@ public class EConferenceService extends MultiChatService implements
 
 			final IParticipant p = getLocalUserOrParticipant(from);
 
-			if (p == null)
+			if (p == null) { // means local user is not the question asker
 				return true;
+			}
 
+			// otherwise, local user is question sender
 			IQuestion existing = getHandRaisingModel().getQuestion(id);
 			// Unknown question? Just add it to the model. A question with the
-			// same
-			// id as an
-			// old one? Replace the previous one too!
+			// same id as an old one? Replace the previous one too!
 			if (existing == null
 					|| (existing != null && QuestionStatus.PENDING
 							.equals(status))) {
@@ -474,11 +473,8 @@ public class EConferenceService extends MultiChatService implements
 				getHandRaisingModel().addQuestion(q);
 			}
 			// Otherwise rejected or approved questions are simply removed from
-			// model:
-			// the controller is responsible for performing additional
-			// functions,
-			// like
-			// freezing or unfreezing.
+			// model: the controller is responsible for performing additional
+			// functions, like freezing or unfreezing.
 			else if (QuestionStatus.REJECTED.equals(status)) {
 				notifyLocalSystemMessage(String
 						.format("Moderator has rejected the following question from %s:\n\"%s\"",
