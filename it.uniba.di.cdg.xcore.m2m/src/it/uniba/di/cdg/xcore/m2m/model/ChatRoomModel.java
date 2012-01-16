@@ -81,7 +81,7 @@ public class ChatRoomModel implements IChatRoomModel {
     	while (pIDs.hasNext() && !found) {
 			String id = (String) pIDs.next();
 			p = participants.get(id);
-			if (p.getNickName().equals(nick) || p.getId().equals(nick)) 
+			if (p.getNickName().equals(nick) || p.getId().equals(nick))
 				found = true;						
 		}
     	return found == true ? p : null;
@@ -183,10 +183,7 @@ public class ChatRoomModel implements IChatRoomModel {
     @GetSafety
     public IParticipant getLocalUserOrParticipant( String id ) {
         IParticipant p = getLocalUser();
-        /*FIXME: controllare se l'ignore case va bene(c'è stato un caso in cui 
-        non è riuscito a riconoscere l'utente perchè le lettere della stanza
-        erano maiuscole */
-        if (p == null || !id.equalsIgnoreCase( p.getId() ))
+        if (p == null || (p != null && !id.equalsIgnoreCase( p.getId() )))
             p = getParticipant( id );
         return p;
     }

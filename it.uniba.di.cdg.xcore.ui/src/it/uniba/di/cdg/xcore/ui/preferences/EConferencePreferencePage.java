@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.DirectoryFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
@@ -27,9 +28,11 @@ public class EConferencePreferencePage extends FieldEditorPreferencePage impleme
     public static final String AUTO_SAVE_LOGS = "it.uniba.di.cdg.xcore.ui.preferences_econference_autosavelogs";
 
     public static final String AUTO_SAVE_LOGS_DIR = "it.uniba.di.cdg.xcore.ui.preferences_econference_autosavelogsdir"; 
-    
+
     public static final String SHOW_TIMESTAMP = "it.uniba.di.cdg.xcore.ui.preferences_econference_showtimestamp";
-        
+
+    public static final String URL_SHORTENER = "it.uniba.di.cdg.xcore.ui.preferences_econference_urlshortener";
+
     private ScopedPreferenceStore preferences;
 
     public EConferencePreferencePage() {
@@ -54,7 +57,11 @@ public class EConferencePreferencePage extends FieldEditorPreferencePage impleme
         addField( new BooleanFieldEditor( SHOW_TIMESTAMP,
                 "Show &timestamp beside statements in the talk view",
                 getFieldEditorParent() ) );
-
+        addField( new ComboFieldEditor(URL_SHORTENER, "Select which URL shortening service to use:",
+                    new String[][] {
+                        { "None", "none" }, 
+                        { "TinyURL", "tinyurl" },
+                    }, getFieldEditorParent()));
     }
 
     /*
@@ -78,9 +85,9 @@ public class EConferencePreferencePage extends FieldEditorPreferencePage impleme
      * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
      */
     public void init( IWorkbench workbench ) {
-        preferences.setDefault( EConferencePreferencePage.AUTO_SAVE_LOGS, false );
-        preferences
-                .setDefault( EConferencePreferencePage.AUTO_SAVE_LOGS_DIR, System.getProperty( "user.dir" ) );     
+        preferences.setDefault(EConferencePreferencePage.AUTO_SAVE_LOGS, false );
+        preferences.setDefault(EConferencePreferencePage.AUTO_SAVE_LOGS_DIR, System.getProperty("user.dir"));
+        preferences.setDefault(EConferencePreferencePage.URL_SHORTENER, "none");
     }
 
 }

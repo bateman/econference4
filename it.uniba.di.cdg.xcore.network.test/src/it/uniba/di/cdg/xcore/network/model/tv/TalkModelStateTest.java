@@ -45,12 +45,12 @@ public class TalkModelStateTest {
     @Test
     public void testAddEntry() {
         Entry[] thread1 = new Entry[] {
-                new Entry( getCurrentTime(), "pippo", "This is what I've to say" ),
-                new Entry( getCurrentTime(), "pluto", "This are my .02 cents" )
+                new Entry( getCurrentTime(), "pippo", "This is what I've to say", Entry.EntryType.CHAT_MSG ),
+                new Entry( getCurrentTime(), "pluto", "This are my .02 cents", Entry.EntryType.CHAT_MSG )
         };
         
         Entry[] thread2 = new Entry[] {
-                new Entry( getCurrentTime(), "mario", "Nothing to say" )
+                new Entry( getCurrentTime(), "mario", "Nothing to say", Entry.EntryType.CHAT_MSG )
         };
 
         // Note that we added thread2 before thread 1 since we want to test that the getAllEntries()
@@ -90,7 +90,7 @@ public class TalkModelStateTest {
     public void testAddFreeTalkEntry() {
         Date now = Calendar.getInstance().getTime();
         
-        Entry entry = new Entry( now, "pippo", "This is what I've to say" );
+        Entry entry = new Entry( now, "pippo", "This is what I've to say", Entry.EntryType.CHAT_MSG );
         
         model.addEntry( entry );
         
@@ -107,7 +107,7 @@ public class TalkModelStateTest {
 
     @Test
     public void testNotification() {
-        Entry entry = new Entry( getCurrentTime(), "pippo", "This is what I've to say" );
+        Entry entry = new Entry( getCurrentTime(), "pippo", "This is what I've to say", Entry.EntryType.CHAT_MSG );
         ITalkModelListener listener = mock(ITalkModelListener.class);
         
         model.addListener( listener );
@@ -127,7 +127,7 @@ public class TalkModelStateTest {
                 
         model.addListener( listener );
         
-        Entry e1 = new Entry( getCurrentTime(), "pippo", "This is what I've to say" );
+        Entry e1 = new Entry( getCurrentTime(), "pippo", "This is what I've to say", Entry.EntryType.CHAT_MSG );
         model.addEntry( e1 );
 
         assertEquals( ITalkModel.FREE_TALK_THREAD_ID, model.getCurrentThread() );

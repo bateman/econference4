@@ -24,7 +24,6 @@
  */
 package it.uniba.di.cdg.xcore.m2m.service;
 
-import it.uniba.di.cdg.aspects.ThreadSafetyAspect;
 import it.uniba.di.cdg.xcore.m2m.events.IManagerEventListener;
 import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.m2m.events.ViewReadOnlyEvent;
@@ -446,7 +445,7 @@ public class MultiChatService implements IMultiChatService,
 		String userId = p.getId();
 
 		if (userId.equals(getLocalUserId()))
-			notifyLocalSystemMessage("Is not possible to send a private message to yourself");
+			notifyLocalSystemMessage("It's not possible to send a private message to yourself");
 		else {
 			HashMap<String, String> param = new HashMap<String, String>();
 			param.put(MESSAGE, message);
@@ -497,7 +496,7 @@ public class MultiChatService implements IMultiChatService,
 	 */
 	public void grantVoice(String nickName) {
 		if (nickName.equals(getLocalUserId()))
-			notifyLocalSystemMessage("Is not possible to allow back in conversation to yourself");
+			notifyLocalSystemMessage("It's not possible to allow back in conversation to yourself");
 		else
 			multiChatServiceActions.grantVoice(getRoomJid(), nickName);
 	}
@@ -523,7 +522,7 @@ public class MultiChatService implements IMultiChatService,
 	 */
 	public void revokeVoice(String nickName) {
 		if (nickName.equals(getLocalUserId()))
-			notifyLocalSystemMessage("Is not possible to block back in conversation to yourself");
+			notifyLocalSystemMessage("It's not possible to block back in conversation to yourself");
 		else
 			multiChatServiceActions.revokeVoice(getRoomJid(), nickName);
 	}
@@ -544,11 +543,13 @@ public class MultiChatService implements IMultiChatService,
 	 * @return
 	 */
 	protected Entry makeEntryFromMessage(IMessage incoming) {
+	    // XXX: shouldn't this be the same of TalkView::makeEntry()?
 		final Date now = Calendar.getInstance().getTime();
 
 		Entry entry = new Entry();
 		entry.setTimestamp(now);
 		entry.setText(incoming.getText());
+		entry.setType(Entry.EntryType.CHAT_MSG);
 
 		IParticipant p = getLocalUserOrParticipant(incoming.getFrom());
 		if (p != null) {
@@ -584,8 +585,8 @@ public class MultiChatService implements IMultiChatService,
 		final Date now = Calendar.getInstance().getTime();
 
 		Entry entry = new Entry();
+		entry.setType(Entry.EntryType.SYSTEM_MSG);
 		entry.setTimestamp(now);
-		entry.setWho("***");
 		entry.setText(message);
 
 		getTalkModel().addEntry(entry);

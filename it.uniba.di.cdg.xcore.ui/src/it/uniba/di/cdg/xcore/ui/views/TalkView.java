@@ -34,6 +34,10 @@ import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModelListener;
 import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
+import it.uniba.di.cdg.xcore.ui.preferences.EConferencePreferencePage;
+import it.uniba.di.cdg.xcore.ui.service.IURLShortener;
+import it.uniba.di.cdg.xcore.ui.service.TinyurlShortener;
+import it.uniba.di.cdg.xcore.ui.util.LinkFinder;
 import it.uniba.di.cdg.xcore.ui.util.TypingStatusUpdater;
 
 import java.io.FileOutputStream;
@@ -47,6 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
@@ -70,7 +75,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
      */
     public static final String ID = UiPlugin.ID + ".views.talkView"; //$NON-NLS-1$
 
-    private static final String SYSTEM_CR = System.getProperty( "line.separator" );;
+    private static final String SYSTEM_CR = System.getProperty( "line.separator" );
 
     private static final int MINIMUM_FONT_HEIGHT = 8;
 
@@ -83,19 +88,19 @@ public class TalkView extends TalkViewUI implements ITalkView {
 
     protected ITalkModel model;
 
-    protected Map<String, StringBuffer> cachedTalks;
+    protected Map<String, List<Entry>> cachedTalks;
 
     protected IAction increaseFontSize;
 
     protected IAction decreaseFontSize;
 
     /**
-     * The model listener will append text messages addded to the model and replace the currently
+     * The model listener will append text messages added to the model and replace the currently
      * displayed text with the one belonging to the newly selected thread id.
      */
     protected ITalkModelListener modelListener = new ITalkModelListener() {
         public void entryAdded( String threadId, Entry entry ) {
-            appendMessage( formatEntry( entry ) );
+            appendMessage( entry );
         }
 
         public void currentThreadChanged( String oldThread, String newThread ) {
@@ -135,13 +140,16 @@ public class TalkView extends TalkViewUI implements ITalkView {
         shiftMaskEnabled = false;
         timeout = 0;
 
-        cachedTalks = new HashMap<String, StringBuffer>();
+        cachedTalks = new HashMap<String, List<Entry>>();
     }
 
     @SwtAsyncExec
     protected void showThread( String threadId ) {
-        StringBuffer sb = getOrCreateCachedText( threadId );
-        messageBoardText.setText( sb.toString() );
+        messageBoardText.setText("");
+        List<Entry> entries = getOrCreateCachedEntries( threadId );
+        for (Entry entry : entries) {
+            appendEntry(entry, false);
+        }
         scrollToEnd();
     }
 
@@ -262,12 +270,6 @@ public class TalkView extends TalkViewUI implements ITalkView {
         getViewSite().getActionBars().getMenuManager().add( decreaseFontSize );
     }
 
-    protected String formatEntry( Entry entry ) {
-        if (entry.isSystemEntry())
-            return entry.getText();
-        return String.format( "%s > %s", entry.getWho(), entry.getText() );
-    }
-
     private void setShiftPressedEnabled( KeyEvent e ) {
         if (e.keyCode == SWT.SHIFT) {
             shiftMaskEnabled = true;
@@ -295,17 +297,6 @@ public class TalkView extends TalkViewUI implements ITalkView {
         return !sendButton.isEnabled();
     }
 
-    /* (non-Javadoc)
-     * @see it.uniba.di.cdg.xcore.ui.views.IMessageBoard#appendMessage(it.uniba.di.cdg.xcore.ui.views.IMessageBoard.LookType,java.lang.String)
-     */
-    public void appendMessage( final IMessage message ) {
-        // Avoid empty text ...
-        if (message == null || message.getText() == null || message.getText().length() == 0)
-            return;
-
-        model.addEntry( makeEntry( message ) );
-    }
-
     /**
      * Format the message, adding the appropriate fields like time date and who has said the message.
      * @param message
@@ -319,27 +310,56 @@ public class TalkView extends TalkViewUI implements ITalkView {
         entry.setText( message.getText() );
 
         if (IMessage.SYSTEM.equals( message.getType() )) {
-            entry.setWho( "***" );
-        } else if (IMessage.CHAT.equals( message.getType() )
-                || IMessage.GROUP_CHAT.equals( message.getType() )) {
-            if (message.getFrom() == null)
+            entry.setWho(Entry.NO_WHO);
+            entry.setType(Entry.EntryType.SYSTEM_MSG);
+        } else if (IMessage.CHAT.equals( message.getType() ) ||
+                   IMessage.GROUP_CHAT.equals( message.getType() )) {
+            entry.setType( Entry.EntryType.CHAT_MSG );
+
+            if (message.getFrom() == null) {
                 entry.setWho( "Me" );
-            else
+            } else {
                 // Other buddy than local user
                 entry.setWho(this.getTitle()); //message.getFrom() );
+            }
         }
         return entry;
+    }
+
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.views.IMessageBoard#appendMessage(it.uniba.di.cdg.xcore.ui.views.IMessageBoard.LookType,java.lang.String)
+     */
+    public void appendMessage( final IMessage message ) {
+        // Avoid empty text ...
+        if (message == null || message.getText() == null || message.getText().length() == 0)
+            return;
+
+        model.addEntry( makeEntry( message ) );
     }
 
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.ui.views.ITalkView#appendMessage(java.lang.String)
      */
     @SwtAsyncExec
-    public void appendMessage( String text ) {
-        String textToAppend = text + "\n";
-        messageBoardText.append( textToAppend );
-        cacheMessage( getModel().getCurrentThread(), textToAppend );
+    public void appendMessage( Entry entry ) {
+        appendEntry( entry, true );
         scrollToEnd();
+    }
+
+    /**
+     * Appends an entry to the messageboard
+     * @param entry the entry to append
+     * @param cacheEntry true if the entry must be saved in the cache, false otherwise
+     *        (normally you want to set this parameter as true, but for example it makes
+     *        sense to set it to false when restoring old conversations since the entries
+     *        are already saved in the cache) 
+     */
+    private void appendEntry ( Entry entry, boolean cacheEntry ) {
+        messageBoardText.pushEntry( entry );
+        
+        if ( cacheEntry ) {
+            cacheEntry( getModel().getCurrentThread(), entry );
+        }
     }
 
     /* (non-Javadoc)
@@ -355,6 +375,34 @@ public class TalkView extends TalkViewUI implements ITalkView {
      */
     private void notifyListeners() {
         String message = getMessage();
+
+        // XXX: is url shortening ok here?
+        List<String> urls = LinkFinder.extractUrls(message);
+        if (urls.size() > 0) {
+            // shorten urls before sending them to other listeners
+            IURLShortener shortener = null;
+            String preferredShortener = Platform.getPreferencesService().getString("it.uniba.di.cdg.xcore.ui",
+                                                                                   EConferencePreferencePage.URL_SHORTENER,
+                                                                                   null, null);
+
+            if (preferredShortener == null) {
+                // no matching url shortening service, do not shorten urls
+                System.err.println("WARNING: no URL shortening services matches " + preferredShortener);
+            } else if (preferredShortener.equals( "none" )) {
+                // do not shorten urls 
+            } else if (preferredShortener.equals( "tinyurl" )) {
+                shortener = new TinyurlShortener();
+            } else {
+                System.err.println("WARNING: no URL shortening services matches " + preferredShortener);
+            }
+
+            if (shortener != null) {
+                for (String url : urls) {
+                    String shortenedUrl = shortener.shortURL(url);
+                    message = message.replace(url, shortenedUrl != null ? shortenedUrl : url);
+                }
+            }
+        }
 
         // Workaround
         // strips trailing carriage return and line feed
@@ -535,7 +583,9 @@ public class TalkView extends TalkViewUI implements ITalkView {
      * @see it.uniba.di.cdg.xcore.ui.views.ITalkView#putSeparator(java.lang.String)
      */
     public void putSeparator( String threadId ) {
-        getModel().addEntry( threadId, new Entry( "---------------------" ) );
+        Entry entry = new Entry("---------------------");
+        entry.setType(Entry.EntryType.SYSTEM_MSG);
+        getModel().addEntry( threadId, entry );
     }
 
     /* (non-Javadoc)
@@ -545,18 +595,18 @@ public class TalkView extends TalkViewUI implements ITalkView {
         return model;
     }
 
-    protected void cacheMessage( String threadId, String text ) {
-        StringBuffer sb = getOrCreateCachedText( threadId );
-        sb.append( text );
+    protected synchronized void cacheEntry( String threadId, Entry entry ) {
+        List<Entry> entries = getOrCreateCachedEntries( threadId );
+        entries.add(entry);
     }
 
-    protected StringBuffer getOrCreateCachedText( String threadId ) {
-        StringBuffer sb = cachedTalks.get( threadId );
-        if (sb == null) {
-            sb = new StringBuffer();
-            cachedTalks.put( threadId, sb );
+    protected synchronized List<Entry> getOrCreateCachedEntries( String threadId ) {
+        List<Entry> entries = cachedTalks.get( threadId );
+        if (entries == null) {
+            entries = new ArrayList<Entry>();
+            cachedTalks.put( threadId, entries );
         }
-        return sb;
+        return entries;
     }
 
 	@Override

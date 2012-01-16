@@ -33,6 +33,7 @@ import it.uniba.di.cdg.xcore.m2m.service.Invitee;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
 import it.uniba.di.cdg.xcore.m2m.ui.views.commands.MultiCallChatCommandHandler;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;
+import it.uniba.di.cdg.xcore.network.model.tv.Entry;
 import it.uniba.di.cdg.xcore.ui.views.TalkView;
 
 import java.util.ArrayList;
@@ -264,7 +265,9 @@ public class MultiChatTalkView extends TalkView implements IMultiChatTalkView {
      * @see it.uniba.di.cdg.xcore.m2m.service.IMessageReceivedListener#privateMessageReceived(java.lang.String, java.lang.String)
      */
     public void privateMessageReceived( String text, String who ) {
-        appendMessage( String.format( "[PM from %s] %s", who, text ) );
+        Entry entry = new Entry(who, text);
+        entry.setType(Entry.EntryType.PRIVATE_MSG);
+        appendMessage(entry);
     }
 
     /* (non-Javadoc)
