@@ -269,7 +269,7 @@ http://econference4.googlecode.com/svn/wiki/img/agenda_statusButton.png
 </p>
 
 
-*WARNING: changes made to the list after the first start of the conference, could have adverse effects on the conversation screens.
+*WARNING: changes made to the agenda list after the first start of the conference may break the correct flow of the threads in the messageboard.
 
 === The Structured Conversation ===
 As soon as you enter the event the eConference is still stopped, but you can freely chat with the participants who are currently online while you wait for the others to join. When everyone is online, the moderator decides that it is time to start to work and presses the start button in the Agenda.
