@@ -173,7 +173,7 @@ http://econference4.googlecode.com/svn/wiki/img/decisions_place.png
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/agenda_parview.png 
-<br />*Figure  12. The agenda participant’s  view. A) Item List - B) Status Bar*  
+<br />*Figure  12. The agenda participant's  view. A) Item List - B) Status Bar*  
 </p>
 
 
@@ -185,13 +185,13 @@ Each participant can see the following sections in the Agenda:
 
 *Status Bar
 
-->This section shows the list of the conference’s status (see Figure  12,B). The bar has background color green when the session is started or red when session is stopped. Furthermore, the bar shows the current discussion item.
+->This section shows the list of the conference status (see Figure  12,B). The bar has background color green when the session is started or red when session is stopped. Furthermore, the bar shows the current discussion item.
 
 === Agenda : The Moderator point of view ===
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/agenda_modview.png 
-<br />*Figure  13. The agenda moderator’s  view.*  
+<br />*Figure  13. The agenda moderator's  view.*  
 </p>
 
 
@@ -199,7 +199,7 @@ The moderator can perform the following actions on the Agenda:
 
 *Append new item to discuss about
 
-->Clicking on the icon “plus” in the right-top corner or in right-clicking context menu, a popup is displayed so that the moderator can enter the new item (see Figure  14) that the stakeholders have to discuss about.  All the changes are propagate to all the online participants. 
+->Clicking on the icon "plus" in the right-top corner or in right-clicking context menu, a popup is displayed so that the moderator can enter the new item (see Figure  14) that the stakeholders have to discuss about.  All the changes are propagate to all the online participants. 
 This function is always enabled during the conference.
 
 
@@ -211,7 +211,7 @@ http://econference4.googlecode.com/svn/wiki/img/agenda_addItem.png
 
 *Edit an item of the list
 
-->Selecting an item and clicking on the icon “rawplug” in the right-top corner or in right-clicking context menu, a popup is displayed so that the moderator can edit the selected item (see Figure  15).  All the changes are propagate to all the online participants. 
+->Selecting an item and clicking on the icon "rawplug" in the right-top corner or in right-clicking context menu, a popup is displayed so that the moderator can edit the selected item (see Figure  15).  All the changes are propagate to all the online participants. 
 This function is always enabled during the conference.
 
 
@@ -223,7 +223,7 @@ http://econference4.googlecode.com/svn/wiki/img/agenda_editItem.png
 
 *Delete an item of the list
 
-->Selecting an item and clicking on the icon “cross” in the right-top corner or in right-clicking context menu, the moderator can delete the selected item (see Figure  16).  All the changes are propagate to all the online participants. 
+->Selecting an item and clicking on the icon "cross" in the right-top corner or in right-clicking context menu, the moderator can delete the selected item (see Figure  16).  All the changes are propagate to all the online participants. 
 This function is enabled only when conference stopped.
 
 
@@ -235,7 +235,7 @@ http://econference4.googlecode.com/svn/wiki/img/agenda_delItem.png
 
 *Move up/down an item in the list
 
-->Selecting an item and clicking on the icon “up arrow/down arrow ” in the right-top corner or in right-clicking context menu, the moderator can move up/down the selected item (see Figure  17).  All the changes are propagate to all the online participants. 
+->Selecting an item and clicking on the icon "up arrow/down arrow"  in the right-top corner or in right-clicking context menu, the moderator can move up/down the selected item (see Figure  17).  All the changes are propagate to all the online participants. 
 This function is enabled only when conference is stopped.
 
 
@@ -259,17 +259,17 @@ http://econference4.googlecode.com/svn/wiki/img/agenda_currItem.png
 
 *Start / stop the conference
 
-->Clicking on the button “status” in the top, the moderator can change the status of eConference’s session  (see Figure  19).  All the changes are propagate to all the online participants. 
+->Clicking on the button "status" in the top, the moderator can change the status of eConference session  (see Figure  19).  All the changes are propagate to all the online participants. 
 This function is always enabled during the conference.
 
 
 <p align="center">
 http://econference4.googlecode.com/svn/wiki/img/agenda_statusButton.png 
-<br />*Figure  19.Started/stopped the conference. 1) Push Status Button to change the conference’s status *  
+<br />*Figure  19.Started/stopped the conference. 1) Push Status Button to change the conference status *  
 </p>
 
 
-*WARNING: changes made to the list after the first start of the conference, could have adverse effects on the conversation’s screens.
+*WARNING: changes made to the list after the first start of the conference, could have adverse effects on the conversation screens.
 
 === The Structured Conversation ===
 As soon as you enter the event the eConference is still stopped, but you can freely chat with the participants who are currently online while you wait for the others to join. When everyone is online, the moderator decides that it is time to start to work and presses the start button in the Agenda.
@@ -284,7 +284,7 @@ http://econference4.googlecode.com/svn/wiki/img/threadeditem1.png
 <br />*Figure  20. Conversation about "Item 1"*  
 </p>
 
-Suppose you have reached a consensus about the current item, and the Scribe has summed up the decisions taken: It is time to move the another item. The Moderator wants edit the second item. Then, he stops the conference to edit “Item2” in “Edited2”, then he restarts the conference and selects it in the agenda. All the statements about Item1 are hidden, and the talk view is again clean, ready to list only the statements related to Edited2 (see Figure 21).
+Suppose you have reached a consensus about the current item, and the Scribe has summed up the decisions taken: It is time to move the another item. The Moderator wants edit the second item. Then, he stops the conference to edit "Item2" in "Edited2", then he restarts the conference and selects it in the agenda. All the statements about Item1 are hidden, and the talk view is again clean, ready to list only the statements related to Edited2 (see Figure 21).
 
 
 
