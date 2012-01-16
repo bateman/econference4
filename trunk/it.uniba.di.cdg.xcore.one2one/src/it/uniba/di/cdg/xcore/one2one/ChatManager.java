@@ -36,6 +36,7 @@ import it.uniba.di.cdg.xcore.network.events.TypingEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
+import it.uniba.di.cdg.xcore.network.model.tv.Entry;
 import it.uniba.di.cdg.xcore.network.model.tv.TalkModel;
 import it.uniba.di.cdg.xcore.one2one.IChatService.ChatContext;
 import it.uniba.di.cdg.xcore.one2one.ui.ChatPerspective;
@@ -238,7 +239,8 @@ public class ChatManager implements IServiceManager, ISendMessagelListener,
 	 */
 	public void notifySendMessage(String message) {
 		System.out.println("Sending message: " + message);
-		talkView.appendMessage("me > " + message);
+		Entry entry = new Entry("me", message);
+		talkView.appendMessage(entry);
 		chatServiceAction.SendMessage(getBuddyId(), message);
 	}
 
@@ -345,12 +347,11 @@ public class ChatManager implements IServiceManager, ISendMessagelListener,
 	protected boolean manageChatMessageReceivedEvent(IBackendEvent event) {
 		if (event instanceof ChatMessageReceivedEvent) {
 			ChatMessageReceivedEvent chatMessageReceivedEvent = (ChatMessageReceivedEvent) event;
-			if (chatMessageReceivedEvent.getBuddy().getId()
-					.equals(chatContext.getBuddyId()))
-				talkView.appendMessage(chatMessageReceivedEvent.getBuddy()
-						.getName()
-						+ " > "
-						+ chatMessageReceivedEvent.getMessage());
+			if (chatMessageReceivedEvent.getBuddy().getId().equals(chatContext.getBuddyId())) {
+			    Entry entry = new Entry(chatMessageReceivedEvent.getBuddy().getName(),
+			                            chatMessageReceivedEvent.getMessage());
+			    talkView.appendMessage(entry);
+			}
 			// talkView.appendMessage(
 			// backendHelper.getRoster().getBuddy(getBuddyId()).getName() +
 			// " > " + chatMessageReceivedEvent.getMessage() );

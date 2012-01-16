@@ -32,28 +32,69 @@ import junit.framework.TestCase;
 public class EntryTest extends TestCase {
     public void testToString() {
         final Date now = Calendar.getInstance().getTime();
-        
-        Entry entry = new Entry( now, "pippo", "This is my text" );
-        
-        String expected = String.format( "[%1$tH:%1$tM:%1$tS] %2$s: %3$s", now, "pippo", "This is my text" );
-        
-        assertEquals( expected, entry.toString() );
+
+        Entry entry = new Entry(now, "pippo", "This is my text", Entry.EntryType.UNKNOWN);
+
+        String expected = String.format("[%1$tH:%1$tM:%1$tS] %2$s: %3$s", now, "pippo", "This is my text");
+
+        assertEquals(expected, entry.toString());
     }
-    
+
     public void testToStringWhenNoWhoIsProvided() {
-        Entry entry = new Entry( "This is my text" );
-        String expected = String.format( "%s", "This is my text" );
-        
-        assertEquals( expected, entry.toString() );
+        Entry entry = new Entry("This is my text");
+        String expected = String.format("%s", "This is my text");
+
+        assertEquals(expected, entry.toString());
     }
-    
+
     public void testIsSystemEntry() {
         final Date now = Calendar.getInstance().getTime();
 
-        Entry normal = new Entry( now, "pippo", "This is my text" );
-        assertFalse( normal.isSystemEntry() );
+        Entry normal = new Entry(now, "pippo", "This is my text", Entry.EntryType.UNKNOWN);
+        assertFalse(normal.isSystemEntry());
+
+        Entry system = new Entry("This is a system entry");
+        assertTrue(system.isSystemEntry());
+    }
+
+    public void testEntryType() {
+        final Date now = Calendar.getInstance().getTime();
+
+        Entry unknown = new Entry(now, "pippo", "This is an unknown message", Entry.EntryType.UNKNOWN);
+        assertEquals(unknown.getType(), Entry.EntryType.UNKNOWN);
+
+        Entry system = new Entry(now, "pippo", "This is a system message", Entry.EntryType.SYSTEM_MSG);
+        assertEquals(system.getType(), Entry.EntryType.SYSTEM_MSG);
+
+        Entry chatmsg = new Entry(now, "pippo", "This is my chat message", Entry.EntryType.CHAT_MSG);
+        assertEquals(chatmsg.getType(), Entry.EntryType.CHAT_MSG);
         
-        Entry system = new Entry( "This is a system entry" );
-        assertTrue( system.isSystemEntry() );
+        Entry privatemsg = new Entry(now, "pippo", "This is my private message", Entry.EntryType.PRIVATE_MSG);
+        assertEquals(privatemsg.getType(), Entry.EntryType.PRIVATE_MSG);
+
+        /* a constructor that takes only a `who' and a `message' must be
+         * a chat message (the timestamp must be set automatically)
+         */
+        Entry entry = new Entry("pippo", "message");
+        assertEquals(entry.getWho(), "pippo");
+        assertEquals(entry.getText(), "message");
+        assertEquals(entry.getType(), Entry.EntryType.CHAT_MSG);
+        assertTrue(now.getTime() - entry.getTimestamp().getTime() < 2000);
+    }
+
+    public void testEntryTypeChange() {
+        final Date now = Calendar.getInstance().getTime();
+
+        Entry entry = new Entry(now, "pippo", "This is an unknown message", Entry.EntryType.UNKNOWN);
+        assertEquals(entry.getType(), Entry.EntryType.UNKNOWN);
+
+        entry.setType(Entry.EntryType.CHAT_MSG);
+        assertEquals(entry.getType(), Entry.EntryType.CHAT_MSG);
+
+        entry.setType(Entry.EntryType.SYSTEM_MSG);
+        assertEquals(entry.getType(), Entry.EntryType.SYSTEM_MSG);
+
+        entry.setType(Entry.EntryType.PRIVATE_MSG);
+        assertEquals(entry.getType(), Entry.EntryType.PRIVATE_MSG);
     }
 }

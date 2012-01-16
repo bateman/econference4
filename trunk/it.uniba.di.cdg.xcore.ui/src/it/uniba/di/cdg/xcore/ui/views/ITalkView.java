@@ -29,6 +29,7 @@ import org.eclipse.ui.ISaveablePart;
 import it.uniba.di.cdg.xcore.network.events.ITypingEventListener;
 import it.uniba.di.cdg.xcore.network.events.ITypingListener;
 import it.uniba.di.cdg.xcore.network.messages.IMessage;
+import it.uniba.di.cdg.xcore.network.model.tv.Entry;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
 
 /**
@@ -41,6 +42,7 @@ import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
  * </ul>
  */
 public interface ITalkView extends IActivatableView, ITypingEventListener, ISaveablePart {
+
     /**
      * All the listeners for input panel events want to implements this.
      */
@@ -102,27 +104,27 @@ public interface ITalkView extends IActivatableView, ITypingEventListener, ISave
      * @param listener
      */
     void removeTypingListener( ITypingListener listener );
-    
-    /**
-     * Append a message to the message board.
-     * 
-     * @param message
-     */
-    void appendMessage( IMessage message );
-    
+
     /**
      * Returns the current text in the talk view.
      * 
      * @return the current chat text
      */
     String getChatLogText();
-    
+
+    /**
+     * Append a message to the message board.
+     * 
+     * @param message
+     */
+    void appendMessage( IMessage message );
+
     /**
      * Convenience method for displaying some simple text messages.
      * 
      * @param text
      */
-    void appendMessage( String text );
+    void appendMessage( Entry entry );
     
     /**
      * Updates the status area with a new, client defined string

@@ -29,6 +29,16 @@ import java.util.Date;
 
 public class Entry {
     public static final String NO_WHO = "__NO_WHO__";
+
+    /**
+     * Specify what type of entry is this. An entry can be of three main
+     * types: a system message (<code>SYSTEM_MSG</code>), a normal
+     * chat message (<code>CHAT_MSG</code>) or a private message (PRIVATE_MSG).
+     * In case it's not possible to define a senseful entry type, the
+     * type <code>UNKNOWN</code> must be used.
+     *
+     */
+    public static enum EntryType { UNKNOWN, SYSTEM_MSG, CHAT_MSG, PRIVATE_MSG };
     
     /**
      * The timestamp indicating when this message has been logged.
@@ -38,26 +48,40 @@ public class Entry {
     private String who;
 
     private String text;
+    
+    private EntryType entryType;
 
     public Entry() {
-        this( null, null, null );
+        this( null, null, null, EntryType.UNKNOWN );
     }
 
-    public Entry( Date timestamp, String who, String text ) {
+    public Entry( Date timestamp, String who, String text, EntryType entryType ) {
         super();
         this.timestamp = timestamp;
         this.who = who;
         this.text = text;
+        this.entryType = entryType;
+    }
+
+    /**
+     * Convenience constructor for adding chat message: the timestamp is set to "now",
+     * it's only required to specify the sender and the message
+     * 
+     * @param who
+     * @param text
+     */
+    public Entry( String who, String text ) {
+        this( Calendar.getInstance().getTime(), who, text, EntryType.CHAT_MSG );
     }
 
     /**
      * Convenience constructor for adding system message: the timestamp is set to "now" 
      * and the "who" field set to <code>NO_WHO</code>.
-     * 
+     *
      * @param text
      */
     public Entry( String text ) {
-        this( Calendar.getInstance().getTime(), NO_WHO, text );
+        this( Calendar.getInstance().getTime(), NO_WHO, text, EntryType.UNKNOWN );
     }
 
     public Date getTimestamp() {
@@ -85,6 +109,21 @@ public class Entry {
     }
 
     /**
+     * Change the entry type
+     */
+    public void setType(EntryType entryType) {
+        this.entryType = entryType;
+    }
+
+    /**
+     * Returns the entry type
+     * @return an <code>EntryType</code> member
+     */
+    public EntryType getType() {
+        return this.entryType;
+    }
+
+    /**
      * Helper method that tests if <code>who == NO_WHO</code>.
      * 
      * @return <code>true</code> if the entry is a system message entry, <code>false</code> otherwise
@@ -92,7 +131,7 @@ public class Entry {
     public boolean isSystemEntry() {
         return NO_WHO.equals( getWho() );
     }
-    
+
     @Override
     public String toString() {
         if (NO_WHO.equals( getWho() ))

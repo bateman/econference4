@@ -49,6 +49,7 @@ import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
+import it.uniba.di.cdg.xcore.network.model.tv.Entry;
 import it.uniba.di.cdg.xcore.network.services.JoinException;
 import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
@@ -347,7 +348,9 @@ public class MultiChatManager implements IMultiChatManager {
 			 */
 			@Override
 			public void voiceGranted() {
-				talkView.appendMessage("*** > Moderator has allowed you back in conversation!");
+			    Entry entry = new Entry("Moderator has allowed you back in conversation!");
+			    entry.setType(Entry.EntryType.SYSTEM_MSG);
+				talkView.appendMessage(entry);
 				talkView.setReadOnly(false);
 			}
 
@@ -360,7 +363,9 @@ public class MultiChatManager implements IMultiChatManager {
 			 */
 			@Override
 			public void voiceRevoked() {
-				talkView.appendMessage("*** > Moderator has stopped you from contributing to conversation!");
+			    Entry entry = new Entry("Moderator has stopped you from contributing to conversation!");
+                entry.setType(Entry.EntryType.SYSTEM_MSG);
+			    talkView.appendMessage(entry);
 				talkView.setReadOnly(true);
 			}
 		});

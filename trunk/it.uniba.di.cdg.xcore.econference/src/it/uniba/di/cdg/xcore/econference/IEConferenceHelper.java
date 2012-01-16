@@ -45,6 +45,8 @@ public interface IEConferenceHelper {
     public static final String AUTO_SAVE_LOGS = EConferencePreferencePage.AUTO_SAVE_LOGS;
     
     public static final String AUTO_SAVE_LOGS_DIR = EConferencePreferencePage.AUTO_SAVE_LOGS_DIR;
+    
+    public static final String URL_SHORTENER = EConferencePreferencePage.URL_SHORTENER;
 
     /**
      * Perform helper initialization.

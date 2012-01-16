@@ -29,7 +29,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ it.uniba.di.cdg.xcore.ui.util.AllTests.class, })
+@Suite.SuiteClasses({
+    it.uniba.di.cdg.xcore.ui.util.AllTests.class,
+    it.uniba.di.cdg.xcore.ui.internal.AllTests.class,
+})
 public class AllTests {
 
 	/**

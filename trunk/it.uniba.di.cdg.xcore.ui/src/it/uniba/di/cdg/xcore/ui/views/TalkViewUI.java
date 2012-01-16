@@ -24,35 +24,39 @@
  */
 package it.uniba.di.cdg.xcore.ui.views;
 
+import it.uniba.di.cdg.xcore.ui.IImageResources;
+import it.uniba.di.cdg.xcore.ui.UiPlugin;
+import it.uniba.di.cdg.xcore.ui.internal.EntryRichStyledText;
+import it.uniba.di.cdg.xcore.ui.internal.RichStyledText;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.ui.part.ViewPart;
 
 /**
  * The GUI of the talking with remote user(s) (a message board and an input area).
  * 
- * Rich edit: http://www.eclipse.org/articles/StyledText%201/article1.html.
  */
 public class TalkViewUI extends ViewPart {
     private Composite top = null;
 
     private SashForm sashForm = null;
 
-    protected StyledText messageBoardText = null;
+    protected EntryRichStyledText messageBoardText = null;
 
     private Composite inputTextComposite = null;
+    
+    private Composite sendComposite = null;
 
-    protected StyledText userInputText = null;
+    protected RichStyledText userInputText = null;
 
     protected Button sendButton = null;
 
@@ -85,11 +89,13 @@ public class TalkViewUI extends ViewPart {
     private void createSashForm() {
         sashForm = new SashForm( top, SWT.NONE );
         sashForm.setOrientation( org.eclipse.swt.SWT.VERTICAL );
-        messageBoardText = new StyledText( sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP );
+        messageBoardText = new EntryRichStyledText(sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
+        messageBoardText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         messageBoardText.setEditable( false );
+       
         createComposite1();
     }
-
+    
     /**
      * This method initializes composite.
      */
@@ -113,10 +119,29 @@ public class TalkViewUI extends ViewPart {
         inputTextComposite = new Composite( bottomComposite, SWT.NONE );
         inputTextComposite.setLayout( gridLayout );
         inputTextComposite.setLayoutData( gridData1 );
-        userInputText = new StyledText( inputTextComposite, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP );
+        userInputText = new RichStyledText(inputTextComposite, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
         userInputText.setLayoutData( gridData );
-        sendButton = new Button( inputTextComposite, SWT.NONE );
+        
+        createHelpLabel();
+
+        sendButton = new Button( sendComposite, SWT.NONE );
         sendButton.setText( "Send" );
+    }
+    
+    private void createHelpLabel() {
+        RowLayout sendLayout = new RowLayout();
+        sendLayout.type = SWT.VERTICAL;
+        sendLayout.justify = true;
+        sendLayout.pack = true;
+        sendLayout.center = true;
+        sendLayout.fill = true;
+        sendComposite = new Composite( inputTextComposite, SWT.NONE );
+        sendComposite.setLayout( sendLayout );
+        
+        final CLabel helpLabel = new CLabel( sendComposite, SWT.NONE );
+        final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_ONLINE );
+        helpLabel.setToolTipText( "*bold*  _underline_");
+        helpLabel.setImage( onlineImg );
     }
 
     /**
@@ -145,24 +170,6 @@ public class TalkViewUI extends ViewPart {
      */
     // TODO Bug 53: https://cde.di.uniba.it/tracker/index.php?func=detail&aid=53&group_id=9&atid=138
     protected void scrollToEnd() {
-        ScrollBar scrollBar = messageBoardText.getVerticalBar();
-        scrollBar.addSelectionListener(new SelectionListener(){
-
-            /* (non-Javadoc)
-             * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-             */
-            public void widgetSelected( SelectionEvent e ) {
-                // TODO Auto-generated method stub
-                System.out.println(e);
-            }
-
-            public void widgetDefaultSelected( SelectionEvent e ) {
-                // TODO Auto-generated method stub
-                System.out.println(e);
-            }
-            
-        });
-       
         int n = messageBoardText.getCharCount();
         messageBoardText.setSelection( n, n );
         messageBoardText.showSelection();
