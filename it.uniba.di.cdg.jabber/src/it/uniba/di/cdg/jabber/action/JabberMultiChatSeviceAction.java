@@ -7,6 +7,7 @@ import it.uniba.di.cdg.smackproviders.TypingNotificationPacket;
 import it.uniba.di.cdg.xcore.m2m.service.MultiChatContext;
 import it.uniba.di.cdg.xcore.network.action.IMultiChatServiceActions;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
+import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatInvitationDeclinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
@@ -16,7 +17,6 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatNameChangedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatOwnershipRevokedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatSubjectUpdatedEvent;
-import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatComposingEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserJoinedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
@@ -47,6 +47,7 @@ import org.jivesoftware.smackx.muc.DefaultParticipantStatusListener;
 import org.jivesoftware.smackx.muc.DefaultUserStatusListener;
 import org.jivesoftware.smackx.muc.InvitationRejectionListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
+import org.jivesoftware.smackx.muc.Occupant;
 import org.jivesoftware.smackx.muc.ParticipantStatusListener;
 import org.jivesoftware.smackx.muc.RoomInfo;
 import org.jivesoftware.smackx.muc.SubjectUpdatedListener;
@@ -209,14 +210,16 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions {
 
 		@Override
 		public void joined(String userId) {
-			// FIXME raises a NPE
-			String cleanJid = XMPPUtils.cleanJid(smackMultiChat.getOccupant(
-					userId).getJid());
-			String name = XMPPUtils.getUserNameFromChatString(userId);
-			String role = smackMultiChat.getOccupant(userId).getRole();
-			IBackendEvent event = new MultiChatUserJoinedEvent(
-					JabberBackend.ID, cleanJid, name, role);
-			backend.getHelper().notifyBackendEvent(event);
+			Occupant o = smackMultiChat.getOccupant(userId);
+			if(null != o) {
+				String jid = o.getJid();
+				String cleanJid = jid == null? o.getNick() : XMPPUtils.cleanJid(jid);
+				String name = XMPPUtils.getUserNameFromChatString(userId);
+				String role = o.getRole();
+				IBackendEvent event = new MultiChatUserJoinedEvent(
+						JabberBackend.ID, cleanJid, name, role);
+				backend.getHelper().notifyBackendEvent(event);
+			}
 		}
 
 		@Override
@@ -520,18 +523,9 @@ public class JabberMultiChatSeviceAction implements IMultiChatServiceActions {
 		} catch (XMPPException e) {
 			try {
 				smackMultiChat.join(nickName);
-				// FIXME controllare perchè grantModerator viene ignorata
+				// XXX controllare perchè grantModerator viene ignorata
 				// if (moderator == true) {
 				// smackMultiChat.grantModerator(nickName);
-				// Form form = smackMultiChat.getConfigurationForm();
-				// Form answerForm = form.createAnswerForm();
-				// answerForm.setAnswer("muc#roomconfig_moderatedroom", true);
-				// answerForm.setAnswer("muc#roomconfig_publicroom", false);
-				// answerForm.setAnswer("muc#roomconfig_allowinvites", false);
-				// answerForm.setAnswer("muc#roomconfig_whois",
-				// Arrays.asList("anyone"));
-				//
-				// smackMultiChat.sendConfigurationForm(answerForm);
 				// }
 			} catch (XMPPException e1) {
 				e1.printStackTrace();
