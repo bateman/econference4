@@ -68,7 +68,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.jivesoftware.smack.AccountManager;
-import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.PacketListener;
@@ -79,6 +78,7 @@ import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Presence.Mode;
 import org.jivesoftware.smackx.muc.InvitationListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
@@ -272,6 +272,10 @@ ConnectionListener {
 			// increase the response timeout to 10 secs. for slow connections and muc servers
 			SmackConfiguration.setPacketReplyTimeout(10000);
 
+			// enable debugger trhough command line 
+			// add "-Dsmack.debugEnabled=true" to the batch file or eclipse launcher
+			XMPPConnection.DEBUG_ENABLED = Boolean.valueOf(System.getProperty("smack.debugEnabled", "false"));
+			
 			// This doesn't work ...
 			// XMPPConnection.addConnectionListener(
 			// (ConnectionEstablishedListener) this );
