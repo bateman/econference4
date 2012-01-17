@@ -8,7 +8,7 @@
  * terms of the MIT Open Source license.
  * 
  * The MIT License
- * Copyright (c) 2006 - 2011 Collaborative Development Group - Dipartimento di Informatica, 
+ * Copyright (c) 2006 - 2012 Collaborative Development Group - Dipartimento di Informatica, 
  *                    University of Bari, http://cdg.di.uniba.it
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this 
  * software and associated documentation files (the "Software"), to deal in the Software 
