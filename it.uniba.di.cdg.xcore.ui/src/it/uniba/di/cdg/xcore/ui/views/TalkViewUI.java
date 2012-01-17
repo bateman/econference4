@@ -137,10 +137,10 @@ public class TalkViewUI extends ViewPart {
         sendLayout.fill = true;
         sendComposite = new Composite( inputTextComposite, SWT.NONE );
         sendComposite.setLayout( sendLayout );
-        
+
         final CLabel helpLabel = new CLabel( sendComposite, SWT.NONE );
-        final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_BACKEND_ONLINE );
-        helpLabel.setToolTipText( "*bold*  _underline_");
+        final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_HELP );
+        helpLabel.setToolTipText( "*bold*\n_underline_");
         helpLabel.setImage( onlineImg );
     }
 

@@ -46,6 +46,7 @@ public interface IImageResources {
     public static final String ICON_GROUP = "people"; //$NON-NLS-1$
     public static final String ICON_BACKEND_ONLINE = "backend_online"; //$NON-NLS-1$
     public static final String ICON_BACKEND_OFFLINE = "backend_offline"; //$NON-NLS-1$
+    public static final String ICON_HELP = "help_icon";
     
 	public static final String ICON_SCRIBE_VOTER = "user_scribe_voter";
 	public static final String ICON_SCRIBE = "user_scribe_active";
