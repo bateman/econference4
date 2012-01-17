@@ -9,6 +9,7 @@ import it.uniba.di.cdg.xcore.network.action.ICallAction;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.call.CallEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
+import it.uniba.di.cdg.xcore.network.model.IBuddy;
 import it.uniba.di.cdg.xcore.one2one.ChatManager.IChatStatusListener;
 import it.uniba.di.cdg.xcore.one2one.IChatService.ChatContext;
 import it.uniba.di.cdg.xcore.ui.IUIHelper;
@@ -88,14 +89,16 @@ public class ChatHelper implements IChatHelper {
 		if (event instanceof ChatMessageReceivedEvent) {
 			final ChatMessageReceivedEvent chatMessageReceivedEvent = (ChatMessageReceivedEvent) event;
 
-			final ChatContext chatContext = new ChatContext(
-					// FIXME sometimes generates a NPE, see issue 48
-					// http://code.google.com/p/econference4/issues/detail?id=48
-					chatMessageReceivedEvent.getBuddy().getId(),
-					new ChatMessage(
-							chatMessageReceivedEvent.getBuddy().getId(),
-							chatMessageReceivedEvent.getMessage()));
-			openChatWindow(chatContext);
+			IBuddy buddy = chatMessageReceivedEvent.getBuddy();
+			if (null != buddy) {
+				final ChatContext chatContext = new ChatContext(
+						// FIXME sometimes generates a NPE, see issue 48
+						// http://code.google.com/p/econference4/issues/detail?id=48
+						buddy.getId(),
+						new ChatMessage(buddy.getId(),
+										chatMessageReceivedEvent.getMessage()));
+				openChatWindow(chatContext);
+			}
 		}
 
 		else if (event instanceof CallEvent) {
