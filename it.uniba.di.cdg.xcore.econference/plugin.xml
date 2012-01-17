@@ -314,6 +314,27 @@
             id="it.uniba.di.cdg.xcore.econference.ui.commands.exit"
             name="exit">
       </command>
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.econference.toolbar.handler.AddAgendaItem"
+            id="it.uniba.di.cdg.xcore.econference.toolbar.add_agenda_item"
+            name="Add agenda item">
+      </command>
+      <command
+            id="it.uniba.di.cdg.xcore.econference.popup.MoveUp"
+            name="Move up">
+      </command>
+      <command
+            id="it.uniba.di.cdg.xcore.econference.popup.MoveDown"
+            name="Move down">
+      </command>
+      <command
+            id="it.uniba.di.cdg.xcore.econference.popup.EditItem"
+            name="Edit item">
+      </command>
+      <command
+            id="it.uniba.di.cdg.xcore.econference.popup.DeleteItem"
+            name="Delete item">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -330,6 +351,137 @@
             </command>
          </menu>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:it.uniba.di.cdg.xcore.econference.ui.views.agendaView">
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.MoveUp"
+               icon="icons/popup_agenda_moveup.png"
+               label="Move up"
+               style="push"
+               tooltip="Move up the selected item">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.active">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.MoveDown"
+               icon="icons/popup_agenda_movedown.png"
+               label="Move down"
+               style="push"
+               tooltip="Move down the selected item">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.active">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <separator
+               name="it.uniba.di.cdg.xcore.econference.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.toolbar.add_agenda_item"
+               icon="icons/popup_agenda_additem.png"
+               label="Add a new discussion item"
+               style="push"
+               tooltip="Click to append a new discussion item to the agenda">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.active">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.EditItem"
+               icon="icons/popup_agenda_edititem.png"
+               label="Edit"
+               style="push"
+               tooltip="Edit selected item">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.active">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.DeleteItem"
+               icon="icons/popup_agenda_deleteitem.png"
+               label="Delete"
+               style="push"
+               tooltip="Delete selected item">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.active">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="falsefalse"
+            locationURI="popup:it.uniba.di.cdg.xcore.econference.ui.views.agendaView">
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.MoveUp"
+               icon="icons/popup_agenda_moveup.png"
+               label="Move up"
+               style="push"
+               tooltip="Move up the selected item">
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.MoveDown"
+               icon="icons/popup_agenda_movedown.png"
+               label="Move down"
+               style="push"
+               tooltip="Move down the selected item">
+         </command>
+         <separator
+               name="it.uniba.di.cdg.xcore.econference.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.toolbar.add_agenda_item"
+               icon="icons/popup_agenda_additem.png"
+               label="Add Item"
+               style="push"
+               tooltip="Click to append a new discussion item to the agenda">
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.EditItem"
+               icon="icons/popup_agenda_edititem.png"
+               label="Edit"
+               style="push"
+               tooltip="Edit selected item">
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.popup.DeleteItem"
+               icon="icons/popup_agenda_deleteitem.png"
+               label="Delete"
+               style="push"
+               tooltip="Delete selected item">
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="it.uniba.di.cdg.xcore.econference.eventloader">
@@ -342,6 +494,98 @@
             pluginID="it.uniba.di.cdg.xcore.econference"
             service="e-conference">
       </loader>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="it.uniba.di.cdg.xcore.econference.popup.handler.MoveUp"
+            commandId="it.uniba.di.cdg.xcore.econference.popup.MoveUp">
+         <enabledWhen>
+            <and>
+               <reference
+                     definitionId="oneElementSelected">
+               </reference>
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.enable">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </and>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="it.uniba.di.cdg.xcore.econference.popup.handler.MoveDown"
+            commandId="it.uniba.di.cdg.xcore.econference.popup.MoveDown">
+         <enabledWhen>
+            <and>
+               <reference
+                     definitionId="oneElementSelected">
+               </reference>
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.enable">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </and>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="it.uniba.di.cdg.xcore.econference.popup.handler.EditItem"
+            commandId="it.uniba.di.cdg.xcore.econference.popup.EditItem">
+         <enabledWhen>
+            <reference
+                  definitionId="oneElementSelected">
+            </reference>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="it.uniba.di.cdg.xcore.econference.popup.handler.DeleteItem"
+            commandId="it.uniba.di.cdg.xcore.econference.popup.DeleteItem">
+         <enabledWhen>
+            <and>
+               <reference
+                     definitionId="oneElementSelected">
+               </reference>
+               <with
+                     variable="it.uniba.di.cdg.xcore.econference.sourceprovider.enable">
+                  <equals
+                        value="ENABLED">
+                  </equals>
+               </with>
+            </and>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="oneElementSelected">
+         <with
+               variable="selection">
+            <count
+                  value="1">
+            </count>
+         </with>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.services">
+      <sourceProvider
+            provider="it.uniba.di.cdg.xcore.econference.sourceprovider.AgendaCommandState">
+         <variable
+               name="it.uniba.di.cdg.xcore.econference.sourceprovider.active"
+               priorityLevel="workbench">
+         </variable>
+      </sourceProvider>
+      <sourceProvider
+            provider="it.uniba.di.cdg.xcore.econference.sourceprovider.AgendaCommandStateModerator">
+         <variable
+               name="it.uniba.di.cdg.xcore.econference.sourceprovider.enable"
+               priorityLevel="workbench">
+         </variable>
+      </sourceProvider>
    </extension>
 
 

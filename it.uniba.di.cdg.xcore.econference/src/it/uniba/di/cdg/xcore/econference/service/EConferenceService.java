@@ -25,6 +25,7 @@
 package it.uniba.di.cdg.xcore.econference.service;
 
 import it.uniba.di.cdg.xcore.econference.EConferenceContext;
+import it.uniba.di.cdg.xcore.econference.IEConferenceManager;
 import it.uniba.di.cdg.xcore.econference.IEConferenceService;
 import it.uniba.di.cdg.xcore.econference.model.ConferenceModel;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel;
@@ -35,6 +36,8 @@ import it.uniba.di.cdg.xcore.econference.model.hr.IHandRaisingModel;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
 import it.uniba.di.cdg.xcore.econference.model.hr.Question;
+import it.uniba.di.cdg.xcore.econference.popup.handler.DeleteItem;
+import it.uniba.di.cdg.xcore.econference.toolbar.handler.ManagerTransport;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant.Role;
 import it.uniba.di.cdg.xcore.m2m.model.SpecialPrivilegesAction;
@@ -303,6 +306,7 @@ public class EConferenceService extends MultiChatService implements
 		System.out.println("notifyItemListToRemote");
 		HashMap<String, String> param = new HashMap<String, String>();
 
+		System.out.println("notifyItemListToRemote itelist: "+getModel().getItemList());
 		param.put(ITEMS, getModel().getItemList().encode());
 		getMultiChatServiceActions().SendExtensionProtocolMessage(ITEM_LIST,
 				param);
@@ -390,6 +394,16 @@ public class EConferenceService extends MultiChatService implements
 			String strItemId = (String) mcepe.getExtensionParameter(ITEM_ID);
 			if (!ITalkModel.FREE_TALK_THREAD_ID.equals(strItemId)) {
 				int itemId = Integer.parseInt(strItemId);
+				
+				//Case DiscussedItem_AgendaView  
+				if (itemId == new DeleteItem().deleteIndex){
+					getModel().getItemList().setCurrentItemIndex(itemId);
+					String threadId = ITalkModel.FREE_TALK_THREAD_ID;
+					
+					IEConferenceManager manager = new ManagerTransport().getManager();
+					getTalkModel().setCurrentThread(threadId);
+					manager.getTalkView().setTitleText("Free talk now ...");
+				}
 				// Note that we update *** independently *** the agenda item
 				// list
 				// and talk model (which handles the discussion threads)
@@ -397,12 +411,17 @@ public class EConferenceService extends MultiChatService implements
 					getModel().getItemList().setCurrentItemIndex(itemId);
 					String newSubject = ((IDiscussionItem) getModel()
 							.getItemList().getItem(itemId)).getText();
+										
 					getModel().setSubject(newSubject, "[System]");
-				} catch (IllegalArgumentException e) {
-					// the item list will protest if we set an out-of-range
-					// index:
-					// here it is just safe ignoring its cries ...
-					// e.printStackTrace();
+				}
+				// the item list will protest if we get or set an out-of-range
+				// index: here it is just safe ignoring it cries ...
+				catch (IllegalArgumentException e) {
+					System.out.println("Agenda list empty ("
+							+ getModel().getItemList().size()
+							+ ") or item index (" + itemId + ") out of range");
+				}
+				catch(ArrayIndexOutOfBoundsException aiobe) {
 					System.out.println("Agenda list empty ("
 							+ getModel().getItemList().size()
 							+ ") or item index (" + itemId + ") out of range");
@@ -456,11 +475,9 @@ public class EConferenceService extends MultiChatService implements
 
 			final IParticipant p = getLocalUserOrParticipant(from);
 
-			if (p == null) { // means local user is not the question asker
+			if (p == null) 
 				return true;
-			}
 
-			// otherwise, local user is question sender
 			IQuestion existing = getHandRaisingModel().getQuestion(id);
 			// Unknown question? Just add it to the model. A question with the
 			// same id as an old one? Replace the previous one too!
