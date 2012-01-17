@@ -298,8 +298,8 @@ public class MultiChatService implements IMultiChatService,
 		multiChatServiceActions = backend.getMultiChatServiceAction();
 		getBackend().getHelper().registerBackendListener(this);
 		// If no nick name is provided we just use current connection jid
-		if ((context.getNickName() == null)
-				|| (context.getNickName().equals("")))
+		if ((getLocalUserNickName() == null)
+				|| (getLocalUserNickName().equals("")))
 			context.setNickName(backend.getUserId());
 
 		boolean moderator = false;
@@ -310,7 +310,7 @@ public class MultiChatService implements IMultiChatService,
 				&& userId.equals(context.getModerator().getId()))
 			moderator = true;
 		multiChatServiceActions.join(getRoomJid(), context.getPassword(),
-				context.getNickName(), getLocalUserId(), moderator);
+				getLocalUserNickName(), getLocalUserId(), moderator);
 		updateInitialLocalUserStatus();
 
 		// Notify listeners that we have joined ...
@@ -387,7 +387,7 @@ public class MultiChatService implements IMultiChatService,
 	 *            string
 	 * @return role object
 	 */
-	public static Role fromSmackRole(String role) {
+	public static Role stringToRole(String role) {
 		if ("moderator".equals(role) || "owner".equals(role))
 			return Role.MODERATOR;
 		else if ("participant".equals(role))
@@ -415,7 +415,7 @@ public class MultiChatService implements IMultiChatService,
 		String id = getLocalUserId();
 
 		IParticipant local = new Participant(getModel(), id,
-				context.getNickName(), context.getPersonalStatus(),
+				getLocalUserNickName(), context.getPersonalStatus(),
 				Role.PARTICIPANT);
 
 		return local;
@@ -449,8 +449,8 @@ public class MultiChatService implements IMultiChatService,
 		else {
 			HashMap<String, String> param = new HashMap<String, String>();
 			param.put(MESSAGE, message);
-			param.put(TO, userId);
-			param.put(FROM, getLocalUserId());
+			param.put(TO, userId);			
+			param.put(FROM, getLocalUserNickName());
 
 			multiChatServiceActions.SendExtensionProtocolMessage(
 					PRIVATE_MESSAGE, param);
@@ -880,7 +880,8 @@ public class MultiChatService implements IMultiChatService,
 
 	protected boolean managePrivateMessage(MultiChatExtensionProtocolEvent mcepe) {
 		if (mcepe.getExtensionName().equals(PRIVATE_MESSAGE)) {
-			if (mcepe.getExtensionParameter(TO).equals(getLocalUserId())) {
+			if (mcepe.getExtensionParameter(TO).equals(getLocalUserId()) ||
+					mcepe.getExtensionParameter(TO).equals(getLocalUserNickName())) {
 				final String from = (String) mcepe.getExtensionParameter(FROM);
 				final String text = (String) mcepe
 						.getExtensionParameter(MESSAGE);
@@ -895,6 +896,10 @@ public class MultiChatService implements IMultiChatService,
 		}
 		return false;
 
+	}
+
+	public String getLocalUserNickName() {
+		return context.getNickName();
 	}
 
 	protected boolean manageChatComposing(IBackendEvent event) {
@@ -1039,7 +1044,7 @@ public class MultiChatService implements IMultiChatService,
 			MultiChatUserJoinedEvent mcuje = (MultiChatUserJoinedEvent) event;
 			IParticipant p = getModel().getParticipant(mcuje.getUserId());
 			if (p == null) {
-				Role role = fromSmackRole(mcuje.getRole());
+				Role role = stringToRole(mcuje.getRole());
 				p = new Participant(getModel(), mcuje.getUserId(),
 						mcuje.getUserName(), "", role, Status.JOINED);
 				getModel().addParticipant(p);
