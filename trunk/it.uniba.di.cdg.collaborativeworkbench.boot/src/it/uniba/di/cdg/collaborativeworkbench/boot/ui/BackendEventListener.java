@@ -24,8 +24,6 @@
  */
 package it.uniba.di.cdg.collaborativeworkbench.boot.ui;
 
-import java.util.HashSet;
-
 import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.events.BackendStatusChangeEvent;
@@ -33,6 +31,9 @@ import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
+import it.uniba.di.cdg.xcore.network.model.IBuddy;
+
+import java.util.HashSet;
 
 public class BackendEventListener implements IBackendEventListener {
 
@@ -45,7 +46,6 @@ public class BackendEventListener implements IBackendEventListener {
 
 	@Override
 	public void onBackendEvent(IBackendEvent event) {
-		// TODO Auto-generated method stub
 		if (event instanceof MultiChatMessageEvent) {
 			messageIncoming=true;
 			history.add(((MultiChatMessageEvent) event).getFrom());
@@ -54,8 +54,9 @@ public class BackendEventListener implements IBackendEventListener {
 
 		if (event instanceof ChatMessageReceivedEvent) {
 			messageIncoming=true;
-			history.add(((ChatMessageReceivedEvent) event).getBuddy().getId());
-			
+			IBuddy buddy = ((ChatMessageReceivedEvent) event).getBuddy();
+			String id = buddy == null? "" : buddy.getId();
+			history.add(id);			
 		}
 
 		if (event instanceof BackendStatusChangeEvent) {
@@ -81,7 +82,6 @@ public class BackendEventListener implements IBackendEventListener {
 	}
 	
 	public void start() {
-		// TODO Auto-generated method stub
 		for (IBackendDescriptor d : NetworkPlugin.getDefault().getRegistry().getDescriptors())
 			NetworkPlugin.getDefault().getHelper().registerBackendListener(d.getId(), this); 
 	}
