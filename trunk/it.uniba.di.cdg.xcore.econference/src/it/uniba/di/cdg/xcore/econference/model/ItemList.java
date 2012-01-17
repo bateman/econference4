@@ -96,13 +96,16 @@ public class ItemList implements IItemList {
      */
     @SetSafety
     public void removeItem( int itemIndex ) {
-        IDiscussionItem item = items.get( itemIndex );
-        
-        items.remove( itemIndex );
-
-        for (IItemListListener l : listeners)
-            l.itemRemoved( item );
+    	if(items.size() > 0) {
+	        IDiscussionItem item = items.get( itemIndex );
+	        
+	        items.remove( itemIndex );
+	
+	        for (IItemListListener l : listeners)
+	            l.itemRemoved( item );
+    	}
     }
+    	
 
 
     /* (non-Javadoc)
@@ -127,7 +130,7 @@ public class ItemList implements IItemList {
      */
     @SetSafety
     public void setCurrentItemIndex( int itemIndex ) {
-        if (itemIndex >= size() || itemIndex < -1)
+        if (itemIndex >= size() || (itemIndex < -1 && itemIndex != -15))
             throw new IllegalArgumentException( "itemIndex out of range" );
         this.current = itemIndex;
         

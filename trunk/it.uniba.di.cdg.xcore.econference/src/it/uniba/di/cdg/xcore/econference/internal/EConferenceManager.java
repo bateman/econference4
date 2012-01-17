@@ -37,6 +37,7 @@ import it.uniba.di.cdg.xcore.econference.model.ItemListListenerAdapter;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
 import it.uniba.di.cdg.xcore.econference.service.EConferenceService;
+import it.uniba.di.cdg.xcore.econference.toolbar.handler.ManagerTransport;
 import it.uniba.di.cdg.xcore.econference.ui.views.AgendaView;
 import it.uniba.di.cdg.xcore.econference.ui.views.HandRaisingView;
 import it.uniba.di.cdg.xcore.econference.ui.views.IAgendaView;
@@ -54,7 +55,6 @@ import it.uniba.di.cdg.xcore.network.messages.SystemMessage;
 import it.uniba.di.cdg.xcore.network.model.tv.ITalkModel;
 
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.WorkbenchException;
 
 /**
@@ -98,6 +98,7 @@ public class EConferenceManager extends MultiChatManager implements
 
 			String threadId = ITalkModel.FREE_TALK_THREAD_ID;
 			if (conferenceStopped) {
+				getTalkView().getModel().setCurrentThread(ITalkModel.FREE_TALK_THREAD_ID);
 				getTalkView().appendMessage(
 						new SystemMessage(conferenceStoppedMessage));
 				getTalkView().setTitleText(FREE_TALK_NOW_MESSAGE);
@@ -119,7 +120,6 @@ public class EConferenceManager extends MultiChatManager implements
 			if (Role.MODERATOR.equals(getService().getModel().getLocalUser()
 					.getRole()))
 				notifyCurrentAgendaItemChanged(threadId);
-			// getTalkView().setReadOnly( conferenceStopped );
 		}
 	};
 
@@ -238,7 +238,12 @@ public class EConferenceManager extends MultiChatManager implements
 				AgendaView.ID);
 		agendaView = (IAgendaView) viewPart;
 		agendaView.setManager(this);
-		agendaView.setReadOnly(!Role.MODERATOR.equals(getRole()));
+		agendaView.setReadOnly(!Role.MODERATOR.equals(getService().getModel().getLocalUser()
+				.getRole()));
+		
+		ManagerTransport m_t = new ManagerTransport();
+		m_t.setManager(this);
+		
 		return viewPart;
 	}
 
