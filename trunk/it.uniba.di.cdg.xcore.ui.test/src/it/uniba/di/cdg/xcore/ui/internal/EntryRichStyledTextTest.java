@@ -25,13 +25,12 @@
 package it.uniba.di.cdg.xcore.ui.internal;
 
 import it.uniba.di.cdg.xcore.network.model.tv.Entry;
+import junit.framework.TestCase;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
-
-import junit.framework.TestCase;
 
 /**
  * jUnit test for {@see it.uniba.di.cdg.xcore.ui.internal.RichStyledText}. 
@@ -64,11 +63,11 @@ public class EntryRichStyledTextTest extends TestCase {
      * (might) change for different texts
      */
     public void testSameColorForSameParticipant() {
-        assertSame(instance.getColorForText("xxx"), instance.getColorForText("xxx"));
+        assertEquals(instance.getColorForText("xxx").getRGB(), instance.getColorForText("xxx").getRGB());
         // changing only one character should give a different hash value
         // but the truth is this depends on the hash function we're using,
         // so if you change the hash function this test could fail
-        assertNotSame(instance.getColorForText("xxx"), instance.getColorForText("xxy"));
+        assertTrue(!instance.getColorForText("xxx").getRGB().equals(instance.getColorForText("xxy").getRGB()));
     }
 
     public void testEntryPushing() {
