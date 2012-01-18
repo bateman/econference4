@@ -238,8 +238,8 @@ public class EConferenceManager extends MultiChatManager implements
 				AgendaView.ID);
 		agendaView = (IAgendaView) viewPart;
 		agendaView.setManager(this);
-		agendaView.setReadOnly(!Role.MODERATOR.equals(getService().getModel().getLocalUser()
-				.getRole()));
+//		agendaView.setReadOnly(!Role.MODERATOR.equals(getService().getModel().getLocalUser()
+//				.getRole()));
 		
 		ManagerTransport m_t = new ManagerTransport();
 		m_t.setManager(this);
