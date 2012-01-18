@@ -32,8 +32,6 @@ import it.uniba.di.cdg.xcore.econference.model.ConferenceModelListenerAdapter;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel;
 import it.uniba.di.cdg.xcore.econference.model.IConferenceModel.ConferenceStatus;
 import it.uniba.di.cdg.xcore.econference.model.IItemList;
-import it.uniba.di.cdg.xcore.econference.model.IItemListListener;
-import it.uniba.di.cdg.xcore.econference.model.ItemListListenerAdapter;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion;
 import it.uniba.di.cdg.xcore.econference.model.hr.IQuestion.QuestionStatus;
 import it.uniba.di.cdg.xcore.econference.service.EConferenceService;
@@ -123,9 +121,10 @@ public class EConferenceManager extends MultiChatManager implements
 		}
 	};
 
+	// TODO eliminare?
 	/**
 	 * Keep the subject in sync with the agenda selections made by moderators.
-	 */
+	 *
 	protected IItemListListener itemListListener = new ItemListListenerAdapter() {
 		@Override
 		public void currentSelectionChanged(int currItemIndex) {
@@ -139,7 +138,7 @@ public class EConferenceManager extends MultiChatManager implements
 			// getService().getModel().setSubject( newSubject, "" );
 			// }
 		}
-	};
+	};*/
 
 	/**
 	 * Construct a new conference manager.
@@ -238,8 +237,8 @@ public class EConferenceManager extends MultiChatManager implements
 				AgendaView.ID);
 		agendaView = (IAgendaView) viewPart;
 		agendaView.setManager(this);
-//		agendaView.setReadOnly(!Role.MODERATOR.equals(getService().getModel().getLocalUser()
-//				.getRole()));
+		//agendaView.setReadOnly(!Role.MODERATOR.equals(getService().getModel().getLocalUser()
+			//	.getRole()));
 		
 		ManagerTransport m_t = new ManagerTransport();
 		m_t.setManager(this);
@@ -277,7 +276,7 @@ public class EConferenceManager extends MultiChatManager implements
 				.getModel();
 		model.addListener(conferenceModelListener);
 
-		model.getItemList().addListener(itemListListener);
+		// TODO model.getItemList().addListener(itemListListener);
 
 		// The multichat has already registered a listener for participant
 		// status changes: so
