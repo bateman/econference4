@@ -124,7 +124,7 @@ public class EConferenceManagerBehaviorTest {
       // The agenda readOnly property is set checking the user role.
       // This attribute is saved in the running service but the whole service interaction 
       // is tested in MultiChatManager behavior Test so we just verify that the agenda property is configured.
-      verify(agendaView).setReadOnly( !Role.MODERATOR.equals(role) );
+//      verify(agendaView).setReadOnly( !Role.MODERATOR.equals(role) );
       verify(whiteBoardView).setManager( manager );
       verify(whiteBoardView).setReadOnly( true );
       verify(handRaisingView).setManager( manager );
