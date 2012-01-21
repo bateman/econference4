@@ -247,7 +247,7 @@ http://econference4.googlecode.com/svn/wiki/img/agenda_moveItem.png
 
 *Select the current item from the list
 
-->Selecting an item and double-clicking on this, the moderator can this item as the current discussion item (see Figure  18).  All the changes are propagate to all the online participants. 
+->Selecting an item and double-clicking on this, the moderator can select this item as the current discussion item (see Figure  18).  All the changes are propagate to all the online participants. 
 This function is enabled only when conference started.
 
 
