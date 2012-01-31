@@ -96,6 +96,10 @@ public class TalkViewUI extends ViewPart {
         messageBoardText = new EntryRichStyledText(sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
         messageBoardText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         messageBoardText.setEditable( false );
+        // Adding formatting listener
+        messageBoardText.addFormatListener( new LinkFormatter() );
+        messageBoardText.addFormatListener( new RichFormatting() );
+        messageBoardText.addFormatListener( new EmailFormatter() );
         
         createComposite1();
     }
