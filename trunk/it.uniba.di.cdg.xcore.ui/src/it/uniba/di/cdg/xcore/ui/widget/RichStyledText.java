@@ -23,7 +23,11 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package it.uniba.di.cdg.xcore.ui.internal;
+package it.uniba.di.cdg.xcore.ui.widget;
+
+import it.uniba.di.cdg.xcore.ui.formatter.FormatListener;
+import it.uniba.di.cdg.xcore.ui.internal.UrlListener;
+import it.uniba.di.cdg.xcore.ui.util.LinkFinder;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -39,8 +43,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import it.uniba.di.cdg.xcore.ui.util.LinkFinder;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
@@ -89,6 +91,8 @@ public class RichStyledText extends StyledText implements LineStyleListener,
 
     private List<UrlListener> urlListeners = new LinkedList<UrlListener>();
 
+    private List<FormatListener> formatListeners = new LinkedList<FormatListener>();
+
     protected int currentTextLength;
 
     public RichStyledText(Composite parent, int style) {
@@ -122,108 +126,11 @@ public class RichStyledText extends StyledText implements LineStyleListener,
     public void addUrlListener(UrlListener listener) {
         urlListeners.add( listener );
     }
-
-    /*
-     * Performs textual transformation of items enclosed within two characters
-     * as following:
-     * - items within two asterisks (*text*) become bold
-     * - items within two underlines (_text_) become underlined
-     */
-    protected List<StyleRange> applyStyleFormatting(final String text, final int startOffset) {
-        List<StyleRange> list = new ArrayList<StyleRange>();
-        int i = 0, endOffset;
-
-        while (i < text.length() - 1) {
-            if (text.charAt(i) == '*') {
-                endOffset = text.indexOf( '*', i + 1 );
-                if (endOffset != -1) {
-                    StyleRange bold = new StyleRange();
-                    bold.start = startOffset + i;
-                    bold.length = endOffset - i + 1;
-                    bold.fontStyle = SWT.BOLD;
-                    list.add( bold );
-                    
-                    i = endOffset;
-                } else {
-                    i++;
-                }
-            } else if (text.charAt(i) == '_') {
-                endOffset = text.indexOf( '_', i + 1 );
-                if (endOffset != -1) {
-                    StyleRange underline = new StyleRange();
-                    underline.start = startOffset + i;
-                    underline.length = endOffset - i + 1;
-                    underline.underline = true;
-                    list.add( underline );
-                    
-                    i = endOffset;
-                } else {
-                    i++;
-                }
-            }
-
-            i++;
-        }
-
-        return list;
+    
+    public void addFormatListener( FormatListener listener ) {
+        formatListeners.add( listener );
     }
-
-    /*
-     * Find links in the text just added and format them accordingly
-     */
-    protected List<StyleRange> applyStyleLinks(final String text, final int startOffset) {
-        final List<String> urls = LinkFinder.extractUrls(text);
-        List<StyleRange> list = new ArrayList<StyleRange>();
-
-        int start = 0;
-        for (String url : urls) {
-            start = text.indexOf( url, start );
-
-            StyleRange urlstyle = new StyleRange();
-            urlstyle.underline = true;
-            urlstyle.underlineStyle = SWT.UNDERLINE_LINK;
-            urlstyle.underlineColor = null;
-            urlstyle.foreground = null;
-            urlstyle.start = startOffset + start;
-            urlstyle.length = url.length();
-            urlstyle.data = url.startsWith("http") ? url : "http://" + url;
-            list.add(urlstyle);
-
-            start++;
-        }
-
-        return list;
-    }
-
-    /*
-     * Transform in links email addresses
-     */
-    protected List<StyleRange> applyStyleMail(final String text, final int startOffset) {
-        List<StyleRange> list = new ArrayList<StyleRange>();
-        final String[] tokens = text.split( " " );
-        int i;
-        String token;
-
-        for (i = 0; i < tokens.length; i++) {
-            token = tokens[i];
-            
-            if (! isValidEmailAddress( token ) ) continue;
-
-            String mail = token;
-            StyleRange style = new StyleRange();
-
-            style.start = startOffset + text.indexOf(mail);
-            style.length = mail.length();
-            style.underline = true;
-            style.underlineStyle = SWT.UNDERLINE_LINK;
-            style.underlineColor = null;
-            style.foreground = null;
-            style.data = "mailto://" + mail;
-            list.add(style);
-        }
-        return list;
-    }
-
+    
     @Override
     public void append( String string ) {
         // alter the text *before* it gets added to the widget
@@ -241,9 +148,9 @@ public class RichStyledText extends StyledText implements LineStyleListener,
         // return one or more StyleRange objects that should be added to the
         // style list (ex: link styles, one for each link)
         List<StyleRange> newStyles = new LinkedList<StyleRange>();
-        newStyles.addAll( applyStyleLinks( string, startOffset ) );
-        newStyles.addAll( applyStyleMail( string, startOffset ) );
-        newStyles.addAll( applyStyleFormatting( string, startOffset ) );
+        for (FormatListener listener : formatListeners) {
+            newStyles.addAll( listener.applyFormatting( string, startOffset ) );
+        }
 
         addStyles (newStyles );
         redrawRange( startOffset, string.length(), true );
@@ -305,7 +212,7 @@ public class RichStyledText extends StyledText implements LineStyleListener,
      * @param url url where to load the image from
      * @return the loaded Image instance
      */
-    protected Image getImage( String url ) {
+    public Image getImage( String url ) {
         if (urlImageCache.containsKey( url )) {
             return urlImageCache.get( url );
         }
@@ -441,9 +348,9 @@ public class RichStyledText extends StyledText implements LineStyleListener,
 
         // run the content filters on text that is currently being written
         if (startOffset >= currentTextLength) {
-            tmpStyleList.addAll( applyStyleLinks(text, startOffset) );
-            tmpStyleList.addAll( applyStyleMail(text, startOffset) );
-            tmpStyleList.addAll( applyStyleFormatting(text, startOffset) );
+            for (FormatListener listener : formatListeners) {
+                tmpStyleList.addAll( listener.applyFormatting( text, startOffset ) );
+            }
         }
 
         event.styles = tmpStyleList.toArray( new StyleRange[tmpStyleList.size()] );
@@ -576,5 +483,10 @@ public class RichStyledText extends StyledText implements LineStyleListener,
         
         addStyles( styles );
         return text;
+    }
+    
+    
+    public List<FormatListener> getFormatListeners() {
+        return formatListeners;
     }
 };

@@ -24,8 +24,13 @@
  */
 package it.uniba.di.cdg.xcore.econference.ui.views;
 
+import it.uniba.di.cdg.xcore.ui.formatter.EmailFormatter;
+import it.uniba.di.cdg.xcore.ui.formatter.LinkFormatter;
+import it.uniba.di.cdg.xcore.ui.formatter.RichFormatting;
+import it.uniba.di.cdg.xcore.ui.widget.RichStyledText;
+
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
@@ -37,20 +42,54 @@ public class WhiteBoardViewUI extends ViewPart {
 
     private Composite top = null;
 
-    protected StyledText whiteBoardText = null;
-
-    /* (non-Javadoc)
+    protected RichStyledText whiteBoardText = null;
+ 
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
      */
     @Override
     public void createPartControl( Composite parent ) {
+        FillLayout layout = new FillLayout();
         top = new Composite( parent, SWT.NONE );
-        top.setLayout(new FillLayout());
-        whiteBoardText = new StyledText(top, SWT.BORDER | SWT.V_SCROLL);
-        whiteBoardText.setWordWrap(true);
+        top.setLayout( layout );
+        whiteBoardText = new RichStyledText( top, SWT.BORDER | SWT.V_SCROLL );
+        // Adding formatter to the Whiteboard
+        whiteBoardText.addFormatListener( new LinkFormatter() );
+        whiteBoardText.addFormatListener( new EmailFormatter() );
+        whiteBoardText.addFormatListener( new RichFormatting() );
+    }
+    
+    /**
+     * This method applies the formatting style that corresponds to the string passed as parameter
+     * 
+     * @param s a String that represents a formatting style
+     */
+    public void applyFormatting( String s ) {
+        Point sel = whiteBoardText.getSelectionRange();
+        String new_text = s + whiteBoardText.getSelectionText() + s;
+
+        if ((sel == null) || (sel.y == 0))
+            return;
+        
+        whiteBoardText.replaceTextRange( sel.x, sel.y, new_text );
+    }
+    
+    public String getWhiteBoardTextContent() {
+        return whiteBoardText.getText();
     }
 
-    /* (non-Javadoc)
+    public void setWhiteBoardTextContent( String text ) {
+        this.whiteBoardText.setText( text );
+    }
+
+    public void setSelectionRangWhiteBoardText(int start, int lenght){
+        this.whiteBoardText.setSelectionRange( start, lenght );
+    }
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
      */
     @Override

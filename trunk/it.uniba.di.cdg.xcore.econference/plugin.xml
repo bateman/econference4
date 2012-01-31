@@ -292,6 +292,26 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+M3+X">
       </key>
+      <key
+            commandId="it.uniba.di.cdg.xcore.econference.bold"
+            schemeId="it.uniba.di.cdg.xcore.econference.WhiteBoardScheme"
+            sequence="M1+B">
+      </key>
+            <key
+                  commandId="it.uniba.di.cdg.xcore.econference.underline"
+                  schemeId="it.uniba.di.cdg.xcore.econference.WhiteBoardScheme"
+                  sequence="M1+U">
+      </key>
+            <key
+                  commandId="it.uniba.di.cdg.xcore.econference.strike"
+                  schemeId="it.uniba.di.cdg.xcore.econference.WhiteBoardScheme"
+                  sequence="M1+H">
+      </key>
+      <scheme
+            id="it.uniba.di.cdg.xcore.econference.WhiteBoardScheme"
+            name="WhiteBoardScheme"
+            parentId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </scheme>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -334,6 +354,21 @@
       <command
             id="it.uniba.di.cdg.xcore.econference.popup.DeleteItem"
             name="Delete item">
+      </command>
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.views.handlers.FormatterHandler"
+            id="it.uniba.di.cdg.xcore.econference.bold"
+            name="bold">
+      </command>
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.views.handlers.FormatterHandler"
+            id="it.uniba.di.cdg.xcore.econference.underline"
+            name="underline">
+      </command>
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.views.handlers.FormatterHandler"
+            id="it.uniba.di.cdg.xcore.econference.strike"
+            name="strike">
       </command>
    </extension>
    <extension
@@ -481,6 +516,32 @@
                style="push"
                tooltip="Delete selected item">
          </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:it.uniba.di.cdg.xcore.econference.ui.views.whiteBoardView?before=refresh">
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.bold"
+               icon="icons/bold_icon.png"
+               label="Bold"
+               style="push">
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.underline"
+               icon="icons/underline_icon.png"
+               label="Underline"
+               style="push">
+         </command>
+         <command
+               commandId="it.uniba.di.cdg.xcore.econference.strike"
+               icon="icons/strike_icon.png"
+               label="Strike"
+               style="push">
+         </command>
+         <separator
+               name="it.uniba.di.cdg.xcore.econference.separator2"
+               visible="true">
+         </separator>
       </menuContribution>
    </extension>
    <extension
