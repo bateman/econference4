@@ -98,6 +98,8 @@ public class WhiteBoardView extends WhiteBoardViewUI implements IWhiteBoard {
                 getManager().notifyWhiteBoardChanged( WhiteBoardView.this.getText() );
             }
         };
+
+        refreshRemoteAction.setId( "refresh" );
         refreshRemoteAction.setText( "Refresh remote clients" );
         refreshRemoteAction.setToolTipText( "Refresh white board contents for remote peers" );
         refreshRemoteAction.setImageDescriptor( MultiChatPlugin.imageDescriptorFromPlugin(

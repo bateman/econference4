@@ -19,8 +19,11 @@ Import-Package: it.uniba.di.cdg.jabber,
  it.uniba.di.cdg.xcore.network.events,
  it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.ui.views,
+ org.eclipse.core.commands,
  org.eclipse.core.commands.common,
+ org.eclipse.swt,
  org.eclipse.swt.widgets,
  org.eclipse.ui,
+ org.eclipse.ui.handlers,
  org.eclipse.ui.part
 Export-Package: it.uniba.di.cdg.xcore.econference.test.allpackagetests

@@ -23,7 +23,7 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package it.uniba.di.cdg.xcore.ui.internal;
+package it.uniba.di.cdg.xcore.ui.widget;
 
 import it.uniba.di.cdg.xcore.network.model.tv.Entry;
 
@@ -84,7 +84,7 @@ public class EntryRichStyledText extends RichStyledText {
         redrawRange( style.start, style.length, true );
     }
 
-    protected String formatEntry( Entry entry ) {
+    public String formatEntry( Entry entry ) {
         switch (entry.getType()) {
         case CHAT_MSG:
             return String.format( "%s> %s", entry.getWho(), entry.getText() );
@@ -102,7 +102,7 @@ public class EntryRichStyledText extends RichStyledText {
     /**
      * Return always the same color for the given text
      */
-    protected Color getColorForText(String text) {
+    public Color getColorForText(String text) {
         final Display display = this.getShell().getDisplay();
 
         Color[] COLORS = {

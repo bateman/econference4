@@ -25,6 +25,7 @@
 package it.uniba.di.cdg.xcore.ui.internal;
 
 import it.uniba.di.cdg.xcore.network.model.tv.Entry;
+import it.uniba.di.cdg.xcore.ui.widget.EntryRichStyledText;
 import junit.framework.TestCase;
 
 import org.eclipse.swt.SWT;

@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	it.uniba.di.cdg.xcore.econference.AllTests.class,
 	it.uniba.di.cdg.xcore.econference.model.hr.AllTests.class,
-	it.uniba.di.cdg.xcore.econference.model.internal.AllTests.class
+	it.uniba.di.cdg.xcore.econference.model.internal.AllTests.class,
+	it.uniba.di.cdg.xcore.econference.ui.views.AllTests.class
 })
 public class AllTests {
 

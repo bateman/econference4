@@ -26,13 +26,17 @@ package it.uniba.di.cdg.xcore.ui.views;
 
 import it.uniba.di.cdg.xcore.ui.IImageResources;
 import it.uniba.di.cdg.xcore.ui.UiPlugin;
-import it.uniba.di.cdg.xcore.ui.internal.EntryRichStyledText;
-import it.uniba.di.cdg.xcore.ui.internal.RichStyledText;
+import it.uniba.di.cdg.xcore.ui.formatter.EmailFormatter;
+import it.uniba.di.cdg.xcore.ui.formatter.LinkFormatter;
+import it.uniba.di.cdg.xcore.ui.formatter.RichFormatting;
+import it.uniba.di.cdg.xcore.ui.widget.EntryRichStyledText;
+import it.uniba.di.cdg.xcore.ui.widget.RichStyledText;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -92,7 +96,7 @@ public class TalkViewUI extends ViewPart {
         messageBoardText = new EntryRichStyledText(sashForm, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
         messageBoardText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         messageBoardText.setEditable( false );
-       
+        
         createComposite1();
     }
     
@@ -122,6 +126,10 @@ public class TalkViewUI extends ViewPart {
         userInputText = new RichStyledText(inputTextComposite, SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
         userInputText.setLayoutData( gridData );
         
+        userInputText.addFormatListener( new LinkFormatter() );
+        userInputText.addFormatListener( new EmailFormatter() );
+        userInputText.addFormatListener( new RichFormatting() );
+        
         createHelpLabel();
 
         sendButton = new Button( sendComposite, SWT.NONE );
@@ -140,7 +148,7 @@ public class TalkViewUI extends ViewPart {
 
         final CLabel helpLabel = new CLabel( sendComposite, SWT.NONE );
         final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_HELP );
-        helpLabel.setToolTipText( "*bold*\n_underline_");
+        helpLabel.setToolTipText( "*bold* (Ctrl+B)\n_underline_  (Ctrl+U)\n-strike-  (Ctrl+H)");
         helpLabel.setImage( onlineImg );
     }
 
@@ -174,4 +182,20 @@ public class TalkViewUI extends ViewPart {
         messageBoardText.setSelection( n, n );
         messageBoardText.showSelection();
     }
+    
+    /**
+     * This method applies the formatting style that corresponds to the string passed as parameter
+     * 
+     * @param s a String that rappresents a formatting style
+     */
+    public  void applyFormatting( String s ) {
+        Point sel = userInputText.getSelectionRange();
+        String new_text = s + userInputText.getSelectionText() + s;
+
+        if ((sel == null) || (sel.y == 0))
+            return;
+
+        userInputText.replaceTextRange( sel.x, sel.y, new_text );
+    }
+
 } // @jve:decl-index=0:visual-constraint="54,58"
