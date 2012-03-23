@@ -28,9 +28,9 @@ Export-Package: it.uniba.di.cdg.xcore.econference,
  it.uniba.di.cdg.xcore.econference.ui.views,
  it.uniba.di.cdg.xcore.econference.ui.views.handlers,
  it.uniba.di.cdg.xcore.econference.util
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: lib/jpathwatch-0-92a.jar,
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7, JavaSE-1.6
+Bundle-ClassPath: lib/jpathwatch-0-95.jar,
  .,
- lib/java_file_copy_library-0.9.6_all.jar
+ lib/java_file_copy_library-0.9.7_all.jar
 Import-Package: it.uniba.di.cdg.xcore.econference.model,
  it.uniba.di.cdg.xcore.econference.model.definition
