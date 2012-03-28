@@ -25,15 +25,28 @@
 
 package it.uniba.di.cdg.xcore.ui.wizards;
 
+import it.uniba.di.cdg.xcore.ui.service.Auth;
+import it.uniba.di.cdg.xcore.ui.service.Plusclass;
+
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
@@ -42,187 +55,445 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.osgi.service.prefs.Preferences;
 
+import com.google.api.services.plus.Plus;
+import com.google.api.services.plus.model.Person;
+import org.eclipse.swt.widgets.Canvas;
+
 /**
  * Wizard page for GMail account configuration
  * 
  * @see WizardPage
+ * 
+ *      Modified from Malerba Francesco in order to support the google+ account associated with the
+ *      gmail mail.
  */
+
 public class GMailPage extends WizardPage {
-	
-	private Text username;	//GMail username text line
-	
-	private Text password;	//GMail password text line
 
-	/**
-	 * The constructor
-	 */
-	protected GMailPage() {
-		super("GMail account");
-		setTitle("GMail account");
-		setDescription("Enter username and password, or leave blank and click next to skip this step");
-	}
+    private Text username; // GMail username text line
 
-	/**
-	 * Show the form
-	 * 
-	 * @see WizardPage#createControl(Composite)
-	 */
-	public void createControl(final Composite parent) {
-		/* Search data in preferences */
-		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
-		Preferences gmailPref = preferences.node(IConfigurationConstant.GMAIL);
-		String usernamePref = gmailPref.get(IConfigurationConstant.USERNAME, "");
-		String passwordPref = gmailPref.get(IConfigurationConstant.PASSWORD, "");
+    private Text password; // GMail password text line
 
-		/* Setup container layout */
-		Composite container = new Composite(parent, SWT.NULL);
-	    FillLayout layout = new FillLayout(SWT.VERTICAL);
-	    container.setLayout(layout);
-		setControl(container);
+    private String imageurl;
 
-		/* Setup group layout */
-		Group gmailGroup = new Group(container, SWT.SHADOW_IN);
-		GridLayout groupLayout = new GridLayout();
-		groupLayout.numColumns = 2;
-		gmailGroup.setText("GMail account data");
-		gmailGroup.setLayout(groupLayout);
+    private String profileurl;
 
-		/* Add username label */
-		Label usernameLabel = new Label(gmailGroup, SWT.NONE);
-		GridData usernameGrid = new GridData(GridData.HORIZONTAL_ALIGN_END);
-		usernameGrid.horizontalIndent = 20;
-		usernameLabel.setLayoutData(usernameGrid);
-		usernameLabel.setText("Username:");
+    private String plusid;
 
-		/* Add username text line */
-		username = new Text(gmailGroup, SWT.BORDER);
-		username.setText(usernamePref);
-		username.addListener(SWT.Modify, new Listener() {
+    private String name;
 
-			/* Checks the validity of the data if it changes */
-			@Override
-			public void handleEvent(Event event) {
-				dataControl();
-			}
-		});
-		username.addListener(SWT.FocusOut, new Listener() {
+    // needed for gplus account info
+    private Text token;
 
-			/* Add @gmail.com suffix to username if necessary */
-			@Override
-			public void handleEvent(Event event) {
-				String usernameRegex = "[a-zA-Z0-9._%-]+";
-				Pattern usernamePattern = Pattern.compile(usernameRegex);
-				Matcher usernameMatcher = usernamePattern.matcher(username.getText());
+    boolean utenteloggato = false;
 
-				if (usernameMatcher.matches()) {
-					username.setText(username.getText() + "@gmail.com");
-				}
-			}
-		});
-		username.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    boolean tokeninserito = false;
 
-		/* Add a spacer */
-		Label spacer1Label = new Label(gmailGroup, SWT.NONE);
-		GridData spacer1Grid = new GridData();
-		spacer1Grid.horizontalSpan = 2;
-		spacer1Label.setLayoutData(spacer1Grid);
+    private int codiceerrore;
 
-		/* Add password label */
-		Label passwordLabel = new Label(gmailGroup, SWT.NONE);
-		GridData passwordGrid = new GridData();
-		passwordGrid.horizontalIndent = 20;
-		passwordLabel.setLayoutData(passwordGrid);
-		passwordLabel.setText("Password:");
+    private Image im;
 
-		/* Add password text line */
-		password = new Text(gmailGroup, SWT.BORDER);
-		password.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-		password.setEchoChar('*');
-		password.setText(passwordPref);
-		password.addListener(SWT.Modify, new Listener() {
+    /**
+     * The constructor
+     */
+    protected GMailPage() {
+        super( "GMail account" );
+        setTitle( "GMail account" );
+        setDescription( "Enter username and password, or leave blank and click next to skip this step" );
+    }
 
-			/* Checks the validity of the data if it changes */
-			@Override
-			public void handleEvent(Event event) {
-				dataControl();
-			}
-		});
+    /**
+     * Show the form
+     * 
+     * @see WizardPage#createControl(Composite)
+     */
+    public void createControl( final Composite parent ) {
+        /* Search data in preferences */
+        Preferences preferences = ConfigurationScope.INSTANCE
+                .getNode( IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER );
+        Preferences gmailPref = preferences.node( IConfigurationConstant.GMAIL );
+        String usernamePref = gmailPref.get( IConfigurationConstant.USERNAME, "" );
+        String passwordPref = gmailPref.get( IConfigurationConstant.PASSWORD, "" );
 
-		dataControl();
-	}
+        /* Setup container layout */
+        Composite container = new Composite( parent, SWT.NULL );
+        org.eclipse.swt.layout.GridLayout g = new GridLayout();
+        g.numColumns = 9;
+        container.setLayout( g );
+        setControl( container );
 
-	/**
-	 * Checks the validity of user entered data and, if necessary, prevents from
-	 * continuing in the wizard
-	 */
-	private void dataControl() {
-		setPageComplete(false);
-		setMessage(null);
-		setErrorMessage(null);
+        /* Setup group layout */
+        Group gmailGroup = new Group( container, SWT.SHADOW_IN );
+        gmailGroup.setText( "GMail account data" );
 
-		if (username.getText().length() == 0
-				&& password.getText().length() == 0) {
-			/* If there are no data allows you to skip this step */
-			setPageComplete(true);
-			setMessage(null);
-			setErrorMessage(null);
-			return;
-		}
+        /* Add username label */
+        GridLayout gl_gmailGroup = new GridLayout( 2, false );
+        gmailGroup.setLayout( gl_gmailGroup );
+        Label usernameLabel = new Label( gmailGroup, SWT.NONE );
+        usernameLabel.setLayoutData( new GridData( SWT.RIGHT, SWT.CENTER, false, false, 1, 1 ) );
+        usernameLabel.setText( "Username:" );
 
-		if (username.getText().length() != 0
-				&& password.getText().length() == 0) {
-			/* If there's username but password text line is empty, prevents from continuing in the wizard */
-			setMessage("Complete data by entering password or delete username to skip this step");
-			return;
-		}
+        /* Add username text line */
+        username = new Text( gmailGroup, SWT.BORDER );
+        GridData gd_username = new GridData( SWT.FILL, SWT.CENTER, true, false, 1, 1 );
+        gd_username.widthHint = 179;
+        username.setLayoutData( gd_username );
+        username.setText( usernamePref );
+        username.addListener( SWT.Modify, new Listener() {
 
-		if (username.getText().length() == 0
-				&& password.getText().length() != 0) {
-			/* If there's password but username text line is empty, prevents from continuing in the wizard */
-			setMessage("Complete data by entering username or delete password to skip this step");
-			return;
-		}
+            /* Checks the validity of the data if it changes */
+            @Override
+            public void handleEvent( Event event ) {
+                dataControl();
+            }
+        } );
+        username.addListener( SWT.FocusOut, new Listener() {
 
-		String usernameRegex = "[a-zA-Z0-9._%-]+";
-		Pattern usernamePattern = Pattern.compile(usernameRegex);
-		Matcher usernameMatcher = usernamePattern.matcher(username.getText());
+            /* Add @gmail.com suffix to username if necessary */
+            @Override
+            public void handleEvent( Event event ) {
+                String usernameRegex = "[a-zA-Z0-9._%-]+";
+                Pattern usernamePattern = Pattern.compile( usernameRegex );
+                Matcher usernameMatcher = usernamePattern.matcher( username.getText() );
 
-		if (usernameMatcher.matches()) {
-			/* Suggest to add @gmail.com suffix to username if necessary */
-			setMessage("Complete username with @gmail.com suffix");
-			return;
-		}
+                if (usernameMatcher.matches()) {
+                    username.setText( username.getText() + "@gmail.com" );
+                }
+            }
+        } );
 
-		String completeUsernameRegex = "[a-zA-Z0-9._%-]+@gmail\\.com";
-		Pattern completeUsernamePattern = Pattern.compile(completeUsernameRegex);
-		Matcher completeUsernameMatcher = completeUsernamePattern.matcher(username.getText());
+        /* Add a spacer */
+        new Label( gmailGroup, SWT.NONE );
+        new Label( gmailGroup, SWT.NONE );
+        Label spacer1Label = new Label( gmailGroup, SWT.NONE );
+        spacer1Label.setLayoutData( new GridData( SWT.LEFT, SWT.CENTER, false, false, 2, 1 ) );
 
-		if (!completeUsernameMatcher.matches()) {
-			/* If username isn't valid, show error message and prevents from continuing in the wizard */
-			setErrorMessage("Username not valid");
-			return;
-		}
+        /* Add password label */
+        Label passwordLabel = new Label( gmailGroup, SWT.NONE );
+        passwordLabel.setText( "Password:" );
 
-		setPageComplete(true);
-		setMessage(null);
-		setErrorMessage(null);
-	}
+        /* Add password text line */
+        password = new Text( gmailGroup, SWT.BORDER );
+        password.setLayoutData( new GridData( SWT.FILL, SWT.CENTER, false, false, 1, 1 ) );
+        password.setEchoChar( '*' );
+        password.setText( passwordPref );
+        password.addListener( SWT.Modify, new Listener() {
 
-	/**
-	 * Return the GMail username
-	 * 
-	 * @return GMail username
-	 */
-	public String getUsername() {
-		return username.getText();
-	}
+            /* Checks the validity of the data if it changes */
+            @Override
+            public void handleEvent( Event event ) {
+                dataControl();
+            }
+        } );
 
-	/**
-	 * Return the GMail password
-	 * 
-	 * @return GMail password
-	 */
-	public String getPassword() {
-		return password.getText();
-	}
+        new Label( gmailGroup, SWT.NONE );
+        new Label( gmailGroup, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+
+        // creating profile info layout
+
+        Composite composite = new Composite( container, SWT.NONE );
+        GridData gd_composite = new GridData( SWT.LEFT, SWT.CENTER, false, false, 4, 2 );
+        gd_composite.heightHint = 105;
+        gd_composite.widthHint = 179;
+        composite.setLayoutData( gd_composite );
+
+        final Label lblLoggedAs = new Label( composite, SWT.NONE );
+        lblLoggedAs.setBounds( 0, 59, 64, 15 );
+        lblLoggedAs.setText( "" );
+
+        final Canvas canvas = new Canvas( composite, SWT.NONE );
+        canvas.setBounds( 115, 0, 64, 64 );
+
+        final Label lblName = new Label( composite, SWT.NONE );
+        lblName.setBounds( 0, 80, 169, 15 );
+        lblName.setText( "" );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        if (im != null) {
+            GC gc = new GC( canvas );
+            gc.drawImage( im, 0, 0 );
+            gc.dispose();
+        }
+        // end creating profile info layout
+
+        // creating validate account layout
+        Group validateGroup = new Group( container, SWT.SHADOW_IN );
+        GridData gd_validateGroup = new GridData( SWT.LEFT, SWT.CENTER, false, false, 1, 1 );
+        gd_validateGroup.widthHint = 264;
+        validateGroup.setLayoutData( gd_validateGroup );
+        validateGroup.setText( "Validate GoogleAccount" );
+        validateGroup.setLayout( new GridLayout( 1, false ) );
+
+        final Button validateButton = new Button( validateGroup, SWT.NONE );
+        validateButton.setText( "Connect Google Account" );
+        new Label( validateGroup, SWT.NONE );
+        new Label( validateGroup, SWT.NONE );
+
+        Label tokenLabel = new Label( validateGroup, SWT.NONE );
+        tokenLabel.setText( "Autentication token" );
+
+        token = new Text( validateGroup, SWT.BORDER );
+        token.setText( "" );
+        GridData gd_token = new GridData( SWT.FILL, SWT.CENTER, false, false, 1, 1 );
+        gd_token.widthHint = 244;
+        token.setLayoutData( gd_token );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+        new Label( container, SWT.NONE );
+
+        Listener buttonListener = new Listener() {
+            @Override
+            public void handleEvent( Event event ) {
+                Auth autorizzazione = new Auth();
+                if (!(tokeninserito))
+                    try {
+                        autorizzazione.askauthorize();
+
+                    } catch (IOException e) {
+                        codiceerrore = 1;
+                        e.printStackTrace();
+                        dataControl();
+
+                    }
+
+                else {
+                    System.out.print( "Trying to autorize with token" );
+                    String s = token.getText();
+                    autorizzazione.authorize( s );
+
+                    // use the token
+                    String accesstoken = autorizzazione.getAccessToken();
+                    if (!(accesstoken.equals( "" ))) {
+                        try {
+                            System.out.print( "Autorized, getAccessToken not empty" );
+                            Plus plusdausare = Plusclass.getPlus( autorizzazione );
+                            Person mePerson = null;
+                            mePerson = plusdausare.people().get( "me" ).execute();
+
+                            Plusclass.show( mePerson );
+                            if (!(mePerson == null)) {
+                                imageurl = mePerson.getImage().getUrl();
+                                profileurl = mePerson.getUrl();
+                                plusid = mePerson.getId();
+                                name = mePerson.getDisplayName();
+                                lblLoggedAs.setText( "Logged as:" );
+                                lblName.setText( name );
+                                ImageDescriptor i = ImageDescriptor.createFromURL( new URL(
+                                        imageurl ) );
+                                if (i == null)
+                                    System.out.println( "image null" );
+                                im = i.createImage();
+                                if (im == null)
+                                    System.out.println( "immage null" );
+
+                                GC gc = new GC( canvas );
+                                gc.drawImage( im, 0, 0 );
+                                gc.dispose();
+                                setMessage( "Autantication succeeded." );
+                                validateButton.setEnabled( false );
+                                token.setEnabled( false );
+                                utenteloggato = true;
+                                dataControl();
+                            }
+                            // gooogleplus profile is ok
+
+                        } catch (Exception e) {
+
+                            codiceerrore = 2;
+                            validateButton.setText( "Connect Google Account" );
+                            tokeninserito = false;
+                            e.printStackTrace();
+                            dataControl();
+                        }
+                    } else {
+                        // validation of token failed, re execute the connection of the account
+                        codiceerrore = 3;
+                        tokeninserito = false;
+                        validateButton.setText( "Connect Google Account" );
+                        dataControl();
+                    }
+
+                }
+
+            }
+
+        };
+
+        Listener tokenlistener = new Listener() {
+            @Override
+            public void handleEvent( Event event ) {
+
+                try {
+                    String contenutocopy;
+                    // read what's inside ctrl c
+                    Toolkit tk = Toolkit.getDefaultToolkit();
+                    Clipboard clipboard = tk.getSystemClipboard();
+                    Transferable t = clipboard.getContents( null );
+                    contenutocopy = (String) t.getTransferData( DataFlavor.stringFlavor );
+
+                    String contenutotoken = token.getText();
+
+                    // System.out.println("Contenct of ctrl + c: " + contenutocopy);
+                    if (!(contenutotoken.equals( contenutocopy ))) {
+                        token.setText( contenutocopy );
+                    }
+                    validateButton.setText( "Validate Google Account" );
+                    tokeninserito = true;
+                    setMessage( "Now click on validate google account" );
+
+                } catch (UnsupportedFlavorException e) {
+                    setMessage( "Autentication failed.\nCopy the token from the Web Image and than select the Authorizazion token field" );
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    setMessage( "Autentication failed.\nCopy the token from the Web Image and than select the Authorizazion token field" );
+                    e.printStackTrace();
+                }
+
+            }
+        };
+
+        token.addListener( SWT.FOCUSED, tokenlistener );
+        validateButton.addListener( SWT.Selection, buttonListener );
+
+        // end validate account layout
+
+        dataControl();
+    }
+
+    /**
+     * Checks the validity of user entered data and, if necessary, prevents from continuing in the
+     * wizard
+     */
+    private void dataControl() {
+        setPageComplete( false );
+        setMessage( null );
+        setErrorMessage( null );
+
+        if (username.getText().length() == 0 && password.getText().length() == 0) {
+            /* If there are no data allows you to skip this step */
+            setPageComplete( true );
+            setMessage( null );
+            setErrorMessage( null );
+            return;
+        }
+
+        if (username.getText().length() != 0 && password.getText().length() == 0) {
+            /*
+             * If there's username but password text line is empty, prevents from continuing in the
+             * wizard
+             */
+            setMessage( "Complete data by entering password or delete username to skip this step" );
+            return;
+        }
+
+        if (username.getText().length() == 0 && password.getText().length() != 0) {
+            /*
+             * If there's password but username text line is empty, prevents from continuing in the
+             * wizard
+             */
+            setMessage( "Complete data by entering username or delete password to skip this step" );
+            return;
+        }
+
+        String usernameRegex = "[a-zA-Z0-9._%-]+";
+        Pattern usernamePattern = Pattern.compile( usernameRegex );
+        Matcher usernameMatcher = usernamePattern.matcher( username.getText() );
+
+        if (usernameMatcher.matches()) {
+            /* Suggest to add @gmail.com suffix to username if necessary */
+            setMessage( "Complete username with @gmail.com suffix" );
+            return;
+        }
+
+        String completeUsernameRegex = "[a-zA-Z0-9._%-]+@gmail\\.com";
+        Pattern completeUsernamePattern = Pattern.compile( completeUsernameRegex );
+        Matcher completeUsernameMatcher = completeUsernamePattern.matcher( username.getText() );
+
+        if (!completeUsernameMatcher.matches()) {
+            /*
+             * If username isn't valid, show error message and prevents from continuing in the
+             * wizard
+             */
+            setErrorMessage( "Username not valid" );
+            return;
+        }
+
+        if (codiceerrore == 1) {
+            setErrorMessage( "Failed to ask authorization\nCopy the token from the Web Image and than select the Authorizazion token field" );
+            return;
+        }
+
+        if (codiceerrore == 2) {
+            setErrorMessage( "Autentication failed.\nCopy the token from the Web Image and than select the Authorizazion token field" );
+            return;
+        }
+
+        if (codiceerrore == 3) {
+            setErrorMessage( "Autentication failed.\nThe autantication token is empty or not valid, copy the token from the web image and than select the Authorizazion token field" );
+            return;
+        }
+
+        // if he doesn't want to connect a google profile than
+        // we can't connect him to googleplus
+        if ((utenteloggato == false) && (username.getText().length() != 0)
+                && (password.getText().length() != 0)) {
+            return;
+
+        }
+        setMessage( "Account configuration complete.\nClick next to continue" );
+        setPageComplete( true );
+        setMessage( null );
+        setErrorMessage( null );
+    }
+
+    /**
+     * Return the GMail password
+     * 
+     * @return GMail password
+     */
+    public String getPassword() {
+        return password.getText();
+    }
+
+    /**
+     * Return the GMail username
+     * 
+     * @return GMail username
+     */
+    public String getUsername() {
+        return username.getText();
+    }
+
+    /**
+     * 
+     * 
+     * @return the GMAIL PROFILE INFO
+     */
+    public String getPlusId() {
+        return plusid;
+    }
+
+    public String getImageUrl() {
+        return imageurl;
+    }
+
+    public String getProfileUrl() {
+        return profileurl;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

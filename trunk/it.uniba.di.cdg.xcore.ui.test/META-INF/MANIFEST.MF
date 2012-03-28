@@ -10,6 +10,7 @@ Require-Bundle: org.mockito;bundle-version="1.0.0",
  org.junit,
  org.eclipse.ui;bundle-version="3.6.2",
  it.uniba.di.cdg.xcore.network;bundle-version="1.0.0",
- it.uniba.di.cdg.aspects;bundle-version="1.0.0"
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0",
+ it.uniba.di.cdg.jabber;bundle-version="1.0.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: it.uniba.di.cdg.xcore.ui.test.allpackagetests

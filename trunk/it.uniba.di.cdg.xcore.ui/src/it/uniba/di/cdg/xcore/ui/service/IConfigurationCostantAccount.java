@@ -1,3 +1,4 @@
+package it.uniba.di.cdg.xcore.ui.service;
 /**
  * This file is part of the eConference project and it is distributed under the 
  * terms of the MIT Open Source license.
@@ -22,30 +23,25 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package it.uniba.di.cdg.xcore.ui.test.allpackagetests;
+/**
+ * Interface needed to store the account information of the user, retrieved 
+ * during configuration wizard.
+ * 
+ */
+public interface IConfigurationCostantAccount {
+   
+	
+	public static String ACCOUNTID = "AccountId" ;
+	
+	public static String ACCOUNTURL = "AccountUrl" ;
+	
+	public static String IMAGEURL = "ImageUrl" ;
+	
+	//we need to store the email associated with account 
+	//we can enter it without the wizard and have other account setted in preferences
+	//so we need to be sure that the account info match with the email we are entering with.
+	//here we store the email associated in the account
+	public static String ACCOUNTMAIL = "AccountMail" ;
 
-import org.junit.runner.JUnitCore;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-    it.uniba.di.cdg.xcore.ui.util.AllTests.class,
-    it.uniba.di.cdg.xcore.ui.internal.AllTests.class,
-    it.uniba.di.cdg.xcore.ui.views.AllTests.class
-    
-})
-public class AllTests {
-
-	/**
-	 * Launch the test.
-	 * 
-	 * @param args
-	 *            the command line arguments
-	 * 
-	 * @generatedBy CodePro at 07/02/11 12.23
-	 */
-	public static void main(String[] args) {
-		JUnitCore.runClasses(new Class[] { AllTests.class });
-	}
 }

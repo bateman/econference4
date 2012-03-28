@@ -25,6 +25,8 @@
 
 package it.uniba.di.cdg.xcore.ui.wizards;
 
+import it.uniba.di.cdg.xcore.ui.service.IConfigurationCostantAccount;
+
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.PlatformUI;
@@ -35,119 +37,132 @@ import org.osgi.service.prefs.Preferences;
  * Main class of the configuration wizard
  * 
  * @see Wizard
+ * 
+ * Modified by Malerba Francesco in order to support the account info associated 
  */
 public class ConfigurationWizard extends Wizard {
-	
-	private boolean isFirst;			//Denotes whether this is first access wizard
-	
-	private Preferences preferences;	//Preferences resulting from wizard
 
-	private WelcomePage welcome;		//Welcome wizard page
+    private boolean isFirst;			//Denotes whether this is first access wizard
 
-	private PathPage path;				//Wizard page for ECX file path configuration
+    private Preferences preferences;	//Preferences resulting from wizard
 
-	private GMailPage gmail;			//Wizard page for GMail account configuration
+    private WelcomePage welcome;		//Welcome wizard page
 
-	private SkypePage skype;			//Wizard page for Skype account configuration
+    private PathPage path;				//Wizard page for ECX file path configuration
 
-	private SmtpPage smtp;				//Wizard page for SMTP server data configuration
+    private GMailPage gmail;			//Wizard page for GMail account configuration
 
-	/**
-	 * The constructor
-	 */
-	public ConfigurationWizard(boolean first) {
-		super();
-		setWindowTitle("Configuration Wizard");
-		preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
-		isFirst = first;
-	}
+    private SkypePage skype;			//Wizard page for Skype account configuration
 
-	/**
-	 * Pages inclusion in wizard
-	 * 
-	 * @see Wizard#addPages()
-	 */
-	public void addPages() {
+    private SmtpPage smtp;				//Wizard page for SMTP server data configuration
 
-		if (isFirst) {
-			/* If wizard is launched for the first time, add welcome page */
-			welcome = new WelcomePage();
-			addPage(welcome);
-		}
-		
-		/* Add ECX file path configuration page */
-		path = new PathPage();
-		addPage(path);
-		
-		/* Add GMail account configuration page */
-		gmail = new GMailPage();
-		addPage(gmail);
-		
-		/* Add Skype account configuration page */
-		skype = new SkypePage();
-		addPage(skype);
-		
-		/* Add SMTP server data configuration page */
-		smtp = new SmtpPage();
-		addPage(smtp);
-	}
+    /**
+     * The constructor
+     */
+    public ConfigurationWizard(boolean first) {
+        super();
+        setWindowTitle("Configuration Wizard");
+        preferences = ConfigurationScope.INSTANCE.getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+        isFirst = first;
+    }
 
-	/**
-	 * Tasks in event of acceptance in the wizard
-	 * 
-	 * @see Wizard#performFinish()
-	 */
-	public boolean performFinish() {		
-		/* Add ECX file path to preferences */
-		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
-		if(path.getChange()){
-			String preferredFilePath = path.getPath();
-			if(preferredFilePath.lastIndexOf(System.getProperty("file.separator")) != preferredFilePath.length()-1){
-				preferredFilePath = preferredFilePath + System.getProperty("file.separator");
-			}
-			pathPref.put(IConfigurationConstant.DIR, preferredFilePath);
-		}
-		
-		/* Add GMail account data to preferences if any */
-		Preferences gmailPref = preferences.node(IConfigurationConstant.GMAIL);
-		if (!gmail.getUsername().isEmpty()) {
-			/* If user enters GMail account data, add them to preferences */
-			gmailPref.put(IConfigurationConstant.USERNAME, gmail.getUsername());
-			gmailPref.put(IConfigurationConstant.PASSWORD, gmail.getPassword());
-		} else {
-			/* If user doesn't enters GMail account data, try to delete them from preferences */
-			try {
-				gmailPref.clear();
-			} catch (BackingStoreException e) {
-				System.out.println("No GMail data");
-			}
-		}
+    /**
+     * Pages inclusion in wizard
+     * 
+     * @see Wizard#addPages()
+     */
+    public void addPages() {
 
-		/* Add Skype account data to preferences if any */
-		Preferences skypePref = preferences.node(IConfigurationConstant.SKYPE);
-		if (!skype.getUsername().isEmpty()) {
-			/* If user enters Skype account data, add them to preferences */
-			skypePref.put(IConfigurationConstant.USERNAME, skype.getUsername());
-			skypePref.put(IConfigurationConstant.PASSWORD, skype.getPassword());
-		} else {
-			/* If user doesn't enters Skype account data, try to delete them from preferences */
-			try {
-				skypePref.clear();
-			} catch (BackingStoreException e) {
-				System.out.println("No Skype data");
-			}
-		}
+        if (isFirst) {
+            /* If wizard is launched for the first time, add welcome page */
+            welcome = new WelcomePage();
+            addPage(welcome);
+        }
 
-		/* Add SMTP server data to preferences */
-		Preferences smtpPref = preferences.node(IConfigurationConstant.SMTP);
-		smtpPref.put(IConfigurationConstant.SERVER, smtp.getServer());
-		smtpPref.putInt(IConfigurationConstant.PORT, smtp.getPort());
-		smtpPref.put(IConfigurationConstant.USERNAME, smtp.getUsername());
-		smtpPref.put(IConfigurationConstant.PASSWORD, smtp.getPassword());
-		smtpPref.put(IConfigurationConstant.SECURE, smtp.getSecure());
-		
-		/* Delete wizard preferences to simulate first-time launch of eConference */
-		/*
+        /* Add ECX file path configuration page */
+        path = new PathPage();
+        addPage(path);
+
+        /* Add GMail account configuration page */
+        gmail = new GMailPage();
+        addPage(gmail);
+
+        /* Add Skype account configuration page */
+        skype = new SkypePage();
+        addPage(skype);
+
+        /* Add SMTP server data configuration page */
+        smtp = new SmtpPage();
+        addPage(smtp);
+    }
+
+    /**
+     * Tasks in event of acceptance in the wizard
+     * 
+     * @see Wizard#performFinish()
+     */
+    public boolean performFinish() {		
+        /* Add ECX file path to preferences */
+        Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
+        if(path.getChange()){
+            String preferredFilePath = path.getPath();
+            if(preferredFilePath.lastIndexOf(System.getProperty("file.separator")) != preferredFilePath.length()-1){
+                preferredFilePath = preferredFilePath + System.getProperty("file.separator");
+            }
+            pathPref.put(IConfigurationConstant.DIR, preferredFilePath);
+        }
+
+        /* Add GMail account data to preferences if any */
+        Preferences gmailPref = preferences.node(IConfigurationConstant.GMAIL);
+        if (!gmail.getUsername().isEmpty()) {
+
+            System.out.println("Stored in preferences info about account and google profile");
+            /* If user enters GMail account data, add them to preferences */
+            gmailPref.put(IConfigurationConstant.USERNAME, gmail.getUsername());
+            gmailPref.put(IConfigurationConstant.PASSWORD, gmail.getPassword());
+            //store the account info
+            gmailPref.put(IConfigurationCostantAccount.ACCOUNTID, gmail.getPlusId());
+            gmailPref.put(IConfigurationCostantAccount.ACCOUNTURL, gmail.getProfileUrl());
+            gmailPref.put(IConfigurationCostantAccount.IMAGEURL, gmail.getImageUrl());
+            gmailPref.put(IConfigurationCostantAccount.ACCOUNTMAIL, gmail.getUsername());
+
+
+
+            
+        } else {
+            /* If user doesn't enters GMail account data, try to delete them from preferences */
+            try {
+                gmailPref.clear();
+            } catch (BackingStoreException e) {
+                System.out.println("No GMail data");
+            }
+        }
+
+        /* Add Skype account data to preferences if any */
+        Preferences skypePref = preferences.node(IConfigurationConstant.SKYPE);
+        if (!skype.getUsername().isEmpty()) {
+            /* If user enters Skype account data, add them to preferences */
+            skypePref.put(IConfigurationConstant.USERNAME, skype.getUsername());
+            skypePref.put(IConfigurationConstant.PASSWORD, skype.getPassword());
+        } else {
+            /* If user doesn't enters Skype account data, try to delete them from preferences */
+            try {
+                skypePref.clear();
+            } catch (BackingStoreException e) {
+                System.out.println("No Skype data");
+            }
+        }
+
+        /* Add SMTP server data to preferences */
+        Preferences smtpPref = preferences.node(IConfigurationConstant.SMTP);
+        smtpPref.put(IConfigurationConstant.SERVER, smtp.getServer());
+        smtpPref.putInt(IConfigurationConstant.PORT, smtp.getPort());
+        smtpPref.put(IConfigurationConstant.USERNAME, smtp.getUsername());
+        smtpPref.put(IConfigurationConstant.PASSWORD, smtp.getPassword());
+        smtpPref.put(IConfigurationConstant.SECURE, smtp.getSecure());
+
+        /* Delete wizard preferences to simulate first-time launch of eConference */
+        /*
 		try {
 			pathPref.removeNode();
 			gmailPref.removeNode();
@@ -156,36 +171,36 @@ public class ConfigurationWizard extends Wizard {
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
-		*/
-		try {
-			preferences.flush();
-		} catch (BackingStoreException e) {
-			e.printStackTrace();
-		}
-		
-		/* If the path was changed, restart application */
-		if(path.getChange()){
-			PlatformUI.getWorkbench().restart();
-		}
-		
-		return true;
-	}
-	
-	/**
-	 * Returns GMail Username for reuse by SMTP Page
-	 * 
-	 * @return GMail Username
-	 */
-	protected String getGMailUsername() {
-		return gmail.getUsername();
-	}
+         */
+        try {
+            preferences.flush();
+        } catch (BackingStoreException e) {
+            e.printStackTrace();
+        }
 
-	/**
-	 * Returns GMail Password for reuse by SMTP Page
-	 * 
-	 * @return GMail Password
-	 */
-	protected String getGMailPassword() {
-		return gmail.getPassword();
-	}
+        /* If the path was changed, restart application */
+        if(path.getChange()){
+            PlatformUI.getWorkbench().restart();
+        }
+
+        return true;
+    }
+
+    /**
+     * Returns GMail Username for reuse by SMTP Page
+     * 
+     * @return GMail Username
+     */
+    protected String getGMailUsername() {
+        return gmail.getUsername();
+    }
+
+    /**
+     * Returns GMail Password for reuse by SMTP Page
+     * 
+     * @return GMail Password
+     */
+    protected String getGMailPassword() {
+        return gmail.getPassword();
+    }
 }

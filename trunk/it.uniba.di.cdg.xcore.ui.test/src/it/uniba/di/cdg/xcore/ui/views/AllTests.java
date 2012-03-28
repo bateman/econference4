@@ -1,9 +1,11 @@
+package it.uniba.di.cdg.xcore.ui.views;
 /**
  * This file is part of the eConference project and it is distributed under the 
+
  * terms of the MIT Open Source license.
  * 
  * The MIT License
- * Copyright (c) 2005 Collaborative Development Group - Dipartimento di Informatica, 
+ * Copyright (c) 2006 - 2012 Collaborative Development Group - Dipartimento di Informatica, 
  *                    University of Bari, http://cdg.di.uniba.it
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this 
  * software and associated documentation files (the "Software"), to deal in the Software 
@@ -22,30 +24,17 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package it.uniba.di.cdg.xcore.ui.test.allpackagetests;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-    it.uniba.di.cdg.xcore.ui.util.AllTests.class,
-    it.uniba.di.cdg.xcore.ui.internal.AllTests.class,
-    it.uniba.di.cdg.xcore.ui.views.AllTests.class
-    
-})
+@Suite.SuiteClasses({ BuddyListViewTest.class })
 public class AllTests {
 
-	/**
-	 * Launch the test.
-	 * 
-	 * @param args
-	 *            the command line arguments
-	 * 
-	 * @generatedBy CodePro at 07/02/11 12.23
-	 */
-	public static void main(String[] args) {
-		JUnitCore.runClasses(new Class[] { AllTests.class });
-	}
+    public static void main( String[] args ) {
+        JUnitCore.runClasses( new Class[] { AllTests.class } );
+    }
+
 }

@@ -24,6 +24,8 @@
  */
 package it.uniba.di.cdg.xcore.m2m.ui.views;
 
+import it.uniba.di.cdg.xcore.m2m.model.ChatRoomModel;
+
 
 /**
  * A chatroom view shows the actual status of the chat room's participants (joined, not joined,
@@ -32,5 +34,7 @@ package it.uniba.di.cdg.xcore.m2m.ui.views;
  * The widget one should think about is a table viewer.
  */
 public interface IChatRoomView extends IMultiChatView {
-    // Nothing
+	
+    public  ChatRoomModel getModel();
+
 }
