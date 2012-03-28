@@ -267,7 +267,7 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
         
         for (IBuddy buddy : getBuddies()) {
             if (getGroups( buddy ).isEmpty()) {
-                System.out.println( "Adding orphan : " + buddy );
+                //System.out.println( "Adding orphan : " + buddy );
                 all.add( buddy );
             }
         }

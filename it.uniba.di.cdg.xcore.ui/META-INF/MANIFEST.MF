@@ -9,19 +9,21 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  it.uniba.di.cdg.xcore.network,
  org.aspectj.runtime,
- it.uniba.di.cdg.aspects;bundle-version="1.0.0"
+ it.uniba.di.cdg.aspects;bundle-version="1.0.0",
+ it.uniba.di.cdg.googleplus;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.ui.actions,
  it.uniba.di.cdg.xcore.ui.adapters,
  it.uniba.di.cdg.xcore.ui.contribution,
  it.uniba.di.cdg.xcore.ui.dialogs,
+ it.uniba.di.cdg.xcore.ui.formatter,
  it.uniba.di.cdg.xcore.ui.internal,
  it.uniba.di.cdg.xcore.ui.perspectives,
  it.uniba.di.cdg.xcore.ui.preferences,
+ it.uniba.di.cdg.xcore.ui.service,
  it.uniba.di.cdg.xcore.ui.util,
  it.uniba.di.cdg.xcore.ui.views,
- it.uniba.di.cdg.xcore.ui.wizards,
  it.uniba.di.cdg.xcore.ui.widget,
- it.uniba.di.cdg.xcore.ui.formatter
+ it.uniba.di.cdg.xcore.ui.wizards
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

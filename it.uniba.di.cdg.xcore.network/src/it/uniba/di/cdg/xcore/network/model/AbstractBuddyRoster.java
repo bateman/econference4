@@ -100,7 +100,7 @@ public abstract class AbstractBuddyRoster extends PlatformObject implements
             if (group.contains( buddy ))
                 groupsForBuddy.add( group );
         }
-        System.out.println( String.format( "Got groups for  %s are %s", buddy, groupsForBuddy ) );
+        //System.out.println( String.format( "Got groups for  %s are %s", buddy, groupsForBuddy ) );
         return groupsForBuddy;
     }
     

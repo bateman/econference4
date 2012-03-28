@@ -245,4 +245,8 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
     	if (!participantViewer.getControl().isDisposed())
         participantViewer.refresh();
     }
+    
+    public ChatRoomModel getModel(){
+    	return (ChatRoomModel) this.participantViewer.getInput();
+    }
 }
