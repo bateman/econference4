@@ -19,14 +19,14 @@
 package it.uniba.di.cdg.xcore.ui.service;
 
 
+import java.io.IOException;
+
 import com.google.api.client.auth.oauth2.draft10.AccessTokenResponse;
 import com.google.api.client.auth.oauth2.draft10.AuthorizationRequestUrl;
 import com.google.api.client.googleapis.auth.oauth2.draft10.GoogleAccessTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.draft10.GoogleAuthorizationRequestUrl;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
-
-import java.io.IOException;
 
 /**
  * Implements OAuth authentication.
@@ -71,17 +71,17 @@ oauth_redirect_uri = urn:ietf:wg:oauth:2.0:oob
 	 * 
 	 * 
 	 * */
-  public static String CLIENT_ID = "193401750970.apps.googleusercontent.com";
+  public static String CLIENT_ID = "1013420880173.apps.googleusercontent.com";
 
   /**
    * OAuth client secret.
    */
-  public static String CLIENT_SECRET = "aUsAMCDVe1wCLj1tHL6Jh-7h";
+  public static String CLIENT_SECRET = "SXm0pd24ugk8H-wxl5ARGqYU";
 
   /**
    * OAuth client secret.
    */
-  public static String GOOGLE_API_KEY = "AIzaSyBM5Fy_N7CWrw9QB4ypzudKBG9EevymGVY";
+  public static String GOOGLE_API_KEY = "AIzaSyDMoCPi857TLhqcINY8WUydTlVTLooxO4E";
 
   /**
    * OAuth redirect URI.
