@@ -60,6 +60,25 @@ public interface IImageResources {
     public static final String ICON_ACTION_INCREASE_FONT_SIZE = "action_increase_font_size"; //$NON-NLS-1$
     public static final String ICON_ACTION_DECREASE_FONT_SIZE = "action_decrease_font_size"; //$NON-NLS-1$
     
+    
+    //flags
+    public static final String FLAG_BN="flag_of_bangladesh";
+    public static final String FLAG_FR="flag_of_france";
+    public static final String FLAG_GE="flag_of_germany";
+    public static final String FLAG_HI="flag_of_india";
+    public static final String FLAG_IT="flag_of_italy";
+    public static final String FLAG_JA="flag_of_japan";
+    public static final String FLAG_PL="flag_of_poland";
+    public static final String FLAG_PT="flag_of_portugal";
+    public static final String FLAG_RU="flag_of_russia";
+    public static final String FLAG_AR="flag_of_saudi_arabia";
+    public static final String FLAG_ES="flag_of_spain";
+    public static final String FLAG_TH="flag_of_thailand";
+    public static final String FLAG_ZH="flag_of_the_prc";
+    public static final String FLAG_EN="flag_of_the_united_kingdom";
+    public static final String FLAG_TR="flag_of_turkey";
+    public static final String FLAG_KO="flag_of_south_korea"; 
+    public static final String FLAG_DEF="default";
     /**
      * Actions' and misc contribution items' icons (all 16x16s).
      */
@@ -74,7 +93,6 @@ public interface IImageResources {
     
     public static final String BUDDYDEFAULTIMAGE = "buddy_default_image"; //$NON-NLS-1$
 
-    
     /**
      * Returns the image descriptor for a given symbolic name (if an <code>Image</code>
      * is needed then look for {@link #getImage(String)}).
