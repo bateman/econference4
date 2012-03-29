@@ -26,6 +26,7 @@ package it.uniba.di.cdg.xcore.econference.model;
 
 import it.uniba.di.cdg.aspects.GetSafety;
 import it.uniba.di.cdg.aspects.SetSafety;
+import it.uniba.di.cdg.xcore.econference.popup.handler.DeleteItem;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -130,7 +131,8 @@ public class ItemList implements IItemList {
      */
     @SetSafety
     public void setCurrentItemIndex( int itemIndex ) {
-        if (itemIndex >= size() || (itemIndex < -1 && itemIndex != -15))
+    	// FIXME throws an index out of bound exception with planning poker agenda
+        if (itemIndex >= size() || (itemIndex < IItemList.NO_ITEM_SELECTED && itemIndex != DeleteItem.DELETE_ITEM_INDEX))
             throw new IllegalArgumentException( "itemIndex out of range" );
         this.current = itemIndex;
         
