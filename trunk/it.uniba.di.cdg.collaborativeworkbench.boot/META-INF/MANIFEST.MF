@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: it.uniba.di.cdg.collaborativeworkbench.boot; singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.2
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Require-Bundle: it.uniba.di.cdg.xcore.ui,
@@ -10,5 +10,6 @@ Require-Bundle: it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.network,
  it.uniba.di.cdg.aspects;bundle-version="1.0.0"
 Bundle-Activator: it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6,
+ JavaSE-1.7
 Export-Package: it.uniba.di.cdg.collaborativeworkbench.boot.ui
