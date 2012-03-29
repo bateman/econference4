@@ -22,29 +22,27 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 package it.uniba.di.cdg.xcore.m2m.model;
 
-import org.junit.runner.JUnitCore;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import static org.junit.Assert.*;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-	ChatRoomStateTest.class,
-	ParticipantStateTest.class,
-	RoleTest.class,
-	UserLanguagesTest.class
-})
-public class AllTests {
+import org.junit.Test;
 
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 07/02/11 12.23
-	 */
-	public static void main(String[] args) {
-		JUnitCore.runClasses(new Class[] { AllTests.class });
+public class UserLanguagesTest {
+
+	@Test
+	public void testGetInstance() {
+		UserLanguages lan = UserLanguages.getInstance();
+		UserLanguages lan2 = UserLanguages.getInstance();
+		assertSame(lan , lan2);
 	}
+
+	@Test
+	public void testGet_languages() {
+		UserLanguages lan = UserLanguages.getInstance();
+		UserLanguages lan2 = UserLanguages.getInstance();
+		assertSame(lan.get_languages(), lan2.get_languages());
+	}
+
 }
