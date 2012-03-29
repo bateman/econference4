@@ -1,8 +1,15 @@
 package it.uniba.di.cdg.skype.test;
 
 
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import it.uniba.di.cdg.skype.SkypeBackend;
 import it.uniba.di.cdg.skype.util.ExtensionConstants;
+import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.BackendException;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.ServerContext;
@@ -18,11 +25,10 @@ import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatMessageEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatUserLeftEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceGrantedEvent;
 import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatVoiceRevokedEvent;
-import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import com.skype.Skype;
 import com.skype.SkypeException;
 
@@ -44,7 +50,7 @@ public class SkypeBackendBehaviorTest {
      * that cannot be catched here or it will hang on if you run it as a JUnit Plugin Test because the Skype component
      * will initialize and try to find a running Skype program
      * */
-    @Test(timeout=10000)
+    @Test(timeout=20000)
     public void testSkypeConnection(){
         // Setup
         INetworkBackendHelper backendHelper = mock(INetworkBackendHelper.class);
@@ -61,7 +67,7 @@ public class SkypeBackendBehaviorTest {
        verify(backendHelper).notifyBackendEvent( (IBackendEvent)anyObject() );
     }
     
-    @Test(timeout=10000)
+    @Test(timeout=20000)
     public void testSkypeDisconnection(){
         // Setup
         INetworkBackendHelper backendHelper = mock(INetworkBackendHelper.class);
