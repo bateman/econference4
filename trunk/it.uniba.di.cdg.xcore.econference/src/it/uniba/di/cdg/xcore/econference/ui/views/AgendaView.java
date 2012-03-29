@@ -88,7 +88,7 @@ public class AgendaView extends AgendaViewUI implements IAgendaView {
         @Override
         public void currentSelectionChanged( int currItemIndex ) {
   
-        if (currItemIndex == new DeleteItem().deleteIndex)
+        if (currItemIndex == DeleteItem.DELETE_ITEM_INDEX)
         	setDiscussedItem("");
         	else{
         		viewer.getList().setSelection(currItemIndex);
@@ -190,7 +190,6 @@ public class AgendaView extends AgendaViewUI implements IAgendaView {
             getModel().getItemList().removeListener( itemListListener );
         }
         this.manager = manager;
-        getModel().getItemList().removeItem(0);	//	RIMUOVERE ELEMENTO INIZIALE
         
         getModel().addListener( conferenceModelListener );
         getModel().getItemList().addListener( itemListListener );
