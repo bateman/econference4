@@ -396,7 +396,7 @@ public class EConferenceService extends MultiChatService implements
 				int itemId = Integer.parseInt(strItemId);
 				
 				//Case DiscussedItem_AgendaView  
-				if (itemId == new DeleteItem().deleteIndex){
+				if (itemId == DeleteItem.DELETE_ITEM_INDEX){
 					getModel().getItemList().setCurrentItemIndex(itemId);
 					String threadId = ITalkModel.FREE_TALK_THREAD_ID;
 					
