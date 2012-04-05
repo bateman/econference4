@@ -7,7 +7,10 @@ import it.uniba.di.cdg.xcore.econference.model.ItemList;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.ui.wizards.IConfigurationConstant;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -393,9 +396,6 @@ public class GenInfoPage extends WizardPage {
 		return nameConferenceText.getText();
 	}
 
-	// TODO write the server list to a txt file
-	// that will be used as a fallback option in case of no
-	// internet connection is available or other
 	private static MucServers loadConferenceServices() {
 		MucServers confServices = new MucServers();
 
@@ -422,6 +422,11 @@ public class GenInfoPage extends WizardPage {
 						.getAttributes().getNamedItem("jid").getTextContent());
 
 			}
+		} catch (ConnectException ce) {
+			// use codingteam.net in case list of servers is offline
+			Logger.getAnonymousLogger().log(Level.WARNING, "http://www.jabberes.org/servers/servers.xml seems to be unreacheable.\nUsing default server");
+			confServices.addMucService("conference.codingteam.net");
+			confServices.addServerAddress("codingteam.net");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
