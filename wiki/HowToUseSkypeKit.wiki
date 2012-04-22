@@ -1,5 +1,8 @@
 #summary A guide on how to Download and use SkypeKit.
 
+*Index*
+<wiki:toc max_depth="3" />
+
 = Introduction =
 
 Skype is software that enables the world’s conversations. Millions of people and businesses use Skype to make voice and video calls, send instant messages, share files, and much more. 
