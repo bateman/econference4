@@ -1,13 +1,58 @@
-#summary One-sentence summary of this page.
+#summary A guide on how to Download and use SkypeKit.
 
 = Introduction =
 
-Add your content here.
+Skype is software that enables the world’s conversations. Millions of people and businesses use Skype to make voice and video calls, send instant messages, share files, and much more. 
+SkypeKit enables developers to create innovative products and applications that deliver virtually the entire range of Skype’s functionality—including calling, chat, account creation, and contact management—without the need for your users to separately download Skype.
 
 
-= Details =
+= Download =
+To begin developing with SkypeKit, you’ll need to download, request, register, and obtain the following components: <br />
+1. Download and extract the SkypeKit SDK.<br />
+2. Request a runtime.<br />
+3. Register a project.<br />
+4. Obtain a key pair for your project.<br />
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== SkypeKit SDK ==
+SkypeKit SDK provides you with the documentation, library source code, examples, and reference implementations you need to create products and applications that incorporate Skype features.
+To download it visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page.
+
+== SkypeKit Runtime ==
+SkypeKit Runtime is a “headless” version of Skype—an application that does almost everything Skype does, but has no user interface. Instead, you write your own UI components to interact with SkypeKit Runtime through the SkypeKit language wrappers. SkypeKit Runtimes provide your apps with the foundation they need to access Skype functionality. Key pairs authorize your apps to communicate with a Skype Runtime. In conjunction with the SkypeKit SDK, these two components enable you to create and distribute all kinds of innovative SkypeKit-based products and applications.<br />
+To request a SkypeKit Runtime:<br />
+1. Visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page. If you haven’t already done so, download the SDK and accept the development terms—the Runtimes tabs don’t appear until you do.<br />
+2. Click the Request a runtime tab to display the list of available runtimes.<br /> 
+3. Select the runtime with the OS, chipset, and A/V options that match your development environment.<br /> 
+4. Click Request runtime.<br />
+5. An acknowledgment screen informs you that your request has been submitted. Processing your request can take anywhere from a few minutes to a few hours.<br />
+6. When you return to the Download page, you’ll see your request listed with a status of Building.<br />
+7 .When your SkypeKit Runtime is ready, the status will change to a link that says Download.<br />
+== SkypeKit Key Pairs ==
+Key pairs are Base64-encoded X.509 certificates that authorize your apps to communicate with Skype Runtime (and access Skype functionality). You must request a distinct key pair for each app you create, as well as for each of their distributable versions. <br />
+Key pairs come in two flavors: <br />
+Development key pairs: Expire in 60 days. Good for developing and testing an app.<br/>
+Distribution key pairs: Don’t expire. Required for distributing an app.<br/>
+
+Requesting a distribution key pair for a registered project is similar to requesting a development key pair unless you’re planning to distribute a SkypeKit for Embedded project (see the definition for Hardware Products in your SkypeKit License Agreement). In that case, distribution key pairs become available only after your project’s hardware has passed certification testing.<br />
+To request a development key pair:<br />
+1. Visit the <a href="http://developer.skype.com/account/projects">projects and programs</a> page.<br />
+2. Locate your registered project, and click its Project name link.<br />
+3. On your project’s detail page, click the Development key pair link:
+Specify a Label for you key pair. Choose a string that is both easy to remember and easy to associate with this project.<br />
+4. Type the RECAPTCHA text. <br />
+5. Click Request Key Pair <br />
+6. Save your certificate file to a secure location. <br />
+
+To request a distribution key pair:
+
+1. Sign in to your Skype Developer account as an admin. Only account admins can request a distribution key pair. To see who in your organization is an account admin, visit your organization’s Users page.<br />
+2. Visit the <a href="http://developer.skype.com/account/projects">projects and programs</a> page.<br />
+3. Locate your registered project, and click its Project name link.<br />
+4. Click the Distribution key pair link. If you’re working on a SkyepKit for Embedded project, your product will need to pass certification testing and be marked as certified by Skype before you can request a distribution key pair.<br />
+5. Specify a Label for you key pair. Choose a string that is both easy to remember and easy to associate with this project. <br />
+6. Type the RECAPTCHA text. <br />
+7. Click Request key pair. <br />
+8. Save your certificate file to a secure location.<br />
+
+Only for JAVA:
+Extract and convert the private key component of your key pair from RSA to PKCS8. Your original PEM certificate file and its resultant DER file must have the same filename and must reside in the same directory.
