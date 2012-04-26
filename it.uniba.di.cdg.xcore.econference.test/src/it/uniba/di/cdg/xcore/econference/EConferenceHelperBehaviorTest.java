@@ -1,15 +1,18 @@
 package it.uniba.di.cdg.xcore.econference;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import it.uniba.di.cdg.xcore.econference.internal.EConferenceHelper;
-import it.uniba.di.cdg.xcore.ui.IUIHelper;
+import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
 import it.uniba.di.cdg.xcore.network.IBackend;
 import it.uniba.di.cdg.xcore.network.IBackendRegistry;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.UserContext;
-import it.uniba.di.cdg.xcore.m2m.events.InvitationEvent;
+import it.uniba.di.cdg.xcore.ui.IUIHelper;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class EConferenceHelperBehaviorTest {
