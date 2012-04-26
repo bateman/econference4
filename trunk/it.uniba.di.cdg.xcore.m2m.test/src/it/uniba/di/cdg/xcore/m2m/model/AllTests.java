@@ -32,8 +32,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	ChatRoomStateTest.class,
 	ParticipantStateTest.class,
-	RoleTest.class,
-	UserLanguagesTest.class
+	RoleTest.class
 })
 public class AllTests {
 

@@ -24,8 +24,6 @@
  */
 package it.uniba.di.cdg.xcore.m2m.ui.views;
 
-import java.util.HashMap;
-
 import it.uniba.di.cdg.aspects.SwtAsyncExec;
 
 import it.uniba.di.cdg.xcore.m2m.IMultiChatManager;
@@ -36,14 +34,6 @@ import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModel;
 import it.uniba.di.cdg.xcore.m2m.model.IChatRoomModelListener;
 import it.uniba.di.cdg.xcore.m2m.model.IParticipant;
 import it.uniba.di.cdg.xcore.m2m.model.ParticipantAdapterFactory;
-import it.uniba.di.cdg.xcore.m2m.model.UserLanguages;
-import it.uniba.di.cdg.xcore.network.IBackend;
-import it.uniba.di.cdg.xcore.network.NetworkPlugin;
-import it.uniba.di.cdg.xcore.network.action.IChatServiceActions;
-import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
-import it.uniba.di.cdg.xcore.network.events.IBackendEventListener;
-import it.uniba.di.cdg.xcore.network.events.chat.ChatExtensionProtocolEvent;
-import it.uniba.di.cdg.xcore.network.events.multichat.MultiChatExtensionProtocolEvent;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
@@ -60,21 +50,14 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
 
-
 /**
  * Implementation of {@see it.uniba.di.cdg.xcore.m2m.ui.views.IChatRoomView}.
  */
 public class ChatRoomView extends ViewPart implements IChatRoomView {
-
     /**
      * This view unique id.
      */
     public static final String ID = MultiChatPlugin.ID + ".ui.views.chatRoomView";
-    public static final String LANGUAGE_UPDATE="languageUpdate";
-    public static final String GETLANGUAGE="GET_LANGUAGE";
-    public static final String UPDATE="UPDATE";
-    private final static String LANGUAGE = "language";
-    private static final String LANGUAGE_USER = "languageuser";
 
     private static class ChatRoomContentProvider implements IStructuredContentProvider {
         /* (non-Javadoc)
@@ -116,36 +99,6 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
     /**
      * The listener to chat room model events.
      */
-    
-    private class InfoLanguage implements IBackendEventListener{
-
-    	@Override
-    	public void onBackendEvent(IBackendEvent event) {
-    		if(event instanceof MultiChatExtensionProtocolEvent){
-    			MultiChatExtensionProtocolEvent mcepe = (MultiChatExtensionProtocolEvent)event;
-    			if(mcepe.getExtensionName().equals(LANGUAGE_UPDATE)){
-    				if(!(mcepe.getFrom().endsWith(NetworkPlugin.getDefault().getRegistry().getDefaultBackend().getUserId()))){
-    					UserLanguages u = UserLanguages.getInstance();
-    					HashMap<String, String> lang = u.get_languages();
-    					lang.put(mcepe.getExtensionParameter(LANGUAGE_USER),mcepe.getExtensionParameter(LANGUAGE));
-    					u.set_languages(lang);			
-
-    				}
-    				refreshView();
-    			}
-    		}
-
-    		if (event instanceof ChatExtensionProtocolEvent) {	    			
-    			ChatExtensionProtocolEvent cepe = (ChatExtensionProtocolEvent)event;
-    			if (cepe.getExtensionName().equals(UPDATE)){
-    				refreshView();
-    			}
-    			
-    		}
-    	}
-
-    }
-    
     private final IChatRoomModelListener chatRoomListener = new ChatRoomModelAdapter() {
         @Override
         public void added( IParticipant participant ) {
@@ -155,7 +108,7 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
 
         @Override
         public void removed( IParticipant participant ) {
-            System.out.println( "chatRoomListener.removed()" );            
+            System.out.println( "chatRoomListener.removed()" );
             refreshView();
         }
 
@@ -163,6 +116,7 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
         public void changed( IParticipant participant ) {
             System.out.println( "chatRoomListener.changed()" );
             refreshView();
+//            refreshParticipant( participant );
         }
 
         @Override
@@ -183,7 +137,7 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
      * TODO This could be declared in plugin.xml but it currently doesn't work :S So we use it
      * explicetely.
      */
-    private IAdapterFactory adapterFactory;
+    protected IAdapterFactory adapterFactory;
 
     /**
      * The multichat object.
@@ -194,13 +148,10 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
      * Makes up a new buddy list view.
      */
     public ChatRoomView() {
-    	super();
-    	adapterFactory = new ParticipantAdapterFactory();
-    	InfoLanguage listner  = new InfoLanguage();
-    	IBackend b = NetworkPlugin.getDefault().getRegistry().getDefaultBackend();
-    	b.getHelper().registerBackendListener(listner );
+        super();
+        adapterFactory = new ParticipantAdapterFactory();
     }
-
+    
     /* (non-Javadoc)
      * @see org.eclipse.ui.IWorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
      */
@@ -209,7 +160,8 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
         participantViewer = new TableViewer( parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER );
         getSite().setSelectionProvider( participantViewer );
 
-        Platform.getAdapterManager().registerAdapters( adapterFactory, IParticipant.class );    
+        Platform.getAdapterManager().registerAdapters( adapterFactory, IParticipant.class );        
+        
         participantViewer.setLabelProvider( new WorkbenchLabelProvider() );
         
         participantViewer.setSorter( new BuddySorter() );
@@ -263,20 +215,19 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
      * @see it.uniba.di.cdg.xcore.m2m.ui.views.IChatRoomView#setChat(it.uniba.di.cdg.xcore.m2m.IMultiChat)
      */
     public void setManager( IMultiChatManager newManager ) {
-    	// Deregister from previous chat, if there was any
-    	if (manager != null && manager.getService() != null && manager.getService().getModel()!=null)
-    		manager.getService().getModel().removeListener( chatRoomListener );
+        // Deregister from previous chat, if there was any
+        if (manager != null && manager.getService() != null && manager.getService().getModel()!=null)
+            manager.getService().getModel().removeListener( chatRoomListener );
+        
+        this.manager = newManager;
+        if (newManager == null)
+            return;
 
-    	this.manager = newManager;
-    	if (newManager == null)
-    		return;
-
-    	// Update (sort of ...)
-    	participantViewer.setInput( manager.getService().getModel() );
-
-    	manager.getService().getModel().addListener( chatRoomListener );
-
-    	refreshView();
+        // Update (sort of ...)
+        participantViewer.setInput( manager.getService().getModel() );
+        
+        manager.getService().getModel().addListener( chatRoomListener );
+        refreshView();
     }
 
     /* (non-Javadoc)
@@ -290,12 +241,8 @@ public class ChatRoomView extends ViewPart implements IChatRoomView {
      * Refresh the whole view. 
      */
     @SwtAsyncExec
-    private void refreshView() {
+    protected void refreshView() {
     	if (!participantViewer.getControl().isDisposed())
-        participantViewer.refresh();
-    }
-      
-    public ChatRoomModel getModel(){
-    	return (ChatRoomModel) this.participantViewer.getInput();
+    		participantViewer.refresh();
     }
 }
