@@ -143,7 +143,7 @@ Provided that you have succesfully configured and built the whole workspace, dow
 
 == Troubleshooting ==
 
-=== _- I'm getting stack map versioning errors... _ ===
+=== _- I'm getting stack map versioning errors with JRE7... _ ===
 Add -XX:-UseSplitVerifier as VM argument in the run configuration
 
 === _- Can't build the workspace without errors_ ===
