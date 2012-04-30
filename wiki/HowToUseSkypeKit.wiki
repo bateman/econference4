@@ -59,3 +59,25 @@ To request a distribution key pair:
 
 Only for JAVA:
 Extract and convert the private key component of your key pair from RSA to PKCS8. Your original PEM certificate file and its resultant DER file must have the same filename and must reside in the same directory.
+
+= How to Code =
+
+== Event Handlers ==
+All major Skype objects support an onPropertyChange event handler. For example: <br /> *Account Property Changes:* The Account property event handler implementation relates primarily to processing login and logout. Specifically, it interacts with the associated session’s setLoginStatus method;<br />
+*Contact Property Changes:* The Contact property event handler implementation relates primarily to establishing/updating the status of the user’s Contacts;<br /> 
+*Conversation Property Changes:* The Contact property event handler implementation relates primarily to “live status” changes; 
+RINGING_FOR_ME so we can pick up the call,
+IM_LIVE to indicate that a call is in progress,
+RECENTLY_LIVE and NONE to indicate that a call has ended;<br />
+*Participant Property Changes:* The Participant property event handler tracks volume and speaker activity within a call, writing appropriate updates to the console; <br /> 
+
+==Login/Logout==
+To log in to Skype:
+<ul><li>invoke <font face="Courier new">Account.loginWithPassword</font> with the password parsed from the command line;</li>
+<li>periodically poll the login state (Account.Property.P_STATUS) until we see Account.Status.LOGGED_IN (success), see Account.Status.LOGGED_OUT (failure) or time-out.
+</li>
+</ul>
+To log out of Skype:
+<ul><li>invoke <font face="Courier new">Account.logout</font>;</li>
+<li>periodically poll the login state (Account.Property.P_STATUS) until we see Account.Status.LOGGED_OUT (success) or time-out.</li>
+</ul>
