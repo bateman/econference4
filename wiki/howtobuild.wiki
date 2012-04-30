@@ -1,4 +1,4 @@
-#summary A guide to build eConference 4 on Win32 and Linux boxes.
+#summary A guide to build eConference 4.
 #labels Phase-Deploy,Phase-Implementation
 <wiki:toc max_depth="4" />
 
