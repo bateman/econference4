@@ -24,18 +24,7 @@
  */
 package it.uniba.di.cdg.jabber;
 
-import it.uniba.di.cdg.smackproviders.AgendaItemListPacket;
-import it.uniba.di.cdg.smackproviders.AgendaOperationPacket;
-import it.uniba.di.cdg.smackproviders.ConferenceStatusPacket;
-import it.uniba.di.cdg.smackproviders.CurrentAgendaItemPacket;
-import it.uniba.di.cdg.smackproviders.MUCPersonalStatusChangedPacket;
-import it.uniba.di.cdg.smackproviders.PrivateMessageIQPacket;
-import it.uniba.di.cdg.smackproviders.QuestionUpdatePacket;
-import it.uniba.di.cdg.smackproviders.RaiseHandIQPacket;
-import it.uniba.di.cdg.smackproviders.SpecialPrivilegeNotificationPacket;
 import it.uniba.di.cdg.smackproviders.TypingNotificationPacket;
-import it.uniba.di.cdg.smackproviders.ViewReadOnlyPacket;
-import it.uniba.di.cdg.smackproviders.WhiteBoardNotificationPacket;
 
 import org.eclipse.core.runtime.Plugin;
 import org.jivesoftware.smack.provider.ProviderManager;
@@ -87,85 +76,9 @@ public class JabberPlugin extends Plugin {
         // This is not the better place to add the provider (it will need to be removed in
         // stop() but since SMACK gives no way to remove providers ...
 		manager = ProviderManager.getInstance();
-		
-		//TODO: se uno vuole può usare lo stesso meccaniscmo per la parte base di eConference
+		// only typing notification, econference protocol extensions are treated elsewhere
 		manager.addExtensionProvider( TypingNotificationPacket.ELEMENT_NAME, TypingNotificationPacket.ELEMENT_NS, TypingNotificationPacket.class );
-		manager.addExtensionProvider( ConferenceStatusPacket.ELEMENT_NAME, CDG_NAMESPACE, ConferenceStatusPacket.class );
-		manager.addExtensionProvider( WhiteBoardNotificationPacket.ELEMENT_NAME, CDG_NAMESPACE, WhiteBoardNotificationPacket.class );
-		manager.addExtensionProvider( SpecialPrivilegeNotificationPacket.ELEMENT_NAME, CDG_NAMESPACE, SpecialPrivilegeNotificationPacket.class );
-		manager.addExtensionProvider( MUCPersonalStatusChangedPacket.ELEMENT_NAME, CDG_NAMESPACE, MUCPersonalStatusChangedPacket.class);
-		manager.addExtensionProvider( QuestionUpdatePacket.ELEMENT_NAME, CDG_NAMESPACE, QuestionUpdatePacket.class );
-		manager.addExtensionProvider( ViewReadOnlyPacket.ELEMENT_NAME, CDG_NAMESPACE, ViewReadOnlyPacket.class );
-		manager.addExtensionProvider( CurrentAgendaItemPacket.ELEMENT_NAME, CDG_NAMESPACE, CurrentAgendaItemPacket.class );
-		manager.addExtensionProvider( AgendaItemListPacket.ELEMENT_NAME, CDG_NAMESPACE, AgendaItemListPacket.class );
-		manager.addExtensionProvider( AgendaOperationPacket.ELEMENT_NAME, CDG_NAMESPACE, AgendaOperationPacket.class );
-        
-		manager.addIQProvider( RaiseHandIQPacket.ELEMENT_NAME, RaiseHandIQPacket.ELEMENT_NS, RaiseHandIQPacket.class );
-		manager.addIQProvider( PrivateMessageIQPacket.ELEMENT_NAME, PrivateMessageIQPacket.ELEMENT_NS, PrivateMessageIQPacket.class );		
-		
-		//addPacketExtensionFromExtensionPoint();
-		//processExtensions(ExtensionProcessor.getDefault());
-		//Adding extension point packets
-//		manager.addExtensionProvider(DefaultBacklogPacket.ELEMENT_NAME, DefaultBacklogPacket.ELEMENT_NS, new DefaultBacklogPacket.Provider());		
-//		manager.addExtensionProvider(DefaultCardSelectionPacket.ELEMENT_NAME, DefaultCardSelectionPacket.ELEMENT_NS, new DefaultCardSelectionPacket.Provider());
-//		manager.addExtensionProvider(EstimateSessionStatusPacket.ELEMENT_NAME, EstimateSessionStatusPacket.ELEMENT_NS, EstimateSessionStatusPacket.class);
-//		manager.addExtensionProvider(DefaultDeckPacket.ELEMENT_NAME, DefaultDeckPacket.ELEMENT_NS, new DefaultDeckPacket.Provider());
-//		manager.addExtensionProvider(EstimateAssignedPacket.ELEMENT_NAME, EstimateAssignedPacket.ELEMENT_NS, EstimateAssignedPacket.class);
-		
 	}
-
-	/**
-	 * TODO: descrivere
-	 * @param manager
-	 */
-//	private void addPacketExtensionFromExtensionPoint() {
-//		try {
-//			IConfigurationElement[] config = Platform.getExtensionRegistry()
-//					.getConfigurationElementsFor(PACKETS_EXTENSION_POINT_ID);
-//			for (IConfigurationElement e : config) {
-//				final Object o = e.createExecutableExtension(CLASS_ATTR);
-//				if (o instanceof IPacketExtension) {
-//					ISafeRunnable runnable = new ISafeRunnable() {
-//						@Override
-//						public void handleException(Throwable exception) {
-//							System.out.println("Exception in client");
-//						}
-//
-//						@Override
-//						public void run() throws Exception {
-//							IPacketExtension packetExtension = (IPacketExtension) o;
-//							manager.addExtensionProvider(packetExtension.getElementName(), 
-//									packetExtension.getElementName(), packetExtension.getProvider());					
-//						}
-//					};
-//					SafeRunner.run(runnable);
-//				}
-//			}
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//			//System.out.println(ex.getMessage());
-//		}
-//
-//	}
-	
-	/**
-	 * This method looking for all packet extension point in order to add the Extension Provider to the manager
-	 * @param processor
-	 * @throws Exception
-	 */
-	/*public void processExtensions( IExtensionProcessor processor ) throws Exception {
-    	IExtensionVisitor visitor = new IExtensionVisitor() {
-    		public void visit( IExtension extension, IConfigurationElement member ) throws Exception {
-//    			PacketExtension packet = VirtualProxyFactory.getProxy( PacketExtension.class, member );
-//    			PacketExtensionProvider provider = VirtualProxyFactory.getProxy( PacketExtensionProvider.class, member );
-    			IPacketExtension packet = (IPacketExtension) member.createExecutableExtension(JabberPlugin.CLASS_ATTR);
-    			//PacketExtensionProvider provider = (PacketExtensionProvider)member.createExecutableExtension("provider");
-    			manager.addExtensionProvider(packet.getElementName(), 
-    					packet.getNamespace(), packet.getProvider());
-    		}
-    	};
-    	processor.process( JabberPlugin.PACKETS_EXTENSION_POINT_ID, visitor );
-    }*/
 
 	/**
 	 * This method is called when the plug-in is stopped
