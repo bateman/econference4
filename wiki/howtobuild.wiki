@@ -142,6 +142,10 @@ Provided that you have succesfully configured and built the whole workspace, dow
 
 
 == Troubleshooting ==
+
+=== _- I'm getting stack map versioning errors... _ ===
+Add -XX:-UseSplitVerifier as VM argument in the run configuration
+
 === _- Can't build the workspace without errors_ ===
 So you have set the Java compiler compliance level to 1.6, but still get annoying red crosses everywhere in the workspace, uh?
 
