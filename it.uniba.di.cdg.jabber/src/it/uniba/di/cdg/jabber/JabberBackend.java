@@ -68,6 +68,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.jivesoftware.smack.AccountManager;
+import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.PacketListener;
@@ -139,7 +140,7 @@ ConnectionListener {
 
 	// Multi-user chat setup
 	private InvitationListener invitationListener = new InvitationListener() {
-		public void invitationReceived(XMPPConnection connection, String room,
+		public void invitationReceived(Connection connection, String room,
 				String inviter, String reason, String password, Message message) {
 			if (JabberBackend.this.connection == connection) {
 				//final IMessage m = convertFromSmack(message);
@@ -147,6 +148,7 @@ ConnectionListener {
 						password));
 			}
 		}
+
 	};
 
 	/**
