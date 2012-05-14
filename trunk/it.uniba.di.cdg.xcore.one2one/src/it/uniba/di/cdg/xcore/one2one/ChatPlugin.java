@@ -12,6 +12,7 @@ import org.osgi.framework.BundleContext;
  * The main plugin class to be used in the desktop.
  */
 public class ChatPlugin extends Plugin implements IStartup {
+	
 	/**
 	 * Plug-in id.
 	 */
@@ -22,6 +23,8 @@ public class ChatPlugin extends Plugin implements IStartup {
 
 	private IChatHelper helper;
 
+	private static boolean isSet = false;
+	
 	/**
 	 * Tracks the open chats (buddy id --> Chat object).
 	 */
@@ -33,10 +36,13 @@ public class ChatPlugin extends Plugin implements IStartup {
 	 * The constructor.
 	 */
 	public ChatPlugin() {
-		// this.openChats = new HashMap<String, ChatManager>();
-		plugin = this;
-		helper = new ChatHelper(NetworkPlugin.getDefault().getHelper(),
-				UiPlugin.getUIHelper());
+		if (!isSet) { 			
+			// this.openChats = new HashMap<String, ChatManager>();
+			plugin = this;
+			helper = new ChatHelper(NetworkPlugin.getDefault().getHelper(),
+					UiPlugin.getUIHelper());
+			isSet = true;
+		}
 	}
 
 	/**
@@ -47,19 +53,18 @@ public class ChatPlugin extends Plugin implements IStartup {
 		super.start(context);
 		// Code for cicle is moved in ChatHelper.init()
 		helper.init();
-
 	}
 
 	/**
 	 * This method is called when the plug-in is stopped
 	 */
 	public void stop(BundleContext context) throws Exception {
-		// System.out.println( "ChatUiPlugin.stop()" );
+		System.out.println( "ChatUiPlugin.stop()" );
 		super.stop(context);
 		// Code is moved in ChatHelper.dispose()
 		helper.dispose();
-
 		plugin = null;
+		isSet = false;
 	}
 
 	/**
@@ -77,9 +82,6 @@ public class ChatPlugin extends Plugin implements IStartup {
 	public void openChatWindow(ChatContext chatContext) {
 		helper.openChatWindow(chatContext);
 	}
-
-	// Method moved in the class ChatHelper
-	// public void onBackendEvent(final IBackendEvent event) {
 
 	/**
 	 * Returns the helper for this plug-in.
