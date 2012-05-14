@@ -101,7 +101,7 @@ public class InviteWizard extends Wizard implements INewWizard {
         lastOnePage.saveData();
         this.context = ((EConferenceContext) lastOnePage.getContext());
         
-		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences preferences = ConfigurationScope.INSTANCE.getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
 		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
 		String preferredFilePath = pathPref.get(IConfigurationConstant.DIR, "");
 		
