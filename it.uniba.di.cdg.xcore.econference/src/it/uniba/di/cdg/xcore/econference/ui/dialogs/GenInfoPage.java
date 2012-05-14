@@ -73,7 +73,7 @@ public class GenInfoPage extends WizardPage {
 		setDescription("Step 1: Enter conference information.\nFields marked with * are required. "
 				+ "You should avoid using reserved chars (e.g. <, >, &) as they will be escaped.");
 
-		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences preferences = ConfigurationScope.INSTANCE.getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
 		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
 		preferredFilePath = pathPref.get(IConfigurationConstant.DIR, "");
 		
@@ -288,6 +288,8 @@ public class GenInfoPage extends WizardPage {
 	public String computeFilePath() {
 		StringBuffer filepath = new StringBuffer( preferredFilePath
 				 								 + media
+				 								 + System.getProperty("file.separator")
+				 								 + nickNameText.getText()
 				 								 + System.getProperty("file.separator")
 				 								 + nameConferenceText.getText());
 		if(backendIdCombo.getSelectionIndex() == XMPP_BACKEND)

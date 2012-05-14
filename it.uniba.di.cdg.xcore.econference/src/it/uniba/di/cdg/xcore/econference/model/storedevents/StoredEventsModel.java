@@ -57,8 +57,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -133,21 +131,22 @@ public class StoredEventsModel implements IStoredEventsModel,
 
 	private DateFormat dateFormat;
 
+
 	/**
 	 * Default constructor.
 	 */
 	public StoredEventsModel() {
 		storedEvents = new Hashtable<String, IStoredEventEntry>();
 		listeners = new Vector<IStoredEventsModelListener>();
-		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences preferences = ConfigurationScope.INSTANCE.getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
 		Preferences pathPref = preferences.node(IConfigurationConstant.PATH);
 		preferredFilePath = pathPref.get(IConfigurationConstant.DIR, "");
 		try {
-			new ConfigurationScope().getNode(CONFIGURATION_NODE_QUALIFIER).node(FILE).removeNode();
+			ConfigurationScope.INSTANCE.getNode(CONFIGURATION_NODE_QUALIFIER).node(FILE).removeNode();
 		} catch (BackingStoreException e) {
 			System.out.println("No file stored");
 		}
-		preferredFile = new ConfigurationScope().getNode(CONFIGURATION_NODE_QUALIFIER).node(FILE);
+		preferredFile = ConfigurationScope.INSTANCE.getNode(CONFIGURATION_NODE_QUALIFIER).node(FILE);
 		// ensure the folder to monitor exists before monitoring it
 		File f = new File(preferredFilePath);
 		f.mkdirs();
@@ -173,8 +172,14 @@ public class StoredEventsModel implements IStoredEventsModel,
 	}
 
 	public void reloadContextFiles() {
-		// get a list of the ecx files
-		File dir = new File(preferredFilePath);
+		// get a list of the ecx files in the user folder
+		String backend = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+		String nickName = NetworkPlugin.getDefault().getRegistry().getDefaultBackend().getUserId();
+		
+		File dir = new File(preferredFilePath
+							+ backend
+							+ System.getProperty("file.separator")
+							+ nickName);
 		dir.mkdirs();
 		if (dir != null) {
 			ArrayList<File> ecxFiles = subdirControl(dir);
@@ -441,7 +446,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 	 * 
 	 */
 	private void removeStoredEventPreference(IStoredEventEntry eentry) {
-		Preferences preferences = new ConfigurationScope()
+		Preferences preferences = ConfigurationScope.INSTANCE
 				.getNode(CONFIGURATION_NODE_QUALIFIER);
 
 		String pathName = RCVD_EVENT_PATH_NODE + eentry.getAccountId();
@@ -491,7 +496,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 	 * Remove all the stored preferences for all the current online backends.
 	 */
 	private void removeAllStoredPreferences() {
-		Preferences preferences = new ConfigurationScope()
+		Preferences preferences = ConfigurationScope.INSTANCE
 				.getNode(CONFIGURATION_NODE_QUALIFIER);
 
 		Collection<IBackendDescriptor> onlineBackends = NetworkPlugin
@@ -530,7 +535,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 	 */
 	private synchronized void storeEventsPreferences() {
 		System.out.println("Storing entries");
-		Preferences preferences = new ConfigurationScope()
+		Preferences preferences = ConfigurationScope.INSTANCE
 				.getNode(CONFIGURATION_NODE_QUALIFIER);
 
 		Collection<IBackendDescriptor> onlineBackends = NetworkPlugin
@@ -654,7 +659,7 @@ public class StoredEventsModel implements IStoredEventsModel,
 	private synchronized void loadStoredEventsPreferences() {
 		System.out.println("Loading entries");
 		try {
-			Preferences preferences = new ConfigurationScope()
+			Preferences preferences = ConfigurationScope.INSTANCE
 					.getNode(CONFIGURATION_NODE_QUALIFIER);
 
 			Collection<IBackendDescriptor> onlineBackends = NetworkPlugin

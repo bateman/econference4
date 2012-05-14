@@ -85,7 +85,7 @@ public class LastPage extends WizardPage implements Listener {
         super( arg0 );
         setTitle( "Invite people" );
         setDescription( "Step 3: Complete the information of participants\n Click \"Add Row\" to add participants to the conference" );
-		Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+		Preferences preferences = ConfigurationScope.INSTANCE.getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
 		Preferences gmailPref = preferences.node(IConfigurationConstant.GMAIL);
 		gmailUsername = gmailPref.get(IConfigurationConstant.USERNAME, "");
 		Preferences smtpPref = preferences.node(IConfigurationConstant.SMTP);
