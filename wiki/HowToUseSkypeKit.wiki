@@ -76,8 +76,74 @@ To log in to Skype:
 <ul><li>invoke <font face="Courier new">Account.loginWithPassword</font> with the password parsed from the command line;</li>
 <li>periodically poll the login state (Account.Property.P_STATUS) until we see Account.Status.LOGGED_IN (success), see Account.Status.LOGGED_OUT (failure) or time-out.
 </li>
+
 </ul>
 To log out of Skype:
 <ul><li>invoke <font face="Courier new">Account.logout</font>;</li>
 <li>periodically poll the login state (Account.Property.P_STATUS) until we see Account.Status.LOGGED_OUT (success) or time-out.</li>
 </ul>
+
+==Conversation==
+The Conversation class is a core element in SkypeKit’s view of communications. It encapsulates all interactions between Skype users, including audio & video calls, chats, SMS messages, file transfers, and so forth. A conversation’s properties store attributes such as type, participants, duration, and content.
+SkypeKit provides several approaches to obtaining an account’s conversations, we illustrates using the getConversationByParticipants and getConversationList methods only. 
+<br />
+===getConversationByParticipants===
+First, we’ll specify the Skype Name (account) of the person(s) we’re interested in:
+<code>public static final String[] participantNames =
+                {
+                  "targetParticipant1",
+                  "targetParticipant2",
+                  "targetParticipant3"
+                };
+</code>
+Next, we’ll invoke Skype.getConversationByParticipants to obtain this account’s most recent Conversation with the participants we specified in participantNames:
+<code>
+// One Conversation (using GetConversationByParticipants)
+boolean createIfNonExisting = false;
+boolean ignoreBookmarkedOrNamed = false;
+
+if ((myConversation = mySession.mySkype.getConversationByParticipants(participantNames,
+				createIfNonExisting, ignoreBookmarkedOrNamed)) != null) {
+	displayName = myConversation.getDisplayName();
+	
+}
+</code>
+===getConversationList===
+Skype.getConversationList also does exactly what its name implies—it obtains a list of the conversations associated with this account that meet criteria specified by a predefined filter. 
+The predefined filter is a Conversation.ListType enumerator, which recognizes the following values:
+<ul>
+<li>ALL_CONVERSATIONS—conversations that: 
+<ul><li>are bookmarked</li>
+<li>are stored in the Inbox</li>
+<li>are live</li>
+<li>have associated meta information</li>
+<li>have had activity within the last 30 days</li>
+</ul>
+</li>
+<li>INBOX_CONVERSATIONS—conversations within the last six months only (earlier conversations are not stored in the Inbox)</li>
+<li>BOOKMARKED_CONVERSATIONS—conversations whose Conversation.Property.P_IS_BOOKMARKED property is true</li>
+<li>LIVE_CONVERSATIONS—conversations whose Conversation.Property.P_LOCAL_LIVESTATUS property is other than NONE</li>
+<li>REALLY_ALL_CONVERSATIONS—the entire conversation list; no restrictions</li>
+
+</ul>
+For example, to retrieve a list of conversations currently stored in the target account’s Inbox we use:
+<code>
+//List of Conversations (using GetConversationList)
+Conversation[] myInbox = mySession.mySkype.getConversationList(Conversation.ListType.INBOX_CONVERSATIONS);
+</code>
+==Chat Message==
+While the Conversation class handles chat messages, the Message class encapsulates most of their details.
+<br />For handling incoming messages, we simply catch and handle the onMessage event.
+<code>
+public void onMessage(Message message, boolean changesInboxTimestamp, Message supersedesHistoryMessage, Conversation conversation)
+</code>
+The arguments are:
+<ul><li>the affected Message instance</li>
+<li>whether the message caused an update to its associated Conversation’s Conversation.Property.P_INBOX_TIMESTAMP.</li>
+<li>whether the affected Message instance should be added to (null) or replace an existing event (non-null) in the Account’s event history.</li>
+<li>the affected Message instance’s associated Conversation.</li>
+</ul>
+To send a reply to any message, invoke that message’s associated Conversation’s PostText method.
+<code>
+conversation.postText(message, isXml);
+</code>
