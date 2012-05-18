@@ -18,6 +18,7 @@ To begin developing with SkypeKit, you’ll need to download, request, register,
 
 == SkypeKit SDK ==
 SkypeKit SDK provides you with the documentation, library source code, examples, and reference implementations you need to create products and applications that incorporate Skype features.
+
 To download it visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page.
 
 == SkypeKit Runtime ==
@@ -131,6 +132,40 @@ For example, to retrieve a list of conversations currently stored in the target 
 //List of Conversations (using GetConversationList)
 Conversation[] myInbox = mySession.mySkype.getConversationList(Conversation.ListType.INBOX_CONVERSATIONS);
 </code>
+
+==Contacts==
+The first thing we need to do is retrieve a ContactGroup. In addition to user-defined groups, SkypeKit defines, manages, and automatically populates several “hardwired” groups. You can use these pre-defined groups to retrieve subsets of your Contacts on an as-needed basis: 
+<ul>
+<li>ALL_KNOWN_CONTACTS—Our entire contact list, no exceptions.</li>
+<li>ALL_BUDDIES—All authorized contacts, both Skype Name and PSTN.</li>
+<li>SKYPE_BUDDIES—All authorized Skype Name contacts.</li>
+<li>SKYPEOUT_BUDDIES—All PSTN contacts.</li>
+<li>ONLINE_BUDDIES—All authorized Skype Name contacts that are currently online.
+</li>
+<li>UNKNOWN_OR_PENDINGAUTH_BUDDIES—Skype Name contacts that have not yet authorized me.</li>
+<li>RECENTLY_CONTACTED_CONTACTS—Contacts with whom I've had recent conversations, both Skype Name and PSTN.</li>
+<li>CONTACTS_WAITING_MY_AUTHORIZATION—Skype Name contacts awaiting an authorization request from me.</li>
+<li>CONTACTS_AUTHORIZED_BY_ME—All contacts that I have authorized (including unauthorized contacts).</li>
+<li>CONTACTS_BLOCKED_BY_ME—All contacts that I have blocked (including unauthorized contacts).</li>
+<li>UNGROUPED_BUDDIES—All authorized contacts that do not belong to any custom group.</li>
+<li>CUSTOM_GROUP—Custom group.</li>
+<li>EXTERNAL_CONTACTS—Contacts from external address book(s).</li>
+</ul>
+To retrieve a particular pre-defined group, invoke the Skype.GetHardwiredContactGroup method specifying the target group. Once you have the ContactGroup, invoke its GetContacts method to obtain an array of Contact instances describing its members.
+<code>
+Contact[] myContactList =
+    mySession.mySkype.getHardwiredContactGroup(ContactGroup.Type.SKYPE_BUDDIES).getContacts();
+</code>
+Now that we have the group members, we simply iterate through the list and write each member’s Contact.Property.P_DISPLAYNAME property to the console:
+<code>
+Contact[] myContactList =
+    mySession.mySkype.getHardwiredContactGroup(ContactGroup.Type.SKYPE_BUDDIES).getContacts();
+int i;
+int j = myContactList.length;
+for (i = 0; i < j; i++) {
+    System.out.println(myContactList[i].getDisplayName());
+}
+</code>
 ==Chat Message==
 While the Conversation class handles chat messages, the Message class encapsulates most of their details.
 <br />For handling incoming messages, we simply catch and handle the onMessage event.
@@ -146,4 +181,69 @@ The arguments are:
 To send a reply to any message, invoke that message’s associated Conversation’s PostText method.
 <code>
 conversation.postText(message, isXml);
+</code>
+
+==Calls==
+===Picking up incoming calls===
+Detecting and answering an incoming call requires:
+<ul><li>recognizing changes to the list of “live” conversations, specifically when an entry’s Conversation.Property.P_LOCAL_LIVESTATUS changes to Conversation.MyStatus.RINGING_FOR_ME</li>
+<li>invoking Join on that Conversation instance.</li>
+</ul>
+<code>
+public boolean doPickUpCall() {
+    Conversation[] liveConversations = mySession.mySkype.getConversationList(Conversation.ListTypeLIVE_CONVERSATIONS);
+  Conversation targetConversation = liveConversations[0];
+
+    Participant[] callerList = targetConversation.getParticipants(Conversation.PARTICIPANTFILTER.OTHER_CONSUMERS);
+ Conversation.LOCAL_LIVESTATUS liveStatus = targetConversation.getLocalLivestatus();
+    switch (liveStatus) {
+    case RINGING_FOR_ME:
+       System.out.println("RING RING...");
+       targetConversation.JoinLiveSession(targetConversation.getJoinBlob());
+        return (true);
+        // break;
+    case IM_LIVE:
+       System.out.println("Another call is coming")
+        targetConversation.LeaveLiveSession(true);
+       break;
+    default:
+        Log.d(mySession.myTutorialTag, "Ignoring LiveStatus " + liveStatus.toString());
+        break;
+    }
+
+    return (false);
+}
+</code>
+===Making Calls===
+Starting a call is easy—it’s just one method invocation: Participant.ring. You might be wondering right about now why ring is a Participant method and not a Conversation method. Since we need a Participant instance in order to invoke ring and since Participants exist only in the context of a Conversation, we first need to find (or create) a Conversation that includes our call target as a Participant. We do this by invoking Skype.getConversationByParticipants with the appropriate arguments: 
+<ul>
+<li>A String array containing a single entry—our call target.</li>
+<li>Whether the conversation should be automatically created if it doesn’t already exist. Since we need it to exist, we’ll set this argument to true.</li>
+<li>Whether bookmarked or named conversations should be ignored. For our one-to-one call, we want to ignore these so we’ll set this argument to true as well.</li>
+</ul>
+<code>
+String[] callTargets = {new String(myCallTarget)}; // Create & initialize the array in one step...
+Conversation myConversation =
+    (Conversation)mySession.mySkype.getConversationByParticipants(callTargets, true, true);
+</code>
+While we have a Conversation instance that contains our call target, we don’t have its associated Participant instance—and the ring method is a Participant method. Currently, SkypeKit does not include a method that retrieves a particular Participant from a Conversation based on the target Participant’s Skype Name. Consequently, we need to retrieve all of the Conversation’s associated Participants, loop through them, and find a match between our call target and one of their Participant.Property.P_IDENTITY values:
+<code>
+Participant[] convParticipantList = myConversation.getParticipants(Conversation.ParticipantFilter.ALL);
+</code>
+Once we have our call target’s Participant instance, we can invoke its ring 
+method. As you can see, it has five arguments: 
+<ul>
+<li>Identity of the call target. The ring method determines whether it’s actually a Skype Name or a telephone number. A real-world application that displays a list of Contacts and calls whichever one the user selects typically passes the value of one of that Contact’s four “call target” properties: 
+<ul><li>primary contact—Contact.Property.P_SKYPENAME or Contact.Property.P_PSTNNUMBER</li>
+<li>Contact.Property.P_ASSIGNED_PHONE1 (for example, their mobile)</li>
+<li>Contact.Property.P_ASSIGNED_PHONE2 (for example, their office phone)</li>
+<li>Contact.Property.P_ASSIGNED_PHONE3 (for example, their home phone)</li></ul></li>
+<li>Whether to start video when the call comes up.</li>
+<li>Maximum re-dial count.</li>
+<li>Re-dial period (in seconds).</li>
+<li>Whether the call should go to voicemail if unanswered.</li>
+</ul>
+<code>
+convParticipantList[i].ring(myCallTarget, false, 0, 10, false,
+                            mySession.myAccount.getSkypeName());
 </code>
