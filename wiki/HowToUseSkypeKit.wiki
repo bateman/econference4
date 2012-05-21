@@ -20,7 +20,7 @@ To begin developing with !SkypeKit, you’ll need to download, request, register
 
 To download it visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page.
 
-== SkypeKit Runtime ==
+== !SkypeKit Runtime ==
 !SkypeKit Runtime is a “headless” version of Skype—an application that does almost everything Skype does, but has no user interface. Instead, you write your own UI components to interact with !SkypeKit Runtime through the !SkypeKit language wrappers. !SkypeKit Runtimes provide your apps with the foundation they need to access Skype functionality. Key pairs authorize your apps to communicate with a Skype Runtime. In conjunction with the !SkypeKit SDK, these two components enable you to create and distribute all kinds of innovative SkypeKit-based products and applications.<br />
 To request a !SkypeKit Runtime:<br />
 1. Visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page. If you haven’t already done so, download the SDK and accept the development terms—the Runtimes tabs don’t appear until you do.<br />
