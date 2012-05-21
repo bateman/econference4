@@ -5,7 +5,7 @@
 
 = Introduction =
 
-SkypeKit! enables developers to create products and applications that deliver virtually the entire range of Skype’s functionality—including calling, chat, account creation, and contact management—without the need for your users to separately download Skype.
+!SkypeKit enables developers to create products and applications that deliver virtually the entire range of Skype’s functionality—including calling, chat, account creation, and contact management—without the need for your users to separately download Skype.
 
 
 =Download=
