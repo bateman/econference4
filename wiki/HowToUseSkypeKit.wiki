@@ -15,7 +15,7 @@ To begin developing with !SkypeKit, you’ll need to download, request, register
 3. Register a project.<br />
 4. Obtain a key pair for your project.<br />
 
-== SkypeKit SDK ==
+== !SkypeKit SDK ==
 !SkypeKit SDK provides you with the documentation, library source code, examples, and reference implementations you need to create products and applications that incorporate Skype features.
 
 To download it visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page.
