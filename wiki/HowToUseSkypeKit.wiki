@@ -30,7 +30,8 @@ To request a !SkypeKit Runtime:<br />
 5. An acknowledgment screen informs you that your request has been submitted. Processing your request can take anywhere from a few minutes to a few hours.<br />
 6. When you return to the Download page, you’ll see your request listed with a status of Building.<br />
 7 .When your !SkypeKit Runtime is ready, the status will change to a link that says Download.<br />
-== SkypeKit Key Pairs ==
+
+== !SkypeKit Key Pairs ==
 Key pairs are Base64-encoded X.509 certificates that authorize your apps to communicate with Skype Runtime (and access Skype functionality). You must request a distinct key pair for each app you create, as well as for each of their distributable versions. <br />
 Key pairs come in two flavors: <br />
 Development key pairs: Expire in 60 days. Good for developing and testing an app.<br/>
