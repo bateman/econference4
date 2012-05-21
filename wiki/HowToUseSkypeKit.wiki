@@ -1,4 +1,4 @@
-#summary A guide on how to Download and use SkypeKit!.
+#summary A guide on how to Download and use SkypeKit.
 
 *Index*
 <wiki:toc max_depth="3" />
@@ -9,34 +9,34 @@
 
 
 =Download=
-To begin developing with SkypeKit!, you’ll need to download, request, register, and obtain the following components: <br />
-1. Download and extract the SkypeKit! SDK.<br />
+To begin developing with !SkypeKit, you’ll need to download, request, register, and obtain the following components: <br />
+1. Download and extract the !SkypeKit SDK.<br />
 2. Request a runtime.<br />
 3. Register a project.<br />
 4. Obtain a key pair for your project.<br />
 
 == SkypeKit SDK ==
-SkypeKit!SDK provides you with the documentation, library source code, examples, and reference implementations you need to create products and applications that incorporate Skype features.
+!SkypeKit SDK provides you with the documentation, library source code, examples, and reference implementations you need to create products and applications that incorporate Skype features.
 
 To download it visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page.
 
 == SkypeKit Runtime ==
-SkypeKit! Runtime is a “headless” version of Skype—an application that does almost everything Skype does, but has no user interface. Instead, you write your own UI components to interact with SkypeKit Runtime through the SkypeKit!language wrappers. SkypeKit! Runtimes provide your apps with the foundation they need to access Skype functionality. Key pairs authorize your apps to communicate with a Skype Runtime. In conjunction with the SkypeKit! SDK, these two components enable you to create and distribute all kinds of innovative SkypeKit-based products and applications.<br />
-To request a SkypeKit! Runtime:<br />
+!SkypeKit Runtime is a “headless” version of Skype—an application that does almost everything Skype does, but has no user interface. Instead, you write your own UI components to interact with !SkypeKit Runtime through the !SkypeKit language wrappers. !SkypeKit Runtimes provide your apps with the foundation they need to access Skype functionality. Key pairs authorize your apps to communicate with a Skype Runtime. In conjunction with the !SkypeKit SDK, these two components enable you to create and distribute all kinds of innovative SkypeKit-based products and applications.<br />
+To request a !SkypeKit Runtime:<br />
 1. Visit the <a href="http://developer.skype.com/skypekit/releases/skypekit-3-7-0">Download</a> page. If you haven’t already done so, download the SDK and accept the development terms—the Runtimes tabs don’t appear until you do.<br />
 2. Click the Request a runtime tab to display the list of available runtimes.<br /> 
 3. Select the runtime with the OS, chipset, and A/V options that match your development environment.<br /> 
 4. Click Request runtime.<br />
 5. An acknowledgment screen informs you that your request has been submitted. Processing your request can take anywhere from a few minutes to a few hours.<br />
 6. When you return to the Download page, you’ll see your request listed with a status of Building.<br />
-7 .When your SkypeKit! Runtime is ready, the status will change to a link that says Download.<br />
+7 .When your !SkypeKit Runtime is ready, the status will change to a link that says Download.<br />
 == SkypeKit Key Pairs ==
 Key pairs are Base64-encoded X.509 certificates that authorize your apps to communicate with Skype Runtime (and access Skype functionality). You must request a distinct key pair for each app you create, as well as for each of their distributable versions. <br />
 Key pairs come in two flavors: <br />
 Development key pairs: Expire in 60 days. Good for developing and testing an app.<br/>
 Distribution key pairs: Don’t expire. Required for distributing an app.<br/>
 
-Requesting a distribution key pair for a registered project is similar to requesting a development key pair unless you’re planning to distribute a SkypeKit! for Embedded project (see the definition for Hardware Products in your SkypeKit! License Agreement). In that case, distribution key pairs become available only after your project’s hardware has passed certification testing.<br />
+Requesting a distribution key pair for a registered project is similar to requesting a development key pair unless you’re planning to distribute a !SkypeKit for Embedded project (see the definition for Hardware Products in your !SkypeKit License Agreement). In that case, distribution key pairs become available only after your project’s hardware has passed certification testing.<br />
 To request a development key pair:<br />
 1. Visit the <a href="http://developer.skype.com/account/projects">projects and programs</a> page.<br />
 2. Locate your registered project, and click its Project name link.<br />
@@ -84,8 +84,8 @@ To log out of Skype:
 </ul>
 
 ==Conversation==
-The Conversation class is a core element in SkypeKit!’s view of communications. It encapsulates all interactions between Skype users, including audio & video calls, chats, SMS messages, file transfers, and so forth. A conversation’s properties store attributes such as type, participants, duration, and content.
-SkypeKit! provides several approaches to obtaining an account’s conversations, we illustrates using the getConversationByParticipants and getConversationList methods only. 
+The Conversation class is a core element in !SkypeKit’s view of communications. It encapsulates all interactions between Skype users, including audio & video calls, chats, SMS messages, file transfers, and so forth. A conversation’s properties store attributes such as type, participants, duration, and content.
+!SkypeKit provides several approaches to obtaining an account’s conversations, we illustrates using the getConversationByParticipants and getConversationList methods only. 
 <br />
 ===getConversationByParticipants===
 First, we’ll specify the Skype Name (account) of the person(s) we’re interested in:
@@ -133,7 +133,7 @@ Conversation[] myInbox = mySession.mySkype.getConversationList(Conversation.List
 </code>
 
 ==Contacts==
-The first thing we need to do is retrieve a ContactGroup. In addition to user-defined groups, SkypeKit! defines, manages, and automatically populates several “hardwired” groups. You can use these pre-defined groups to retrieve subsets of your Contacts on an as-needed basis: 
+The first thing we need to do is retrieve a ContactGroup. In addition to user-defined groups, !SkypeKit defines, manages, and automatically populates several “hardwired” groups. You can use these pre-defined groups to retrieve subsets of your Contacts on an as-needed basis: 
 <ul>
 <li>ALL_KNOWN_CONTACTS—Our entire contact list, no exceptions.</li>
 <li>ALL_BUDDIES—All authorized contacts, both Skype Name and PSTN.</li>
@@ -225,7 +225,7 @@ String[] callTargets = {new String(myCallTarget)}; // Create & initialize the ar
 Conversation myConversation =
     (Conversation)mySession.mySkype.getConversationByParticipants(callTargets, true, true);
 </code>
-While we have a Conversation instance that contains our call target, we don’t have its associated Participant instance—and the ring method is a Participant method. Currently, SkypeKit! does not include a method that retrieves a particular Participant from a Conversation based on the target Participant’s Skype Name. Consequently, we need to retrieve all of the Conversation’s associated Participants, loop through them, and find a match between our call target and one of their Participant.Property.P_IDENTITY values:
+While we have a Conversation instance that contains our call target, we don’t have its associated Participant instance—and the ring method is a Participant method. Currently, !SkypeKit does not include a method that retrieves a particular Participant from a Conversation based on the target Participant’s Skype Name. Consequently, we need to retrieve all of the Conversation’s associated Participants, loop through them, and find a match between our call target and one of their Participant.Property.P_IDENTITY values:
 <code>
 Participant[] convParticipantList = myConversation.getParticipants(Conversation.ParticipantFilter.ALL);
 </code>
