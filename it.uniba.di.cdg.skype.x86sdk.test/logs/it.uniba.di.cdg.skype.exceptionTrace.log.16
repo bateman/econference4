@@ -1,0 +1,9 @@
+16-gen-2012 20.18.16 it.uniba.di.cdg.aspects.ExceptionLoggingAspect ajc$afterThrowing$it_uniba_di_cdg_aspects_ExceptionLoggingAspect$1$442fbe6f
+INFO: Exception trace aspect [SkypeBuddyRoster.refreshBuddies()]
+java.lang.NullPointerException
+	at it.uniba.di.cdg.skype.SkypeBuddyRoster.refreshBuddies(SkypeBuddyRoster.java:67)
+	at it.uniba.di.cdg.skype.SkypeBuddyRoster.reload(SkypeBuddyRoster.java:218)
+	at it.uniba.di.cdg.skype.SkypeBackend.OnPropertyChange(SkypeBackend.java:706)
+	at it.uniba.di.cdg.skype.SkypeListeners.OnPropertyChange(SkypeListeners.java:215)
+	at com.skype.api.Skype.HandlePropertyChange(Skype.java:176)
+	at com.skype.ipc.EventDispatcher.run(EventDispatcher.java:92)
