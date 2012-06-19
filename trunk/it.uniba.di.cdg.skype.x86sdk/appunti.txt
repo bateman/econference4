@@ -1,0 +1,20 @@
+MODIFICHE DA FARE ALL'ARCHIRETTURA eCONFERENCE:
+
+1. Tutte le dialoogs sull'account dovrebbero stare nel progetto jabber;
+2. I package MultiChat e eConference hanno tante referenze al package jabber
+
+
+
+COSE DA SISTEMARE
+
+1. isConnected in ConnectAction non richiama il metodo isConnected in SkypeBackend
+----->Gestire gli eventi di connessione in SkypeBackend
+
+2. InvitationEvent può essere spostato da jabber a core.network
+
+3. la funzione "public IBuddyRoster getRoster()" in NetworkNackendHelper è dipendente da un singolo Backend
+   mentre dovrebbe poter gestire + backend contemporaneamente
+   
+4. PROPOSTA PER SUPPORTARE IL MULTIPROTOCOLLO DI RETE:
+	quando eConference si avvia viene chiesto quale plugin di rete
+	si vuole usare.

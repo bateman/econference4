@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="it.uniba.di.cdg.skype.recorder" name="Recorder" schema="schema/recorder.exsd"/>
+   <extension
+         point="it.uniba.di.cdg.xcore.network.backends">
+      <backend
+            class="it.uniba.di.cdg.skype.x86sdk.SkypeBackend"
+            id="it.uniba.di.cdg.skype.x86sdk.skypeBackend"
+            name="Skype">
+      </backend>
+   </extension>
+   <extension
+         point="it.uniba.di.cdg.xcore.ui.call_buttons">
+      <add_buttons
+            class="it.uniba.di.cdg.skype.x86sdk.ui.TalkViewCallUI">
+      </add_buttons>
+   </extension>
+
+</plugin>
