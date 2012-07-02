@@ -370,6 +370,16 @@
             id="it.uniba.di.cdg.xcore.econference.strike"
             name="strike">
       </command>
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.views.handlers.FormatterHandler"
+            id="it.uniba.di.cdg.xcore.econference.italic"
+            name="italic">
+      </command>
+      <command
+            defaultHandler="it.uniba.di.cdg.xcore.econference.ui.views.handlers.FormatterHandler"
+            id="it.uniba.di.cdg.xcore.econference.latex"
+            name="latex">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -532,12 +542,26 @@
                label="Underline"
                style="push">
          </command>
+          <command
+              commandId="it.uniba.di.cdg.xcore.econference.italic"
+              icon="icons/italic_icon.png"
+              label="Italic"
+              style="push"
+              tooltip="strike">
+        </command>
          <command
                commandId="it.uniba.di.cdg.xcore.econference.strike"
                icon="icons/strike_icon.png"
                label="Strike"
                style="push">
          </command>
+        <command
+              commandId="it.uniba.di.cdg.xcore.econference.latex"
+              icon="icons/latex_icon.png"
+              label="Latex"
+              style="push"
+              tooltip="latex formula">
+        </command>
          <separator
                name="it.uniba.di.cdg.xcore.econference.separator2"
                visible="true">

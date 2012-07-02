@@ -455,7 +455,7 @@ public class MultiChatService implements IMultiChatService,
 			multiChatServiceActions.SendExtensionProtocolMessage(
 					PRIVATE_MESSAGE, param);
 
-			notifyLocalSystemMessage(String.format("[PM sent to %s] %s",
+			notifyLocalPrivateMessage(String.format("[PM sent to %s] %s",
 					p.getNickName(), message));
 		}
 	}
@@ -590,6 +590,20 @@ public class MultiChatService implements IMultiChatService,
 		entry.setText(message);
 
 		getTalkModel().addEntry(entry);
+	}
+	
+	
+	
+	protected void notifyLocalPrivateMessage(String message) {		
+		final Date now = Calendar.getInstance().getTime();
+
+		Entry entry = new Entry();
+		entry.setType(Entry.EntryType.PRIVATE_MSG);
+		entry.setTimestamp(now);
+		entry.setText(message);
+
+		getTalkModel().addEntry(entry);
+		System.out.println("notifiLocalPrivateMessage");
 	}
 
 	/*

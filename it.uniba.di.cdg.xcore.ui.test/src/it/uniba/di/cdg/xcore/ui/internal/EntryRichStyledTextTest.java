@@ -25,7 +25,13 @@
 package it.uniba.di.cdg.xcore.ui.internal;
 
 import it.uniba.di.cdg.xcore.network.model.tv.Entry;
+import it.uniba.di.cdg.xcore.ui.formatter.EntryStyleRange;
+import it.uniba.di.cdg.xcore.ui.formatter.ImageStyleRange;
 import it.uniba.di.cdg.xcore.ui.widget.EntryRichStyledText;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.eclipse.swt.SWT;
@@ -56,7 +62,7 @@ public class EntryRichStyledTextTest extends TestCase {
         assertEquals( instance.formatEntry(entry), "[PM FROM pippo] hello" );
 
         entry.setType( Entry.EntryType.SYSTEM_MSG );
-        assertEquals( instance.formatEntry(entry), "--- hello" );
+        assertEquals( instance.formatEntry(entry), "=== hello" );
     }
 
     /**
@@ -116,9 +122,9 @@ public class EntryRichStyledTextTest extends TestCase {
         entry2.setType( Entry.EntryType.CHAT_MSG );
         entry3.setType( Entry.EntryType.CHAT_MSG );
 
-        final String finalString1 = instance.formatEntry( entry1 ) + "\n";
-        final String finalString2 = instance.formatEntry( entry2 ) + "\n";
-        final String finalString3 = instance.formatEntry( entry3 ) + "\n";
+        final String finalString1 = instance.formatEntry( entry1 ) ;
+        final String finalString2 = instance.formatEntry( entry2 ) ;
+        final String finalString3 = instance.formatEntry( entry3 );
 
         instance.pushEntry( entry1 );
         instance.pushEntry( entry2 );
@@ -127,21 +133,68 @@ public class EntryRichStyledTextTest extends TestCase {
         StyleRange[] styles = instance.getStyleRanges();
         StyleRange style1, style2, style3;
 
-        // one style for each entry
+      
         assertEquals( styles.length, 3 );
 
+        
         style1 = styles[2];
         style2 = styles[1];
-        style3 = styles[0];
+        style3 = styles[0];      
 
         assertEquals( style1.start, 0 );
-        // -1 because the \n isn't styled
-        assertEquals( style1.length, finalString1.length() - 1 );
+        
+        assertEquals( style1.length, finalString1.length()-">text1".length()-1  );
 
-        assertEquals( style2.start, finalString1.length());
-        assertEquals( style2.length, finalString2.length() - 1 );
+        // +1 because the \n 
+        assertEquals( style2.start, finalString1.length()+1);
+        assertEquals( style2.length, finalString2.length()-">text2".length()-1 );
 
-        assertEquals( style3.start, finalString1.length() + finalString2.length());
-        assertEquals( style3.length, finalString3.length() - 1 );
+        assertEquals( style3.start, finalString1.length() + 1 + finalString2.length()+1);
+        assertEquals( style3.length, finalString3.length() -">longer text 3".length()-1 );
+    }
+    
+    
+    public void testClearAllWithException()
+    {
+    	
+    	instance.clearStyles();
+    	List<StyleRange> styles = new ArrayList<StyleRange>();
+    	int i=0;
+    	
+    	for(;i<10;i++){
+    		StyleRange sr = new StyleRange();
+    		sr.start=i;
+    		sr.length=1;
+    		styles.add(sr);
+    	}
+    	
+    	for(;i<15;i++){
+    		EntryStyleRange esr = new EntryStyleRange();
+    		esr.start=i;
+    		esr.length=1;
+    		styles.add(esr);
+    	}
+    	
+    	
+    	for(;i<22;i++){
+    		ImageStyleRange isr = new ImageStyleRange();
+    		isr.start=i;
+    		isr.length=1;
+    		styles.add(isr);
+    	}
+    	
+    	
+    	instance.addStyles(styles);
+    	assertEquals(instance.getStyleRanges().length, 22);
+    	instance.clearAllWithException(EntryStyleRange.class.getCanonicalName());
+    	assertEquals(instance.getStyleRanges().length,5);
+    	instance.clearStyles();
+    	
+    	instance.addStyles(styles);
+    	assertEquals(instance.getStyleRanges().length, 22);
+    	instance.clearAllWithException(ImageStyleRange.class.getCanonicalName());
+    	assertEquals(instance.getStyleRanges().length,7);
+    	instance.clearStyles();
+    	
     }
 }

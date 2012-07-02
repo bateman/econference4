@@ -26,9 +26,9 @@
 package it.uniba.di.cdg.xcore.ui.widget;
 
 import it.uniba.di.cdg.xcore.network.model.tv.Entry;
+import it.uniba.di.cdg.xcore.ui.formatter.EntryStyleRange;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -54,21 +54,25 @@ public class EntryRichStyledText extends RichStyledText {
      */
     private void applyStyleForEntry(final Entry entry, final String text, final int start, final int length) {
         final Display display = this.getShell().getDisplay();
-        StyleRange style = new StyleRange();
-        style.start = start;
-        style.length = length;
+        EntryStyleRange style = new EntryStyleRange();
+ 
+        style.start = start;      
         
         switch (entry.getType()) {
         case CHAT_MSG:
             // let the color depend from who sent the message
+        	 style.length = entry.getWho().length();
             style.foreground = getColorForText(entry.getWho());
             break;
-        case PRIVATE_MSG:
+        case PRIVATE_MSG:       	
+        	//+1 because include "]"
+        	style.length=text.indexOf("]",start)-start+1;
             style.background = display.getSystemColor(SWT.COLOR_GRAY);
             style.foreground = display.getSystemColor(SWT.COLOR_DARK_YELLOW);
             break;
         case SYSTEM_MSG:
-            style.background = display.getSystemColor(SWT.COLOR_GRAY);
+        	style.length=text.length()-start-1;        	
+            style.background = display.getSystemColor(SWT.COLOR_GRAY);          
             style.foreground = display.getSystemColor(SWT.COLOR_DARK_RED);
             break;
         case UNKNOWN:
@@ -81,17 +85,23 @@ public class EntryRichStyledText extends RichStyledText {
         // add entry styling as first items as they should be overriden by
         // other things (such as link styling) which have higher priority
         addStyleFirst( style );
-        redrawRange( style.start, style.length, true );
+        //redrawRange( style.start, style.length, true );
+        redrawRange( style.start, length, true );
+        
     }
+    
 
     public String formatEntry( Entry entry ) {
         switch (entry.getType()) {
         case CHAT_MSG:
             return String.format( "%s> %s", entry.getWho(), entry.getText() );
         case SYSTEM_MSG:
-            return String.format( "--- %s", entry.getText() );
+            return String.format( "=== %s", entry.getText() );
         case PRIVATE_MSG:
+        	if(entry.getWho()!=null)
             return String.format( "[PM FROM %s] %s", entry.getWho(), entry.getText() );
+        	else
+        	return entry.getText();
         case UNKNOWN:
             System.err.println("WARNING: unknown message type (" + entry.getText().trim() + ")");
         default:
@@ -136,6 +146,8 @@ public class EntryRichStyledText extends RichStyledText {
         int oldCharCount = getCharCount();
 
         append( textToAppend );
+        
+        textToAppend=getText();
 
         // text can be altered when appending, so the length may be different
         // from that of the original entry

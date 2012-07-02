@@ -152,7 +152,14 @@ public class TalkViewUI extends ViewPart {
 
         final CLabel helpLabel = new CLabel( sendComposite, SWT.NONE );
         final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_HELP );
-        helpLabel.setToolTipText( "*bold* (Ctrl+B)\n_underline_  (Ctrl+U)\n-strike-  (Ctrl+H)");
+        helpLabel.setToolTipText( RichFormatting.BOLD_MARKER.getCode()+"bold"+RichFormatting.BOLD_MARKER.getCode()+" (Ctrl+B)\n"+
+        						RichFormatting.UNDERLINE_MARKER.getCode()+"underline"+RichFormatting.UNDERLINE_MARKER.getCode()+" (Ctrl+U)\n"+
+        						RichFormatting.ITALIC_MARKER.getCode()+"italic"+RichFormatting.ITALIC_MARKER.getCode()+"  (Ctrl+I)\n"+
+        						RichFormatting.BOLD_UNDERLINE_MARKER.getCode()+"bold&underline"+RichFormatting.BOLD_UNDERLINE_MARKER.getCode()+"  \n"+
+        						RichFormatting.STRIKEOUT_MARKER.getCode()+"strike"+RichFormatting.STRIKEOUT_MARKER.getCode()+"  (Ctrl+H) \n"+
+        						RichFormatting.LATEX_MARKER.getCode()+"formula"+RichFormatting.LATEX_MARKER.getCode()+"  (Ctrl+L)\n"
+        						
+        		);
         helpLabel.setImage( onlineImg );
     }
 

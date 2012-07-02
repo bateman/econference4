@@ -1,6 +1,7 @@
 package it.uniba.di.cdg.xcore.econference.ui.views.handlers;
 
 import it.uniba.di.cdg.xcore.econference.ui.views.WhiteBoardViewUI;
+import it.uniba.di.cdg.xcore.ui.formatter.RichFormatting;
 import it.uniba.di.cdg.xcore.ui.views.TalkViewUI;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -58,13 +59,20 @@ public class FormatterHandler extends AbstractHandler implements IHandler {
      * @return the corresponding symbol for the formatting style, null otherwise
      */
     private String getFormattingSymbol( String command_id ) {
-        String symbol = null;
-        if (command_id.contains( "bold" ))
-            symbol = "*";
-        if (command_id.contains( "underline" ))
-            symbol = "_";
-        if (command_id.contains( "strike" ))
-            symbol = "-";
-        return symbol;
-    }
+      String symbol = null;
+      if (command_id.contains( "bold" ))
+          symbol = RichFormatting.BOLD_MARKER.getCode();
+      if (command_id.contains( "italic" ))
+          symbol = RichFormatting.ITALIC_MARKER.getCode();
+      if (command_id.contains( "latex" ))
+          symbol = RichFormatting.LATEX_MARKER.getCode();
+      if (command_id.contains( "underline" ))
+    	  symbol = RichFormatting.UNDERLINE_MARKER.getCode();
+      if (command_id.contains( "strike" ))
+    	  symbol = RichFormatting.STRIKEOUT_MARKER.getCode();
+      return symbol;
+  }
+    
+    
+
 }

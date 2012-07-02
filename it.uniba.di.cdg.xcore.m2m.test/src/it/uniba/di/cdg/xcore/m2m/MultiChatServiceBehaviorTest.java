@@ -254,17 +254,21 @@ public class MultiChatServiceBehaviorTest {
         String userId = "userid";
         
 
-        HashMap<String, String> pmParam = new HashMap<String, String>();
-        pmParam.put(MESSAGE, message);
-        pmParam.put(TO, userId);
-        pmParam.put(FROM, backend.getUserId());  
-        
         // Stub
         when(backend.getHelper()).thenReturn( backendHelper );
-        when(backend.getMultiChatServiceAction()).thenReturn( multiChatServiceActions );   
+        when(backend.getMultiChatServiceAction()).thenReturn( multiChatServiceActions ); 
+        when(backend.getUserId()).thenReturn( nickName ); 
         when(context.getNickName()).thenReturn( nickName );
         when(context.getRoom()).thenReturn( room ); 
         when(participant.getId()).thenReturn( userId );   
+       
+        
+        HashMap<String, String> pmParam = new HashMap<String, String>();
+        pmParam.put(MESSAGE, message);
+        pmParam.put(TO, userId);
+        pmParam.put(FROM, nickName);  
+        
+       
         
         // Installation    
         service.setBackend( backend );  

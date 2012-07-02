@@ -25,30 +25,36 @@
 package it.uniba.di.cdg.xcore.ui.internal;
 
 import it.uniba.di.cdg.xcore.ui.formatter.EmailFormatter;
+import it.uniba.di.cdg.xcore.ui.formatter.ImageStyleRange;
 import it.uniba.di.cdg.xcore.ui.formatter.LinkFormatter;
 import it.uniba.di.cdg.xcore.ui.formatter.RichFormatting;
 import it.uniba.di.cdg.xcore.ui.widget.RichStyledText;
 
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
-
-import junit.framework.TestCase;
-
-import org.junit.*;
+import org.junit.Before;
 
 /**
  * jUnit test for {@see it.uniba.di.cdg.xcore.ui.internal.RichStyledText}. 
  */
 public class RichStyledTextTest extends TestCase {
     private RichStyledText instance;
-    private LinkFormatter linkFormatter;
+    private LinkFormatter linkFormatter;    
     private EmailFormatter emailFormatter;
     private RichFormatting richFormatting;
+    
+    String BOLD = RichFormatting.BOLD_MARKER.getCode();
+	String UNDERLINE = RichFormatting.UNDERLINE_MARKER.getCode();
+	String STRIKEOUT = RichFormatting.STRIKEOUT_MARKER.getCode();
+	String LATEX = RichFormatting.LATEX_MARKER.getCode();
+    
     @Override
     @Before
     protected void setUp() {
@@ -159,33 +165,75 @@ public class RichStyledTextTest extends TestCase {
      * (basic cases)
      */
     public void testFindFormattingBase() {
-        List<StyleRange> boldList, underlineList, strikeList, mixedList;
+        List<StyleRange> boldList, underlineList, strikeList, mixedList,latexList;
 
+        
+        String text = "formatting test";
+        
         assertEquals( richFormatting.applyFormatting( "no formatting", 0 ).size(), 0 );
-        boldList = richFormatting.applyFormatting( "*bold formatting*", 0 );
-        underlineList = richFormatting.applyFormatting( "_underline formatting_", 0 );
-        strikeList = richFormatting.applyFormatting( "-strike formatting-", 0 );
+        boldList = richFormatting.applyFormatting( RichFormatting.BOLD_MARKER.getCode()+text+RichFormatting.BOLD_MARKER.getCode(), 0 );
+        underlineList = richFormatting.applyFormatting( RichFormatting.UNDERLINE_MARKER.getCode()+text+RichFormatting.UNDERLINE_MARKER.getCode(), 0 );
+        strikeList = richFormatting.applyFormatting( RichFormatting.STRIKEOUT_MARKER.getCode()+text+RichFormatting.STRIKEOUT_MARKER.getCode(), 0 );
+        latexList = richFormatting.applyFormatting( RichFormatting.LATEX_MARKER.getCode()+text+RichFormatting.LATEX_MARKER.getCode(), 0 );
         
-        assertEquals( boldList.size(), 1);
-        assertEquals( boldList.get( 0 ).start, 0);
-        assertEquals( boldList.get( 0 ).length, 17);
-
-        assertEquals( underlineList.size(), 1 );
-        assertEquals( underlineList.get( 0 ).start, 0 );
-        assertEquals( underlineList.get( 0 ).length, 22 );
-
-        assertEquals( strikeList.size(), 1 );
-        assertEquals( strikeList.get( 0 ).start, 0 );
-        assertEquals( strikeList.get( 0 ).length, 19 );
         
-        mixedList = richFormatting.applyFormatting( "normal *bold* and _underline_ and -strike-", 0 );
-        assertEquals( mixedList.size(), 3);
-        assertEquals( mixedList.get( 0 ).start, 7);
-        assertEquals( mixedList.get( 0 ).length, 6);
-        assertEquals( mixedList.get( 1 ).start, 18);
-        assertEquals( mixedList.get( 1 ).length, 11);
-        assertEquals( mixedList.get( 2 ).start, 34);
-        assertEquals( mixedList.get( 2 ).length, 8);
+        
+        
+        assertEquals( boldList.size(), 3);
+        
+        
+        assertEquals( boldList.get( 1 ).start, RichFormatting.BOLD_MARKER.getCode().length(),text.length()-RichFormatting.BOLD_MARKER.getCode().length());
+        assertEquals( boldList.get( 1 ).length, text.length());        
+        assertEquals(boldList.get(0).start, boldList.get(1).start-RichFormatting.BOLD_MARKER.getCode().length());
+        assertEquals(boldList.get(0).length, RichFormatting.BOLD_MARKER.getCode().length());
+        assertEquals(boldList.get(2).start, boldList.get(1).start+boldList.get(1).length);
+        assertEquals(boldList.get(2).length, RichFormatting.BOLD_MARKER.getCode().length());
+        
+        
+        
+        assertEquals( underlineList.size(), 3 );
+        assertEquals( underlineList.get( 1 ).start, RichFormatting.UNDERLINE_MARKER.getCode().length(),text.length()-RichFormatting.UNDERLINE_MARKER.getCode().length());
+        assertEquals( underlineList.get( 1 ).length, text.length());        
+        assertEquals(underlineList.get(0).start, underlineList.get(1).start-RichFormatting.UNDERLINE_MARKER.getCode().length());
+        assertEquals(underlineList.get(0).length, RichFormatting.UNDERLINE_MARKER.getCode().length());        
+        assertEquals(underlineList.get(2).start, underlineList.get(1).start+underlineList.get(1).length);
+        assertEquals(underlineList.get(2).length, RichFormatting.UNDERLINE_MARKER.getCode().length());
+
+        assertEquals( strikeList.size(), 3 );
+        assertEquals( strikeList.get( 1 ).start, RichFormatting.STRIKEOUT_MARKER.getCode().length(),text.length()-RichFormatting.STRIKEOUT_MARKER.getCode().length());
+        assertEquals( strikeList.get( 1 ).length, text.length());        
+        assertEquals(strikeList.get(0).start, strikeList.get(1).start-RichFormatting.STRIKEOUT_MARKER.getCode().length());
+        assertEquals(strikeList.get(0).length, RichFormatting.STRIKEOUT_MARKER.getCode().length());
+        assertEquals(strikeList.get(2).start, strikeList.get(1).start+strikeList.get(1).length);
+        assertEquals(boldList.get(2).length, RichFormatting.STRIKEOUT_MARKER.getCode().length());
+        
+        
+        assertEquals( latexList.size(), 3 );
+        assertEquals( latexList.get( 1 ).start, RichFormatting.LATEX_MARKER.getCode().length(),text.length()-RichFormatting.LATEX_MARKER.getCode().length());
+        assertEquals( latexList.get( 1 ).length, text.length());        
+        assertEquals(latexList.get(0).start, latexList.get(1).start-RichFormatting.LATEX_MARKER.getCode().length());
+        assertEquals(latexList.get(0).length, RichFormatting.LATEX_MARKER.getCode().length());
+        assertEquals(latexList.get(2).start, latexList.get(1).start+latexList.get(1).length);
+        assertEquals(latexList.get(2).length, RichFormatting.LATEX_MARKER.getCode().length());
+ 
+        
+        
+        //normal **bold** and __underline__ and --strike--
+        mixedList = richFormatting.applyFormatting( "normal "+RichFormatting.BOLD_MARKER.getCode()+"bold"+
+        RichFormatting.BOLD_MARKER.getCode()+" and "+RichFormatting.UNDERLINE_MARKER.getCode()+"underline"+RichFormatting.UNDERLINE_MARKER.getCode()+
+        		" and "+RichFormatting.STRIKEOUT_MARKER.getCode()+"strike"+RichFormatting.STRIKEOUT_MARKER.getCode(), 0 );
+        assertEquals( mixedList.size(), 9);
+        int k = 7+RichFormatting.BOLD_MARKER.getCode().length();
+        assertEquals( mixedList.get( 1 ).start, k);
+        assertEquals( mixedList.get( 1 ).length, 4);
+        
+        k+=4+RichFormatting.BOLD_MARKER.getCode().length()+5+RichFormatting.UNDERLINE_MARKER.getCode().length();
+        assertEquals( mixedList.get( 4 ).start, k);
+        assertEquals( mixedList.get( 4 ).length, 9);
+        
+        k+=9+RichFormatting.UNDERLINE_MARKER.getCode().length()+5+RichFormatting.STRIKEOUT_MARKER.getCode().length();
+        assertEquals( mixedList.get( 7 ).start, k);
+        assertEquals( mixedList.get( 7 ).length, 6);
     }
 
     /**
@@ -193,33 +241,49 @@ public class RichStyledTextTest extends TestCase {
      * (complex cases)
      */
     public void testFindFormattingComplex() {
+    	
+    	
         // must match only the outer formatter
-        assertEquals( richFormatting.applyFormatting( "*_mixed formatting_*", 0 ).size(), 1 );
-        assertEquals( richFormatting.applyFormatting( "-_mixed formatting_-", 0 ).size(), 1 );
+        assertEquals( richFormatting.applyFormatting( BOLD+UNDERLINE+"mixed formatting"+ UNDERLINE+BOLD, 0 ).size(), 3 );
+        assertEquals( richFormatting.applyFormatting( UNDERLINE+STRIKEOUT+"mixed formatting"+UNDERLINE+STRIKEOUT, 0 ).size(), 3 );
         
-        assertEquals( richFormatting.applyFormatting( "*mixed* _formatting_", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "*mixed* -formatting-", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "-mixed- _formatting_", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "**bold** formatting", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "__mixed__ formatting", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "--mixed-- formatting", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "** two asterisk highlighted", 0 ).size(), 1 );
+        assertEquals( richFormatting.applyFormatting( BOLD+"mixed"+BOLD+" "+UNDERLINE+"formatting"+UNDERLINE, 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( BOLD+"mixed"+BOLD+" "+STRIKEOUT+"formatting"+STRIKEOUT, 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( STRIKEOUT+"mixed"+STRIKEOUT+" "+STRIKEOUT+"formatting"+STRIKEOUT, 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( BOLD+BOLD+"bold"+BOLD+BOLD+" formatting", 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( STRIKEOUT+STRIKEOUT+"bold"+STRIKEOUT+STRIKEOUT+"formatting", 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( UNDERLINE+UNDERLINE+"bold"+UNDERLINE+UNDERLINE+"formatting", 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( BOLD+BOLD+" asterisk highlighted", 0 ).size(), 3 );
 
         // invalid format tags
-        assertEquals( richFormatting.applyFormatting( "invalid_", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "invalid-", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "_invalid", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "-invalid", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "invalid*", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "*invalid", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "*invalid_", 0 ).size(), 0 );
-        assertEquals( richFormatting.applyFormatting( "_invalid-", 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( "invalid"+UNDERLINE, 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( "invalid"+STRIKEOUT, 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( STRIKEOUT+"invalid", 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( UNDERLINE+"invalid", 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( "invalid"+BOLD, 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( BOLD+"invalid", 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( BOLD+"invalid"+UNDERLINE, 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( UNDERLINE+"invalid"+STRIKEOUT, 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( LATEX+"invalid"+BOLD, 0 ).size(), 0 );
+        assertEquals( richFormatting.applyFormatting( UNDERLINE+"invalid"+LATEX, 0 ).size(), 0 );
+        
+        
 
         // mixture of normal and formatted text
-        assertEquals( richFormatting.applyFormatting( "here comes *the* bold", 0 ).size(), 1 );
-        assertEquals( richFormatting.applyFormatting( "here comes _the_ underline", 0 ).size(), 1 );
-        assertEquals( richFormatting.applyFormatting( "xxx _underline_ yyy *bold* zzz", 0 ).size(), 2 );
-        assertEquals( richFormatting.applyFormatting( "the answer to -life- the _universe and everything_: *42*", 0 ).size(), 3 );
+        assertEquals( richFormatting.applyFormatting( "here comes "+BOLD+"the"+BOLD+" bold", 0 ).size(), 3 );
+        assertEquals( richFormatting.applyFormatting( "here comes "+BOLD+"the"+BOLD+" underline", 0 ).size(), 3 );
+        assertEquals( richFormatting.applyFormatting( "xxx "+UNDERLINE+"underline"+UNDERLINE+" yyy "+BOLD+"bold"+BOLD+" zzz", 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( "the answer to "+STRIKEOUT+"life"+STRIKEOUT+" the "+UNDERLINE+"universe and everything"+UNDERLINE+": "+BOLD+"42"+BOLD, 0 ).size(), 9 );
+        
+        
+        
+        assertEquals( richFormatting.applyFormatting( "here comes "+LATEX+"the"+LATEX+" bold", 0 ).size(), 3 );
+        assertEquals( richFormatting.applyFormatting( "here comes "+LATEX+"the"+LATEX+" underline", 0 ).size(), 3 );
+        assertEquals( richFormatting.applyFormatting( "xxx "+LATEX+"underline"+LATEX+" yyy "+BOLD+"bold"+BOLD+" zzz", 0 ).size(), 6 );
+        assertEquals( richFormatting.applyFormatting( "the answer to "+LATEX+"life"+LATEX+" the "+UNDERLINE+"universe and everything"+UNDERLINE+": "+BOLD+"42"+BOLD, 0 ).size(), 9 );
+
+        
+        
     }
 
     /**
@@ -248,7 +312,8 @@ public class RichStyledTextTest extends TestCase {
         // the url will also be highlighted and the image will come afterwards
         assertEquals( styles.length, 2 );
         // the second style (styles[1]) is the url styling, the first is the image
-        assertEquals( styles[0].start, text.length() + 1);
+        System.out.println(styles[0].start);
+        assertEquals( styles[0].start, text.length() +1);
         assertEquals( styles[0].length, 1 );
         
         try {
@@ -265,29 +330,34 @@ public class RichStyledTextTest extends TestCase {
     public void testComplexImageInlining() {
         instance.addFormatListener( linkFormatter );
         // twice the same image
-        instance.setText( "http://www.di.uniba.it/dib/immagini/build.gif http://www.di.uniba.it/dib/immagini/build.gif" );
+        instance.setText( "Two times the same image: http://www.di.uniba.it/dib/immagini/build.gif http://www.di.uniba.it/dib/immagini/build.gif" );
         StyleRange[] styles = instance.getStyleRanges();
         // 2 url stylings + 2 images
         assertEquals( styles.length, 4 );
 
         // the first two styles (styles[0] and styles[1]) must be the images
         // (we can't know who's the first and who's the second)
-        assertTrue( styles[0].start == 46 || styles[0].start == 94 );
-        assertTrue( styles[1].start == 46 || styles[1].start == 94 );
-
+      
+        for(int i=0;i<4;i++)
+        {
+        assertTrue( styles[i].start == 72 || styles[i].start == 120 || styles[i].start == 26 || styles[i].start == 74);
+        };
+        
         assertEquals( styles[0].length, 1 );
         assertEquals( styles[1].length, 1 );
 
         // different images
-        instance.setText( "http://www.di.uniba.it/dib/immagini/logo_uniba.gif http://www.di.uniba.it/dib/immagini/build.gif" );
+        instance.setText( "Two different images: http://www.di.uniba.it/dib/immagini/logo_uniba.gif http://www.di.uniba.it/dib/immagini/build.gif" );
         styles = instance.getStyleRanges();
-        // 2 url stylings + 2 images
+        // 2 url stylings + 2 images        
         assertEquals( styles.length, 4 );
 
         // the first two styles (styles[0] and styles[1]) must be the images
         // (we can't know who's the first and who's the second)
-        assertTrue( styles[0].start == 51 || styles[0].start == 97 );
-        assertTrue( styles[1].start == 51 || styles[1].start == 97 );
+        for(int i=0;i<4;i++)
+        {
+        assertTrue( styles[i].start == 121 || styles[i].start == 73 || styles[i].start == 22 || styles[i].start == 75);
+        };
 
         assertEquals( styles[0].length, 1 );
         assertEquals( styles[1].length, 1 );
@@ -309,9 +379,38 @@ public class RichStyledTextTest extends TestCase {
         assertTrue( invalidUrl == null );
     }
     
+    
+    public void testLatexGet() {
+    	String pattern="\\LaTeX";
+    	String text= LATEX+pattern+LATEX;
+    	instance.clearStyles();
+    	String actual = instance.compile(text, pattern, 0);    	
+    	String expected = LATEX+pattern+"  "+LATEX;  	
+    	assertEquals(instance.getStyleRanges().length, 2);
+    	assertTrue(instance.getStyleRanges()[0] instanceof ImageStyleRange);    	
+        assertEquals(expected, actual);
+        instance.clearStyles();
+        
+        
+         pattern="\\LaTeX";
+    	 text= "this is "+LATEX+pattern+LATEX+". Wow!";
+    	instance.clearStyles();
+    	 actual = instance.compile(text, pattern, 0);    	
+    	 expected = "this is "+LATEX+pattern+"  "+LATEX+". Wow!";  	
+    	assertEquals(instance.getStyleRanges().length, 2);
+    	assertTrue(instance.getStyleRanges()[0] instanceof ImageStyleRange);    	
+        assertEquals(expected, actual);
+        instance.clearStyles();      
+        
+
+    }
+    
+    
     public void testAddFormatListenet(){        
         instance.addFormatListener( emailFormatter );
         instance.addFormatListener( linkFormatter );
+        
+        
         instance.setText( "" );
         
         instance.setText( "foo@mail.com" );
@@ -324,14 +423,17 @@ public class RichStyledTextTest extends TestCase {
         assertTrue( styles[0].underline == true && styles[0].underlineStyle == SWT.UNDERLINE_LINK );
         instance.setText( "" );
         
-        instance.setText( "*prova*" );
+        instance.setText( BOLD+"prova"+BOLD );
         styles = instance.getStyleRanges( 0, 7 );
         assertTrue( styles.length == 0);
         instance.setText( "" );
         
         instance.addFormatListener( richFormatting );
-        instance.setText( "*prova*" );
-        styles = instance.getStyleRanges( 0, 7 );
-        assertTrue( styles[0].fontStyle == SWT.BOLD );
+        instance.setText( BOLD+"prova"+BOLD );
+        styles = instance.getStyleRanges( BOLD.length(), 5-BOLD.length() );
+        assertTrue( styles[1].fontStyle == SWT.BOLD );
     }
+    
+   
+    
 }

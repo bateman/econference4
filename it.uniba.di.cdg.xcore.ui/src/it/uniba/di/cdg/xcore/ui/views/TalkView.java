@@ -94,6 +94,11 @@ public class TalkView extends TalkViewUI implements ITalkView {
 
     protected IAction decreaseFontSize;
 
+    
+    public static final String THREADSEPARATOR = "=====================";
+    
+     
+    
     /**
      * The model listener will append text messages added to the model and replace the currently
      * displayed text with the one belonging to the newly selected thread id.
@@ -107,7 +112,9 @@ public class TalkView extends TalkViewUI implements ITalkView {
             // Add a separator to the old threading (when this event is fired the current
             // thread in the talk model has not been changed yet, so it safe to 
             // call appendMessage() here and have it attached the message to "oldThread"
-            putSeparator( oldThread );
+            //putSeparator( oldThread );
+        	putSeparator( newThread );
+        	
             showThread( newThread );
         }
     };
@@ -583,7 +590,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
      * @see it.uniba.di.cdg.xcore.ui.views.ITalkView#putSeparator(java.lang.String)
      */
     public void putSeparator( String threadId ) {
-        Entry entry = new Entry("---------------------");
+        Entry entry = new Entry(THREADSEPARATOR);
         entry.setType(Entry.EntryType.SYSTEM_MSG);
         getModel().addEntry( threadId, entry );
     }
@@ -613,4 +620,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
 	public void refresh() {
 		// do nothing
 	}
+	
+	
+	
 }
