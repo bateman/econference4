@@ -27,9 +27,11 @@ package it.uniba.di.cdg.xcore.econference.ui.views;
 import it.uniba.di.cdg.xcore.ui.formatter.EmailFormatter;
 import it.uniba.di.cdg.xcore.ui.formatter.LinkFormatter;
 import it.uniba.di.cdg.xcore.ui.formatter.RichFormatting;
+import it.uniba.di.cdg.xcore.ui.formatter.TextStyleRange;
 import it.uniba.di.cdg.xcore.ui.widget.RichStyledText;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -66,15 +68,76 @@ public class WhiteBoardViewUI extends ViewPart {
      * 
      * @param s a String that represents a formatting style
      */
-    public void applyFormatting( String s ) {
-        Point sel = whiteBoardText.getSelectionRange();
-        String new_text = s + whiteBoardText.getSelectionText() + s;
-
-        if ((sel == null) || (sel.y == 0))
-            return;
-        
-        whiteBoardText.replaceTextRange( sel.x, sel.y, new_text );
-    }
+		  public void applyFormatting( String s ) {
+		  Point sel = whiteBoardText.getSelectionRange();
+		  String text=whiteBoardText.getText();
+		  String newtext = new String();
+		 
+		  StyleRange[] styles = whiteBoardText.getStyleRanges(sel.x, sel.x+sel.y);
+		  for(StyleRange sr: styles)
+		  {
+			  
+		  	if(sr instanceof TextStyleRange && ((TextStyleRange)sr).code.equals(s))
+		  	{
+		  		if(sel.x>sr.start)
+		  		{
+		  			if(sel.y+sel.x<sr.length+sr.start)
+		  			{
+		  				//case **abSa**  => **ab**S**a**
+		  				System.out.println("case **abSa**  => **ab**S**a**");
+		  				
+		  				newtext = s + whiteBoardText.getSelectionText() + s;
+		  				whiteBoardText.replaceTextRange( sel.x, sel.y, newtext );
+		  			}else
+		  			{
+		  				//case **abSS**  => **ab**SS
+		  				System.out.println("case **abSS**  => **ab**SS");
+		  				 text = whiteBoardText.getText();
+		  				newtext=text.substring(0,sel.x)+s+text.substring(sel.x,sel.x+sel.y);
+		  				int caretOffset = newtext.length();	  						 
+		  				newtext+=((sel.x+sel.y+s.length()<whiteBoardText.getText().length())?text.substring(sel.x+sel.y+s.length()):"");
+		  				whiteBoardText.setText(newtext);
+		  				whiteBoardText.setCaretOffset(caretOffset);
+		  				
+		  			}
+		  		}
+		  		else
+		  		{
+		  			if(sel.y+sel.x<sr.length+sr.start)
+		  			{
+		  			//case **Sa**  => S**a**
+		  				System.out.println("case **Sa**  => S**a**");
+		  				 text = whiteBoardText.getText();
+		  				newtext=((sel.x-s.length()>0)?text.substring(0,sel.x-s.length()):"")+text.substring(sel.x,sel.x+sel.y)+s+text.substring(sel.x+sel.y);
+		  				int caretOffset = sel.x+sel.y-s.length();	 
+		  				 whiteBoardText.setText(newtext);
+		  				whiteBoardText.setCaretOffset(caretOffset);
+		  			}else
+		  			{
+		  				//case a**S**a = > aSa
+		  				System.out.println("case a**S**a = > aSa");
+		  				 text = whiteBoardText.getText();
+		  				newtext=((sel.x-s.length()>0)?text.substring(0,sel.x-s.length()):"")+text.substring(sel.x,sel.x+sel.y);
+		  				int caretOffset =newtext.length();
+		  				newtext+=((sel.x+sel.y+s.length()<whiteBoardText.getText().length())?text.substring(sel.x+sel.y+s.length()):"");
+		  				whiteBoardText.setText(newtext);		  					
+		  				whiteBoardText.setCaretOffset(caretOffset);
+		  				
+		  			}
+		  		}
+		  		
+		  		return;
+		  	}
+		  }
+		  
+		  System.out.println("case S ==> **S**");
+		  newtext = s + whiteBoardText.getSelectionText() + s;
+		
+		  if ((sel == null) || (sel.y == 0))
+		      return;
+		  
+		  whiteBoardText.replaceTextRange( sel.x, sel.y, newtext );
+		}
     
     public String getWhiteBoardTextContent() {
         return whiteBoardText.getText();
@@ -86,7 +149,7 @@ public class WhiteBoardViewUI extends ViewPart {
 
     public void setSelectionRangWhiteBoardText(int start, int lenght){
         this.whiteBoardText.setSelectionRange( start, lenght );
-    }
+    } 
     /*
      * (non-Javadoc)
      * 
