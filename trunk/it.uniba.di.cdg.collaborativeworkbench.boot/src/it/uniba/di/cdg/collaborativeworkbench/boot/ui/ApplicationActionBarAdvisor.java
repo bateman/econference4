@@ -24,10 +24,14 @@
  */
 package it.uniba.di.cdg.collaborativeworkbench.boot.ui;
 
+import it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin;
+import it.uniba.di.cdg.collaborativeworkbench.ui.extensionpoint.definition.statusbar.IStatusBarExtensionPoint;
 import it.uniba.di.cdg.xcore.ui.UiConstants;
 import it.uniba.di.cdg.xcore.ui.actions.CollaborativeWorkbenchActionFactory;
 import it.uniba.di.cdg.xcore.ui.contribution.OnlineStatusIndicator;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.ICoolBarManager;
@@ -158,11 +162,39 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     @Override
     protected void fillStatusLine( IStatusLineManager statusLine ) {
         super.fillStatusLine( statusLine );
+        
+        setupExtensionsPointStatusBar(statusLine);
 
         OnlineStatusIndicator onlineIndicator = new OnlineStatusIndicator();
         // Display the status line indicator by default ...
         onlineIndicator.setVisible( true );
         statusLine.add( onlineIndicator );
     }    
+    
+    public void setupExtensionsPointStatusBar(
+			final IStatusLineManager statusLine) {
+
+		System.out.println("ApplicationActionBarAdvisor.setupExtensionsPointStatusBar()");
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(BootPlugin.ID,IStatusBarExtensionPoint.ID);
+		
+		try {
+
+			for (IConfigurationElement ce : config) {
+				
+				
+				final Object obj = ce.createExecutableExtension("class");
+				if (obj instanceof IStatusBarExtensionPoint) {						
+					statusLine.add((IStatusBarExtensionPoint) obj);
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 
 }

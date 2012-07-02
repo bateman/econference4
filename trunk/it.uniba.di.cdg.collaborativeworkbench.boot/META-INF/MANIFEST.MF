@@ -12,4 +12,6 @@ Require-Bundle: it.uniba.di.cdg.xcore.ui,
 Bundle-Activator: it.uniba.di.cdg.collaborativeworkbench.ui.BootPlugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6,
  JavaSE-1.7
-Export-Package: it.uniba.di.cdg.collaborativeworkbench.boot.ui
+Export-Package: it.uniba.di.cdg.collaborativeworkbench.boot.ui,
+ it.uniba.di.cdg.collaborativeworkbench.ui,
+ it.uniba.di.cdg.collaborativeworkbench.ui.extensionpoint.definition.statusbar
