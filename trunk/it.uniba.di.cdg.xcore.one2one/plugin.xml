@@ -133,7 +133,7 @@
                id="it.uniba.di.cdg.xcore.one2one.action1"
                label="Call"
                menubarPath="callGroup"
-               tooltip="Answer / Finish a call with this user">
+               tooltip="Answer / Hang up a call">
             <enablement>
             <and>
              <not>
