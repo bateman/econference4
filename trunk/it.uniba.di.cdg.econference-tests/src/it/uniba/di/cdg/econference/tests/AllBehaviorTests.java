@@ -35,7 +35,7 @@ import org.junit.runners.Suite;
     it.uniba.di.cdg.xcore.network.test.allpackagetests.AllBehaviorTests.class,
     it.uniba.di.cdg.xcore.one2one.test.allpackagetests.AllBehaviorTests.class,
     it.uniba.di.cdg.jabber.test.allpackagetests.AllBehaviorTests.class,
-//    it.uniba.di.cdg.skype.test.allpackagetests.AllBehaviorTests.class
+    it.uniba.di.cdg.skype.x86sdk.test.allpackagetests.AllBehaviorTests.class
 })
 
 public class AllBehaviorTests {

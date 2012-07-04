@@ -30,7 +30,6 @@ public class TalkViewCallUI  implements ITalkViewUI {
 
 
 	public void addButtons(Composite callComposite, final String receiver) {
-System.out.println(receiver+"pppppppppp");
 		if (!receiver.equals("conference")){
 
 			if( callComposite.getChildren().length==0){

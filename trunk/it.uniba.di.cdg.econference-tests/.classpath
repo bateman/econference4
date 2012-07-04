@@ -6,7 +6,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.collaborativeworkbench.boot.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.jabber.test"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.skype.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.skype.x86sdk.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.econference.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.m2m.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/it.uniba.di.cdg.xcore.network.test"/>

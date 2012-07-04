@@ -11,4 +11,6 @@ public interface IMultiCallAction {
 	public boolean isCalling();
 	
 	public void finishCall();
+
+	public void endCall();
 }
