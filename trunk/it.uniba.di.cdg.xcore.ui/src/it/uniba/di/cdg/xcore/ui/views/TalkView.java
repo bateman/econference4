@@ -50,8 +50,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
@@ -93,6 +97,8 @@ public class TalkView extends TalkViewUI implements ITalkView {
     protected IAction increaseFontSize;
 
     protected IAction decreaseFontSize;
+    
+    public String receiver;
 
     
     public static final String THREADSEPARATOR = "=====================";
@@ -621,6 +627,44 @@ public class TalkView extends TalkViewUI implements ITalkView {
 		// do nothing
 	}
 	
+	public void setReceiver(String id) {
+		receiver=id;		
+	}
+
+	public String getReceiver() {
+		return receiver;
+
+	}
+
+
+	public void runCallExtension() {
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor("it.uniba.di.cdg.xcore.ui.call_buttons");
+		try {
+			for (IConfigurationElement e : config) {
+				System.out.println("Evaluating extension");
+				final Object o = e.createExecutableExtension("class");
+				if (o instanceof ITalkViewUI) {
+					ISafeRunnable runnable = new ISafeRunnable() {
+						@Override
+						public void handleException(Throwable exception) {
+							System.out.println("Exception in client");
+						}
+
+						@Override
+						public void run() throws Exception {
+							((ITalkViewUI) o).addButtons(callComposite, getReceiver());
+						}
+					};
+					SafeRunner.run(runnable);
+				}
+			}
+		} catch (CoreException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+
 	
 	
 }
