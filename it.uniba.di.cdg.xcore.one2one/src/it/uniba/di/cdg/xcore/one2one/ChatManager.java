@@ -62,7 +62,7 @@ import org.eclipse.ui.WorkbenchException;
  * (the chat service). TODO Implement "Chat with buddy not in contact list"
  */
 public class ChatManager implements IServiceManager, ISendMessagelListener,
-		ITypingListener, IBackendEventListener {
+ITypingListener, IBackendEventListener {
 	/**
 	 * Interface for listeners regarding a chat objects. Currently only
 	 * <code>closed()</code> event is supported.
@@ -192,7 +192,7 @@ public class ChatManager implements IServiceManager, ISendMessagelListener,
 					public void partClosed(IWorkbenchPart part) {
 						if (part == talkView) {
 							workbenchWindow.getPartService()
-									.removePartListener(this);
+							.removePartListener(this);
 							ChatManager.this.close();
 						}
 					}
@@ -201,12 +201,17 @@ public class ChatManager implements IServiceManager, ISendMessagelListener,
 		talkView = (ITalkView) talkViewPart;
 		talkView.setTitleText(backendHelper.getRoster().getBuddy(getBuddyId())
 				.getName());
+		talkView.setReceiver(backendHelper.getRoster().getBuddy(getBuddyId()).getId());
 		// XXX Hack: the model should go in the service ...
 		talkView.setModel(new TalkModel());
 		talkView.addListener(this);
 
+		if(getBackendHelper().getRoster().getBackend().getBackendId().equals("it.uniba.di.cdg.skype.x86sdk.skypeBackend"))
+			talkView.runCallExtension();
 		// Ensure that the focus is switched to this new chat
+
 		talkViewPart.setFocus();
+
 	}
 
 	/**
@@ -220,7 +225,7 @@ public class ChatManager implements IServiceManager, ISendMessagelListener,
 		// clean-up now
 		if (service != null) {
 			service.close(); // The chat service will clean-up all us as
-								// listeners too
+			// listeners too
 			service = null;
 		}
 		// Good bye, friends
@@ -348,13 +353,11 @@ public class ChatManager implements IServiceManager, ISendMessagelListener,
 		if (event instanceof ChatMessageReceivedEvent) {
 			ChatMessageReceivedEvent chatMessageReceivedEvent = (ChatMessageReceivedEvent) event;
 			if (chatMessageReceivedEvent.getBuddy().getId().equals(chatContext.getBuddyId())) {
-			    Entry entry = new Entry(chatMessageReceivedEvent.getBuddy().getName(),
-			                            chatMessageReceivedEvent.getMessage());
-			    talkView.appendMessage(entry);
+				Entry entry = new Entry(chatMessageReceivedEvent.getBuddy().getName(),
+						chatMessageReceivedEvent.getMessage());
+				talkView.appendMessage(entry);
 			}
-			// talkView.appendMessage(
-			// backendHelper.getRoster().getBuddy(getBuddyId()).getName() +
-			// " > " + chatMessageReceivedEvent.getMessage() );
+
 			return true;
 		}
 		return false;

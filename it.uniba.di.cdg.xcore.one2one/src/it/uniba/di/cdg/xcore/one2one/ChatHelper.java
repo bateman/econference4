@@ -6,6 +6,7 @@ import it.uniba.di.cdg.xcore.network.IBackendDescriptor;
 import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.NetworkPlugin;
 import it.uniba.di.cdg.xcore.network.action.ICallAction;
+import it.uniba.di.cdg.xcore.network.action.IMultiCallAction;
 import it.uniba.di.cdg.xcore.network.events.IBackendEvent;
 import it.uniba.di.cdg.xcore.network.events.call.CallEvent;
 import it.uniba.di.cdg.xcore.network.events.chat.ChatMessageReceivedEvent;
@@ -17,7 +18,9 @@ import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -29,6 +32,7 @@ public class ChatHelper implements IChatHelper {
 	public Map<String, ChatManager> openChats;
 	protected final IUIHelper uihelper;
 	protected final INetworkBackendHelper backendHelper;
+	private MessageDialog call_alert=null;
 
 	public ChatHelper(INetworkBackendHelper helper, IUIHelper uiHelper) {
 		this.openChats = new HashMap<String, ChatManager>();
@@ -54,6 +58,7 @@ public class ChatHelper implements IChatHelper {
 	 * @param chatContext
 	 */
 	public void openChatWindow(ChatContext chatContext) {
+
 		if (openChats.containsKey(chatContext.getBuddyId())) {
 			return;
 		}
@@ -96,23 +101,71 @@ public class ChatHelper implements IChatHelper {
 						// http://code.google.com/p/econference4/issues/detail?id=48
 						buddy.getId(),
 						new ChatMessage(buddy.getId(),
-										chatMessageReceivedEvent.getMessage()));
+								chatMessageReceivedEvent.getMessage()));
 				openChatWindow(chatContext);
 			}
 		}
 
 		else if (event instanceof CallEvent) {
-			CallEvent callEvent = (CallEvent) event;
-			boolean res = uihelper.askYesNoQuestion("Call Request",
-					"Do you want accept a call by " + callEvent.getFrom());
-			IBackend backend = backendHelper.getRoster().getBackend();
-			ICallAction callAction = backend.getCallAction();
-			if (res) {
-				callAction.acceptCall(callEvent.getFrom());
-			} else {
-				callAction.declineCall(callEvent.getFrom());
+
+			final CallEvent callEvent = (CallEvent) event;
+			if (!((CallEvent) event).getFrom().equals("conference")){
+				String[] button = {"Yes","No"};
+				call_alert = new MessageDialog(null, "Incoming Call", null, "Do you want accept call from "+callEvent.getFrom()+" ?", 0, button, 0);
+				IBackend backend = backendHelper.getRoster().getBackend();
+				final ICallAction callAction = backend.getCallAction();
+				ringThread t = new ringThread();
+				t.setUser(callEvent.getFrom());
+				t.start();
+
+				int res=call_alert.open();
+				if (res==0) {
+					callAction.acceptCall(callEvent.getFrom());
+				} else {
+					callAction.declineCall(callEvent.getFrom());
+				}
+
+			}else{
+
+				boolean res = uihelper.askYesNoQuestion("Call Request",
+						"Do you want join to conference?");
+				IBackend backend = backendHelper.getRoster().getBackend();
+				IMultiCallAction callAction = backend.getMultiCallAction();
+				if (res) {
+					callAction.acceptCall();
+				} else {
+					callAction.declineCall();
+				}
+
+
 			}
 		}
 	}
+
+
+	class ringThread extends Thread {
+
+		String user="";
+
+		public void setUser(String user) {
+
+			this.user=user;
+		}
+
+		public void run() {
+			IBackend backend = backendHelper.getRoster().getBackend();
+			ICallAction callAction = backend.getCallAction();
+			while (callAction.isCalling(user)){
+
+			}
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					call_alert.close();    
+				}
+
+			});
+		}
+	}
+
 
 }

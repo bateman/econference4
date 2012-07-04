@@ -131,7 +131,7 @@
                enablesFor="1"
                icon="icons/skype-icona16.png"
                id="it.uniba.di.cdg.xcore.one2one.action1"
-               label="Call / End Call"
+               label="Call"
                menubarPath="callGroup"
                tooltip="Answer / Finish a call with this user">
             <enablement>

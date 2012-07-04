@@ -15,4 +15,4 @@ Require-Bundle: org.eclipse.jdt.junit4.runtime;bundle-version="1.1.100",
  it.uniba.di.cdg.xcore.ui.test;bundle-version="1.0.0",
  it.uniba.di.cdg.xcore.util.test;bundle-version="1.0.0",
  it.uniba.di.cdg.jabber.test;bundle-version="1.0.0",
- it.uniba.di.cdg.skype.test;bundle-version="1.0.0"
+ it.uniba.di.cdg.skype-sdk.test;bundle-version="1.0.0"

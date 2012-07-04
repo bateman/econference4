@@ -70,6 +70,11 @@ public class SkypeMultiCallAction implements IMultiCallAction {
 	public boolean isCalling() {
 		return backend.getCallAction().isCalling(conferenceId);
 	}
+	
+	@Override
+	public  void endCall() {
+		
+	}
 
 	public void addCall(String conferenceId, Call call2) {
 		call = call2;

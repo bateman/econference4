@@ -32,14 +32,12 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 		it.uniba.di.cdg.collaborativeworkbench.boot.test.allpackagetests.AllTests.class,
 		it.uniba.di.cdg.jabber.test.allpackagetests.AllTests.class,
-//		it.uniba.di.cdg.skype.test.allpackagetests.AllTests.class,
+		it.uniba.di.cdg.skype.x86sdk.test.allpackagetests.AllTests.class,
 		it.uniba.di.cdg.xcore.econference.test.allpackagetests.AllTests.class,
 		it.uniba.di.cdg.xcore.m2m.test.allpackagetests.AllTests.class,
 		it.uniba.di.cdg.xcore.network.test.allpackagetests.AllTests.class,
 		it.uniba.di.cdg.xcore.ui.test.allpackagetests.AllTests.class,
-		it.uniba.di.cdg.xcore.util.test.allpackagetests.AllTests.class 
-		}
-)
+		it.uniba.di.cdg.xcore.util.test.allpackagetests.AllTests.class })
 		
 public class AllTests {
 
