@@ -67,12 +67,13 @@ public interface IImageResources {
     public static final String ICON_ACTION_DISCONNECT = "action_disconnect"; //$NON-NLS-1$
     public static final String ICON_ACTION_RELOAD = "action_reload"; //$NON-NLS-1$
 
-    
     /**
      * This icon is for default Buddy Image if we don't have his profile associated and is 50x50
      */
-    
     public static final String BUDDYDEFAULTIMAGE = "buddy_default_image"; //$NON-NLS-1$
+    
+    public static final String ICON_CALL = "call"; //$NON-NLS-1$
+    public static final String ICON_END_CALL = "end_call"; //$NON-NLS-1$
 
     /**
      * Returns the image descriptor for a given symbolic name (if an <code>Image</code>
