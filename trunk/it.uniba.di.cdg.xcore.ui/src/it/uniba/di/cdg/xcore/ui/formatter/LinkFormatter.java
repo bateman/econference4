@@ -1,3 +1,29 @@
+/**
+ * This file is part of the eConference project and it is distributed under the 
+
+ * terms of the MIT Open Source license.
+ * 
+ * The MIT License
+ * Copyright (c) 2006 - 2012 Collaborative Development Group - Dipartimento di Informatica, 
+ *                    University of Bari, http://cdg.di.uniba.it
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+ * software and associated documentation files (the "Software"), to deal in the Software 
+ * without restriction, including without limitation the rights to use, copy, modify, 
+ * merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
+ * permit persons to whom the Software is furnished to do so, subject to the following 
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies 
+ * or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package it.uniba.di.cdg.xcore.ui.formatter;
 
 import it.uniba.di.cdg.xcore.ui.util.LinkFinder;
@@ -9,30 +35,31 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 
 public class LinkFormatter implements FormatListener {
-    /*
-     * Find links in the text just added and format them accordingly
-     */
-    public List<StyleRange> applyFormatting( final String text, final int startOffset ) {
-        final List<String> urls = LinkFinder.extractUrls( text );
-        List<StyleRange> list = new ArrayList<StyleRange>();
+	/*
+	 * Find links in the text just added and format them accordingly
+	 */
+	public List<StyleRange> applyFormatting(final String text,
+			final int startOffset) {
+		final List<String> urls = LinkFinder.extractUrls(text);
+		List<StyleRange> list = new ArrayList<StyleRange>();
 
-        int start = 0;
-        for (String url : urls) {
-            start = text.indexOf( url, start );
+		int start = 0;
+		for (String url : urls) {
+			start = text.indexOf(url, start);
 
-            StyleRange urlstyle = new StyleRange();
-            urlstyle.underline = true;
-            urlstyle.underlineStyle = SWT.UNDERLINE_LINK;
-            urlstyle.underlineColor = null;
-            urlstyle.foreground = null;
-            urlstyle.start = startOffset + start;
-            urlstyle.length = url.length();
-            urlstyle.data = url.startsWith( "http" ) ? url : "http://" + url;
-            list.add( urlstyle );
+			StyleRange urlstyle = new StyleRange();
+			urlstyle.underline = true;
+			urlstyle.underlineStyle = SWT.UNDERLINE_LINK;
+			urlstyle.underlineColor = null;
+			urlstyle.foreground = null;
+			urlstyle.start = startOffset + start;
+			urlstyle.length = url.length();
+			urlstyle.data = url.startsWith("http") ? url : "http://" + url;
+			list.add(urlstyle);
 
-            start++;
-        }
+			start++;
+		}
 
-        return list;
-    }
+		return list;
+	}
 }
