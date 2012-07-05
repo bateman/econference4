@@ -25,8 +25,13 @@
 
 package it.uniba.di.cdg.xcore.ui.widget;
 
+import it.uniba.di.cdg.xcore.ui.formatter.EntryStyleRange;
 import it.uniba.di.cdg.xcore.ui.formatter.FormatListener;
+import it.uniba.di.cdg.xcore.ui.formatter.ImageStyleRange;
+import it.uniba.di.cdg.xcore.ui.formatter.TextStyleRange;
+import it.uniba.di.cdg.xcore.ui.internal.LatexListener;
 import it.uniba.di.cdg.xcore.ui.internal.UrlListener;
+import it.uniba.di.cdg.xcore.ui.service.LatexService;
 import it.uniba.di.cdg.xcore.ui.util.LinkFinder;
 
 import java.io.IOException;
@@ -54,439 +59,633 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GlyphMetrics;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A compatible, thread-safe implementation of StyledText that allow for rich
  * text formatting. This widget is optimized for chat-like environments where
  * text appending is the most common operation.
  * 
- * In addition to the standard StyledText behaviour, this widget will
- * also automatically format http and email links as clickable items.
- *
+ * In addition to the standard StyledText behaviour, this widget will also
+ * automatically format http and email links as clickable items.
+ *  
  */
 public class RichStyledText extends StyledText implements LineStyleListener,
-                                                          PaintObjectListener,
-                                                          UrlListener,
-                                                          MouseListener {
-    // inline imaged will be represented by the character here
-    // ideally, it should be the unicode char \uFFFC (object replacement),
-    // but when saving the text it's ugly so a space it's much better
-    protected final static String IMAGE_PLACEHOLDER = " ";
-    
-    // suffixes that will enable image retrieval and inline placing from links
-    private final static String[] VALID_IMAGE_SUFFIX = {
-        ".jpg", ".jpeg", ".png", ".bmp", ".gif",
-    };
+		PaintObjectListener, UrlListener, MouseListener, LatexListener {
+	// inline imaged will be represented by the character here
+	// ideally, it should be the unicode char \uFFFC (object replacement),
+	// but when saving the text it's ugly so a space it's much better
+	protected final static String IMAGE_PLACEHOLDER = " ";
 
-    private LinkedList<StyleRange> styleList = new LinkedList<StyleRange>();
+	// suffixes that will enable image retrieval and inline placing from links
+	private final static String[] VALID_IMAGE_SUFFIX = { ".jpg", ".jpeg",
+			".png", ".bmp", ".gif", };
 
-    // let the cache be shared among all RichStyledText instances
-    private static Map<String,Image> urlImageCache = new HashMap<String,Image>();
+	private LinkedList<StyleRange> styleList = new LinkedList<StyleRange>();
 
-    private List<UrlListener> urlListeners = new LinkedList<UrlListener>();
+	// let the cache be shared among all RichStyledText instances
+	private static Map<String, Image> urlImageCache = new HashMap<String, Image>();
 
-    private List<FormatListener> formatListeners = new LinkedList<FormatListener>();
+	private List<UrlListener> urlListeners = new LinkedList<UrlListener>();
 
-    protected int currentTextLength;
+	private List<FormatListener> formatListeners = new LinkedList<FormatListener>();
 
-    public RichStyledText(Composite parent, int style) {
-        super(parent, style);
+	private List<LatexListener> latexListeners = new LinkedList<LatexListener>();
 
-        currentTextLength = 0;
+	// protected int currentTextLength;
 
-        addMouseListener( this );
-        addUrlListener( this );
-        addPaintObjectListener( this );
+	public RichStyledText(Composite parent, int style) {
+		super(parent, style);
 
-        /*
-         * For some reason, when running through JUnit, this statement
-         * crashes without throwing any errors, so it's possible
-         * that the crash happens within another RCP thread.
-         * Anyway, this is a huge issue because the crash only happens
-         * when inheriting classes (like with EntryRichStyledText)
-         * and basically prevents the inherited class' constructor
-         * to run.
-         * 
-         */
-        addLineStyleListener( this );
-    }
+		// currentTextLength = 0;
 
-    /**
-     * Add a new URL listener.
-     * This listener will be called whenever a new URL is inserted in the text.
-     * 
-     * @param listener listener to add
-     */
-    public void addUrlListener(UrlListener listener) {
-        urlListeners.add( listener );
-    }
-    
-    public void addFormatListener( FormatListener listener ) {
-        formatListeners.add( listener );
-    }
-    
-    @Override
-    public void append( String string ) {
-        // alter the text *before* it gets added to the widget
-        string = notifyUrlListeners( string );
+		addMouseListener(this);
+		addUrlListener(this);
+		addPaintObjectListener(this);
 
-        int startOffset = getCharCount() - 1;
-        if (startOffset < 0) {
-            startOffset = 0;
-        }
-        super.append( string );
-        currentTextLength += string.length();
+		/*
+		 * For some reason, when running through JUnit, this statement crashes
+		 * without throwing any errors, so it's possible that the crash happens
+		 * within another RCP thread. Anyway, this is a huge issue because the
+		 * crash only happens when inheriting classes (like with
+		 * EntryRichStyledText) and basically prevents the inherited class'
+		 * constructor to run.
+		 */
+		addLineStyleListener(this);
 
-        // run a set of content filters over the input text. Each of these search
-        // for some particular type of textual items (ex: links) and may
-        // return one or more StyleRange objects that should be added to the
-        // style list (ex: link styles, one for each link)
-        List<StyleRange> newStyles = new LinkedList<StyleRange>();
-        for (FormatListener listener : formatListeners) {
-            newStyles.addAll( listener.applyFormatting( string, startOffset ) );
-        }
+		addLatexListener(this);
+	}
 
-        addStyles (newStyles );
-        redrawRange( startOffset, string.length(), true );
-    }
+	/**
+	 * Add a new URL listener. This listener will be called whenever a new URL
+	 * is inserted in the text.
+	 * 
+	 * @param listener
+	 *            listener to add
+	 */
+	public void addUrlListener(UrlListener listener) {
+		urlListeners.add(listener);
+	}
 
-    /**
-     * Add a style to the list of styles to be applied to the text in the widget.
-     * 
-     * @param style style to add
-     */
-    public void addStyle(StyleRange style) {
-        styleList.add( style );
-    }
+	public void addFormatListener(FormatListener listener) {
+		formatListeners.add(listener);
+	}
 
-    /**
-     * Add a new style to the list of styles but add it to the front queue
-     * so that styles that come after this can overwrite it
-     * 
-     * @param style style to add
-     */
-    public void addStyleFirst(StyleRange style) {
-        styleList.add( 0, style );
-    }
+	public void addLatexListener(LatexListener listener) {
+		latexListeners.add(listener);
+	}
 
-    /**
-     * Add a collection of styles to the list of styles to be applied
-     * to the text in the widget.
-     * 
-     * The order to which the styles are added is the same of the
-     * order returned by the iterator in input.
-     * 
-     * @param styles styles to add
-     */
-    public void addStyles(java.util.Collection<StyleRange> styles) {
-        styleList.addAll( styles );
-    }
+	@Override
+	public void append(String string) {
+		// alter the text *before* it gets added to the widget
 
-    /**
-     * Clear all styles for this instance
-     */
-    public void clearStyles() {
-        currentTextLength = 0;
-        styleList.clear();
-    }
+		// clearStyles();
 
-    protected StyleRange createStyleForImage( final Image image, final int offset ) {
-        StyleRange style = new StyleRange();
-        style.start = offset;
-        style.length = 1;
-        style.data = image;
-        Rectangle rect = image.getBounds();
-        style.metrics = new GlyphMetrics(rect.height, 0, rect.width);
-        return style;
-    }
+		clearAllWithException(EntryStyleRange.class.getCanonicalName());
 
-    /**
-     * Load an image from the given URL
-     * 
-     * @param url url where to load the image from
-     * @return the loaded Image instance
-     */
-    public Image getImage( String url ) {
-        if (urlImageCache.containsKey( url )) {
-            return urlImageCache.get( url );
-        }
+		string = notifyLatexListeners(string);
+		string = notifyUrlListeners(string);
 
-        Image image;
-        ImageData imgData;
-        URL imgUrl;
+		int startOffset = getCharCount() - 1;
+		if (startOffset < 0) {
+			startOffset = 0;
+		}
+		super.append(string);
 
-        try {
-            imgUrl = new URL( url );
-        } catch (MalformedURLException e) {
-            urlImageCache.put( url, null );
-            return null;
-        }
+		// currentTextLength += string.length();
 
-        try {
-            imgData = new ImageData( imgUrl.openStream() );
-        } catch (IOException e) {
-            // the url might not be an image
-            urlImageCache.put( url, null );
-            return null;
-        } catch (SWTException e) {
-            // the url might not be an image
-            urlImageCache.put( url, null );
-            return null;
-        }
+		// run a set of content filters over the input text. Each of these
+		// search
+		// for some particular type of textual items (ex: links) and may
+		// return one or more StyleRange objects that should be added to the
+		// style list (ex: link styles, one for each link)
 
-        image = new Image( getDisplay(), imgData );
-        urlImageCache.put( url, image );
+		List<StyleRange> newStyles = new LinkedList<StyleRange>();
+		for (FormatListener listener : formatListeners) {
+			newStyles.addAll(listener.applyFormatting(string, startOffset));
+		}
 
-        return image;
-    }
-    
-    /*
-     * getStyleRanges(). getStyleRanges(int, int) and getStyleRangeAtOffset(int)
-     * are overidden version of the original functions that replace the
-     * existing one as they don't work when we add a line listener (as we do).
-     */
-    
-    @Override
-    public StyleRange[] getStyleRanges() {
-        return styleList.toArray(new StyleRange[styleList.size()]);
-    }
+		addStyles(newStyles);
 
-    @Override
-    public StyleRange getStyleRangeAtOffset( int offset ) {
-        Iterator<StyleRange> it = styleList.descendingIterator();
-        while (it.hasNext()) {
-            StyleRange style = it.next();
+		// newStyles.clear();
+		// newStyles = new LinkedList<StyleRange>();
+		// for (LatexListener listener : latexListeners) {
+		// newStyles.addAll( listener.compile( string, startOffset ) );
+		// }
+		// addStyles (newStyles );
 
-            if ((offset >= style.start) && (offset < (style.start + style.length))) {
-                return style;
-            }
-        }
-        return null;
-    }
+		redrawRange(startOffset, string.length(), true);
+	}
 
-    @Override
-    public StyleRange[] getStyleRanges(int start, int length) {
-        List<StyleRange> styles = new LinkedList<StyleRange>();
+	/**
+	 * Add a style to the list of styles to be applied to the text in the
+	 * widget.
+	 * 
+	 * @param style
+	 *            style to add
+	 */
+	public void addStyle(StyleRange style) {
+		if (!styleList.contains(style))
+			styleList.add(style);
 
-        for (StyleRange style : styleList) {
-            int stop = style.start + style.length;
+	}
 
-            if (start >= style.start && start <= stop) {
-                styles.add(style);
-                continue;
-            }
+	/**
+	 * Add a new style to the list of styles but add it to the front queue so
+	 * that styles that come after this can overwrite it
+	 * 
+	 * @param style
+	 *            style to add
+	 */
+	public void addStyleFirst(StyleRange style) {
+		if (!styleList.contains(style))
+			styleList.add(0, style);
 
-            if (stop >= start && stop <= (start + length)) {
-                styles.add(style);
-                continue;
-            }
-        }
+	}
 
-        return styles.toArray( new StyleRange[styles.size()] );
-    }
-    
-    /**
-     * Return all StyleRange instances in the current widget that
-     * affect the specified offset as well as those that come
-     * after that
-     * 
-     * @param offset
-     * @return an array of StyleRange that match the request
-     */
-    public StyleRange[] getStyleAfterOffset(int offset) {
-        List<StyleRange> styles = new LinkedList<StyleRange>();
+	/**
+	 * Add a collection of styles to the list of styles to be applied to the
+	 * text in the widget.
+	 * 
+	 * The order to which the styles are added is the same of the order returned
+	 * by the iterator in input.
+	 * 
+	 * @param styles
+	 *            styles to add
+	 */
+	public void addStyles(java.util.Collection<StyleRange> styles) {
+		for (StyleRange sr : styles) {
+			if (!styleList.contains(sr))
+				styleList.add(sr);
+		}
+		// styleList.addAll( styles );
+	}
 
-        for (StyleRange style : styleList) {
-            int stop = style.start + style.length;
+	/**
+	 * Clear all styles for this instance
+	 */
+	public void clearStyles() {
+		// currentTextLength = 0;
+		styleList.clear();
+	}
 
-            if (offset >= style.start ||
-                offset < style.start && offset <= stop) {
-                styles.add(style);
-                continue;
-            }
-        }
+	public void clearAllWithException(String classExceptionName) {
+		for (int i = styleList.size() - 1; i >= 0; i--) {
 
-        return styles.toArray( new StyleRange[styles.size()] );
-    }
+			try {
+				if (!(Class.forName(classExceptionName).isInstance(styleList
+						.get(i)))) {
+					styleList.remove(i);
+				}
+			} catch (ClassNotFoundException e) {
 
-    /**
-     * Returns true if the string is a valid email address
-     * @param emailAddress
-     * @return true if the string is an email address, false otherwise
-     */
-    private boolean isValidEmailAddress( String emailAddress ){  
-        String  expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";  
-        CharSequence inputStr = emailAddress;  
-        Pattern pattern = Pattern.compile( expression, Pattern.CASE_INSENSITIVE );  
-        Matcher matcher = pattern.matcher( inputStr );  
-        return matcher.matches();  
-    } 
+				e.printStackTrace();
+			}
+		}
+	}
 
-    /*
-     * Apply style informations to the text in the widget
-     * 
-     * (non-Javadoc)
-     * @see org.eclipse.swt.custom.LineStyleListener#lineGetStyle(org.eclipse.swt.custom.LineStyleEvent)
-     */
-    @Override
+	protected ImageStyleRange createStyleForImage(final Image image,
+			final int offset) {
+		ImageStyleRange style = new ImageStyleRange();
+		style.start = offset;
+		style.length = 1;
+		style.data = image;
+		Rectangle rect = image.getBounds();
+		style.metrics = new GlyphMetrics(rect.height, 0, rect.width);
+		return style;
+	}
+
+	/**
+	 * Load an image from the given URL
+	 * 
+	 * @param url
+	 *            url where to load the image from
+	 * @return the loaded Image instance
+	 */
+	public Image getImage(String url) {
+		if (urlImageCache.containsKey(url)) {
+			return urlImageCache.get(url);
+		}
+
+		Image image;
+		ImageData imgData;
+		URL imgUrl;
+
+		try {
+			imgUrl = new URL(url);
+		} catch (MalformedURLException e) {
+			urlImageCache.put(url, null);
+			return null;
+		}
+
+		try {
+			imgData = new ImageData(imgUrl.openStream());
+		} catch (IOException e) {
+			// the url might not be an image
+			urlImageCache.put(url, null);
+			return null;
+		} catch (SWTException e) {
+			// the url might not be an image
+			urlImageCache.put(url, null);
+			return null;
+		}
+
+		image = new Image(getDisplay(), imgData);
+		urlImageCache.put(url, image);
+
+		return image;
+	}
+
+	public Image getLatexFormulaImage(String pattern) {
+
+		String url = LatexService.getUrlFor(pattern);
+
+		Image image = getImage(url);
+
+		urlImageCache.remove(url);
+		urlImageCache.put(pattern, image);
+
+		return image;
+	}
+
+	/*
+	 * getStyleRanges(). getStyleRanges(int, int) and getStyleRangeAtOffset(int)
+	 * are overidden version of the original functions that replace the existing
+	 * one as they don't work when we add a line listener (as we do).
+	 */
+
+	@Override
+	public StyleRange[] getStyleRanges() {
+		return styleList.toArray(new StyleRange[styleList.size()]);
+	}
+
+	@Override
+	public StyleRange getStyleRangeAtOffset(int offset) {
+		Iterator<StyleRange> it = styleList.descendingIterator();
+		while (it.hasNext()) {
+			StyleRange style = it.next();
+
+			if ((offset >= style.start)
+					&& (offset < (style.start + style.length))) {
+				return style;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public StyleRange[] getStyleRanges(int start, int length) {
+		List<StyleRange> styles = new LinkedList<StyleRange>();
+
+		for (StyleRange style : styleList) {
+			int stop = style.start + style.length;
+
+			if (start >= style.start && start <= stop) {
+				styles.add(style);
+				continue;
+			}
+
+			if (stop >= start && stop <= (start + length)) {
+				styles.add(style);
+				continue;
+			}
+		}
+
+		return styles.toArray(new StyleRange[styles.size()]);
+	}
+
+	/**
+	 * Return all StyleRange instances in the current widget that affect the
+	 * specified offset as well as those that come after that
+	 * 
+	 * @param offset
+	 * @return an array of StyleRange that match the request
+	 */
+	public StyleRange[] getStyleAfterOffset(int offset) {
+		List<StyleRange> styles = new LinkedList<StyleRange>();
+
+		for (StyleRange style : styleList) {
+			int stop = style.start + style.length;
+
+			if (offset >= style.start || offset < style.start && offset <= stop) {
+				styles.add(style);
+				continue;
+			}
+		}
+
+		return styles.toArray(new StyleRange[styles.size()]);
+	}
+
+	/**
+	 * Returns true if the string is a valid email address
+	 * 
+	 * @param emailAddress
+	 * @return true if the string is an email address, false otherwise
+	 */
+
+	@SuppressWarnings("unused")
+	private boolean isValidEmailAddress(String emailAddress) {
+		String expression = "^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+		CharSequence inputStr = emailAddress;
+		Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(inputStr);
+		return matcher.matches();
+	}
+
+	/*
+	 * Apply style informations to the text in the widget
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.swt.custom.LineStyleListener#lineGetStyle(org.eclipse.swt
+	 * .custom.LineStyleEvent)
+	 */
+	@Override
     public void lineGetStyle(LineStyleEvent event) {
+    	clearAllWithException(EntryStyleRange.class.getCanonicalName()); 
+    	refreshImageStyle();
+    	
+    	for(int i =styleList.size()-1;i>=0;i--)
+    	{
+    		
+    		if(styleList.get(i) instanceof TextStyleRange)
+    		{    			
+    			styleList.remove(i);
+    		}    		
+    		
+    	}
+    	
         List<StyleRange> tmpStyleList = new ArrayList<StyleRange>();
 
         final String text = event.lineText;
         final int startOffset = event.lineOffset;
-
+        
         StyleRange[] styles = getStyleRanges( startOffset, text.length() );
         for (int i = 0; i < styles.length; i++) {
             tmpStyleList.add( styles[i] );
         }
-
-        // run the content filters on text that is currently being written
-        if (startOffset >= currentTextLength) {
-            for (FormatListener listener : formatListeners) {
-                tmpStyleList.addAll( listener.applyFormatting( text, startOffset ) );
+        
+            for (FormatListener listener : formatListeners) { 
+            	List<StyleRange> ss = listener.applyFormatting(text, startOffset);
+            	for(StyleRange s : ss)
+            	{
+            		if(!tmpStyleList.contains(s))
+            		{
+            			tmpStyleList.add(s);
+            		}
+            	}
             }
-        }
-
+        addStyles(tmpStyleList);
         event.styles = tmpStyleList.toArray( new StyleRange[tmpStyleList.size()] );
+       
     }
 
-    private String notifyUrlListeners(String text) {
-        final int lineStartOffset = getCharCount();
-        Set<String> urlSet = new HashSet<String>();
-        urlSet.addAll( LinkFinder.extractUrls( text ) );
-        // notify all the registered UrlListeners
-        for (String url : urlSet) {
-            for (UrlListener listener : urlListeners) {
-                text = listener.urlAdded( text, url, lineStartOffset );
-            }
-        }
+	private String notifyUrlListeners(String text) {
+		final int lineStartOffset = getCharCount();
+		Set<String> urlSet = new HashSet<String>();
+		urlSet.addAll(LinkFinder.extractUrls(text));
 
-        return text;
-    }
+		// notify all the registered UrlListeners
+		for (String url : urlSet) {
+			for (UrlListener listener : urlListeners) {
+				text = listener.urlAdded(text, url, lineStartOffset);
+			}
+		}
 
-    @Override
-    public void mouseDoubleClick(MouseEvent event) {}
+		return text;
+	}
 
-    @Override
-    public void mouseUp(MouseEvent event) {}
+	private String notifyLatexListeners(String text) {
+		final int lineStartOffset = getCharCount();
+		Set<String> patternSet = new HashSet<String>();
+		patternSet.addAll(LatexService.extractPattern(text));
 
-    /** 
-     * Handle message board click on links, opening the default browser on the
-     * specified link
-     * @param event
-     */
-    @Override
-    public void mouseDown(MouseEvent event) {
-        Point location = new Point(event.x, event.y);
-        final int offset;
+		// notify all the registered UrlListeners
+		for (String pattern : patternSet) {
+			for (LatexListener listener : latexListeners) {
+				text = listener.compile(text, pattern, lineStartOffset);
+			}
+		}
 
-        try {
-            offset = this.getOffsetAtLocation(location);
-        } catch (IllegalArgumentException ex) {
-            // the clicked point is outside text bounds
-            return;
-        }
+		return text;
+	}
 
-        StyleRange[] styles = getStyleRanges(offset, 1);
-        if (styles == null) return;
-        
-        int i;
-        for (i = 0; i < styles.length; i++) {
-            StyleRange range = styles[i];
-            if (range != null && range.underlineStyle == SWT.UNDERLINE_LINK) {
-                java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-                String href = (String)range.data;
-                java.net.URI uri;
-                try {
-                    uri = new java.net.URI( href );
-                } catch (URISyntaxException e1) {
-                    // invalid uri
-                    continue;
-                }
+	@Override
+	public void mouseDown(MouseEvent event) {
+	}
 
-                try {
-                    if (href.startsWith("mailto://")) {
-                        desktop.mail ( uri );
-                    } else {
-                        // assume everything else is a http url
-                        desktop.browse( uri );
-                    }
-                } catch (IOException e) {
-                    continue;
-                }
-            } 
-        }
+	@Override
+	public void mouseUp(MouseEvent event) {
+	}
 
-    }
+	/**
+	 * Handle message board click on links, opening the default browser on the
+	 * specified link
+	 * 
+	 * @param event
+	 */
+	@Override
+	public void mouseDoubleClick(MouseEvent event) {
+		Point location = new Point(event.x, event.y);
+		final int offset;
 
-    public void paintObject(PaintObjectEvent event) {
-        StyleRange style = event.style;
-        Image image;
-        try {
-            image = (Image)style.data;
-        } catch (ClassCastException ex) {
-            // it's not an image, but something else that valued .data
-            return;
-        }
-        if (! image.isDisposed() ) {
-            int x = event.x;
-            int y = event.y + event.ascent - style.metrics.ascent;
-            event.gc.drawImage(image, x, y);
-        }
-    }
+		try {
+			offset = this.getOffsetAtLocation(location);
+		} catch (IllegalArgumentException ex) {
+			// the clicked point is outside text bounds
+			return;
+		}
 
-    @Override
-    public void setText(String text) {
-        /* reset the list of styles we have on setText, they'll be
-         * added again when appending
-         */
-        currentTextLength = 0;
-        clearStyles();
-        super.setText("");
-        append(text);
-    }
+		StyleRange[] styles = getStyleRanges(offset, 1);
+		if (styles == null)
+			return;
 
-    @Override
-    public String urlAdded(String text, final String url, final int lineStartOffset) {
-        List<StyleRange> styles = new LinkedList<StyleRange>();
+		int i;
+		for (i = 0; i < styles.length; i++) {
+			StyleRange range = styles[i];
+			if (range != null && range.underlineStyle == SWT.UNDERLINE_LINK) {
+				java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+				String href = (String) range.data;
+				java.net.URI uri;
+				try {
+					uri = new java.net.URI(href);
+				} catch (URISyntaxException e1) {
+					// invalid uri
+					continue;
+				}
 
-        boolean isImage = false;
-        for (String suffix : VALID_IMAGE_SUFFIX) {
-            if (url.toLowerCase().endsWith( suffix ) ) {
-                isImage = true;
-                break;
-            }
-        }
+				try {
+					if (href.startsWith("mailto://")) {
+						desktop.mail(uri);
+					} else {
+						// assume everything else is a http url
+						desktop.browse(uri);
+					}
+				} catch (IOException e) {
+					continue;
+				}
+			}
+		}
 
-        if ( isImage ) {
-            Image image = getImage( url );
-            if (image == null) {
-                // not a valid url
-                return text;
-            }
+	}
 
-            String urlWithImage = url + " " + IMAGE_PLACEHOLDER;
-            text = text.replace( url, urlWithImage );
+	public void paintObject(PaintObjectEvent event) {
+		StyleRange style = event.style;
+		Image image;
+		try {
+			image = (Image) style.data;
+		} catch (ClassCastException ex) {
+			// it's not an image, but something else that valued .data
+			return;
+		}
+		if (!image.isDisposed()) {
+			int x = event.x;
+			int y = event.y + event.ascent - style.metrics.ascent;
+			event.gc.drawImage(image, x, y);
+		}
+	}
 
-            int offset = text.indexOf( url );
-            while (offset != -1) {
-                styles.add( createStyleForImage( image, lineStartOffset + offset + url.length() + 1 ) );
-                offset = text.indexOf( url, offset + url.length() + 1 );
-            }
-        }
-        
-        addStyles( styles );
-        return text;
-    }
-    
-    
-    public List<FormatListener> getFormatListeners() {
-        return formatListeners;
-    }
-};
+	@Override
+	public void setText(String text) {
+		/*
+		 * reset the list of styles we have on setText, they'll be added again
+		 * when appending
+		 */
+		// currentTextLength = 0;
+		clearStyles();
+		super.setText("");
+		append(text);
+	}
+
+	@Override
+	public String urlAdded(String text, final String url,
+			final int lineStartOffset) {
+		List<StyleRange> styles = new LinkedList<StyleRange>();
+
+		Image image = null;
+
+		if (isImageURL(url))
+			image = getImage(url);
+
+		if (image == null) {
+			return text;
+		}
+
+		 String urlWithImage =url +" "+ IMAGE_PLACEHOLDER;
+		//String urlWithImage = url + "\n" + IMAGE_PLACEHOLDER + "\n";
+		text = text.replace(url, urlWithImage);
+
+		int offset = text.indexOf(url);
+		while (offset != -1) {
+			styles.add(createStyleForImage(image,
+					offset + urlWithImage.length() + 1));
+			offset = text.indexOf(url, offset + urlWithImage.length() + 1);
+
+		}
+
+		addStyles(styles);
+		return text;
+
+	}
+
+	private boolean isImageURL(String url) {
+		for (String p : VALID_IMAGE_SUFFIX) {
+			if (url.endsWith(p))
+				return true;
+		}
+		return false;
+	}
+
+	public List<FormatListener> getFormatListeners() {
+		return formatListeners;
+	}
+
+	@Override
+	public String compile(String text, final String pattern,
+			final int lineStartOffset) {
+
+		Display display = Display.getCurrent();
+		Color MARKUP_COLOR = display.getSystemColor(SWT.COLOR_RED);
+		Font MARKUP_FONT = new Font(display, "Courier New", 5, SWT.NORMAL);
+
+		List<StyleRange> styles = new LinkedList<StyleRange>();
+
+		Image image = getLatexFormulaImage(pattern);
+
+		if (image == null) {
+			return text;
+		}
+
+		// String urlWithImage =" "+pattern +" "+ IMAGE_PLACEHOLDER;
+		String urlWithImage = pattern + " " + IMAGE_PLACEHOLDER;
+		text = text.replace(pattern, urlWithImage);
+
+		int offset = text.indexOf(pattern);
+		while (offset != -1) {
+			styles.add(createStyleForImage(image,
+					offset + urlWithImage.length() + 1));
+			offset = text.indexOf(pattern, offset + urlWithImage.length() + 1);
+
+			TextStyleRange textStyle = new TextStyleRange("marker");
+			textStyle.foreground = MARKUP_COLOR;
+			textStyle.font = MARKUP_FONT;
+			textStyle.start = offset;
+			textStyle.length = urlWithImage.length();
+			styles.add(textStyle);
+		}
+
+		addStyles(styles);
+		return text;
+
+	}
+
+	public void refreshImageStyle() {
+		Set<String> urls = urlImageCache.keySet();
+		Iterator<String> it = urls.iterator();
+		removeAllImageStyleRanges();
+
+		while (it.hasNext()) {
+			String url = it.next();
+			int offset = getText().indexOf(url);
+
+			while (offset != -1) {
+				Image image = getImage(url);
+				if (image != null)
+					addStyle(createStyleForImage(image, offset + url.length()
+							+ 1));
+
+				offset = getText().indexOf(url, offset + url.length());
+
+			}
+
+		}
+
+	}
+
+	public List<ImageStyleRange> getImageStyleRanges() {
+		List<ImageStyleRange> list = new LinkedList<ImageStyleRange>();
+		for (StyleRange l : styleList) {
+			if (l instanceof ImageStyleRange)
+				list.add((ImageStyleRange) l);
+		}
+
+		return list;
+	}
+
+	public void removeAllImageStyleRanges() {
+		for (int i = styleList.size() - 1; i >= 0; i--) {
+			if (styleList.get(i) instanceof ImageStyleRange)
+				styleList.remove(i);
+		}
+	}
+
+}
