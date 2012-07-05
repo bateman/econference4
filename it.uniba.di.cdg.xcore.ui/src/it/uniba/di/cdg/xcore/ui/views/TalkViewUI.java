@@ -67,6 +67,8 @@ public class TalkViewUI extends ViewPart {
     private Composite bottomComposite = null;
 
     protected CLabel statusLabel = null;
+    
+    protected Composite callComposite = null;
 
     /* (non-Javadoc)
      * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
@@ -108,7 +110,11 @@ public class TalkViewUI extends ViewPart {
      * This method initializes composite.
      */
     private void createComposite() {
-        GridData gridData1 = new org.eclipse.swt.layout.GridData();
+    	GridData gridData2 = new GridData();
+		gridData2.horizontalAlignment = GridData.FILL;
+		gridData2.grabExcessHorizontalSpace = true;
+		gridData2.verticalAlignment = GridData.FILL;
+    	GridData gridData1 = new org.eclipse.swt.layout.GridData();
         gridData1.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
         gridData1.grabExcessHorizontalSpace = true;
         gridData1.grabExcessVerticalSpace = true;
@@ -124,6 +130,11 @@ public class TalkViewUI extends ViewPart {
         gridLayout.marginWidth = 0;
         gridLayout.marginHeight = 0;
         gridLayout.horizontalSpacing = 0;
+        
+        callComposite = new Composite( bottomComposite, SWT.NONE );
+		callComposite.setLayout( gridLayout );
+		callComposite.setLayoutData(gridData2);
+		
         inputTextComposite = new Composite( bottomComposite, SWT.NONE );
         inputTextComposite.setLayout( gridLayout );
         inputTextComposite.setLayoutData( gridData1 );
@@ -133,6 +144,8 @@ public class TalkViewUI extends ViewPart {
         userInputText.addFormatListener( new LinkFormatter() );
         userInputText.addFormatListener( new EmailFormatter() );
         userInputText.addFormatListener( new RichFormatting() );
+        
+        
         
         createHelpLabel();
 
@@ -152,14 +165,7 @@ public class TalkViewUI extends ViewPart {
 
         final CLabel helpLabel = new CLabel( sendComposite, SWT.NONE );
         final Image onlineImg = UiPlugin.getDefault().getImage( IImageResources.ICON_HELP );
-        helpLabel.setToolTipText( RichFormatting.BOLD_MARKER.getCode()+"bold"+RichFormatting.BOLD_MARKER.getCode()+" (Ctrl+B)\n"+
-        						RichFormatting.UNDERLINE_MARKER.getCode()+"underline"+RichFormatting.UNDERLINE_MARKER.getCode()+" (Ctrl+U)\n"+
-        						RichFormatting.ITALIC_MARKER.getCode()+"italic"+RichFormatting.ITALIC_MARKER.getCode()+"  (Ctrl+I)\n"+
-        						RichFormatting.BOLD_UNDERLINE_MARKER.getCode()+"bold&underline"+RichFormatting.BOLD_UNDERLINE_MARKER.getCode()+"  \n"+
-        						RichFormatting.STRIKEOUT_MARKER.getCode()+"strike"+RichFormatting.STRIKEOUT_MARKER.getCode()+"  (Ctrl+H) \n"+
-        						RichFormatting.LATEX_MARKER.getCode()+"formula"+RichFormatting.LATEX_MARKER.getCode()+"  (Ctrl+L)\n"
-        						
-        		);
+        helpLabel.setToolTipText( "*bold* (Ctrl+B)\n_underline_  (Ctrl+U)\n-strike-  (Ctrl+H)");
         helpLabel.setImage( onlineImg );
     }
 
