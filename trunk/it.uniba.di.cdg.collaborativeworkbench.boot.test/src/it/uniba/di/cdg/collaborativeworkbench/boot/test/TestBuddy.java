@@ -99,7 +99,7 @@ public class TestBuddy implements IBuddy {
 	}
 
 	@Override
-	public IEntry[] getChilds() {
+	public IEntry[] getChildren() {
 		// TODO Auto-generated method stub
 		return null;
 	}

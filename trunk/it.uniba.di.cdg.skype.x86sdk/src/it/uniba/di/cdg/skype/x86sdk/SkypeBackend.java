@@ -24,7 +24,6 @@
  */
 package it.uniba.di.cdg.skype.x86sdk;
 
-
 //import it.uniba.di.cdg.skype.recorder.win32.FreeRecorder;
 import it.uniba.di.cdg.skype.x86sdk.SkypeListeners.jwcObserver;
 import it.uniba.di.cdg.skype.x86sdk.action.SkypeCallAction;
@@ -96,15 +95,14 @@ import com.skype.ipc.TLSServerTransport;
 import com.skype.ipc.Transport;
 import com.skype.util.PemReader;
 
-
 public class SkypeBackend implements IBackend, jwcObserver {
 
 	/**
 	 * This backend's unique id.
 	 */
 	public static final String ID = "it.uniba.di.cdg.skype.x86sdk.skypeBackend";
-	//private static final String RECORDER_ID = "it.uniba.di.cdg.skype.recorder";
-
+	// private static final String RECORDER_ID =
+	// "it.uniba.di.cdg.skype.recorder";
 
 	private INetworkBackendHelper helper;
 	public static SkypeBuddyRoster skypeBuddyRoster;
@@ -115,29 +113,23 @@ public class SkypeBackend implements IBackend, jwcObserver {
 	public Account account;
 	private boolean connected = false;
 
-	private String           inetAddr        = "127.0.0.1";
-	private String           pemFileName;
-	private String           transportLogName = null;
-	private boolean          internal        = false;
-	private Transport        transport; 
-	private int              portNum         = 8963;
-	private String           my_username;
-	public SkypeListeners    theListeners;
-	public static SkypeSound			 sound;
+	private String inetAddr = "127.0.0.1";
+	private String pemFileName;
+	private String transportLogName = null;
+	private boolean internal = false;
+	private Transport transport;
+	private int portNum = 8963;
+	private String my_username;
+	public SkypeListeners theListeners;
+	public static SkypeSound sound;
 	private Runtime rt;
 	private UserContext userContext;
 	private ServerContext serverContext;
 
 	int count = 0;
 
-
-
-
-
 	public void processMessageReceived(String content, String senderId,
 			String senderName, Conversation chat) {
-
-
 
 		if (content.equals(""))
 			return;
@@ -152,7 +144,7 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		if (extensionName != null) {
 
 			if (XmlUtil.chatType(content).equals(ExtensionConstants.ONE_TO_ONE)) // chat
-				// one2one
+			// one2one
 			{
 				if (extensionName.equals(ExtensionConstants.CHAT_COMPOSING)) {
 					IBackendEvent event = new ChatComposingEvent(senderId,
@@ -160,16 +152,19 @@ public class SkypeBackend implements IBackend, jwcObserver {
 					getHelper().notifyBackendEvent(event);
 				}
 
-				else if (extensionName.equals(ExtensionConstants.ROOM_INVITE)) {					
+				else if (extensionName.equals(ExtensionConstants.ROOM_INVITE)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String reason = param.get(ExtensionConstants.REASON);
 					if (reason == null)
 						reason = "";
-					String roomId = chat.GetStrProperty(Conversation.PROPERTY.identity);
+					String roomId = chat
+							.GetStrProperty(Conversation.PROPERTY.identity);
 
-					skypeMultiChatServiceAction.putWaitingRoom(chat.GetStrProperty(Conversation.PROPERTY.identity),
-							senderId);
+					skypeMultiChatServiceAction
+							.putWaitingRoom(
+									chat.GetStrProperty(Conversation.PROPERTY.identity),
+									senderId);
 					IBackendEvent event = new InvitationEvent(getBackendId(),
 							roomId, senderId, "schedule n/a", reason, "");
 					getHelper().notifyBackendEvent(event);
@@ -179,10 +174,13 @@ public class SkypeBackend implements IBackend, jwcObserver {
 						.equals(ExtensionConstants.ROOM_INVITE_ACCEPT)) {
 					skypeMultiChatServiceAction.sendChatRoom(senderId);
 
-					if(skypeMultiChatServiceAction.getModerator().equals(getUserId())){
+					if (skypeMultiChatServiceAction.getModerator().equals(
+							getUserId())) {
 						HashMap<String, String> param = new HashMap<String, String>();
 						param.put(ExtensionConstants.USER, getUserId());
-						skypeMultiChatServiceAction.SendExtensionProtocolMessage(ExtensionConstants.MODERATOR, param);
+						skypeMultiChatServiceAction
+								.SendExtensionProtocolMessage(
+										ExtensionConstants.MODERATOR, param);
 					}
 				}
 
@@ -202,13 +200,13 @@ public class SkypeBackend implements IBackend, jwcObserver {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
-					if(!my_username.equals(senderId)){
+					if (!my_username.equals(senderId)) {
 						IBackendEvent event = new ChatMessageReceivedEvent(
-								getRoster().getBuddy(senderId), msg, getBackendId());
+								getRoster().getBuddy(senderId), msg,
+								getBackendId());
 						getHelper().notifyBackendEvent(event);
 					}
-					//}
-
+					// }
 
 				}
 
@@ -224,23 +222,26 @@ public class SkypeBackend implements IBackend, jwcObserver {
 
 				if (extensionName.equals(ExtensionConstants.CHAT_ROOM)) {
 					skypeMultiChatServiceAction.updateChatRoom(chat);
-				}
-				else if (extensionName.equals(ExtensionConstants.CHAT_COMPOSING)) {
-					IBackendEvent event = new MultiChatComposingEvent(senderId, getBackendId());
+				} else if (extensionName
+						.equals(ExtensionConstants.CHAT_COMPOSING)) {
+					IBackendEvent event = new MultiChatComposingEvent(senderId,
+							getBackendId());
 					getHelper().notifyBackendEvent(event);
 
-				}
-				else if (extensionName.equals(ExtensionConstants.PRESENCE_MESSAGE)) {
+				} else if (extensionName
+						.equals(ExtensionConstants.PRESENCE_MESSAGE)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String type = param.get(ExtensionConstants.PRESENCE_TYPE);
 					if (ExtensionConstants.PRESENCE_UNAVAILABLE.equals(type)) {
-						System.out.println("Received presence unvailable update");
-						IBackendEvent event = new MultiChatUserLeftEvent(getBackendId(), senderId, senderName);
+						System.out
+								.println("Received presence unvailable update");
+						IBackendEvent event = new MultiChatUserLeftEvent(
+								getBackendId(), senderId, senderName);
 						getHelper().notifyBackendEvent(event);
 					}
-				}
-				else if (extensionName.equals(ExtensionConstants.CHAT_MESSAGE)) {
+				} else if (extensionName
+						.equals(ExtensionConstants.CHAT_MESSAGE)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String msg = param.get(ExtensionConstants.MESSAGE);
@@ -249,7 +250,7 @@ public class SkypeBackend implements IBackend, jwcObserver {
 					getHelper().notifyBackendEvent(event);
 				}
 
-				else if (extensionName.equals(ExtensionConstants.REVOKE_VOICE)){
+				else if (extensionName.equals(ExtensionConstants.REVOKE_VOICE)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String userId = param.get(ExtensionConstants.USER);
@@ -258,7 +259,7 @@ public class SkypeBackend implements IBackend, jwcObserver {
 					getHelper().notifyBackendEvent(event);
 				}
 
-				else if (extensionName.equals(ExtensionConstants.GRANT_VOICE)){
+				else if (extensionName.equals(ExtensionConstants.GRANT_VOICE)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String userId = param.get(ExtensionConstants.USER);
@@ -267,14 +268,14 @@ public class SkypeBackend implements IBackend, jwcObserver {
 					getHelper().notifyBackendEvent(event);
 				}
 
-				else if (extensionName.equals(ExtensionConstants.MODERATOR)){
+				else if (extensionName.equals(ExtensionConstants.MODERATOR)) {
 					HashMap<String, String> param = XmlUtil
 							.readXmlExtension(content);
 					String user = param.get(ExtensionConstants.USER);
 					skypeMultiChatServiceAction.setModerator(user);
 					skypeMultiChatServiceAction.updateChatRoom(chat);
-				}
-				else if (extensionName.equals(ExtensionConstants.CALL_FINISHED)) {
+				} else if (extensionName
+						.equals(ExtensionConstants.CALL_FINISHED)) {
 
 					getMultiCallAction().endCall();
 				}
@@ -293,14 +294,15 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		// it's just a regular skype text-based msg
 		else {
 			String chatMsg = null;
-			if(XmlUtil.isSkypeXmlMessage(content))
+			if (XmlUtil.isSkypeXmlMessage(content))
 				chatMsg = XmlUtil.chatType(content);
 
 			// we assume it's always a one2one chat in case we get a regular msg
-			if (null == chatMsg // null means a regular message has no extensions
+			if (null == chatMsg // null means a regular message has no
+								// extensions
 					|| chatMsg.equals(ExtensionConstants.ONE_TO_ONE)) {
 				IBackendEvent event = new ChatMessageReceivedEvent(getRoster()
-						.getBuddy(senderId), content, getBackendId());					
+						.getBuddy(senderId), content, getBackendId());
 				getHelper().notifyBackendEvent(event);
 			} else {
 				// check: this else would probably be never reached
@@ -311,29 +313,28 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		}
 	}
 
-
 	public SkypeBackend getBackendFromProxy() {
 		return this;
 	}
 
 	public SkypeBackend() {
-		super();	
+		super();
 		skype = new Skype();
 		skypeBuddyRoster = new SkypeBuddyRoster(this);
 		skypeMultiChatServiceAction = new SkypeMultiChatServiceAction(this);
 		skypeCallAction = new SkypeCallAction();
 		skypeMultiCallAction = new SkypeMultiCallAction();
 		sound = new SkypeSound();
-		pemFileName=System.getProperty("user.dir")+"\\SkypeRuntime\\key\\eConfKey.pem";
+		pemFileName = System.getProperty("user.dir")
+				+ "\\SkypeRuntime\\key\\eConfKey.pem";
 	}
 
 	@Override
 	public void changePassword(String newpasswd) throws Exception {
-		// TODO Auto-generated method stub
+
 	}
 
-	private String getPemContents() throws IOException
-	{
+	private String getPemContents() throws IOException {
 		File tokenFile = new File(pemFileName);
 		InputStream in = new FileInputStream(tokenFile);
 		long fileSize = tokenFile.length();
@@ -345,7 +346,8 @@ public class SkypeBackend implements IBackend, jwcObserver {
 			if (count >= 0)
 				offset += count;
 			else
-				throw new IOException("Unable to read App Token file: " + tokenFile.getName());
+				throw new IOException("Unable to read App Token file: "
+						+ tokenFile.getName());
 		}
 		if (in != null)
 			in.close();
@@ -355,17 +357,16 @@ public class SkypeBackend implements IBackend, jwcObserver {
 	}
 
 	@SuppressWarnings("deprecation")
-	private void skypeConnect() throws IOException
-	{
+	private void skypeConnect() throws IOException {
 
-		try{
-			String runtime = System.getProperty("user.dir")+"\\SkypeRuntime\\skypekit-run.exe"; 
-			rt=Runtime.getRuntime();
+		try {
+			String runtime = System.getProperty("user.dir")
+					+ "\\SkypeRuntime\\skypekit-run.exe";
+			rt = Runtime.getRuntime();
 			rt.exec(runtime);
 
+		} catch (Exception e) {
 		}
-		catch(Exception e){}
-
 
 		skypeCleanup();
 		theListeners = new SkypeListeners(this, skype);
@@ -374,12 +375,10 @@ public class SkypeBackend implements IBackend, jwcObserver {
 			if (internal) {
 				transport = new TCPSocketTransport(inetAddr, portNum);
 
-
 				transport.startLogging(transportLogName);
 
 				skype.InitNonTLSInsecure(getPemContents(), transport);
-			}
-			else {
+			} else {
 				PemReader donkey = new PemReader(pemFileName);
 				X509Certificate c = donkey.getCertificate();
 				PrivateKey p = donkey.getKey();
@@ -389,15 +388,12 @@ public class SkypeBackend implements IBackend, jwcObserver {
 
 				transport.startLogging(transportLogName);
 
-
 				skype.Init(transport);
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.print(e);
 
-		}
-		catch (InvalidKeySpecException e) {
+		} catch (InvalidKeySpecException e) {
 
 		}
 
@@ -405,84 +401,60 @@ public class SkypeBackend implements IBackend, jwcObserver {
 			if (transport.isConnected()) {
 
 				String version = skype.GetVersionString();
-				System.out.print ("Connected to ");
-				System.out.println (version);
+				System.out.print("Connected to ");
+				System.out.println(version);
 
-
-
-			}
-			else {
-				System.out.println("\n::: Error connecting to skypekit, enter 'r' to reconnect...\n");
+			} else {
+				System.out
+						.println("\n::: Error connecting to skypekit, enter 'r' to reconnect...\n");
 				return;
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
-
-
 
 	@Override
 	public void connect(ServerContext ctx, UserContext userAccount)
-			throws BackendException{
-
+			throws BackendException {
 
 		try {
 			skypeConnect();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		my_username=userAccount.getId();
-
+		my_username = userAccount.getId();
 
 		login(userAccount.getId(), userAccount.getPassword());
 
-
-		Account.GetStatusWithProgressResult loginStatus = account.GetStatusWithProgress();
-		while(!(loginStatus.status == Account.STATUS.LOGGED_IN)){
-			loginStatus = account.GetStatusWithProgress();    			
+		Account.GetStatusWithProgressResult loginStatus = account
+				.GetStatusWithProgress();
+		while (!(loginStatus.status == Account.STATUS.LOGGED_IN)) {
+			loginStatus = account.GetStatusWithProgress();
 		}
-
 
 		helper.notifyBackendEvent(new BackendStatusChangeEvent(ID, true));
 		skypeBuddyRoster.reload();
 		connected = true;
 
-
-
-
 	}
 
 	/*
-	private void runRecorderExtension() {		
-		IConfigurationElement[] config = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(RECORDER_ID);
-		try {
-			for (IConfigurationElement e : config) {
-				System.out.println("Evaluating extension skype recorder");
-				final Object o = e.createExecutableExtension("class");
-				if (o instanceof ISkypeRecorder) {
-					ISafeRunnable runnable = new ISafeRunnable() {
-						@Override
-						public void handleException(Throwable exception) {
-							System.out.println("Exception in extension skype recorder");
-						}
-						@Override
-						public void run() throws Exception {
-							((ISkypeRecorder) o).recorderStartConfirmDialog();						
-						}
-					};
-					SafeRunner.run(runnable);
-				}
-			}
-		} catch (CoreException ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
+	 * private void runRecorderExtension() { IConfigurationElement[] config =
+	 * Platform.getExtensionRegistry()
+	 * .getConfigurationElementsFor(RECORDER_ID); try { for
+	 * (IConfigurationElement e : config) {
+	 * System.out.println("Evaluating extension skype recorder"); final Object o
+	 * = e.createExecutableExtension("class"); if (o instanceof ISkypeRecorder)
+	 * { ISafeRunnable runnable = new ISafeRunnable() {
+	 * 
+	 * @Override public void handleException(Throwable exception) {
+	 * System.out.println("Exception in extension skype recorder"); }
+	 * 
+	 * @Override public void run() throws Exception { ((ISkypeRecorder)
+	 * o).recorderStartConfirmDialog(); } }; SafeRunner.run(runnable); } } }
+	 * catch (CoreException ex) { System.out.println(ex.getMessage()); } }
 	 */
 
 	@Override
@@ -493,8 +465,9 @@ public class SkypeBackend implements IBackend, jwcObserver {
 
 	@Override
 	public void disconnect() {
-		Conversation [] conversations = skype.GetConversationList(Conversation.LIST_TYPE.LIVE_CONVERSATIONS);
-		for (Conversation c : conversations){
+		Conversation[] conversations = skype
+				.GetConversationList(Conversation.LIST_TYPE.LIVE_CONVERSATIONS);
+		for (Conversation c : conversations) {
 			c.close();
 		}
 
@@ -504,7 +477,6 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		try {
 			skype.Close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -518,7 +490,6 @@ public class SkypeBackend implements IBackend, jwcObserver {
 
 	@Override
 	public ICapabilities getCapabilities() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -529,11 +500,18 @@ public class SkypeBackend implements IBackend, jwcObserver {
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
 					@SuppressWarnings("deprecation")
-					Preferences preferences = new ConfigurationScope().getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
-					Preferences skypePref = preferences.node(IConfigurationConstant.SKYPE);
-					my_username=skypePref.get(IConfigurationConstant.USERNAME, "no_user");
-					userContext = new UserContext(skypePref.get(IConfigurationConstant.USERNAME, "no_user"), skypePref.get(IConfigurationConstant.PASSWORD, "no_user"));
-					serverContext = new ServerContext("Skype", true, false, 0, "Skype");
+					Preferences preferences = new ConfigurationScope()
+							.getNode(IConfigurationConstant.CONFIGURATION_NODE_QUALIFIER);
+					Preferences skypePref = preferences
+							.node(IConfigurationConstant.SKYPE);
+					my_username = skypePref.get(
+							IConfigurationConstant.USERNAME, "no_user");
+					userContext = new UserContext(skypePref.get(
+							IConfigurationConstant.USERNAME, "no_user"),
+							skypePref.get(IConfigurationConstant.PASSWORD,
+									"no_user"));
+					serverContext = new ServerContext("Skype", true, false, 0,
+							"Skype");
 					connect(serverContext, userContext);
 				} catch (BackendException e) {
 					e.printStackTrace();
@@ -567,10 +545,8 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		UserContext userContect = new UserContext(getUserId(), "");
 		userContect.setName(account.GetStrProperty(Account.PROPERTY.fullname));
 
-
 		return userContect;
 	}
-
 
 	@Override
 	public boolean isConnected() {
@@ -601,7 +577,6 @@ public class SkypeBackend implements IBackend, jwcObserver {
 	public String getUserId() {
 		return account.GetStrProperty(Account.PROPERTY.skypename);
 
-
 	}
 
 	@Override
@@ -617,13 +592,13 @@ public class SkypeBackend implements IBackend, jwcObserver {
 	@Override
 	public void registerNewAccount(String userId, String password,
 			ServerContext server, Map<String, String> attributes)
-					throws Exception {
+			throws Exception {
 	}
 
 	@Override
 	public void setUserStatus(int status) {
 
-		switch (status){
+		switch (status) {
 		case IUserStatus.AVAILABLE:
 
 			account.SetAvailability(AVAILABILITY.ONLINE);
@@ -646,16 +621,14 @@ public class SkypeBackend implements IBackend, jwcObserver {
 
 			account.SetAvailability(AVAILABILITY.OFFLINE);
 
-			//disconnect();
+			// disconnect();
 
 			break;
 		}
 
-
 	}
 
-	public void skypeCleanup()
-	{
+	public void skypeCleanup() {
 
 		if (theListeners != null)
 			theListeners.unRegisterAllListeners();
@@ -664,128 +637,115 @@ public class SkypeBackend implements IBackend, jwcObserver {
 			if (transport != null && transport.isConnected())
 				transport.disconnect();
 		} catch (IOException e) {
-
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void login (String user, String pass){
+	public void login(String user, String pass) {
 
 		account = SkypeBackend.skype.GetAccount(user);
-		account.LoginWithPassword(
-				pass,
-				false, true);
-
-
+		account.LoginWithPassword(pass, false, true);
 
 	}
 
-	public void onAccountStatusChange()
-	{
+	public void onAccountStatusChange() {
 
 	}
-
-
-
-
-
-
 
 	@Override
-	public void OnConversationListChange(Conversation conversation, LIST_TYPE type, boolean added)
-	{
+	public void OnConversationListChange(Conversation conversation,
+			LIST_TYPE type, boolean added) {
 		if (added)
-			System.out.println("OnConversationListChange:" + conversation.GetStrProperty(Conversation.PROPERTY.displayname) + ", list_type " + type + ", was added");
+			System.out.println("OnConversationListChange:"
+					+ conversation
+							.GetStrProperty(Conversation.PROPERTY.displayname)
+					+ ", list_type " + type + ", was added");
 		else
-			System.out.println("OnConversationListChange:" + conversation.GetStrProperty(Conversation.PROPERTY.displayname) + ", list_type " + type + ", was removed");
+			System.out.println("OnConversationListChange:"
+					+ conversation
+							.GetStrProperty(Conversation.PROPERTY.displayname)
+					+ ", list_type " + type + ", was removed");
 
 	}
 
-
-
-
-
-
 	@Override
-	public void OnPropertyChange(SkypeObject obj, com.skype.api.Contact.PROPERTY prop, Object value)
-	{
-		Contact c = (Contact)obj;
+	public void OnPropertyChange(SkypeObject obj,
+			com.skype.api.Contact.PROPERTY prop, Object value) {
+		Contact c = (Contact) obj;
 		String skypeName;
-		if (prop == Contact.PROPERTY.availability) { 
-			c = (Contact)obj;
+		if (prop == Contact.PROPERTY.availability) {
+			c = (Contact) obj;
 			skypeName = c.GetIdentity();
-			int i = (Integer)value;
-			System.out.println("ACCOUNT." + skypeName + ":AVAILABILITY = " + Contact.AVAILABILITY.get(i));
+			int i = (Integer) value;
+			System.out.println("ACCOUNT." + skypeName + ":AVAILABILITY = "
+					+ Contact.AVAILABILITY.get(i));
 			SkypeBackend.skypeBuddyRoster.reload();
 
-		}
-		else if (prop == Contact.PROPERTY.mood_text) { 
-			c = (Contact)obj;
+		} else if (prop == Contact.PROPERTY.mood_text) {
+			c = (Contact) obj;
 			skypeName = c.GetIdentity();
-			System.out.println("ACCOUNT." + skypeName + ":MOOD = " + c.GetStrProperty(prop));
+			System.out.println("ACCOUNT." + skypeName + ":MOOD = "
+					+ c.GetStrProperty(prop));
 		}
 
 	}
 
-
-	public void OnPropertyChange(SkypeObject obj, com.skype.api.Participant.PROPERTY prop, Object value)
-	{
-		
+	public void OnPropertyChange(SkypeObject obj,
+			com.skype.api.Participant.PROPERTY prop, Object value) {
 
 	}
 
 	@Override
-	public void OnPropertyChange(SkypeObject obj, com.skype.api.Message.PROPERTY prop, Object value)
-	{
-		
+	public void OnPropertyChange(SkypeObject obj,
+			com.skype.api.Message.PROPERTY prop, Object value) {
+
 	}
 
 	@Override
-	public void OnPropertyChange(SkypeObject obj, com.skype.api.Conversation.PROPERTY prop, Object value)
-	{
-		Conversation c = (Conversation)obj;
-		
+	public void OnPropertyChange(SkypeObject obj,
+			com.skype.api.Conversation.PROPERTY prop, Object value) {
+		Conversation c = (Conversation) obj;
 
 		if (prop == Conversation.PROPERTY.local_livestatus) {
-			Conversation affectedConversation = (Conversation)obj;
-			Conversation.LOCAL_LIVESTATUS liveStatus =
-					Conversation.LOCAL_LIVESTATUS.get(affectedConversation.GetIntProperty(Conversation.PROPERTY.local_livestatus));
+			Conversation affectedConversation = (Conversation) obj;
+			Conversation.LOCAL_LIVESTATUS liveStatus = Conversation.LOCAL_LIVESTATUS
+					.get(affectedConversation
+							.GetIntProperty(Conversation.PROPERTY.local_livestatus));
 
 			switch (liveStatus) {
 			case RINGING_FOR_ME:
-				System.out.println("RING RING...");				
-				Participant[] p =c.GetParticipants(Conversation.PARTICIPANTFILTER.ALL);
+				System.out.println("RING RING...");
+				Participant[] p = c
+						.GetParticipants(Conversation.PARTICIPANTFILTER.ALL);
 
-
-				if (p.length<=2){
+				if (p.length <= 2) {
 					skypeCallAction.addCall(p[0].toString(), c);
 					IBackendEvent event = new CallEvent(getBackendId(),
-							p[1].GetStrProperty(Participant.PROPERTY.identity));	
+							p[1].GetStrProperty(Participant.PROPERTY.identity));
 					getHelper().notifyBackendEvent(event);
 
-					new Thread(
-							new Runnable() {
-								public void run() {
-									sound.play("in_call"); 
-								}
-							}).start();
+					new Thread(new Runnable() {
+						public void run() {
+							sound.play("in_call");
+						}
+					}).start();
 
-
-				}else{
+				} else {
 					IBackendEvent event = new CallEvent(getBackendId(),
-							"conference");	
+							"conference");
 					getHelper().notifyBackendEvent(event);
-					new Thread(
-							new Runnable() {
-								public void run() {
-									sound.play("in_call"); 
-								}
-							}).start();
-					skypeMultiCallAction.addCall(c.GetStrProperty(Conversation.PROPERTY.identity), c);	
+					new Thread(new Runnable() {
+						public void run() {
+							sound.play("in_call");
+						}
+					}).start();
+					skypeMultiCallAction
+							.addCall(
+									c.GetStrProperty(Conversation.PROPERTY.identity),
+									c);
 				}
 
-				break ;
+				break;
 			case ON_HOLD_REMOTELY:
 				break;
 			case RECENTLY_LIVE:
@@ -804,14 +764,9 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		}
 	}
 
-
-
-
-
-
 	@Override
-	public void OnPropertyChange(SkypeObject obj, com.skype.api.Account.PROPERTY prop, Object value)
-	{
+	public void OnPropertyChange(SkypeObject obj,
+			com.skype.api.Account.PROPERTY prop, Object value) {
 
 		String skypename = "(not logged in)";
 		if (account != null) {
@@ -819,40 +774,37 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		}
 
 		if (account != null && prop == Account.PROPERTY.status) {
-			Account.GetStatusWithProgressResult loginStatus = account.GetStatusWithProgress();
+			Account.GetStatusWithProgressResult loginStatus = account
+					.GetStatusWithProgress();
 
 			if (loginStatus.status == Account.STATUS.LOGGED_IN) {
 				System.out.println("Login complete.");
 
-
-			}
-			else if ((loginStatus.status == Account.STATUS.LOGGED_OUT)
+			} else if ((loginStatus.status == Account.STATUS.LOGGED_OUT)
 					|| (loginStatus.status == Account.STATUS.LOGGED_OUT_AND_PWD_SAVED)) {
 				System.out.println("Logout complete.");
+			} else {
+				System.out.println("Account Status: " + loginStatus.status
+						+ " Progress: " + loginStatus.progress);
 			}
-			else {
-				System.out.println("Account Status: " + loginStatus.status + " Progress: " + loginStatus.progress);
-			}
-		}
-		else if (prop == Account.PROPERTY.availability) {
-			int i = (Integer)(value);
+		} else if (prop == Account.PROPERTY.availability) {
+			int i = (Integer) (value);
 			Contact.AVAILABILITY v = Contact.AVAILABILITY.get(i);
-			System.out.println("ACCOUNT." + skypename + ":" + prop.name() + " = " + v.name());
-		}
-		else if (prop == Account.PROPERTY.logoutreason) {
-			int i = (Integer)(value);
-			System.out.println("ACCOUNT." + skypename + ":LOGOUTREASON" + " = " + Account.LOGOUTREASON.get(i));
-		}
-		else {
-			System.out.println("ACCOUNT." + skypename + ":" + prop.name() + " = " + value);
+			System.out.println("ACCOUNT." + skypename + ":" + prop.name()
+					+ " = " + v.name());
+		} else if (prop == Account.PROPERTY.logoutreason) {
+			int i = (Integer) (value);
+			System.out.println("ACCOUNT." + skypename + ":LOGOUTREASON" + " = "
+					+ Account.LOGOUTREASON.get(i));
+		} else {
+			System.out.println("ACCOUNT." + skypename + ":" + prop.name()
+					+ " = " + value);
 		}
 	}
 
-
 	@Override
-	public void OnMessage(Message message, boolean changesInboxTimestamp, Message supersedesHistoryMessage,
-			Conversation conversation)
-	{
+	public void OnMessage(Message message, boolean changesInboxTimestamp,
+			Message supersedesHistoryMessage, Conversation conversation) {
 		String author = message.GetStrProperty(Message.PROPERTY.author);
 
 		String text = message.GetStrProperty(Message.PROPERTY.body_xml);
@@ -861,26 +813,21 @@ public class SkypeBackend implements IBackend, jwcObserver {
 		text = text.replaceAll("&quot;", "\"");
 		text = text.replaceAll("&apos;", "\'");
 
-		conversation.SetConsumedHorizon(message.GetIntProperty(Message.PROPERTY.timestamp), false);
+		conversation.SetConsumedHorizon(
+				message.GetIntProperty(Message.PROPERTY.timestamp), false);
 
-		if(!author.equals(my_username)){
+		if (!author.equals(my_username)) {
 
-
-			processMessageReceived(text,
-					author,
-					author, conversation);
+			processMessageReceived(text, author, author, conversation);
 
 		}
 		int type = message.GetIntProperty(Message.PROPERTY.type);
-		System.out.println("SKYPE.OnMessage." + author + " Message::TYPE = " + Message.TYPE.get(type));
-
+		System.out.println("SKYPE.OnMessage." + author + " Message::TYPE = "
+				+ Message.TYPE.get(type));
 
 		if (type == Message.TYPE.ENDED_LIVESESSION.getId()) {
 			sound.stop();
 		}
 	}
-
-
-
 
 }

@@ -53,7 +53,7 @@ public class BuddyAdapterFactory implements IAdapterFactory {
      */
     private final IWorkbenchAdapter rosterAdapter = new IWorkbenchAdapter() {
         public Object[] getChildren( Object o ) {
-            return ((IBuddyRoster) o).getChilds();
+            return ((IBuddyRoster) o).getChildren();
         }
 
         public ImageDescriptor getImageDescriptor( Object object ) {
@@ -78,7 +78,7 @@ public class BuddyAdapterFactory implements IAdapterFactory {
         }
 
         public Object[] getChildren( Object o ) {
-            Object[] childs = ((IBuddyGroup) o).getChilds(); 
+            Object[] childs = ((IBuddyGroup) o).getChildren(); 
             return childs;
         }
 
