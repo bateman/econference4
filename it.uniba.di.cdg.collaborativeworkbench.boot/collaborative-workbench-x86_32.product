@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="eConference" id="it.uniba.di.cdg.collaborativeworkbench.boot.product" application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench" version="4.7" useFeatures="false" includeLaunchers="true">
+<product name="eConference" id="it.uniba.di.cdg.collaborativeworkbench.boot.product" application="it.uniba.di.cdg.collaborativeworkbench.boot.collaborativeWorkbench" version="4.5.8" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/it.uniba.di.cdg.collaborativeworkbench.boot/about_logo.gif"/>

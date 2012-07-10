@@ -42,9 +42,9 @@ public interface IEntry extends IAdaptable {
     IEntry getParent();
     
     /**
-     * Returns all the childs for the current entry.
+     * Returns all the children for the current entry.
      * 
-     * @return a (maybe empty) array of childs 
+     * @return a (maybe empty) array of children 
      */
-    IEntry[] getChilds();
+    IEntry[] getChildren();
 }

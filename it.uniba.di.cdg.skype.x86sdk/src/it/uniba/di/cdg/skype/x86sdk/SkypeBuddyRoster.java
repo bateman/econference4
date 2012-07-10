@@ -44,7 +44,7 @@ IBuddyRoster {
 
 
 	@Override
-	public IEntry[] getChilds() {
+	public synchronized IEntry[] getChildren() {
 		// Collect all groups and buddies without a group
 		final Collection<IEntry> all = new HashSet<IEntry>(groups.values());
 
