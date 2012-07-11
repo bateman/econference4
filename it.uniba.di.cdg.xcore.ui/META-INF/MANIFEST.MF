@@ -27,4 +27,3 @@ Export-Package: it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.xcore.ui.widget,
  it.uniba.di.cdg.xcore.ui.wizards
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: it.uniba.di.cdg.xcore.ui

@@ -180,7 +180,7 @@ public abstract class AbstractBuddy extends PlatformObject implements IBuddy {
 	 * 
 	 * @see it.uniba.di.cdg.xcore.network.model.IEntry#getChilds()
 	 */
-	public IEntry[] getChildren() {
+	public IEntry[] getChilds() {
 		return new IEntry[0];
 	}
 

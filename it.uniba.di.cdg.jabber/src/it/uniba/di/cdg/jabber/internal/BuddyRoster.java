@@ -261,7 +261,7 @@ public class BuddyRoster extends AbstractBuddyRoster implements RosterListener {
      * FIXME generates a java.util.ConcurrentModificationException
      */
     @SwtSyncExec
-    public IEntry[] getChildren() {
+    public IEntry[] getChilds() {
         // Collect all groups and buddies without a group
         final Collection<IEntry> all = new HashSet<IEntry>( groups.values() );
         

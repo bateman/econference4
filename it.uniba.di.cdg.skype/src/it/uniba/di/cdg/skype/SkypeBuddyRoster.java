@@ -45,7 +45,7 @@ public class SkypeBuddyRoster extends AbstractBuddyRoster implements
 	
 	
 	@Override
-	public IEntry[] getChildren() {
+	public IEntry[] getChilds() {
 		// Collect all groups and buddies without a group
 		final Collection<IEntry> all = new HashSet<IEntry>(groups.values());
 

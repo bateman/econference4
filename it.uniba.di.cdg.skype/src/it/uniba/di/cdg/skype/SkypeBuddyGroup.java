@@ -53,7 +53,7 @@ public class SkypeBuddyGroup extends AbstractBuddyGroup {
 	}
 	
 	@Override
-	public IEntry[] getChildren() {		
+	public IEntry[] getChilds() {		
         IEntry[] array = new IEntry[buddies.size()];
         return buddies.toArray( array );
 	}

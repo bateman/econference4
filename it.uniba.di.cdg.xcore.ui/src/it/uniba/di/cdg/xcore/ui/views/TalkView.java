@@ -50,12 +50,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
@@ -97,9 +93,12 @@ public class TalkView extends TalkViewUI implements ITalkView {
     protected IAction increaseFontSize;
 
     protected IAction decreaseFontSize;
-    
-    public String receiver;
 
+    
+    public static final String THREADSEPARATOR = "=====================";
+    
+     
+    
     /**
      * The model listener will append text messages added to the model and replace the currently
      * displayed text with the one belonging to the newly selected thread id.
@@ -113,7 +112,9 @@ public class TalkView extends TalkViewUI implements ITalkView {
             // Add a separator to the old threading (when this event is fired the current
             // thread in the talk model has not been changed yet, so it safe to 
             // call appendMessage() here and have it attached the message to "oldThread"
-            putSeparator( oldThread );
+            //putSeparator( oldThread );
+        	putSeparator( newThread );
+        	
             showThread( newThread );
         }
     };
@@ -589,7 +590,7 @@ public class TalkView extends TalkViewUI implements ITalkView {
      * @see it.uniba.di.cdg.xcore.ui.views.ITalkView#putSeparator(java.lang.String)
      */
     public void putSeparator( String threadId ) {
-        Entry entry = new Entry("---------------------");
+        Entry entry = new Entry(THREADSEPARATOR);
         entry.setType(Entry.EntryType.SYSTEM_MSG);
         getModel().addEntry( threadId, entry );
     }
@@ -622,42 +623,4 @@ public class TalkView extends TalkViewUI implements ITalkView {
 	
 	
 	
-	public void setReceiver(String id) {
-		receiver=id;		
-	}
-
-	public String getReceiver() {
-		return receiver;
-
-	}
-
-
-	public void runCallExtension() {
-
-		IConfigurationElement[] config = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor("it.uniba.di.cdg.xcore.ui.call_buttons");
-		try {
-			for (IConfigurationElement e : config) {
-				System.out.println("Evaluating extension");
-				final Object o = e.createExecutableExtension("class");
-				if (o instanceof ITalkViewUI) {
-					ISafeRunnable runnable = new ISafeRunnable() {
-						@Override
-						public void handleException(Throwable exception) {
-							System.out.println("Exception in client");
-						}
-
-						@Override
-						public void run() throws Exception {
-							((ITalkViewUI) o).addButtons(callComposite, getReceiver());
-						}
-					};
-					SafeRunner.run(runnable);
-				}
-			}
-		} catch (CoreException ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
 }
-

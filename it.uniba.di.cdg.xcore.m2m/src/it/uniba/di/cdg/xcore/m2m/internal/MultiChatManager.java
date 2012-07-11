@@ -181,8 +181,8 @@ public class MultiChatManager implements IMultiChatManager {
 	};
 
 	/**
-	 * 
-	 */
+     * 
+     */
 	protected IManagerEventListener managerEventListener = new IManagerEventListener() {
 		public void onManagerEvent(IManagerEvent event) {
 			if (event instanceof ViewReadOnlyEvent) {
@@ -280,9 +280,7 @@ public class MultiChatManager implements IMultiChatManager {
 
 		IViewPart talkViewPart = setupUITalkView();
 		talkView = (IMultiChatTalkView) talkViewPart;
-		if(getBackendHelper().getRoster().getBackend().getBackendId().equals("it.uniba.di.cdg.skype.skypeBackend"))
-			talkView.setReceiver("conference");
-		talkView.runCallExtension();
+
 		roomView = (IChatRoomView) setupUIRoomView();
 
 		// Ensure that the focus is switched to this new chat
@@ -350,8 +348,8 @@ public class MultiChatManager implements IMultiChatManager {
 			 */
 			@Override
 			public void voiceGranted() {
-				Entry entry = new Entry("Moderator has allowed you back in conversation!");
-				entry.setType(Entry.EntryType.SYSTEM_MSG);
+			    Entry entry = new Entry("Moderator has allowed you back in conversation!");
+			    entry.setType(Entry.EntryType.SYSTEM_MSG);
 				talkView.appendMessage(entry);
 				talkView.setReadOnly(false);
 			}
@@ -365,9 +363,9 @@ public class MultiChatManager implements IMultiChatManager {
 			 */
 			@Override
 			public void voiceRevoked() {
-				Entry entry = new Entry("Moderator has stopped you from contributing to conversation!");
-				entry.setType(Entry.EntryType.SYSTEM_MSG);
-				talkView.appendMessage(entry);
+			    Entry entry = new Entry("Moderator has stopped you from contributing to conversation!");
+                entry.setType(Entry.EntryType.SYSTEM_MSG);
+			    talkView.appendMessage(entry);
 				talkView.setReadOnly(true);
 			}
 		});

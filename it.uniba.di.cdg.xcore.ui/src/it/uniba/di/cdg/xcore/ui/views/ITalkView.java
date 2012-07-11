@@ -77,24 +77,6 @@ public interface ITalkView extends IActivatableView, ITypingEventListener, ISave
      */
     void setTitleText( String title );
     
-    
-    /**
-     * Set the title for the input panel. Implementations are expected to set one by default, 
-     * that can be overridden by this method.
-     * 
-     * @param receiver
-     */
-    void setReceiver( String id );
-    
-    
-    /**
-     * Set the title for the input panel. Implementations are expected to set one by default, 
-     * that can be overridden by this method.
-     * 
-     * @param title the title for the panel
-     */
-    String getReceiver();
-    
     /**
      * Add a new listener for panel events.
      * 
@@ -123,7 +105,12 @@ public interface ITalkView extends IActivatableView, ITypingEventListener, ISave
      */
     void removeTypingListener( ITypingListener listener );
 
-   
+    /**
+     * Returns the current text in the talk view.
+     * 
+     * @return the current chat text
+     */
+    String getChatLogText();
 
     /**
      * Append a message to the message board.
@@ -132,13 +119,6 @@ public interface ITalkView extends IActivatableView, ITypingEventListener, ISave
      */
     void appendMessage( IMessage message );
 
-    /**
-     * Returns the current text in the talk view.
-     * 
-     * @return the current chat text
-     */
-    String getChatLogText();
-    
     /**
      * Convenience method for displaying some simple text messages.
      * 
@@ -159,6 +139,4 @@ public interface ITalkView extends IActivatableView, ITypingEventListener, ISave
      * @param threadId the thread id where the separator must be put
      */
     void putSeparator( String threadId );
-    
-    void runCallExtension();
 }
