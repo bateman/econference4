@@ -24,6 +24,7 @@
  */
 package it.uniba.di.cdg.xcore.ui.internal;
 
+import it.uniba.di.cdg.aspects.SwtAsyncExec;
 import it.uniba.di.cdg.aspects.SwtSyncExec;
 import it.uniba.di.cdg.xcore.ui.IUIHelper;
 import it.uniba.di.cdg.xcore.ui.dialogs.CompletableInputDialog;
@@ -49,184 +50,183 @@ import org.eclipse.ui.WorkbenchException;
  */
 public class UIHelper implements IUIHelper {
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showMessage(java.lang.String, java.lang.String)
-	 */
-	@SwtSyncExec
-	public void showMessage( String windowTitle, String message ) {
-		MessageDialog.openInformation( getShell(), windowTitle, message );
-		//        System.out.println( message );
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showMessage(java.lang.String, java.lang.String)
+     */
+    @SwtSyncExec
+    public void showMessage( String windowTitle, String message ) {
+        MessageDialog.openInformation( getShell(), windowTitle, message );
+        //        System.out.println( message );
+    }
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showErrorMessage(java.lang.String, java.lang.String)
-	 */
-	@SwtSyncExec
-	public void showErrorMessage( String windowTitle, String errorMessage ) {
-		MessageDialog.openError( getShell(), windowTitle, errorMessage );
-		//        System.err.println( errorMessage );
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showErrorMessage(java.lang.String, java.lang.String)
+     */
+    @SwtSyncExec
+    public void showErrorMessage( String windowTitle, String errorMessage ) {
+        MessageDialog.openError( getShell(), windowTitle, errorMessage );
+        //        System.err.println( errorMessage );
+    }
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showMessage(java.lang.String)
-	 */
-	public void showMessage( String message ) {
-		showMessage( DEFAULT_MESSAGE_WINDOW_TITLE, message );
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showMessage(java.lang.String)
+     */
+    public void showMessage( String message ) {
+        showMessage( DEFAULT_MESSAGE_WINDOW_TITLE, message );
+    }
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showErrorMessage(java.lang.String)
-	 */
-	public void showErrorMessage( String errorMessage ) {
-		showErrorMessage( DEFAULT_ERROR_WINDOW_TITLE, errorMessage );
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#showErrorMessage(java.lang.String)
+     */
+    public void showErrorMessage( String errorMessage ) {
+        showErrorMessage( DEFAULT_ERROR_WINDOW_TITLE, errorMessage );
+    }
 
-	/**
-	 * Retrives the active shell object.
-	 * 
-	 * @return the active shell
-	 */
-	protected Shell getShell() {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-	}
+    /**
+     * Retrives the active shell object.
+     * 
+     * @return the active shell
+     */
+    protected Shell getShell() {
+        return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+    }
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#askFreeQuestion(java.lang.String, java.lang.String)
-	 */
-	public String askFreeQuestion( final String question, final String initialValue ) {
-		return askFreeQuestion( "Question", question, initialValue );
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#askFreeQuestion(java.lang.String, java.lang.String)
+     */
+    public String askFreeQuestion( final String question, final String initialValue ) {
+        return askFreeQuestion( "Question", question, initialValue );
+    }
 
-	@SwtSyncExec
-	public String askFreeQuestion( final String title, final String question, final String initialValue ) {
-		InputDialog input = new InputDialog( getShell(), title, question, initialValue,
-				new NotEmptyStringValidator() );
-		if (Dialog.OK == input.open())
-			return input.getValue();
-		else
-			return null;
-	}
+    @SwtSyncExec
+    public String askFreeQuestion( final String title, final String question, final String initialValue ) {
+        InputDialog input = new InputDialog( getShell(), title, question, initialValue,
+                new NotEmptyStringValidator() );
+        if (Dialog.OK == input.open())
+            return input.getValue();
+        else
+            return null;
+    }
+    
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#askYesNoQuestion(java.lang.String)
+     */
+    @SwtSyncExec
+    public boolean askYesNoQuestion(String title, String question ) {
+        return MessageDialog.openQuestion( getShell(), title, question );        
+    }
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#askYesNoQuestion(java.lang.String)
-	 */
-	@SwtSyncExec
-	public boolean askYesNoQuestion(String title, String question ) {   
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#switchPerspective(java.lang.String)
+     */
+    @SwtSyncExec
+    public void switchPerspective( final String perspectiveId ) {
+        try {
+            PlatformUI.getWorkbench().showPerspective( perspectiveId,
+                    PlatformUI.getWorkbench().getActiveWorkbenchWindow() );
+        } catch (WorkbenchException e) {
+            e.printStackTrace();
+        }
+    }
 
-		return MessageDialog.openQuestion( getShell(), title, question );        
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#closeCurrentPerspective()
+     */
+    @SwtSyncExec
+    public void closeCurrentPerspective() {
+        // Close this perspective since it is unuseful ...
+        // Avoid NPE when closing the application without closing the perspective first  ...
+        IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+                .getActivePage();
+        if (activePage == null)
+            return;
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#switchPerspective(java.lang.String)
-	 */
-	@SwtSyncExec
-	public void switchPerspective( final String perspectiveId ) {
-		try {
-			PlatformUI.getWorkbench().showPerspective( perspectiveId,
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow() );
-		} catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-	}
+        IPerspectiveDescriptor pd = activePage.getPerspective();
+        System.out.println( "Closing perspective: " + pd.getId() );
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#closeCurrentPerspective()
-	 */
-	@SwtSyncExec
-	public void closeCurrentPerspective() {
-		// Close this perspective since it is unuseful ...
-		// Avoid NPE when closing the application without closing the perspective first  ...
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-				.getActivePage();
-		if (activePage == null)
-			return;
+        activePage.closePerspective( pd, false, false );
+    }
 
-		IPerspectiveDescriptor pd = activePage.getPerspective();
-		System.out.println( "Closing perspective: " + pd.getId() );
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#closePerspective(java.lang.String)
+     */
+    
+    // "Graphic is disposed" error when closing a conference depends on this method
+    // and non closing prospective
+    @SwtSyncExec
+    public void closePerspective( String perspectiveId ) {
+        IPerspectiveDescriptor pd = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId( perspectiveId );
+        if (pd == null) {
+            System.err.println( "Wanna close unknown perspective " + perspectiveId );
+            return;
+        }
+            
+        IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        if (activeWorkbenchWindow == null)
+        	return;
+        
+        IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+        if (activePage == null)
+            return;
+        
+        activePage.closePerspective( pd, true, false );
+    }
+    
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#requestFile(java.lang.String[])
+     */
+    @SwtSyncExec
+    public String requestFile( String[] fileExtensions, String filePath ) {
+        FileDialog fileDialog = new FileDialog( getShell(), SWT.OPEN );
+        fileDialog.setText("Open File");
+        fileDialog.setFilterExtensions( fileExtensions );
+        fileDialog.setFilterPath(filePath);
 
-		activePage.closePerspective( pd, false, false );
-	}
+        return fileDialog.open();
+    }
 
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#closePerspective(java.lang.String)
-	 */
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#requestFileNameForSaving(java.lang.String[])
+     */
+    @SwtSyncExec
+    public String requestFileNameForSaving( String... fileExtensions ) {
+        FileDialog fileDialog = new FileDialog( getShell(), SWT.SAVE );
+        fileDialog.setText("Save File");
+        fileDialog.setFilterExtensions( fileExtensions );
 
-	// "Graphic is disposed" error when closing a conference depends on this method
-	// and non closing prospective
-	@SwtSyncExec
-	public void closePerspective( String perspectiveId ) {
-		IPerspectiveDescriptor pd = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId( perspectiveId );
-		if (pd == null) {
-			System.err.println( "Wanna close unknown perspective " + perspectiveId );
-			return;
-		}
+        return fileDialog.open();
+    }
 
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (activeWorkbenchWindow == null)
-			return;
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#findView(java.lang.String)
+     */
+    public IViewPart findView( String viewId ) {
+        return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(
+                viewId );
+    }
 
-		IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-		if (activePage == null)
-			return;
-
-		activePage.closePerspective( pd, true, false );
-	}
-
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#requestFile(java.lang.String[])
-	 */
-	@SwtSyncExec
-	public String requestFile( String[] fileExtensions, String filePath ) {
-		FileDialog fileDialog = new FileDialog( getShell(), SWT.OPEN );
-		fileDialog.setText("Open File");
-		fileDialog.setFilterExtensions( fileExtensions );
-		fileDialog.setFilterPath(filePath);
-
-		return fileDialog.open();
-	}
-
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#requestFileNameForSaving(java.lang.String[])
-	 */
-	@SwtSyncExec
-	public String requestFileNameForSaving( String... fileExtensions ) {
-		FileDialog fileDialog = new FileDialog( getShell(), SWT.SAVE );
-		fileDialog.setText("Save File");
-		fileDialog.setFilterExtensions( fileExtensions );
-
-		return fileDialog.open();
-	}
-
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#findView(java.lang.String)
-	 */
-	public IViewPart findView( String viewId ) {    	
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(
-				viewId );
-	}
-
-	/* (non-Javadoc)
-	 * @see it.uniba.di.cdg.xcore.ui.IUIHelper#askChoice(java.lang.String, java.lang.String, int, java.lang.String[])
-	 */
-	public String askChoice( String title, String question, int selectedItem, String[] completionItems ) {
-		CompletableInputDialog input = new CompletableInputDialog( getShell(), title, question, 
-				selectedItem,
-				completionItems,
-				new NotEmptyStringValidator() );
-		if (Dialog.OK == input.open())
-			return input.getValue();
-		else
-			return null;
-	}
+    /* (non-Javadoc)
+     * @see it.uniba.di.cdg.xcore.ui.IUIHelper#askChoice(java.lang.String, java.lang.String, int, java.lang.String[])
+     */
+    public String askChoice( String title, String question, int selectedItem, String[] completionItems ) {
+        CompletableInputDialog input = new CompletableInputDialog( getShell(), title, question, 
+                selectedItem,
+                completionItems,
+                new NotEmptyStringValidator() );
+        if (Dialog.OK == input.open())
+            return input.getValue();
+        else
+            return null;
+    }
 
 	@Override
 	public String[] askUserInput(String title, String question,
 			String[] userInputs, String[] initialValue, IInputValidator[] validators) {
 		UserInputsProviderDialog input = new UserInputsProviderDialog(getShell(), title, question, 
 				userInputs, initialValue, validators);
-		if (Dialog.OK == input.open())
-			return input.getValues();
-		else
-			return null;
+		 if (Dialog.OK == input.open())
+	            return input.getValues();
+	        else
+	            return null;
 	}
 }

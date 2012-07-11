@@ -10,11 +10,11 @@ Require-Bundle: org.eclipse.ui,
  it.uniba.di.cdg.xcore.m2m,
  it.uniba.di.cdg.xcore.ui,
  it.uniba.di.cdg.jabber;bundle-version="1.0.0",
+ it.uniba.di.cdg.skype;bundle-version="1.0.0",
  com.google.services;bundle-version="1.0.0",
  org.aspectj.runtime,
  it.uniba.di.cdg.aspects;bundle-version="1.0.0",
- org.eclipse.core.expressions,
- it.uniba.di.cdg.skype.x86sdk;bundle-version="1.0.0"
+ org.eclipse.core.expressions
 Bundle-ActivationPolicy: lazy
 Export-Package: it.uniba.di.cdg.xcore.econference,
  it.uniba.di.cdg.xcore.econference.internal;x-friends:="it.uniba.di.cdg.econference.planningpoker,org.apertium.api.translate",
