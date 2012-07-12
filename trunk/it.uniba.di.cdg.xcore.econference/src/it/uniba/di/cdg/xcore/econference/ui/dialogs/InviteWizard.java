@@ -96,8 +96,7 @@ public class InviteWizard extends Wizard implements INewWizard {
 		return true;
 	}
 
-    @SuppressWarnings("unused")
-	public boolean performFinish() {
+    public boolean performFinish() {
         lastOnePage.saveData();
         this.context = ((EConferenceContext) lastOnePage.getContext());
         
@@ -120,7 +119,7 @@ public class InviteWizard extends Wizard implements INewWizard {
                 writer.serialize();
             }
             
-            String backendID = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+            //String backendID = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
             
             Preferences gmailPref = preferences.node(IConfigurationConstant.GMAIL);
     		Preferences smtpPref = preferences.node(IConfigurationConstant.SMTP);

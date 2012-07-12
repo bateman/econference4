@@ -34,8 +34,10 @@ import name.pachler.nio.file.Path;
 import name.pachler.nio.file.Paths;
 import name.pachler.nio.file.StandardWatchEventKind;
 import name.pachler.nio.file.WatchEvent;
+import name.pachler.nio.file.WatchEvent.Kind;
 import name.pachler.nio.file.WatchKey;
 import name.pachler.nio.file.WatchService;
+import name.pachler.nio.file.ext.ExtendedWatchEventModifier;
 
 public class FolderMonitor implements Runnable {
 
@@ -53,8 +55,11 @@ public class FolderMonitor implements Runnable {
 		watchService = FileSystems.getDefault().newWatchService();
 		Path path = Paths.get(folder);
 		try {
-			path.register(watchService, StandardWatchEventKind.ENTRY_CREATE,
-					StandardWatchEventKind.ENTRY_MODIFY);
+			
+			Kind<?>[] events = {StandardWatchEventKind.ENTRY_CREATE,
+					StandardWatchEventKind.ENTRY_MODIFY, StandardWatchEventKind.ENTRY_DELETE} ; 
+			path.register(watchService, events, ExtendedWatchEventModifier.FILE_TREE);
+			System.out.println("Monitoring folder " + path);
 		} catch (UnsupportedOperationException uox) {
 			System.err.println("File watching not supported!\nPath " + folder
 					+ "won't be monitored.");
