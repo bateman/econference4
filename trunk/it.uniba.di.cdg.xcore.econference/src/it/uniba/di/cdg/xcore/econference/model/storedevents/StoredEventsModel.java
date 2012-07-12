@@ -174,7 +174,16 @@ public class StoredEventsModel implements IStoredEventsModel,
 	public void reloadContextFiles() {
 		// get a list of the ecx files in the user folder
 		String backend = NetworkPlugin.getDefault().getRegistry().getDefaultBackendId();
+		if(null == backend) {
+			System.err.println("Backend ID is null");
+			return;
+		}
+		
 		String nickName = NetworkPlugin.getDefault().getRegistry().getDefaultBackend().getUserId();
+		if(null == nickName) {
+			System.err.println("User ID in null");
+			return;
+		}
 		
 		File dir = new File(preferredFilePath
 							+ backend
