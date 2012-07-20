@@ -26,6 +26,7 @@ package it.uniba.di.cdg.skype.x86sdk.test;
 
 import junit.framework.TestCase;
 
+
 import org.junit.Test;
 
 import it.uniba.di.cdg.skype.x86sdk.SkypeBackend;
@@ -33,19 +34,20 @@ import it.uniba.di.cdg.xcore.network.INetworkBackendHelper;
 import it.uniba.di.cdg.xcore.network.UserContext;
 import static org.mockito.Mockito.*;
 
-public class SkypeBackendStateTest extends TestCase {
+public class SkypeBackendStateTest  extends TestCase {
 
 	SkypeBackend backend;
 	INetworkBackendHelper backendHelper;
-	UserContext userCont = new UserContext("econferencetester1",
-			"econferencetester1");
+	UserContext userCont = new UserContext( "econferencetester1", "econferencetester1" );
 
-	public void setUp() {
+	public void setUp(){
 		backend = new SkypeBackend();
 		backendHelper = mock(INetworkBackendHelper.class);
 		backend.setHelper(backendHelper);
 
+
 	}
+
 
 	@Test
 	public void testGetHelper() {
@@ -58,9 +60,9 @@ public class SkypeBackendStateTest extends TestCase {
 
 		try {
 			assertFalse(backend.isConnected());
-			backend.connect(null, userCont);
+			backend.connect(null, userCont);			
 			assertTrue(backend.isConnected());
-			assertEquals(backend.getUserId(), backend.getUserAccount().getId());
+			assertEquals(backend.getUserId(),backend.getUserAccount().getId());
 			backend.disconnect();
 			assertFalse(backend.isConnected());
 
@@ -77,8 +79,10 @@ public class SkypeBackendStateTest extends TestCase {
 		try {
 			Thread.sleep(7000);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 
 }
