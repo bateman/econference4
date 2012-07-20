@@ -131,7 +131,7 @@ public class BuddyGroup extends AbstractBuddyGroup {
     /* (non-Javadoc)
      * @see it.uniba.di.cdg.xcore.network.model.IEntry#getChilds()
      */
-    public IEntry[] getChilds() {
+    public IEntry[] getChildren() {
 //        final Collection<IBuddy> buddies = ;
         IEntry[] array = new IEntry[buddies.size()];
         return buddies.toArray( array );
