@@ -46,5 +46,5 @@ public interface IEntry extends IAdaptable {
      * 
      * @return a (maybe empty) array of childs 
      */
-    IEntry[] getChilds();
+    IEntry[] getChildren();
 }
