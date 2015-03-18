@@ -1,0 +1,27 @@
+| **Milestone Release** | **Issues** |
+|:----------------------|:-----------|
+| 4.1.0 | [issue 3](https://code.google.com/p/econference4/issues/detail?id=3), [issue 5](https://code.google.com/p/econference4/issues/detail?id=5), [issue 7](https://code.google.com/p/econference4/issues/detail?id=7), [issue 8](https://code.google.com/p/econference4/issues/detail?id=8), [issue 9](https://code.google.com/p/econference4/issues/detail?id=9), [issue 10](https://code.google.com/p/econference4/issues/detail?id=10), [issue 11](https://code.google.com/p/econference4/issues/detail?id=11), [issue 18](https://code.google.com/p/econference4/issues/detail?id=18), [issue 20](https://code.google.com/p/econference4/issues/detail?id=20), [issue 22](https://code.google.com/p/econference4/issues/detail?id=22), [issue 23](https://code.google.com/p/econference4/issues/detail?id=23), [issue 26](https://code.google.com/p/econference4/issues/detail?id=26), [issue 27](https://code.google.com/p/econference4/issues/detail?id=27), [issue29](https://code.google.com/p/econference4/issues/detail?id=29), [issue 35](https://code.google.com/p/econference4/issues/detail?id=35), [issue 36](https://code.google.com/p/econference4/issues/detail?id=36), [issue 38](https://code.google.com/p/econference4/issues/detail?id=38), [issue 40](https://code.google.com/p/econference4/issues/detail?id=40), [issue 41](https://code.google.com/p/econference4/issues/detail?id=41), [issue 43](https://code.google.com/p/econference4/issues/detail?id=43), [issue 44](https://code.google.com/p/econference4/issues/detail?id=44), [issue 45](https://code.google.com/p/econference4/issues/detail?id=45), [issue 55](https://code.google.com/p/econference4/issues/detail?id=55), [issue 59](https://code.google.com/p/econference4/issues/detail?id=59), [issue 66](https://code.google.com/p/econference4/issues/detail?id=66),  [issue 72](https://code.google.com/p/econference4/issues/detail?id=72), [issue 73](https://code.google.com/p/econference4/issues/detail?id=73), [issue 76](https://code.google.com/p/econference4/issues/detail?id=76),  [issue 86](https://code.google.com/p/econference4/issues/detail?id=86),  [issue 87](https://code.google.com/p/econference4/issues/detail?id=87) |
+| 4.1.5 | [issue 19](https://code.google.com/p/econference4/issues/detail?id=19), [issue 24](https://code.google.com/p/econference4/issues/detail?id=24), [issue 25](https://code.google.com/p/econference4/issues/detail?id=25), [issue 32](https://code.google.com/p/econference4/issues/detail?id=32), [issue 39](https://code.google.com/p/econference4/issues/detail?id=39), [issue 42](https://code.google.com/p/econference4/issues/detail?id=42), [issue 48](https://code.google.com/p/econference4/issues/detail?id=48),  [issue 51](https://code.google.com/p/econference4/issues/detail?id=51), [issue 52](https://code.google.com/p/econference4/issues/detail?id=52), [issue 53](https://code.google.com/p/econference4/issues/detail?id=53), [issue 57](https://code.google.com/p/econference4/issues/detail?id=57), [issue 62](https://code.google.com/p/econference4/issues/detail?id=62), [issue 64](https://code.google.com/p/econference4/issues/detail?id=64), [issue 67](https://code.google.com/p/econference4/issues/detail?id=67), [issue 68](https://code.google.com/p/econference4/issues/detail?id=68), [issue 75](https://code.google.com/p/econference4/issues/detail?id=75), [issue 78](https://code.google.com/p/econference4/issues/detail?id=78), [issue 82](https://code.google.com/p/econference4/issues/detail?id=82)|
+| 4.2.0 | [issue 34](https://code.google.com/p/econference4/issues/detail?id=34), [issue 47](https://code.google.com/p/econference4/issues/detail?id=47), [issue 50](https://code.google.com/p/econference4/issues/detail?id=50), [issue 54](https://code.google.com/p/econference4/issues/detail?id=54), [issue 58](https://code.google.com/p/econference4/issues/detail?id=58), [issue 60](https://code.google.com/p/econference4/issues/detail?id=60), [issue 63](https://code.google.com/p/econference4/issues/detail?id=63), [issue 79](https://code.google.com/p/econference4/issues/detail?id=79), [issue 83](https://code.google.com/p/econference4/issues/detail?id=83), [issue 84](https://code.google.com/p/econference4/issues/detail?id=84), [issue 85](https://code.google.com/p/econference4/issues/detail?id=85) |
+| 4.3.0 | [issue 54](https://code.google.com/p/econference4/issues/detail?id=54), [issue 63](https://code.google.com/p/econference4/issues/detail?id=63) |
+
+## Changelog ##
+
+### Release 4.1.0 ###
+
+**Released on:** TBD
+
+**Major changes**
+  * First run wizard _(by N. Sanitate)_
+  * Add/move/remove buddy list contacts (note: add and remove only work with Jabber/XMPP accounts) _(by A. Russo, A.M. Crespino)_
+  * Change status _(by R.P. Mione)_
+  * Skype-like unread message notification (works only under Mac OSX/Windows 7) _(by D. Colletta, T. Pinto)_
+  * JUnit test cases refactoring _(by G. Desolda)_
+  * JMock to Mockito migration for behavior test case _(by G. Pentassuglia)_
+  * AspectJ aspects refactoring _(by D. Aresta)_
+
+**Minor changes**
+  * eConference resource priority is now set to maximum, to be sure that no messages are lost in case on MPOP  _(by F. Calefato)_
+  * Double join issue is prevented by checking if there is a multichat conferencing session already going on  _(by G. Pentassuglia)_
+  * App-wide exception logging via dedicated aspect _(by D. Aresta)_
+  * Various bug fixes and optimizations
